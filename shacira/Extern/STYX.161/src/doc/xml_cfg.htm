@@ -1,0 +1,750 @@
+
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+<meta name="robots" content="noindex">
+<title>xml Language Reference</title>
+</head>
+<body bgcolor=white text=black link=navy vlink=navy alink=purple>
+<b><font color=\"#008B8B\"><a href="styx.html">contents</a></font></b><br>
+&nbsp;
+<center><H1>xml Language Reference</H1></center>
+<BR>
+<BR>
+<center><H2>Regular Grammar</H2></center>
+<BR>
+The regular grammar defines the basic language elements i.e. tokens as 
+certain classes of character sequences like numbers, identifiers, operators
+and strings.
+<p>Each <b><i><font size="+1">rule</font></i></b> defining such a class of character
+sequences has the following structure: <br>
+&lt;Class Type> 
+&lt;<font color="#B22222">
+[Member group :] Class Identifier [! Next group to activate]</font>> 
+:: &lt;Regular Expression>
+<p>We distinguish five <b><i><font size="+1">types of classes</font></i></b>:
+<br>&nbsp;
+<ul>
+<li>
+<b><i><font size="+1"><font color="#000000">let</font></font></i></b>
+<br>Helper class, used to define the more complex tokens
+<br>They didn't belong to the language definition.
+</li>
+<li>
+<b><i><font size="+1"><font color="#000000">com</font></font></i></b>
+<br>Comments
+<br>They didn't belong to the language definition.
+</li>
+<li>
+<b><i><font size="+1"><font color="#000000">tok</font></font></i></b>
+<br>Tokens
+<br>They represent the regular grammar of the language definition.
+</li>
+<li>
+<b><i><font color="#000000"><font size="+1">ign</font></font></i></b>
+<br>Character sequences which should be ignored i.e. skipped by the scanner
+<br>They didn't belong to the language definition.
+</li>
+<li>
+<b><i><font color="#000000"><font size="+1">ind</font></font></i></b>
+<br>(De)indent tokens
+<br>Indent and dedent events will be forwarded to the parser.
+<br>Otherwise these character sequences will be skipped by the scanner.
+</li>
+<li>
+<b><i><font color="#000000"><font size="+1">lan</font></font></i></b>
+<br>Embedded language tokens
+<br>These are special token classes which has been introduced in order to 
+    integrate embedded languages.
+</li>
+</ul>
+<p><br>A <b><i><font size="+1">regular expression</font></i></b> spezifies
+the character sequences belonging to the class. Such a description usually
+consists of the following elements and operators:
+<br>&nbsp;
+<ul>
+<li>
+<b><i><font size="+1">Expression1 Expression2 ... ExpressionN</font></i></b></li>
+
+<br>Concatenation of partial expressions
+<li>
+<b><i><font size="+1">Expression1 | Expression2 | ... | ExpressionN</font></i></b></li>
+
+<br>Union of partial expressions ( alternatives )
+<li>
+<b><i><font size="+1">Expression1 - Expression2 - ... - ExpressionN</font></i></b></li>
+
+<br>Difference of partial expressions 
+<li>
+<b><i><font size="+1">[ Expression ]</font></i></b></li>
+
+<br>Optional partial expression
+<li>
+<b><i><font size="+1">{ Expression }</font></i></b></li>
+
+<br>Iteration of a partial expression ( 0 .. )
+<li>
+<b><i><font size="+1">Expression +</font></i></b></li>
+
+<br>Iteration of a partial expression ( 1 .. )
+<li>
+<b><i><font size="+1">( Expression )</font></i></b></li>
+
+<br>Combination of a partial expression ( subexpression )
+<li>
+<b><i><font size="+1">< LeftParanthesis > InnerExpression < RightParanthesis ></font></i></b></li>
+
+<br>non-regular dyck expression
+<li>
+<b><i><font color="#3366FF"><font size="+1">Class identifier</font></font></i></b></li>
+
+<br><font color="#000000">Abreviation for the corresponding regular expression</font>
+<li>
+<b><i><font color="#009900"><font size="+1">"String"</font></font></i></b></li>
+
+<br><font color="#000000">Literal: string / character sequence</font>
+<li>
+<b><i><font color="#009900"><font size="+1">'Characterset'</font></font></i></b></li>
+
+<br><font color="#000000">Literal: characterset ( 1 .. ) </font></ul>
+
+<h2>
+<font color="#000000"><font size="+0"></font></font></h2>
+<font color="#000000"><font size="+0">Case ignore character classes
+can be spezified with an <b><i>[I]</i></b>
+behind the class identifier.</font></font>
+<br><font color="#000000"><font size="+0"></font></font>&nbsp;
+<br><font color="#000000"><font size="+0"></font></font>&nbsp;
+<BR>
+<BR>
+<table width=80% border=0>
+
+
+<TR valign=top><TH colspan=5 align=left><PRE>
+ [xml.sty] Grammatik fuer [.xml]-Dateien
+
+
+ Extensible Markup Language
+ [xml2.lex] Token definitions for [.xml]-Files
+ [xml1.lex] Token definitions for [.xml]-Files
+
+
+ Extensible Markup Language ( base tokens 1 )</PRE></TH></TR>
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="Char"></a>Char</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'\09'</font>    <font color=black>|</font>    <font color=green>'\0a'</font>    <font color=black>|</font>    <font color=green>'\0d'</font>    <font color=black>|</font>    <font color=green>'\x00000020'</font>    <font color=black>..</font>    <font color=green>'\x0000d7ff'</font>    <font color=black>|</font>    <font color=green>'\x0000e000'</font>    <font color=black>..</font>    <font color=green>'\x0000fffd'</font>    <font color=black>|</font>    <font color=green>'\x00010000'</font>    <font color=black>..</font>    <font color=green>'\x0010ffff'</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="Space"></a>Space</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'\09'</font>    <font color=black>|</font>    <font color=green>'\0a'</font>    <font color=black>|</font>    <font color=green>'\0d'</font>    <font color=black>|</font>    <font color=green>'\20'</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="BaseChar"></a>BaseChar</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'\x00000041'</font>    <font color=black>..</font>    <font color=green>'\x0000005A'</font>    <font color=black>|</font>    <font color=green>'\x00000061'</font>    <font color=black>..</font>    <font color=green>'\x0000007A'</font>    <font color=black>|</font>    <font color=green>'\x000000C0'</font>    <font color=black>..</font>    <font color=green>'\x000000D6'</font>    <font color=black>|</font>    <font color=green>'\x000000D8'</font>    <font color=black>..</font>    <font color=green>'\x000000F6'</font>    <font color=black>|</font>    <font color=green>'\x000000F8'</font>    <font color=black>..</font>    <font color=green>'\x000000FF'</font>    <font color=black>|</font>    <font color=green>'\x00000100'</font>    <font color=black>..</font>    <font color=green>'\x00000131'</font>    <font color=black>|</font>    <font color=green>'\x00000134'</font>    <font color=black>..</font>    <font color=green>'\x0000013E'</font>    <font color=black>|</font>    <font color=green>'\x00000141'</font>    <font color=black>..</font>    <font color=green>'\x00000148'</font>    <font color=black>|</font>    <font color=green>'\x0000014A'</font>    <font color=black>..</font>    <font color=green>'\x0000017E'</font>    <font color=black>|</font>    <font color=green>'\x00000180'</font>    <font color=black>..</font>    <font color=green>'\x000001C3'</font>    <font color=black>|</font>    <font color=green>'\x000001CD'</font>    <font color=black>..</font>    <font color=green>'\x000001F0'</font>    <font color=black>|</font>    <font color=green>'\x000001F4'</font>    <font color=black>..</font>    <font color=green>'\x000001F5'</font>    <font color=black>|</font>    <font color=green>'\x000001FA'</font>    <font color=black>..</font>    <font color=green>'\x00000217'</font>    <font color=black>|</font>    <font color=green>'\x00000250'</font>    <font color=black>..</font>    <font color=green>'\x000002A8'</font>    <font color=black>|</font>    <font color=green>'\x000002BB'</font>    <font color=black>..</font>    <font color=green>'\x000002C1'</font>    <font color=black>|</font>    <font color=green>'\x00000386'</font>    <font color=black>|</font>    <font color=green>'\x00000388'</font>    <font color=black>..</font>    <font color=green>'\x0000038A'</font>    <font color=black>|</font>    <font color=green>'\x0000038C'</font>    <font color=black>|</font>    <font color=green>'\x0000038E'</font>    <font color=black>..</font>    <font color=green>'\x000003A1'</font>    <font color=black>|</font>    <font color=green>'\x000003A3'</font>    <font color=black>..</font>    <font color=green>'\x000003CE'</font>    <font color=black>|</font>    <font color=green>'\x000003D0'</font>    <font color=black>..</font>    <font color=green>'\x000003D6'</font>    <font color=black>|</font>    <font color=green>'\x000003DA'</font>    <font color=black>|</font>    <font color=green>'\x000003DC'</font>    <font color=black>|</font>    <font color=green>'\x000003DE'</font>    <font color=black>|</font>    <font color=green>'\x000003E0'</font>    <font color=black>|</font>    <font color=green>'\x000003E2'</font>    <font color=black>..</font>    <font color=green>'\x000003F3'</font>    <font color=black>|</font>    <font color=green>'\x00000401'</font>    <font color=black>..</font>    <font color=green>'\x0000040C'</font>    <font color=black>|</font>    <font color=green>'\x0000040E'</font>    <font color=black>..</font>    <font color=green>'\x0000044F'</font>    <font color=black>|</font>    <font color=green>'\x00000451'</font>    <font color=black>..</font>    <font color=green>'\x0000045C'</font>    <font color=black>|</font>    <font color=green>'\x0000045E'</font>    <font color=black>..</font>    <font color=green>'\x00000481'</font>    <font color=black>|</font>    <font color=green>'\x00000490'</font>    <font color=black>..</font>    <font color=green>'\x000004C4'</font>    <font color=black>|</font>    <font color=green>'\x000004C7'</font>    <font color=black>..</font>    <font color=green>'\x000004C8'</font>    <font color=black>|</font>    <font color=green>'\x000004CB'</font>    <font color=black>..</font>    <font color=green>'\x000004CC'</font>    <font color=black>|</font>    <font color=green>'\x000004D0'</font>    <font color=black>..</font>    <font color=green>'\x000004EB'</font>    <font color=black>|</font>    <font color=green>'\x000004EE'</font>    <font color=black>..</font>    <font color=green>'\x000004F5'</font>    <font color=black>|</font>    <font color=green>'\x000004F8'</font>    <font color=black>..</font>    <font color=green>'\x000004F9'</font>    <font color=black>|</font>    <font color=green>'\x00000531'</font>    <font color=black>..</font>    <font color=green>'\x00000556'</font>    <font color=black>|</font>    <font color=green>'\x00000559'</font>    <font color=black>|</font>    <font color=green>'\x00000561'</font>    <font color=black>..</font>    <font color=green>'\x00000586'</font>    <font color=black>|</font>    <font color=green>'\x000005D0'</font>    <font color=black>..</font>    <font color=green>'\x000005EA'</font>    <font color=black>|</font>    <font color=green>'\x000005F0'</font>    <font color=black>..</font>    <font color=green>'\x000005F2'</font>    <font color=black>|</font>    <font color=green>'\x00000621'</font>    <font color=black>..</font>    <font color=green>'\x0000063A'</font>    <font color=black>|</font>    <font color=green>'\x00000641'</font>    <font color=black>..</font>    <font color=green>'\x0000064A'</font>    <font color=black>|</font>    <font color=green>'\x00000671'</font>    <font color=black>..</font>    <font color=green>'\x000006B7'</font>    <font color=black>|</font>    <font color=green>'\x000006BA'</font>    <font color=black>..</font>    <font color=green>'\x000006BE'</font>    <font color=black>|</font>    <font color=green>'\x000006C0'</font>    <font color=black>..</font>    <font color=green>'\x000006CE'</font>    <font color=black>|</font>    <font color=green>'\x000006D0'</font>    <font color=black>..</font>    <font color=green>'\x000006D3'</font>    <font color=black>|</font>    <font color=green>'\x000006D5'</font>    <font color=black>|</font>    <font color=green>'\x000006E5'</font>    <font color=black>..</font>    <font color=green>'\x000006E6'</font>    <font color=black>|</font>    <font color=green>'\x00000905'</font>    <font color=black>..</font>    <font color=green>'\x00000939'</font>    <font color=black>|</font>    <font color=green>'\x0000093D'</font>    <font color=black>|</font>    <font color=green>'\x00000958'</font>    <font color=black>..</font>    <font color=green>'\x00000961'</font>    <font color=black>|</font>    <font color=green>'\x00000985'</font>    <font color=black>..</font>    <font color=green>'\x0000098C'</font>    <font color=black>|</font>    <font color=green>'\x0000098F'</font>    <font color=black>..</font>    <font color=green>'\x00000990'</font>    <font color=black>|</font>    <font color=green>'\x00000993'</font>    <font color=black>..</font>    <font color=green>'\x000009A8'</font>    <font color=black>|</font>    <font color=green>'\x000009AA'</font>    <font color=black>..</font>    <font color=green>'\x000009B0'</font>    <font color=black>|</font>    <font color=green>'\x000009B2'</font>    <font color=black>|</font>    <font color=green>'\x000009B6'</font>    <font color=black>..</font>    <font color=green>'\x000009B9'</font>    <font color=black>|</font>    <font color=green>'\x000009DC'</font>    <font color=black>..</font>    <font color=green>'\x000009DD'</font>    <font color=black>|</font>    <font color=green>'\x000009DF'</font>    <font color=black>..</font>    <font color=green>'\x000009E1'</font>    <font color=black>|</font>    <font color=green>'\x000009F0'</font>    <font color=black>..</font>    <font color=green>'\x000009F1'</font>    <font color=black>|</font>    <font color=green>'\x00000A05'</font>    <font color=black>..</font>    <font color=green>'\x00000A0A'</font>    <font color=black>|</font>    <font color=green>'\x00000A0F'</font>    <font color=black>..</font>    <font color=green>'\x00000A10'</font>    <font color=black>|</font>    <font color=green>'\x00000A13'</font>    <font color=black>..</font>    <font color=green>'\x00000A28'</font>    <font color=black>|</font>    <font color=green>'\x00000A2A'</font>    <font color=black>..</font>    <font color=green>'\x00000A30'</font>    <font color=black>|</font>    <font color=green>'\x00000A32'</font>    <font color=black>..</font>    <font color=green>'\x00000A33'</font>    <font color=black>|</font>    <font color=green>'\x00000A35'</font>    <font color=black>..</font>    <font color=green>'\x00000A36'</font>    <font color=black>|</font>    <font color=green>'\x00000A38'</font>    <font color=black>..</font>    <font color=green>'\x00000A39'</font>    <font color=black>|</font>    <font color=green>'\x00000A59'</font>    <font color=black>..</font>    <font color=green>'\x00000A5C'</font>    <font color=black>|</font>    <font color=green>'\x00000A5E'</font>    <font color=black>|</font>    <font color=green>'\x00000A72'</font>    <font color=black>..</font>    <font color=green>'\x00000A74'</font>    <font color=black>|</font>    <font color=green>'\x00000A85'</font>    <font color=black>..</font>    <font color=green>'\x00000A8B'</font>    <font color=black>|</font>    <font color=green>'\x00000A8D'</font>    <font color=black>|</font>    <font color=green>'\x00000A8F'</font>    <font color=black>..</font>    <font color=green>'\x00000A91'</font>    <font color=black>|</font>    <font color=green>'\x00000A93'</font>    <font color=black>..</font>    <font color=green>'\x00000AA8'</font>    <font color=black>|</font>    <font color=green>'\x00000AAA'</font>    <font color=black>..</font>    <font color=green>'\x00000AB0'</font>    <font color=black>|</font>    <font color=green>'\x00000AB2'</font>    <font color=black>..</font>    <font color=green>'\x00000AB3'</font>    <font color=black>|</font>    <font color=green>'\x00000AB5'</font>    <font color=black>..</font>    <font color=green>'\x00000AB9'</font>    <font color=black>|</font>    <font color=green>'\x00000ABD'</font>    <font color=black>|</font>    <font color=green>'\x00000AE0'</font>    <font color=black>|</font>    <font color=green>'\x00000B05'</font>    <font color=black>..</font>    <font color=green>'\x00000B0C'</font>    <font color=black>|</font>    <font color=green>'\x00000B0F'</font>    <font color=black>..</font>    <font color=green>'\x00000B10'</font>    <font color=black>|</font>    <font color=green>'\x00000B13'</font>    <font color=black>..</font>    <font color=green>'\x00000B28'</font>    <font color=black>|</font>    <font color=green>'\x00000B2A'</font>    <font color=black>..</font>    <font color=green>'\x00000B30'</font>    <font color=black>|</font>    <font color=green>'\x00000B32'</font>    <font color=black>..</font>    <font color=green>'\x00000B33'</font>    <font color=black>|</font>    <font color=green>'\x00000B36'</font>    <font color=black>..</font>    <font color=green>'\x00000B39'</font>    <font color=black>|</font>    <font color=green>'\x00000B3D'</font>    <font color=black>|</font>    <font color=green>'\x00000B5C'</font>    <font color=black>..</font>    <font color=green>'\x00000B5D'</font>    <font color=black>|</font>    <font color=green>'\x00000B5F'</font>    <font color=black>..</font>    <font color=green>'\x00000B61'</font>    <font color=black>|</font>    <font color=green>'\x00000B85'</font>    <font color=black>..</font>    <font color=green>'\x00000B8A'</font>    <font color=black>|</font>    <font color=green>'\x00000B8E'</font>    <font color=black>..</font>    <font color=green>'\x00000B90'</font>    <font color=black>|</font>    <font color=green>'\x00000B92'</font>    <font color=black>..</font>    <font color=green>'\x00000B95'</font>    <font color=black>|</font>    <font color=green>'\x00000B99'</font>    <font color=black>..</font>    <font color=green>'\x00000B9A'</font>    <font color=black>|</font>    <font color=green>'\x00000B9C'</font>    <font color=black>|</font>    <font color=green>'\x00000B9E'</font>    <font color=black>..</font>    <font color=green>'\x00000B9F'</font>    <font color=black>|</font>    <font color=green>'\x00000BA3'</font>    <font color=black>..</font>    <font color=green>'\x00000BA4'</font>    <font color=black>|</font>    <font color=green>'\x00000BA8'</font>    <font color=black>..</font>    <font color=green>'\x00000BAA'</font>    <font color=black>|</font>    <font color=green>'\x00000BAE'</font>    <font color=black>..</font>    <font color=green>'\x00000BB5'</font>    <font color=black>|</font>    <font color=green>'\x00000BB7'</font>    <font color=black>..</font>    <font color=green>'\x00000BB9'</font>    <font color=black>|</font>    <font color=green>'\x00000C05'</font>    <font color=black>..</font>    <font color=green>'\x00000C0C'</font>    <font color=black>|</font>    <font color=green>'\x00000C0E'</font>    <font color=black>..</font>    <font color=green>'\x00000C10'</font>    <font color=black>|</font>    <font color=green>'\x00000C12'</font>    <font color=black>..</font>    <font color=green>'\x00000C28'</font>    <font color=black>|</font>    <font color=green>'\x00000C2A'</font>    <font color=black>..</font>    <font color=green>'\x00000C33'</font>    <font color=black>|</font>    <font color=green>'\x00000C35'</font>    <font color=black>..</font>    <font color=green>'\x00000C39'</font>    <font color=black>|</font>    <font color=green>'\x00000C60'</font>    <font color=black>..</font>    <font color=green>'\x00000C61'</font>    <font color=black>|</font>    <font color=green>'\x00000C85'</font>    <font color=black>..</font>    <font color=green>'\x00000C8C'</font>    <font color=black>|</font>    <font color=green>'\x00000C8E'</font>    <font color=black>..</font>    <font color=green>'\x00000C90'</font>    <font color=black>|</font>    <font color=green>'\x00000C92'</font>    <font color=black>..</font>    <font color=green>'\x00000CA8'</font>    <font color=black>|</font>    <font color=green>'\x00000CAA'</font>    <font color=black>..</font>    <font color=green>'\x00000CB3'</font>    <font color=black>|</font>    <font color=green>'\x00000CB5'</font>    <font color=black>..</font>    <font color=green>'\x00000CB9'</font>    <font color=black>|</font>    <font color=green>'\x00000CDE'</font>    <font color=black>|</font>    <font color=green>'\x00000CE0'</font>    <font color=black>..</font>    <font color=green>'\x00000CE1'</font>    <font color=black>|</font>    <font color=green>'\x00000D05'</font>    <font color=black>..</font>    <font color=green>'\x00000D0C'</font>    <font color=black>|</font>    <font color=green>'\x00000D0E'</font>    <font color=black>..</font>    <font color=green>'\x00000D10'</font>    <font color=black>|</font>    <font color=green>'\x00000D12'</font>    <font color=black>..</font>    <font color=green>'\x00000D28'</font>    <font color=black>|</font>    <font color=green>'\x00000D2A'</font>    <font color=black>..</font>    <font color=green>'\x00000D39'</font>    <font color=black>|</font>    <font color=green>'\x00000D60'</font>    <font color=black>..</font>    <font color=green>'\x00000D61'</font>    <font color=black>|</font>    <font color=green>'\x00000E01'</font>    <font color=black>..</font>    <font color=green>'\x00000E2E'</font>    <font color=black>|</font>    <font color=green>'\x00000E30'</font>    <font color=black>|</font>    <font color=green>'\x00000E32'</font>    <font color=black>..</font>    <font color=green>'\x00000E33'</font>    <font color=black>|</font>    <font color=green>'\x00000E40'</font>    <font color=black>..</font>    <font color=green>'\x00000E45'</font>    <font color=black>|</font>    <font color=green>'\x00000E81'</font>    <font color=black>..</font>    <font color=green>'\x00000E82'</font>    <font color=black>|</font>    <font color=green>'\x00000E84'</font>    <font color=black>|</font>    <font color=green>'\x00000E87'</font>    <font color=black>..</font>    <font color=green>'\x00000E88'</font>    <font color=black>|</font>    <font color=green>'\x00000E8A'</font>    <font color=black>|</font>    <font color=green>'\x00000E8D'</font>    <font color=black>|</font>    <font color=green>'\x00000E94'</font>    <font color=black>..</font>    <font color=green>'\x00000E97'</font>    <font color=black>|</font>    <font color=green>'\x00000E99'</font>    <font color=black>..</font>    <font color=green>'\x00000E9F'</font>    <font color=black>|</font>    <font color=green>'\x00000EA1'</font>    <font color=black>..</font>    <font color=green>'\x00000EA3'</font>    <font color=black>|</font>    <font color=green>'\x00000EA5'</font>    <font color=black>|</font>    <font color=green>'\x00000EA7'</font>    <font color=black>|</font>    <font color=green>'\x00000EAA'</font>    <font color=black>..</font>    <font color=green>'\x00000EAB'</font>    <font color=black>|</font>    <font color=green>'\x00000EAD'</font>    <font color=black>..</font>    <font color=green>'\x00000EAE'</font>    <font color=black>|</font>    <font color=green>'\x00000EB0'</font>    <font color=black>|</font>    <font color=green>'\x00000EB2'</font>    <font color=black>..</font>    <font color=green>'\x00000EB3'</font>    <font color=black>|</font>    <font color=green>'\x00000EBD'</font>    <font color=black>|</font>    <font color=green>'\x00000EC0'</font>    <font color=black>..</font>    <font color=green>'\x00000EC4'</font>    <font color=black>|</font>    <font color=green>'\x00000F40'</font>    <font color=black>..</font>    <font color=green>'\x00000F47'</font>    <font color=black>|</font>    <font color=green>'\x00000F49'</font>    <font color=black>..</font>    <font color=green>'\x00000F69'</font>    <font color=black>|</font>    <font color=green>'\x000010A0'</font>    <font color=black>..</font>    <font color=green>'\x000010C5'</font>    <font color=black>|</font>    <font color=green>'\x000010D0'</font>    <font color=black>..</font>    <font color=green>'\x000010F6'</font>    <font color=black>|</font>    <font color=green>'\x00001100'</font>    <font color=black>|</font>    <font color=green>'\x00001102'</font>    <font color=black>..</font>    <font color=green>'\x00001103'</font>    <font color=black>|</font>    <font color=green>'\x00001105'</font>    <font color=black>..</font>    <font color=green>'\x00001107'</font>    <font color=black>|</font>    <font color=green>'\x00001109'</font>    <font color=black>|</font>    <font color=green>'\x0000110B'</font>    <font color=black>..</font>    <font color=green>'\x0000110C'</font>    <font color=black>|</font>    <font color=green>'\x0000110E'</font>    <font color=black>..</font>    <font color=green>'\x00001112'</font>    <font color=black>|</font>    <font color=green>'\x0000113C'</font>    <font color=black>|</font>    <font color=green>'\x0000113E'</font>    <font color=black>|</font>    <font color=green>'\x00001140'</font>    <font color=black>|</font>    <font color=green>'\x0000114C'</font>    <font color=black>|</font>    <font color=green>'\x0000114E'</font>    <font color=black>|</font>    <font color=green>'\x00001150'</font>    <font color=black>|</font>    <font color=green>'\x00001154'</font>    <font color=black>..</font>    <font color=green>'\x00001155'</font>    <font color=black>|</font>    <font color=green>'\x00001159'</font>    <font color=black>|</font>    <font color=green>'\x0000115F'</font>    <font color=black>..</font>    <font color=green>'\x00001161'</font>    <font color=black>|</font>    <font color=green>'\x00001163'</font>    <font color=black>|</font>    <font color=green>'\x00001165'</font>    <font color=black>|</font>    <font color=green>'\x00001167'</font>    <font color=black>|</font>    <font color=green>'\x00001169'</font>    <font color=black>|</font>    <font color=green>'\x0000116D'</font>    <font color=black>..</font>    <font color=green>'\x0000116E'</font>    <font color=black>|</font>    <font color=green>'\x00001172'</font>    <font color=black>..</font>    <font color=green>'\x00001173'</font>    <font color=black>|</font>    <font color=green>'\x00001175'</font>    <font color=black>|</font>    <font color=green>'\x0000119E'</font>    <font color=black>|</font>    <font color=green>'\x000011A8'</font>    <font color=black>|</font>    <font color=green>'\x000011AB'</font>    <font color=black>|</font>    <font color=green>'\x000011AE'</font>    <font color=black>..</font>    <font color=green>'\x000011AF'</font>    <font color=black>|</font>    <font color=green>'\x000011B7'</font>    <font color=black>..</font>    <font color=green>'\x000011B8'</font>    <font color=black>|</font>    <font color=green>'\x000011BA'</font>    <font color=black>|</font>    <font color=green>'\x000011BC'</font>    <font color=black>..</font>    <font color=green>'\x000011C2'</font>    <font color=black>|</font>    <font color=green>'\x000011EB'</font>    <font color=black>|</font>    <font color=green>'\x000011F0'</font>    <font color=black>|</font>    <font color=green>'\x000011F9'</font>    <font color=black>|</font>    <font color=green>'\x00001E00'</font>    <font color=black>..</font>    <font color=green>'\x00001E9B'</font>    <font color=black>|</font>    <font color=green>'\x00001EA0'</font>    <font color=black>..</font>    <font color=green>'\x00001EF9'</font>    <font color=black>|</font>    <font color=green>'\x00001F00'</font>    <font color=black>..</font>    <font color=green>'\x00001F15'</font>    <font color=black>|</font>    <font color=green>'\x00001F18'</font>    <font color=black>..</font>    <font color=green>'\x00001F1D'</font>    <font color=black>|</font>    <font color=green>'\x00001F20'</font>    <font color=black>..</font>    <font color=green>'\x00001F45'</font>    <font color=black>|</font>    <font color=green>'\x00001F48'</font>    <font color=black>..</font>    <font color=green>'\x00001F4D'</font>    <font color=black>|</font>    <font color=green>'\x00001F50'</font>    <font color=black>..</font>    <font color=green>'\x00001F57'</font>    <font color=black>|</font>    <font color=green>'\x00001F59'</font>    <font color=black>|</font>    <font color=green>'\x00001F5B'</font>    <font color=black>|</font>    <font color=green>'\x00001F5D'</font>    <font color=black>|</font>    <font color=green>'\x00001F5F'</font>    <font color=black>..</font>    <font color=green>'\x00001F7D'</font>    <font color=black>|</font>    <font color=green>'\x00001F80'</font>    <font color=black>..</font>    <font color=green>'\x00001FB4'</font>    <font color=black>|</font>    <font color=green>'\x00001FB6'</font>    <font color=black>..</font>    <font color=green>'\x00001FBC'</font>    <font color=black>|</font>    <font color=green>'\x00001FBE'</font>    <font color=black>|</font>    <font color=green>'\x00001FC2'</font>    <font color=black>..</font>    <font color=green>'\x00001FC4'</font>    <font color=black>|</font>    <font color=green>'\x00001FC6'</font>    <font color=black>..</font>    <font color=green>'\x00001FCC'</font>    <font color=black>|</font>    <font color=green>'\x00001FD0'</font>    <font color=black>..</font>    <font color=green>'\x00001FD3'</font>    <font color=black>|</font>    <font color=green>'\x00001FD6'</font>    <font color=black>..</font>    <font color=green>'\x00001FDB'</font>    <font color=black>|</font>    <font color=green>'\x00001FE0'</font>    <font color=black>..</font>    <font color=green>'\x00001FEC'</font>    <font color=black>|</font>    <font color=green>'\x00001FF2'</font>    <font color=black>..</font>    <font color=green>'\x00001FF4'</font>    <font color=black>|</font>    <font color=green>'\x00001FF6'</font>    <font color=black>..</font>    <font color=green>'\x00001FFC'</font>    <font color=black>|</font>    <font color=green>'\x00002126'</font>    <font color=black>|</font>    <font color=green>'\x0000212A'</font>    <font color=black>..</font>    <font color=green>'\x0000212B'</font>    <font color=black>|</font>    <font color=green>'\x0000212E'</font>    <font color=black>|</font>    <font color=green>'\x00002180'</font>    <font color=black>..</font>    <font color=green>'\x00002182'</font>    <font color=black>|</font>    <font color=green>'\x00003041'</font>    <font color=black>..</font>    <font color=green>'\x00003094'</font>    <font color=black>|</font>    <font color=green>'\x000030A1'</font>    <font color=black>..</font>    <font color=green>'\x000030FA'</font>    <font color=black>|</font>    <font color=green>'\x00003105'</font>    <font color=black>..</font>    <font color=green>'\x0000312C'</font>    <font color=black>|</font>    <font color=green>'\x0000AC00'</font>    <font color=black>..</font>    <font color=green>'\x0000D7A3'</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="CombChar"></a>CombChar</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'\x00000300'</font>    <font color=black>..</font>    <font color=green>'\x00000345'</font>    <font color=black>|</font>    <font color=green>'\x00000360'</font>    <font color=black>..</font>    <font color=green>'\x00000361'</font>    <font color=black>|</font>    <font color=green>'\x00000483'</font>    <font color=black>..</font>    <font color=green>'\x00000486'</font>    <font color=black>|</font>    <font color=green>'\x00000591'</font>    <font color=black>..</font>    <font color=green>'\x000005A1'</font>    <font color=black>|</font>    <font color=green>'\x000005A3'</font>    <font color=black>..</font>    <font color=green>'\x000005B9'</font>    <font color=black>|</font>    <font color=green>'\x000005BB'</font>    <font color=black>..</font>    <font color=green>'\x000005BD'</font>    <font color=black>|</font>    <font color=green>'\x000005BF'</font>    <font color=black>|</font>    <font color=green>'\x000005C1'</font>    <font color=black>..</font>    <font color=green>'\x000005C2'</font>    <font color=black>|</font>    <font color=green>'\x000005C4'</font>    <font color=black>|</font>    <font color=green>'\x0000064B'</font>    <font color=black>..</font>    <font color=green>'\x00000652'</font>    <font color=black>|</font>    <font color=green>'\x00000670'</font>    <font color=black>|</font>    <font color=green>'\x000006D6'</font>    <font color=black>..</font>    <font color=green>'\x000006DC'</font>    <font color=black>|</font>    <font color=green>'\x000006DD'</font>    <font color=black>..</font>    <font color=green>'\x000006DF'</font>    <font color=black>|</font>    <font color=green>'\x000006E0'</font>    <font color=black>..</font>    <font color=green>'\x000006E4'</font>    <font color=black>|</font>    <font color=green>'\x000006E7'</font>    <font color=black>..</font>    <font color=green>'\x000006E8'</font>    <font color=black>|</font>    <font color=green>'\x000006EA'</font>    <font color=black>..</font>    <font color=green>'\x000006ED'</font>    <font color=black>|</font>    <font color=green>'\x00000901'</font>    <font color=black>..</font>    <font color=green>'\x00000903'</font>    <font color=black>|</font>    <font color=green>'\x0000093C'</font>    <font color=black>|</font>    <font color=green>'\x0000093E'</font>    <font color=black>..</font>    <font color=green>'\x0000094C'</font>    <font color=black>|</font>    <font color=green>'\x0000094D'</font>    <font color=black>|</font>    <font color=green>'\x00000951'</font>    <font color=black>..</font>    <font color=green>'\x00000954'</font>    <font color=black>|</font>    <font color=green>'\x00000962'</font>    <font color=black>..</font>    <font color=green>'\x00000963'</font>    <font color=black>|</font>    <font color=green>'\x00000981'</font>    <font color=black>..</font>    <font color=green>'\x00000983'</font>    <font color=black>|</font>    <font color=green>'\x000009BC'</font>    <font color=black>|</font>    <font color=green>'\x000009BE'</font>    <font color=black>|</font>    <font color=green>'\x000009BF'</font>    <font color=black>|</font>    <font color=green>'\x000009C0'</font>    <font color=black>..</font>    <font color=green>'\x000009C4'</font>    <font color=black>|</font>    <font color=green>'\x000009C7'</font>    <font color=black>..</font>    <font color=green>'\x000009C8'</font>    <font color=black>|</font>    <font color=green>'\x000009CB'</font>    <font color=black>..</font>    <font color=green>'\x000009CD'</font>    <font color=black>|</font>    <font color=green>'\x000009D7'</font>    <font color=black>|</font>    <font color=green>'\x000009E2'</font>    <font color=black>..</font>    <font color=green>'\x000009E3'</font>    <font color=black>|</font>    <font color=green>'\x00000A02'</font>    <font color=black>|</font>    <font color=green>'\x00000A3C'</font>    <font color=black>|</font>    <font color=green>'\x00000A3E'</font>    <font color=black>|</font>    <font color=green>'\x00000A3F'</font>    <font color=black>|</font>    <font color=green>'\x00000A40'</font>    <font color=black>..</font>    <font color=green>'\x00000A42'</font>    <font color=black>|</font>    <font color=green>'\x00000A47'</font>    <font color=black>..</font>    <font color=green>'\x00000A48'</font>    <font color=black>|</font>    <font color=green>'\x00000A4B'</font>    <font color=black>..</font>    <font color=green>'\x00000A4D'</font>    <font color=black>|</font>    <font color=green>'\x00000A70'</font>    <font color=black>..</font>    <font color=green>'\x00000A71'</font>    <font color=black>|</font>    <font color=green>'\x00000A81'</font>    <font color=black>..</font>    <font color=green>'\x00000A83'</font>    <font color=black>|</font>    <font color=green>'\x00000ABC'</font>    <font color=black>|</font>    <font color=green>'\x00000ABE'</font>    <font color=black>..</font>    <font color=green>'\x00000AC5'</font>    <font color=black>|</font>    <font color=green>'\x00000AC7'</font>    <font color=black>..</font>    <font color=green>'\x00000AC9'</font>    <font color=black>|</font>    <font color=green>'\x00000ACB'</font>    <font color=black>..</font>    <font color=green>'\x00000ACD'</font>    <font color=black>|</font>    <font color=green>'\x00000B01'</font>    <font color=black>..</font>    <font color=green>'\x00000B03'</font>    <font color=black>|</font>    <font color=green>'\x00000B3C'</font>    <font color=black>|</font>    <font color=green>'\x00000B3E'</font>    <font color=black>..</font>    <font color=green>'\x00000B43'</font>    <font color=black>|</font>    <font color=green>'\x00000B47'</font>    <font color=black>..</font>    <font color=green>'\x00000B48'</font>    <font color=black>|</font>    <font color=green>'\x00000B4B'</font>    <font color=black>..</font>    <font color=green>'\x00000B4D'</font>    <font color=black>|</font>    <font color=green>'\x00000B56'</font>    <font color=black>..</font>    <font color=green>'\x00000B57'</font>    <font color=black>|</font>    <font color=green>'\x00000B82'</font>    <font color=black>..</font>    <font color=green>'\x00000B83'</font>    <font color=black>|</font>    <font color=green>'\x00000BBE'</font>    <font color=black>..</font>    <font color=green>'\x00000BC2'</font>    <font color=black>|</font>    <font color=green>'\x00000BC6'</font>    <font color=black>..</font>    <font color=green>'\x00000BC8'</font>    <font color=black>|</font>    <font color=green>'\x00000BCA'</font>    <font color=black>..</font>    <font color=green>'\x00000BCD'</font>    <font color=black>|</font>    <font color=green>'\x00000BD7'</font>    <font color=black>|</font>    <font color=green>'\x00000C01'</font>    <font color=black>..</font>    <font color=green>'\x00000C03'</font>    <font color=black>|</font>    <font color=green>'\x00000C3E'</font>    <font color=black>..</font>    <font color=green>'\x00000C44'</font>    <font color=black>|</font>    <font color=green>'\x00000C46'</font>    <font color=black>..</font>    <font color=green>'\x00000C48'</font>    <font color=black>|</font>    <font color=green>'\x00000C4A'</font>    <font color=black>..</font>    <font color=green>'\x00000C4D'</font>    <font color=black>|</font>    <font color=green>'\x00000C55'</font>    <font color=black>..</font>    <font color=green>'\x00000C56'</font>    <font color=black>|</font>    <font color=green>'\x00000C82'</font>    <font color=black>..</font>    <font color=green>'\x00000C83'</font>    <font color=black>|</font>    <font color=green>'\x00000CBE'</font>    <font color=black>..</font>    <font color=green>'\x00000CC4'</font>    <font color=black>|</font>    <font color=green>'\x00000CC6'</font>    <font color=black>..</font>    <font color=green>'\x00000CC8'</font>    <font color=black>|</font>    <font color=green>'\x00000CCA'</font>    <font color=black>..</font>    <font color=green>'\x00000CCD'</font>    <font color=black>|</font>    <font color=green>'\x00000CD5'</font>    <font color=black>..</font>    <font color=green>'\x00000CD6'</font>    <font color=black>|</font>    <font color=green>'\x00000D02'</font>    <font color=black>..</font>    <font color=green>'\x00000D03'</font>    <font color=black>|</font>    <font color=green>'\x00000D3E'</font>    <font color=black>..</font>    <font color=green>'\x00000D43'</font>    <font color=black>|</font>    <font color=green>'\x00000D46'</font>    <font color=black>..</font>    <font color=green>'\x00000D48'</font>    <font color=black>|</font>    <font color=green>'\x00000D4A'</font>    <font color=black>..</font>    <font color=green>'\x00000D4D'</font>    <font color=black>|</font>    <font color=green>'\x00000D57'</font>    <font color=black>|</font>    <font color=green>'\x00000E31'</font>    <font color=black>|</font>    <font color=green>'\x00000E34'</font>    <font color=black>..</font>    <font color=green>'\x00000E3A'</font>    <font color=black>|</font>    <font color=green>'\x00000E47'</font>    <font color=black>..</font>    <font color=green>'\x00000E4E'</font>    <font color=black>|</font>    <font color=green>'\x00000EB1'</font>    <font color=black>|</font>    <font color=green>'\x00000EB4'</font>    <font color=black>..</font>    <font color=green>'\x00000EB9'</font>    <font color=black>|</font>    <font color=green>'\x00000EBB'</font>    <font color=black>..</font>    <font color=green>'\x00000EBC'</font>    <font color=black>|</font>    <font color=green>'\x00000EC8'</font>    <font color=black>..</font>    <font color=green>'\x00000ECD'</font>    <font color=black>|</font>    <font color=green>'\x00000F18'</font>    <font color=black>..</font>    <font color=green>'\x00000F19'</font>    <font color=black>|</font>    <font color=green>'\x00000F35'</font>    <font color=black>|</font>    <font color=green>'\x00000F37'</font>    <font color=black>|</font>    <font color=green>'\x00000F39'</font>    <font color=black>|</font>    <font color=green>'\x00000F3E'</font>    <font color=black>|</font>    <font color=green>'\x00000F3F'</font>    <font color=black>|</font>    <font color=green>'\x00000F71'</font>    <font color=black>..</font>    <font color=green>'\x00000F84'</font>    <font color=black>|</font>    <font color=green>'\x00000F86'</font>    <font color=black>..</font>    <font color=green>'\x00000F8B'</font>    <font color=black>|</font>    <font color=green>'\x00000F90'</font>    <font color=black>..</font>    <font color=green>'\x00000F95'</font>    <font color=black>|</font>    <font color=green>'\x00000F97'</font>    <font color=black>|</font>    <font color=green>'\x00000F99'</font>    <font color=black>..</font>    <font color=green>'\x00000FAD'</font>    <font color=black>|</font>    <font color=green>'\x00000FB1'</font>    <font color=black>..</font>    <font color=green>'\x00000FB7'</font>    <font color=black>|</font>    <font color=green>'\x00000FB9'</font>    <font color=black>|</font>    <font color=green>'\x000020D0'</font>    <font color=black>..</font>    <font color=green>'\x000020DC'</font>    <font color=black>|</font>    <font color=green>'\x000020E1'</font>    <font color=black>|</font>    <font color=green>'\x0000302A'</font>    <font color=black>..</font>    <font color=green>'\x0000302F'</font>    <font color=black>|</font>    <font color=green>'\x00003099'</font>    <font color=black>|</font>    <font color=green>'\x0000309A'</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="Extender"></a>Extender</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'\x000000B7'</font>    <font color=black>|</font>    <font color=green>'\x000002D0'</font>    <font color=black>|</font>    <font color=green>'\x000002D1'</font>    <font color=black>|</font>    <font color=green>'\x00000387'</font>    <font color=black>|</font>    <font color=green>'\x00000640'</font>    <font color=black>|</font>    <font color=green>'\x00000E46'</font>    <font color=black>|</font>    <font color=green>'\x00000EC6'</font>    <font color=black>|</font>    <font color=green>'\x00003005'</font>    <font color=black>|</font>    <font color=green>'\x00003031'</font>    <font color=black>..</font>    <font color=green>'\x00003035'</font>    <font color=black>|</font>    <font color=green>'\x0000309D'</font>    <font color=black>..</font>    <font color=green>'\x0000309E'</font>    <font color=black>|</font>    <font color=green>'\x000030FC'</font>    <font color=black>..</font>    <font color=green>'\x000030FE'</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="Digit"></a>Digit</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'\x00000030'</font>    <font color=black>..</font>    <font color=green>'\x00000039'</font>    <font color=black>|</font>    <font color=green>'\x00000660'</font>    <font color=black>..</font>    <font color=green>'\x00000669'</font>    <font color=black>|</font>    <font color=green>'\x000006F0'</font>    <font color=black>..</font>    <font color=green>'\x000006F9'</font>    <font color=black>|</font>    <font color=green>'\x00000966'</font>    <font color=black>..</font>    <font color=green>'\x0000096F'</font>    <font color=black>|</font>    <font color=green>'\x000009E6'</font>    <font color=black>..</font>    <font color=green>'\x000009EF'</font>    <font color=black>|</font>    <font color=green>'\x00000A66'</font>    <font color=black>..</font>    <font color=green>'\x00000A6F'</font>    <font color=black>|</font>    <font color=green>'\x00000AE6'</font>    <font color=black>..</font>    <font color=green>'\x00000AEF'</font>    <font color=black>|</font>    <font color=green>'\x00000B66'</font>    <font color=black>..</font>    <font color=green>'\x00000B6F'</font>    <font color=black>|</font>    <font color=green>'\x00000BE7'</font>    <font color=black>..</font>    <font color=green>'\x00000BEF'</font>    <font color=black>|</font>    <font color=green>'\x00000C66'</font>    <font color=black>..</font>    <font color=green>'\x00000C6F'</font>    <font color=black>|</font>    <font color=green>'\x00000CE6'</font>    <font color=black>..</font>    <font color=green>'\x00000CEF'</font>    <font color=black>|</font>    <font color=green>'\x00000D66'</font>    <font color=black>..</font>    <font color=green>'\x00000D6F'</font>    <font color=black>|</font>    <font color=green>'\x00000E50'</font>    <font color=black>..</font>    <font color=green>'\x00000E59'</font>    <font color=black>|</font>    <font color=green>'\x00000ED0'</font>    <font color=black>..</font>    <font color=green>'\x00000ED9'</font>    <font color=black>|</font>    <font color=green>'\x00000F20'</font>    <font color=black>..</font>    <font color=green>'\x00000F29'</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="Ideograf"></a>Ideograf</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'\x00004E00'</font>    <font color=black>..</font>    <font color=green>'\x00009FA5'</font>    <font color=black>|</font>    <font color=green>'\x00003007'</font>    <font color=black>|</font>    <font color=green>'\x00003021'</font>    <font color=black>..</font>    <font color=green>'\x00003029'</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="Letter"></a>Letter</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><a href="#BaseChar">BaseChar</a>    <font color=black>|</font>    <a href="#Ideograf">Ideograf</a></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="PubChar"></a>PubChar</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'\20'</font>    <font color=black>|</font>    <font color=green>'\0d'</font>    <font color=black>|</font>    <font color=green>'\0a'</font>    <font color=black>|</font>    <a href="#HexChar">HexChar</a>    <font color=black>|</font>    <font color=green>'-\'()+,./:=?;!*#@$_%'</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="HexChar"></a>HexChar</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'0'</font>    <font color=black>..</font>    <font color=green>'9'</font>    <font color=black>|</font>    <font color=green>'a'</font>    <font color=black>..</font>    <font color=green>'z'</font>    <font color=black>|</font>    <font color=green>'A'</font>    <font color=black>..</font>    <font color=green>'Z'</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="NameChar"></a>NameChar</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><a href="#Letter">Letter</a>    <font color=black>|</font>    <a href="#Digit">Digit</a>    <font color=black>|</font>    <font color=green>'.:-_'</font>    <font color=black>|</font>    <a href="#CombChar">CombChar</a>    <font color=black>|</font>    <a href="#Extender">Extender</a></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="KANY"></a>KANY</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'Aa'</font>    <font color=green>'Nn'</font>    <font color=green>'Yy'</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="KATTLIST"></a>KATTLIST</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'Aa'</font>    <font color=green>'Tt'</font>    <font color=green>'Tt'</font>    <font color=green>'Ll'</font>    <font color=green>'Ii'</font>    <font color=green>'Ss'</font>    <font color=green>'Tt'</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="KCDATA"></a>KCDATA</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'Cc'</font>    <font color=green>'Dd'</font>    <font color=green>'Aa'</font>    <font color=green>'Tt'</font>    <font color=green>'Aa'</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="KELEMENT"></a>KELEMENT</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'Ee'</font>    <font color=green>'Ll'</font>    <font color=green>'Ee'</font>    <font color=green>'Mm'</font>    <font color=green>'Ee'</font>    <font color=green>'Nn'</font>    <font color=green>'Tt'</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="KEMPTY"></a>KEMPTY</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'Ee'</font>    <font color=green>'Mm'</font>    <font color=green>'Pp'</font>    <font color=green>'Tt'</font>    <font color=green>'Yy'</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="KENCODING"></a>KENCODING</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'Ee'</font>    <font color=green>'Nn'</font>    <font color=green>'Cc'</font>    <font color=green>'Oo'</font>    <font color=green>'Dd'</font>    <font color=green>'Ii'</font>    <font color=green>'Nn'</font>    <font color=green>'Gg'</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="KENTITY"></a>KENTITY</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'Ee'</font>    <font color=green>'Nn'</font>    <font color=green>'Tt'</font>    <font color=green>'Ii'</font>    <font color=green>'Tt'</font>    <font color=green>'Yy'</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="KENTITIES"></a>KENTITIES</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'Ee'</font>    <font color=green>'Nn'</font>    <font color=green>'Tt'</font>    <font color=green>'Ii'</font>    <font color=green>'Tt'</font>    <font color=green>'Ii'</font>    <font color=green>'Ee'</font>    <font color=green>'Ss'</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="KFIXED"></a>KFIXED</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'Ff'</font>    <font color=green>'Ii'</font>    <font color=green>'Xx'</font>    <font color=green>'Ee'</font>    <font color=green>'Dd'</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="KID"></a>KID</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'Ii'</font>    <font color=green>'Dd'</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="KIDREF"></a>KIDREF</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'Ii'</font>    <font color=green>'Dd'</font>    <font color=green>'Rr'</font>    <font color=green>'Ee'</font>    <font color=green>'Ff'</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="KIDREFS"></a>KIDREFS</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'Ii'</font>    <font color=green>'Dd'</font>    <font color=green>'Rr'</font>    <font color=green>'Ee'</font>    <font color=green>'Ff'</font>    <font color=green>'Ss'</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="KIGNORE"></a>KIGNORE</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'Ii'</font>    <font color=green>'Gg'</font>    <font color=green>'Nn'</font>    <font color=green>'Oo'</font>    <font color=green>'Rr'</font>    <font color=green>'Ee'</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="KIMPLIED"></a>KIMPLIED</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'Ii'</font>    <font color=green>'Mm'</font>    <font color=green>'Pp'</font>    <font color=green>'Ll'</font>    <font color=green>'Ii'</font>    <font color=green>'Ee'</font>    <font color=green>'Dd'</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="KINCLUDE"></a>KINCLUDE</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'Ii'</font>    <font color=green>'Nn'</font>    <font color=green>'Cc'</font>    <font color=green>'Ll'</font>    <font color=green>'Uu'</font>    <font color=green>'Dd'</font>    <font color=green>'Ee'</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="KNDATA"></a>KNDATA</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'Nn'</font>    <font color=green>'Dd'</font>    <font color=green>'Aa'</font>    <font color=green>'Tt'</font>    <font color=green>'Aa'</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="KNMTOKEN"></a>KNMTOKEN</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'Nn'</font>    <font color=green>'Mm'</font>    <font color=green>'Tt'</font>    <font color=green>'Oo'</font>    <font color=green>'Kk'</font>    <font color=green>'Ee'</font>    <font color=green>'Nn'</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="KNMTOKENS"></a>KNMTOKENS</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'Nn'</font>    <font color=green>'Mm'</font>    <font color=green>'Tt'</font>    <font color=green>'Oo'</font>    <font color=green>'Kk'</font>    <font color=green>'Ee'</font>    <font color=green>'Nn'</font>    <font color=green>'Ss'</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="KNOTATION"></a>KNOTATION</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'Nn'</font>    <font color=green>'Oo'</font>    <font color=green>'Tt'</font>    <font color=green>'Aa'</font>    <font color=green>'Tt'</font>    <font color=green>'Ii'</font>    <font color=green>'Oo'</font>    <font color=green>'Nn'</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="KNO"></a>KNO</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'Nn'</font>    <font color=green>'Oo'</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="KPCDATA"></a>KPCDATA</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'Pp'</font>    <font color=green>'Cc'</font>    <font color=green>'Dd'</font>    <font color=green>'Aa'</font>    <font color=green>'Tt'</font>    <font color=green>'Aa'</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="KPUBLIC"></a>KPUBLIC</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'Pp'</font>    <font color=green>'Uu'</font>    <font color=green>'Bb'</font>    <font color=green>'Ll'</font>    <font color=green>'Ii'</font>    <font color=green>'Cc'</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="KREQUIRED"></a>KREQUIRED</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'Rr'</font>    <font color=green>'Ee'</font>    <font color=green>'Qq'</font>    <font color=green>'Uu'</font>    <font color=green>'Ii'</font>    <font color=green>'Rr'</font>    <font color=green>'Ee'</font>    <font color=green>'Dd'</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="KSTANDALONE"></a>KSTANDALONE</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'Ss'</font>    <font color=green>'Tt'</font>    <font color=green>'Aa'</font>    <font color=green>'Nn'</font>    <font color=green>'Dd'</font>    <font color=green>'Aa'</font>    <font color=green>'Ll'</font>    <font color=green>'Oo'</font>    <font color=green>'Nn'</font>    <font color=green>'Ee'</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="KSYSTEM"></a>KSYSTEM</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'Ss'</font>    <font color=green>'Yy'</font>    <font color=green>'Ss'</font>    <font color=green>'Tt'</font>    <font color=green>'Ee'</font>    <font color=green>'Mm'</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="KVERSION"></a>KVERSION</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'Vv'</font>    <font color=green>'Ee'</font>    <font color=green>'Rr'</font>    <font color=green>'Ss'</font>    <font color=green>'Ii'</font>    <font color=green>'Oo'</font>    <font color=green>'Nn'</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="KXML"></a>KXML</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'Xx'</font>    <font color=green>'Mm'</font>    <font color=green>'Ll'</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="KYES"></a>KYES</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'Yy'</font>    <font color=green>'Ee'</font>    <font color=green>'Ss'</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="KDOCTYPE"></a>KDOCTYPE</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'Dd'</font>    <font color=green>'Oo'</font>    <font color=green>'Cc'</font>    <font color=green>'Tt'</font>    <font color=green>'Yy'</font>    <font color=green>'Pp'</font>    <font color=green>'Ee'</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="Keyword"></a>Keyword</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><a href="#KANY">KANY</a>    <font color=black>|</font>    <a href="#KATTLIST">KATTLIST</a>    <font color=black>|</font>    <a href="#KCDATA">KCDATA</a>    <font color=black>|</font>    <a href="#KDOCTYPE">KDOCTYPE</a>    <font color=black>|</font>    <a href="#KELEMENT">KELEMENT</a>    <font color=black>|</font>    <a href="#KEMPTY">KEMPTY</a>    <font color=black>|</font>    <a href="#KENCODING">KENCODING</a>    <font color=black>|</font>    <a href="#KENTITY">KENTITY</a>    <font color=black>|</font>    <a href="#KENTITIES">KENTITIES</a>    <font color=black>|</font>    <a href="#KFIXED">KFIXED</a>    <font color=black>|</font>    <a href="#KID">KID</a>    <font color=black>|</font>    <a href="#KIDREF">KIDREF</a>    <font color=black>|</font>    <a href="#KIDREFS">KIDREFS</a>    <font color=black>|</font>    <a href="#KIGNORE">KIGNORE</a>    <font color=black>|</font>    <a href="#KIMPLIED">KIMPLIED</a>    <font color=black>|</font>    <a href="#KINCLUDE">KINCLUDE</a>    <font color=black>|</font>    <a href="#KNDATA">KNDATA</a>    <font color=black>|</font>    <a href="#KNMTOKEN">KNMTOKEN</a>    <font color=black>|</font>    <a href="#KNMTOKENS">KNMTOKENS</a>    <font color=black>|</font>    <a href="#KNO">KNO</a>    <font color=black>|</font>    <a href="#KNOTATION">KNOTATION</a>    <font color=black>|</font>    <a href="#KPCDATA">KPCDATA</a>    <font color=black>|</font>    <a href="#KPUBLIC">KPUBLIC</a>    <font color=black>|</font>    <a href="#KREQUIRED">KREQUIRED</a>    <font color=black>|</font>    <a href="#KSTANDALONE">KSTANDALONE</a>    <font color=black>|</font>    <a href="#KSYSTEM">KSYSTEM</a>    <font color=black>|</font>    <a href="#KVERSION">KVERSION</a>    <font color=black>|</font>    <a href="#KXML">KXML</a>    <font color=black>|</font>    <a href="#KYES">KYES</a></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="Ide"></a>Ide</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=black>(</font>    <a href="#Letter">Letter</a>    <font color=black>|</font>    <font color=green>'_'</font>    <font color=black>|</font>    <font color=green>':'</font>    <font color=black>)</font>    <font color=black>{</font>    <a href="#NameChar">NameChar</a>    <font color=black>}</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>tok</B><TD align=left><B><font color="#B22222"><a Name="DCharRef"></a>DCharRef</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>"&#"</font>    <font color=black>(</font>    <font color=green>'0'</font>    <font color=black>..</font>    <font color=green>'9'</font>    <font color=black>)</font>    <font color=black>+</font>    <font color=green>";"</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>tok</B><TD align=left><B><font color="#B22222"><a Name="HCharRef"></a>HCharRef</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>"&#x"</font>    <a href="#HexChar">HexChar</a>    <font color=black>+</font>    <font color=green>";"</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>tok</B><TD align=left><B><font color="#B22222"><a Name="ERef"></a>ERef</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>"&"</font>    <a href="#Ide">Ide</a>    <font color=green>";"</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>tok</B><TD align=left><B><font color="#B22222"><a Name="PERef"></a>PERef</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>"%"</font>    <a href="#Ide">Ide</a>    <font color=green>";"</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+<TR valign=top><TH colspan=5 align=left><PRE>
+ Extensible Markup Language ( base tokens 2 )</PRE></TH></TR>
+
+
+<TR valign=top><TD align=left><B>tok</B><TD align=left><B><font color="#B22222"><a Name="Nmtoken"></a>Nmtoken</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=black>(</font>    <a href="#NameChar">NameChar</a>    <font color=black>-</font>    <font color=black>(</font>    <a href="#Letter">Letter</a>    <font color=black>|</font>    <font color=green>'_'</font>    <font color=black>|</font>    <font color=green>':'</font>    <font color=black>)</font>    <font color=black>)</font>    <font color=black>{</font>    <a href="#NameChar">NameChar</a>    <font color=black>}</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="EQ"></a>EQ</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=black>{</font>    <a href="#Space">Space</a>    <font color=black>}</font>    <font color=green>'='</font>    <font color=black>{</font>    <a href="#Space">Space</a>    <font color=black>}</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>tok</B><TD align=left><B><font color="#B22222"><a Name="XMLDecl"></a>XMLDecl</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>"&lt;?"</font>    <a href="#KXML">KXML</a>    <font color=black>[</font>    <a href="#Space">Space</a>    <font color=black>+</font>    <a href="#KVERSION">KVERSION</a>    <a href="#EQ">EQ</a>    <font color=green>'\'\"'</font>    <font color=black>(</font>    <a href="#HexChar">HexChar</a>    <font color=black>|</font>    <font color=green>'.:-_'</font>    <font color=black>)</font>    <font color=black>+</font>    <font color=green>'\'\"'</font>    <font color=black>]</font>    <font color=black>[</font>    <a href="#Space">Space</a>    <font color=black>+</font>    <a href="#KENCODING">KENCODING</a>    <a href="#EQ">EQ</a>    <font color=green>'\'\"'</font>    <font color=black>(</font>    <a href="#HexChar">HexChar</a>    <font color=black>|</font>    <font color=green>'-_'</font>    <font color=black>)</font>    <font color=black>+</font>    <font color=green>'\'\"'</font>    <font color=black>]</font>    <font color=black>[</font>    <a href="#Space">Space</a>    <font color=black>+</font>    <a href="#KSTANDALONE">KSTANDALONE</a>    <a href="#EQ">EQ</a>    <font color=green>'\'\"'</font>    <font color=black>(</font>    <a href="#KYES">KYES</a>    <font color=black>|</font>    <a href="#KNO">KNO</a>    <font color=black>)</font>    <font color=green>'\'\"'</font>    <font color=black>]</font>    <font color=black>{</font>    <a href="#Space">Space</a>    <font color=black>}</font>    <font color=green>"?&gt;"</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>tok</B><TD align=left><B><font color="#B22222"><a Name="PI"></a>PI</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=black>(</font>    <font color=green>"&lt;?"</font>    <a href="#Ide">Ide</a>    <font color=black>(</font>    <font color=black>{</font>    <a href="#Char">Char</a>    <font color=black>}</font>    <font color=black>-</font>    <font color=black>(</font>    <font color=black>{</font>    <a href="#Char">Char</a>    <font color=black>}</font>    <font color=green>"?&gt;"</font>    <font color=black>{</font>    <a href="#Char">Char</a>    <font color=black>}</font>    <font color=black>)</font>    <font color=black>)</font>    <font color=green>"?&gt;"</font>    <font color=black>)</font>    <font color=black>-</font>    <a href="#XMLDecl">XMLDecl</a></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>tok</B><TD align=left><B><font color="#B22222"><a Name="CDSect"></a>CDSect</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>"&lt;!["</font>    <a href="#KCDATA">KCDATA</a>    <font color=green>"["</font>    <font color=black>(</font>    <font color=black>{</font>    <a href="#Char">Char</a>    <font color=black>}</font>    <font color=black>-</font>    <font color=black>(</font>    <font color=black>{</font>    <a href="#Char">Char</a>    <font color=black>}</font>    <font color=green>"]]&gt;"</font>    <font color=black>{</font>    <a href="#Char">Char</a>    <font color=black>}</font>    <font color=black>)</font>    <font color=black>)</font>    <font color=green>"]]&gt;"</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>tok</B><TD align=left><B><font color="#B22222"><a Name="ElmStart"></a>ElmStart</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>"&lt;"</font>    <font color=black>|</font>    <font color=green>"&lt;/"</font>    <font color=black>|</font>    <font color=green>"&lt;!"</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>tok</B><TD align=left><B><font color="#B22222"><a Name="TagEnd"></a>TagEnd</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>"&gt;"</font>    <font color=black>|</font>    <font color=green>"/&gt;"</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>tok</B><TD align=left><B><font color="#B22222"><a Name="XMLOpr"></a>XMLOpr</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'=,*?+|()[]%#'</font>    <font color=black>|</font>    <font color=green>"&lt;!["</font>    <font color=black>|</font>    <font color=green>"]]&gt;"</font>    <font color=black>|</font>    <font color=green>"?&gt;"</font>    <font color=black>|</font>    <font color=green>")*"</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+<TR valign=top><TH colspan=5 align=left><PRE>
+ xml-relevant tokens</PRE></TH></TR>
+
+
+<TR valign=top><TD align=left><B>tok</B><TD align=left><B><font color="#B22222"><a Name="Name"></a>Name</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><a href="#Ide">Ide</a></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>lan</B><TD align=left><B><font color="#B22222"><a Name="dtdEmbed"></a>dtd:dtdEmbed:dtd</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><a href="/p/styx/doc/dtd_cfg.htm">dtd</a></B><PRE> </PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>tok</B><TD align=left><B><font color="#B22222"><a Name="DTDStart"></a>DTDStart:dtdEmbed</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>"&lt;!"</font>    <a href="#KDOCTYPE">KDOCTYPE</a></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>tok</B><TD align=left><B><font color="#B22222"><a Name="Literal"></a>Literal</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>"\""</font>    <font color=black>{</font>    <a href="#Char">Char</a>    <font color=black>-</font>    <font color=green>'&lt;\"'</font>    <font color=black>}</font>    <font color=green>"\""</font>    <font color=black>|</font>    <font color=green>"\'"</font>    <font color=black>{</font>    <a href="#Char">Char</a>    <font color=black>-</font>    <font color=green>'&lt;\''</font>    <font color=black>}</font>    <font color=green>"\'"</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="DChar"></a>DChar</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><a href="#Char">Char</a>    <font color=black>-</font>    <font color=black>(</font>    <font color=green>'&lt;&gt;&=,*?+|()[]%#'</font>    <font color=black>|</font>    <a href="#Space">Space</a>    <font color=black>|</font>    <a href="#NameChar">NameChar</a>    <font color=black>)</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>tok</B><TD align=left><B><font color="#B22222"><a Name="CharData"></a>CharData</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><a href="#DChar">DChar</a>    <font color=black>+</font>    <font color=black>-</font>    <font color=black>(</font>    <font color=black>{</font>    <a href="#DChar">DChar</a>    <font color=black>}</font>    <font color=black>(</font>    <a href="#Literal">Literal</a>    <font color=black>|</font>    <a href="#TagEnd">TagEnd</a>    <font color=black>)</font>    <font color=black>{</font>    <a href="#DChar">DChar</a>    <font color=black>}</font>    <font color=black>)</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>tok</B><TD align=left><B><font color="#B22222"><a Name="Empty"></a>Empty</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><a href="#Space">Space</a>    <font color=black>+</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>tok</B><TD align=left><B><font color="#B22222"><a Name="Comment"></a>Comment</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>"&lt;!--"</font>    <font color=black>(</font>    <font color=black>{</font>    <a href="#Char">Char</a>    <font color=black>}</font>    <font color=black>-</font>    <font color=black>(</font>    <font color=black>{</font>    <a href="#Char">Char</a>    <font color=black>}</font>    <font color=green>"--"</font>    <font color=black>{</font>    <a href="#Char">Char</a>    <font color=black>}</font>    <font color=black>)</font>    <font color=black>)</font>    <font color=green>"--&gt;"</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+</table>
+<BR>
+<BR>
+<BR>
+<center><H2>Context-free Grammar</H2></center>
+<BR>
+<font color="#000000">The syntax rules are described in
+<b><i>EBNF</i></b> ( Extended Backus-Naur-Form ). 
+A startsymbol must exist for each source file type. That means the syntax
+within each file has to be conform to the corresponding start rule.
+The other are internal helper rules. </font><font color="#000000"></font>
+<p><font color="#000000">Each <b><i><font size="+1">rule</font></i></b>
+is structured as follows: &lt;Rule Type: <b><i>start</i></b> or <b><i>let</i></b>>&nbsp;</font>
+&lt;<font color="#B22222">Rule Identifier</font>> :: &lt;EBNF-konform Expression>
+<br>An <b><i><font size="+1">EBNF-konform expression</font></i></b> defines a part
+of the language syntax. It consists of a set of alternative productions i.e.
+partial expressions, separated by the character '|'.
+<p>A production can be spezified with the help of the following elements and operators:
+<br>&nbsp;
+<ul>
+<li>
+<b><i><font size="+1">Expression1 Expression2 ... ExpressionN</font></i></b></li>
+
+<br>Concatenation of partial expressions
+<li>
+<b><i><font size="+1">Expression1 | Expression2 | ... | ExpressionN</font></i></b></li>
+
+<br>Union of partial expressions ( alternatives )
+<li>
+<b><i><font size="+1">[ Expression ]</font></i></b></li>
+
+<br>Optional partial expression
+<li>
+<b><i><font size="+1">{ Expression }</font></i></b></li>
+
+<br>Iteration of a partial expression ( 0 .. )
+<li>
+<b><i><font size="+1">Expression +</font></i></b></li>
+
+<br>Iteration of a partial expression ( 1 .. )
+<li>
+<b><i><font size="+1">( Expression )</font></i></b></li>
+
+<br>Combination of a partial expression ( subexpression )
+<li>
+<b><i><font color="#3366FF"><font size="+1">Token Identifier</font></font></i></b></li>
+
+<br><font color="#000000">... from the regular grammar</font>
+<li>
+<b><i><font color="#3366FF"><font size="+1">Rule Identifier<br>
+</font></font></i></b><font color="#000000">... from the context-free grammar</font></li>
+<li>
+<b><i><font color="#009900"><font size="+1">Keyword<br>
+</font></font></i></b><font color="#000000">Constant string / character sequence</font><br>
+</li>
+<li>
+<b><i><font color="#000000"><font size="+1">_other_<br>
+</font></font></i></b><font color="#000000">Special keyword denoting the
+character sequences from the set 'Sigma* \ Tokenset'</font><br>
+<BR></li>
+
+<br><font color="#000000"></font>&nbsp;</ul>
+<br>
+<table width=80% border=0>
+
+
+
+<TR valign=top><TD align=left><B>start</B><TD align=left><B><font color="#B22222"><a Name="XDoc"></a>XDoc</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=black>[</font>    <a href="#XMLDecl">XMLDecl</a>    <font color=black>]</font>    <a href="#Content">Content</a></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="Attrs"></a>Attrs</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=black>[</font>    <font color=black>(</font>    <a href="#Empty">Empty</a>    <a href="#Name">Name</a>    <font color=black>[</font>    <a href="#Empty">Empty</a>    <font color=black>]</font>    <font color=green>=</font>    <font color=black>[</font>    <a href="#Empty">Empty</a>    <font color=black>]</font>    <a href="#Literal">Literal</a>    <a href="#Attrs">Attrs</a>    <font color=black>)</font>    <font color=black>+</font>    <font color=black>]</font>    <font color=black>{</font>    <a href="#Empty">Empty</a>    <font color=black>}</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="Content"></a>Content</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=black>[</font>    <a href="#CDecl">CDecl</a>    <a href="#Content">Content</a>    <font color=black>]</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="EBody"></a>EBody</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>&gt;</font>    <a href="#Content">Content</a>    <font color=green>&lt;/</font>    <a href="#Name">Name</a>    <font color=black>[</font>    <a href="#Empty">Empty</a>    <font color=black>]</font>    <font color=green>&gt;</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right><B>&nbsp;|&nbsp;</B><TD align=justify><P><B><font color=green>/&gt;</font></B><PRE> </PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="CDecl"></a>CDecl</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><a href="#HCharRef">HCharRef</a></B><PRE><br></PRE></P><TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right><B>&nbsp;|&nbsp;</B><TD align=justify><P><B><font color=green>=</font></B><PRE> </PRE></P><TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right><B>&nbsp;|&nbsp;</B><TD align=justify><P><B><a href="#Nmtoken">Nmtoken</a></B><PRE> </PRE></P><TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right><B>&nbsp;|&nbsp;</B><TD align=justify><P><B><a href="#ERef">ERef</a></B><PRE> </PRE></P><TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right><B>&nbsp;|&nbsp;</B><TD align=justify><P><B><a href="#CharData">CharData</a></B><PRE> </PRE></P><TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right><B>&nbsp;|&nbsp;</B><TD align=justify><P><B><a href="#XMLOpr">XMLOpr</a></B><PRE> </PRE></P><TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right><B>&nbsp;|&nbsp;</B><TD align=justify><P><B><a href="#DCharRef">DCharRef</a></B><PRE> </PRE></P><TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right><B>&nbsp;|&nbsp;</B><TD align=justify><P><B><a href="#CDSect">CDSect</a></B><PRE> </PRE></P><TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right><B>&nbsp;|&nbsp;</B><TD align=justify><P><B><a href="#PERef">PERef</a></B><PRE> </PRE></P><TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right><B>&nbsp;|&nbsp;</B><TD align=justify><P><B><a href="#Name">Name</a></B><PRE> </PRE></P><TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right><B>&nbsp;|&nbsp;</B><TD align=justify><P><B><font color=green>&gt;</font></B><PRE> </PRE></P><TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right><B>&nbsp;|&nbsp;</B><TD align=justify><P><B><font color=green>&lt;</font>    <a href="#Name">Name</a>    <a href="#Attrs">Attrs</a>    <a href="#EBody">EBody</a></B><PRE> </PRE></P><TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right><B>&nbsp;|&nbsp;</B><TD align=justify><P><B><a href="#Literal">Literal</a></B><PRE> </PRE></P><TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right><B>&nbsp;|&nbsp;</B><TD align=justify><P><B><font color=black>_other_</font></B><PRE> </PRE></P><TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right><B>&nbsp;|&nbsp;</B><TD align=justify><P><B><font color=green>/&gt;</font></B><PRE> </PRE></P><TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right><B>&nbsp;|&nbsp;</B><TD align=justify><P><B><a href="#DTDStart">DTDStart</a>    <a href="#dtdEmbed">dtdEmbed</a></B><PRE> </PRE></P><TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right><B>&nbsp;|&nbsp;</B><TD align=justify><P><B><a href="#Comment">Comment</a></B><PRE> </PRE></P><TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right><B>&nbsp;|&nbsp;</B><TD align=justify><P><B><a href="#Empty">Empty</a></B><PRE> </PRE></P><TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right><B>&nbsp;|&nbsp;</B><TD align=justify><P><B><a href="#PI">PI</a></B><PRE> </PRE></P><TD>&nbsp;
+
+
+</table>
+<BR>
+ 
+<BR>
+</body>
+</html>

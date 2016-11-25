@@ -1,0 +1,457 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>The Styx Handbook: The Styx Language Specification</TITLE>
+ <LINK HREF="styx-4.html" REL=next>
+ <LINK HREF="styx-2.html" REL=previous>
+ <LINK HREF="styx.html#toc3" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="styx-4.html">Next</A>
+<A HREF="styx-2.html">Previous</A>
+<A HREF="styx.html#toc3">Contents</A>
+<HR>
+<H2><A NAME="s3">3. The Styx Language Specification</A></H2>
+
+<P>This sections gives some explainations on how to write a language
+specification for Styx. Contrary to yacc, Styx is reflectively implemented,
+meaning it is written with it's own help. Thus, a proper Styx definition
+for the Styx language exists within the Styx source distribution. For
+omitted details you might like to refer to this source (styx.sty), from
+which we cite often in this part of the document. This does not only provides
+a proper definition, but also gives a pletora of examples.
+<P>
+<H2><A NAME="ss3.1">3.1 The overall source</A>
+</H2>
+
+<P>Refering back to the above walk-through, a specification of a language
+is written down within one file consisting of three sections:
+<UL>
+<LI>A <CODE>Language</CODE> section stating the name of the language.</LI>
+<LI>An optional <CODE>Regular Grammar</CODE> section defining the tokens.</LI>
+<LI>An optional <CODE>Context Free Grammar</CODE> section, which, tautologically,
+is the section where the context free grammar is definied.</LI>
+</UL>
+
+Note: Since version 1.3 the preprocessing facility <EM>#include</EM> can be used
+to modulize the specification in order to re-use parts of them.
+<PRE>
+  start Source
+  :root : "Language" Ide 
+          QlxDfns0
+          OptCfg
+ 
+  let OptCfg
+  :nul  :
+  :cfg  : "Context" "Free" "Grammar" 
+            Dfns
+
+  let QlxDfns0
+  :nil  :
+  :ign0 : "Regular" "Grammar"
+            QlxDfns
+</PRE>
+
+An extra twist is implemented within the Styx generators.
+As naming convention it is required that the Styx source files are named 
+like the corresponding languages and have the extention ".sty". Thus, if you 
+specify a language named "calc", you have to name the language definition 
+file "calc.sty".
+<P>
+<H2><A NAME="ss3.2">3.2 Lexical Conventions</A>
+</H2>
+
+<P>
+<H3>Character Set, Formaters and Comments</H3>
+
+<P>The character set for the source is ASCII. For later reference, we distinguish
+between printable characters and control characters:
+<PRE>
+; Character Set
+
+  let Byte        = '\00' .. '\ff' ; all extended ascii
+  let Control     = '\00' .. '\1f' ; control
+                  |          '\7f' ; DEL
+                  |          '\ff' ; space-like extended ascii
+
+  let Printable   = Byte - Control
+</PRE>
+<P>Space, Newline, Return and Formfeed are used to separate tokens and are otherwise
+completely ignored. The source itself is format-free. Note that also the page
+separator character may be used, we do never refer the source by pages.
+Additionally, no tabulator characters may be used with in source. We had so
+many problems with different programs having different ideas about how to
+expand them, that we droped them from this spefication.
+<P>
+<PRE>
+  ign Space       = " "                 ; ASCII - Space
+  ign Line        = "\n" | "\r\n" | "r" ; UNIX / DOS / Mac
+  ign Page        = "\p"                ; weak separation convention
+</PRE>
+<P><EM>Comments</EM> start with a semicolon and extend to the end of the line.
+<P>
+<PRE>
+; Comments et al
+
+  com Comment     = ';' {Printable}
+</PRE>
+<P>
+<H3>Identifier, Literals and Operators</H3>
+
+<P>The regular tokens are Identifier (consisting of letters and digits, starting
+with a letter), three sorts of literals and a set operators.
+<P>
+<PRE>
+; complex tokens
+
+  tok Ide = Letter {Letter} {Digit} ; Identifier
+  tok Nat = Digit+                  ; Natural
+  tok Set = '\'' {LitChar} '\''     ; CharacterSet
+  tok Seq = '\"' {LitChar} '\"'     ; CharacterSequence (String)
+  tok Opr = (Special - ';')+        ; Operator
+</PRE>
+<P>Beside the <EM>natural numbers</EM>, which are later used to denote characters by their
+ASCII code, we distinguish two sorts of strings form the literals. Single quoted strings 
+denote <EM>sets of characters</EM> and double quoted strings <EM>sequences of characters</EM>. 
+When containing only a single character, their meaning is of course identical.
+<P>Contrary to C syntax, both the single and the double quote has to be escaped when used inside 
+these literals themselves. Additionally, a hexadecimal notation for (unicode) characters is 
+provided within the character literals. Some control characters (form feed, return, newline, 
+tabulator) can also be denoted within the quotation by a single character after the backslash.
+<P>
+<A NAME="unicode literals"></A> 
+For completeness, here are the remaining definitions for the literals:
+<PRE>
+; Definitions
+
+  let Letter      = 'A'..'Z' | 'a'..'z'
+  let HexDigit    = '0'..'9' | 'a'..'f'
+  let Digit       = '0'..'9'
+  let Normal      = Letter | Digit | Space
+
+  let Quote       = '\'\"\`\\'
+  tok Parenthesis = '()[]{}'       ; one character tokens
+
+  let Special     = Printable - Normal - Parenthesis - Quote
+
+  let LitChar     = Printable - Quote
+                  | '\\' (Quote | 'prnt' | HexDigit HexDigit)
+                  | '\\' 'xX' HexDigit HexDigit HexDigit HexDigit HexDigit HexDigit HexDigit HexDigit
+</PRE>
+<P>The remaining tokens are <EM>operators</EM> and <EM>parenthesis</EM>. Both token classes do not 
+have a meaning for themselves, but are used to form reserved words later in the regular grammar. 
+Operators are made up from special characters.
+<P>
+<H3>Preprocessing macros</H3>
+
+<P>
+<A NAME="macros"></A> 
+The tokens in this section have a special meaning for the Styx preprocessor.
+They were introduced to provide modularisation, macro expansion and conditional compilation.
+<PRE>
+; Preprocessing tokens
+
+  let White   = Space | Line | Page
+  let Name    = (Letter | "_") { Letter | Digit | "_" } 
+  let MPar    = ( Printable - ( White | ',' | ')' | '=' ) )
+                { Printable - ( White | ',' | ')' | '=' ) }
+
+  tok MacInc  = "#include" White {White} (Printable-White) {Printable-White} ; Include
+  tok MacDfn  = "#macro" White {White} Name                                  ; Macro definition
+                  {White} [ "(" {White} MPar 
+                  { {White} "," {White} MPar } {White} ")" {White} ]
+                  [ "=" 
+                    ({Byte} - ({Byte} ("#macro"|"#end") {Byte})) 
+                    "#end" ]
+
+  tok MacSep  = '\'' (Byte-'\'') [ '-' ]                                     ; End of parameter
+
+  tok MacCond = ( ( "#ifdef" | "#ifndef" ) White {White} Name )              ; Conditionals
+              | "#else" | "#end"
+</PRE>
+<P>The reserved words are "Language", "Regular", "Grammar", "Context", "Free",
+"let", "tok", "ign", "com", "ica", "ind", "lan", "InGroup", "ExGroup", "other",
+"start" and "err". 
+Further, "cons", "nil" and words starting with "ign" have a special meaning 
+when used as production names.
+<P>
+<H2><A NAME="ss3.3">3.3 The Regular Grammar</A>
+</H2>
+
+<P>Next to the introducing "Regular Grammar" keywords, the regular grammer is specified as 
+a collection of equations. Following a leading keyword, that gives some hints how to cope 
+with the equation, and eventually some option and group information (see below) a name is 
+assigned to a regular expression. Have a look at the preceeding definitions to get an idea 
+who this looks like.
+<P>As with modern (f)lex implementations Styx now i.e. since version 1.6 supports the definition 
+of inclusive or exclusive groups of regular expressions, too. They are usefull to switch between 
+different regular languages.
+( see Example05 for a demonstration )
+<P>
+<PRE>
+; REG-Section
+
+  let QlxDfns ; Qlx-Definitions
+  :nil  :
+  :cons : QlxDfn 
+          QlxDfns
+
+  let QlxDfn  ; Qlx-Definition
+  :defn : QlxCat QlxOpt QlxGrp0 Ide QlxGrp1 "=" ExpDyck ; regular expression definition
+  :igrp : "InGroup" Ide                                 ; inclusive group definition
+  :xgrp : "ExGroup" Ide                                 ; exclusive group definition
+
+  let QlxGrp
+  :non  :                ; no group information
+
+  let QlxGrp0  
+  :grp  : ":" Ide ":"    ; The regular expression belongs to QlxGroup 'Ide'.
+  :ign0 : QlxGrp         ; The regular expression belong to initial QlxGroup.
+
+  let QlxGrp1  
+  :grp  : "!"  Ide       ; The recognition of the regular expression activates QlxGroup 'Ide'.
+  :igrp : "!"            ; The recognition of the regular expression activates initial QlxGroup.
+  :ign0 : QlxGrp
+
+  let QlxCat ; QlxCategory
+  :letC : "let"
+  :tokC : "tok"
+  :indC : "ind"
+  :lanC : "lan" ; Embedded language: 
+                ; lan :Ide_Language: Ide_Startsymbol ! Ide_EofOrFollowTokenLanguage = Ide_EofOrFollowToken+
+  :ignC : "ign"
+  :comC : "com"
+</PRE>
+<P>Groups must be defined before they can be referenced. With this exception the definitions can come 
+in any order. This means that an applied occurence does not need to follow it's definition textually. 
+It is only required that no recursion is used. So, you can order the definition due to other purposes.
+Note that contrary to the lex program no implict semantics is placed on the order of the definitions, too.
+<P>
+<H3>Categories</H3>
+
+<P>The leading keyword in the equations (see QlxCat) describes the usage of a token. 
+First, the equations introduced using "let" are auxiluary. They do not specify tokens 
+but only regular sets eventually used in them. As a consequence they can't neither be 
+grouped nor switch to some group.
+See in the above section for typical applications of this feature.
+<P>The next keyword "tok" introduces regular tokens. The identfier following this keyword 
+and the optional option and group information are the only ones that can later be used 
+within the context free grammar. Also, when implicitly used there as keywords, only these 
+regular sets will be considered.
+<P>In order to support the specification of indended languages (since version 1.6), the keyword "ind" 
+introduces so-called indend tokens as regular tokens. In the context free grammar they will be 
+referenced by the corresponding minimal indent and dedent keywords. 
+( see Example06 for a demonstration )
+<P>Another regular token variant (since version 1.6) are the so-called embedded language tokens. 
+They are introduced by the keyword "lan" and their values are not just strings but trees i.e. terms. 
+Within such a definition the initial keyword must be followed by the name of the embedded language,
+the start symbol from which the parsing process should start and either the name of the "hosting"
+language along with a list of follow tokens or the name of the embedded language along with a list
+of so-called eof tokens.
+<P>In the context free grammar they are referenced by concatenating the names of the embedded 
+language and the start symbol.
+( look at the 
+<A HREF="styx-10.html#XML parser example">XML language definition</A> in the reference 
+section for a demonstation )
+<P>Last, the remaining keywords ("ign" and "com") introduce tokens that will be more or less 
+ignored. "com" is for comments, and the semantic is, that they will be stored in the derivation 
+tree (for evtl. source-source translation), but will not be accessable through the language 
+specific interface. Also, both "com" and "ign" tokens can be inserted at any place within the 
+language sources.
+<P>"ign" tokens are completely ignored and never even leave the scanner.
+Conceptually, they do their duty as formating character. Because the scanner knows about 
+the newline character and provides line and column position with each token, these classes 
+of characters may (somehow indirect) be accessible in the source tree later. If no strange 
+things are done with the control characters (i.e. only uses space and newline as formaters), 
+on can fully reproduce the source from the derivation tree modulo trailing spaces and empty lines.
+<P>Collectivly, all definitions beside the "let" ones are considered to form the tokens of the 
+language. Styx's lexical analyser requires from each of these token definitions that they are 
+disjunct from each other. So, no two of them may contain the same word. While the lex program 
+resolves possible non-empty intersection by an implicit "priority", one has to make this explicit 
+when using Styx. 
+There are many ways to do this. One possibility is to use the difference operator ("-") to clearify 
+the situation. Styx will issue errors as soon as non-empty intersections are detected.
+<P>In the language interface, the tokens will be offered as <EM>symbols</EM>.
+Basically, these are unique strings allowing them to be compared by the C identity predicte ("=="). 
+String equal tokens will only stored once by this mean, too.
+<P>
+<H3>Normalizing Token</H3>
+
+<P>This can become a disadvantage when the tokens are anormal defined within the language. 
+Although we considered this a weak design anyway, few means are provided to introduce a normalizer 
+for such tokens. In order to support case insensitive languages, a normalizer for these is build 
+into Styx. 
+<PRE>
+  let QlxOpt  ; QlxOption
+  :non  :
+  :ignca: "[" "ica" "]"
+</PRE>
+
+The "[ica]" option before the defined identifier indicates that the case has to be ignored. As a 
+result all of the corresponding token values will be normalized to small letters. Note that using 
+anormal tokens has many disadvantages, among others a possible lost of source information.
+People who define such anormalities are typically unable to decide whether they really mean what 
+they do. I've seen, for example, PASCAL implementations, which were case insensitive but identifiers 
+like "FileRead" being defined in them. This certainly means asking for trouble. We cannot help bad 
+design and strongly suggest not to use normalizers on tokens.
+<P>
+<H3>Regular Expressions</H3>
+
+<P>Here we finally come to the right hand side of the reguar equations.
+<P>
+<PRE>
+  let Exp4     ; Expression prio 4
+  :sequ : Seq
+  :set  : Set
+  :ident: Ide
+</PRE>
+<P>The meaning of the set and sequence literals has already been defined when these token were introduced. 
+The identifier denotes the regular set corresponding to some other equation.
+<P>
+<PRE>
+  let Exp3     ; Expression prio 3
+  :ign1 : Exp4
+  :range: Exp4 ".." Exp4
+  :ign2 : "(" Exp ")"
+</PRE>
+<P>Round parenthesis may be used to group expressions, the double dot operator ".." can be applied to 
+construct character ranges. It's both arguments have to be single characters.
+<P>
+<PRE>
+  let Exp2     ; Expression prio 2
+  :opt  : "[" Exp "]"
+  :star : "{" Exp "}"
+  :plus : Exp3 "+"
+  :ign1 : Exp3
+</PRE>
+<P>Next in binding strength come the different sorts of monoids and options. The "+" suffix means one or 
+more occurences, the curly brackets is for zero or more occurences and the square brackets means zero 
+or one occurence.
+<P>
+<PRE>
+  let Exp1     ; Expression prio 1
+  :conc : Exp1 Exp2
+  :ign1 : Exp2
+</PRE>
+<P>The concatenation is denoted by simply concatenating expressions. The corresponding operator is ommited.
+<P>
+<PRE>
+  let Exp     ; Expression prio 0
+  :union: Exp "|" Exp1
+  :diff : Exp "-" Exp1
+  :ign1 : Exp1
+</PRE>
+<P>Finally, and weakest in binding strength, we have the set union ("|") and difference ("-") operations.
+<P>The following definitions refer to version 1.6 and introduce dyck expressions in order to cope with 
+nested comments, among others. The expressions specify the left parenthesis, the inner part and the
+right parenthesis. To give an example, &lt; /* &gt; &lt; */ &gt; describe recursive C-like comments.
+<P>
+<PRE>
+  let ExpDyck ; dyck ( Exp )
+  :dyck : "&lt;" Exp ">" Exp0 "&lt;" Exp ">"
+  :ign0 : Exp
+
+  let Exp0
+  :nul  : ; no restriction on the inner part
+  :ign0 : Exp
+</PRE>
+<P>
+<H2><A NAME="ss3.4">3.4 The Context-Free Grammar</A>
+</H2>
+
+<P>Here we deal with the definition of the context free grammar section in the Styx sources. This is 
+straight forward and basically a triple list.
+<P>On the top level we have a list of definitions (Dfns) of non-terminal identifiers, whose body consist 
+of a list of productions (Prds) for these non-terminals, again each identified by a name. 
+The body of the individual productions is formed by a list of members (Mbrs), which are either identifiers 
+denoting terminals or non-terminals, strings denoting keywords or a non-specified sequence denoted by the
+keyword "[other]".
+<P>The non-terminal names defined have to be unique within the scope of the source and disjunct from the names 
+of the regular sets defined in the previous section. The production names have to be unique within each 
+non-terminal definition.
+<P>The keywords (string members) have to belong to one of the defined regular sets of tokens.
+<P>
+<PRE>
+; CFG-Section
+
+  let Dfns    ; Definitions
+  :nil  : 
+  :cons : Dfn 
+          Dfns
+
+  let Dfn     ; Definition
+  :defn : Cat DfnOpt Ide 
+          Prds
+
+  let Prds    ; Productions
+  :nil  : 
+  :cons : Prd 
+          Prds
+
+  let Prd     ; Production
+  :prod : Lay Ide ":" 
+            Mbrs
+
+  let Mbrs    ; Members
+  :nil  : 
+  :cons : Mbr 
+          Mbrs
+
+  let Mbr     ; Member
+  :ntm  : Ide
+  :tkm  : Seq
+  :else : "[" "other" "]"
+</PRE>
+<P>Some options extend this construction, of which the most important is the distinction between 
+start and inner productions. Start productions indicate those non-terminals which can later 
+be parsed individually, while the inner productions can only be parsed as part of a start
+production. Refering back to the regular grammar specification this distinction is much like 
+the "let" and "tok" categories. We use a similar syntactic construction for the distinction, 
+a leading keyword. The start productions are indicated by a leading "start" and the inner
+productions by a leading "let".
+<P>
+<PRE>
+  let Cat     ; Category
+  :letC : "let"
+  :bgnC : "start"
+</PRE>
+<P>The remaining options deal with error recovery and pretty printing.
+<P>
+<A NAME="error option"></A> 
+Use the error option to specifiy a nonterminal as resumption point within the implemented 
+panic-mode error recovery. To enforce the default error handling where the parse process stops 
+when a syntax error occurs you should omit the error option.
+<P>
+<PRE>
+  let DfnOpt  ; DfnOption
+  :non  :
+  :errnt: "[" "err" "]"
+</PRE>
+<P>
+<A NAME="layout option"></A> 
+The layout option gives the pretty printer some hints for the layout of the corresponding 
+grammar phrases. Choose the colon (":") as default or if you aren't interested in that facility. 
+( look at the 
+<A HREF="styx-8.html#pplayout">layout specification</A> for details )
+<P>
+<PRE>
+  let Lay
+  :reg  : ":"
+  :line : "?"
+  :nof  : "!"
+</PRE>
+<P>
+<H3>Normalizing Productions</H3>
+
+<P>Some of the identifiers for the production names are reserved for normalization. These are "cons", 
+"nil" and "ign(0-9)+". Beside other keywords used in the Styx grammar, you are otherwise free to 
+chose these names. The mentioned identifiers serve it's duty as indications of how to make up the 
+depth grammar. A separate section is devoted to this topic. See below.
+<P>
+<HR>
+<A HREF="styx-4.html">Next</A>
+<A HREF="styx-2.html">Previous</A>
+<A HREF="styx.html#toc3">Contents</A>
+</BODY>
+</HTML>

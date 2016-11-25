@@ -1,0 +1,106 @@
+; [struct.sty] Grammar "struct"
+
+Language struct
+
+Regular Grammar
+
+; Character Set
+
+  let Byte        = '\00' .. '\ff' ; all extended ascii
+  let Control     = '\00' .. '\1f' ; control
+                  |          '\7f' ; DEL
+                  |          '\ff' ; space-like extended ascii
+
+; Basic elements of tokens
+
+  let Printable   = Byte - Control
+  ign Space       = " "            ; ASCII - Space
+  ign Tab         = "\t"           ; Tabulator
+  ign Line        = "\n" | "\r\n"  ; UNIX / CPM / DOS
+  ign Page        = "\p"           ; weak separation convention
+  ign Etx         = "\1a" {Byte}   ; CPM / older DOS Versions
+
+; Definitions and simple tokens
+
+  let Letter      = 'A'..'Z' | 'a'..'z' | '_'
+  let LetterOrDigit = 'A'..'Z' | 'a'..'z' | '_' | '0'..'9' 
+  let HexDigit    = '0'..'9' | 'a'..'f' | 'A' .. 'F'
+  let Digit       = '0'..'9'
+  let Normal      = Letter | Digit | Space
+  let Quote       = '\'\"\`'
+  tok Delimiters  = ',;'           ; delimiters
+  tok Parenthesis = '()[]{}'       ; one character tokens
+  let Special     = Printable - Normal - Parenthesis - Quote
+
+; single byte literals or literals, encoded in us-ascii, ISO 8859-1 Latin-1 or ucs4 hex values
+  let LitChar     = Printable - Quote
+                  | '\\' ( Quote | 'prnt' | 
+                           HexDigit HexDigit |
+                           'xX' HexDigit HexDigit HexDigit HexDigit HexDigit HexDigit HexDigit HexDigit )
+
+; Comments et al
+
+  com Comment1     = '/' {Printable}
+  com Comment2     = '#' {Printable}
+
+; Complex tokens
+
+  tok Hex = '0' 'x' HexDigit+       ; Natural in hexadecimal presentation
+  tok Ide = Letter {LetterOrDigit}  ; Identifier
+  tok Real = {'-'} Digit+ ('.') Digit+    ; Real
+  tok Nat = {'-'} Digit+            ; Natural
+  tok Opr = '=<>-+:*&|!'            ; Operators
+;  tok Set = '\'' {LitChar} '\''    ; CharacterSet
+  tok Seq = '\"' {LitChar} '\"'     ; CharacterSequence (String)
+  tok HexSeq = '\'' {HexDigit} '\'' ; BCD character sequence
+
+Context Free Grammar
+
+start Definitions
+:defs: DefList
+:non: ; empty line
+
+let DefList
+:nil:
+:cons: Definition DefList
+
+let Symbol
+:ide:   Ide
+:hex:   Hex
+:dec:   Nat
+
+let Definition
+:typedef1:    "typedef" Type TypeName ";"
+:typedef2:    "struct" TypeName "{" DeclList "}" ";"
+:typedef3:    "typedef" "struct" TypeName "{" DeclList "}" Type ";"
+
+let TypeDecl
+:decl: Type TypeName ";"
+
+let Type
+:char: "char"
+:short: "short"
+:int: "int"
+:long: "long"
+:uchar: "unsigned" "char"
+:ushort: "unsigned" "short"
+:uint: "unsigned" "int"
+:ulong: "unsigned" "long"
+:float: "float"
+:double: "double"
+:def: Ide
+
+let TypeName
+:name: Ide
+:array1: Ide "[" Symbol "]"
+:array2: Ide "[" Symbol "]" "[" Symbol "]"
+:array3: Ide "[" Symbol "]" "[" Symbol "]" "[" Symbol "]"
+:array4: Ide "[" Symbol "]" "[" Symbol "]" "[" Symbol "]" "[" Symbol "]"
+
+let DeclList
+:nil:
+:cons:  TypeDecl DeclList0
+let DeclList0
+:nil:
+:cons: TypeDecl DeclList0
+

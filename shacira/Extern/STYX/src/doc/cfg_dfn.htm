@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[cfg_dfn.h] Context Free Grammar: symbol and production types</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[cfg_dfn.h] Context Free Grammar: symbol and production types</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="standard.htm">#include "standard.h"</a>
+<br>
+<br>
+<br>
+<br><hr width="100%" size=2><h2><b> Symbol types </b></h2>
+<br><pre>
+
+#define PLR_TYP_NTM  0 /* Nonterminal       */
+#define PLR_TYP_TOK  1 /* Token             */
+#define PLR_TYP_KEY  2 /* Keyword           */
+#define PLR_TYP_WKY  3 /* Wide Keyword      */
+#define PLR_TYP_CFG  4 /* Language token    */
+#define PLR_TYP_COM  5 /* Comment           */
+
+/* Terminal &lt;--&gt; Comment */
+
+#define CFG_TERM_TO_COM(typ) ( (typ) + PLR_TYP_COM )
+#define CFG_COM_TO_TERM(typ) ( (typ) - PLR_TYP_COM )
+
+/* Recognizer */
+
+#define CFG_NTM(typ)      ( (typ) == PLR_TYP_NTM )
+#define CFG_CFG(typ)      ( (typ) == PLR_TYP_CFG )
+#define CFG_TOK(typ)      ( (typ) == PLR_TYP_TOK || (typ) == PLR_TYP_CFG )
+#define CFG_KEY(typ)      ( (typ) == PLR_TYP_KEY || (typ) == PLR_TYP_WKY )
+#define CFG_WCKEY(typ)    ( (typ) == PLR_TYP_WKY )
+#define CFG_COM(typ)      ( (typ) &gt;= PLR_TYP_COM )
+
+#define CFG_TOK_NTM(typ)  ( CFG_TOK(typ)     || CFG_NTM(typ) )
+#define CFG_TOK_KEY(typ)  ( CFG_TOK(typ)     || CFG_KEY(typ) )
+#define CFG_TERMINAL(typ) ( CFG_TOK_KEY(typ) || \
+                            ( CFG_COM(typ) && (typ) != PLR_TYP_COM ) )
+
+</pre>
+<br><hr width="100%" size=2><h2><b> Production types: special recognizer </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>nilProd</b>(c_string prod)</pre>
+<td bgcolor="#FFF0F5" align=left>production name = "nil" ?
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>consProd</b>(c_string prod)</pre>
+<td bgcolor="#FFF0F5" align=left>production name = "cons" ?
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>ignProd</b>(c_string prod)</pre>
+<td bgcolor="#FFF0F5" align=left>production name = "ign#*" ?
+
+</table>
+
+</body>
+</html>

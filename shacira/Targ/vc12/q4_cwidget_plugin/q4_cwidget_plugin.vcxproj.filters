@@ -1,0 +1,995 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Plugin">
+      <UniqueIdentifier>{46896956-1f7f-47ee-a2b3-26b594924b3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Preprocessor">
+      <UniqueIdentifier>{9af5940c-094f-4ce3-8527-7324b23eb50a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Widgets">
+      <UniqueIdentifier>{09caf631-f6bd-41b6-ad77-6cb531db3aab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GeneratedFiles">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>moc;h;cpp</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated">
+      <UniqueIdentifier>{d1ea0cc4-21cd-4e19-b763-5806657a878a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Forms">
+      <UniqueIdentifier>{c4787b1c-b97f-4f25-93e2-86356810a702}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="qt4port">
+      <UniqueIdentifier>{0945b778-4a50-42ea-b3b8-b4c91acc76ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="qresources">
+      <UniqueIdentifier>{9316251b-d323-4255-99f0-617e98306fd9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Dateien">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Plugins\plugin_log.cpp">
+      <Filter>Plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CWidgetStack.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CActionDialog.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CActValue.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CAlarmWidget.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CAppFrame.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CButtonGroup.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CCheckBox.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CComboBox.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CCompListView.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CComposedStack.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CCoordSystem.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CDate.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CDateTime.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CDirectory.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CFixText.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CFrame.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CGraphic.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CGroupBox.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CGroupSelectButton.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\cGuiEvents.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CIndReqValue.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CInfoLabel.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\cInput.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CListView.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CPage.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\cPaintUtils.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CProcGraphic.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CProgressBar.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CProtocolWindow.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CPushButton.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CRadioButton.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CReqValue.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CRingGraphic.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\cRubberBand.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CScrollBar.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CScrollView.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CSimpleGraphic.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CSlider.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CSpinBox.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CStartupForm.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CStateButton.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CTable.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CTabWidget.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CTextEdit.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CTime.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CToolButton.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CVarDimension.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CVideo.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CVirtualKeyboard.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CWidget.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CWidgetBase.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CWidgetStack.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CWidget.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CVirtualKeyboard.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CVideo.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CVarDimension.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CToolButton.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CTime.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CTextEdit.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CTabWidget.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CTable.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CStateButton.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CStartupForm.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CSpinBox.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CSlider.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CSimpleGraphic.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CScrollView.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CScrollBar.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CRingGraphic.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CReqValue.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CRadioButton.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CPushButton.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CProtocolWindow.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CProgressBar.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CProcGraphic.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CPage.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CListView.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CInfoLabel.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CIndReqValue.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CGroupSelectButton.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CGroupBox.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CGraphic.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CFrame.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CFixText.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CDirectory.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CDateTime.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CDate.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CCoordSystem.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CComposedStack.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CCompListView.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CComboBox.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CCheckBox.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CButtonGroup.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CAppFrame.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CAlarmWidget.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CActValue.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CActionDialog.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CUnported.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CUnported.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Plugins\pluginfactory.cpp">
+      <Filter>Plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_pluginfactory.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CDirectoryView.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CCalendarView.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CCalendarView.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CDirectoryView.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\qt4port\qt4port.cpp">
+      <Filter>qt4port</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\qt4port\headerview.cpp">
+      <Filter>qt4port</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\qt4port\listview.cpp">
+      <Filter>qt4port</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\qt4port\listviewitem.cpp">
+      <Filter>qt4port</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\qt4port\listviewitemiterator.cpp">
+      <Filter>qt4port</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_listview.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\qt4port\wizard.cpp">
+      <Filter>qt4port</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\qt4port\listviewitemdelegate.cpp">
+      <Filter>qt4port</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\qrc_shacira.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\qt4port\tablewidget.cpp">
+      <Filter>qt4port</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_tablewidget.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\qt4port\tablewidgetitem.cpp">
+      <Filter>qt4port</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_wizard.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\qt4port\image.cpp">
+      <Filter>qt4port</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CGraphicsView.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CGraphicsView.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT4Framework\Plugins\plugin_log.h">
+      <Filter>Plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CWidgetBase.h">
+      <Filter>Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\cRubberBand.h">
+      <Filter>Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\GUIFramework\qt4port\qt4port.h">
+      <Filter>qt4port</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\GUIFramework\qt4port\qobjectlist.h">
+      <Filter>qt4port</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\GUIFramework\qt4port\qptrlist.h">
+      <Filter>qt4port</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\GUIFramework\qt4port\qheader.h">
+      <Filter>qt4port</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\GUIFramework\qt4port\actiondialog.h">
+      <Filter>qt4port</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\GUIFramework\qt4port\appframe.h">
+      <Filter>qt4port</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\GUIFramework\qt4port\dialog.h">
+      <Filter>qt4port</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\GUIFramework\qt4port\startupform.h">
+      <Filter>qt4port</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\GUIFramework\qt4port\page.h">
+      <Filter>qt4port</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\GUIFramework\qt4port\listviewitemdelegate.h">
+      <Filter>qt4port</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\GUIFramework\qt4port\tablewidgetitem.h">
+      <Filter>qt4port</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\GUIFramework\qt4port\image.h">
+      <Filter>qt4port</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CWidget.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CVirtualKeyboard.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CVideo.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CVarDimension.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CToolButton.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CTime.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CTextEdit.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CTabWidget.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CTable.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CStateButton.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CStartupForm.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CSpinBox.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CSlider.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CSimpleGraphic.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CScrollView.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CScrollBar.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CRingGraphic.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CReqValue.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CRadioButton.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CPushButton.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CProtocolWindow.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CProgressBar.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CProcGraphic.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CPage.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CListView.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CInfoLabel.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CIndReqValue.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CGroupSelectButton.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CGroupBox.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CGraphic.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CFrame.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CFixText.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CDirectory.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CDateTime.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CDate.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CCoordSystem.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CComposedStack.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CCompListView.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CComboBox.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CCheckBox.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CButtonGroup.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CAppFrame.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CAlarmWidget.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CActValue.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CActionDialog.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CWidgetStack.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CWidgetStack.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CActionDialog.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CActValue.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CAlarmWidget.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CAppFrame.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CButtonGroup.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CCheckBox.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CComboBox.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CCompListView.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CComposedStack.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CCoordSystem.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CDate.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CDateTime.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CDirectory.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CFixText.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CFrame.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CGraphic.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CGroupBox.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CGroupSelectButton.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CIndReqValue.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CInfoLabel.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CListView.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CPage.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CProcGraphic.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CProgressBar.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CProtocolWindow.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CPushButton.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CRadioButton.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CReqValue.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CRingGraphic.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CScrollBar.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CScrollView.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CSimpleGraphic.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CSlider.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CSpinBox.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CStartupForm.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CStateButton.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CTable.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CTabWidget.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CTextEdit.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CTime.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CToolButton.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CVarDimension.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CVideo.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CVirtualKeyboard.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CWidget.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CUnported.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CUnported.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Plugins\pluginfactory.h">
+      <Filter>Plugin</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CDirectoryView.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CCalendarView.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CDirectoryView.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CCalendarView.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\qt4port\headerview.h">
+      <Filter>qt4port</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\qt4port\listview.h">
+      <Filter>qt4port</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\qt4port\listviewitem.h">
+      <Filter>qt4port</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\qt4port\listviewitemiterator.h">
+      <Filter>qt4port</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\shacira.qrc">
+      <Filter>qresources</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\qt4port\tablewidget.h">
+      <Filter>qt4port</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\qt4port\wizard.h">
+      <Filter>qt4port</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CGraphicsView.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CGraphicsView.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_1.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_10.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_11.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_12.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_13.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_14.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_15.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_16.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_2.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_3.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_4.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_5.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_6.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_7.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_8.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_9.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\calendarwidget.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\checkbox.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\columnview.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\combobox.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\commandlinkbutton.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\dateedit.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\datetimeedit.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\dial.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\dialogbuttonbox.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\dockwidget.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\doublespinbox.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\fontcombobox.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\frame.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\graphicsview.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\groupbox.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\groupboxcollapsible.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\hscrollbar.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\hslider.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\hsplit.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\label.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\lcdnumber.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\line.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\lineedit.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\listbox.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\listview.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\mdiarea.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\plaintextedit.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\progress.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\pushbutton.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\radiobutton.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\scrollarea.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\spacer.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\spinbox.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\tabbar.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\table.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\tabwidget.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\textedit.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\timeedit.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\toolbox.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\toolbutton.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\vline.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\vscrollbar.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\vslider.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\vspacer.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\widget.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\widgetstack.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\wizard.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\form.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\css\cb_checked.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\css\cb_unchecked.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\css\rb_checked.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\css\rb_unchecked.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\css\sb_down.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\css\sb_left.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\css\sb_right.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\css\sb_up.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+  </ItemGroup>
+</Project>

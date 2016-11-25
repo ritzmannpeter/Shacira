@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Plugin">
+      <UniqueIdentifier>{00292a58-3664-4389-be18-abae790668e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Widgets">
+      <UniqueIdentifier>{8fffb6b8-4e8d-47e0-99b5-de7e25f095b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generated">
+      <UniqueIdentifier>{0ee21992-f566-4bae-ae23-596e0d0b1c95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generierte Dateien">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>moc;h;cpp</Extensions>
+      <ParseFiles>true</ParseFiles>
+    </Filter>
+    <Filter Include="qt4port">
+      <UniqueIdentifier>{432b54dc-9427-4dcc-a6ed-97c0c935c1cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="qresources">
+      <UniqueIdentifier>{de6f71fb-96e0-4b02-bd34-f89077131609}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Dateien">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Plugins\plugin_log.cpp">
+      <Filter>Plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Keypads\cQtKeyboardButton.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_cQtKeyboardButton.cpp">
+      <Filter>Generierte Dateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Keypads\cQtKeyboardLayout.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_cQtKeyboardLayout.cpp">
+      <Filter>Generierte Dateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Plugins\pluginfactory.cpp">
+      <Filter>Plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_pluginfactory.cpp">
+      <Filter>Generierte Dateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\qt4port\qt4port.cpp">
+      <Filter>qt4port</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\qrc_shacira.cpp">
+      <Filter>Generierte Dateien</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT4Framework\Plugins\plugin_log.h">
+      <Filter>Plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\GUIFramework\qt4port\qt4port.h">
+      <Filter>qt4port</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Keypads\cQtKeyboardButton.h">
+      <Filter>Widgets</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Keypads\cQtKeyboardLayout.h">
+      <Filter>Widgets</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Plugins\pluginfactory.h">
+      <Filter>Plugin</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\shacira.qrc">
+      <Filter>qresources</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_1.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_10.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_11.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_12.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_13.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_14.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_15.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_16.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_2.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_3.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_4.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_5.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_6.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_7.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_8.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_9.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\form.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\calendarwidget.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\checkbox.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\columnview.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\combobox.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\commandlinkbutton.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\dateedit.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\datetimeedit.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\dial.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\dialogbuttonbox.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\dockwidget.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\doublespinbox.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\fontcombobox.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\frame.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\graphicsview.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\groupbox.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\groupboxcollapsible.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\hscrollbar.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\hslider.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\hsplit.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\label.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\lcdnumber.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\line.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\lineedit.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\listbox.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\listview.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\mdiarea.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\plaintextedit.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\progress.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\pushbutton.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\radiobutton.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\scrollarea.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\spacer.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\spinbox.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\tabbar.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\table.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\tabwidget.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\textedit.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\timeedit.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\toolbox.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\toolbutton.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\vline.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\vscrollbar.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\vslider.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\vspacer.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\widget.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\widgetstack.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\wizard.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+  </ItemGroup>
+</Project>

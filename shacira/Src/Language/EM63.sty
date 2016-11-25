@@ -1,0 +1,276 @@
+; [EM63.sty] Grammar "em63"
+
+Language EM63
+
+Regular Grammar
+
+; Character Set
+
+  let Byte        = '\00' .. '\ff' ; all extended ascii
+  let Control     = '\00' .. '\1f' ; control
+                  |          '\7f' ; DEL
+                  |          '\ff' ; space-like extended ascii
+
+; Basic elements of tokens
+
+  let Printable   = Byte - Control
+  ign Space       = " "            ; ASCII - Space
+  ign Tab         = "\t"           ; Tabulator
+  ign Line        = "\n" | "\r\n"  ; UNIX / CPM / DOS
+  ign Page        = "\p"           ; weak separation convention
+  ign Etx         = "\1a" {Byte}   ; CPM / older DOS Versions
+
+; Definitions and simple tokens
+
+  let Letter      = 'A'..'Z' | 'a'..'z' | '_'
+  let LetterOrDigit = 'A'..'Z' | 'a'..'z' | '_' | '0'..'9' 
+;  let emCharacters = '@' | 'A'..'Z' | 'a'..'z' | '_' | '0'..'9' 
+  let HexDigit    = '0'..'9' | 'a'..'f' | 'A' .. 'F'
+  let Digit       = '0'..'9'
+  let Normal      = Letter | Digit | Space
+  let Quote       = '\'\"\`'
+  tok Delimiters  = ',;'           ; delimiters
+  tok Parenthesis = '()[]{}'       ; one character tokens
+  let Special     = Printable - Normal - Parenthesis - Quote
+
+; single byte literals or literals, encoded in us-ascii, ISO 8859-1 Latin-1 or ucs4 hex values
+  let LitChar     = Printable - Quote
+                  | '\\' ( Quote | 'prnt' | 
+                           HexDigit HexDigit |
+                           'xX' HexDigit HexDigit HexDigit HexDigit HexDigit HexDigit HexDigit HexDigit )
+
+; Comments et al
+
+;  com Comment     = '//' {Printable}
+  com Comment  = "/*" ({Byte}-({Byte}"*/"{Byte})) "*/"
+               | "//" ({Byte}-({Byte} Line {Byte})) Line
+
+; Complex tokens
+
+;  tok e63 = {emCharacters}  ; Euromap 63 general purpose Identifier (old version)
+  tok Ide = Letter {LetterOrDigit}; Identifier
+  tok IdeE63 = ('@')  {LetterOrDigit}  ; Euromap 63 Identifier
+  tok Real = {'-'} Digit+ ('.') Digit+ ; real number
+  tok Signed = '-' Digit+ ; signed integral number
+  tok Unsigned = Digit+ ; unsigned integral number
+  tok Hex = '0' 'x' HexDigit+       ; Natural in hexadecimal presentation
+  tok Opr = '=<>-+:*&|!'            ; Operators
+;  tok Set = '\'' {LitChar} '\''    ; CharacterSet
+  tok Seq = '\"' {LitChar} '\"'     ; CharacterSequence (String)
+  tok HexSeq = '\'' {HexDigit} '\'' ; BCD character sequence
+  tok Param = '#' Digit+            ; Parameter Name
+
+Context Free Grammar
+
+start Interface
+:sesreq: SessionRequest
+:presreq: PresentationRequest
+:resp: Response
+:tests: Tests
+:non: ; empty line
+
+let Integer
+:int: Signed
+:uint: Unsigned
+
+let SessionRequest
+:req: SessionCmdList
+
+let SessionCmdList
+:nil:
+:cons: SessionCmd SessionCmdList
+
+
+let CmdIde
+:ide0:    Ide
+:key0:    Integer
+
+let SessionCmd
+:con:  CmdIde "CONNECT" ";"
+:exe:  CmdIde "EXECUTE" FileSpec ";"
+
+let PresentationRequest
+:req: JobSpec PresCmdList
+
+let PresCmdList
+:nil:
+:cons: PresCmd PresCmdList
+
+let Response
+:non: ; empty line
+
+let PresCmd
+:report:   ReportSpec
+:event:    EventSpec
+:abort:    AbortSpec
+:upload:   UploadSpec
+:download: DownloadSpec
+:ids:      GetIdSpec
+:info:     GetInfoSpec
+:set:      SetSpec
+
+let FileSpec
+:fspec: Seq
+
+let ConstantSpec
+:num1:  Real
+:num2:  Integer
+:num3:  Hex
+:str:   Seq
+
+let TimeConst
+;:time: e63 ":" e63 ":" e63
+:time: Unsigned ":" Unsigned ":" Unsigned
+
+let DateConst
+:date: Unsigned
+
+let IntegerConst
+;:num: e63
+:num: Integer
+
+let CondSpec
+:cs1: ParamId RelOp ConstantSpec 
+
+let TimeCondSpec
+:tim: "TIME" RelOp TimeConst DateConst
+
+let StartSpec
+:nul:
+:imm:  "START" "IMMEDIATE"
+:timc: "START" TimeCondSpec
+:cond: "START" CondSpec
+
+let StopSpec
+:nul:
+:never:"STOP" "NEVER"
+:timc: "STOP" TimeCondSpec
+:cond: "STOP" CondSpec
+
+let JobSpec
+:job:  "JOB" Ide "RESPONSE" FileSpec ";"
+
+let ReportSpec
+:report:   "REPORT" Ide PresSpec FileSpec StartSpec StopSpec ReportCondSpec CycleSpec SamplesSpec SessionsSpec "PARAMETERS" ParameterList ";"
+
+let PresSpec
+:nul:
+:append:  "APPEND"
+:rewrite: "REWRITE"
+
+let ReportCondSpec
+:nul:
+:cs11: "IF" ParamId CondSpec
+:cs12: "IF" "NOT" ParamId CondSpec
+:cs21: "IF" ParamId "CHANGE"
+:cs22: "IF" "NOT" ParamId "CHANGE"
+
+let CycleSpec
+:nul:
+:cyc:  "CYCLIC"
+:time: "CYCLIC" "TIME" TimeConst
+:shot: "CYCLIC" "SHOT" IntegerConst
+
+let SamplesSpec
+:nul:
+:num: "SAMPLES" IntegerConst
+
+let SessionsSpec
+:nul:
+:num: "SESSIONS" IntegerConst
+
+let ParameterList
+:nil:
+:cons: Parameter ParameterList0
+let ParameterList0
+:nil:
+:cons: "," Parameter ParameterList0
+
+let Parameter
+:time: "TIME"
+:date: "DATE"
+:count:"COUNT"
+:param: ParamId
+
+let EventSpec
+:event:    "EVENT" Ide Ide PresSpec FileSpec StartSpec StopSpec ";"
+; first Ide is name
+; second Ide is type
+
+let AbortSpec
+:all:   "ABORT" "ALL" ";"
+:alljobs: "ABORT" "ALL" "JOBS" ";"
+:allreports: "ABORT" "ALL" "REPORTS" ";"
+:allevents: "ABORT" "ALL" "EVENTS" ";"
+:job:   "ABORT" "JOB" Ide ";"
+:report:  "ABORT" "REPORT" Ide ";"
+:event:   "ABORT" "EVENT" Ide ";"
+
+let UploadSpec
+:upload:   "UPLOAD" FileSpec SourceSpec StartSpec ";"
+
+let DownloadSpec
+:download: "DOWNLOAD" FileSpec SourceSpec StartSpec ";"
+
+let SourceSpec
+:active:  "ACTIVE"
+:avspec:  FileSpec
+:keyword: Ide
+
+let GetIdSpec
+:ids:      "GETID" FileSpec ";"
+
+let GetInfoSpec
+:info:     "GETINFO" FileSpec ";"
+
+let SetSpec
+:set:      "SET" ParamId ValueSpec ";"
+
+let ValueSpec
+:value:    ConstantSpec
+
+let RelOp
+:lt   : "<"
+:le   : "<" "="
+:gt   : ">"
+:ge   : ">" "="
+:eq   : "=" "="
+:ne   : "!" "="
+
+let ParamId
+:parid: VarRef
+
+let IndexList
+:nil:
+:cons: Unsigned IndexList0
+let IndexList0
+:nil:
+:cons: "," Unsigned IndexList0
+
+let VarName
+:name1: Ide
+:name2: IdeE63
+
+let VarRef
+:ref1:  VarName
+:ref2:  VarName IndexRef
+
+let IndexRef
+:nul:
+:ref: "[" IndexList "]"
+
+
+; Section for syntax test purposes no semantics
+
+let Tests
+:nil:
+:cons: Test Tests
+
+let Test
+:test: TestCase
+
+let TestCase
+:test0:  "TEST0" "(" Unsigned ")" "(" IdeE63 ")" "(" VarName ")"
+:test1:  "TEST1" "(" Unsigned ")" "(" Signed ")" "(" Real ")" "(" Hex ")" "(" Integer ")" "(" ConstantSpec ")"
+:test2:  "TEST2" "(" ParameterList ")"
+

@@ -1,0 +1,154 @@
+##
+## 2i Qt Preprocessor
+##
+## Aufruf:
+##   pp -o<outfile>.h ppQt.pre <infile>.cpp
+##
+## Macrodefinitionen:
+##   PROPERTY_2i( type, name )
+##   FUNC_REF_2i( name )
+##   VAR_REF_2i( name )
+##
+
+
+## Schluesselworte fuer die Definitions-Macros
+
+#define PROPERKEY "PROPERTY_2i"
+#define VARREFKEY "VAR_REF_2i"
+#define FUNREFKEY "FUNC_REF_2i"
+
+## Schluesselworte fuer die Einfuege-Macros
+
+#define INS_FUNC "METHODS_2i"
+#define INS_VARS "ATTRIBUTES_2i"
+
+
+
+## Uebergebenen Typname und Variablename (Leerzeichenbefreit)
+
+#var TYPE
+#var NAME
+
+
+## Variablen mit den Methoden- und Variablenbloecken
+
+#var FUNC_PROLOG
+#var BLOCK_FUNC
+#var BLOCK_VARS
+
+
+
+##
+## Funktionen
+##
+
+## Macro PROPERTY_2i( type, name ) bearbeiten
+
+#func property(type,name):
+%c : $(setvar(TYPE):$(removews:$(type)))
+     $(setvar(NAME):$(removews:$(name)))
+     "Q_PROPERTY( " $(TYPE) " " $(NAME) " READ get" $(NAME) " WRITE set" $(NAME) " )" \n
+     $(setvar(BLOCK_FUNC):$(BLOCK_FUNC)
+     "   void set" $(NAME) "(const " $(TYPE) " &value) { _" $(NAME) "Value = value; PropertyChanged(); }" \n
+     "   " $(TYPE) " get" $(NAME) "() const { return _" $(NAME) "Value; }" \n \n
+     )
+     $(setvar(BLOCK_VARS):$(BLOCK_VARS)
+     "   " $(left(15):$(TYPE) "               ") "_" $(NAME) "Value;" \n \n
+     )
+     .
+
+
+## Macro FUNC_REF_2i( name ) bearbeiten
+
+#func func_ref(name):
+%c : $(setvar(NAME):$(removews:$(name)))
+     "Q_PROPERTY( QCString " $(NAME) "Ref READ get" $(NAME) "Ref WRITE set" $(NAME) "Ref )" \n
+     $(setvar(BLOCK_FUNC):$(BLOCK_FUNC)
+     "   void set" $(NAME) "Ref(const QCString &value) { _" $(NAME) "Spec = value; PropertyChanged(); }" \n
+     "   QCString get" $(NAME) "Ref() const { return _" $(NAME) "Spec; }" \n \n
+     )
+     $(setvar(BLOCK_VARS):$(BLOCK_VARS)
+     "   QCString       _" $(NAME) "Spec;" \n
+     "   FUNC_REF_PTR   _" $(NAME) "Ref;" \n \n
+     )
+     .
+
+
+## Macro VAR_REF_2i( name ) bearbeiten
+
+#func vars_ref(name):
+%c : $(setvar(NAME):$(removews:$(name)))
+     "Q_PROPERTY( QCString " $(NAME) "Ref READ get" $(NAME) "Ref WRITE set" $(NAME) "Ref )" \n
+     $(setvar(BLOCK_FUNC):$(BLOCK_FUNC)
+     "   void set" $(NAME) "Ref(const QCString &value) { _" $(NAME) "Spec = value; PropertyChanged(); }" \n
+     "   QCString get" $(NAME) "Ref() const { return _" $(NAME) "Spec; }" \n \n
+     )
+     $(setvar(BLOCK_VARS):$(BLOCK_VARS)
+     "   QCString       _" $(NAME) "Spec;" \n
+     "   VAR_REF_PTR    _" $(NAME) "Ref;" \n
+     "   DATA_VIEW_PTR  _" $(NAME) "View;" \n \n
+     )
+     .
+
+## Dateinamen (ohne Erweiterung): "PFAD\FILE.PP" => "FILE"
+
+#func name:
+   %c %( \\ | \: | / ) %c   : $(name:$3) .
+   %c "."  %c               : $(name:$1) .
+   %1-c                     : $1 .
+   %c                       : $(message:
+                                 "[ppQt.pre] Warning: "
+                                 "Cannot extract base name from '" $(__INPUT__) '\n )
+                              "<unknown>" .
+
+
+## Pfad entfernen: "PFAD\FILE.PP" => "FILE.PP"
+
+#func removepath:
+   %c %( \\ | \: | / ) %c   : $(removepath:$3) .
+   %1-c                     : $1 .
+   %c                       : $(message:
+                                 "[ppQt.pre] Warning: "
+                                 "Cannot remove path from '" $(__INPUT__) '\n )
+                              "<unknown>" .
+    
+#func head_comment:
+   %c :
+      "/**\n"
+      " * \\file  " $(name: $(__INPUT__)) ".h\n"
+      " * \\brief Qt header generated from " $(removepath:$(__INPUT__)) \n
+      " *\n"
+      " * Generated on " $(__FULLDATE__) " by using ppQt.pre\n"
+      " * (c) 2005 by 2i Industrial Informatics GmbH\n"
+      " *\n"
+      " * WARNING! All changes made in this file will be lost!\n"
+      " */\n\n" .
+
+##
+## Start
+##
+
+#start:
+   $(head_comment:) .
+
+
+##
+## Zustaende
+##
+
+#state normal:
+%t {PROPERKEY} %t "(" %c "," %c ")" %c : $1 $(property($3,$4):) .
+%t {VARREFKEY} %t "(" %c ")" %c : $1 $(vars_ref($3):) .
+%t {FUNREFKEY} %t "(" %c ")" %c : $1 $(func_ref($3):) .
+%t {INS_FUNC} %c : $(FUNC_PROLOG) 
+                   $(BLOCK_FUNC) 
+                   $(setvar(BLOCK_FUNC):) .
+%t {INS_VARS} %c : $(BLOCK_VARS)
+                  $(setvar(BLOCK_VARS):) .
+%c "/*" %c : $1 "/*" $[comment:$2] .
+%c : $1 \n .
+
+## Standard-C Kommentare ueberlesen
+#state comment:
+%c "*/" %c : $1 "*/" $[normal:$2] .
+%c : $1 \n .

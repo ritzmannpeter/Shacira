@@ -1,0 +1,149 @@
+
+/// this is a demo model file
+
+database test device=robot {
+    front_led_set bool
+    vartype=set
+    persist=file
+	map test uchar "front_led"
+    ;
+	
+    front_led_act bool
+    vartype=act
+ 	map test uchar "front_led"
+	refresh=10
+    ;
+
+
+	status_led_gn_set bool
+    vartype=set
+    persist=file
+	map test uchar "status_led_gn"
+    ;
+
+    status_led_gn_act bool
+    vartype=act
+ 	map test uchar "status_led_gn"
+	refresh=10
+    ;
+
+	status_led_rd_set bool
+    vartype=set
+    persist=file
+	map test uchar "status_led_rd"
+    ;
+
+    status_led_rd_act bool
+    vartype=act
+ 	map test uchar "status_led_rd"
+	refresh=10
+    ;
+
+
+	back_led_l_set bool
+    vartype=set
+    persist=file
+	map test uchar "back_led_l"
+    ;
+
+    back_led_l_act bool
+    vartype=act
+ 	map test uchar "back_led_l"
+	refresh=10
+	;
+
+	back_led_r_set bool
+    vartype=set
+    persist=file
+	map test uchar "back_led_r"
+    ;
+
+    back_led_r_act bool
+    vartype=act
+ 	map test uchar "back_led_r"
+	refresh=10
+	;
+
+
+	engine_r_speed_set bool
+    vartype=set
+    persist=file
+	map test uchar "engine_r"
+    ;
+
+    engine_r_speed_act bool
+    vartype=act
+ 	map test uchar "engine_r"
+	refresh=10
+	;
+
+	engine_r_dir_set uchar
+    vartype=set
+    persist=file
+	map test uchar "engine_r_d"
+    ;
+
+    engine_r_dir_act uchar
+    vartype=act
+ 	map test uchar "engine_r_d"
+	refresh=10
+	;
+
+
+
+	engine_l_speed_set uchar
+    vartype=set
+    persist=file
+	map test uchar "engine_l"
+    ;
+
+    engine_l_speed_act uchar
+    vartype=act
+ 	map test uchar "engine_l"
+	refresh=10
+	;
+
+	engine_l_dir_set uchar
+    vartype=set
+    persist=file
+	map test uchar "engine_l_d"
+    ;
+
+    engine_l_dir_act uchar
+    vartype=act
+ 	map test uchar "engine_l_d"
+	refresh=10
+	;
+
+
+    linedata_l_act ushort
+    vartype=act
+ 	map test uchar "linedata_l"
+	refresh=10
+	;
+
+	linedata_r_act ushort
+    vartype=act
+ 	map test uchar "linedata_r"
+	refresh=10
+	;
+
+	curve_buf byte(500)
+    vartype=act
+ 	map test byte(500) "curve_buf"
+	refresh=10
+	;
+
+   /// 6 buffers for graphic data
+   graphic_buffer[6] byte(250)
+///     vartype=act
+   ;
+
+	data_present bool
+    vartype=act
+ 	map test uchar "data_present"
+	refresh=10
+	;
+
+};
+

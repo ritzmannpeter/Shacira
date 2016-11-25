@@ -1,0 +1,362 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>MemView</class>
+<widget class="QWidget">
+    <property name="name">
+        <cstring>MemView</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>815</width>
+            <height>480</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Shared Memory Viewer</string>
+    </property>
+    <hbox>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QFrame">
+            <property name="name">
+                <cstring>frame3</cstring>
+            </property>
+            <property name="frameShape">
+                <enum>StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+                <enum>Raised</enum>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QGroupBox">
+                    <property name="name">
+                        <cstring>AdressContainer</cstring>
+                    </property>
+                    <property name="maximumSize">
+                        <size>
+                            <width>100</width>
+                            <height>32767</height>
+                        </size>
+                    </property>
+                    <property name="title">
+                        <string>Address</string>
+                    </property>
+                    <vbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <widget class="QTextEdit">
+                            <property name="name">
+                                <cstring>Address</cstring>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <family>Courier</family>
+                                    <pointsize>12</pointsize>
+                                </font>
+                            </property>
+                            <property name="readOnly">
+                                <bool>true</bool>
+                            </property>
+                        </widget>
+                    </vbox>
+                </widget>
+                <widget class="QGroupBox">
+                    <property name="name">
+                        <cstring>DataContainer</cstring>
+                    </property>
+                    <property name="title">
+                        <string>Data</string>
+                    </property>
+                    <vbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <widget class="QTextEdit">
+                            <property name="name">
+                                <cstring>Data</cstring>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <family>Courier</family>
+                                    <pointsize>12</pointsize>
+                                </font>
+                            </property>
+                            <property name="readOnly">
+                                <bool>true</bool>
+                            </property>
+                        </widget>
+                    </vbox>
+                </widget>
+                <widget class="QGroupBox">
+                    <property name="name">
+                        <cstring>groupBox3</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>4</hsizetype>
+                            <vsizetype>5</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="title">
+                        <string>Input</string>
+                    </property>
+                    <vbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <widget class="QGroupBox">
+                            <property name="name">
+                                <cstring>groupBox4</cstring>
+                            </property>
+                            <property name="title">
+                                <string>View Options</string>
+                            </property>
+                            <widget class="QLabel">
+                                <property name="name">
+                                    <cstring>textLabel1_2</cstring>
+                                </property>
+                                <property name="geometry">
+                                    <rect>
+                                        <x>10</x>
+                                        <y>20</y>
+                                        <width>101</width>
+                                        <height>21</height>
+                                    </rect>
+                                </property>
+                                <property name="text">
+                                    <string>Memory</string>
+                                </property>
+                            </widget>
+                            <widget class="QLabel">
+                                <property name="name">
+                                    <cstring>textLabel1</cstring>
+                                </property>
+                                <property name="geometry">
+                                    <rect>
+                                        <x>10</x>
+                                        <y>60</y>
+                                        <width>101</width>
+                                        <height>21</height>
+                                    </rect>
+                                </property>
+                                <property name="text">
+                                    <string>Address</string>
+                                </property>
+                            </widget>
+                            <widget class="QLineEdit">
+                                <property name="name">
+                                    <cstring>ViewAddress</cstring>
+                                </property>
+                                <property name="geometry">
+                                    <rect>
+                                        <x>10</x>
+                                        <y>80</y>
+                                        <width>101</width>
+                                        <height>21</height>
+                                    </rect>
+                                </property>
+                            </widget>
+                            <widget class="QLabel">
+                                <property name="name">
+                                    <cstring>textLabel1_4</cstring>
+                                </property>
+                                <property name="geometry">
+                                    <rect>
+                                        <x>10</x>
+                                        <y>100</y>
+                                        <width>101</width>
+                                        <height>21</height>
+                                    </rect>
+                                </property>
+                                <property name="text">
+                                    <string>Address width</string>
+                                </property>
+                            </widget>
+                            <widget class="QLineEdit">
+                                <property name="name">
+                                    <cstring>ViewMemory</cstring>
+                                </property>
+                                <property name="geometry">
+                                    <rect>
+                                        <x>10</x>
+                                        <y>40</y>
+                                        <width>101</width>
+                                        <height>21</height>
+                                    </rect>
+                                </property>
+                            </widget>
+                            <widget class="QLineEdit">
+                                <property name="name">
+                                    <cstring>ViewAddressWidth</cstring>
+                                </property>
+                                <property name="geometry">
+                                    <rect>
+                                        <x>10</x>
+                                        <y>120</y>
+                                        <width>101</width>
+                                        <height>21</height>
+                                    </rect>
+                                </property>
+                            </widget>
+                        </widget>
+                        <widget class="QGroupBox">
+                            <property name="name">
+                                <cstring>groupBox5</cstring>
+                            </property>
+                            <property name="title">
+                                <string>Commands</string>
+                            </property>
+                            <property name="alignment">
+                                <set>AlignBottom</set>
+                            </property>
+                            <widget class="QLabel">
+                                <property name="name">
+                                    <cstring>textLabel1_3_2</cstring>
+                                </property>
+                                <property name="geometry">
+                                    <rect>
+                                        <x>10</x>
+                                        <y>60</y>
+                                        <width>101</width>
+                                        <height>21</height>
+                                    </rect>
+                                </property>
+                                <property name="text">
+                                    <string>Value</string>
+                                </property>
+                            </widget>
+                            <widget class="QLabel">
+                                <property name="name">
+                                    <cstring>textLabel1_3</cstring>
+                                </property>
+                                <property name="geometry">
+                                    <rect>
+                                        <x>10</x>
+                                        <y>20</y>
+                                        <width>101</width>
+                                        <height>21</height>
+                                    </rect>
+                                </property>
+                                <property name="text">
+                                    <string>Address</string>
+                                </property>
+                            </widget>
+                            <widget class="QPushButton">
+                                <property name="name">
+                                    <cstring>changeBtn</cstring>
+                                </property>
+                                <property name="geometry">
+                                    <rect>
+                                        <x>10</x>
+                                        <y>110</y>
+                                        <width>101</width>
+                                        <height>25</height>
+                                    </rect>
+                                </property>
+                                <property name="text">
+                                    <string>change</string>
+                                </property>
+                            </widget>
+                            <widget class="QPushButton">
+                                <property name="name">
+                                    <cstring>xxxBtn</cstring>
+                                </property>
+                                <property name="geometry">
+                                    <rect>
+                                        <x>10</x>
+                                        <y>140</y>
+                                        <width>101</width>
+                                        <height>25</height>
+                                    </rect>
+                                </property>
+                                <property name="text">
+                                    <string></string>
+                                </property>
+                            </widget>
+                            <widget class="QLineEdit">
+                                <property name="name">
+                                    <cstring>InputValue</cstring>
+                                </property>
+                                <property name="geometry">
+                                    <rect>
+                                        <x>10</x>
+                                        <y>80</y>
+                                        <width>101</width>
+                                        <height>21</height>
+                                    </rect>
+                                </property>
+                            </widget>
+                            <widget class="QLineEdit">
+                                <property name="name">
+                                    <cstring>InputAddress</cstring>
+                                </property>
+                                <property name="geometry">
+                                    <rect>
+                                        <x>10</x>
+                                        <y>40</y>
+                                        <width>101</width>
+                                        <height>21</height>
+                                    </rect>
+                                </property>
+                            </widget>
+                        </widget>
+                    </vbox>
+                </widget>
+            </hbox>
+        </widget>
+    </hbox>
+</widget>
+<connections>
+    <connection>
+        <sender>InputAddress</sender>
+        <signal>returnPressed()</signal>
+        <receiver>MemView</receiver>
+        <slot>dataChange()</slot>
+    </connection>
+    <connection>
+        <sender>InputValue</sender>
+        <signal>returnPressed()</signal>
+        <receiver>MemView</receiver>
+        <slot>dataChange()</slot>
+    </connection>
+    <connection>
+        <sender>ViewAddress</sender>
+        <signal>returnPressed()</signal>
+        <receiver>MemView</receiver>
+        <slot>dataChange()</slot>
+    </connection>
+    <connection>
+        <sender>ViewMemory</sender>
+        <signal>returnPressed()</signal>
+        <receiver>MemView</receiver>
+        <slot>dataChange()</slot>
+    </connection>
+    <connection>
+        <sender>ViewAddressWidth</sender>
+        <signal>returnPressed()</signal>
+        <receiver>MemView</receiver>
+        <slot>dataChange()</slot>
+    </connection>
+</connections>
+<tabstops>
+    <tabstop>ViewMemory</tabstop>
+    <tabstop>ViewAddress</tabstop>
+    <tabstop>ViewAddressWidth</tabstop>
+    <tabstop>InputAddress</tabstop>
+    <tabstop>InputValue</tabstop>
+    <tabstop>Address</tabstop>
+    <tabstop>Data</tabstop>
+</tabstops>
+<slots>
+    <slot>dataChange()</slot>
+</slots>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

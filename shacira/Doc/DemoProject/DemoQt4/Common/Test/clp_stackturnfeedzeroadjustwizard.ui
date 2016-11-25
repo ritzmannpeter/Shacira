@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Clp_StackTurnFeedZeroAdjustWizard</class>
+ <widget class="QWizard" name="Clp_StackTurnFeedZeroAdjustWizard">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>243</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>Arial</family>
+    <pointsize>12</pointsize>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>Feed zero point adjust</string>
+  </property>
+  <property name="autoFillBackground">
+   <bool>true</bool>
+  </property>
+  <property name="modal">
+   <bool>true</bool>
+  </property>
+  <property name="wizardStyle">
+   <enum>QWizard::ClassicStyle</enum>
+  </property>
+  <widget class="QWizardPage" name="WizardPage">
+   <property name="autoFillBackground">
+    <bool>true</bool>
+   </property>
+   <property name="title">
+    <string>Note</string>
+   </property>
+   <widget class="QLabel" name="pixmapLabel1">
+    <property name="geometry">
+     <rect>
+      <x>-1</x>
+      <y>-3</y>
+      <width>64</width>
+      <height>128</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="../../qresources/demo.qrc">:/demo/images/img_1.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignVCenter</set>
+    </property>
+    <property name="wordWrap">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="textLabel1">
+    <property name="geometry">
+     <rect>
+      <x>72</x>
+      <y>3</y>
+      <width>305</width>
+      <height>121</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="text">
+     <string>You selected the feed zero point wizard.
+Here the zero position can be reset 
+by changing the feed stroke.</string>
+    </property>
+    <property name="wordWrap">
+     <bool>false</bool>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QWizardPage" name="WizardPage_0">
+   <property name="autoFillBackground">
+    <bool>true</bool>
+   </property>
+   <property name="title">
+    <string>Adjustment</string>
+   </property>
+   <widget class="QLabel" name="pixmapLabel1_2">
+    <property name="geometry">
+     <rect>
+      <x>-1</x>
+      <y>-3</y>
+      <width>64</width>
+      <height>128</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="../../qresources/demo.qrc">:/demo/images/img_1.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+    <property name="wordWrap">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="TL_EjeZeroAdjust">
+    <property name="geometry">
+     <rect>
+      <x>65</x>
+      <y>45</y>
+      <width>145</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="text">
+     <string>Zero pt. adjust.</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+    <property name="wordWrap">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="CReqValue" name="LE_SetStrEjeZeroAdjust">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>215</x>
+      <y>44</y>
+      <width>60</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="VarRef">
+     <cstring>SetStrClpStackTurnFeedZeroAdjustWizard</cstring>
+    </property>
+   </widget>
+   <widget class="CActValue" name="Label_EjeZeroAdjust">
+    <property name="geometry">
+     <rect>
+      <x>286</x>
+      <y>45</y>
+      <width>60</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="VarRef">
+     <cstring>ActStrClpTurnFeedAdjust</cstring>
+    </property>
+   </widget>
+   <widget class="CVarDimension" name="cVarDimension">
+    <property name="geometry">
+     <rect>
+      <x>349</x>
+      <y>43</y>
+      <width>31</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="text">
+     <string>mm</string>
+    </property>
+    <property name="Refresh">
+     <enum>CFixText::EventRefresh</enum>
+    </property>
+    <property name="Variable">
+     <cstring>SetStrEjeZeroAdjustWizard</cstring>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>CActValue</class>
+   <extends>QLabel</extends>
+   <header>cactvalue.h</header>
+  </customwidget>
+  <customwidget>
+   <class>CFixText</class>
+   <extends>QLabel</extends>
+   <header>cfixtext.h</header>
+  </customwidget>
+  <customwidget>
+   <class>CReqValue</class>
+   <extends>QLineEdit</extends>
+   <header>creqvalue.h</header>
+  </customwidget>
+  <customwidget>
+   <class>CVarDimension</class>
+   <extends>CFixText</extends>
+   <header>cvardimension.h</header>
+  </customwidget>
+ </customwidgets>
+ <includes>
+  <include location="local">qt4port.h</include>
+  <include location="local">CActValue.h</include>
+  <include location="local">CReqValue.h</include>
+  <include location="local">CVarDimension.h</include>
+ </includes>
+ <resources>
+  <include location="../../qresources/demo.qrc"/>
+  <include location="demo.qrc"/>
+ </resources>
+ <connections/>
+</ui>

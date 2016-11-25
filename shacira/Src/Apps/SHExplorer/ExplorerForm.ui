@@ -1,0 +1,45 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>ExplorerForm</class>
+<widget class="QWidget">
+    <property name="name">
+        <cstring>ExplorerForm</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>675</width>
+            <height>57</height>
+        </rect>
+    </property>
+    <property name="font">
+        <font>
+            <family>Arial</family>
+            <pointsize>11</pointsize>
+        </font>
+    </property>
+    <property name="caption">
+        <string>Form1</string>
+    </property>
+    <vbox>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <property name="margin">
+            <number>0</number>
+        </property>
+        <property name="spacing">
+            <number>0</number>
+        </property>
+        <widget class="QGroupBox">
+            <property name="name">
+                <cstring>Container</cstring>
+            </property>
+            <property name="title">
+                <string>Einstellungen</string>
+            </property>
+        </widget>
+    </vbox>
+</widget>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

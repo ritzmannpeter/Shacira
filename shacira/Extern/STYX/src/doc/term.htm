@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[term.h] Type: Term</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[term.h] Type: Term</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="otab.htm">#include "otab.h"</a>
+<br>
+<br>
+<br>
+<br><hr width="100%" size=2><h2><b> Types and Constants </b></h2>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b>DT_Term</b>
+<td align=left> Abstract Term         Type 
+
+<TR valign=top>
+<td align=left><b>DT_Mode</b>
+<td align=left> Abstract TermType     Type 
+
+<TR valign=top>
+<td align=left><b>DT_Val</b>
+<td align=left> Abstract TermValue    Type 
+
+<TR valign=top>
+<td align=left><b>DT_Pos</b>
+<td align=left> Abstract TermPosition Type 
+
+<TR valign=top>
+<td align=left><b>DT_Itr</b>
+<td align=left> Abstract TermIterator Type 
+
+</table>
+<br><hr width="100%" size=2><h2><b> Construct and Delete </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>DT_Term <b>DT_createV</b>(DT_Mode mode, DT_Val value, DT_Pos pos)</pre>
+<td bgcolor="#FFF0F5" align=left> creates value term <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>DT_Term <b>DT_createT</b>(DT_Mode mode, DT_Term term, DT_Pos pos)</pre>
+<td bgcolor="#FFF0F5" align=left> creates term with subterm <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>DT_Pos <b>DT_updPos</b>(DT_Term term, DT_Pos pos)</pre>
+<td bgcolor="#FFF0F5" align=left> updates position, returns old position <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>DT_Term <b>DT_consT</b>(DT_Term left, DT_Term right)</pre>
+<td bgcolor="#FFF0F5" align=left>concats left and right
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>DT_delT</b>(DT_Term term, void (*del_term)(DT_Term term))</pre>
+<td bgcolor="#FFF0F5" align=left> deletes term ( del_term only deletes term attributes ) <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Access / Information </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>DT_isTerm</b>(DT_Term term)</pre>
+<td bgcolor="#FFF0F5" align=left>term has subterm ?
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>DT_Mode <b>DT_mode</b>(DT_Term term)</pre>
+<td bgcolor="#FFF0F5" align=left>term type ( mode )
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>DT_Val <b>DT_val</b>(DT_Term term)</pre>
+<td bgcolor="#FFF0F5" align=left>term value ( ! DT_isTerm(term) )
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>DT_Pos <b>DT_pos</b>(DT_Term term)</pre>
+<td bgcolor="#FFF0F5" align=left>term value position
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>DT_Term <b>DT_next</b>(DT_Term term)</pre>
+<td bgcolor="#FFF0F5" align=left>next ( right ) term
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>DT_Term <b>DT_parts</b>(DT_Term term)</pre>
+<td bgcolor="#FFF0F5" align=left>left subterm ( DT_isTerm(term) )
+
+</table>
+<br><hr width="100%" size=2><h2><b> Get and Search </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>DT_cntST</b>(DT_Term term, c_bool (*filter)(DT_Term term))</pre>
+<td bgcolor="#FFF0F5" align=left> number of subterms t with filter(t) = False <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>DT_Term <b>DT_nthST</b>(DT_Term term, int nth, c_bool (*filter)(DT_Term term))</pre>
+<td bgcolor="#FFF0F5" align=left> nth subterm t with filter(t) = False [1..DT_cntST(term)] <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>DT_Term <b>DT_r_findT</b>
+        (
+          DT_Term term, c_bool (*pred)(DT_Term term, StdCPtr any), StdCPtr any
+        )</pre>
+<td bgcolor="#FFF0F5" align=left> subterm t with (*pred)(t,any) = True ( recursive ) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>DT_Term <b>DT_l_findT</b>
+        (
+          DT_Term term, c_bool (*pred)(DT_Term term, StdCPtr any), StdCPtr any
+        )</pre>
+<td bgcolor="#FFF0F5" align=left> subterm t with (*pred)(t,any) = True ( not recursive ) <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Term Iterator </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>DT_Itr <b>DT_createIT</b>(DT_Term term)</pre>
+<td bgcolor="#FFF0F5" align=left>creates term iterator
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>DT_getIT</b>(DT_Itr iter)</pre>
+<td bgcolor="#FFF0F5" align=left>next term in prae/post order
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>DT_skipIT</b>(DT_Itr iter)</pre>
+<td bgcolor="#FFF0F5" align=left>skips subterms
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>short <b>DT_stateIT</b>(DT_Itr iter)</pre>
+<td bgcolor="#FFF0F5" align=left>current status ( DT_PRAE / DT_POST )
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>DT_Term <b>DT_termIT</b>(DT_Itr iter)</pre>
+<td bgcolor="#FFF0F5" align=left>current term
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>OT_Tab <b>DT_stackIT</b>(DT_Itr iter)</pre>
+<td bgcolor="#FFF0F5" align=left>current iterator stack
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>DT_delIT</b>(DT_Itr iter)</pre>
+<td bgcolor="#FFF0F5" align=left>deletes term iterator
+
+</table>
+<br><hr width="100%" size=2><h2><b> Term Predicates </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>DT_equalT</b>
+     (
+       DT_Term left, DT_Term right,
+       c_bool (*cmpEQ)(DT_Term left, DT_Term right),
+       DT_Term (*filter)(DT_Term term)
+     )</pre>
+<td bgcolor="#FFF0F5" align=left> left = right ? <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>DT_subT</b>
+     (
+       DT_Term left, DT_Term right,
+       c_bool (*cmpEQ)(DT_Term left, DT_Term right),
+       DT_Term (*filter)(DT_Term term)
+     )</pre>
+<td bgcolor="#FFF0F5" align=left> left &lt;= right ? <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Printing </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>DT_printT</b>(DT_Term term, void (*pMember)(DT_Term term), int indent)</pre>
+<td bgcolor="#FFF0F5" align=left> prints term <br>
+
+</table>
+
+</body>
+</html>

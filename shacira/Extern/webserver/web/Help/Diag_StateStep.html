@@ -1,0 +1,691 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="GENERATOR" content="Quadralay WebWorks Publisher Standard Edition 7.0.6.1257">
+<meta name="TEMPLATEBASE" content="Portable HTML Standard Edition">
+<meta name="LASTUPDATED" content="08/08/05 13:27:23">
+<meta name="VERSION" content="00.00.01">
+<meta name="HOME" content="General_01.html">
+<meta name="PREVPAGE" content="diag_ErrorLog.html">
+<meta name="NEXTPAGE" content="diag_TroubleShoot.html">
+<meta name="INDEX" content="Mosaic_Helptexte_01SIX.html">
+<title>Registerkarte: Status/Step  </title>
+</head>
+
+<body link="#3366CC" vlink="#9999CC" text="#000000" alink="#0000CC" bgcolor="#FFFFFF"
+size="2" background="images/backgrnd.png">
+
+<blockquote>
+<h2>
+  <a name="1000556"> </a><font color="#003366"  face="Verdana, Arial, Helvetica, sans-serif">Registerkarte: Status/Step</font>
+</h2>
+
+
+<p>
+  <a name="1001827"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Die Registerkarte Status/Step" dient zu Diagnosezwecken. Bei einer Maschinenstörung lässt sich durch die Auswertung der hexadezimal dargestellten Freigabewörter (FG) und Statuswörter (Status) sowie der Task Counter (TC) die Ursache einer Störung analysieren. Freigabewörter, Statuswörter und Task Counter sind den jeweiligen Maschinenfunktionen zugeordnet.</font>
+</p>
+
+
+<h3>
+  <a name="999870"> </a><font color="#003366"  face="Verdana, Arial, Helvetica, sans-serif">Freigabe- und Statuswörter</font>
+</h3>
+
+
+<p>
+  <a name="999884"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Für die Auswertung der hexadezimal dargestellten Freigabe-u.Statuswörter kann die nachstehende Tabelle benutzt werden.</font>
+</p>
+
+
+<h5>
+  <a name="999872"> </a><i><font color="#003366"  face="Verdana, Arial, Helvetica, sans-serif">Beispiel: </font></i>
+</h5>
+
+
+<p>
+  <a name="1000479"> </a><font  face="Verdana, Arial, Helvetica, sans-serif"><b>A 0 4 0 </b>Freigabewort für Werkzeug schließen</font>
+</p>
+
+
+<p>
+  <a name="1001817"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Laut Tabelle sind die Bit-Nummern 15,13 und 6 angesprochen
+
+<table border="1" cellpadding="5" cellspacing="0">
+  <caption><b><i><font face="Verdana, Arial, Helvetica, sans-serif"></font></i></b></caption>
+  <tr align="center" bgcolor="#CCCCCC">
+    <th colspan="4" rowspan="1"><font face="Verdana, Arial, Helvetica, sans-serif" color="#003366"><a name="1000914"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">A</font></font></th>
+    <th colspan="4" rowspan="1"><font face="Verdana, Arial, Helvetica, sans-serif" color="#003366"><a name="1000922"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">0</font></font></th>
+    <th colspan="4" rowspan="1"><font face="Verdana, Arial, Helvetica, sans-serif" color="#003366"><a name="1000930"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">4</font></font></th>
+    <th colspan="4" rowspan="1"><font face="Verdana, Arial, Helvetica, sans-serif" color="#003366"><a name="1000938"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">0</font></font></th>
+    <th><font face="Verdana, Arial, Helvetica, sans-serif" color="#003366"><a name="1000946"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Freigabewort Statuswort</font></font></th>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1000948"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">1</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1000950"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">0</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1000952"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">1</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1000954"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">0</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1000956"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">0</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1000958"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">0</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1000960"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">0</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1000962"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">0</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1000964"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">0</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1000966"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">1</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1000968"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">0</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1000970"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">0</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1000972"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">0</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1000974"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">0</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1000976"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">0</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1000978"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">0</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1000980"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Wert, binär</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1000982"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">8</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1000984"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">4</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1000986"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">2</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1000988"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">1</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1000990"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">8</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1000992"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">4</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1000994"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">2</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1000996"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">1</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1000998"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">8</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001000"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">4</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001002"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">2</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001004"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">1</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001006"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">8</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001008"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">4</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001010"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">2</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001012"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">1</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001014"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Wertigkeit BCD</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001016"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">15</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001018"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">14</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001020"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">13</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001022"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">12</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001024"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">11</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001026"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">10</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001028"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">9</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001030"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">8</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001032"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">7</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001034"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">6</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001036"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">5</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001038"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">4</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001040"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">3</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001042"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">2</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001044"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">1</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001046"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">0</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001048"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">BIT-Nummer</font></font></td>
+  </tr>
+</table>
+
+
+
+</font>
+</p>
+
+
+<h4>
+  <a name="1001644"> </a><font color="#003366"  face="Verdana, Arial, Helvetica, sans-serif">BIT-Auswertung der Freigabe- und Statuswörter
+
+<table border="1" cellpadding="5" cellspacing="0">
+  <caption><b><i><font face="Verdana, Arial, Helvetica, sans-serif"></font></i></b></caption>
+  <tr align="center" bgcolor="#CCCCCC">
+    <th><font face="Verdana, Arial, Helvetica, sans-serif" color="#003366"><a name="1001543"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></th>
+    <th><font face="Verdana, Arial, Helvetica, sans-serif" color="#003366"><a name="1001545"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Freigabewörter</font></font></th>
+    <th><font face="Verdana, Arial, Helvetica, sans-serif" color="#003366"><a name="1001547"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Statuswörter</font></font></th>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001549"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Bit 0</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001551"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Werkzeug schließen</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001553"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Funktion wurde aktiviert</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001555"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Bit 1</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001557"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Werkzeug öffnen</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001559"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Funktion ist aktiv</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001561"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Bit 2</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001563"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Auswerfer 1</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001565"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Funktion extern gesperrt</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001567"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Bit 3</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001569"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Auswerfer 2</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001571"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Funktion normal beendet</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001573"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Bit 4</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001575"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Kernzug freiprogr.</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001577"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Funktion von extern beendet</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001579"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Bit 5</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001581"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Roboter</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001583"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Funktion hat Fehler erkannt</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001585"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Bit 6</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001587"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Schutzgitter</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001589"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001591"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Bit 7</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001593"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Einspritzen/Nachdruck</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001595"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001597"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Bit 8</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001599"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Plastifizieren</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001601"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001603"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Bit 9</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001605"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Aggregat</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001607"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001609"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Bit 10</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001611"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Schließdruckaufbau</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001613"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001615"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Bit 11</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001617"> </a><font  face="Verdana, Arial, Helvetica, sans-serif"> Schließdruckabbau</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001619"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001621"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Bit 12</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001623"> </a><font  face="Verdana, Arial, Helvetica, sans-serif"> Sonderprogr.Kernzug</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001625"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001627"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Bit 13</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001629"> </a><font  face="Verdana, Arial, Helvetica, sans-serif"> Sonderprogramm</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001631"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001633"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Bit 14</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001635"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001637"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001639"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Bit 15</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001641"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">externes I/O Signal</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001643"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></td>
+  </tr>
+</table>
+
+
+
+</font>
+</h4>
+
+
+<h4>
+  <a name="1001537"> </a><font color="#003366"  face="Verdana, Arial, Helvetica, sans-serif">Auswertung: Scannerwort 1 + 2
+
+<table border="1" cellpadding="5" cellspacing="0">
+  <caption><b><i><font face="Verdana, Arial, Helvetica, sans-serif"></font></i></b></caption>
+  <tr align="center" bgcolor="#CCCCCC">
+    <th><font face="Verdana, Arial, Helvetica, sans-serif" color="#003366"><a name="1001162"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Anzeige</font></font></th>
+    <th><font face="Verdana, Arial, Helvetica, sans-serif" color="#003366"><a name="1001247"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Scannerwort 1</font></font></th>
+    <th><font face="Verdana, Arial, Helvetica, sans-serif" color="#003366"><a name="1001313"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Scannerwort 2</font></font></th>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001222"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">1</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001249"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Öffnungsweite</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001315"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Schutztür</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001164"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">2</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001251"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Start Werkzeugsicherung</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001317"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Düsenschutz</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001166"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">4</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001253"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Werkzeug geschlossen</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001319"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Kühlzeit</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001168"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">8</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001255"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Werkzeughöhenverstellung</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001321"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Pausenzeit</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001170"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">10</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001257"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Auswerferaktionsbeginn</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001323"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Lichtschranke</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001172"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">20</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001259"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Auswerfer hinten</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001325"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Zyklusstop extern</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001174"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">40</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001261"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Plattensicherung</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001327"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Schusszähler</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001176"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">80</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001263"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Auswerferaktion beendet</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001329"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Zykluszeit</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001178"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">100</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001265"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Werkezugsicherung Not-Aus</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001331"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Wochentagschaltuhr</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001180"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">200</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001267"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Werkzeugsicherung Not-Aus Wiederholung</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001333"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Toleranzüberwachung</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001182"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">400</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001269"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Aggregat in vorderer Position</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001335"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Auswerferkupplung</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001184"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">800</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001271"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Aggregat in hinterer Position</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001337"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Gelenkopfkraft Reibung</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001186"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">1000</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001273"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Schließkraftaufbau</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001339"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Zentralschmierung</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001188"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">2000</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001275"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Schließkraft 80%</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001341"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001190"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">4000</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001277"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Schließkraft abgebaut</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001343"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001192"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">8000</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001279"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001345"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001194"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">10000</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001281"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Intrusion</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001347"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001196"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">20000</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001283"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Einspritzen</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001349"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001198"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">40000</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001510"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Plastifizieren, Schneckenrückzug</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001351"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001200"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">80000</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001512"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Plastifizierzeit</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001353"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001202"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">100000</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001514"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Zylinderheizung</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001355"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001204"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">200000</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001516"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Werkzeugheizung</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001357"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001206"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">400000</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001518"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">E-schrank Temperatur</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001359"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001208"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">800000</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001520"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Motortemperatur</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001361"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001210"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">1000000</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001522"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Referenzpunkte</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001363"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001212"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">2000000</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001299"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001365"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001214"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">4000000</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001301"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001367"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001216"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">8000000</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001303"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001369"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001218"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">10000000</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001305"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001371"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001220"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">20000000</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001307"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001373"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001242"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">40000000</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001309"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001375"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001240"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">80000000</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001311"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Werkzeug-Verriegelungsfehler</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1001377"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></td>
+  </tr>
+</table>
+
+
+
+</font>
+</h4>
+
+
+<h4>
+  <a name="1001076"> </a><font color="#003366"  face="Verdana, Arial, Helvetica, sans-serif">Freigabebits für Sonderprogramme</font>
+</h4>
+
+
+<p>
+  <a name="1002805"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Jedem Step ist ein Wort zugeordnet. Dieses Wort enthält die Freigabe / das Sperren der einzelnen Funktionen. Die einzelnen Bits werden vom Sonderbau festgelegt.
+
+<table border="1" cellpadding="5" cellspacing="0">
+  <caption><b><i><font face="Verdana, Arial, Helvetica, sans-serif"></font></i></b></caption>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002808"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">01</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002810"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002812"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">100</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002814"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002816"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">02</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002818"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002820"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">200</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002822"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002824"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">04</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002826"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002828"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">400</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002830"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002832"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">08</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002834"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Werkzeugauswerfer</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002836"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">800</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002838"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Förderband / Selektierweiche</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002840"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">10</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002842"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Kernzug</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002844"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">1000</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002846"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002848"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">20</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002850"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Entnahmegerät</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002852"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">2000</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002854"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002856"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">40</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002858"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Schutztür</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002860"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">4000</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002862"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002864"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">80</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002866"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002868"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">8000</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002870"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">&nbsp;</font></font></td>
+  </tr>
+</table>
+
+
+
+</font>
+</p>
+
+
+<h3>
+  <a name="1003081"> </a><font color="#003366"  face="Verdana, Arial, Helvetica, sans-serif">Stepliste</font>
+</h3>
+
+
+<p>
+  <a name="1003085"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Der einer bestimmten Maschinenfunktion zugewiesene Step wird in der Zustandsanzeige angezeigt (siehe Erklärung der Zustandsanzeige).
+
+<table border="1" cellpadding="5" cellspacing="0">
+  <caption><b><i><font face="Verdana, Arial, Helvetica, sans-serif"></font></i></b></caption>
+  <tr align="center" bgcolor="#CCCCCC">
+    <th><font face="Verdana, Arial, Helvetica, sans-serif" color="#003366"><a name="1002874"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Step</font></font></th>
+    <th><font face="Verdana, Arial, Helvetica, sans-serif" color="#003366"><a name="1002876"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Funktion</font></font></th>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002878"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">99</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002880"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Betriebsart Einrichten</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002882"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">0</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002884"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Werkzeugöffnungsweite erreicht</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002886"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">1</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002888"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Auswerferplattensicherung, Auswerferruhelage, Auswerfernullpunkt</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002890"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">2 - 3</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002892"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Programmierschritt ; Funktion siehe Sonderprogramm-Beschreibung</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002894"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">4</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002896"> </a><font  face="Verdana, Arial, Helvetica, sans-serif"> Werkzeug schließen</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002898"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">6</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002900"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Während Werkzeug Schließen bis Wegpunkt Werkzeugsicherungsbeginn</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002902"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">7 </font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002904"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Werkzeugsicherung </font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002906"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">9</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002908"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Externes Stop-Signal</font><a name="1002909"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Programmierschritt; Funktion siehe Sonderprogramm-Beschreibung</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002911"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">10</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002913"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Plastifizierweg nicht erreicht; Plastifizierweg überschritten</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002915"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">11</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002917"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Programmierschritt; Funktion siehe Sonderprogramm-Beschreibung</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002919"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">12</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002921"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Schließdruckaufbau</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002923"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">13</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002925"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Programmierschritt; Funktion siehe Sonderprogramm-Beschreibung</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002927"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">14</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002929"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Werkzeug geschlossen; Schließkraft aufgebaut</font><a name="1002930"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Bei Handbetrieb bleibt nach Betätigen der Taste "Werkzeug schließen" die Maschine auf diesem Step stehen</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002932"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">15</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002934"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Plastifizierweg nicht erreicht, keine Schneckenfreigabe</font><a name="1002935"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Schließkraftüberwachung</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002937"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">16</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002939"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Düsenanpressdruck nicht erreicht</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002941"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">17</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002943"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Programmierschritt; Funktion siehe Sonderprogramm-Beschreibung</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002945"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">18</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002947"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Intrusion</font><a name="1002948"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Überprüfung Schließkraft 80% bei Wert 0 im Feld "Start Einspritzen bei Schließkraft" </font><a name="1002949"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Überprüfung Schließkraft 30% bei Werteingabe im Feld "Start Einspritzen bei Schließkraft"</font><a name="1002950"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Druckfühler Spritzen .5-B5, Hydraulische Düse, Ausgang Synchron Spritzen</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002952"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">19.1 - 19.6</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002954"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Gesamter Einspritzvorgang ; Ablauf der gewählten Einspritzstufen</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002956"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">20 - 25</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002958"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Programmierschritt ; Funktion siehe Sonderprogramm-Beschreibung</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002960"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">26</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002962"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Während Kühlzeit</font><a name="1002963"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">wartet auf das Plastifizierende und Ende Schneckenrückzug wenn Werkzeugbewegung parallel Plastifizieren ausgeschaltet ist</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002965"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">27</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002967"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Programmierschritt; Funktion siehe Sonderprogramm-Beschreibung</font><a name="1002968"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Überwachungsbeginn Lichtschranke/Ausfallwaage bis Step 63</font><a name="1002969"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Start Düsenabhebung</font><a name="1002970"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Start Werkzeug öffnen</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002972"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">28</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002974"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Start Schließkraft-Abbauverzögerungszeit</font><a name="1002975"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Schließkraftabbau</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002977"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">29 - 31</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002979"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Programmierschritt; Funktion siehe Sonderprogramm-Beschreibung</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002981"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">32</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002983"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Verzögerungszeit  Werkzeug öffnen</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002985"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">33 - 35</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002987"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Programmierschritt; Funktion siehe Sonderprogramm-Beschreibung</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002989"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">36</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002991"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Start Werkzeug öffnen</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002993"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">37 - 40</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002995"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Programmierschritt; Funktion siehe Sonderprogramm-Beschreibung</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002997"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">41</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1002999"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Robot</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1003001"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">42</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1003003"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Auswerferaktionsbeginn 1. Hub bis eingestellten Weg</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1003005"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">43</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1003007"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Auswerfer Rücklauf bis hintere Ruhelage,</font><a name="1003008"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">bei Mehrfachhub bis eingestellten Rücklaufweg</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1003010"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">44</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1003012"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Auswerferaktion 2.Hub bis eingestellten Auswerferweg</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1003014"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">45</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1003016"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Auswerferaktion 3.Hub bis eingestellten Auswerferweg</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1003018"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">46</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1003020"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Auswerferaktion 4.Hub bis eingestellten Auswerferweg</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1003022"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">47</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1003024"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Auswerferaktion 5.Hub bis eingestellten Auswerferweg</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1003026"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">48</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1003028"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Auswerferaktion 6.Hub bis eingestellten Auswerferweg</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1003030"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">49</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1003032"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Auswerferaktion 7.Hub bis eingestellten Auswerferweg</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1003034"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">50</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1003036"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Auswerferaktion 8.Hub bis eingestellten Auswerferweg</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1003038"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">51</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1003040"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Auswerferaktion letzter Auswerferhub, 9.Hub bis eingestellten Auswerferweg</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1003042"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">52</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1003044"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Auswerferaktion beendet</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1003046"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">53</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1003048"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Auswerferruhelage-Überwachung</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1003050"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">54 - 55</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1003052"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Programmierschritt; Funktion siehe Sonderprogramm-Beschreibung</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1003054"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">56</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1003056"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Werkzeugöffnungsbewegung bis Werkzeugöffnungsweg erreicht</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1003058"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">57</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1003060"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Ablauf der eingestellten Pausenzeit</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1003062"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">58 - 60</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1003064"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Programmierschritt; Funktion siehe Sonderprogramm-Beschreibung</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1003066"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">61</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1003068"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Überwachung Düsenanlagekraft abgebaut - Druckschalter .5-F1, e4</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1003070"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">62</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1003072"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Öltemperatur-Überwachung</font><a name="1003073"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">max. Toleranzüberschreitungen bis Maschinenstillstand erreicht</font></font></td>
+  </tr>
+  <tr>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1003075"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">63</font></font></td>
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><a name="1003077"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Zykluszeitüberwachung, Zykluszeit überschritten</font><a name="1003078"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Subtrahierender Schußzähler gleich null</font><a name="1003079"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Plastifizierzeit überschritten</font><a name="1003080"> </a><font  face="Verdana, Arial, Helvetica, sans-serif">Plastifizierantrieb überlastet  (bei elektr. Plastifizieren)</font></font></td>
+  </tr>
+</table>
+
+
+
+</font>
+</p>
+
+
+<h5>
+  <a name="1003082"> </a><i><font color="#003366"  face="Verdana, Arial, Helvetica, sans-serif"></font></i>
+</h5>
+
+
+<h5>
+  <a name="1001858"> </a><i><font color="#003366"  face="Verdana, Arial, Helvetica, sans-serif"></font></i>
+</h5>
+</blockquote>
+
+</body>
+</html>

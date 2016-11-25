@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>cQtKeyboardAlphaBase</class>
+ <widget class="QDialog" name="cQtKeyboardAlphaBase">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>693</width>
+    <height>437</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>Arial</family>
+    <pointsize>11</pointsize>
+    <weight>75</weight>
+    <bold>true</bold>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string/>
+  </property>
+  <property name="autoFillBackground">
+   <bool>true</bool>
+  </property>
+  <layout class="QVBoxLayout">
+   <property name="spacing">
+    <number>3</number>
+   </property>
+   <item>
+    <widget class="QTextEdit" name="_text_edit">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>100</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>32767</width>
+       <height>100</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>14</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::StrongFocus</enum>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="_line_edit">
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>14</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="cQtKeyboard" name="_keyboard">
+     <property name="minimumSize">
+      <size>
+       <width>675</width>
+       <height>285</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>cQtKeyboard</class>
+   <extends>QFrame</extends>
+   <header>cQtKeyboard.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <includes>
+  <include location="local">qt4port.h</include>
+  <include location="local">cQtKeyboard.h</include>
+ </includes>
+ <resources>
+  <include location="../qresources/shacira.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>_keyboard</sender>
+   <signal>acceptInput()</signal>
+   <receiver>cQtKeyboardAlphaBase</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>_keyboard</sender>
+   <signal>rejectInput()</signal>
+   <receiver>cQtKeyboardAlphaBase</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

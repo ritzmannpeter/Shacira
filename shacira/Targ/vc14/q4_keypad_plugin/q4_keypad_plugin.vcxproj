@@ -1,0 +1,415 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_cQtKeyboardButton.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_cQtKeyboardLayout.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_pluginfactory.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\qrc_shacira.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Keypads\cQtKeyboardButton.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Keypads\cQtKeyboardLayout.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Plugins\pluginfactory.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Plugins\plugin_log.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\qt4port\qt4port.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\Src\GUIFramework\qt4port\qt4port.h" />
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Keypads\cQtKeyboardButton.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing cQtKeyboardButton.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp"  -D_KEYPAD_PLUGIN_ -DQT_DLL -DQT_PLUGIN -DQT_CORE_LIB -DQT_GUI_LIB -DQT_DESIGNER_LIB -DQT4 -D_WINDLL  "-I.\..\..\..\Src\GUIFramework\QT4Framework\Generated" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Plugins" "-I.\..\..\..\Src\GUIFramework\QT4Framework\CWidgets" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Dialogs" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Keypads" "-I.\..\..\..\Src\include" "-I.\..\..\..\Src\GUIFramework" "-I.\..\..\..\Src\GUIFramework\qt4port" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtDesigner" "-I$(QTDIR)\include\QtXml"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing cQtKeyboardButton.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp"  -D_KEYPAD_PLUGIN_ -DQT_NO_DEBUG -DQT_DLL -DQT_PLUGIN -DQT_CORE_LIB -DQT_GUI_LIB -DQT_DESIGNER_LIB -DQT4 -D_WINDLL  "-I.\..\..\..\Src\GUIFramework\QT4Framework\Generated" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Plugins" "-I.\..\..\..\Src\GUIFramework\QT4Framework\CWidgets" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Dialogs" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Keypads" "-I.\..\..\..\Src\include" "-I.\..\..\..\Src\GUIFramework" "-I.\..\..\..\Src\GUIFramework\qt4port" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtDesigner" "-I$(QTDIR)\include\QtXml"</Command>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Keypads\cQtKeyboardLayout.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing cQtKeyboardLayout.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp"  -D_KEYPAD_PLUGIN_ -DQT_DLL -DQT_PLUGIN -DQT_CORE_LIB -DQT_GUI_LIB -DQT_DESIGNER_LIB -DQT4 -D_WINDLL  "-I.\..\..\..\Src\GUIFramework\QT4Framework\Generated" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Plugins" "-I.\..\..\..\Src\GUIFramework\QT4Framework\CWidgets" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Dialogs" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Keypads" "-I.\..\..\..\Src\include" "-I.\..\..\..\Src\GUIFramework" "-I.\..\..\..\Src\GUIFramework\qt4port" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtDesigner" "-I$(QTDIR)\include\QtXml"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing cQtKeyboardLayout.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp"  -D_KEYPAD_PLUGIN_ -DQT_NO_DEBUG -DQT_DLL -DQT_PLUGIN -DQT_CORE_LIB -DQT_GUI_LIB -DQT_DESIGNER_LIB -DQT4 -D_WINDLL  "-I.\..\..\..\Src\GUIFramework\QT4Framework\Generated" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Plugins" "-I.\..\..\..\Src\GUIFramework\QT4Framework\CWidgets" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Dialogs" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Keypads" "-I.\..\..\..\Src\include" "-I.\..\..\..\Src\GUIFramework" "-I.\..\..\..\Src\GUIFramework\qt4port" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtDesigner" "-I$(QTDIR)\include\QtXml"</Command>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Plugins\pluginfactory.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing pluginfactory.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp"  -D_KEYPAD_PLUGIN_ -DQT_DLL -DQT_PLUGIN -DQT_CORE_LIB -DQT_GUI_LIB -DQT_DESIGNER_LIB -DQT4 -D_WINDLL  "-I.\..\..\..\Src\GUIFramework\QT4Framework\Generated" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Plugins" "-I.\..\..\..\Src\GUIFramework\QT4Framework\CWidgets" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Dialogs" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Keypads" "-I.\..\..\..\Src\include" "-I.\..\..\..\Src\GUIFramework" "-I.\..\..\..\Src\GUIFramework\qt4port" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtDesigner" "-I$(QTDIR)\include\QtXml"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing pluginfactory.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp"  -D_KEYPAD_PLUGIN_ -DQT_NO_DEBUG -DQT_DLL -DQT_PLUGIN -DQT_CORE_LIB -DQT_GUI_LIB -DQT_DESIGNER_LIB -DQT4 -D_WINDLL  "-I.\..\..\..\Src\GUIFramework\QT4Framework\Generated" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Plugins" "-I.\..\..\..\Src\GUIFramework\QT4Framework\CWidgets" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Dialogs" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Keypads" "-I.\..\..\..\Src\include" "-I.\..\..\..\Src\GUIFramework" "-I.\..\..\..\Src\GUIFramework\qt4port" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtDesigner" "-I$(QTDIR)\include\QtXml"</Command>
+    </CustomBuild>
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT4Framework\Plugins\plugin_log.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\shacira.qrc">
+      <FileType>Document</FileType>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(FullPath);..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_1.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_10.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_11.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_12.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_13.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_14.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_15.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_16.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_2.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_3.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_4.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_5.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_6.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_7.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_8.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_9.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\form.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\calendarwidget.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\checkbox.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\columnview.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\combobox.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\commandlinkbutton.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\dateedit.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\datetimeedit.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\dial.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\dialogbuttonbox.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\dockwidget.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\doublespinbox.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\fontcombobox.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\frame.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\graphicsview.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\groupbox.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\groupboxcollapsible.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\hscrollbar.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\hslider.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\hsplit.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\label.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\lcdnumber.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\line.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\lineedit.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\listbox.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\listview.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\mdiarea.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\plaintextedit.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\progress.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\pushbutton.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\radiobutton.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\scrollarea.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\spacer.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\spinbox.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\tabbar.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\table.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\tabwidget.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\textedit.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\timeedit.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\toolbox.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\toolbutton.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\vline.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\vscrollbar.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\vslider.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\vspacer.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\widget.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\widgetstack.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\wizard.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\form.png;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Rcc%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\..\..\..\Src\GUIFramework\Qt4Framework\Generated\qrc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\rcc.exe" -name "%(Filename)" -no-compress "%(FullPath)" -o .\..\..\..\Src\GUIFramework\Qt4Framework\Generated\qrc_%(Filename).cpp</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(FullPath);..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_1.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_10.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_11.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_12.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_13.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_14.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_15.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_16.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_2.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_3.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_4.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_5.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_6.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_7.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_8.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_9.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\form.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\calendarwidget.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\checkbox.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\columnview.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\combobox.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\commandlinkbutton.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\dateedit.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\datetimeedit.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\dial.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\dialogbuttonbox.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\dockwidget.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\doublespinbox.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\fontcombobox.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\frame.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\graphicsview.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\groupbox.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\groupboxcollapsible.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\hscrollbar.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\hslider.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\hsplit.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\label.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\lcdnumber.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\line.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\lineedit.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\listbox.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\listview.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\mdiarea.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\plaintextedit.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\progress.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\pushbutton.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\radiobutton.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\scrollarea.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\spacer.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\spinbox.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\tabbar.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\table.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\tabwidget.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\textedit.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\timeedit.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\toolbox.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\toolbutton.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\vline.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\vscrollbar.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\vslider.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\vspacer.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\widget.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\widgetstack.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\wizard.png;..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\form.png;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Rcc%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\..\..\..\Src\GUIFramework\Qt4Framework\Generated\qrc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\rcc.exe" -name "%(Filename)" -no-compress "%(FullPath)" -o .\..\..\..\Src\GUIFramework\Qt4Framework\Generated\qrc_%(Filename).cpp</Command>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\calendarwidget.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\checkbox.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\columnview.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\combobox.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\commandlinkbutton.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\dateedit.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\datetimeedit.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\dial.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\dialogbuttonbox.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\dockwidget.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\doublespinbox.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\fontcombobox.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\form.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\frame.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\graphicsview.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\groupbox.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\groupboxcollapsible.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\hscrollbar.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\hslider.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\hsplit.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\label.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\lcdnumber.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\line.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\lineedit.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\listbox.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\listview.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\mdiarea.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\plaintextedit.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\progress.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\pushbutton.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\radiobutton.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\scrollarea.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\spacer.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\spinbox.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\tabbar.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\table.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\tabwidget.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\textedit.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\timeedit.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\toolbox.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\toolbutton.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\vline.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\vscrollbar.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\vslider.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\vspacer.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\widget.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\widgetstack.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\designer-images\wizard.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_1.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_10.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_11.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_12.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_13.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_14.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_15.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_16.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_2.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_3.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_4.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_5.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_6.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_7.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_8.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_9.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{40285375-D203-4695-8D9A-5AF7D3D699F9}</ProjectGuid>
+    <Keyword>Qt4VSv1.0</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="..\q4_plugin_debug.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="..\q4_plugin_release.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectName)d</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>_KEYPAD_PLUGIN_;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\..\..\..\Src\GUIFramework\QT4Framework\Generated;.\..\..\..\Src\GUIFramework\QT4Framework\Plugins;.\..\..\..\Src\GUIFramework\QT4Framework\CWidgets;.\..\..\..\Src\GUIFramework\QT4Framework\Dialogs;.\..\..\..\Src\GUIFramework\QT4Framework\Keypads;.\..\..\..\Src\include;.\..\..\..\Src\GUIFramework;.\..\..\..\Src\GUIFramework\qt4port;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Disabled</Optimization>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <WarningLevel>Level3</WarningLevel>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>$(TargetPath)</OutputFile>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PostBuildEvent>
+      <Command></Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>_KEYPAD_PLUGIN_;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\..\..\..\Src\GUIFramework\QT4Framework\Generated;.\..\..\..\Src\GUIFramework\QT4Framework\Plugins;.\..\..\..\Src\GUIFramework\QT4Framework\CWidgets;.\..\..\..\Src\GUIFramework\QT4Framework\Dialogs;.\..\..\..\Src\GUIFramework\QT4Framework\Keypads;.\..\..\..\Src\include;.\..\..\..\Src\GUIFramework;.\..\..\..\Src\GUIFramework\qt4port;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <WarningLevel>Level3</WarningLevel>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>$(TargetPath)</OutputFile>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy $(TargetPath) $(QTDIR)\plugins\designer</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties UicDir=".\..\..\..\Src\GUIFramework\Qt4Framework\Generated" MocDir=".\..\..\..\Src\GUIFramework\Qt4Framework\Generated" MocOptions="" RccDir=".\..\..\..\Src\GUIFramework\Qt4Framework\Generated" lupdateOnBuild="0" lupdateOptions="" lreleaseOptions="" QtVersion_x0020_Win32="4.8.7" IsDesignerPlugin="True" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

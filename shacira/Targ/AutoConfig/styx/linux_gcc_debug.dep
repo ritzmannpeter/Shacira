@@ -1,0 +1,950 @@
+
+linux_gcc_debug/binimg.o: \
+	../../../Extern/STYX/src/libbase/binimg.c \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/glo_tab.h \
+	../../../Extern/STYX/src/inc/hmap.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/inc/otab.h \
+	../../../Extern/STYX/src/inc/pathes.h \
+	../../../Extern/STYX/src/inc/prim.h \
+	../../../Extern/STYX/src/inc/sink.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/symbols.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/binset.o: \
+	../../../Extern/STYX/src/libbase/binset.c \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/ccnv_lim.o: \
+	../../../Extern/STYX/src/gen/ccnv_lim.c \
+	../../../Extern/STYX/src/inc/binimg.h \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/libbase/scn_imp.h \
+	../../../Extern/STYX/src/inc/scn_io.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/symbols.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/cfg_abs.o: \
+	../../../Extern/STYX/src/libbase/cfg_abs.c \
+	../../../Extern/STYX/src/inc/binimg.h \
+	../../../Extern/STYX/src/inc/binset.h \
+	../../../Extern/STYX/src/inc/cfg_dfn.h \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/hset.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/inc/otab.h \
+	../../../Extern/STYX/src/inc/prim.h \
+	../../../Extern/STYX/src/inc/prs.h \
+	../../../Extern/STYX/src/libbase/prs_dfn.h \
+	../../../Extern/STYX/src/inc/prs_io.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/symbols.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/cfg_dfn.o: \
+	../../../Extern/STYX/src/libbase/cfg_dfn.c \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/charlib.o: \
+	../../../Extern/STYX/src/libutil/charlib.c \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/cmd_int.o: \
+	../../../Extern/STYX/src/gen/cmd_int.c \
+	../../../Extern/STYX/src/inc/binimg.h \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/gls.h \
+	../../../Extern/STYX/src/inc/list.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/inc/otab.h \
+	../../../Extern/STYX/src/inc/prim.h \
+	../../../Extern/STYX/src/inc/ptm.h \
+	../../../Extern/STYX/src/inc/sink.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/symbols.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/cmd_lim.o: \
+	../../../Extern/STYX/src/gen/cmd_lim.c \
+	../../../Extern/STYX/src/inc/binimg.h \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/libbase/scn_imp.h \
+	../../../Extern/STYX/src/inc/scn_io.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/symbols.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/cmd_pim.o: \
+	../../../Extern/STYX/src/gen/cmd_pim.c \
+	../../../Extern/STYX/src/inc/binimg.h \
+	../../../Extern/STYX/src/inc/cfg_dfn.h \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/inc/otab.h \
+	../../../Extern/STYX/src/inc/prim.h \
+	../../../Extern/STYX/src/inc/prs.h \
+	../../../Extern/STYX/src/libbase/prs_dfn.h \
+	../../../Extern/STYX/src/libbase/prs_imp.h \
+	../../../Extern/STYX/src/inc/prs_io.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/symbols.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/com_get.o: \
+	../../../Extern/STYX/src/libutil/com_get.c \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/ctoh_cim.o: \
+	../../../Extern/STYX/src/gen/ctoh_cim.c \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/ctx.h \
+	../../../Extern/STYX/src/inc/ctx_app.h \
+	../../../Extern/STYX/src/libbase/ctx_dfn.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/ctx.o: \
+	../../../Extern/STYX/src/libutil/ctx.c \
+	../../../Extern/STYX/src/inc/binimg.h \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/ctx_app.h \
+	../../../Extern/STYX/src/libbase/ctx_dfn.h \
+	../../../Extern/STYX/src/libbase/ctx_imp.h \
+	../../../Extern/STYX/src/inc/literal.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/inc/pathes.h \
+	../../../Extern/STYX/src/inc/sink.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/symbols.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/ctx_app.o: \
+	../../../Extern/STYX/src/libbase/ctx_app.c \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/libbase/ctx_dfn.h \
+	../../../Extern/STYX/src/libbase/ctx_imp.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/dict.o: \
+	../../../Extern/STYX/src/libutil/dict.c \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/inc/pathes.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/dicts.o: \
+	../../../Extern/STYX/src/libutil/dicts.c \
+	../../../Extern/STYX/src/inc/charlib.h \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/dict.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/inc/otab.h \
+	../../../Extern/STYX/src/inc/prim.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/glo_tab.o: \
+	../../../Extern/STYX/src/libbase/glo_tab.c \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/hmap.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/inc/prim.h \
+	../../../Extern/STYX/src/inc/sink.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/symbols.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/gls.o: \
+	../../../Extern/STYX/src/modstd/gls.c \
+	../../../Extern/STYX/src/inc/binimg.h \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/list.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/inc/otab.h \
+	../../../Extern/STYX/src/inc/prim.h \
+	../../../Extern/STYX/src/inc/ptm.h \
+	../../../Extern/STYX/src/inc/sink.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/symbols.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/gstream.o: \
+	../../../Extern/STYX/src/libbase/gstream.c \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/hmap.o: \
+	../../../Extern/STYX/src/libbase/hmap.c \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/inc/prim.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/hpat.o: \
+	../../../Extern/STYX/src/libutil/hpat.c \
+	../../../Extern/STYX/src/inc/binimg.h \
+	../../../Extern/STYX/src/inc/cfg_dfn.h \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/gls.h \
+	../../../Extern/STYX/src/inc/hmap.h \
+	../../../Extern/STYX/src/inc/hpat_int.h \
+	../../../Extern/STYX/src/inc/hpat_lim.h \
+	../../../Extern/STYX/src/inc/hpat_pim.h \
+	../../../Extern/STYX/src/inc/hset.h \
+	../../../Extern/STYX/src/inc/line_scn.h \
+	../../../Extern/STYX/src/inc/list.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/inc/otab.h \
+	../../../Extern/STYX/src/inc/pathes.h \
+	../../../Extern/STYX/src/inc/prim.h \
+	../../../Extern/STYX/src/inc/prs.h \
+	../../../Extern/STYX/src/inc/prs_abs.h \
+	../../../Extern/STYX/src/libbase/prs_dfn.h \
+	../../../Extern/STYX/src/inc/prs_io.h \
+	../../../Extern/STYX/src/inc/ptm.h \
+	../../../Extern/STYX/src/inc/ptm_gen.h \
+	../../../Extern/STYX/src/inc/scn_abs.h \
+	../../../Extern/STYX/src/inc/scn_base.h \
+	../../../Extern/STYX/src/inc/scn_io.h \
+	../../../Extern/STYX/src/inc/sink.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/symbols.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/hpat_int.o: \
+	../../../Extern/STYX/src/gen/hpat_int.c \
+	../../../Extern/STYX/src/inc/binimg.h \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/gls.h \
+	../../../Extern/STYX/src/inc/list.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/inc/otab.h \
+	../../../Extern/STYX/src/inc/prim.h \
+	../../../Extern/STYX/src/inc/ptm.h \
+	../../../Extern/STYX/src/inc/sink.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/symbols.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/hpat_lim.o: \
+	../../../Extern/STYX/src/gen/hpat_lim.c \
+	../../../Extern/STYX/src/inc/binimg.h \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/libbase/scn_imp.h \
+	../../../Extern/STYX/src/inc/scn_io.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/symbols.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/hpat_pim.o: \
+	../../../Extern/STYX/src/gen/hpat_pim.c \
+	../../../Extern/STYX/src/inc/binimg.h \
+	../../../Extern/STYX/src/inc/cfg_dfn.h \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/inc/otab.h \
+	../../../Extern/STYX/src/inc/prim.h \
+	../../../Extern/STYX/src/inc/prs.h \
+	../../../Extern/STYX/src/libbase/prs_dfn.h \
+	../../../Extern/STYX/src/libbase/prs_imp.h \
+	../../../Extern/STYX/src/inc/prs_io.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/symbols.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/hset.o: \
+	../../../Extern/STYX/src/libbase/hset.c \
+	../../../Extern/STYX/src/inc/binset.h \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/hmap.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/inc/otab.h \
+	../../../Extern/STYX/src/inc/prim.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/lim__cim.o: \
+	../../../Extern/STYX/src/gen/lim__cim.c \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/ctx.h \
+	../../../Extern/STYX/src/inc/ctx_app.h \
+	../../../Extern/STYX/src/libbase/ctx_dfn.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/line_scn.o: \
+	../../../Extern/STYX/src/libbase/line_scn.c \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/hmap.h \
+	../../../Extern/STYX/src/inc/literal.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/inc/otab.h \
+	../../../Extern/STYX/src/inc/pathes.h \
+	../../../Extern/STYX/src/inc/prim.h \
+	../../../Extern/STYX/src/inc/sink.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/symbols.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/list.o: \
+	../../../Extern/STYX/src/libbase/list.c \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/literal.o: \
+	../../../Extern/STYX/src/libbase/literal.c \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/inc/sink.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/memosx.o: \
+	../../../Extern/STYX/src/modstd/memosx.c \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/olist.o: \
+	../../../Extern/STYX/src/libutil/olist.c \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/inc/prim.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/otab.o: \
+	../../../Extern/STYX/src/libbase/otab.c \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/inc/prim.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/pathes.o: \
+	../../../Extern/STYX/src/libbase/pathes.c \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/ctx_app.h \
+	../../../Extern/STYX/src/libbase/ctx_dfn.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/inc/sink.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/pgm_base.o: \
+	../../../Extern/STYX/src/libutil/pgm_base.c \
+	../../../Extern/STYX/src/inc/binimg.h \
+	../../../Extern/STYX/src/inc/cfg_dfn.h \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/ctx.h \
+	../../../Extern/STYX/src/inc/ctx_app.h \
+	../../../Extern/STYX/src/libbase/ctx_dfn.h \
+	../../../Extern/STYX/src/inc/glo_tab.h \
+	../../../Extern/STYX/src/inc/gstream.h \
+	../../../Extern/STYX/src/inc/hmap.h \
+	../../../Extern/STYX/src/inc/list.h \
+	../../../Extern/STYX/src/inc/literal.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/inc/otab.h \
+	../../../Extern/STYX/src/inc/pathes.h \
+	../../../Extern/STYX/src/inc/prim.h \
+	../../../Extern/STYX/src/inc/prs.h \
+	../../../Extern/STYX/src/inc/prs_abs.h \
+	../../../Extern/STYX/src/libbase/prs_dfn.h \
+	../../../Extern/STYX/src/inc/prs_io.h \
+	../../../Extern/STYX/src/inc/ptm.h \
+	../../../Extern/STYX/src/inc/ptm_gen.h \
+	../../../Extern/STYX/src/inc/scn_abs.h \
+	../../../Extern/STYX/src/inc/scn_base.h \
+	../../../Extern/STYX/src/inc/scn_io.h \
+	../../../Extern/STYX/src/inc/scn_pre.h \
+	../../../Extern/STYX/src/inc/sink.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/symbols.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/pim__cim.o: \
+	../../../Extern/STYX/src/gen/pim__cim.c \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/ctx.h \
+	../../../Extern/STYX/src/inc/ctx_app.h \
+	../../../Extern/STYX/src/libbase/ctx_dfn.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/prim.o: \
+	../../../Extern/STYX/src/libbase/prim.c \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/prs.o: \
+	../../../Extern/STYX/src/libbase/prs.c \
+	../../../Extern/STYX/src/inc/binimg.h \
+	../../../Extern/STYX/src/inc/cfg_dfn.h \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/inc/otab.h \
+	../../../Extern/STYX/src/inc/prim.h \
+	../../../Extern/STYX/src/libbase/prs_dfn.h \
+	../../../Extern/STYX/src/libbase/prs_imp.h \
+	../../../Extern/STYX/src/inc/prs_io.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/symbols.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/prs_abs.o: \
+	../../../Extern/STYX/src/libbase/prs_abs.c \
+	../../../Extern/STYX/src/inc/cfg_dfn.h \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/libbase/prs_dfn.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/prs_gen.o: \
+	../../../Extern/STYX/src/libstyx/prs_gen.c \
+	../../../Extern/STYX/src/inc/binset.h \
+	../../../Extern/STYX/src/inc/cfg_dfn.h \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/inc/olist.h \
+	../../../Extern/STYX/src/inc/otab.h \
+	../../../Extern/STYX/src/inc/prim.h \
+	../../../Extern/STYX/src/libbase/prs_dfn.h \
+	../../../Extern/STYX/src/libbase/prs_imp.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/prs_io.o: \
+	../../../Extern/STYX/src/libbase/prs_io.c \
+	../../../Extern/STYX/src/inc/binimg.h \
+	../../../Extern/STYX/src/inc/cfg_dfn.h \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/literal.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/inc/pathes.h \
+	../../../Extern/STYX/src/libbase/prs_dfn.h \
+	../../../Extern/STYX/src/libbase/prs_imp.h \
+	../../../Extern/STYX/src/inc/sink.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/symbols.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/ptm.o: \
+	../../../Extern/STYX/src/libbase/ptm.c \
+	../../../Extern/STYX/src/inc/binimg.h \
+	../../../Extern/STYX/src/inc/cfg_dfn.h \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/gstream.h \
+	../../../Extern/STYX/src/inc/hmap.h \
+	../../../Extern/STYX/src/inc/list.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/inc/otab.h \
+	../../../Extern/STYX/src/inc/prim.h \
+	../../../Extern/STYX/src/inc/sink.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/symbols.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/ptm__cim.o: \
+	../../../Extern/STYX/src/gen/ptm__cim.c \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/ctx.h \
+	../../../Extern/STYX/src/inc/ctx_app.h \
+	../../../Extern/STYX/src/libbase/ctx_dfn.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/ptm_gen.o: \
+	../../../Extern/STYX/src/libbase/ptm_gen.c \
+	../../../Extern/STYX/src/inc/binimg.h \
+	../../../Extern/STYX/src/inc/cfg_dfn.h \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/gstream.h \
+	../../../Extern/STYX/src/inc/list.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/inc/otab.h \
+	../../../Extern/STYX/src/inc/prim.h \
+	../../../Extern/STYX/src/inc/prs.h \
+	../../../Extern/STYX/src/inc/prs_abs.h \
+	../../../Extern/STYX/src/libbase/prs_dfn.h \
+	../../../Extern/STYX/src/inc/prs_io.h \
+	../../../Extern/STYX/src/inc/ptm.h \
+	../../../Extern/STYX/src/inc/scn_abs.h \
+	../../../Extern/STYX/src/inc/scn_base.h \
+	../../../Extern/STYX/src/inc/scn_io.h \
+	../../../Extern/STYX/src/inc/sink.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/symbols.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/ptm_pp.o: \
+	../../../Extern/STYX/src/libbase/ptm_pp.c \
+	../../../Extern/STYX/src/inc/binimg.h \
+	../../../Extern/STYX/src/inc/cfg_dfn.h \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/gstream.h \
+	../../../Extern/STYX/src/inc/hmap.h \
+	../../../Extern/STYX/src/inc/hset.h \
+	../../../Extern/STYX/src/inc/list.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/inc/otab.h \
+	../../../Extern/STYX/src/inc/pathes.h \
+	../../../Extern/STYX/src/inc/prim.h \
+	../../../Extern/STYX/src/inc/prs.h \
+	../../../Extern/STYX/src/libbase/prs_dfn.h \
+	../../../Extern/STYX/src/inc/prs_io.h \
+	../../../Extern/STYX/src/inc/ptm.h \
+	../../../Extern/STYX/src/inc/sink.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/symbols.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/reg_exp.o: \
+	../../../Extern/STYX/src/libstyx/reg_exp.c \
+	../../../Extern/STYX/src/inc/binimg.h \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/gstream.h \
+	../../../Extern/STYX/src/inc/hmap.h \
+	../../../Extern/STYX/src/inc/hset.h \
+	../../../Extern/STYX/src/inc/literal.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/inc/otab.h \
+	../../../Extern/STYX/src/inc/prim.h \
+	../../../Extern/STYX/src/inc/rexp_lim.h \
+	../../../Extern/STYX/src/inc/scn_base.h \
+	../../../Extern/STYX/src/inc/scn_gen.h \
+	../../../Extern/STYX/src/libbase/scn_imp.h \
+	../../../Extern/STYX/src/inc/scn_io.h \
+	../../../Extern/STYX/src/inc/sink.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/symbols.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/rexp_lim.o: \
+	../../../Extern/STYX/src/gen/rexp_lim.c \
+	../../../Extern/STYX/src/inc/binimg.h \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/libbase/scn_imp.h \
+	../../../Extern/STYX/src/inc/scn_io.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/symbols.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/scn_abs.o: \
+	../../../Extern/STYX/src/libbase/scn_abs.c \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/symbols.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/scn_base.o: \
+	../../../Extern/STYX/src/libbase/scn_base.c \
+	../../../Extern/STYX/src/inc/binimg.h \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/gstream.h \
+	../../../Extern/STYX/src/inc/hmap.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/inc/otab.h \
+	../../../Extern/STYX/src/inc/pathes.h \
+	../../../Extern/STYX/src/inc/prim.h \
+	../../../Extern/STYX/src/libbase/scn_imp.h \
+	../../../Extern/STYX/src/inc/scn_io.h \
+	../../../Extern/STYX/src/inc/sink.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/symbols.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/scn_gen.o: \
+	../../../Extern/STYX/src/libstyx/scn_gen.c \
+	../../../Extern/STYX/src/inc/binimg.h \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/ctx_app.h \
+	../../../Extern/STYX/src/libbase/ctx_dfn.h \
+	../../../Extern/STYX/src/inc/list.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/libbase/scn_imp.h \
+	../../../Extern/STYX/src/inc/scn_io.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/symbols.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/scn_io.o: \
+	../../../Extern/STYX/src/libbase/scn_io.c \
+	../../../Extern/STYX/src/inc/binimg.h \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/inc/pathes.h \
+	../../../Extern/STYX/src/libbase/scn_imp.h \
+	../../../Extern/STYX/src/inc/sink.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/symbols.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/scn_pre.o: \
+	../../../Extern/STYX/src/libbase/scn_pre.c \
+	../../../Extern/STYX/src/inc/binimg.h \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/gstream.h \
+	../../../Extern/STYX/src/inc/hmap.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/inc/otab.h \
+	../../../Extern/STYX/src/inc/pathes.h \
+	../../../Extern/STYX/src/inc/prim.h \
+	../../../Extern/STYX/src/inc/scn_base.h \
+	../../../Extern/STYX/src/inc/scn_io.h \
+	../../../Extern/STYX/src/inc/sink.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/symbols.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/sink.o: \
+	../../../Extern/STYX/src/libbase/sink.c \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/inc/otab.h \
+	../../../Extern/STYX/src/inc/prim.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/styd_cim.o: \
+	../../../Extern/STYX/src/gen/styd_cim.c \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/ctx.h \
+	../../../Extern/STYX/src/inc/ctx_app.h \
+	../../../Extern/STYX/src/libbase/ctx_dfn.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/styp_cim.o: \
+	../../../Extern/STYX/src/gen/styp_cim.c \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/ctx.h \
+	../../../Extern/STYX/src/inc/ctx_app.h \
+	../../../Extern/STYX/src/libbase/ctx_dfn.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/styx_cim.o: \
+	../../../Extern/STYX/src/gen/styx_cim.c \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/ctx.h \
+	../../../Extern/STYX/src/inc/ctx_app.h \
+	../../../Extern/STYX/src/libbase/ctx_dfn.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/styx_gen.o: \
+	../../../Extern/STYX/src/libstyx/styx_gen.c \
+	../../../Extern/STYX/src/inc/binimg.h \
+	../../../Extern/STYX/src/inc/cfg_abs.h \
+	../../../Extern/STYX/src/inc/cfg_dfn.h \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/gls.h \
+	../../../Extern/STYX/src/inc/gstream.h \
+	../../../Extern/STYX/src/inc/hmap.h \
+	../../../Extern/STYX/src/inc/hset.h \
+	../../../Extern/STYX/src/inc/list.h \
+	../../../Extern/STYX/src/inc/literal.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/inc/otab.h \
+	../../../Extern/STYX/src/inc/pathes.h \
+	../../../Extern/STYX/src/inc/prim.h \
+	../../../Extern/STYX/src/inc/prs.h \
+	../../../Extern/STYX/src/inc/prs_abs.h \
+	../../../Extern/STYX/src/libbase/prs_dfn.h \
+	../../../Extern/STYX/src/inc/prs_gen.h \
+	../../../Extern/STYX/src/inc/prs_io.h \
+	../../../Extern/STYX/src/inc/ptm.h \
+	../../../Extern/STYX/src/inc/ptm_gen.h \
+	../../../Extern/STYX/src/inc/scn_abs.h \
+	../../../Extern/STYX/src/inc/scn_base.h \
+	../../../Extern/STYX/src/inc/scn_gen.h \
+	../../../Extern/STYX/src/inc/scn_io.h \
+	../../../Extern/STYX/src/inc/scn_pre.h \
+	../../../Extern/STYX/src/inc/sink.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/styx_int.h \
+	../../../Extern/STYX/src/inc/styx_lim.h \
+	../../../Extern/STYX/src/inc/styx_pim.h \
+	../../../Extern/STYX/src/inc/symbols.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/styx_int.o: \
+	../../../Extern/STYX/src/gen/styx_int.c \
+	../../../Extern/STYX/src/inc/binimg.h \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/gls.h \
+	../../../Extern/STYX/src/inc/list.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/inc/otab.h \
+	../../../Extern/STYX/src/inc/prim.h \
+	../../../Extern/STYX/src/inc/ptm.h \
+	../../../Extern/STYX/src/inc/sink.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/symbols.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/styx_lim.o: \
+	../../../Extern/STYX/src/gen/styx_lim.c \
+	../../../Extern/STYX/src/inc/binimg.h \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/libbase/scn_imp.h \
+	../../../Extern/STYX/src/inc/scn_io.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/symbols.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/styx_pim.o: \
+	../../../Extern/STYX/src/gen/styx_pim.c \
+	../../../Extern/STYX/src/inc/binimg.h \
+	../../../Extern/STYX/src/inc/cfg_dfn.h \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/inc/otab.h \
+	../../../Extern/STYX/src/inc/prim.h \
+	../../../Extern/STYX/src/inc/prs.h \
+	../../../Extern/STYX/src/libbase/prs_dfn.h \
+	../../../Extern/STYX/src/libbase/prs_imp.h \
+	../../../Extern/STYX/src/inc/prs_io.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/symbols.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/symbols.o: \
+	../../../Extern/STYX/src/libbase/symbols.c \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/hmap.h \
+	../../../Extern/STYX/src/inc/literal.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/inc/prim.h \
+	../../../Extern/STYX/src/libbase/standard.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/inc/sysbase1.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/sysbase0.o: \
+	../../../Extern/STYX/src/libbase/sysbase0.c \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+
+linux_gcc_debug/sysbase1.o: \
+	../../../Extern/STYX/src/libbase/sysbase1.c \
+	../../../Extern/STYX/src/config.h \
+	../../../Extern/STYX/src/inc/mem_base.h \
+	../../../Extern/STYX/src/libbase/styconf0.h \
+	../../../Extern/STYX/src/inc/sysbase0.h \
+	../../../Extern/STYX/src/libbase/syscbhdl.h
+

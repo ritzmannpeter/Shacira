@@ -1,0 +1,279 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="LinuxDoc-Tools 0.9.65">
+ <TITLE>The Styx Handbook: Mapping Trees to Terms</TITLE>
+ <LINK HREF="styx-6.html" REL=next>
+ <LINK HREF="styx-4.html" REL=previous>
+ <LINK HREF="styx.html#toc5" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="styx-6.html">Next</A>
+<A HREF="styx-4.html">Previous</A>
+<A HREF="styx.html#toc5">Contents</A>
+<HR>
+<H2><A NAME="s5">5.</A> <A HREF="styx.html#toc5">Mapping Trees to Terms</A></H2>
+
+<P>As outlined in the introduction, it is not only an advantage for a proper interface on a derivation tree 
+to use an (abstract) depth grammar, but also to switch from grammatical to algebraic notions. Basically 
+by this, non-terminals are mapped onto (abstract data-)<EM>types</EM> and productions are mapped onto 
+<EM>functions</EM>. Words in the domain of languages became <EM>terms</EM>. Grammars are treated as 
+<EM>signatures</EM> (loosely speaking "header files") of term algebras, then. This is far more than an 
+overall renaming, but a transition to a different more appropriate concept with different tools and 
+properties.</P>
+<P>Within Styx, the transition from the concrete (surface) grammar to the corresponding term algebra is done 
+in one step, and one final outcome is the C interface of a concrete language. The abstract grammar is 
+somewhat bypassed, see the notes at the end of the section.</P>
+<P>This section mainly defines how we derive the term algebra from the concrete grammar. Having this, the 
+C interface can be explained in more detail.</P>
+
+<H2><A NAME="ss5.1">5.1</A> <A HREF="styx.html#toc5.1">Well-formed productions</A>
+</H2>
+
+<P>Before we can do our transformation, we have to place some requirements onto the concrete grammar first. 
+These conditions are tested by the Styx system and non-well-formed productions are diagnosed.</P>
+<P>Within this and the following subsections, we ignore any keyword members in the productions bodies. This 
+may or may not be indicated. Further, we treat the individual production rules (with keywords ignored)
+as predicates.</P>
+<P>A production is well-formed if it belongs to one of the following groups:</P>
+<P>
+<UL>
+<LI><CODE>let X :nil  :</CODE> where the production contains no (identifier)
+members.</LI>
+<LI><CODE>let X :cons : Y Z</CODE> and contains exactly two (identifier) members.</LI>
+<LI><CODE>let X :ign# : Y</CODE> where the production name starts with "ign" and
+continues with a natural number (that's what the
+"#" indicates) and the production contains exactly
+one (identifier) members.</LI>
+<LI><CODE>let X :name : X1 .. Xn</CODE> where "name" is not "nil", "cons" or
+starts with "ign". No restriction apply
+to the production members.</LI>
+</UL>
+</P>
+<P>This grouping serves two purposes. The first two groups will be used to derive list-like productions, 
+while the "ign" production are used to define identity productions. The later typically occur with 
+expressions that have different levels binding strength or when likely classes of productions are excluded 
+or included into certain contexts. When producing the abstract grammar, we consider these non-terminal to 
+be equivalent. As examples, see the definitions of Exp, Exp1-2 in the introduction and Exp, Exp1-4 in the 
+lexical Styx grammar itself. For lists, the context free grammar of Styx (Dfns, Prds, Mbrs) are proper 
+examples.</P>
+
+<H2><A NAME="ss5.2">5.2</A> <A HREF="styx.html#toc5.2">An induced congruence relation</A>
+</H2>
+
+<P>We get rid of the superficial distinction between the different non-terminals by means of a congruence 
+relation over the non-terminal names induced by the special production names "cons","nil" and "ign".</P>
+<P>The congruence relation is defined as follows:
+<UL>
+<LI>X &lt;=> X</LI>
+<LI>X &lt;=> Y --> Y &lt;=> X</LI>
+<LI>X &lt;=> Y &amp;&amp; Y &lt;=> Z --> X &lt;=> Z</LI>
+<LI>let X :ign*: Y   --> X &lt;=> Y</LI>
+<LI>let X :cons: Y Z --> X &lt;=> Z  </LI>
+<LI>X &lt;=> Y &amp;&amp; let X :id: X1 .. Xn &amp;&amp; let Y :id: Y1 .. Yn &amp;&amp; 1 &lt;= i &lt;= n --> Xi &lt;=> Yi</LI>
+</UL>
+</P>
+<P>While the first three formulas define an equality by stating the properties of the relation 
+(reflexive,symmetric,transitive), the next two specify the equations induced by the concrete grammar. 
+By this, two non-terminals are treated as equivalent when they appear both on the left and right side 
+of an "ign" production or on the left side and on the end of a "cons" production (in which case they 
+both mean lists of the same type later).</P>
+<P>The final rule makes a congruence from this equality. It states, that if we have two equivalent 
+non-terminals, that both contain productions with the same name, then the equality is extended over 
+the bodies of that productions by pairing each identifier successively and concluding the equality of 
+the so-yielded pairs (ignoring keyword members).</P>
+
+<H2><A NAME="ss5.3">5.3</A> <A HREF="styx.html#toc5.3">Classes and Representatives</A>
+</H2>
+
+<P>What we have gained so far is that we have evtl. grouped different (terminal and non-terminal) identifiers 
+into the classes introduced by the above congruence relation. Using this relation each identifier corresponds
+to a set of its equivalents. 
+As an example, "Exp2" in the introduction example expands to the set [Exp2] = {Exp,Exp1,Exp2}. 
+These classes will later be mapped to the abstract types of the term algebra to be produces.</P>
+<P>[X] = { Y | Y &lt;=> X }</P>
+<P>We assign to each of these classes a unique name by picking the lexically smallest identifier as the 
+representative of the class. In our example, this is "Exp". We denote the so chosen representative 
+of [X] by X^.</P>
+
+<H2><A NAME="ss5.4">5.4</A> <A HREF="styx.html#toc5.4">Compatibility Conditions</A>
+</H2>
+
+<P>Having set up equivalent identifiers, we now come to the productions. Basically, all we have to do is to 
+merge the productions of the different equivalent non-terminals and to drop the "ign" productions. But this 
+is only possible under additional conditions. Basically, what can go wrong is, that by the congruence 
+terminal and non-terminals have been concluded to be equivalent, that we cannot merge productions with same 
+names and different numbers of (identifier) members, and that lists would contain additional non-list 
+productions.</P>
+<P>This leads to the following conditions:
+<UL>
+<LI>X &lt;=> Y --> Type(X) = Type(Y), where Type(Z) = { terminal, nonterminal }</LI>
+<LI>let X :id: X1 .. Xm &amp;&amp; let Y :id: Y1 .. Yn &amp;&amp; X &lt;=> Y --> m = n</LI>
+<LI>(let X :nil: || let X :cons: A B) --> 
+not exists P,prod: P &lt;=> X &amp;&amp; let P :prod: c &amp;&amp; prod not in { ign, nil, cons }</LI>
+</UL>
+</P>
+<P>While generating the abstract grammar, Styx will validate these compatibility conditions.</P>
+
+<H2><A NAME="ss5.5">5.5</A> <A HREF="styx.html#toc5.5">Conversion to term algebras</A>
+</H2>
+
+<P>After all this preparation and conditions, we can finally convert the concrete grammar to a signature.</P>
+<P>To do this, we map all non-terminals NT which does not have list-productions (those named "cons" or "nil") 
+to their representative names NT^. Likely, all terminal names T are mapped to their representatives T^. 
+Collectively, these form the types of the algebra.</P>
+<P>Every non-list production (ignoring keywords) of the form "let X :prod: X1 .. Xn" is mapped to a function 
+"prod : |X1| .. |Xn| -> X^". "|Xi|" denotes here the right hand side translation of the (non-)terminal 
+names to types. The difference is, that we have to cope with list-production, which have been omitted earlier.
+|X| is X^ if we have a non-list non-terminal or a terminal X. If X is a non-terminal with a production 
+"let A :cons: B C" and X &lt;=> A, |X| is List(|B|). (If only have nil-productions, the translation is
+List(void)).</P>
+<P>The set of the so-yielded functions forms the signature of the derived term algebra and what we finally get 
+as a data model for the (abstract) derivation tree is the initial term algebra that corresponds to this 
+signature.</P>
+<P>To give another example for this derivation, here is the abstract of the Styx grammar itself:</P>
+<P>
+<PRE>
+/* ------------------------------------------------------------------------ */
+/*                                                                          */
+/* [styx.abs]                  Abstract Grammar                             */
+/*                                                                          */
+/* ------------------------------------------------------------------------ */
+
+LANGUAGE styx
+
+TOKENS
+
+  Ide, Nat, Set, Seq
+
+TYPES
+
+  styx        = Start_Source(Source)
+
+  Source      = root(Ide, QlxDfn*, OptCfg)
+
+  OptCfg      = non;
+                cfg(Dfn*)
+
+  QlxDfn      = igrp(Ide);
+                defn(QlxCat, QlxOpt, QlxGrp, Ide, QlxGrp, Exp);
+                mgrp(Ide, Ide*);
+                xgrp(Ide)
+
+  QlxCat      = tokC;
+                indC;
+                ignC;
+                comC;
+                lanC;
+                letC
+
+  QlxGrp      = pgrp(Ide);
+                non;
+                pigrp;
+                grp(Ide);
+                igrp;
+                pop
+
+  QlxOpt      = ignca;
+                non
+
+  Exp         = opt(Exp);
+                plusn(Exp, Limit);
+                plus0(Exp);
+                star(Exp);
+                quot(Exp, Exp);
+                plus(Exp);
+                epat(Exp, Ide, Exp);
+                union(Exp, Exp);
+                sequ(Seq);
+                dyck(Exp, Exp, Exp);
+                non;
+                range(Exp, Exp);
+                ident(Ide);
+                diff(Exp, Exp);
+                set(Set);
+                spat(Exp, Set, Exp);
+                conc(Exp, Exp)
+
+  OptNat      = non;
+                nat(Nat)
+
+  Limit       = ntime(Nat);
+                range(Nat, OptNat)
+
+  Dfn         = defn(Cat, DfnOpt, Ide, Prd*)
+
+  Cat         = letC;
+                bgnC
+
+  DfnOpt      = errnt;
+                non
+
+  Lay         = dft;
+                rec;
+                grp
+
+  Prd         = prod(Lay, Ide, Mbr*)
+
+  Mbr         = else;
+                tkm(Seq);
+                ntm(Ide)
+</PRE>
+</P>
+<P>Two notes on notation: The form List(X) is denoted as X*. The functions are abbreviated for convenience 
+extracting the result type, so Exp = ... star(Exp) denotes the function star: Exp -> Exp. For constants, 
+i.e. functions with no parameters, the argument parenthesis are omitted, so "QlxOpt = non; ignca"
+spells the two functions non: -> QlxOpt and ignca: -> QlxOpt.</P>
+<P>There's an extra rule for the start production(s) one may deduce from the examples.</P>
+
+<H2><A NAME="ss5.6">5.6</A> <A HREF="styx.html#toc5.6">A note on the implementation</A>
+</H2>
+
+<P>After all these definitions, we only have the mapping from a grammar to a signature. The mapping from the 
+concrete derivation tree onto corresponding terms is straight forward and will be informally be explained 
+by having a look on the implementation.</P>
+<P>One might expect that the derivation tree is copied to yield a term. But this is not the case. Instead, the 
+above introduced mapping has been carefully chosen to be done on the fly. So, what the Styx parser produces,
+is the concrete derivation tree as shown in the introducing example. With delivering it, it's job is done. 
+The conventions defined in these section are implemented only within the C interface, which permits an
+abstract access to the concrete derivation tree.</P>
+<P>All the necessary normalization is done within the access functions, the "term destructors" of the 
+C interface. Looking closer at the structure of the derivation tree, one can already imagine what these 
+functions have to do.
+Provided with a reference to the tree, they decent into it skipping every "ign" production they pass. 
+After this, they end at a normal production and have to check for the production identifier. If this is OK, 
+they start decomposing the children of the node into the result slot, thereby skipping all keywords and 
+comments they meet. That's all.</P>
+<P>The advantage of doing so is, that while having a rather compact view on the derivation tree, complete source
+information is still preserved and can be accessed from this abstract view whenever needed.</P>
+<P>In practice, this interface have both been proven to be efficient as well during language design and 
+application. Often the design starts out with the abstract grammar finding an appropriate surface grammar, 
+or having the surface grammar already given, concentrates on extracting a proper abstract grammar, which can 
+be easily done just by assigning proper production names.</P>
+
+<H2><A NAME="ss5.7">5.7</A> <A HREF="styx.html#toc5.7">Relation between the abstract grammar and the algebra.</A>
+</H2>
+
+<P>Only to prevent confusion between terms and words in abstract grammar which are sometimes loosely treated as 
+synonyms in the text, a few additional notes apply here.</P>
+<P>When talking about terms, we're talking about values having specific types. These values are abstract in that
+we do not offer details of their implementation through their interface. In fact, Styx can produce different
+implementation of terms with an identical interface. Abstract data types are abstract with respect to their 
+implementation.</P>
+<P>In contrary, abstract grammars are abstractions of the surface details of the concrete grammar. An abstract 
+grammar preserves the depth structure of the language, but simplifies the derivation tree by dropping 
+unnecessary details as done above, for example. One can easily see that the structure is preserved by 
+recognizing, that the mapping from concrete derivation tree to it's abstract correspondent is a homomorphism.</P>
+<P>The ".abs" file generated by Styx has both possible readings. On can read it as the abstract grammar as well 
+as the signature of the term algebra.</P>
+<P>Referring to the first, we can write down words of the abstract grammar, too. The word "1+2*(3-4)/5" of the 
+introduction example would spell "add(1,div(mul(2,sub(3,4)),5))" in the abstract grammar. Superficially, 
+this looks precisely like a denoted term of the corresponding algebra.</P>
+
+
+<HR>
+<A HREF="styx-6.html">Next</A>
+<A HREF="styx-4.html">Previous</A>
+<A HREF="styx.html#toc5">Contents</A>
+</BODY>
+</HTML>

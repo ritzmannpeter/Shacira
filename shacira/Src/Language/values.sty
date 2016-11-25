@@ -1,0 +1,105 @@
+; [values.sty] Grammar "values"
+
+Language values
+
+Regular Grammar
+
+; Character Set
+
+  let Byte        = '\00' .. '\ff' ; all extended ascii
+  let Control     = '\00' .. '\1f' ; control
+                  |          '\7f' ; DEL
+                  |          '\ff' ; space-like extended ascii
+
+; Basic elements of tokens
+
+  let Printable   = Byte - Control
+  ign Space       = " "            ; ASCII - Space
+  ign Tab         = "\t"           ; Tabulator
+  ign Line        = "\n" | "\r\n"  ; UNIX / CPM / DOS
+  ign Page        = "\p"           ; weak separation convention
+  ign Etx         = "\1a" {Byte}   ; CPM / older DOS Versions
+
+; Definitions and simple tokens
+
+  let Letter      = 'A'..'Z' | 'a'..'z' | '_'
+  let LetterOrDigit = 'A'..'Z' | 'a'..'z' | '_' | '0'..'9' 
+  let HexDigit    = '0'..'9' | 'a'..'f' | 'A' .. 'F'
+  let Digit       = '0'..'9'
+  let Normal      = Letter | Digit | Space
+  let Quote       = '\'\"\`'
+  tok Delimiters  = ',;'           ; delimiters
+  tok Parenthesis = '()[]{}'       ; one character tokens
+  let Special     = Printable - Normal - Parenthesis - Quote
+
+; single byte literals or literals, encoded in us-ascii, ISO 8859-1 Latin-1 or ucs4 hex values
+  let LitChar     = Printable - Quote
+                  | '\\' ( Quote | 'prnt' | 
+                           HexDigit HexDigit |
+                           'xX' HexDigit HexDigit HexDigit HexDigit HexDigit HexDigit HexDigit HexDigit )
+
+; Comments et al
+
+  com Comment     = '//' {Printable}
+
+; Complex tokens
+
+  tok Hex = '0' 'x' HexDigit+       ; Natural in hexadecimal presentation
+  tok Ide = Letter {LetterOrDigit}  ; Identifier
+  tok Real = {'-'} Digit+ ('.') Digit+    ; Real
+  tok Nat = {'-'} Digit+              ; Natural
+  tok Opr = '=<>-+:*&|!'              ; Operators
+  tok Set = '\'' {LitChar} '\''     ; CharacterSet
+  tok Seq = '\"' {LitChar} '\"'     ; CharacterSequence (String)
+  tok Param = '#' Digit+            ; Parameter Name
+  tok HexSeq = '\\' {HexDigit} '\\'   ; BCD character sequence
+
+; Macro token definitions
+
+  let White   = Space | Line | Page
+  let Name    = (Letter | "_") { Letter | Digit | "_" } 
+  let MPar    = ( Printable - ( White | ',' | ')' | '=' ) )
+                { Printable - ( White | ',' | ')' | '=' ) }
+
+  tok MacInc  = "#include" White {White} (Printable-White) {Printable-White} ; Include
+  tok MacDfn  = "#macro" White {White} Name                                  ; Macro definition
+                  {White} [ "(" {White} MPar 
+                  { {White} "," {White} MPar } {White} ")" {White} ]
+                  [ "=" 
+                    ({Byte} - ({Byte} ("#macro"|"#end") {Byte})) 
+                    "#end" ]
+
+  tok MacSep  = '\'' (Byte-'\'') [ '-' ]                                     ; End of parameter
+
+  tok MacCond = ( ( "#ifdef" | "#ifndef" ) White {White} Name )              ; Conditionals
+              | "#else" | "#end"
+
+; End Macro token definitions
+
+Context Free Grammar
+
+start Definitions
+:defs: DefList
+:non: ; empty line
+
+let DefList
+:nil:
+:cons: ConstValue DefList
+
+let ConstValue
+:nat:    Nat
+:hex:    Hex
+:real:   Real
+:str:    Seq
+:ide:    Ide
+:bcd:    Bcd
+:cmpr:   Cmpr
+
+let Bcd
+:bcd:  "bcd" "(" HexSeq ")"
+
+let Cmpr
+:cmpr:   "cmpr" "(" Nat "," Bcd ")"
+
+
+

@@ -1,0 +1,24 @@
+/* ------------------------------------------------------------------------ */
+/*                                                                          */
+/* [tree.abs]                  Abstract Grammar                             */
+/*                                                                          */
+/* ------------------------------------------------------------------------ */
+
+LANGUAGE tree
+
+TOKENS
+
+  Name, String, Link, Number
+
+TYPES
+
+  tree      = Start_plv(Term)
+
+  Term      = str(String);
+              map(Asg*);
+              row(Term*);
+              num(Number);
+              ref(Link)
+
+  Asg       = asg(Name, Term)
+

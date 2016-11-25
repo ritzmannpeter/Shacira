@@ -1,0 +1,58 @@
+1006a1007
+> // > 2i patch
+1008,1009c1009,1010
+<                 || name == QLatin1String("paletteForegroundColor")
+<                 || name == QLatin1String("paletteBackgroundColor")
+---
+> //                || name == QLatin1String("paletteForegroundColor")
+> //                || name == QLatin1String("paletteBackgroundColor")
+1011,1012c1012,1013
+<                 || name == QLatin1String("backgroundOrigin")
+<                 || name == QLatin1String("paletteBackgroundPixmap")
+---
+> //                || name == QLatin1String("backgroundOrigin")
+> //                || name == QLatin1String("paletteBackgroundPixmap")
+1016a1018
+> // < 2i patch
+1131a1134,1136
+> // > 2i patch
+> #define SUPPORT_IT
+> #ifdef SUPPORT_IT
+1135a1141,1142
+> #endif
+> // < 2i patch
+1151a1159,1160
+> // > 2i patch
+> #ifdef SUPPORT_IT
+1158a1168,1169
+> #endif
+> // < 2i patch
+1162a1174
+> // > 2i patch
+1168,1173c1180,1192
+<                 if (!WidgetInfo::isValidProperty(className, name)) {
+<                     errorInvalidProperty(name, objectName, className, n.lineNumber(), n.columnNumber());
+<                     delete prop;
+<                 } else {
+<                     properties->append(prop);
+<                 }
+---
+>                if (!WidgetInfo::isValidProperty(className, name)) {
+>                   if (name == QLatin1String("paletteBackgroundColor") ||
+>                       name == QLatin1String("paletteForegroundColor") ||
+>                      name == QLatin1String("paletteBackgroundPixmap")) {
+>                      properties->append(prop);
+>                   } else {
+>                      properties->append(prop);
+> //                     errorInvalidProperty(name, objectName, className, n.lineNumber(), n.columnNumber());
+> //                     delete prop;
+>                   }
+>                } else {
+>                   properties->append(prop);
+>                }
+1175c1194
+<                 properties->append(prop);
+---
+>                properties->append(prop);
+1176a1196
+> // < 2i patch

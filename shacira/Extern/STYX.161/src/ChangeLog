@@ -1,0 +1,45 @@
+2003-01-03  Siggy Brentrup  <bsb@winnegan.de>
+
+	* libbase/ptm_pp.c (PTP_toksep): Fixed typo :-(
+
+2003-01-02  Siggy Brentrup  <bsb@winnegan.de>
+
+	* Merged changes from the debian branch in preparation of the next
+	  bugfix release (1.5.2). relevant entries from debian/changelog
+	  follow.
+
+
+2002-12-30  Siggy Brentrup  <bsb@winnegan.de>
+
+	* libbase/gstream.c (GS_csconv_string): Changed type of isize,
+	  osize from int to size_t, since otherwise iconv might break on
+	  ia64.
+
+	* libbase/ctx_app.c: Added portable cast to prevent warnings on
+	  64-bit archs.
+
+	* libutil/ctx.c: Added portable cast to prevent warnings on 64-bit
+	  archs.
+
+2002-12-29  Siggy Brentrup  <bsb@winnegan.de>
+
+	* libutil/olist.c: Added portable cast to prevent warnings on 64-bit archs.
+
+	* libbase/hmap.c: Added portable cast to prevent warnings on 64-bit archs.
+
+	* libbase/ptm_pp.c: Added portable cast to prevent warnings on 64-bit archs.
+
+	* libbase/otab.c: Added portable cast to prevent warnings on
+	  64-bit archs.
+
+	* libbase/hset.c: Added portable cast to prevent warnings on
+	  64-bit archs.
+
+	* libbase/cfg_abs.c: Added portable cast to prevent warnings on
+	  64-bit archs.
+
+	* libbase/ctx_app.c: Added portable cast to prevent warning on
+	  64-bit archs; while we are here, translate error message to
+	  english.
+
+	* ChangeLog: started standard changelog.

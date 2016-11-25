@@ -1,0 +1,73 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>cQtKeyboardModalBase</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>cQtKeyboardModalBase</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>636</width>
+            <height>362</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>cQtKeyboardModal (ohne QDialog)</string>
+    </property>
+    <vbox>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QTextEdit">
+            <property name="name">
+                <cstring>_text</cstring>
+            </property>
+        </widget>
+        <widget class="cQtKeyboard">
+            <property name="name">
+                <cstring>_keyboard</cstring>
+            </property>
+            <property name="layout">
+                <enum>layoutGerman</enum>
+            </property>
+        </widget>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>layout1</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>textLabel1</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Status</string>
+                    </property>
+                </widget>
+                <widget class="QLineEdit">
+                    <property name="name">
+                        <cstring>_line</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>false</bool>
+                    </property>
+                    <property name="frameShape">
+                        <enum>LineEditPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                        <enum>Sunken</enum>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+    </vbox>
+</widget>
+<layoutdefaults spacing="6" margin="11"/>
+<includehints>
+    <includehint>keypads/qt_keyboard.h</includehint>
+</includehints>
+</UI>

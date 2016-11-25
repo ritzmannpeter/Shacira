@@ -1,0 +1,160 @@
+; [cmd.sty] Context-free grammar for [.cmd] files
+
+Language cmd ; command line specification
+
+Regular Grammar
+
+; Character Set
+
+  let Byte        = '\00' .. '\ff' ; all extended ascii
+  let Control     = '\00' .. '\1f' ; control
+                  |          '\7f' ; DEL
+                  |          '\ff' ; space-like extended ascii
+
+; Basic elements of tokens
+
+  let Printable   = Byte - Control
+
+  ign Space       = " "            ; ASCII - Space
+  ign Line        = "\n" | "\r\n"  ; UNIX / CPM / DOS
+                  | "\r"           ; Mac
+  ign Page        = "\p"           ; weak separation convention
+
+  ign Etx         = "\1a" {Byte}   ; CPM / older DOS Versions
+
+; Layouting
+
+; spc 1 = Printable
+; spc 2 = Line
+; spc 3 = Page
+
+; Definitions and simple tokens
+
+  let Letter      = 'A'..'Z' | 'a'..'z'
+  let HexDigit    = '0'..'9' | 'a'..'f'
+  let Digit       = '0'..'9'
+  let Normal      = Letter | Digit | Space
+
+  let Quote       = '\'\"\`\\'
+  tok Parenthesis = '()[]{}'       ; one character tokens
+
+  let Special     = Printable - Normal - Parenthesis - Quote
+
+  let LitChar     = Printable - Quote
+                  | '\\' (Quote | 'prnt' | HexDigit HexDigit)
+
+  let Decimal     = (Digit-'0') {Digit}
+  let Exponent    = 'eE' ['+-'] Decimal
+
+; complex tokens
+
+  tok Ide = Letter { '_-' | Letter | Digit }      ; Identifier
+  tok Int = [ "-" ] Digit+                        ; Integer
+  tok Flo = [Decimal] "."   Decimal [Exponent]    ; Float
+          |  Decimal  ("."  [Decimal] [Exponent] | Exponent)
+  tok Opr = Special - '#-'                        ; Operator
+  tok Set = '\'' {LitChar} '\''                   ; CharacterSet
+  tok Seq = '\"' {LitChar} '\"'                   ; CharacterSequence (String)
+
+  tok Pth = ".."                                  ; Relative Parent Path
+
+; document tokens
+
+  tok Doc = "doc" { Line ( Page | [ "  " {Printable} ] ) } Line "cod"
+  tok Dol = "--" {Printable}
+
+#include sty_mac.reg
+
+; Comments et al
+
+  com Comment     = '#' [ (Printable - 'imeu') {Printable} ]
+
+Context Free Grammar
+
+  start [err] Source
+  :root: "Program" Fid1 Dol Doc
+         "Arguments"   
+            Dfns OptDoc
+         "Options"     
+            Dfns OptDoc
+         "Environment" 
+            Dfns OptDoc
+ 
+  let [err] Dfns   ; Definitions
+  :nil  : 
+  :cons : Dfn 
+          Dfns
+
+  let [ err ] Dfn    ; Definition
+  :defn : Ide ":" Typ OptVal Dol
+
+  let [ err] OptVal ; OptionalValueBinding
+  :non  :
+  :val  : "=" Val
+
+  let [ err] OptDoc ; OptionalDocumentation
+  :non  :
+  :doc  : Doc
+
+  let [ err] Val    ; Value
+  :true : "true"
+  :false: "false"
+  :int  : Int
+  :real : Flo
+  :str  : Seq
+  :name : Ide
+  :path : "<" PLst1 ">"
+
+  let PLst1  ; PathList
+  :cons : Path PLst0
+
+  let PLst0  ; PathList
+  :nil  :
+  :cons : ";" Path PLst0
+
+  let Path   ; PathName
+  :ign1 : Root1
+  :ign2 : Root2
+  :rel  : RelP1
+  :env  : "$" Ide "/" RelP1
+
+  let Root1 ; absolute Path 1
+  :abs  : OptDrv "/" RelPa0
+
+  let Root2 ; absolute Path 1
+  :abs  : OptDrv "/" RelP1
+
+  let RelPa0  ; RelativePathName
+  :nil  : 
+
+  let RelP1  ; RelativePathName
+  :cons : Pid RelP0
+
+  let RelP0  ; RelativePathName
+  :nil  :
+  :cons : "/" Pid RelP0
+
+  let OptDrv ; OptionalDrive
+  :non  :
+  :drive: Ide ":"
+
+  let Pid    ; PathIdentifier
+  :curr : "."
+  :prev : ".."
+  :name : Fid1
+  :ext  : Fid1 "." Ide
+
+  let Fid1   ; FileIdentifier
+  :cons : Ide Fid0
+
+  let Fid0   ; FileIdentifier
+  :nil  :
+  :cons : "_" Ide Fid0
+
+  let Typ    ; TypName 
+  :flag : "flag"
+  :int  : "int"
+  :real : "real"
+  :str  : "string"
+  :name : "name"
+  :path : "path"

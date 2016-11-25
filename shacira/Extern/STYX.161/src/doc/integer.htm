@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[integer.h] Type: Integer</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[integer.h] Type: Integer</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="standard.htm">#include "standard.h"</a>
+<br>
+<br>
+<br>
+<br><hr width="100%" size=2><h2><b> The Type </b></h2>
+<br><pre>
+   [integer] implements the algebraic operations for long integers with a
+   maximum number of MAX_LONG digits.
+   An integer number is represented by its sign, length and digits:
+   N.value = N.Sgn * Sum { N.Dig[i] * (IntBase^i) | i in [0 .. N.Len - 1] }
+
+</pre>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b>Integer</b>
+<td align=left> Abstract integer type
+
+</table>
+<br><hr width="100%" size=2><h2><b> Basics </b></h2>
+<br><pre>
+   In the following functions the integer operands won't be consumed and
+   the resulting integers have to be released.
+
+</pre>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Integer <b>Int_cons</b>(int Sgn, int Len, c_byte Dig[])</pre>
+<td bgcolor="#FFF0F5" align=left> constructs an integer from sign 'Sgn', length 'Len' and digits 'Dig' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Int_des</b>(Integer x, int *Sgn, int *Len, c_byte **Dig)</pre>
+<td bgcolor="#FFF0F5" align=left> destructs an integer into sign 'Sgn', length 'Len' and digits 'Dig' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Integer <b>Int_copy</b>(Integer a)</pre>
+<td bgcolor="#FFF0F5" align=left>copies integer 'a'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Int_free</b>(Integer a)</pre>
+<td bgcolor="#FFF0F5" align=left>frees integer 'a'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Int_show</b>(Integer a)</pre>
+<td bgcolor="#FFF0F5" align=left>prints integer 'a' to stdout; for debugging
+
+</table>
+<br><hr width="100%" size=2><h2><b> Conversion </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>Int_itoa</b>(Integer a, int Base)</pre>
+<td bgcolor="#FFF0F5" align=left> converts integer 'a' into a string; allocs memory <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Int_s_ok</b>(c_string s, int Base)</pre>
+<td bgcolor="#FFF0F5" align=left> whether string 's' represents an integer; not consuming 's' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Integer <b>Int_atoi</b>(c_string sn, int Base)</pre>
+<td bgcolor="#FFF0F5" align=left> converts string 'sn' into a number; not consuming 'sn' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Integer <b>Int_Cto</b>(long a)</pre>
+<td bgcolor="#FFF0F5" align=left>converts long 'a' into an integer
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Int_okC</b>(Integer n)</pre>
+<td bgcolor="#FFF0F5" align=left> whether integer 'n' can be converted into a long <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>long <b>Int_toC</b>(Integer n)</pre>
+<td bgcolor="#FFF0F5" align=left>converts integer 'n' into a long
+
+</table>
+<br><hr width="100%" size=2><h2><b> Comparison </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Int_is0</b>(Integer x)</pre>
+<td bgcolor="#FFF0F5" align=left>x == 0 ?
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>Int_cmp</b>(Integer a, Integer b)</pre>
+<td bgcolor="#FFF0F5" align=left>a &lt; b ? -1 : a == b ? 0 : +1
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Int_eq</b>(Integer a, Integer b)</pre>
+<td bgcolor="#FFF0F5" align=left>a == b ?
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Int_ne</b>(Integer a, Integer b)</pre>
+<td bgcolor="#FFF0F5" align=left>a != b ?
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Int_lt</b>(Integer a, Integer b)</pre>
+<td bgcolor="#FFF0F5" align=left>a &lt; b ?
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Int_le</b>(Integer a, Integer b)</pre>
+<td bgcolor="#FFF0F5" align=left>a &lt;= b ?
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Int_gt</b>(Integer a, Integer b)</pre>
+<td bgcolor="#FFF0F5" align=left>a &gt; b ?
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Int_ge</b>(Integer a, Integer b)</pre>
+<td bgcolor="#FFF0F5" align=left>a &gt;= b ?
+
+</table>
+<br><hr width="100%" size=2><h2><b> Arithmetic </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>Int_sgn</b>(Integer a)</pre>
+<td bgcolor="#FFF0F5" align=left>signum of integer 'a'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Integer <b>Int_abs</b>(Integer a)</pre>
+<td bgcolor="#FFF0F5" align=left>absolute value |a|
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Integer <b>Int_neg</b>(Integer a)</pre>
+<td bgcolor="#FFF0F5" align=left>negation -a
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Integer <b>Int_add</b>(Integer a, Integer b)</pre>
+<td bgcolor="#FFF0F5" align=left>addition a + b
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Integer <b>Int_sub</b>(Integer a, Integer b)</pre>
+<td bgcolor="#FFF0F5" align=left>substraction a - b
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Integer <b>Int_mlt</b>(Integer a, Integer b)</pre>
+<td bgcolor="#FFF0F5" align=left>multiplication a * b
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Integer <b>Int_quo</b>(Integer a, Integer b)</pre>
+<td bgcolor="#FFF0F5" align=left>division a / b
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Integer <b>Int_rem</b>(Integer a, Integer b)</pre>
+<td bgcolor="#FFF0F5" align=left>remainder a % b
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Int_quo_rem</b>(Integer a, Integer b, Integer *quo, Integer *rem)</pre>
+<td bgcolor="#FFF0F5" align=left> *quo = a/b; *rem = a%b <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Integer <b>Int_gcd</b>(Integer a, Integer b)</pre>
+<td bgcolor="#FFF0F5" align=left> greatest common divisor of integer 'a' and 'b' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Integer <b>Int_exp</b>(Integer b, long n)</pre>
+<td bgcolor="#FFF0F5" align=left>exponent b ^ n
+
+</table>
+
+</body>
+</html>

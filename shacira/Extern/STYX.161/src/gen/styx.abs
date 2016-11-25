@@ -1,0 +1,70 @@
+/* ------------------------------------------------------------------------ */
+/*                                                                          */
+/* [styx.abs]                  Abstract Grammar                             */
+/*                                                                          */
+/* ------------------------------------------------------------------------ */
+
+LANGUAGE styx
+
+TOKENS
+
+  Ide, Set, Seq
+
+TYPES
+
+  styx        = Start_Source(Source)
+
+  Source      = root(Ide, QlxDfn*, OptCfg)
+
+  OptCfg      = nul;
+                cfg(Dfn*)
+
+  QlxDfn      = xgrp(Ide);
+                igrp(Ide);
+                defn(QlxCat, QlxOpt, QlxGrp, Ide, QlxGrp, Exp)
+
+  QlxCat      = letC;
+                indC;
+                ignC;
+                comC;
+                lanC;
+                tokC
+
+  QlxGrp      = non;
+                igrp;
+                grp(Ide)
+
+  QlxOpt      = ignca;
+                non
+
+  Exp         = dyck(Exp, Exp, Exp);
+                nul;
+                opt(Exp);
+                set(Set);
+                conc(Exp, Exp);
+                sequ(Seq);
+                star(Exp);
+                range(Exp, Exp);
+                ident(Ide);
+                union(Exp, Exp);
+                diff(Exp, Exp);
+                plus(Exp)
+
+  Dfn         = defn(Cat, DfnOpt, Ide, Prd*)
+
+  Cat         = bgnC;
+                letC
+
+  DfnOpt      = non;
+                errnt
+
+  Lay         = dft;
+                rec;
+                grp
+
+  Prd         = prod(Lay, Ide, Mbr*)
+
+  Mbr         = else;
+                ntm(Ide);
+                tkm(Seq)
+

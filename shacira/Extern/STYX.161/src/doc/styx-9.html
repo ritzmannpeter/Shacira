@@ -1,0 +1,203 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>The Styx Handbook: Odds'n'Ends</TITLE>
+ <LINK HREF="styx-10.html" REL=next>
+ <LINK HREF="styx-8.html" REL=previous>
+ <LINK HREF="styx.html#toc9" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="styx-10.html">Next</A>
+<A HREF="styx-8.html">Previous</A>
+<A HREF="styx.html#toc9">Contents</A>
+<HR>
+<H2><A NAME="s9">9. Odds'n'Ends</A></H2>
+
+<P>This section contains an eclectic collection of topics. Some of them
+might later evolve into a complete chapter. As a compromise between
+our intention to release Styx quickly but to provide you with a more
+or less complete documentation, much had to be left out and others
+could only be touched shortly. Expect the topics mentioned below to
+be more well-documented in a later version of this paper.
+<P>
+<H2><A NAME="ss9.1">9.1 Disadvantages wrt. lex/yacc</A>
+  </H2>
+
+<P>
+<UL>
+<LI>Mostly disadvantages of the scanner
+<UL>
+<LI>only single-character lookahead (i did this for purpose,
+since it guarantees a very fast scanner). Because it is
+a problem only within the scanner and not in the scanner
+generator, it can easily be fixed.
+<P>Practically, it prevents some lexical grammars to be
+scanned as expected. As an example, take the floating
+point literal in Smalltalk, whose denotation partially
+coinceeds with the integer denotation followed by the
+statement-terminating period.
+</LI>
+<LI>Irregular lexical syntaxes as used in many languages
+cannot be scanned. Take Rpg, Fortran or Cobol with
+their columnar lexical syntax as examples.</LI>
+</UL>
+</LI>
+<LI>The parser only supports a one-symbol lookahead,
+while more modern yacc versions come with lalr(2)
+or even lalr(k). Since lalr(1) is known to handle
+the deterministic languages, this is not a real
+issue, since we can always reformulate the grammar
+to cope with oddities.</LI>
+<LI>Languages that come with an ill-layered context-free
+and context-dependend grammar (many do), cannot be
+parsed without extra tricks. Take the "typedef"
+declaration of C together with the application of
+the type name in type denotations as example. Likely
+examples are languages with defineable operator
+preceedences as Algol98 or Prolog for instance.
+Styx provides a few hooks to cope with stuff like this.</LI>
+</UL>
+<P>
+<H2><A NAME="ss9.2">9.2 Intensive grammar abstractions</A>
+  </H2>
+
+<P>Typical example of the problem occurs already when
+parsing expressions. As a result we want to get something
+like 'expr ::= varid | lit | funid(expr,...)', but we have
+prefix, infix, postfix, distfix order and whatever syntactical
+sugar in the surface grammar. Further, the 'funid' tokens
+come in as keywords and not as regular names.
+<UL>
+<LI>Node rotation</LI>
+<LI>keyword --> symbol replacements</LI>
+</UL>
+
+Method to solve the problem would be to have some 'interface time'
+reduction rules. The impact of such rules wrt. the abstraction
+congruence and to unparsing remains to be investigated.
+<P>[TODO --> Lars]
+<P>
+<H2><A NAME="ss9.3">9.3 Pretty printing</A>
+  </H2>
+
+<P>
+<UL>
+<LI>Allows to "translate" to a super-grammar of the parsed word.</LI>
+<LI>Incompletely developed especially wrt. token separation and
+comment placement.</LI>
+<LI>Conceptionally wrong because of the indendential specification
+method that causes styx sources not be pretty printable themselves.
+This misconception will be ironed out in one of the next releases.
+<P>[TODO --> Heike]
+</LI>
+<LI>Successfully used anyway by the author to convert a language
+with a lisp like surface grammar (and a hand-written parser)
+to something proper with infix operators, function names before
+the parentheses, if constructs and other. Only a little handwork
+was needed to place the comments right and to adjust the layout
+in certain situations due to my taste.</LI>
+<LI>Should be developed so, that it can be used as a source code
+normalizer in a regular way.</LI>
+</UL>
+<P>
+<H2><A NAME="ss9.4">9.4 Bits of history and future</A>
+</H2>
+
+<P>
+<UL>
+<LI>History: Speculate</LI>
+<LI>Future: Semantics (static, dynamic), Xaron</LI>
+</UL>
+<P>
+<H3>Meaning of the name "Styx"</H3>
+
+<P>The word "Styx", which is the name of the here-described software
+has two interpretations intended by us. The first, plain
+and simple is an abriviation or more precise a ENGLISH("Verballhornung")
+of the word "syntax" which is obviously closely related to what
+Styx is for. The second, more opaque and perhaps scaring interpretation
+originates from the coincidence with the name of a place in greek
+mythology.  It is the name of a very poisonous river that separates the
+mythological underworld, the hades, from the world on the surface
+of earth. Well knowing that analogies painfully stress the imagination,
+we do not go further into it, but leave it to the meditation of the
+ENGLISH("geneigtem") reader.
+<P>
+<H2><A NAME="ss9.5">9.5 '.ant' vs. '.int' C-Interface</A>
+  </H2>
+
+<P>
+<UL>
+<LI>'.ant' provides a very space efficient representation of the
+derivation tree to the expense that keywords and comments
+are as well lost as source file references.</LI>
+<LI>It is a plug-in replacement.</LI>
+<LI>This format originated as a workaround of some disabilities
+of Microsoft's memory allocation library. Bill may or may
+not have fixed his decent product meanwhile, but who cares?</LI>
+</UL>
+<P>
+<H2><A NAME="ss9.6">9.6 Reentrancy and thread-safeness</A>
+  </H2>
+
+<P>
+<UL>
+<LI>Basically, reentrancy works.</LI>
+<LI>Thread-safeness should work, but is not tested.</LI>
+</UL>
+<P>
+<H2><A NAME="ss9.7">9.7 Installation, Availability and License</A>
+  </H2>
+
+<P>
+<UL>
+<LI>Standard installation procedure (configure, make, make install).
+Use 'configure --help' to get options.</LI>
+<LI>Styx is available at http://www.speculate.de/Styx.</LI>
+<LI>The Styx package is released both under GPL and LGPL, while each
+of the licenses apply to different parts. ...</LI>
+</UL>
+<P>
+<H2><A NAME="ss9.8">9.8 Further Readings</A>
+</H2>
+
+<P>We give a short summary of advancing lecture here.
+<UL>
+<LI>The dragon book</LI>
+<LI>Ehrig, Maar</LI>
+<LI>perhaps more</LI>
+</UL>
+<P>
+<H2><A NAME="ss9.9">9.9 Authors and Credits</A>
+  </H2>
+
+<P>
+<UL>
+<LI>LD &amp; HM</LI>
+<LI>Styx intentionally an original freeware product, .... Thanks goes
+to the freeware community to create the environment that finally
+allows us to present our work to a more wider audience. We hope
+using Styx will make as much fun as it made us writing it.</LI>
+<LI>Styx was written by their authors in their spare time as a tool
+to create another application while working as freelancers for
+the administration of the "Freie und Hansestadt Hamburg", our
+home town. Thanks goes to the management of the particular
+department to give us enough freedom to choose the tools and
+methods for our job to the benefit all.</LI>
+</UL>
+<P>
+<H2><A NAME="ss9.10">9.10 Copyright and Trademarks</A>
+  </H2>
+
+<P>Styx is copyright (c) 19xx-2002,2003 by Lars Doelle and Heike Manns.
+Dos and Windows is a trademark of Microsoft. Unix is a trademark
+of the Santa Cruise Corporation. All other mentioned trademarks
+are trademarks of their respective owners.
+<P>
+<HR>
+<A HREF="styx-10.html">Next</A>
+<A HREF="styx-8.html">Previous</A>
+<A HREF="styx.html#toc9">Contents</A>
+</BODY>
+</HTML>

@@ -1,0 +1,73 @@
+/* ------------------------------------------------------------------------ */
+/*                                                                          */
+/* [cprj.abs]                  Abstract Grammar                             */
+/*                                                                          */
+/* ------------------------------------------------------------------------ */
+
+LANGUAGE cprj
+
+TOKENS
+
+  Name, Val
+
+TYPES
+
+  cprj           = Start_ProjectDfn(ProjectDfn)
+
+  ProjectDfn     = root(Project)
+
+  RelOp          = le;
+                   eq;
+                   ne;
+                   gt;
+                   ge;
+                   lt
+
+  MacDfn         = cond(Name, RelOp, Name, Val, Val);
+                   val(Val)
+
+  Project        = dprj(Name, Project);
+                   exec(Val, Project);
+                   oext(Name, Project);
+                   mac(Name, MacDfn, Project);
+                   cmd(Name, Val, Project);
+                   res(Name, Project);
+                   lib(Name, Project);
+                   typ(TypDfn, Project);
+                   inc(Name, Project);
+                   par(Name, Name, Val, Project);
+                   ddst(Name, Project);
+                   ext(Name, Project);
+                   nul;
+                   rule(Name, RuleAttr, DstDfn, Project, Name, SrcDfn, Project);
+                   dobj(Name, Project)
+
+  RuleAttr       = ex2;
+                   nul;
+                   exe
+
+  OptTPrefix     = nul;
+                   pre(Name)
+
+  OptSPrefix     = pre(Name);
+                   nul
+
+  DstDfn         = int(Name, DstName, OptTPrefix, OptSPrefix);
+                   ext
+
+  DstName        = nam(Name);
+                   root;
+                   src;
+                   dir
+
+  RegExp         = exp(Val);
+                   nul
+
+  SrcAttr        = exp(RegExp);
+                   rexp(RegExp)
+
+  SrcDfn         = dfn(Name, SrcAttr)
+
+  TypDfn         = two(Name, Name);
+                   one(Name)
+

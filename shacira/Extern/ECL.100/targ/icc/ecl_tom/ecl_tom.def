@@ -1,0 +1,8 @@
+LIBRARY        ECL_TOM INITINSTANCE TERMINSTANCE
+
+DESCRIPTION   'ECL tom (c) 1991-2000 by 2i GmbH and Markus Wuertz, Student of Information Technologie at the University of Karlsruhe'
+DATA           MULTIPLE SHARED
+PROTMODE
+
+EXPORTS
+

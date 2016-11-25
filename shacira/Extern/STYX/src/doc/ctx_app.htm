@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[ctx_app.h] Current Program Context</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[ctx_app.h] Current Program Context</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="ctx_dfn.htm">#include "ctx_dfn.h"</a>
+<br>
+<br>
+<br>
+<br><hr width="100%" size=2><h2><b> current context: Set & Get </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>CTX_T <b>CTX_ctx_val</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>the current context
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>CTX_ctx_set</b>(CTX_T ctx)</pre>
+<td bgcolor="#FFF0F5" align=left>make 'ctx' the current context
+
+</table>
+<br><hr width="100%" size=2><h2><b> current context: Eval </b></h2>
+<br> The following functions define the program interface to their context variables.
+
+
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Abs_T <b>CTX_eval</b>(c_string Name, c_bool Index)
+#define CTX_EVAL(typ,name)  ABS_CAST(typ,CTX_eval(name,C_False))
+#define CTX_INDEX(name)     ((long)(CTX_eval(name,C_True)))</pre>
+<td bgcolor="#FFF0F5" align=left> 'Index'   --&gt; finds index of 'Name' in context; (-1) if missing<br>
+   otherwise --&gt; finds value of 'Name' in context; the program aborts if missing<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>CTX_argcnt</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>number of variable arguments
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Abs_T <b>CTX_argval</b>(int idx)
+#define CTX_ARGVAL(typ,idx) ABS_CAST(typ,CTX_argval(idx))</pre>
+<td bgcolor="#FFF0F5" align=left> variable argument, indexed by 'idx' <br>
+
+</table>
+
+</body>
+</html>

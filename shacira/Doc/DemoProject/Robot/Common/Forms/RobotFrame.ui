@@ -1,0 +1,180 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>RobotFrame</class>
+<widget class="CAppFrame">
+    <property name="name">
+        <cstring>RobotFrame</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>816</width>
+            <height>750</height>
+        </rect>
+    </property>
+    <property name="minimumSize">
+        <size>
+            <width>0</width>
+            <height>0</height>
+        </size>
+    </property>
+    <property name="caption">
+        <string>CAppFrameForm</string>
+    </property>
+    <vbox>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="CFrame">
+            <property name="name">
+                <cstring>cFrame1</cstring>
+            </property>
+            <property name="minimumSize">
+                <size>
+                    <width>0</width>
+                    <height>100</height>
+                </size>
+            </property>
+            <property name="maximumSize">
+                <size>
+                    <width>32767</width>
+                    <height>100</height>
+                </size>
+            </property>
+            <widget class="CFixText">
+                <property name="name">
+                    <cstring>PageHeader</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>49</x>
+                        <y>34</y>
+                        <width>576</width>
+                        <height>36</height>
+                    </rect>
+                </property>
+                <property name="text">
+                    <string>header</string>
+                </property>
+            </widget>
+        </widget>
+        <widget class="CFrame">
+            <property name="name">
+                <cstring>cFrame2</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="CButtonGroup">
+                    <property name="name">
+                        <cstring>cButtonGroup1</cstring>
+                    </property>
+                    <property name="minimumSize">
+                        <size>
+                            <width>80</width>
+                            <height>0</height>
+                        </size>
+                    </property>
+                    <property name="maximumSize">
+                        <size>
+                            <width>80</width>
+                            <height>32767</height>
+                        </size>
+                    </property>
+                    <property name="frameShape">
+                        <enum>WinPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                        <enum>Raised</enum>
+                    </property>
+                    <property name="title">
+                        <string></string>
+                    </property>
+                    <widget class="CGroupSelectButton">
+                        <property name="name">
+                            <cstring>cGroupSelectButton1</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>8</x>
+                                <y>12</y>
+                                <width>61</width>
+                                <height>71</height>
+                            </rect>
+                        </property>
+                        <property name="text">
+                            <string>group 1</string>
+                        </property>
+                        <property name="PageGroup">
+                            <cstring>group1</cstring>
+                        </property>
+                    </widget>
+                    <widget class="CGroupSelectButton">
+                        <property name="name">
+                            <cstring>cGroupSelectButton1_2</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>10</x>
+                                <y>90</y>
+                                <width>61</width>
+                                <height>71</height>
+                            </rect>
+                        </property>
+                        <property name="text">
+                            <string>group 2</string>
+                        </property>
+                        <property name="PageGroup">
+                            <cstring>group2</cstring>
+                        </property>
+                    </widget>
+                </widget>
+                <widget class="CFrame">
+                    <property name="name">
+                        <cstring>PageFrame</cstring>
+                    </property>
+                    <property name="minimumSize">
+                        <size>
+                            <width>300</width>
+                            <height>300</height>
+                        </size>
+                    </property>
+                    <property name="frameShape">
+                        <enum>WinPanel</enum>
+                    </property>
+                </widget>
+                <widget class="CFrame">
+                    <property name="name">
+                        <cstring>cFrame4</cstring>
+                    </property>
+                    <property name="minimumSize">
+                        <size>
+                            <width>80</width>
+                            <height>0</height>
+                        </size>
+                    </property>
+                    <property name="maximumSize">
+                        <size>
+                            <width>80</width>
+                            <height>32767</height>
+                        </size>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+    </vbox>
+</widget>
+<layoutdefaults spacing="6" margin="11"/>
+<includehints>
+    <includehint>CAppFrame.h</includehint>
+    <includehint>CFrame.h</includehint>
+    <includehint>CFixText.h</includehint>
+    <includehint>CFrame.h</includehint>
+    <includehint>CButtonGroup.h</includehint>
+    <includehint>CGroupSelectButton.h</includehint>
+    <includehint>CGroupSelectButton.h</includehint>
+    <includehint>CFrame.h</includehint>
+    <includehint>CFrame.h</includehint>
+</includehints>
+</UI>

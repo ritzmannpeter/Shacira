@@ -1,0 +1,206 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[scn_gen.h] Scanner Generator</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[scn_gen.h] Scanner Generator</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="scn_io.htm">#include "scn_io.h"</a>
+<br>
+<br>
+<br>
+<br>
+  <p>The module [scn_gen] supports the construction of regular sets and
+  produces the scanner definitions as base for the
+  <a href="scn_base.htm">scan streams</a>.
+  <p>The complexity of the scanner is linear. A consequence of this design-goal
+  is its restriction to a one-character-lookahead.
+  <p>The construction of regular sets is reentrant.
+  There also exists a reentrant version of the scanner production.<br>
+
+
+<br><hr width="100%" size=2><h2><b> Type of regular sets </b></h2>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b>RegSet_T</b>
+<td align=left> Regular Set 
+
+</table>
+<br><hr width="100%" size=2><h2><b> Disposing </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>RegSet_Free</b>(RegSet_T g)</pre>
+<td bgcolor="#FFF0F5" align=left>frees regular set 'g'
+
+</table>
+<br><hr width="100%" size=2><h2><b> RegSet Constructors </b></h2>
+<br>
+  <p>The resulting regular sets when applying one of the following functions
+     have to be released.
+
+
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>RegSet_T <b>RegSet_Epsilon</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>epsilon ""
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>RegSet_T <b>RegSet_Empty</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>empty set ''
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>RegSet_T <b>RegSet_Range</b>(wc_char dfa_lower, wc_char dfa_upper)</pre>
+<td bgcolor="#FFF0F5" align=left> character range L .. U <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>RegSet_T <b>RegSet_Char</b>(wc_char c)</pre>
+<td bgcolor="#FFF0F5" align=left>character 'c'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>RegSet_T <b>RegSet_Copy</b>(RegSet_T a)</pre>
+<td bgcolor="#FFF0F5" align=left>copies regular set 'a'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>RegSet_T <b>RegSet_Union</b>(RegSet_T a, RegSet_T b)</pre>
+<td bgcolor="#FFF0F5" align=left>union a | b
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>RegSet_T <b>RegSet_Intersection</b>(RegSet_T a, RegSet_T b)</pre>
+<td bgcolor="#FFF0F5" align=left>intersection a ^ b
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>RegSet_T <b>RegSet_Difference</b>(RegSet_T a, RegSet_T b)</pre>
+<td bgcolor="#FFF0F5" align=left>difference a - b
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>RegSet_T <b>RegSet_Concat</b>(RegSet_T a, RegSet_T b)</pre>
+<td bgcolor="#FFF0F5" align=left>concatenation a b
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>RegSet_T <b>RegSet_Star</b>(RegSet_T a)</pre>
+<td bgcolor="#FFF0F5" align=left>iteration { a }
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>RegSet_T <b>RegSet_CsetN</b>(wc_string s,int len)</pre>
+<td bgcolor="#FFF0F5" align=left>character set '...'[0:len)
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>RegSet_T <b>RegSet_Cset</b>(wc_string s)</pre>
+<td bgcolor="#FFF0F5" align=left>character set '...'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>RegSet_T <b>RegSet_StringN</b>(wc_string s,int len)</pre>
+<td bgcolor="#FFF0F5" align=left> character sequence / string "..."[0:len) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>RegSet_T <b>RegSet_String</b>(wc_string s)</pre>
+<td bgcolor="#FFF0F5" align=left>character sequence / string "..."
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>RegSet_T <b>RegSet_Option</b>(RegSet_T a)</pre>
+<td bgcolor="#FFF0F5" align=left>option [ a ]
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>RegSet_T <b>RegSet_Plus</b>(RegSet_T a)</pre>
+<td bgcolor="#FFF0F5" align=left>iteration a +
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>RegSet_T <b>RegSet_Plus_ntimes</b>(RegSet_T a, int n)</pre>
+<td bgcolor="#FFF0F5" align=left> iteration { a } n-times, n &gt;= 0 <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>RegSet_T <b>RegSet_Plus_range</b>(RegSet_T a, int lwr, int upr)</pre>
+<td bgcolor="#FFF0F5" align=left> iteration { a } lwr-times .. upr-times, lwr &gt;= 0, upr &gt;= 0 <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>RegSet_isChar</b>(RegSet_T a)</pre>
+<td bgcolor="#FFF0F5" align=left>a = 'x' ?
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>wc_char <b>RegSet_charVal</b>(RegSet_T a)</pre>
+<td bgcolor="#FFF0F5" align=left>x; assertion: a = 'x'
+
+</table>
+<br><hr width="100%" size=2><h2><b> Scanner production </b></h2>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b>ScnDfn_T</b>
+<td align=left> Scanner production handle 
+
+</table>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Scn_dfnBegin</b>(c_string name)</pre>
+<td bgcolor="#FFF0F5" align=left> begins a scanner definition;<br>
+   uses 'name' as identifier<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>ScnDfn_T <b>Scn_dfnBegin_reentrant</b>(c_string name)</pre>
+<td bgcolor="#FFF0F5" align=left> reentrant version of Scn_dfnBegin <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Scn_setMsgFun</b>(void (*prMsg)(c_string msg))</pre>
+<td bgcolor="#FFF0F5" align=left> defines 'prMsg' as default message function <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Scn_setMsgFun_reentrant</b>(ScnDfn_T curdfn, void (*prMsg)(c_string msg))</pre>
+<td bgcolor="#FFF0F5" align=left> reentrant version of Scn_setMsgFun <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Scn_dfnToken</b>(c_string name, c_byte tok_flags, RegSet_T value)</pre>
+<td bgcolor="#FFF0F5" align=left> adds a new token to the scanner under production<br>
+   'name' : identifier<br>
+   'flags': attributes ( see [scn_base] )<br>
+   'value': regular set<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Scn_dfnToken_reentrant</b>
+     (
+       ScnDfn_T curdfn, c_string name, c_byte tok_flags, RegSet_T value
+     )</pre>
+<td bgcolor="#FFF0F5" align=left> reentrant version of Scn_dfnToken <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Scn_dfnDyckToken</b>
+     (
+       c_string name, c_byte tok_flags,
+       RegSet_T left, Scn_T dyck
+     )</pre>
+<td bgcolor="#FFF0F5" align=left> adds a new dyck token to the scanner under production;<br>
+   consumes 'dyck'<br>
+   'name' : identifier<br>
+   'flags': attributes ( see [scn_base] )<br>
+   'left' : regular set for left paranthesis<br>
+   'dyck' : dyck scanner ( left, inner and right token )<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Scn_dfnDyckToken_reentrant</b>
+     (
+       ScnDfn_T curdfn, c_string name, c_byte tok_flags,
+       RegSet_T left, Scn_T dyck
+     )</pre>
+<td bgcolor="#FFF0F5" align=left> reentrant version of Scn_dfnToken <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>RegSet_Print</b>(RegSet_T x)</pre>
+<td bgcolor="#FFF0F5" align=left> prints regular set to stdout; for debugging <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>RegSet_Print_reentrant</b>(ScnDfn_T curdfn, RegSet_T x)</pre>
+<td bgcolor="#FFF0F5" align=left> reentrant version of RegSet_Print <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Scn_T <b>Scn_dfnEnd</b>(c_bool diagnose)</pre>
+<td bgcolor="#FFF0F5" align=left> completes and creates scanner definition<br>
+   diagnose --&gt; prints scanner definiton<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Scn_T <b>Scn_dfnEnd_reentrant</b>(ScnDfn_T curdfn, c_bool diagnose)</pre>
+<td bgcolor="#FFF0F5" align=left> reentrant version of Scn_dfnEnd;<br>
+   consumes 'curdfn'<br>
+<br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Scanner group production </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Scn_T <b>ScnGrp_dfnBegin</b>(c_string name)</pre>
+<td bgcolor="#FFF0F5" align=left> begins a scanner group definition;<br>
+   uses 'name' as identifier<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>ScnGrp_dfnScanner</b>(Scn_T group, Scn_T scanner)</pre>
+<td bgcolor="#FFF0F5" align=left> adds 'scanner' to 'group'; consumes 'scanner' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>ScnGrp_dfnSwitch</b>(Scn_T group, c_string from, c_string token, c_string to)</pre>
+<td bgcolor="#FFF0F5" align=left> adds context switch information for 'group';<br>
+   'token' in scanner 'from' switches to scanner 'to'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>ScnGrp_dfnEnd</b>(Scn_T group)</pre>
+<td bgcolor="#FFF0F5" align=left> completes definition for 'group';<br>
+   returns number of unreachable scanners<br>
+<br>
+
+</table>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+; [hpat.sty] HTML Pattern Language
+
+Language hpat
+
+Regular Grammar
+
+  let Byte        = '\00' .. '\ff' ; all extended ascii
+  let Control     = '\00' .. '\1f' ; control
+                  |          '\7f' ; DEL
+                  |          '\ff' ; space-like extended ascii
+
+  let Letter      = 'A'..'Z' | 'a'..'z'
+  let Digit       = '0'..'9'
+  let Special     = '_'
+
+  let Space       = " " | "\t" | "\n" | "\r\n" | "\r"
+  let White       = Space+
+
+  let Ide         = ( ( Letter | Digit | Special )
+                    { Letter | Digit | Special } )
+  let Key         = 'Hh' 'Pp' 'Aa' 'Tt'
+
+  tok PatBgn      = "<" Key ( White Ide )+ [ White ] ">"
+  tok PatEnd      = "</" Key ">"
+  tok PatRef      = "&" Ide ";"
+
+ ;tok Other       = ( Byte - Ide - '<&' )+ 
+ ;                  | Ide | ( ( "<" | "</" ) [ Ide - Key ] ) 
+ ;                  | "&" [ Ide ]
+
+Context Free Grammar
+
+start HPatDoc
+:dfn : Contents
+
+let Contents
+:nil : 
+:cons: Content Contents
+
+let Content
+:ref : PatRef
+:else: [other] 
+;:else: Other 
+:pat : PatBgn Contents PatEnd

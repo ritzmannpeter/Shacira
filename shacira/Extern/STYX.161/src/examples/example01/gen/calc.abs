@@ -1,0 +1,26 @@
+/* ------------------------------------------------------------------------ */
+/*                                                                          */
+/* [calc.abs]                  Abstract Grammar                             */
+/*                                                                          */
+/* ------------------------------------------------------------------------ */
+
+LANGUAGE calc
+
+TOKENS
+
+  Int
+
+TYPES
+
+  calc        = Start_Command(Command)
+
+  Command     = non;
+                exp(Exp)
+
+  Exp         = mlt(Exp, Exp);
+                int(Int);
+                neg(Exp);
+                sub(Exp, Exp);
+                div(Exp, Exp);
+                add(Exp, Exp)
+

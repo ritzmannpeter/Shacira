@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[cfg_abs.h] Abstract Context Free Grammar</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[cfg_abs.h] Abstract Context Free Grammar</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="standard.htm">#include "standard.h"</a>
+<br><a href="hset.htm">#include "hset.h"</a>
+<br><a href="prs.htm">#include "prs.h"</a>
+<br>
+<br>
+<br>
+<br>
+   <p>[cfg_abs] provides functions that derives the nonterminal and production classes
+   which constitutes the abstract context free grammar from a given parse table.
+
+   <p>For further documentation of the definition of an abstract context free grammar
+   follow the reference to module <a href="prs_gen.htm">[prs_gen]</a>.<br><br>
+
+
+<br><hr width="100%" size=2><h2><b> Macros </b></h2>
+<br>
+   Properties of nonterminals and their classes
+
+
+<br><pre>#define ACFG_NTTYP_LIST     1
+#define ACFG_NTTYP_CLASS    2
+#define ACFG_NTTYP_OPT      4
+#define ACFG_NTTYP_NIL      8
+#define ACFG_NTTYP_RECTYP   16
+#define ACFG_NTTYP_REF0     32
+#define ACFG_NTTYP_REF1     64
+#define ACFG_NTTYP_START    128
+#define ACFG_NTTYP_PRIM     256
+#define ACFG_NTTYP_PRIMC    512
+#define ACFG_NTTYP_EMPTY    1024
+#define ACFG_NTTYP_RECREF   2048
+#define ACFG_NTTYP_CONSREF  4096
+#define ACFG_HAS_NTTYP(v,t) ( (((int)(v)) & ((int)(t))) &gt; 0 )
+
+</pre>
+<br><hr width="100%" size=2><h2><b> API </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>acfg_init</b>
+     (
+       PLR_Tab PTab, int** aPol, HS_Set** aNtm, HS_Set** aPrd, c_bool errmsg
+     )</pre>
+<td bgcolor="#FFF0F5" align=left> creates & fills 'aPol', 'aNtm', 'aPrd' from parse table 'PTab'<br>
+   'aPol' :- polymorph 'cons' classes<br>
+   'aNtm' :- nonterminal partition<br>
+   'aPrd' :- nonterminal class productions<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>acfg_init_doc</b>
+     (
+       PLR_Tab PTab, int** aPol, HS_Set** aNtm, HS_Set** aPrd
+     )</pre>
+<td bgcolor="#FFF0F5" align=left> creates & fills 'aPol', 'aNtm', 'aPrd' from parse table 'PTab',<br>
+   as needed for the generation of a refernce document<br>
+   'aPol' :- nonterminal/class types/properties<br>
+   'aNtm' :- nonterminal partition<br>
+   'aPrd' :- nonterminal productions<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>acfg_quit</b>(PLR_Tab PTab,int* aPol, HS_Set* aNtm, HS_Set* aPrd)</pre>
+<td bgcolor="#FFF0F5" align=left> deletes 'aPol', 'aNtm' and 'aPrd'<br>
+   ( originally created from parse table 'PTab' )<br>
+ <br>
+
+</table>
+
+</body>
+</html>

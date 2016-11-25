@@ -1,0 +1,101 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>RobotPage3</class>
+<widget class="CPage">
+    <property name="name">
+        <cstring>RobotPage3</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>866</width>
+            <height>640</height>
+        </rect>
+    </property>
+    <property name="minimumSize">
+        <size>
+            <width>0</width>
+            <height>0</height>
+        </size>
+    </property>
+    <property name="maximumSize">
+        <size>
+            <width>32000</width>
+            <height>32000</height>
+        </size>
+    </property>
+    <property name="font">
+        <font>
+            <family>Arial</family>
+            <pointsize>11</pointsize>
+        </font>
+    </property>
+    <property name="caption">
+        <string>Group2:Page3</string>
+    </property>
+    <property name="DarkFuncRef">
+        <cstring></cstring>
+    </property>
+    <property name="Group0">
+        <enum>WriteAccess</enum>
+    </property>
+    <property name="Group1">
+        <enum>WriteAccess</enum>
+    </property>
+    <property name="HelpId1">
+        <cstring>Ovw_Service</cstring>
+    </property>
+    <property name="PageGroup">
+        <cstring>group2</cstring>
+    </property>
+    <property name="PageHeadline">
+        <string>Group2:Page3</string>
+    </property>
+    <property name="LongPageHeadline">
+        <string>Group2:Page3</string>
+    </property>
+    <property name="PositionInGroup">
+        <number>0</number>
+    </property>
+    <vbox>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="RobotCurves">
+            <property name="name">
+                <cstring>robotCurves1</cstring>
+            </property>
+            <property name="paletteBackgroundColor">
+                <color>
+                    <red>255</red>
+                    <green>255</green>
+                    <blue>127</blue>
+                </color>
+            </property>
+            <property name="Curve0Ref">
+                <cstring>graphic_buffer[0]</cstring>
+            </property>
+            <property name="Curve1Ref">
+                <cstring>graphic_buffer[1]</cstring>
+            </property>
+            <property name="Curve2Ref">
+                <cstring>graphic_buffer[2]</cstring>
+            </property>
+            <property name="Curve3Ref">
+                <cstring>graphic_buffer[3]</cstring>
+            </property>
+            <property name="Curve4Ref">
+                <cstring>graphic_buffer[4]</cstring>
+            </property>
+            <property name="Curve5Ref">
+                <cstring>graphic_buffer[5]</cstring>
+            </property>
+        </widget>
+    </vbox>
+</widget>
+<layoutdefaults spacing="6" margin="11"/>
+<includehints>
+    <includehint>CPage.h</includehint>
+    <includehint>RobotCurves.h</includehint>
+</includehints>
+</UI>

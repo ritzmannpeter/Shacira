@@ -1,0 +1,554 @@
+
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+<meta name="robots" content="noindex">
+<title>styx Language Reference</title>
+</head>
+<body bgcolor=white text=black link=navy vlink=navy alink=purple>
+<b><font color=\"#008B8B\"><a href="styx.html">contents</a></font></b><br>
+&nbsp;
+<center><H1>styx Language Reference</H1></center>
+<BR>
+<BR>
+<center><H2>Regular Grammar</H2></center>
+<BR>
+The regular grammar defines the basic language elements i.e. tokens as 
+certain classes of character sequences like numbers, identifiers, operators
+and strings.
+<p>Each <b><i><font size="+1">rule</font></i></b> defining such a class of character
+sequences has the following structure: <br>
+&lt;Class Type> 
+&lt;<font color="#B22222">
+[Member group :] Class Identifier [! Next group to activate]</font>> 
+:: &lt;Regular Expression>
+<p>We distinguish five <b><i><font size="+1">types of classes</font></i></b>:
+<br>&nbsp;
+<ul>
+<li>
+<b><i><font size="+1"><font color="#000000">let</font></font></i></b>
+<br>Helper class, used to define the more complex tokens
+<br>They didn't belong to the language definition.
+</li>
+<li>
+<b><i><font size="+1"><font color="#000000">com</font></font></i></b>
+<br>Comments
+<br>They didn't belong to the language definition.
+</li>
+<li>
+<b><i><font size="+1"><font color="#000000">tok</font></font></i></b>
+<br>Tokens
+<br>They represent the regular grammar of the language definition.
+</li>
+<li>
+<b><i><font color="#000000"><font size="+1">ign</font></font></i></b>
+<br>Character sequences which should be ignored i.e. skipped by the scanner
+<br>They didn't belong to the language definition.
+</li>
+<li>
+<b><i><font color="#000000"><font size="+1">ind</font></font></i></b>
+<br>(De)indent tokens
+<br>Indent and dedent events will be forwarded to the parser.
+<br>Otherwise these character sequences will be skipped by the scanner.
+</li>
+<li>
+<b><i><font color="#000000"><font size="+1">lan</font></font></i></b>
+<br>Embedded language tokens
+<br>These are special token classes which has been introduced in order to 
+    integrate embedded languages.
+</li>
+</ul>
+<p><br>A <b><i><font size="+1">regular expression</font></i></b> spezifies
+the character sequences belonging to the class. Such a description usually
+consists of the following elements and operators:
+<br>&nbsp;
+<ul>
+<li>
+<b><i><font size="+1">Expression1 Expression2 ... ExpressionN</font></i></b></li>
+
+<br>Concatenation of partial expressions
+<li>
+<b><i><font size="+1">Expression1 | Expression2 | ... | ExpressionN</font></i></b></li>
+
+<br>Union of partial expressions ( alternatives )
+<li>
+<b><i><font size="+1">Expression1 - Expression2 - ... - ExpressionN</font></i></b></li>
+
+<br>Difference of partial expressions 
+<li>
+<b><i><font size="+1">[ Expression ]</font></i></b></li>
+
+<br>Optional partial expression
+<li>
+<b><i><font size="+1">{ Expression }</font></i></b></li>
+
+<br>Iteration of a partial expression ( 0 .. )
+<li>
+<b><i><font size="+1">Expression +</font></i></b></li>
+
+<br>Iteration of a partial expression ( 1 .. )
+<li>
+<b><i><font size="+1">( Expression )</font></i></b></li>
+
+<br>Combination of a partial expression ( subexpression )
+<li>
+<b><i><font size="+1">< LeftParanthesis > InnerExpression < RightParanthesis ></font></i></b></li>
+
+<br>non-regular dyck expression
+<li>
+<b><i><font color="#3366FF"><font size="+1">Class identifier</font></font></i></b></li>
+
+<br><font color="#000000">Abreviation for the corresponding regular expression</font>
+<li>
+<b><i><font color="#009900"><font size="+1">"String"</font></font></i></b></li>
+
+<br><font color="#000000">Literal: string / character sequence</font>
+<li>
+<b><i><font color="#009900"><font size="+1">'Characterset'</font></font></i></b></li>
+
+<br><font color="#000000">Literal: characterset ( 1 .. ) </font></ul>
+
+<h2>
+<font color="#000000"><font size="+0"></font></font></h2>
+<font color="#000000"><font size="+0">Case ignore character classes
+can be spezified with an <b><i>[I]</i></b>
+behind the class identifier.</font></font>
+<br><font color="#000000"><font size="+0"></font></font>&nbsp;
+<br><font color="#000000"><font size="+0"></font></font>&nbsp;
+<BR>
+<BR>
+<table width=80% border=0>
+
+
+<TR valign=top><TH colspan=5 align=left><PRE>
+ Character Set</PRE></TH></TR>
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="Byte"></a>Byte</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'\00'</font>    <font color=black>..</font>    <font color=green>'\ff'</font></B><PRE><br>
+ all extended ascii</PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="Control"></a>Control</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'\00'</font>    <font color=black>..</font>    <font color=green>'\1f'</font>    <font color=black>|</font>    <font color=green>'\7f'</font>    <font color=black>|</font>    <font color=green>'\ff'</font></B><PRE><br>
+ control
+
+ DEL
+
+ space-like extended ascii</PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+<TR valign=top><TH colspan=5 align=left><PRE>
+ Basic elements of tokens</PRE></TH></TR>
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="Printable"></a>Printable</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><a href="#Byte">Byte</a>    <font color=black>-</font>    <a href="#Control">Control</a></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>ign</B><TD align=left><B><font color="#B22222"><a Name="Space"></a>Space</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>" "</font></B><PRE><br>
+ ASCII - Space</PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>ign</B><TD align=left><B><font color="#B22222"><a Name="Line"></a>Line</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>"\n"</font>    <font color=black>|</font>    <font color=green>"\r\n"</font>    <font color=black>|</font>    <font color=green>"\r"</font></B><PRE><br>
+ UNIX / CPM / DOS
+
+ Mac</PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>ign</B><TD align=left><B><font color="#B22222"><a Name="Page"></a>Page</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>"\p"</font></B><PRE><br>
+ weak separation convention</PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>ign</B><TD align=left><B><font color="#B22222"><a Name="Etx"></a>Etx</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>"\1a"</font>    <font color=black>{</font>    <a href="#Byte">Byte</a>    <font color=black>}</font></B><PRE><br>
+ CPM / older DOS Versions</PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+<TR valign=top><TH colspan=5 align=left><PRE>
+ Definitions and simple tokens</PRE></TH></TR>
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="Letter"></a>Letter</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'A'</font>    <font color=black>..</font>    <font color=green>'Z'</font>    <font color=black>|</font>    <font color=green>'a'</font>    <font color=black>..</font>    <font color=green>'z'</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="HexDigit"></a>HexDigit</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'0'</font>    <font color=black>..</font>    <font color=green>'9'</font>    <font color=black>|</font>    <a href="#Letter">Letter</a></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="Digit"></a>Digit</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'0'</font>    <font color=black>..</font>    <font color=green>'9'</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="Normal"></a>Normal</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><a href="#Letter">Letter</a>    <font color=black>|</font>    <a href="#Digit">Digit</a>    <font color=black>|</font>    <a href="#Space">Space</a></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="Quote"></a>Quote</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'\'\"\`\\'</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>tok</B><TD align=left><B><font color="#B22222"><a Name="Parenthesis"></a>Parenthesis</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'()[]{}'</font></B><PRE><br>
+ one character tokens</PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="Special"></a>Special</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><a href="#Printable">Printable</a>    <font color=black>-</font>    <a href="#Normal">Normal</a>    <font color=black>-</font>    <a href="#Parenthesis">Parenthesis</a>    <font color=black>-</font>    <a href="#Quote">Quote</a></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+<TR valign=top><TH colspan=5 align=left><PRE>
+ single byte literals or literals, encoded in us-ascii, ISO 8859-1 Latin-1 or ucs4 hex values</PRE></TH></TR>
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="LitChar"></a>LitChar</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><a href="#Printable">Printable</a>    <font color=black>-</font>    <a href="#Quote">Quote</a>    <font color=black>|</font>    <font color=green>'\\'</font>    <font color=black>(</font>    <a href="#Quote">Quote</a>    <font color=black>|</font>    <font color=green>'prnt'</font>    <font color=black>|</font>    <a href="#HexDigit">HexDigit</a>    <a href="#HexDigit">HexDigit</a>    <font color=black>|</font>    <font color=green>'xX'</font>    <a href="#HexDigit">HexDigit</a>    <a href="#HexDigit">HexDigit</a>    <a href="#HexDigit">HexDigit</a>    <a href="#HexDigit">HexDigit</a>    <a href="#HexDigit">HexDigit</a>    <a href="#HexDigit">HexDigit</a>    <a href="#HexDigit">HexDigit</a>    <a href="#HexDigit">HexDigit</a>    <font color=black>)</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+<TR valign=top><TH colspan=5 align=left><PRE>
+ Comments et al</PRE></TH></TR>
+
+
+<TR valign=top><TD align=left><B>com</B><TD align=left><B><font color="#B22222"><a Name="Comment"></a>Comment</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>';'</font>    <font color=black>{</font>    <a href="#Printable">Printable</a>    <font color=black>}</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+<TR valign=top><TH colspan=5 align=left><PRE>
+ Complex tokens</PRE></TH></TR>
+
+
+<TR valign=top><TD align=left><B>tok</B><TD align=left><B><font color="#B22222"><a Name="Ide"></a>Ide</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><a href="#Letter">Letter</a>    <font color=black>{</font>    <a href="#Letter">Letter</a>    <font color=black>}</font>    <font color=black>{</font>    <a href="#Digit">Digit</a>    <font color=black>}</font></B><PRE><br>
+ Identifier</PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>tok</B><TD align=left><B><font color="#B22222"><a Name="Nat"></a>Nat</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><a href="#Digit">Digit</a>    <font color=black>+</font></B><PRE><br>
+ Natural</PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>tok</B><TD align=left><B><font color="#B22222"><a Name="Opr"></a>Opr</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=black>(</font>    <a href="#Special">Special</a>    <font color=black>-</font>    <font color=green>';'</font>    <font color=black>)</font>    <font color=black>+</font></B><PRE><br>
+ Operator</PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>tok</B><TD align=left><B><font color="#B22222"><a Name="Set"></a>Set</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'\''</font>    <font color=black>{</font>    <a href="#LitChar">LitChar</a>    <font color=black>}</font>    <font color=green>'\''</font></B><PRE><br>
+ CharacterSet</PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>tok</B><TD align=left><B><font color="#B22222"><a Name="Seq"></a>Seq</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'\"'</font>    <font color=black>{</font>    <a href="#LitChar">LitChar</a>    <font color=black>}</font>    <font color=green>'\"'</font></B><PRE><br>
+ CharacterSequence (String)</PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+<TR valign=top><TH colspan=5 align=left><PRE>
+ Macro tokens</PRE></TH></TR>
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="White"></a>White</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><a href="#Space">Space</a>    <font color=black>|</font>    <a href="#Line">Line</a>    <font color=black>|</font>    <a href="#Page">Page</a></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="Name"></a>Name</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=black>(</font>    <a href="#Letter">Letter</a>    <font color=black>|</font>    <font color=green>"_"</font>    <font color=black>)</font>    <font color=black>{</font>    <a href="#Letter">Letter</a>    <font color=black>|</font>    <a href="#Digit">Digit</a>    <font color=black>|</font>    <font color=green>"_"</font>    <font color=black>}</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="MPar"></a>MPar</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=black>(</font>    <a href="#Printable">Printable</a>    <font color=black>-</font>    <font color=black>(</font>    <a href="#White">White</a>    <font color=black>|</font>    <font color=green>','</font>    <font color=black>|</font>    <font color=green>')'</font>    <font color=black>|</font>    <font color=green>'='</font>    <font color=black>)</font>    <font color=black>)</font>    <font color=black>{</font>    <a href="#Printable">Printable</a>    <font color=black>-</font>    <font color=black>(</font>    <a href="#White">White</a>    <font color=black>|</font>    <font color=green>','</font>    <font color=black>|</font>    <font color=green>')'</font>    <font color=black>|</font>    <font color=green>'='</font>    <font color=black>)</font>    <font color=black>}</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>tok</B><TD align=left><B><font color="#B22222"><a Name="MacInc"></a>MacInc</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>"#include"</font>    <a href="#White">White</a>    <font color=black>{</font>    <a href="#White">White</a>    <font color=black>}</font>    <font color=black>(</font>    <a href="#Printable">Printable</a>    <font color=black>-</font>    <a href="#White">White</a>    <font color=black>)</font>    <font color=black>{</font>    <a href="#Printable">Printable</a>    <font color=black>-</font>    <a href="#White">White</a>    <font color=black>}</font></B><PRE><br>
+ Include</PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>tok</B><TD align=left><B><font color="#B22222"><a Name="MacDel"></a>MacDel</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>"#undefine"</font>    <a href="#White">White</a>    <font color=black>{</font>    <a href="#White">White</a>    <font color=black>}</font>    <a href="#Name">Name</a></B><PRE><br>
+ undefine Macro</PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>tok</B><TD align=left><B><font color="#B22222"><a Name="MacDfn"></a>MacDfn</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>"#macro"</font>    <a href="#White">White</a>    <font color=black>{</font>    <a href="#White">White</a>    <font color=black>}</font>    <a href="#Name">Name</a>    <font color=black>{</font>    <a href="#White">White</a>    <font color=black>}</font>    <font color=black>[</font>    <font color=green>"("</font>    <font color=black>{</font>    <a href="#White">White</a>    <font color=black>}</font>    <a href="#MPar">MPar</a>    <font color=black>{</font>    <font color=black>{</font>    <a href="#White">White</a>    <font color=black>}</font>    <font color=green>","</font>    <font color=black>{</font>    <a href="#White">White</a>    <font color=black>}</font>    <a href="#MPar">MPar</a>    <font color=black>}</font>    <font color=black>{</font>    <a href="#White">White</a>    <font color=black>}</font>    <font color=green>")"</font>    <font color=black>{</font>    <a href="#White">White</a>    <font color=black>}</font>    <font color=black>]</font>    <font color=black>[</font>    <font color=green>"="</font>    <font color=black>(</font>    <font color=black>{</font>    <a href="#Byte">Byte</a>    <font color=black>}</font>    <font color=black>-</font>    <font color=black>(</font>    <font color=black>{</font>    <a href="#Byte">Byte</a>    <font color=black>}</font>    <font color=black>(</font>    <font color=green>"#macro"</font>    <font color=black>|</font>    <font color=green>"#end"</font>    <font color=black>)</font>    <font color=black>{</font>    <a href="#Byte">Byte</a>    <font color=black>}</font>    <font color=black>)</font>    <font color=black>)</font>    <font color=green>"#end"</font>    <font color=black>]</font></B><PRE><br>
+ Macro definition</PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>tok</B><TD align=left><B><font color="#B22222"><a Name="MacSep"></a>MacSep</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>'\''</font>    <font color=black>(</font>    <a href="#Byte">Byte</a>    <font color=black>-</font>    <font color=green>'\''</font>    <font color=black>)</font>    <font color=black>[</font>    <font color=green>'-'</font>    <font color=black>]</font></B><PRE><br>
+ End of parameter</PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>tok</B><TD align=left><B><font color="#B22222"><a Name="MacCond"></a>MacCond</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=black>(</font>    <font color=black>(</font>    <font color=green>"#ifdef"</font>    <font color=black>|</font>    <font color=green>"#ifndef"</font>    <font color=black>)</font>    <a href="#White">White</a>    <font color=black>{</font>    <a href="#White">White</a>    <font color=black>}</font>    <a href="#Name">Name</a>    <font color=black>)</font>    <font color=black>|</font>    <font color=green>"#else"</font>    <font color=black>|</font>    <font color=green>"#end"</font></B><PRE><br>
+ Conditionals</PRE></P><TD>&nbsp;
+
+
+</table>
+<BR>
+<BR>
+<BR>
+<center><H2>Context-free Grammar</H2></center>
+<BR>
+<font color="#000000">The syntax rules are described in
+<b><i>EBNF</i></b> ( Extended Backus-Naur-Form ). 
+A startsymbol must exist for each source file type. That means the syntax
+within each file has to be conform to the corresponding start rule.
+The other are internal helper rules. </font><font color="#000000"></font>
+<p><font color="#000000">Each <b><i><font size="+1">rule</font></i></b>
+is structured as follows: &lt;Rule Type: <b><i>start</i></b> or <b><i>let</i></b>>&nbsp;</font>
+&lt;<font color="#B22222">Rule Identifier</font>> :: &lt;EBNF-konform Expression>
+<br>An <b><i><font size="+1">EBNF-konform expression</font></i></b> defines a part
+of the language syntax. It consists of a set of alternative productions i.e.
+partial expressions, separated by the character '|'.
+<p>A production can be spezified with the help of the following elements and operators:
+<br>&nbsp;
+<ul>
+<li>
+<b><i><font size="+1">Expression1 Expression2 ... ExpressionN</font></i></b></li>
+
+<br>Concatenation of partial expressions
+<li>
+<b><i><font size="+1">Expression1 | Expression2 | ... | ExpressionN</font></i></b></li>
+
+<br>Union of partial expressions ( alternatives )
+<li>
+<b><i><font size="+1">[ Expression ]</font></i></b></li>
+
+<br>Optional partial expression
+<li>
+<b><i><font size="+1">{ Expression }</font></i></b></li>
+
+<br>Iteration of a partial expression ( 0 .. )
+<li>
+<b><i><font size="+1">Expression +</font></i></b></li>
+
+<br>Iteration of a partial expression ( 1 .. )
+<li>
+<b><i><font size="+1">( Expression )</font></i></b></li>
+
+<br>Combination of a partial expression ( subexpression )
+<li>
+<b><i><font color="#3366FF"><font size="+1">Token Identifier</font></font></i></b></li>
+
+<br><font color="#000000">... from the regular grammar</font>
+<li>
+<b><i><font color="#3366FF"><font size="+1">Rule Identifier<br>
+</font></font></i></b><font color="#000000">... from the context-free grammar</font></li>
+<li>
+<b><i><font color="#009900"><font size="+1">Keyword<br>
+</font></font></i></b><font color="#000000">Constant string / character sequence</font><br>
+</li>
+<li>
+<b><i><font color="#000000"><font size="+1">_other_<br>
+</font></font></i></b><font color="#000000">Special keyword denoting the
+character sequences from the set 'Sigma* \ Tokenset'</font><br>
+<BR></li>
+
+<br><font color="#000000"></font>&nbsp;</ul>
+<br>
+<table width=80% border=0>
+
+
+
+<TR valign=top><TD align=left><B>start</B><TD align=left><B><font color="#B22222"><a Name="Source"></a>Source</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>Language</font>    <a href="#Ide">Ide</a>    <font color=black>[</font>    <font color=green>Regular</font>    <font color=green>Grammar</font>    <font color=black>{</font>    <a href="#QlxDfn">QlxDfn</a>    <font color=black>}</font>    <font color=black>]</font>    <font color=black>[</font>    <font color=green>Context</font>    <font color=green>Free</font>    <font color=green>Grammar</font>    <font color=black>{</font>    <a href="#Cat">Cat</a>    <font color=black>[</font>    <font color=green>[</font>    <font color=green>err</font>    <font color=green>]</font>    <font color=black>]</font>    <a href="#Ide">Ide</a>    <font color=black>{</font>    <a href="#Lay">Lay</a>    <a href="#Ide">Ide</a>    <font color=green>:</font>    <font color=black>{</font>    <a href="#Mbr">Mbr</a>    <font color=black>}</font>    <font color=black>}</font>    <font color=black>}</font>    <font color=black>]</font></B><PRE><br></PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="QlxCat"></a>QlxCat</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>let</font>    <font color=black>|</font>    <font color=green>ind</font>    <font color=black>|</font>    <font color=green>ign</font>    <font color=black>|</font>    <font color=green>com</font>    <font color=black>|</font>    <font color=green>lan</font>    <font color=black>|</font>    <font color=green>tok</font></B><PRE><br>
+ QlxCategory</PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="QlxGrp1"></a>QlxGrp1</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>!</font>    <font color=black>|</font>    <font color=green>!</font>    <a href="#Ide">Ide</a></B><PRE><br>
+ switch to QlxGroup</PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="Exp"></a>Exp</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B></B><PRE><br>
+ Expression prio 0</PRE></P><TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right><B>&nbsp;|&nbsp;</B><TD align=justify><P><B><a href="#Exp">Exp</a>    <font color=green>-</font>    <a href="#Exp">Exp</a></B><PRE> </PRE></P><TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right><B>&nbsp;|&nbsp;</B><TD align=justify><P><B><a href="#Exp">Exp</a>    <font color=green>|</font>    <a href="#Exp">Exp</a></B><PRE> </PRE></P><TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right><B>&nbsp;|&nbsp;</B><TD align=justify><P><B><a href="#Ide">Ide</a></B><PRE> </PRE></P><TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right><B>&nbsp;|&nbsp;</B><TD align=justify><P><B><a href="#Set">Set</a></B><PRE> </PRE></P><TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right><B>&nbsp;|&nbsp;</B><TD align=justify><P><B><a href="#Seq">Seq</a></B><PRE> </PRE></P><TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right><B>&nbsp;|&nbsp;</B><TD align=justify><P><B><a href="#Exp">Exp</a>    <font color=green>..</font>    <a href="#Exp">Exp</a></B><PRE> </PRE></P><TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right><B>&nbsp;|&nbsp;</B><TD align=justify><P><B><font color=green>(</font>    <a href="#Exp">Exp</a>    <font color=green>)</font></B><PRE> </PRE></P><TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right><B>&nbsp;|&nbsp;</B><TD align=justify><P><B><font color=green>&lt;</font>    <a href="#Exp">Exp</a>    <font color=green>&gt;</font>    <a href="#Exp">Exp</a>    <font color=green>&lt;</font>    <a href="#Exp">Exp</a>    <font color=green>&gt;</font></B><PRE> </PRE></P><TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right><B>&nbsp;|&nbsp;</B><TD align=justify><P><B><a href="#Exp">Exp</a>    <a href="#Exp">Exp</a></B><PRE> </PRE></P><TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right><B>&nbsp;|&nbsp;</B><TD align=justify><P><B><font color=green>[</font>    <a href="#Exp">Exp</a>    <font color=green>]</font></B><PRE> </PRE></P><TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right><B>&nbsp;|&nbsp;</B><TD align=justify><P><B><a href="#Exp">Exp</a>    <font color=green>+</font></B><PRE> </PRE></P><TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right><B>&nbsp;|&nbsp;</B><TD align=justify><P><B><font color=green>{</font>    <a href="#Exp">Exp</a>    <font color=green>}</font></B><PRE> </PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="QlxDfn"></a>QlxDfn</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>ExGroup</font>    <a href="#Ide">Ide</a></B><PRE><br>
+ Qlx-Definition</PRE></P><TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right><B>&nbsp;|&nbsp;</B><TD align=justify><P><B><font color=green>InGroup</font>    <a href="#Ide">Ide</a></B><PRE> </PRE></P><TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+<TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right><B>&nbsp;|&nbsp;</B><TD align=justify><P><B><a href="#QlxCat">QlxCat</a>    <font color=black>[</font>    <font color=green>[</font>    <font color=green>ica</font>    <font color=green>]</font>    <font color=black>]</font>    <font color=black>[</font>    <font color=green>:</font>    <a href="#Ide">Ide</a>    <font color=green>:</font>    <font color=black>]</font>    <a href="#Ide">Ide</a>    <font color=black>[</font>    <a href="#QlxGrp1">QlxGrp1</a>    <font color=black>]</font>    <font color=green>=</font>    <a href="#Exp">Exp</a></B><PRE> </PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="Cat"></a>Cat</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>xtop</font>    <font color=black>|</font>    <font color=green>let</font>    <font color=black>|</font>    <font color=green>start</font></B><PRE><br>
+ Category</PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="Lay"></a>Lay</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>:</font>    <font color=black>|</font>    <font color=green>?</font>    <font color=black>|</font>    <font color=green>!</font></B><PRE><br>
+ Layouting: PrettyPrinter Hint</PRE></P><TD>&nbsp;
+
+
+<tbody><TR valign=top><TD align=left>&nbsp;<TD align=left>&nbsp;<TD align=right>&nbsp;<TD align=justify>&nbsp;<TD>&nbsp;
+
+
+
+<TR valign=top><TD align=left><B>let</B><TD align=left><B><font color="#B22222"><a Name="Mbr"></a>Mbr</font>&nbsp;&nbsp;</B><TD align=right><B>::&nbsp;</B><TD align=justify><P><B><font color=green>[</font>    <font color=green>other</font>    <font color=green>]</font>    <font color=black>|</font>    <a href="#Ide">Ide</a>    <font color=black>|</font>    <a href="#Seq">Seq</a></B><PRE><br>
+ Member</PRE></P><TD>&nbsp;
+
+
+</table>
+<BR>
+ 
+<BR>
+</body>
+</html>

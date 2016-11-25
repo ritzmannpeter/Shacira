@@ -1,0 +1,1872 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui version="4.0" stdsetdef="1">
+ <author/>
+ <comment/>
+ <exportmacro/>
+ <class>DemoFrame</class>
+ <widget class="CAppFrame" name="DemoFrame">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1024</width>
+    <height>768</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy>
+    <hsizetype>0</hsizetype>
+    <vsizetype>0</vsizetype>
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1024</width>
+    <height>768</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1024</width>
+    <height>768</height>
+   </size>
+  </property>
+  <property name="BGColor">
+   <color>
+    <red>162</red>
+    <green>202</green>
+    <blue>255</blue>
+   </color>
+  </property>
+  <property name="VirtualFocusColor">
+   <color>
+    <red>85</red>
+    <green>170</green>
+    <blue>255</blue>
+   </color>
+  </property>
+  <widget class="CFrame" name="frame3_2">
+   <property name="geometry">
+    <rect>
+     <x>76</x>
+     <y>1</y>
+     <width>873</width>
+     <height>768</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>873</width>
+     <height>768</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>873</width>
+     <height>768</height>
+    </size>
+   </property>
+   <widget class="CFrame" name="frame3_2_3_3">
+    <property name="geometry">
+     <rect>
+      <x>1</x>
+      <y>732</y>
+      <width>872</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>872</width>
+      <height>34</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>872</width>
+      <height>34</height>
+     </size>
+    </property>
+    <widget class="CFrame" name="cFrame6_3_2_5_5_3">
+     <property name="geometry">
+      <rect>
+       <x>218</x>
+       <y>0</y>
+       <width>109</width>
+       <height>34</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>109</width>
+       <height>34</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>109</width>
+       <height>34</height>
+      </size>
+     </property>
+     <property name="DarkFuncRef">
+      <cstring/>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="palette">
+      <palette>
+       <active>
+        <colorrole role="Window">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>212</red>
+           <green>208</green>
+           <blue>200</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="WindowText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </active>
+      </palette>
+     </property>
+     <property name="frameShape">
+      <enum>Box</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>Plain</enum>
+     </property>
+    </widget>
+    <widget class="CFrame" name="cFrame6_3_2_5_5_5">
+     <property name="geometry">
+      <rect>
+       <x>436</x>
+       <y>0</y>
+       <width>109</width>
+       <height>34</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>109</width>
+       <height>34</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>109</width>
+       <height>34</height>
+      </size>
+     </property>
+     <property name="DarkFuncRef">
+      <cstring/>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="palette">
+      <palette>
+       <active>
+        <colorrole role="Window">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>212</red>
+           <green>208</green>
+           <blue>200</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="WindowText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </active>
+      </palette>
+     </property>
+     <property name="frameShape">
+      <enum>Box</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>Plain</enum>
+     </property>
+    </widget>
+    <widget class="CFrame" name="cFrame6_3_2_5_5_5_2">
+     <property name="geometry">
+      <rect>
+       <x>545</x>
+       <y>0</y>
+       <width>109</width>
+       <height>34</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>109</width>
+       <height>34</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>109</width>
+       <height>34</height>
+      </size>
+     </property>
+     <property name="DarkFuncRef">
+      <cstring/>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="palette">
+      <palette>
+       <active>
+        <colorrole role="Window">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>212</red>
+           <green>208</green>
+           <blue>200</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="WindowText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </active>
+      </palette>
+     </property>
+     <property name="frameShape">
+      <enum>Box</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>Plain</enum>
+     </property>
+    </widget>
+    <widget class="CFrame" name="cFrame6_3_2_5_5_5_3">
+     <property name="geometry">
+      <rect>
+       <x>654</x>
+       <y>0</y>
+       <width>109</width>
+       <height>34</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>109</width>
+       <height>34</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>109</width>
+       <height>34</height>
+      </size>
+     </property>
+     <property name="DarkFuncRef">
+      <cstring/>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="palette">
+      <palette>
+       <active>
+        <colorrole role="Window">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>212</red>
+           <green>208</green>
+           <blue>200</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="WindowText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </active>
+      </palette>
+     </property>
+     <property name="frameShape">
+      <enum>Box</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>Plain</enum>
+     </property>
+    </widget>
+    <widget class="CFrame" name="cFrame6_3_2_5_5_5_4">
+     <property name="geometry">
+      <rect>
+       <x>763</x>
+       <y>0</y>
+       <width>109</width>
+       <height>34</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>109</width>
+       <height>34</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>109</width>
+       <height>34</height>
+      </size>
+     </property>
+     <property name="DarkFuncRef">
+      <cstring/>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="palette">
+      <palette>
+       <active>
+        <colorrole role="Window">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>212</red>
+           <green>208</green>
+           <blue>200</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="WindowText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </active>
+      </palette>
+     </property>
+     <property name="frameShape">
+      <enum>Box</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>Plain</enum>
+     </property>
+    </widget>
+    <widget class="CFrame" name="cFrame6_3_2_5_5">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>109</width>
+       <height>34</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>109</width>
+       <height>34</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>109</width>
+       <height>34</height>
+      </size>
+     </property>
+     <property name="DarkFuncRef">
+      <cstring/>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="palette">
+      <palette>
+       <active>
+        <colorrole role="Window">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>212</red>
+           <green>208</green>
+           <blue>200</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="WindowText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </active>
+      </palette>
+     </property>
+     <property name="frameShape">
+      <enum>Box</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>Plain</enum>
+     </property>
+    </widget>
+    <widget class="CFrame" name="cFrame6_3_2_5_5_4">
+     <property name="geometry">
+      <rect>
+       <x>327</x>
+       <y>0</y>
+       <width>109</width>
+       <height>34</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>109</width>
+       <height>34</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>109</width>
+       <height>34</height>
+      </size>
+     </property>
+     <property name="DarkFuncRef">
+      <cstring/>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="palette">
+      <palette>
+       <active>
+        <colorrole role="Window">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>212</red>
+           <green>208</green>
+           <blue>200</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="WindowText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </active>
+      </palette>
+     </property>
+     <property name="frameShape">
+      <enum>Box</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>Plain</enum>
+     </property>
+    </widget>
+    <widget class="CFrame" name="cFrame6_3_2_5_5_2">
+     <property name="geometry">
+      <rect>
+       <x>109</x>
+       <y>0</y>
+       <width>109</width>
+       <height>34</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>109</width>
+       <height>34</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>109</width>
+       <height>34</height>
+      </size>
+     </property>
+     <property name="DarkFuncRef">
+      <cstring/>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="palette">
+      <palette>
+       <active>
+        <colorrole role="Window">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>212</red>
+           <green>208</green>
+           <blue>200</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="WindowText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </active>
+      </palette>
+     </property>
+     <property name="frameShape">
+      <enum>Box</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>Plain</enum>
+     </property>
+    </widget>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="palette">
+     <palette>
+      <active>
+       <colorrole role="Window">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>192</red>
+          <green>192</green>
+          <blue>192</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="WindowText">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </active>
+     </palette>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Panel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Plain</enum>
+    </property>
+   </widget>
+   <widget class="CFrame" name="frame3_2_3_2">
+    <property name="geometry">
+     <rect>
+      <x>1</x>
+      <y>691</y>
+      <width>872</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy>
+      <hsizetype>0</hsizetype>
+      <vsizetype>0</vsizetype>
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>872</width>
+      <height>34</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>872</width>
+      <height>34</height>
+     </size>
+    </property>
+    <widget class="CFrame" name="cFrame6_3_2_4">
+     <property name="geometry">
+      <rect>
+       <x>327</x>
+       <y>0</y>
+       <width>109</width>
+       <height>34</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>109</width>
+       <height>34</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>109</width>
+       <height>34</height>
+      </size>
+     </property>
+     <property name="DarkFuncRef">
+      <cstring/>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="palette">
+      <palette>
+       <active>
+        <colorrole role="Window">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>212</red>
+           <green>208</green>
+           <blue>200</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="WindowText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </active>
+      </palette>
+     </property>
+     <property name="frameShape">
+      <enum>Box</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>Plain</enum>
+     </property>
+    </widget>
+    <widget class="CFrame" name="cFrame6_3_2_3">
+     <property name="geometry">
+      <rect>
+       <x>218</x>
+       <y>0</y>
+       <width>109</width>
+       <height>34</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>109</width>
+       <height>34</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>109</width>
+       <height>34</height>
+      </size>
+     </property>
+     <property name="DarkFuncRef">
+      <cstring/>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="palette">
+      <palette>
+       <active>
+        <colorrole role="Window">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>212</red>
+           <green>208</green>
+           <blue>200</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="WindowText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </active>
+      </palette>
+     </property>
+     <property name="frameShape">
+      <enum>Box</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>Plain</enum>
+     </property>
+    </widget>
+    <widget class="CFrame" name="cFrame6_3_2_5">
+     <property name="geometry">
+      <rect>
+       <x>436</x>
+       <y>0</y>
+       <width>109</width>
+       <height>34</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>109</width>
+       <height>34</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>109</width>
+       <height>34</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="DarkFuncRef">
+      <cstring/>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="palette">
+      <palette>
+       <active>
+        <colorrole role="Window">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>212</red>
+           <green>208</green>
+           <blue>200</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="WindowText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </active>
+      </palette>
+     </property>
+     <property name="frameShape">
+      <enum>Box</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>Plain</enum>
+     </property>
+    </widget>
+    <widget class="CFrame" name="cFrame6_3_2_5_3">
+     <property name="geometry">
+      <rect>
+       <x>654</x>
+       <y>0</y>
+       <width>109</width>
+       <height>34</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>109</width>
+       <height>34</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>109</width>
+       <height>34</height>
+      </size>
+     </property>
+     <property name="DarkFuncRef">
+      <cstring/>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="palette">
+      <palette>
+       <active>
+        <colorrole role="Window">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>212</red>
+           <green>208</green>
+           <blue>200</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="WindowText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </active>
+      </palette>
+     </property>
+     <property name="frameShape">
+      <enum>Box</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>Plain</enum>
+     </property>
+    </widget>
+    <widget class="CFrame" name="cFrame6_3_2_5_4">
+     <property name="geometry">
+      <rect>
+       <x>763</x>
+       <y>0</y>
+       <width>109</width>
+       <height>34</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>109</width>
+       <height>34</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>109</width>
+       <height>34</height>
+      </size>
+     </property>
+     <property name="DarkFuncRef">
+      <cstring/>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="palette">
+      <palette>
+       <active>
+        <colorrole role="Window">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>212</red>
+           <green>208</green>
+           <blue>200</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="WindowText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </active>
+      </palette>
+     </property>
+     <property name="frameShape">
+      <enum>Box</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>Plain</enum>
+     </property>
+    </widget>
+    <widget class="CFrame" name="cFrame6_3_2">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>109</width>
+       <height>34</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>109</width>
+       <height>34</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>109</width>
+       <height>34</height>
+      </size>
+     </property>
+     <property name="DarkFuncRef">
+      <cstring/>
+     </property>
+     <widget class="CActValue" name="cActValue1_3_3">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>5</y>
+        <width>55</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+      <property name="VarRef">
+       <cstring>matrix1[index1][index2]</cstring>
+      </property>
+      <property name="autoFillBackground">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="palette">
+      <palette>
+       <active>
+        <colorrole role="Window">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>212</red>
+           <green>208</green>
+           <blue>200</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="WindowText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </active>
+      </palette>
+     </property>
+     <property name="frameShape">
+      <enum>Box</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>Plain</enum>
+     </property>
+    </widget>
+    <widget class="CFrame" name="cFrame6_3_2_5_2">
+     <property name="geometry">
+      <rect>
+       <x>545</x>
+       <y>0</y>
+       <width>109</width>
+       <height>34</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>109</width>
+       <height>34</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>109</width>
+       <height>34</height>
+      </size>
+     </property>
+     <property name="DarkFuncRef">
+      <cstring/>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="palette">
+      <palette>
+       <active>
+        <colorrole role="Window">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>212</red>
+           <green>208</green>
+           <blue>200</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="WindowText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </active>
+      </palette>
+     </property>
+     <property name="frameShape">
+      <enum>Box</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>Plain</enum>
+     </property>
+    </widget>
+    <widget class="CFrame" name="cFrame6_3_2_2">
+     <property name="geometry">
+      <rect>
+       <x>109</x>
+       <y>0</y>
+       <width>109</width>
+       <height>34</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>109</width>
+       <height>34</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>109</width>
+       <height>34</height>
+      </size>
+     </property>
+     <property name="DarkFuncRef">
+      <cstring/>
+     </property>
+     <widget class="DActValue" name="dActValue1">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>5</y>
+        <width>55</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+      <property name="VarRef">
+       <cstring>matrix1[index1][index2]</cstring>
+      </property>
+      <property name="autoFillBackground">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="palette">
+      <palette>
+       <active>
+        <colorrole role="Window">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>240</red>
+           <green>240</green>
+           <blue>240</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="WindowText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </active>
+      </palette>
+     </property>
+     <property name="palette">
+      <palette>
+       <active>
+        <colorrole role="Window">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>212</red>
+           <green>208</green>
+           <blue>200</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="WindowText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </active>
+      </palette>
+     </property>
+     <property name="frameShape">
+      <enum>Box</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>Plain</enum>
+     </property>
+    </widget>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="palette">
+     <palette>
+      <active>
+       <colorrole role="Window">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>192</red>
+          <green>192</green>
+          <blue>192</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="WindowText">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </active>
+     </palette>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Panel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Plain</enum>
+    </property>
+   </widget>
+   <widget class="CFrame" name="frame3_2_2">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>871</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>35</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>32767</width>
+      <height>35</height>
+     </size>
+    </property>
+    <layout class="QHBoxLayout">
+     <property name="margin">
+      <number>0</number>
+     </property>
+     <property name="spacing">
+      <number>0</number>
+     </property>
+     <item>
+      <layout class="QHBoxLayout">
+       <property name="margin">
+        <number>0</number>
+       </property>
+       <property name="spacing">
+        <number>5</number>
+       </property>
+       <item>
+        <widget class="CFrame" name="Frame_Selected_Grp">
+         <property name="minimumSize">
+          <size>
+           <width>35</width>
+           <height>35</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>35</width>
+           <height>35</height>
+          </size>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="frameShape">
+          <enum>Box</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>Plain</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="CFrame" name="cFrame6_2">
+         <widget class="CFixText" name="Header">
+          <property name="geometry">
+           <rect>
+            <x>8</x>
+            <y>5</y>
+            <width>625</width>
+            <height>25</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Arial</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="autoFillBackground">
+           <bool>true</bool>
+          </property>
+         </widget>
+         <widget class="CInfoLabel" name="InfoLine_2">
+          <property name="geometry">
+           <rect>
+            <x>3</x>
+            <y>3</y>
+            <width>655</width>
+            <height>25</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Arial</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="EventFilter">
+           <enum>Info</enum>
+          </property>
+          <property name="InfoTypeFilter">
+           <number>2</number>
+          </property>
+          <property name="autoFillBackground">
+           <bool>true</bool>
+          </property>
+          <property name="palette">
+           <palette>
+            <active>
+             <colorrole role="Window">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>255</red>
+                <green>85</green>
+                <blue>0</blue>
+               </color>
+              </brush>
+             </colorrole>
+             <colorrole role="WindowText">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>0</red>
+                <green>0</green>
+                <blue>0</blue>
+               </color>
+              </brush>
+             </colorrole>
+            </active>
+           </palette>
+          </property>
+         </widget>
+         <widget class="CInfoLabel" name="InfoLine">
+          <property name="geometry">
+           <rect>
+            <x>3</x>
+            <y>3</y>
+            <width>655</width>
+            <height>25</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Arial</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="EventFilter">
+           <enum>Info</enum>
+          </property>
+          <property name="autoFillBackground">
+           <bool>true</bool>
+          </property>
+         </widget>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="palette">
+          <palette>
+           <active>
+            <colorrole role="Window">
+             <brush brushstyle="SolidPattern">
+              <color alpha="255">
+               <red>212</red>
+               <green>208</green>
+               <blue>200</blue>
+              </color>
+             </brush>
+            </colorrole>
+            <colorrole role="WindowText">
+             <brush brushstyle="SolidPattern">
+              <color alpha="255">
+               <red>0</red>
+               <green>0</green>
+               <blue>0</blue>
+              </color>
+             </brush>
+            </colorrole>
+           </active>
+          </palette>
+         </property>
+         <property name="frameShape">
+          <enum>Box</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>Plain</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="CFrame" name="cFrame6_3">
+         <property name="minimumSize">
+          <size>
+           <width>160</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>160</width>
+           <height>32767</height>
+          </size>
+         </property>
+         <widget class="CActValue" name="cActValue17">
+          <property name="geometry">
+           <rect>
+            <x>17</x>
+            <y>5</y>
+            <width>127</width>
+            <height>24</height>
+           </rect>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Arial</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="VarRef">
+           <cstring>SetDateTime</cstring>
+          </property>
+          <property name="autoFillBackground">
+           <bool>true</bool>
+          </property>
+          <property name="frameShape">
+           <enum>NoFrame</enum>
+          </property>
+         </widget>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="palette">
+          <palette>
+           <active>
+            <colorrole role="Window">
+             <brush brushstyle="SolidPattern">
+              <color alpha="255">
+               <red>212</red>
+               <green>208</green>
+               <blue>200</blue>
+              </color>
+             </brush>
+            </colorrole>
+            <colorrole role="WindowText">
+             <brush brushstyle="SolidPattern">
+              <color alpha="255">
+               <red>0</red>
+               <green>0</green>
+               <blue>0</blue>
+              </color>
+             </brush>
+            </colorrole>
+           </active>
+          </palette>
+         </property>
+         <property name="frameShape">
+          <enum>Box</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>Plain</enum>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Plain</enum>
+    </property>
+   </widget>
+   <widget class="CFrame" name="CFramePage">
+    <property name="geometry">
+     <rect>
+      <x>2</x>
+      <y>45</y>
+      <width>871</width>
+      <height>646</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>871</width>
+      <height>646</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>871</width>
+      <height>646</height>
+     </size>
+    </property>
+    <widget class="CGroupSelectButton" name="cGroupSelectButton1_2">
+     <property name="geometry">
+      <rect>
+       <x>881</x>
+       <y>381</y>
+       <width>64</width>
+       <height>64</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>64</width>
+       <height>64</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>64</width>
+       <height>64</height>
+      </size>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="frameShape">
+     <enum>NoFrame</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>Plain</enum>
+    </property>
+   </widget>
+   <property name="autoFillBackground">
+    <bool>true</bool>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::NoFrame</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Plain</enum>
+   </property>
+  </widget>
+  <widget class="CButtonGroup" name="QButtonGroup1_2">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>64</width>
+     <height>768</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>64</width>
+     <height>768</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>64</width>
+     <height>768</height>
+    </size>
+   </property>
+   <layout class="QVBoxLayout">
+    <property name="margin">
+     <number>1</number>
+    </property>
+    <property name="spacing">
+     <number>4</number>
+    </property>
+    <item>
+     <widget class="CGroupSelectButton" name="SelectButton_Grp_Alarm">
+      <property name="minimumSize">
+       <size>
+        <width>64</width>
+        <height>64</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>64</width>
+        <height>64</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="autoRaise">
+       <bool>true</bool>
+      </property>
+      <property name="HelpId1">
+       <cstring>Alr_</cstring>
+      </property>
+      <property name="PageGroup">
+       <cstring>group1</cstring>
+      </property>
+      <property name="autoFillBackground">
+       <bool>true</bool>
+      </property>
+      <property name="palette">
+       <palette>
+        <active>
+         <colorrole role="Window">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>170</red>
+            <green>255</green>
+            <blue>0</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="WindowText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="Button">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>170</red>
+            <green>255</green>
+            <blue>0</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </active>
+       </palette>
+      </property>
+      <property name="text">
+       <string>group 1</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="CGroupSelectButton" name="SelectButton_Grp_Overview">
+      <property name="minimumSize">
+       <size>
+        <width>64</width>
+        <height>64</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>64</width>
+        <height>64</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>group 2</string>
+      </property>
+      <property name="autoRaise">
+       <bool>true</bool>
+      </property>
+      <property name="HelpId1">
+       <cstring>Ovw_</cstring>
+      </property>
+      <property name="PageGroup">
+       <cstring>group2</cstring>
+      </property>
+      <property name="GroupPos">
+       <number>1</number>
+      </property>
+      <property name="autoFillBackground">
+       <bool>true</bool>
+      </property>
+      <property name="palette">
+       <palette>
+        <active>
+         <colorrole role="Window">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>255</red>
+            <green>255</green>
+            <blue>0</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="WindowText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="Button">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>255</red>
+            <green>255</green>
+            <blue>0</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </active>
+       </palette>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <spacer name="verticalSpacer0">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>23</width>
+        <height>44</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+   </layout>
+   <property name="autoFillBackground">
+    <bool>true</bool>
+   </property>
+   <property name="frameShape">
+    <enum>NoFrame</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>Plain</enum>
+   </property>
+  </widget>
+  <widget class="CButtonGroup" name="QButtonGroup1">
+   <property name="geometry">
+    <rect>
+     <x>960</x>
+     <y>0</y>
+     <width>64</width>
+     <height>768</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>64</width>
+     <height>768</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>64</width>
+     <height>768</height>
+    </size>
+   </property>
+   <layout class="QVBoxLayout">
+    <property name="margin">
+     <number>0</number>
+    </property>
+    <property name="spacing">
+     <number>4</number>
+    </property>
+    <item>
+     <spacer name="verticalSpacer1">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>23</width>
+        <height>44</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+   </layout>
+   <property name="autoFillBackground">
+    <bool>true</bool>
+   </property>
+   <property name="frameShape">
+    <enum>NoFrame</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>Plain</enum>
+   </property>
+  </widget>
+  <property name="autoFillBackground">
+   <bool>true</bool>
+  </property>
+  <property name="windowTitle">
+   <string>CAppFrameForm</string>
+  </property>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <connections>
+  <connection>
+   <sender>SelectButton_Grp_Alarm</sender>
+   <signal>GroupSelected(QPixmap)</signal>
+   <receiver>Frame_Selected_Grp</receiver>
+   <slot>ShowPixmap(QPixmap)</slot>
+  </connection>
+  <connection>
+   <sender>SelectButton_Grp_Overview</sender>
+   <signal>GroupSelected(QPixmap)</signal>
+   <receiver>Frame_Selected_Grp</receiver>
+   <slot>ShowPixmap(QPixmap)</slot>
+  </connection>
+ </connections>
+ <customwidgets>
+  <customwidget>
+   <class>CActValue</class>
+   <extends>QLabel</extends>
+   <header>CActValue.h</header>
+  </customwidget>
+  <customwidget>
+   <class>CAppFrame</class>
+   <extends>CWidget</extends>
+   <header>CAppFrame.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>CButtonGroup</class>
+   <extends>QLabel</extends>
+   <header>CButtonGroup.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>CFixText</class>
+   <extends>QLabel</extends>
+   <header>CFixText.h</header>
+  </customwidget>
+  <customwidget>
+   <class>CFrame</class>
+   <extends>QFrame</extends>
+   <header>CFrame.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>CGroupSelectButton</class>
+   <extends>CToolButton</extends>
+   <header>CGroupSelectButton.h</header>
+  </customwidget>
+  <customwidget>
+   <class>CInfoLabel</class>
+   <extends>QLabel</extends>
+   <header>CInfoLabel.h</header>
+  </customwidget>
+  <customwidget>
+   <class>DActValue</class>
+   <extends>CActValue</extends>
+   <header>DActValue.h</header>
+  </customwidget>
+ </customwidgets>
+ <includes>
+  <include location="local">qt4port.h</include>
+  <include location="local">CActValue.h</include>
+  <include location="local">CAppFrame.h</include>
+  <include location="local">CButtonGroup.h</include>
+  <include location="local">CFixText.h</include>
+  <include location="local">CFrame.h</include>
+  <include location="local">CGroupSelectButton.h</include>
+  <include location="local">CInfoLabel.h</include>
+  <include location="local">DActValue.h</include>
+ </includes>
+ <resources>
+  <include location="demo.qrc"/>
+ </resources>
+</ui>

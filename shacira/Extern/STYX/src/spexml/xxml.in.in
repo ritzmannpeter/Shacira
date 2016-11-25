@@ -1,0 +1,8 @@
+#! @SHELL@ -e
+
+patdir=@sampledir@/pat
+spedir=@sampledir@/spe
+dstdir=.
+
+stydoc -keepNTs=Attrs:Attr -OutFile=${dstdir}/xml_cfg.htm ${spedir}/xml.sty ${patdir}/tstydoc_us.htm 
+stydoc -OutFile=${dstdir}/dtd_cfg.htm ${spedir}/dtd.sty ${patdir}/tstydoc_us.htm 

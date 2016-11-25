@@ -1,0 +1,22 @@
+body{
+	margin-left:20px;
+	margin-top:30px;
+    font-family: arial, verdana, sans-serif;
+    background-image: url(../images/treebg.jpg);
+}
+a:link{
+	text-decoration:none;
+	color:#ffcc31;
+	font-weight: bold;
+}
+
+a:visited{
+	text-decoration:none;
+	font-weight: bold;
+	color:#ffcc31;
+}
+
+img{
+	width: 1000px;
+	height: 100px;
+}

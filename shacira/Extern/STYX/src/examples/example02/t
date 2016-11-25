@@ -1,0 +1,3 @@
+#!/bin/sh
+
+pim_test -PATH=./img pl0 testpl0.pl0

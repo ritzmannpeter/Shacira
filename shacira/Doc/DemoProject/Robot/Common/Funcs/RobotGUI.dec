@@ -1,0 +1,7 @@
+
+database local_variables device=local
+{
+};
+
+dark DarkConstState(long const_state, string s);
+plaus PlausMinMax(double min, double max);

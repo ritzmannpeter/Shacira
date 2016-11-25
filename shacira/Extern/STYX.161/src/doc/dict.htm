@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[dict.h] Type: Dictionary</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[dict.h] Type: Dictionary</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="standard.htm">#include "standard.h"</a>
+<br>
+<br>
+<br>
+<br><pre>
+   [dict] provides platform-independant access to directories and their entries.
+   Supported platforms are Unix and Windows.
+
+</pre>
+<br><hr width="100%" size=2><h2><b> Types </b></h2>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b>Dir</b>
+<td align=left> Abstract directory type       
+
+<TR valign=top>
+<td align=left><b>Dentry</b>
+<td align=left> Abstract directory entry type 
+
+</table>
+<br><hr width="100%" size=2><h2><b> Directory access </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Dir <b>Dir_open</b>(c_string PathName)</pre>
+<td bgcolor="#FFF0F5" align=left>open directory 'PathName'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Dentry <b>Dir_read</b>(Dir Directory)</pre>
+<td bgcolor="#FFF0F5" align=left>next directory entry
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>Dentry_name</b>(Dentry Entry)</pre>
+<td bgcolor="#FFF0F5" align=left>name of 'Entry'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Dir <b>Dentry_open</b>(Dentry Entry)</pre>
+<td bgcolor="#FFF0F5" align=left>open 'Entry'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>Dentry_path</b>(Dentry Entry)</pre>
+<td bgcolor="#FFF0F5" align=left>full path of 'Entry'; allocs memory
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Dentry_isDir</b>(Dentry Entry)</pre>
+<td bgcolor="#FFF0F5" align=left>'Entry' = directory ?
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Dentry_isFile</b>(Dentry Entry)</pre>
+<td bgcolor="#FFF0F5" align=left>'Entry' = regular file ?
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Dentry_isCDev</b>(Dentry Entry)</pre>
+<td bgcolor="#FFF0F5" align=left>'Entry' = character device ?
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Dentry_isBDev</b>(Dentry Entry)</pre>
+<td bgcolor="#FFF0F5" align=left>'Entry' = block device ?
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Dentry_isFifo</b>(Dentry Entry)</pre>
+<td bgcolor="#FFF0F5" align=left>'Entry' = FIFO ?
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>Dir_name</b>(Dir Directory)</pre>
+<td bgcolor="#FFF0F5" align=left>name of 'Directory'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Dir_close</b>(Dir Directory)</pre>
+<td bgcolor="#FFF0F5" align=left>close 'Directory'
+
+</table>
+
+</body>
+</html>

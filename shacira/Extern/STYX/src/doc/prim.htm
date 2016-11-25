@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[prim.h] Instance functions for simple data types</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[prim.h] Instance functions for simple data types</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="standard.htm">#include "standard.h"</a>
+<br>
+<br>
+<br>
+<br><hr width="100%" size=2><h2><b> Pre-defined functions for various data types </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>long <b>bytesHash</b>(c_byte x[], long len)</pre>
+<td bgcolor="#FFF0F5" align=left>hash function for byte sequences
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>long <b>strHash</b>(c_string s)</pre>
+<td bgcolor="#FFF0F5" align=left>hash function for type "string"
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>strEqual</b>(c_string a, c_string b)</pre>
+<td bgcolor="#FFF0F5" align=left>whether 'a' and 'b' are equal
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>long <b>combineOrderedHash</b>(long a, long b)</pre>
+<td bgcolor="#FFF0F5" align=left> combination of two non-commuative hash values <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>long <b>combineCommutativeHash</b>(long a, long b)</pre>
+<td bgcolor="#FFF0F5" align=left> combination of two permutable hash values <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Pre-defined functions for primitive data types </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>long <b>primHash</b>(StdCPtr x)</pre>
+<td bgcolor="#FFF0F5" align=left> hash function for primitive types like "char","int","pointer" <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>primEqual</b>(StdCPtr a, StdCPtr b)</pre>
+<td bgcolor="#FFF0F5" align=left>whether 'a' and 'b' are equal
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>primGreatEqual</b>(StdCPtr a, StdCPtr b)</pre>
+<td bgcolor="#FFF0F5" align=left> whether 'a' is greater equal than 'b' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>primLessEqual</b>(StdCPtr a, StdCPtr b)</pre>
+<td bgcolor="#FFF0F5" align=left> whether 'a' is less equal than 'b' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>primCompare</b>(StdCPtr a, StdCPtr b)</pre>
+<td bgcolor="#FFF0F5" align=left>order of 'a' and 'b'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>StdCPtr <b>primCopy</b>(StdCPtr a)</pre>
+<td bgcolor="#FFF0F5" align=left>identity
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>primFree</b>(StdCPtr a)</pre>
+<td bgcolor="#FFF0F5" align=left>frees a primitive value; i.e. does nothing
+
+</table>
+
+</body>
+</html>

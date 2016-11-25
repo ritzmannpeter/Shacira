@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Dateien">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;cxx;c;def</Extensions>
+    </Filter>
+    <Filter Include="Resource Dateien">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\Src\Tools\uitrans\uitrans.h">
+      <Filter>Source Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\Tools\uitrans\options.h">
+      <Filter>Source Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\Tools\uitrans\portingapplication.h">
+      <Filter>Source Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\Tools\uitrans\portingcontext.h">
+      <Filter>Source Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\Tools\uitrans\portingfile.h">
+      <Filter>Source Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\Tools\uitrans\replacement.h">
+      <Filter>Source Dateien</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\Src\Tools\uitrans\main.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Tools\uitrans\options.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Tools\uitrans\uitrans.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Tools\uitrans\portingapplication.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Tools\uitrans\portingcontext.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Tools\uitrans\portingfile.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Tools\uitrans\replacement.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

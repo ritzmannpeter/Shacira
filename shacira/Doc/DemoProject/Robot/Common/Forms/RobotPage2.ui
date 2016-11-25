@@ -1,0 +1,104 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>RobotPage2</class>
+<widget class="CPage">
+    <property name="name">
+        <cstring>RobotPage2</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>866</width>
+            <height>640</height>
+        </rect>
+    </property>
+    <property name="minimumSize">
+        <size>
+            <width>0</width>
+            <height>0</height>
+        </size>
+    </property>
+    <property name="maximumSize">
+        <size>
+            <width>32000</width>
+            <height>32000</height>
+        </size>
+    </property>
+    <property name="font">
+        <font>
+            <family>Arial</family>
+            <pointsize>11</pointsize>
+        </font>
+    </property>
+    <property name="caption">
+        <string>Group1:Page2</string>
+    </property>
+    <property name="DarkFuncRef">
+        <cstring></cstring>
+    </property>
+    <property name="Group0">
+        <enum>NoAccess</enum>
+    </property>
+    <property name="Group1">
+        <enum>ReadOnlyAccess</enum>
+    </property>
+    <property name="HelpId1">
+        <cstring>Ovw_Service</cstring>
+    </property>
+    <property name="PageGroup">
+        <cstring>group1</cstring>
+    </property>
+    <property name="PageHeadline">
+        <string>Group1:Page2</string>
+    </property>
+    <property name="LongPageHeadline">
+        <string>Group1:Page2</string>
+    </property>
+    <property name="PositionInGroup">
+        <number>1</number>
+    </property>
+    <widget class="CFixText">
+        <property name="name">
+            <cstring>cFixText1</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>120</x>
+                <y>230</y>
+                <width>546</width>
+                <height>136</height>
+            </rect>
+        </property>
+        <property name="font">
+            <font>
+                <pointsize>72</pointsize>
+            </font>
+        </property>
+        <property name="text">
+            <string>page 2</string>
+        </property>
+    </widget>
+    <widget class="CReqValue">
+        <property name="name">
+            <cstring>cReqValue1</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>130</x>
+                <y>385</y>
+                <width>180</width>
+                <height>36</height>
+            </rect>
+        </property>
+        <property name="VarRef">
+            <cstring>test_var</cstring>
+        </property>
+    </widget>
+</widget>
+<layoutdefaults spacing="6" margin="11"/>
+<includehints>
+    <includehint>CPage.h</includehint>
+    <includehint>CFixText.h</includehint>
+    <includehint>CReqValue.h</includehint>
+</includehints>
+</UI>

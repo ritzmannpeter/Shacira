@@ -1,0 +1,577 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[ptm.h] Type: Parse Tree / Term</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[ptm.h] Type: Parse Tree / Term</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="otab.htm">#include "otab.h"</a>
+<br><a href="binimg.htm">#include "binimg.h"</a>
+<br><a href="list.htm">#include "list.h"</a>
+<br><a href="sink.htm">#include "sink.h"</a>
+<br>
+<br>
+<br>
+<br><hr width="100%" size=4><h2><font color="#008B8B"><b> Parse Tree </b></font></h2>
+<br><pre>
+   [ptm] implements the parse i.e. derivation tree as special term data type.
+
+   Term representation
+
+     Three forms of term representation are supported by the construction functions.
+
+     C: This is an efficient representation which lacks an explicit list node
+        for the childs of a nonterminal node.
+
+     Xaron: This is a Lisp-like representation with an explicit list node
+            for the childs of a nonterminal node. ( used by the xaron project )
+
+     ABS: This is a special optimized representation of the abstract parse tree only
+          with all keywords and comments discarded. For a traversal of the tree you
+          must use the abstract variant of the generated function interface.
+
+   Definition of the symbol position
+
+     1. Terminal         : Position of the first terminal character
+     2. Nonterminal      : Position of the first terminal character if exists
+     3. Empty production : Position of the first character of the next terminal
+
+</pre>
+<br><hr width="100%" size=2><h2><b> Types </b></h2>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b>PT_Term</b>
+<td align=left> Abstract parse tree type          
+
+<TR valign=top>
+<td align=left><b>PT_Itr</b>
+<td align=left> Abstract parse tree iterator type 
+
+</table>
+<br><hr width="100%" size=2><h2><b> Construction & Disposing </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PT_Term <b>PT_newTNode</b>(symbol cfgsym, short symcls, symbol value)</pre>
+<td bgcolor="#FFF0F5" align=left> C: creates a node for<br>
+      token 'cfgsym' of type 'symcls' and 'value'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PT_Term <b>XPT_newTNode</b>(symbol cfgsym, short symcls, symbol value)</pre>
+<td bgcolor="#FFF0F5" align=left> Xaron: creates a node for<br>
+          token 'cfgsym' of type 'symcls' and 'value'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PT_Term <b>PT_newNtNode</b>(symbol cfgsym, symbol prdsym, PT_Term parts)</pre>
+<td bgcolor="#FFF0F5" align=left> C: creates a node for nonterminal 'cfgsym',<br>
+      production 'prdsym' and child nodes 'parts'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PT_Term <b>XPT_newNtNode</b>(symbol cfgsym, symbol prdsym, List(PT_Term) parts)</pre>
+<td bgcolor="#FFF0F5" align=left> Xaron: creates a node for nonterminal 'cfgsym',<br>
+          production 'prdsym' and child nodes 'parts'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PT_Term <b>PT_updVal</b>(PT_Term PTree, Any_T value)</pre>
+<td bgcolor="#FFF0F5" align=left> updates token node 'PTree' with 'value'; returns 'PTree' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PT_Term <b>PT_updPos</b>(PT_Term PTree, symbol file, long row, long col)</pre>
+<td bgcolor="#FFF0F5" align=left> updates node 'PTree' with the position 'file', 'row' and 'col';<br>
+   returns 'PTree'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PT_Term <b>PT_consT</b>(PT_Term left, PT_Term right)</pre>
+<td bgcolor="#FFF0F5" align=left> C: child node concatenation:<br>
+      child list = cons('left','right')<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>List(PT_Term) <b>XPT_consT</b>(PT_Term left, List(PT_Term) right)</pre>
+<td bgcolor="#FFF0F5" align=left> Xaron: child node concatenation:<br>
+          child list = cons('left','right')<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PT_Term <b>PT_copyPos</b>(PT_Term left, PT_Term right)</pre>
+<td bgcolor="#FFF0F5" align=left> assigns position of node 'right' to node 'left';<br>
+   returns 'left'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PT_Term <b>PT_copyNode</b>(PT_Term PTree)</pre>
+<td bgcolor="#FFF0F5" align=left> copies node 'PTree' ( without child nodes ) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PT_delT</b>(PT_Term PTree)</pre>
+<td bgcolor="#FFF0F5" align=left>removes parse tree / term 'PTree'
+
+</table>
+<br><hr width="100%" size=2><h2><b> Accessing </b></h2>
+<br>
+  <p><b>Recognizer</b>
+
+
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>PT_isXaron</b>(PT_Term PTree)</pre>
+<td bgcolor="#FFF0F5" align=left> whether 'PTree' is a Xaron-konform parse tree / term <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>PT_isNonTerm</b>(PT_Term PTree)</pre>
+<td bgcolor="#FFF0F5" align=left> whether 'PTree' starts with a nonterminal node <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>PT_isCFG</b>(PT_Term PTree)</pre>
+<td bgcolor="#FFF0F5" align=left> whether 'PTree' is an embedded language node <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>PT_isToken</b>(PT_Term PTree)</pre>
+<td bgcolor="#FFF0F5" align=left>whether 'PTree' is a token node
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>PT_isKey</b>(PT_Term PTree)</pre>
+<td bgcolor="#FFF0F5" align=left>whether 'PTree' is a keyword node
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>PT_isComment</b>(PT_Term PTree)</pre>
+<td bgcolor="#FFF0F5" align=left>whether 'PTree' is a comment node
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>PT_hasPos</b>(PT_Term PTree)</pre>
+<td bgcolor="#FFF0F5" align=left> whether node 'PTree' contains position informations <br>
+
+</table>
+<br>
+  <p><b>Selection</b>
+
+
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>symbol <b>PT_product</b>(PT_Term PTree)</pre>
+<td bgcolor="#FFF0F5" align=left> production symbol of node 'PTree';<br>
+   assertion: PT_isNonTerm(PTree)<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>symbol <b>PT_symbol</b>(PT_Term PTree)</pre>
+<td bgcolor="#FFF0F5" align=left>symbol of node 'PTree' ( NT,T )
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>short <b>PT_symtyp</b>(PT_Term PTree)</pre>
+<td bgcolor="#FFF0F5" align=left> symbol type of node 'PTree' ( NT/T, see [cfg_dfn] ) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>symbol <b>PT_value</b>(PT_Term PTree)</pre>
+<td bgcolor="#FFF0F5" align=left> token value of node 'PTree'<br>
+   assertion: ! PT_isNonTerm(PTree) && ! PT_isCFG(PTree)<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PT_Term <b>PT_cfg</b>(PT_Term PTree)</pre>
+<td bgcolor="#FFF0F5" align=left> embedded language of node 'PTree'<br>
+   assertion: PT_isCFG(PTree)<br>
+<br>
+
+</table>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>symbol <b>PT_file</b>(PT_Term PTree)</pre>
+<td bgcolor="#FFF0F5" align=left> position - source file of node 'PTree'<br>
+   assertion: PT_hasPos(PTree)<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>long <b>PT_row</b>(PT_Term PTree)</pre>
+<td bgcolor="#FFF0F5" align=left> position - source line of node 'PTree'<br>
+   assertion: PT_hasPos(PTree)<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>long <b>PT_col</b>(PT_Term PTree)</pre>
+<td bgcolor="#FFF0F5" align=left> position - source column of node 'PTree'<br>
+   assertion: PT_hasPos(PTree)<br>
+<br>
+
+</table>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PT_Term <b>PT_next</b>(PT_Term PTree)</pre>
+<td bgcolor="#FFF0F5" align=left> C: next node / rest of child list 'PTree' or NULL <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PT_Term <b>PT_parts</b>(PT_Term PTree)</pre>
+<td bgcolor="#FFF0F5" align=left> C: child list ( first node ) of node 'PTree'<br>
+      assertion: PT_isNonTerm(PTree)<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>List(PT_Term) <b>XPT_parts</b>(PT_Term PTree)</pre>
+<td bgcolor="#FFF0F5" align=left> Xaron: child list of node 'PTree'<br>
+          assertion: PT_isNonTerm(PTree)<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>List(PT_Term)* <b>XPT_parts_ref</b>(PT_Term PTree)</pre>
+<td bgcolor="#FFF0F5" align=left> Xaron: pointer reference to child list of node 'PTree'<br>
+          assertion: PT_isNonTerm(PTree)<br>
+<br>
+
+</table>
+<br>
+  <p><b>Convenience macros for identifying a certain nonterminal,
+  token or production </b>
+
+
+<br><pre>#define PT_THISNTM(t,s) ( ( PT_isNonTerm(t) && PT_symbol(t)  == (s) ) ? \
+                          C_True : C_False )
+#define PT_THISTOK(t,s) ( ( PT_isToken(t)   && PT_symbol(t)  == (s) ) ? \
+                          C_True : C_False )
+#define PT_THISPRD(t,p) ( ( PT_isNonTerm(t) && PT_product(t) == (p) ) ? \
+                          C_True : C_False )
+
+</pre>
+<br><hr width="100%" size=2><h2><b> Searching </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>PT_cntST_ex</b>
+    (
+      PT_Term PTree, c_bool (*filter)(PT_Term PTree, Any_T any), Any_T any
+    )</pre>
+<td bgcolor="#FFF0F5" align=left> number of nodes t within child list of node 'PTree'<br>
+   sacrifying condition filter(t,any) = False<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>PT_cntST</b>(PT_Term PTree, c_bool (*filter)(PT_Term PTree))</pre>
+<td bgcolor="#FFF0F5" align=left> number of nodes t within child list of node 'PTree'<br>
+   sacrifying condition filter(t) = False<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PT_Term <b>PT_nthST_ex</b>
+        (
+          PT_Term PTree, int nth,
+          c_bool (*filter)(PT_Term PTree, Any_T any), Any_T any
+        )</pre>
+<td bgcolor="#FFF0F5" align=left> 'nth' node t within child list of node 'PTree'<br>
+   sacrifying condition filter(t,any) = False<br>
+   [nth=1..PT_cntST_ex]<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PT_Term <b>PT_nthST</b>(PT_Term PTree, int nth, c_bool (*filter)(PT_Term PTree))</pre>
+<td bgcolor="#FFF0F5" align=left> 'nth' node t within child list of node 'PTree'<br>
+   sacrifying condition filter(t) = False<br>
+   [nth=1..PT_cntST]<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>PT_symbolCnt</b>(PT_Term PTree, symbol cfgsym, c_bool filter)</pre>
+<td bgcolor="#FFF0F5" align=left> filter --&gt; number of nodes with symbol 'cfgsym'<br>
+   else   --&gt; number of token and nonterminal nodes<br>
+              ( skipping keywords and comments )<br>
+   within child list of node 'PTree'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PT_Term <b>PT_nthSymbol</b>(PT_Term PTree, symbol cfgsym, int nth, c_bool filter)</pre>
+<td bgcolor="#FFF0F5" align=left> filter --&gt; 'nth' node with symbol 'cfgsym'<br>
+   else   --&gt; 'nth' token or nonterminal node<br>
+              ( skipping keywords and comments )<br>
+   within child list of node 'PTree' [nth=1..PT_symbolCnt]<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PT_Term <b>PT_r_find</b>
+        (
+          PT_Term PTree, c_bool (*pred)(PT_Term PTree, StdCPtr any), StdCPtr any
+        )</pre>
+<td bgcolor="#FFF0F5" align=left> first subterm t of parse tree / term 'PTree'<br>
+   sacrifying condition pred(t,any) ( recursive )<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PT_Term <b>PT_l_find</b>
+        (
+          PT_Term PTree, c_bool (*pred)(PT_Term PTree, StdCPtr any), StdCPtr any
+        )</pre>
+<td bgcolor="#FFF0F5" align=left> first subterm t of parse tree / term 'PTree'<br>
+   sacrifying condition pred(t,any) ( non-recursive )<br>
+<br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Term Iterator </b></h2>
+<br>
+  <p><b>Traversal order</b>
+  <p>All nodes will be visited in pre and post order.
+
+
+<br><pre>#define PT_ROOT   1 // root / start order
+#define PT_PRAE   2 // pre order
+#define PT_POST   3 // post order
+
+</pre>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PT_Itr <b>PT_newIT</b>(PT_Term PTree)</pre>
+<td bgcolor="#FFF0F5" align=left> creates an iterator for parse tree / term 'PTree' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PT_delIT</b>(PT_Itr iter)</pre>
+<td bgcolor="#FFF0F5" align=left>removes term iterator 'iter'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PT_Itr <b>PT_copyIT</b>(PT_Itr iter)</pre>
+<td bgcolor="#FFF0F5" align=left>copies term iterator 'iter'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>short <b>PT_stateIT</b>(PT_Itr iter)</pre>
+<td bgcolor="#FFF0F5" align=left> current traversal order of term iterator 'iter'<br>
+   ( PT_PRAE / PT_POST )<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PT_Term <b>PT_termIT</b>(PT_Itr iter)</pre>
+<td bgcolor="#FFF0F5" align=left>current node of term iterator 'iter'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>OT_Tab <b>PT_stackIT</b>(PT_Itr iter)</pre>
+<td bgcolor="#FFF0F5" align=left> current node stack of term iterator 'iter' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>PT_df_getIT</b>(PT_Itr iter)</pre>
+<td bgcolor="#FFF0F5" align=left> next node of term iterator 'iter'<br>
+   in depth first, prae/post order ;<br>
+   returns False on end-of-term<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>PT_bf_getIT</b>(PT_Itr iter)</pre>
+<td bgcolor="#FFF0F5" align=left> next node of term iterator 'iter'<br>
+   in breast first, prae/post order;<br>
+   returns False on end-of-term<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>PT_filterIT</b>(PT_Itr iter, c_bool (*get)(PT_Itr iter))</pre>
+<td bgcolor="#FFF0F5" align=left> next node of term iterator 'iter' in prae/post order<br>
+   sacrifying filter condition get(iter),<br>
+   skipping comments and keywords;<br>
+   returns False on end-of-term i.e. notfound<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PT_skipIT</b>(PT_Itr iter)</pre>
+<td bgcolor="#FFF0F5" align=left> skips subterms of current node in term iterator 'iter'<br>
+   assertion: current traversal order = PT_PRAE<br>
+<br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Convenient iterator macros </b></h2>
+<br><pre> For - statement with basic iterators. Make sure to
+     free the iterator if you leave the loop via break.
+
+</pre>
+<br><pre>#define PT_FORALL(it,tr)      for( (it)   = PT_newIT(tr);            \
+                                   ( PT_df_getIT(it) )               \
+                                   ? C_True : ( PT_delIT(it), C_False ); )
+#define PT_FORALL_F(it,tr)    for( (it)   = PT_newIT(tr);            \
+                                   ( PT_filterIT(it,PT_df_getIT) )   \
+                                   ? C_True : ( PT_delIT(it), C_False ); )
+#define PT_FORALL_BF(it,tr)   for( (it)   = PT_newIT(tr);            \
+                                   ( PT_bf_getIT(it) )               \
+                                   ? C_True : ( PT_delIT(it), C_False ); )
+#define PT_FORALL_BF_F(it,tr) for( (it)   = PT_newIT(tr);            \
+                                   ( PT_filterIT(it,PT_bf_getIT) )   \
+                                   ? C_True : ( PT_delIT(it), C_False ); )
+#define PT_BREAK(it)          { PT_delIT(it); break; }
+
+</pre>
+<br><hr width="100%" size=2><h2><b> Hashing & Predicates </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>long <b>PT_hash</b>(PT_Term PTree)</pre>
+<td bgcolor="#FFF0F5" align=left>hash value of parse tree / term 'PTree'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>PT_equal</b>(PT_Term left, PT_Term right)</pre>
+<td bgcolor="#FFF0F5" align=left> term 'left' = term 'right' ? <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>PT_subterm</b>(PT_Term left, PT_Term right)</pre>
+<td bgcolor="#FFF0F5" align=left> term 'left' &lt;= term 'right' ? <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Binary Image </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PT_fputT</b>(BinImg_T img, PT_Term PTree)</pre>
+<td bgcolor="#FFF0F5" align=left> unloads parse tree / term 'PTree'<br>
+   to binary image 'img' (reentrant)<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PT_putT</b>(PT_Term PTree)</pre>
+<td bgcolor="#FFF0F5" align=left> unloads parse tree / term 'PTree'<br>
+   to the current ( previously opened ) image<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PT_fgetT</b>(BinImg_T img, PT_Term* PTree)</pre>
+<td bgcolor="#FFF0F5" align=left> loads parse tree / term 'PTree'<br>
+   from binary image 'img' (reentrant)<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PT_getT</b>(PT_Term* PTree)</pre>
+<td bgcolor="#FFF0F5" align=left> loads parse tree / term 'PTree'<br>
+   from the current ( previously opened ) image<br>
+<br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Printing </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PT_prind</b>(PT_Term PTree, int ind)</pre>
+<td bgcolor="#FFF0F5" align=left> prints parse tree / term 'PTree' to stdout<br>
+   ( with indent 'ind' )<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PT_prind_utf8</b>(PT_Term PTree, int ind)</pre>
+<td bgcolor="#FFF0F5" align=left> prints utf8 parse tree / term 'PTree' to stdout<br>
+   ( with indent 'ind' )<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PT_prind_rawutf8</b>(PT_Term PTree, int ind)</pre>
+<td bgcolor="#FFF0F5" align=left> prints utf8 parse tree / term 'PTree' to stdout<br>
+   ( printable ascii or hex, with indent 'ind' )<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PT_print</b>(PT_Term PTree)</pre>
+<td bgcolor="#FFF0F5" align=left>prints parse tree / term 'PTree' to stdout
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PT_print_utf8</b>(PT_Term PTree)</pre>
+<td bgcolor="#FFF0F5" align=left> prints utf8 parse tree / term 'PTree' to stdout <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PT_print_rawutf8</b>(PT_Term PTree)</pre>
+<td bgcolor="#FFF0F5" align=left> prints utf8 parse tree / term 'PTree' to stdout<br>
+   ( printable ascii or hex )<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PT_TermToString</b>(PT_Term PTree)</pre>
+<td bgcolor="#FFF0F5" align=left> prints value of parse tree / term 'PTree' to stdout <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PT_TermToSink</b>(PT_Term PTree, Sink snk)</pre>
+<td bgcolor="#FFF0F5" align=left> prints value of parse tree / term 'PTree' to sink 'snk'<br>
+   ( without comments )<br>
+<br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Normalizer </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PT_Term <b>PT_keycom_Skip</b>(PT_Term x)</pre>
+<td bgcolor="#FFF0F5" align=left> C: skips comment and keyword nodes in child list 'x';<br>
+      returns first token / nonterminal node or NULL<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>List(PT_Term) <b>XPT_keycom_Skip</b>(List(PT_Term) x)</pre>
+<td bgcolor="#FFF0F5" align=left> Xaron: skips comment and keyword nodes in child list 'x';<br>
+          returns next token / nonterminal node or NULL<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PT_Term <b>PT_ignkey_Skip</b>(PT_Term x, ROW(PT_Term) coms)</pre>
+<td bgcolor="#FFF0F5" align=left> skips 'ign#'-production, comment and keyword nodes<br>
+   in parse tree / term 'x', collecting comment nodes in 'coms';<br>
+   returns next token / nonterminal node<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PT_Term <b>PT_ign_Skip</b>(PT_Term x)</pre>
+<td bgcolor="#FFF0F5" align=left> skips 'ign#'-production, comment and keyword nodes<br>
+   in parse tree / term 'x';<br>
+   returns next token / nonterminal node<br>
+<br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Xaron Support </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PT_references</b>(PT_Term x, StdCPtr (*act)(StdCPtr r))</pre>
+<td bgcolor="#FFF0F5" align=left> performs 'act' on all pointer and symbol references in node 'x'<br>
+   ( garbage collection service for xaron )<br>
+<br>
+
+</table>
+<br><hr width="100%" size=4><h2><font color="#008B8B"><b> Parse Tree (ABS) </b></font></h2>
+<br><pre>
+   The above mentioned special optimzed form of an abstract parse tree can be
+   produced with the following - non-reentrant - unload/load-API.
+
+         parse tree         --- unload ---&gt;
+                                              binary image
+         parse tree (ABS)  &lt;---  load  ---
+
+
+</pre>
+<br><hr width="100%" size=2><h2><b> Types & Macros </b></h2>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b>PT_Abs_Term</b>
+<td align=left> Abstract parse tree type [ABS] 
+
+</table>
+<br><pre>#define PT_Abs_nonterm(X)   ((symbol)(((long __HUGE*)(X))[0]))
+#define PT_Abs_token(X)     ((symbol)(((long __HUGE*)(X))[0]))
+#define PT_Abs_product(X)   ((symbol)(((long __HUGE*)(X))[1]))
+#define PT_Abs_value(X)     ((symbol)(((long __HUGE*)(X))[2]))
+#define PT_Abs_part(X,N)    ((PT_Abs_Term)(((long __HUGE*)(X))[2+(N)]))
+#define PT_Abs_cfg(X)       ((PT_Abs_Term)(((long __HUGE*)(X))[2+(1)]))
+
+</pre>
+<br><pre>#define PT_Abs_isToken(X)   (PT_Abs_product(X) == (symbol)NULL)
+#define PT_Abs_isNonTerm(X) (PT_Abs_product(X) != (symbol)NULL)
+#define PT_Abs_isCFG(X) \
+  (PT_Abs_product(X) == (symbol)NULL && PT_Abs_value(X) == NULL)
+
+</pre>
+<br><hr width="100%" size=2><h2><b> Init & Quit </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PT_putBgn</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>initializes abstract term putting
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PT_putEnd</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>quits abstract term putting
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PT_getBgn</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>initializes abstract term getting
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PT_getEnd</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>quits abstract term getting
+
+</table>
+<br><hr width="100%" size=2><h2><b> Put & Get </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>long <b>PT_Symbol_to_Ref</b>(symbol s)</pre>
+<td bgcolor="#FFF0F5" align=left>reference corresponding to symbol 's'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>long <b>PT_putSymbol</b>(symbol s)</pre>
+<td bgcolor="#FFF0F5" align=left>creates a reference for symbol 's'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PT_putAllSymbols</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left> puts all symbol references<br>
+   to the current ( previously opened ) binary image<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PT_getAllSymbols</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left> gets all symbol references<br>
+   from the current ( previously opened ) binary image<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>symbol <b>PT_getSymbol</b>(long RefId)</pre>
+<td bgcolor="#FFF0F5" align=left> symbol corresponding to reference 'RefId' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>long <b>PT_Term_to_Ref</b>(PT_Term PTree)</pre>
+<td bgcolor="#FFF0F5" align=left> abstract term reference corresponding to parse tree 'PTree'<br>
+   ( unload phase )<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PT_Abs_Term <b>PT_Ref_to_Term</b>(long __HUGE* nodes, long RefId)</pre>
+<td bgcolor="#FFF0F5" align=left> abstract term in node array 'nodes'<br>
+   corresponding to reference 'RefId'<br>
+   ( load phase )<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>long <b>PT_putAbsNode</b>(PT_Term PTree)</pre>
+<td bgcolor="#FFF0F5" align=left> creates an abstract term reference for parse tree 'PTree' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PT_putAbsT</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left> puts all abstract term references<br>
+   to the current ( previously opened ) binary image<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>long __HUGE* <b>PT_getAbsT</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left> gets all abstract term references<br>
+   from the current ( previously opened ) binary image<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>long __HUGE* <b>PT_patchAbsT</b>(long __HUGE* nodes)</pre>
+<td bgcolor="#FFF0F5" align=left> patches all abstract term references<br>
+   in node array 'nodes'; returns 'nodes'<br>
+<br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Disposing </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PT_delAbsT</b>(long __HUGE* nodes)</pre>
+<td bgcolor="#FFF0F5" align=left> removes node array 'nodes' with abstract term references <br>
+
+</table>
+
+</body>
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[ptm_gen.h] Parse Term Construction</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[ptm_gen.h] Parse Term Construction</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="symbols.htm">#include "symbols.h"</a>
+<br><a href="scn_base.htm">#include "scn_base.h"</a>
+<br><a href="scn_abs.htm">#include "scn_abs.h"</a>
+<br><a href="prs_dfn.htm">#include "prs_dfn.h"</a>
+<br><a href="prs_abs.htm">#include "prs_abs.h"</a>
+<br><a href="ptm.htm">#include "ptm.h"</a>
+<br>
+<br>
+<br>
+<br><pre>
+   The module [ptm_gen] provides a high-level parse interface. It implements
+   the construction of the parse tree / term during the parse process.
+   The scan, parse and term construction functions are reentrant which offers
+   the possibility of multiple concurrent parse operations.
+
+</pre>
+<br><hr width="100%" size=2><h2><b> Types </b></h2>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b>PT_Diag</b>
+<td align=left> Abstract parse term diagnose type 
+
+</table>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b>PT_Cfg</b>
+<td align=left> Abstract parse term configuration type 
+
+</table>
+<br><hr width="100%" size=2><h2><b> Parsing & Term Construction </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PT_Cfg <b>PT_init</b>(PLR_Tab PTab, Scn_Stream cStream)</pre>
+<td bgcolor="#FFF0F5" align=left> initializes parse term construction<br>
+   for parse table 'PTab' and scan stream 'cStream';<br>
+   creates a configuration<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PT_Cfg <b>PT_init_extscn</b>(PLR_Tab PTab, AbsScn_T sconfig)</pre>
+<td bgcolor="#FFF0F5" align=left> initializes parse term construction<br>
+   for parse table 'PTab' and external scanner 'sconfig';<br>
+   creates a configuration<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PT_Cfg <b>PT_init_ext</b>(AbsPlr_T pconfig, AbsScn_T sconfig)</pre>
+<td bgcolor="#FFF0F5" align=left> initializes parse term construction<br>
+   for external parser 'pconfig' and external scanner 'sconfig';<br>
+   creates a configuration<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PT_setMsgFun</b>(void (*prMsg)(c_string msg))</pre>
+<td bgcolor="#FFF0F5" align=left> defines 'prMsg' as ( static ) default message function<br>
+   ( 'msg': single byte character set or UTF-8 )<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PT_setDiagFun</b>(PT_Cfg PCfg, PT_Diag PDiag)</pre>
+<td bgcolor="#FFF0F5" align=left> adds diagnose environment 'PDiag' to<br>
+   parse term configuration 'PCfg'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PT_setTokConvFun</b>(PT_Cfg PCfg, symbol convTok(symbol tok, symbol val))</pre>
+<td bgcolor="#FFF0F5" align=left> adds token value converter 'convTok' to<br>
+   parse term configuration 'PCfg'<br>
+   ( user-defined shift-handler )<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PT_setNtmConvFun</b>(PT_Cfg PCfg, PT_Term convNtm(PT_Term Tree))</pre>
+<td bgcolor="#FFF0F5" align=left> adds nonterminal value converter 'convNtm' to<br>
+   parse term configuration 'PCfg'<br>
+   ( user-defined reduce-handler; must release each replaced source tree )<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PT_setTokConvFunEx</b>
+     (
+       PT_Cfg PCfg,
+       symbol convTok(symbol tok, symbol val, Any_T ctx),
+       Any_T ctx
+     )</pre>
+<td bgcolor="#FFF0F5" align=left> like PT_setTokConvFun<br>
+   Additionally, a non-NULL context 'ctx' will be passed<br>
+   to the shift-handler.<br>
+   Both handler must use the same context.<br>
+   ( currently not supported by 'pim_test' )<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PT_setNtmConvFunEx</b>
+     (
+       PT_Cfg PCfg, PT_Term convNtm(PT_Term Tree, Any_T ctx),
+       Any_T ctx
+     )</pre>
+<td bgcolor="#FFF0F5" align=left> like PT_setNtmConvFun<br>
+   Additionally, a non-NULL context 'ctx' will be passed<br>
+   to the reduce-handler.<br>
+   Both handler must use the same context.<br>
+   ( currently not supported by 'pim_test' )<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PT_setEParser</b>
+     (
+       PT_Cfg PCfg,
+       Abs_T newEParser(Any_T ePlrCtx, c_string language),
+       void  freeEParser(Abs_T eParser),
+       Any_T ePlrCtx
+     )</pre>
+<td bgcolor="#FFF0F5" align=left> adds embedded parser constructor 'newEParser',<br>
+   destructor 'freeEParser' and some context 'ePlrCtx' to<br>
+   parse term configuration 'PCfg';<br>
+   must be set for embedded languages<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PT_quit</b>(PT_Cfg PCfg)</pre>
+<td bgcolor="#FFF0F5" align=left> terminates parse term construction;<br>
+   removes configuration 'PCfg'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PT_Term <b>PT_parse</b>(PT_Cfg PCfg, c_string StartSymbol, c_bool interprete)
+#define PT_PARSE(pcfg,start)      PT_parse((pcfg),(start),C_False)
+#define PT_INTERPRETE(pcfg,start) PT_parse((pcfg),(start),C_True)</pre>
+<td bgcolor="#FFF0F5" align=left> parses and constructs parse term of type C ( see [ptm] )<br>
+   according configuration 'PCfg';<br>
+   uses 'StartSymbol' as start nonterminal or default if empty<br>
+   ( interprete --&gt; early reduction )<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PT_Term <b>XPT_parse</b>(PT_Cfg PCfg, c_string StartSymbol, c_bool interprete)
+#define XPT_PARSE(pcfg,start)      XPT_parse((pcfg),(start),C_False)
+#define XPT_INTERPRETE(pcfg,start) XPT_parse((pcfg),(start),C_True)</pre>
+<td bgcolor="#FFF0F5" align=left> parses and constructs parse term of type Xaron ( see [ptm] )<br>
+   according configuration 'PCfg';<br>
+   uses 'StartSymbol' as start nonterminal or default if empty<br>
+   ( interprete --&gt; early reduction )<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>PT_synErrorCnt</b>(PT_Cfg PCfg)</pre>
+<td bgcolor="#FFF0F5" align=left> number of syntax errors in parse term configuration 'PCfg' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>symbol <b>PT_ErrorSymbol</b>(PT_Cfg PCfg)</pre>
+<td bgcolor="#FFF0F5" align=left> symbol of error token in parse term configuration 'PCfg' <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Semantic Analysis </b></h2>
+<br><hr width="100%" size=2><h2><b> ... using the default environment ( static ) </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PT_diagnose</b>(PT_Term PTree, c_string format, ...)</pre>
+<td bgcolor="#FFF0F5" align=left> prints a test message for parse term node 'PTree'<br>
+   according variable format specification 'format' and '...'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PT_error</b>(PT_Term PTree, c_string format, ...)</pre>
+<td bgcolor="#FFF0F5" align=left> increments the number of semantic errors and<br>
+   prints an error message for parse term node 'PTree'<br>
+   according variable format specification 'format' and '...'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PT_warn</b>(PT_Term PTree, c_string format, ...)</pre>
+<td bgcolor="#FFF0F5" align=left> increments the number of warnings and<br>
+   prints a warning message for parse term node 'PTree'<br>
+   according variable format specification 'format' and '...'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PT_setErrorCnt</b>(int cnt)</pre>
+<td bgcolor="#FFF0F5" align=left> resets the number of semantic errors with 'cnt' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>PT_errorCnt</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>number of semantic errors
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PT_setWarningCnt</b>(int cnt)</pre>
+<td bgcolor="#FFF0F5" align=left>resets the number of warnings with 'cnt'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>PT_warnCnt</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>number of warnings
+
+</table>
+<br><hr width="100%" size=2><h2><b> ... using the diagnose environment ( reentrant ) </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PT_Diag <b>PT_diag_init</b>(void (*prMsg)(c_string msg))</pre>
+<td bgcolor="#FFF0F5" align=left> creates a diagnose environment<br>
+   using 'prMsg' as message function<br>
+   ( 'msg': single byte character set or UTF-8 )<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PT_diag_quit</b>(PT_Diag PDiag)</pre>
+<td bgcolor="#FFF0F5" align=left>removes diagnose environment 'PDiag'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PT_diag_msg</b>(PT_Term PTree, PT_Diag PDiag, c_string format, ...)</pre>
+<td bgcolor="#FFF0F5" align=left> prints a message for parse term node 'PTree'<br>
+   according diagnose environment 'PDiag',<br>
+   variable format specification 'format' and '...'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PT_diag_test</b>(PT_Term PTree, PT_Diag PDiag, c_string format, ...)</pre>
+<td bgcolor="#FFF0F5" align=left> like PT_diag_msg; prints a test message <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PT_diag_err</b>(PT_Term PTree, PT_Diag PDiag, c_string format, ...)</pre>
+<td bgcolor="#FFF0F5" align=left> increments the number of semantic errors<br>
+   in diagnose environment 'PDiag' and<br>
+   prints an error message for parse term node 'PTree'<br>
+   according variable format specification 'format' and '...'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PT_diag_warn</b>(PT_Term PTree, PT_Diag PDiag, c_string format, ...)</pre>
+<td bgcolor="#FFF0F5" align=left> increments the number of warnings<br>
+   in diagnose environment 'PDiag' and<br>
+   prints a warning message for parse term node 'PTree'<br>
+   according variable format specification 'format' and '...'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PT_diag_setErrorCnt</b>(PT_Diag PDiag, int cnt)</pre>
+<td bgcolor="#FFF0F5" align=left> resets the number of semantic errors<br>
+   in diagnose environment 'PDiag' with 'cnt'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>PT_diag_errorCnt</b>(PT_Diag PDiag)</pre>
+<td bgcolor="#FFF0F5" align=left> number of semantic errors in diagnose environment 'PDiag' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PT_diag_setWarningCnt</b>(PT_Diag PDiag, int cnt)</pre>
+<td bgcolor="#FFF0F5" align=left> resets number of warnings<br>
+   in diagnose environment 'PDiag' with 'cnt'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>PT_diag_warnCnt</b>(PT_Diag PDiag)</pre>
+<td bgcolor="#FFF0F5" align=left> number of warnings in diagnose environment 'PDiag' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void (*<b>PT_diag_msgFun</b>(PT_Diag PDiag))(c_string msg)</pre>
+<td bgcolor="#FFF0F5" align=left> message function in diagnose environment 'PDiag' <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Accessing configuration ( Xaron support ) </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Scn_Stream <b>PT_stream</b>(PT_Cfg PCfg)</pre>
+<td bgcolor="#FFF0F5" align=left> current scan stream in parse term configuration 'PCfg' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PLR_Tab <b>PT_ptab</b>(PT_Cfg PCfg)</pre>
+<td bgcolor="#FFF0F5" align=left> current parse table in parse term configuration 'PCfg' <br>
+
+</table>
+
+</body>
+</html>

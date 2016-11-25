@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{a39e9098-52a5-4f27-a606-8642b95ed526}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Preprocessor files">
+      <UniqueIdentifier>{519885e5-c530-46f7-8532-24a8f672365c}</UniqueIdentifier>
+      <Extensions>pp</Extensions>
+    </Filter>
+    <Filter Include="Generated">
+      <UniqueIdentifier>{cfbf7da7-5c60-4286-9503-01f73b873904}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CWidgets">
+      <UniqueIdentifier>{450cfe3c-e76c-4d28-a46c-9039ce85a2d2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Src\dactvalue.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\dframe.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Plugin\dplugin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Generated\moc_dframe.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Generated\moc_dactvalue.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CFrame.cpp">
+      <Filter>CWidgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CActValue.cpp">
+      <Filter>CWidgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CAppFrame.cpp">
+      <Filter>CWidgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CPage.cpp">
+      <Filter>CWidgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CGroupSelectButton.cpp">
+      <Filter>CWidgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CActValue.cpp">
+      <Filter>CWidgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CFrame.cpp">
+      <Filter>CWidgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CAppFrame.cpp">
+      <Filter>CWidgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CGroupSelectButton.cpp">
+      <Filter>CWidgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CPage.cpp">
+      <Filter>CWidgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CWidgetBase.cpp">
+      <Filter>CWidgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CFixText.cpp">
+      <Filter>CWidgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CToolButton.cpp">
+      <Filter>CWidgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CTabWidget.cpp">
+      <Filter>CWidgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CScrollView.cpp">
+      <Filter>CWidgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CWidget.cpp">
+      <Filter>CWidgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CWidgetStack.cpp">
+      <Filter>CWidgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CScrollView.cpp">
+      <Filter>CWidgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CFixText.cpp">
+      <Filter>CWidgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CToolButton.cpp">
+      <Filter>CWidgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CWidgetStack.cpp">
+      <Filter>CWidgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CTabWidget.cpp">
+      <Filter>CWidgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CWidget.cpp">
+      <Filter>CWidgets</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="Src\dactvalue.pp">
+      <Filter>Preprocessor files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Src\dframe.pp">
+      <Filter>Preprocessor files</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Src\Generated\dactvalue.h">
+      <Filter>Generated</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Generated\dframe.h">
+      <Filter>Generated</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

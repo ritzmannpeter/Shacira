@@ -1,0 +1,111 @@
+/* ------------------------------------------------------------------------ */
+/*                                                                          */
+/* [dtd.abs]                   Abstract Grammar                             */
+/*                                                                          */
+/* ------------------------------------------------------------------------ */
+
+LANGUAGE dtd
+
+TOKENS
+
+  PERef, Nmtoken, XMLDecl, PI, Keyset, Name, Literal, DTDStart, IgnSect
+
+TYPES
+
+  dtd           = Start_Root(Root);
+                  Start_Embed(Embed)
+
+  Root          = text(Extern);
+                  tdoc(DTDStart, Embed)
+
+  Embed         = dfn(XName, ExtID, Decl*)
+
+  Extern        = dfn(XDecl, Decl*)
+
+  XDecl         = nul;
+                  dfn(XMLDecl)
+
+  ExtID         = pref(PERef);
+                  nul;
+                  pub(XLiteral, XLiteral);
+                  sys(XLiteral)
+
+  XLiteral      = pref(PERef);
+                  lit(Literal);
+                  nul
+
+  Decl          = pref(PERef);
+                  attr(XName, Attribute*);
+                  ent(Entity);
+                  pi(PI);
+                  note(XName, ExtID);
+                  elm(XName, Content);
+                  cond(Cond)
+
+  Cond          = cinc(Extern);
+                  cign(IgnSect);
+                  ccnd(PERef, Extern)
+
+  Attribute     = nam(XName);
+                  dft(ADefault);
+                  typ(AType)
+
+  AType         = refs;
+                  nmts;
+                  str;
+                  ents;
+                  etyp(XName*);
+                  ref;
+                  nmt;
+                  ntyp;
+                  id;
+                  ent
+
+  ADefault      = fix(Fixed, Literal);
+                  imp;
+                  req
+
+  Fixed         = nul;
+                  fix
+
+  Entity        = pent(XName, EntityVal);
+                  gent(XName, EntityVal)
+
+  EntityVal     = ient(XLiteral);
+                  eent(ExtID, NData)
+
+  NData         = nul;
+                  dfn(XName, XName)
+
+  Content       = alt(Content, Content);
+                  none;
+                  mix(XName*);
+                  any;
+                  seq(Content, Content);
+                  nam(XName, ROpr);
+                  rexp(Content, ROpr);
+                  pref(PERef)
+
+  ROpr          = nul;
+                  plus;
+                  star;
+                  qry
+
+  XName         = elm;
+                  req;
+                  key(Keyset);
+                  alst;
+                  pref(PERef);
+                  fix;
+                  inc;
+                  ndat;
+                  pub;
+                  nmtk(Nmtoken);
+                  none;
+                  pdat;
+                  ide(Name);
+                  any;
+                  impl;
+                  ktyp(AType);
+                  sys
+

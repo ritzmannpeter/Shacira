@@ -1,0 +1,72 @@
+
+//
+// interfaces of 2i Control Objects
+//
+
+module Control {
+
+   const long IDLVersion = 7;
+
+   typedef sequence<octet> Memory;
+   exception AppException {
+      long ErrCode;
+      long NativeCode;
+      string Source;
+      string Param1;
+      string Param2;
+      string Param3;
+      string Param4;
+   };
+   typedef string UserInfo;
+   typedef string ClientInfo;
+
+   interface iCell
+   {
+      string Name() raises (AppException);
+
+      string GetVarDefs(in long client_id, in long if_type) raises (AppException);
+      long GetId(in long client_id, in string var_name) raises (AppException);
+      string GetValue(in long client_id, in string var_name, in long i1, in long i2, in long i3, in long i4, in long flags) raises (AppException);
+      string GetValueById(in long client_id, in long var_id, in long i1, in long i2, in long i3, in long i4, in long flags) raises (AppException);
+      void Refresh(in long client_id, in string var_name, in long i1, in long i2, in long i3, in long i4, in long flags) raises (AppException);
+      void RefreshById(in long client_id, in long var_id, in long i1, in long i2, in long i3, in long i4, in long flags) raises (AppException);
+      void SetValue(in long client_id, in string var_name, in string value, in long i1, in long i2, in long i3, in long i4, in long flags) raises(AppException);
+      void SetValueById(in long client_id, in long var_id, in string value, in long i1, in long i2, in long i3, in long i4, in long flags) raises (AppException);
+
+      string GetMinimum(in long client_id, in string var_name, in long i1, in long i2, in long i3, in long i4) raises (AppException);
+      string GetMinimumById(in long client_id, in long var_id, in long i1, in long i2, in long i3, in long i4) raises (AppException);
+      string GetMaximum(in long client_id, in string var_name, in long i1, in long i2, in long i3, in long i4) raises (AppException);
+      string GetMaximumById(in long client_id, in long var_id, in long i1, in long i2, in long i3, in long i4) raises (AppException);
+
+      string ReadFile(in long client_id, in string file_name, in string sub_files) raises (AppException);
+      void WriteFile(in long client_id, in string file_name, in string sub_files, in string buf) raises (AppException);
+
+      string GetParam(in long client_id, in string name) raises (AppException);
+      void SetParam(in long client_id, in string name, in string value) raises (AppException);
+
+      unsigned long AlarmCount(in long client_id, in unsigned long selection) raises (AppException);
+      string Alarms(in long client_id, in unsigned long selection) raises (AppException);
+      void ClearAlarm(in long client_id, in long ident) raises (AppException);
+      void ClearAlarms(in long client_id) raises (AppException);
+
+      void ExecuteCommand(in long client_id, in string program_name, in unsigned long command) raises (AppException);
+      string ExecuteRequest(in long client_id, in string program_name, in string request) raises (AppException);
+      void SetJobX(in long client_id, in string job) raises (AppException);
+      string GetJobSpec(in long client_id, in string job_name) raises (AppException);
+
+	  long Login(in ClientInfo client_info, in string password) raises (AppException);
+	  void Logout(in long client_id) raises (AppException);
+	  void SetUserInfo(in long client_id, in UserInfo user_info) raises (AppException);
+
+	  string GetEvent(in long client_id) raises (AppException);
+      Memory GetMemory(in long client_id, in unsigned long address, in unsigned long size) raises (AppException);
+	  void SendObject(in long client_id, in string serialized_object) raises (AppException);
+      string Request(in long client_id, in string request) raises (AppException);
+      string GetRing(in long client_id, in string var_name, in long i1, in long i2, in long i3, in long i4, in long flags) raises (AppException);
+      Memory GetObject(in long client_id, in string var_name, in long i1, in long i2, in long i3, in long i4, in long flags) raises (AppException);
+      void SetObject(in long client_id, in string var_name, in long i1, in long i2, in long i3, in long i4, in long flags, in Memory binary_object) raises (AppException);
+      void ExecuteJob(in long client_id, in string program_name, in string job, in long async) raises (AppException);
+   };
+
+};
+

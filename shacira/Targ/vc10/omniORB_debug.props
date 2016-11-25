@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <ORBVERSION>415</ORBVERSION>
+    <ORBTHREADVERSION>34</ORBTHREADVERSION>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_PropertySheetDisplayName>OmniOrb_debug</_PropertySheetDisplayName>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\..\..\..\OmniORB.$(ORBVERSION)\include;..\..\..\..\OmniORB.$(ORBVERSION)\include\omniORB4;..\..\..\..\OmniORB.$(ORBVERSION)\include\COS;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>..\..\..\..\OmniORB.$(ORBVERSION)\lib\x86_win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>omnithread$(ORBTHREADVERSION)_rtd.lib;omniORB$(ORBVERSION)_rtd.lib;omniDynamic$(ORBVERSION)_rtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="ORBVERSION">
+      <Value>$(ORBVERSION)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+    <BuildMacro Include="ORBTHREADVERSION">
+      <Value>$(ORBTHREADVERSION)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

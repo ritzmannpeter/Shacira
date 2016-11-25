@@ -1,0 +1,728 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="LinuxDoc-Tools 0.9.65">
+ <TITLE>The Styx Handbook: A realistic Styx example</TITLE>
+ <LINK HREF="styx-8.html" REL=next>
+ <LINK HREF="styx-6.html" REL=previous>
+ <LINK HREF="styx.html#toc7" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="styx-8.html">Next</A>
+<A HREF="styx-6.html">Previous</A>
+<A HREF="styx.html#toc7">Contents</A>
+<HR>
+<H2><A NAME="s7">7.</A> <A HREF="styx.html#toc7">A realistic Styx example</A></H2>
+
+<P><EM>This is to become the section about Example02. For convenience,
+we first include the related README here, literally</EM></P>
+<P>Here we have the first non-trivial example of a Styx application.
+It is a somewhat complete little programming language approximately
+of the complexity of LISP, called PL0 as usual.</P>
+<P>The example demonstrates to use of the derivation tree as a
+source representation beyond parsing. Here, we use it to keep
+the definitions of functions available for execution.</P>
+<P>Additionally, full static and dynamic semantics of the language
+is implemented to introduce the use of the "Map" and "symbol"
+data type together with other handy library routines as the
+tree iterator and the PT_error routine.</P>
+<P>An (atypical) use of the pretty printing abilities is also
+provided.</P>
+<P>The profiling webbed into the example gives an impression of
+the efficiency of the whole library material. Note that the
+interpreter in this example is not optimized for speed.</P>
+<P>With a total of about 250 lines of C code and 100 lines for
+the grammar, which took about 4 hours to be written from
+scratch including debugging, this example also shows how
+efficient a compiler/interpreter author can be with Styx.</P>
+<P><EM>Execute the example program 'testpl0.pl0' by 'pl0 testpl0.pl0'
+or adjust the path in the first line of 'testpl0.pl0', set the
+executable flag and call it directly.</EM></P>
+<P><EM>Prepare the reader for a lengthy chapter introducing some
+compiler writing methodology, too</EM></P>
+
+<H2><A NAME="ss7.1">7.1</A> <A HREF="styx.html#toc7.1">The concrete PL0 syntax</A>
+</H2>
+
+<P>Following, we dissect the concrete grammar of the language;</P>
+<P>
+<PRE>
+; [pl0.sty] Grammar "pl0" - a toy language
+
+Language pl0
+</PRE>
+</P>
+
+<H3>The Regular Grammar</H3>
+
+<P>There is not much worth to notice, here. Comparing with the calculator
+grammar above, the newly introduced tokens are identifiers and comments.</P>
+<P>The comments will not become visible in the abstract derivation tree
+as indicated by the preceding "com" but well kept in the concrete one.
+Note the hexadecimal denotation within the comments production, which
+restricts the comments to 7 bit characters.</P>
+<P>
+<PRE>
+Regular Grammar
+
+  ign Ign         = ' \n\r'               ; "white" characters
+  tok Tok         = ',&lt;=()+-*/'           ; one character tokens
+  tok Int         = ('0'..'9')+           ; Integer
+  tok Ide         = ('a' .. 'z')+         ; Identifier and Keywords
+  com Com         = "#" {"\20" .. "\7e"}  ; Comments
+</PRE>
+</P>
+
+<H3>Core Productions</H3>
+
+<P>In the beginning of the grammar the overall structure of a PL0 program
+is defined to be a sequence of function definitions followed by a sequence
+of expressions to "run".</P>
+<P>The function definitions introduced then, simply gives expressions a name
+and some arguments to be substituted.</P>
+<P>
+<PRE>
+Context Free Grammar
+
+start Program
+:pgm: Dfns Runs
+
+let Dfn
+:fun: "fun" Ide "(" Args ")" "=" Exp
+
+let Run
+:run: "run" Exp
+</PRE>
+</P>
+<P>Again referring back to the calculator example, find the expressions be
+extended by some predicates (les, equ), an if-then-else construction (if),
+a function call (app) and by variables (ide).</P>
+<P>Notice again that we use "ign0" predictions to indicate the binding
+strength of the operators of the object language. We have put these
+into the same line as the defined nonterminal symbol to emphasize
+them.</P>
+<P>
+<PRE>
+let Exp  :ign0: Exp1
+:if  : "if" Exp1 "then" Exp "else" Exp
+
+let Exp1 :ign0: Exp2
+:les : Exp2 "&lt;" Exp2
+:equ : Exp2 "=" Exp2
+
+let Exp2 :ign0: Exp3
+:add : Exp2 "+" Exp3
+:sub : Exp2 "-" Exp3
+
+let Exp3 :ign0: Exp4
+:mlt : Exp3 "*" Exp4
+:div : Exp3 "/" Exp4
+
+let Exp4
+:neg : "-" Exp4          ; Unary minus
+:ign0: "(" Exp ")"
+:int : Int               ; Literal
+:var : Ide               ; Variable
+:app : Ide "(" Exps ")"  ; Application
+</PRE>
+</P>
+
+<H3>Productions for Lists</H3>
+
+<P>The grammar finally ends with the syntax of several lists that were
+previously used. Notice the occurrence of 'cons' and 'nil' productions,
+which hint the grammar abstractor.</P>
+<P>
+<PRE>
+; Lists
+
+let Args
+:nil :
+:cons: Ide Args0
+let Args0
+:nil :
+:cons: "," Ide Args0
+
+let Exps
+:nil :
+:cons: Exp Exps0
+let Exps0
+:nil :
+:cons: "," Exp Exps0
+
+let Dfns
+:nil :
+:cons: Dfn Dfns
+
+let Runs
+:nil :
+:cons: Run Runs
+</PRE>
+</P>
+
+<H2><A NAME="ss7.2">7.2</A> <A HREF="styx.html#toc7.2">The generated abstract grammar</A>
+</H2>
+
+<P>Having applied the '
+<A HREF="cmd_styx.htm">styx</A>' program as indicated above,
+we yield the following abstract grammar.</P>
+<P>The most noteworthy fact is, that it is much shorter and ways more handy
+then the concrete one from which it originates.</P>
+<P>Two highlights are to be emphasized. First, like in the calculator grammar,
+the surface property of binding strength of the operators has been removed.
+As a result, we gain only a single, handy expression type. The second effect
+is that the list productions could have been removed completely, leaving
+only the trailing asterisk ("*") as a list type operator or indicator.
+Styx is well able to derive lists of lists of any degree, so you are not
+bound to possible inabilities of the tool here.</P>
+<P>
+<PRE>
+/* ------------------------------------------------------------------------ */
+/*                                                                          */
+/* [pl0.abs]                   Abstract Grammar                             */
+/*                                                                          */
+/* ------------------------------------------------------------------------ */
+
+LANGUAGE pl0
+
+TOKENS
+
+  Int, Ide
+
+TYPES
+
+  pl0        = Start_Program(Program)
+
+  Program    = pgm(Dfn*, Run*)
+
+  Dfn        = fun(Ide, Ide*, Exp)
+
+  Run        = run(Exp)
+
+  Exp        = if(Exp, Exp, Exp);
+               div(Exp, Exp);
+               var(Ide);
+               equ(Exp, Exp);
+               neg(Exp);
+               app(Ide, Exp*);
+               mlt(Exp, Exp);
+               int(Int);
+               les(Exp, Exp);
+               sub(Exp, Exp);
+               add(Exp, Exp)
+</PRE>
+</P>
+<P>As an addition to the earlier described development task, we have to admit,
+that is was not completely right with regard to the use of the abstract grammar,
+at least during design.</P>
+<P>In fact, we design the abstract grammar first, only sketching the surface
+grammar. The design of a proper concrete grammar is typically a production
+step by itself. Similar, compare writing a document versus typesetting
+it.</P>
+<P>While a nice depth grammar makes the design handy to the compiler author,
+a proper surface grammar help much to make the language usable for their
+users.</P>
+
+<H2><A NAME="ss7.3">7.3</A> <A HREF="styx.html#toc7.3">An example PL0 program</A>
+</H2>
+
+<P>A grammar does not help much without a "typical" example.
+Here is the one from the Example02:</P>
+<P>
+<PRE>
+#!/p/bing/pl0
+
+# [test.pl0] A PL0 example "program"
+
+# first we define a few operation the hard way.
+
+fun add(a,b) = if a = 0 then b else 1 + add(a-1,b)
+
+fun times(a,b) = if a = 0 then 0 else add(times(a-1,b),b)
+
+fun fact(n) 
+  = if n = 0 then
+      1
+    else
+      times(n, fact(n-1))
+
+fun profile() = fact(6)
+
+# now try the evaluator with primitive ground expressions
+
+run 1
+run 1+3
+run 2*7-1
+
+# now try the evaluator using functions
+
+run add(0,3)
+run add(1,3)
+run add(7,3)
+
+run times(7,3)
+
+# following an example for profiling.
+# It may take a moment to compute, but
+# executes 2839 function calls and
+# evaluates a total of 23347 expressions.
+
+# on a fast machine, you might want to
+# increase the argument slightly to gain
+# a visible effect. Then notice that the
+# interpreter is not yet optimized for
+# speed.
+
+run profile()
+</PRE>
+</P>
+
+<H2><A NAME="ss7.4">7.4</A> <A HREF="styx.html#toc7.4">The Semantic of PL0 programs</A>
+</H2>
+
+<P>Although the intended meaning of the programs should already be intuitively
+clear from the preceding language example, we cannot seriously continue
+without explicifying it at least descriptive.</P>
+<P>Hereby we have carefully to distinguish between the <EM>Static Semantic</EM>,
+which defines the <EM>wellformedness</EM> of PL0 programs in a sense, that
+they can be compiled without problems, and the <EM>Dynamic Semantic</EM>, the
+actual meaning of the program when executed.</P>
+<P>Reading the article the first time, one might find this section nothing
+but lengthy and self evident. Be welcome to skip it, but keep in
+mind to come back to it after having scanned the implementation of the
+language, since this chapter is nothing but a pre-formalized version of
+the program to come.</P>
+<P>Additionally, it provides a little of the development methodology, we
+use when designing a language and an interpreter, though mostly provided
+in the form of an example.</P>
+
+<H3>The Static Semantic</H3>
+
+<P>In programming languages, the static semantic typically deals with scope and
+type rules. Since PL0 is a typeless language (all data will be integer), we
+have only few to care for:</P>
+
+<H3>Uniqueness of defining occurrences</H3>
+
+<P>Requirements like the following are often called "scope" rules. They define
+the textual range within which a defining identifier can excludes other with
+the same name. Scope rules guarantee the existence of a proper mapping to be
+associated with the scope that allows to find a unique definition for that
+name.</P>
+<P>
+<OL>
+<LI>Every occurrence of a function name in the head of a function
+definition has to be unique within the whole program.</LI>
+<LI>Every occurrence of a variable in the argument list of a function
+definition has to be unique within this list.</LI>
+</OL>
+</P>
+<P>While the scope of the function names is "global" and the names cannot
+be reused within the whole program, the scope of the arguments is "local",
+i.e. they can be reused in another function (as we happily do in our
+example program).</P>
+<P>Note that function and variables name are identified in different scopes
+and their applied occurrences are syntactically so disjunctive, that one can
+name a variable like a function without provoking possible conflicts. We
+have not exploit this opportunity in the example, though.</P>
+
+<H3>Definiteness of applied occurrences</H3>
+
+<P>With properly scoped definitions in hand, we can assign applied occurrences
+to their definitions. The textual region within an identifier can find its
+definition is sometimes called the "reach". As soon as we have types that
+contain names (like records or structures), the reach can become hard to
+determine and is then only recursively definable with the type checker.
+Our little example is not so difficult, though, and we have only two simple
+rules:</P>
+<P>
+<OL>
+<LI>Every applied occurrence of a function name in an expression must
+have a defined occurrence in the head of a function definition.</LI>
+<LI>Every applied occurrence of a variable in an expression has to have
+a defined occurrence as an argument within a surrounding function
+definition.</LI>
+</OL>
+</P>
+<P>As a consequence of the above rule, function names can be reached in the
+"run" expressions of the program, while the use of variable names is
+completely prohibited there.</P>
+<P>Another consequence is, that function definitions do not have to precede
+their application textually, they can in fact come in any suiting order.</P>
+
+<H3>Arity compatibility</H3>
+
+<P>This last requirement is a sort of preview of type checking. Usually,
+applying an introduced identifier has consequences in the context of its
+application. We have only a single such fact in PL0:</P>
+<P>
+<OL>
+<LI>Every expression list in a function application in an expression
+must have the same length as the argument list in the head of
+the corresponding function definition.</LI>
+</OL>
+</P>
+<P>Though we could easily drop this requirement, for instance by putting
+default values in omitted arguments and dropping superfluous ones, 
+we choose to request that the proper amount of arguments is in fact passed.</P>
+
+<H3>Use of the Static Semantic</H3>
+
+<P>All these conditions to be asserted for a PL0 program to become well-formed
+have not use for themselves. Instead they are properties that will be
+used as preconditions (given) before we can come to dynamic semantic, to
+the meaning of the program itself.</P>
+<P>This means that all these properties can safely be assumed and used when
+defining the dynamic semantic and later actually running a well-formed
+program.</P>
+<P>This is very convenient, since from now on, we do not have to be concerned
+anymore whether a name is defined or not or if we have enough arguments
+for the calls. This part is done.</P>
+
+<H3>The Dynamic Semantic</H3>
+
+<P>After all those preparations, we can finally define the meaning of everything.
+Again we do this textually, mechanically passing the productions of the
+abstract grammar.</P>
+<P>
+<OL>
+<LI>A program is executed by evaluating the "run" expressions in source
+order and printing their results.</LI>
+</OL>
+</P>
+<P>The evaluation of an expression always (modulo overflows, division by
+zero and endless recursion) yields an integer value and the meaning of
+an expression depends on its production:</P>
+<P>
+<OL>
+<LI>an if-expression is evaluated by executing its first expression
+and if this comes out to be zero, the last expression is evaluated
+and yields the result. Otherwise the middle expression is evaluated
+to become the result.</LI>
+<LI>in all other expressions containing subexpressions these subexpressions
+are evaluated.</LI>
+<LI>if the expression has an arithmetic or relational operator
+(div,mlt,add,sub,neg, les,equ), their corresponding C equivalent
+(/,*,+,-,-,&lt;,=) is applied onto the values of the subexpressions
+and gives the result of the whole expression</LI>
+<LI>An integer literal evaluates to its denoted value.</LI>
+<LI>A function application is evaluated by evaluating the body of the
+corresponding definitions with all variable occurrences substituted
+by the values provided by the evaluated actual parameter list.
+The variables and values are thereby paired in their textual order.</LI>
+<LI>Evaluation of variables is already covered by the preceding rule.</LI>
+</OL>
+</P>
+
+<H2><A NAME="ss7.5">7.5</A> <A HREF="styx.html#toc7.5">Implementing a PL0 interpreter</A>
+</H2>
+
+<P>Having the semantics defined, writing the interpreter is more or less
+a direct translation of the English text to C using the terms of the Styx
+library. So most of this chapter is to introduce the right words and to
+describe some of the concepts of the Styx library.</P>
+<P>All the program fragments below come from the file 'pl0.c' of the
+Example02 example. One may want to scan through this file to see
+how these parts fit together into a single program.</P>
+
+<H3>Implementing the static semantics.</H3>
+
+<P><EM>simply example how to deal with list, symbol and maps.</EM></P>
+<P>
+<PRE>
+static MAP(symbol, pl0Dfn) collectFunctions(pl0Program src, bool emitErrors)
+/* collect global definitions, emit duplicate errors if required */
+{ GLS_Lst(pl0Dfn) dfns; GLS_Lst(pl0Dfn) dit;
+  MAP(symbol, pl0Dfn) glo = MAP_newPrimMap(); // global environment
+  bug0( pl0Program_pgm(src,&amp;dfns,_), "program expected");
+  GLS_FORALL(dit,dfns)
+  { GLS_Tok fid; pl0Dfn dfn = GLS_FIRST(pl0Dfn,dit);
+    bug0( pl0Dfn_fun(dfn, &amp;fid,_,_), "expecting fun Dfn");
+    if (MAP_defined(glo,GLS_Tok_symbol(fid)))
+    {
+      if (emitErrors)
+        PT_error(fid,"Function '%s' is already defined",GLS_Tok_string(fid));
+    }
+    else
+      MAP_define(glo,GLS_Tok_symbol(fid),dfn);
+  }
+  return glo;
+}
+</PRE>
+</P>
+<P><EM>simply example how to deal use the meta-term system to traverse the
+derivation tree.</EM></P>
+<P>
+<PRE>
+static void StaticSemantic(pl0Program src)
+/* Collect definitions and validate scoping rules */
+{
+  PT_Itr it; pl0Dfn d; pl0Exp e;
+  MAP(symbol, pl0Dfn) glo; // global environment.
+  MAP(symbol, void) local; // local environment, a set really.
+  //
+  // Pass 1
+  //   - function names are unique
+  //   : collect them in 'glo' for later use
+  //
+  glo = collectFunctions(src,True);
+  //
+  // Pass 2
+  //   - applied function occurences are defined ...
+  //   - ... and have the right arity
+  //   - formal parameter names are unique
+  //   - applied identfiers refer to formal parameters
+  //
+  local = NULL; // only to make gcc happy
+  PT_FORALL(it,src)
+  { PT_Term t = PT_termIT(it);
+
+    if (PT_stateIT(it) == PT_PRAE &amp;&amp; pl0_Dfn(t,&amp;d) )
+    // start of function definition
+    { GLS_Lst(GLS_Tok) fpl; GLS_Lst(GLS_Tok) fpit;
+      bug0( pl0Dfn_fun(d, _,&amp;fpl,_), "expecting fun Dfn");
+      local = MAP_newPrimMap(); // create local environment
+      GLS_FORALL(fpit,fpl)
+      { GLS_Tok fp = GLS_FIRST(GLS_Tok,fpit);
+        if (MAP_defined(local,GLS_Tok_symbol(fp)))
+          PT_error(fp,"Parameter '%s' is already defined",GLS_Tok_string(fp));
+        else
+          MAP_define(local,GLS_Tok_symbol(fp),_);
+      }
+    }
+    
+    if (PT_stateIT(it) == PT_POST &amp;&amp; pl0_Dfn(t,&amp;d) )
+    // end of function definition
+    { 
+      MAP_freeMap(local); // drop local environment
+    }
+
+    if (PT_stateIT(it) == PT_PRAE &amp;&amp; pl0_Exp(t,&amp;e) )
+    // found expression
+    { GLS_Tok fid; GLS_Tok vid; GLS_Lst(pl0Exp) apl;
+
+      if (pl0Exp_app(e, &amp;fid, &amp;apl)) // applied function
+      {
+        // check for defined occurence
+        if (MAP_defined(glo,GLS_Tok_symbol(fid)))
+        { GLS_Lst(GLS_Tok) fpl;
+          bug0( pl0Dfn_fun( MAP_apply(pl0Dfn,glo,GLS_Tok_symbol(fid)), _,&amp;fpl,_),
+                "fun expected");
+          // check for matching arity
+          if (GLS_Lst_length(fpl) != GLS_Lst_length(apl))
+            PT_error(e,"arity error");
+        }
+        else
+          PT_error(e,"undefined function '%s'",GLS_Tok_string(fid));
+      }
+      
+      if (pl0Exp_var(e, &amp;vid)) // applied variable
+      {
+        // check for defined occurrence
+        if (!MAP_defined(local,GLS_Tok_symbol(vid)))
+          PT_error(vid,"Undefined variable '%s'",GLS_Tok_string(vid));
+      }
+    }
+  }
+  MAP_freeMap(glo);
+}
+</PRE>
+</P>
+
+<H3>Implementing the dynamic semantics.</H3>
+
+<P><EM>This "machine" part does the actually interpreter task.</EM></P>
+<P>
+<PRE>
+static int calls; // profiling function calls
+static int evals; // profiling evaluated expression
+</PRE>
+</P>
+<P><EM>The function 'eval' uses the generated pl0 language interface to evaluate a pl0 expression.</EM></P>
+<P><EM>First the expression type was determined by applying the appropriate destructor. Then dependent 
+on the type the proper operation was applied to the recursively evaluated subexpressions.</EM> </P>
+<P><EM>The values of variables and actual function parameters are taken from the local context whereas 
+function definitions will be looked up in the global context.</EM></P>
+<P><EM>For the profiling task the function tracks the number of function calls and evaluated expression.</EM></P>
+<P>
+<PRE>
+static int eval(pl0Exp ex, MAP(symbol,pl0Dfn) glo, MAP(symbol,int) loc)
+/* a standard expression evaluator */
+{ pl0Exp ex1, ex2, ex3; GLS_Tok tok; GLS_Lst(pl0Exp) exps;
+  evals++; // profile
+  if( pl0Exp_equ(ex, &amp;ex1,&amp;ex2) ) return eval(ex1,glo,loc) == eval(ex2,glo,loc); else
+  if( pl0Exp_les(ex, &amp;ex1,&amp;ex2) ) return eval(ex1,glo,loc) &lt;  eval(ex2,glo,loc); else
+  if( pl0Exp_div(ex, &amp;ex1,&amp;ex2) ) return eval(ex1,glo,loc) /  eval(ex2,glo,loc); else
+  if( pl0Exp_mlt(ex, &amp;ex1,&amp;ex2) ) return eval(ex1,glo,loc) *  eval(ex2,glo,loc); else
+  if( pl0Exp_sub(ex, &amp;ex1,&amp;ex2) ) return eval(ex1,glo,loc) -  eval(ex2,glo,loc); else
+  if( pl0Exp_add(ex, &amp;ex1,&amp;ex2) ) return eval(ex1,glo,loc) +  eval(ex2,glo,loc); else
+  if( pl0Exp_neg(ex, &amp;ex1) )      return - eval(ex1,glo,loc);                    else
+  if( pl0Exp_int(ex, &amp;tok) )      return atoi(GLS_Tok_string(tok));              else
+  if( pl0Exp_var(ex, &amp;tok) )      return MAP_apply(int,loc,GLS_Tok_symbol(tok)); else
+  if( pl0Exp_if(ex, &amp;ex1,&amp;ex2,&amp;ex3) ) return eval(eval(ex1,glo,loc)?ex2:ex3,glo,loc);
+  else
+  if( pl0Exp_app(ex, &amp;tok,&amp;exps) )
+  { int res; GLS_Lst(GLS_Tok) fpit, fpl; pl0Exp body;
+    MAP(symbol,int) newloc = MAP_newPrimMap();
+    pl0Dfn dfn = MAP_apply(pl0Dfn,glo,GLS_Tok_symbol(tok));
+    bug0( pl0Dfn_fun( dfn, _, &amp;fpl, &amp;body), "function expected");
+    calls++; // profile
+    // evaluate actual parameter list creating new local environment
+    GLS_FORALL(fpit,fpl)
+    { GLS_Tok fp = GLS_FIRST(GLS_Tok,fpit);
+      pl0Exp  ap = GLS_FIRST(pl0Exp,exps);
+      MAP_define(newloc,GLS_Tok_symbol(fp),eval(ap,glo,loc));
+      exps = GLS_REST(pl0Exp,exps);
+    }
+    res = eval(body,glo,newloc); // recursively evaluate function body
+    MAP_freeMap(newloc); // free new local environment
+    return res;
+  }
+  else
+  {
+    PT_error(ex,"unrecognized expression type");
+    return 0; // fault, but we continue anyway.
+  }
+}
+</PRE>
+</P>
+<P><EM>The main function 'DynamicSemantic' executes the given pl0 program.</EM></P>
+<P><EM>First all function definitions will be collected and used as global context.</EM></P>
+<P><EM>In the following loop all "runable" expressions will be evaluated and printed 
+with the help of the functions 'eval' and ppExp.</EM></P>
+<P><EM>For the convenient iteration of term lists the 
+<A HREF="gls.htm">generic language interface</A> 
+provides the macro 'GLS_FORALL(ListIteratorVariable,ListVariable)'</EM>.</P>
+<P>
+<PRE>
+static void DynamicSemantic(pl0Program src)
+/* semantic of the program: evaluate and print each "run" expression */
+{ GLS_Lst(pl0Run) runs; GLS_Lst(pl0Run) runit;
+  MAP(symbol,pl0Dfn) glo = collectFunctions(src,False); // global environment
+  MAP(symbol,int) loc = MAP_newPrimMap(); // empty local environment
+  bug0( pl0Program_pgm(src,_,&amp;runs), "program expected");
+  GLS_FORALL(runit,runs)
+  { pl0Exp exp; pl0Run run = GLS_FIRST(pl0Run,runit);
+    bug0( pl0Run_run(run, &amp;exp), "expecting run Run");
+    calls = 0; evals = 0;              // init execution profile
+    printf("running: "); ppExp(exp);   // pretty print expression
+    printf(" = %d",eval(exp,glo,loc)); // calculate and print result
+    printf(" [%d calls, %d expressions evaluated]\n",calls,evals);
+  }
+  MAP_freeMap(loc);
+  MAP_freeMap(glo);
+}
+</PRE>
+</P>
+<P>
+<PRE>
+static void ppExp(pl0Exp exp)
+/* somewhat misused pretty printer */
+/* This is only for demonstration purposes, so we don't care to get the   */
+/* parser table and initialize things here over and over. We do not even  */
+/* reformat. See [stypp.c] for how to do it the right way. For diagnostic */
+/* purposes, one will certainly prefer the PT_print routine.             */
+{ PLR_Tab plr = PLR_get_pl0(); // Get parser table
+  PTP_init(plr);               // Init Pretty Printer
+  PTP_pp(exp,stdout);          // slightly abused
+  PTP_quit();                  // Done Pretty Printer
+  PLR_delTab(plr);             // Free parser table
+}
+</PRE>
+</P>
+
+<H3>Actual parsing and overall program organization</H3>
+
+<P>
+<PRE>
+/* ------------------------------------------------------------------------ */
+/*                                                                          */
+/* [pl0.c]                      PL0 Interpreter                             */
+/*                                                                          */
+/* Copyright (c) 2000 by Doelle, Manns                                      */
+/* ------------------------------------------------------------------------ */
+
+#include "stdosx.h"  // General Definitions (for gcc)
+#include "ptm_gen.h" // General Parsing Routines
+#include "ptm_pp.h"  // Pretty Printer
+#include "gls.h"     // General Language Services
+#include "hmap.h"    // Datatype: Finite Maps
+#include "symbols.h" // Datatype: Symbols
+
+#include "pl0_int.h" // grammar interface
+#include "pl0_lim.h" // scanner table
+#include "pl0_pim.h" // parser  table
+
+
+/* Auxiluary Functions ----------------------------------------------------- */
+
+/* Static Semantics -------------------------------------------------------- */
+
+/* Dynamic Semantic -------------------------------------------------------- */
+
+/* Main Program ------------------------------------------------------------ */
+
+void PL0(string fileid)
+/* initialize and get source */
+{ Scn_T scn; Scn_Stream cstream; // scanner table &amp; configuration
+  PLR_Tab plr; PT_Cfg PCfg;      // parser  table &amp; configuration
+  PT_Term srcterm;               // the source term
+  //
+  // init modules
+  //
+  MAP_init(); initSymbols(); pl0_initSymbols();
+  //
+  // Parse the source file
+  //
+  Scn_get_pl0(&amp;scn);                       // Get scanner table
+  cstream = Stream_file(scn,"",fileid,"");     // Open source file
+  plr     = PLR_get_pl0();                     // Get parser table
+  PCfg    = PT_init(plr,cstream);              // Create parser
+  srcterm = PT_PARSE(PCfg,"Program");          // Parse
+  PT_setErrorCnt(PT_synErrorCnt(PCfg));        // Save error count
+  PT_quit(PCfg);                               // Free parser
+  Stream_close(cstream);                       // Close source stream
+  Stream_free(cstream);                        // Free source stream
+  Scn_free(scn);                               // Free scanner table
+  PLR_delTab(plr);                             // Free parser table
+  //
+  // done parsing, proceed if no syntax errors
+  //
+  if (PT_errorCnt() == 0)
+  { pl0Program src;
+    // get tree for start symbol
+    bug0( pl0_Start_Program((pl0)srcterm,&amp;src), "Program expected");
+    // check &amp; execute program
+    StaticSemantic(src);
+    if (PT_errorCnt() == 0) DynamicSemantic(src);
+  }
+  if (PT_errorCnt() > 0)
+  {
+    fprintf(stderr,"Total %d errors.\n",PT_errorCnt());
+    STD_ERREXIT;
+  }
+  //
+  // release allocated objects
+  //
+  PT_delT(srcterm);
+  pl0_quitSymbols();
+  freeSymbols();
+  MAP_quit();
+}
+
+int main(int argc, string argv[])
+{
+  if( argc > 1 ) PL0(argv[1]);
+  else fprintf(stderr,"missing source\n");
+  BUG_CORE; // check for object lefts over
+  return 0;
+}
+</PRE>
+</P>
+
+<HR>
+<A HREF="styx-8.html">Next</A>
+<A HREF="styx-6.html">Previous</A>
+<A HREF="styx.html#toc7">Contents</A>
+</BODY>
+</HTML>

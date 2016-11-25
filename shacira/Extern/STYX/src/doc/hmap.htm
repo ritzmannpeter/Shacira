@@ -1,0 +1,339 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[hmap.h] Type: Finite Map</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[hmap.h] Type: Finite Map</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="standard.htm">#include "standard.h"</a>
+<br><a href="prim.htm">#include "prim.h"</a>
+<br>
+<br>
+<br>
+<br><pre>
+   [hmap] implements finite maps based on dynamic hashing.
+
+</pre>
+<br><hr width="100%" size=2><h2><b> Types and macros </b></h2>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b> HMP_Dom </b>
+<td align=left> Abstract domain type of maps  
+
+<TR valign=top>
+<td align=left><b> HMP_Rng </b>
+<td align=left> Abstract range type of maps   
+
+</table>
+<br><pre>#define MAP(Alpha,Beta)   HMP_Map          /* Polymorphic MAP - Type        */
+#define MAPIT             HMP_Itr          /* Polymorphic ITR - Type        */
+#define MAPTY             HMP_Typ          /* Polymorphic meta-type of MAPs */
+
+</pre>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b> HMP_Typ </b>
+<td align=left> Abstract meta-type of maps    
+
+</table>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b> HMP_Map </b>
+<td align=left> Abstract type of maps          
+
+</table>
+<br><hr width="100%" size=2><h2><b> Meta type of hash maps </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>HMP_Typ <b>HMP_newTyp</b>
+        (                                          
+          HMP_Dom (*domcpy)(HMP_Dom a),            
+          void    (*domfre)(HMP_Dom a),            
+          c_bool    (*domequ)(HMP_Dom a, HMP_Dom b), 
+          long    (*domhsh)(HMP_Dom a),            
+          HMP_Rng (*rngcpy)(HMP_Rng a),            
+          void    (*rngfre)(HMP_Rng a)             
+        )
+#define MAP_newTyp(dc, df, de, dh, rc, rf)                 \
+        HMP_newTyp(                                        \
+                    (HMP_Dom (*)(HMP_Dom a))           dc, \
+                    (void    (*)(HMP_Dom a))           df, \
+                    (c_bool    (*)(HMP_Dom a,HMP_Dom b)) de, \
+                    (long    (*)(HMP_Dom a))           dh, \
+                    (HMP_Rng (*)(HMP_Rng a))           rc, \
+                    (void    (*)(HMP_Rng a))           rf  \
+                  )</pre>
+<td bgcolor="#FFF0F5" align=left> defines a new hash type <br>
+ function parameter:    <br>
+ copies a domain        <br>
+ frees  a domain        <br>
+ equality on domains    <br>
+ hash value of domain   <br>
+ copies a range         <br>
+ frees  a range         <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>HMP_freeTyp</b>( HMP_Typ t )
+#define MAP_freeTyp HMP_freeTyp</pre>
+<td bgcolor="#FFF0F5" align=left> frees hash type 't' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>HMP_Dom (*<b>HMP_domcpy</b>(HMP_Typ t))(HMP_Dom a)
+#define MAP_domcpy(Alpha,t) ((Alpha (*)(Alpha a))          HMP_domcpy(t))</pre>
+<td bgcolor="#FFF0F5" align=left> get domain copy function of hash type 't' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void (*<b>HMP_domfre</b>(HMP_Typ t))(HMP_Dom a)
+#define MAP_domfre(Alpha,t) ((void  (*)(Alpha a))          HMP_domfre(t))</pre>
+<td bgcolor="#FFF0F5" align=left> get domain free function of hash type 't' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool (*<b>HMP_domequ</b>(HMP_Typ t))(HMP_Dom a, HMP_Dom b)
+#define MAP_domequ(Alpha,t) ((c_bool  (*)(Alpha a, Alpha b)) HMP_domequ(t))</pre>
+<td bgcolor="#FFF0F5" align=left> get domain equal function of hash type 't' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>long (*<b>HMP_domhsh</b>(HMP_Typ t))(HMP_Dom a)
+#define MAP_domhsh(Alpha,t) ((long  (*)(Alpha a))          HMP_domhsh(t))</pre>
+<td bgcolor="#FFF0F5" align=left> get domain hash function of hash type 't' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>HMP_Rng (*<b>HMP_rngcpy</b>(HMP_Typ t))(HMP_Rng a)
+#define MAP_rngcpy(Beta ,t) ((Beta  (*)(Beta  a))          HMP_rngcpy(t))</pre>
+<td bgcolor="#FFF0F5" align=left> get range copy function of hash type 't' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void (*<b>HMP_rngfre</b>(HMP_Typ t))(HMP_Rng a)
+#define MAP_rngfre(Beta ,t) ((void  (*)(Beta  a))          HMP_rngfre(t))</pre>
+<td bgcolor="#FFF0F5" align=left> get range free function of hash type 't' <br>
+
+</table>
+<br><hr width="100%" size=4><h2><font color="#008B8B"><b> Hash Maps </b></font></h2>
+<br><hr width="100%" size=2><h2><b> Creating & Disposing </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>HMP_Map <b>HMP_newMap</b>( HMP_Typ t )
+#define MAP_newMap  HMP_newMap</pre>
+<td bgcolor="#FFF0F5" align=left> creates a new empty map <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>HMP_freeMap</b>(HMP_Map m)
+#define MAP_freeMap HMP_freeMap</pre>
+<td bgcolor="#FFF0F5" align=left> removes map 'm' from storage<br>
+   all references to 'm' are invalidated!<br>
+<br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Accessing </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>HMP_Typ <b>HMP_MapTyp</b>(HMP_Map m)
+#define MAP_MapTyp HMP_MapTyp</pre>
+<td bgcolor="#FFF0F5" align=left> get meta-type of map 'm' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>long <b>HMP_count</b>(HMP_Map m)
+#define MAP_count HMP_count</pre>
+<td bgcolor="#FFF0F5" align=left> number of domain values on which map 'm' is defined<br>
+   HMP_count(m) == | { d in HMP_Dom | HMP_defined(m,d) } |<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>HMP_emptyMap</b>(HMP_Map m)
+#define MAP_emptyMap HMP_emptyMap</pre>
+<td bgcolor="#FFF0F5" align=left> whether map 'm' is empty<br>
+   HMP_emptyMap(m) == (HMP_count(m) == 0)<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>HMP_defined</b>( HMP_Map m,  HMP_Dom d)
+#define MAP_defined(m,d) HMP_defined(m,(HMP_Dom)(d))</pre>
+<td bgcolor="#FFF0F5" align=left> con  con <br>
+ whether domain 'd' is defined in map 'm' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>HMP_Rng <b>HMP_apply</b>( HMP_Map m,  HMP_Dom d)
+#define MAP_apply(Beta,m,d)       ABS_CAST(Beta,HMP_apply(m,(HMP_Dom)(d)))
+#define MAP_apply_small(Beta,m,d) ((Beta)((long)HMP_apply(m,(HMP_Dom)(d))))
+#define MAP_apply_short(m,d)      ((short)((long)HMP_apply(m,(HMP_Dom)(d))))</pre>
+<td bgcolor="#FFF0F5" align=left> con  con <br>
+ get range of domain 'd' in map 'm'<br>
+   raises execption if not HMP_defined(m,d)<br>
+<br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Modifying </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>HMP_ovrdom</b>( HMP_Map m,  HMP_Dom d,  HMP_Rng r)
+#define MAP_ovrdom(m,d,r) HMP_ovrdom(m,ABS_CAST(HMP_Dom,d),ABS_CAST(HMP_Rng,r))</pre>
+<td bgcolor="#FFF0F5" align=left> var  con  con <br>
+ defines pair ( 'd', 'r' ) or updates range of domain 'd' in map 'm'<br>
+   m := m \ { (d, r) }<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>HMP_dfndom</b>( HMP_Map m,  HMP_Dom d,  HMP_Rng r)
+#define MAP_dfndom(m,d,r) HMP_dfndom(m,ABS_CAST(HMP_Dom,d),ABS_CAST(HMP_Rng,r))
+#define MAP_define        MAP_dfndom</pre>
+<td bgcolor="#FFF0F5" align=left> var  con  con <br>
+ defines pair ( 'd', 'r' ) in map'm'<br>
+   m := m U { (d, r) }; raises exception if HMP_defined(m,d)<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>HMP_upddom</b>( HMP_Map m,  HMP_Dom d,  HMP_Rng r)
+#define MAP_upddom(m,d,r) HMP_upddom(m,(HMP_Dom)(d),(HMP_Rng)(r))
+#define MAP_update        MAP_upddom</pre>
+<td bgcolor="#FFF0F5" align=left> var  con  con <br>
+ updates range of domain 'd' in map 'm'<br>
+   m := m \ { (d, r) }; raises exception if not HMP_defined(m,d)<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>HMP_rmvdom</b>( HMP_Map m,  HMP_Dom d)
+#define MAP_rmvdom(m,d) HMP_rmvdom(m,(HMP_Dom)(d))
+#define MAP_remove      MAP_rmvdom</pre>
+<td bgcolor="#FFF0F5" align=left> con  con <br>
+ removes domain 'd' from map 'm'<br>
+   makes m(d) be undefined; raises exception if not HMP_defined(m,d)<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>HMP_rmvall</b>( HMP_Map m)
+#define MAP_rmvall HMP_rmvall</pre>
+<td bgcolor="#FFF0F5" align=left> var <br>
+ clears map 'm'<br>
+   makes m(d) be undefined for all d<br>
+<br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Basic hash set iterator </b></h2>
+<br><pre> Do not modify the content of an hash set
+     while using a basic iterator on this set.
+
+</pre>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b> HMP_Itr  </b>
+<td align=left> Abstract type of iterators on maps 
+
+</table>
+<br><hr width="100%" size=2><h2><b> Creating & Disposing </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>HMP_Itr <b>HMP_newItr</b>(HMP_Map m)
+#define MAP_newItr HMP_newItr</pre>
+<td bgcolor="#FFF0F5" align=left> creates an iterator on hash set 'm' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>HMP_freeItr</b>(HMP_Itr i)
+#define MAP_freeItr HMP_freeItr</pre>
+<td bgcolor="#FFF0F5" align=left> removes iterator 'i' <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Accessing & Modifiying </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>HMP_emptyItr</b>(HMP_Itr i)
+#define MAP_emptyItr HMP_emptyItr</pre>
+<td bgcolor="#FFF0F5" align=left> whether iterator 'i' is empty <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>HMP_getItr</b>(HMP_Itr i, HMP_Dom *d)
+#define MAP_getItr(i,d) HMP_getItr(i,(HMP_Dom *) d)</pre>
+<td bgcolor="#FFF0F5" align=left> get the next domain from iterator 'i' into 'd'<br>
+   raises exception if 'HMP_emptyItr(i)'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>HMP_getItrAsg</b>(HMP_Itr i, HMP_Dom *d, HMP_Rng *r)
+#define MAP_getItrAsg(i,d,r) HMP_getItrAsg(i,(HMP_Dom *)(d),(HMP_Rng *)(r))</pre>
+<td bgcolor="#FFF0F5" align=left> get the next pair ( domain, range ) from iterator 'i' into 'd' and 'r'<br>
+   raises exception if 'HMP_emptyItr(i)'<br>
+<br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Convenient iterator macros </b></h2>
+<br><pre> For - statement with basic iterators. Make sure to
+     free the iterator if you leave the loop via break.
+
+</pre>
+<br><pre>
+#define MAP_forItr(DomVar,ItrVar,MapExpr)           \
+        for (ItrVar = MAP_newItr(MapExpr);          \
+             MAP_emptyItr(ItrVar)                   \
+             ? (MAP_freeItr(ItrVar),         C_False) \
+             : (MAP_getItr(ItrVar, ((StdCPtr)&DomVar)), C_True );\
+            )
+
+#define MAP_forItrAsg(DomVar,RngVar,ItrVar,MapExpr)             \
+        for (ItrVar = MAP_newItr(MapExpr);                      \
+             MAP_emptyItr(ItrVar)                               \
+             ? (MAP_freeItr(ItrVar),         C_False)             \
+             : (MAP_getItrAsg(ItrVar, ((StdCPtr)&DomVar), ((StdCPtr)&RngVar)), C_True );\
+            )
+
+</pre>
+<br><hr width="100%" size=2><h2><b> Operations on maps </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>MAP(_,_) <b>MAP_copy</b>(MAP(_,_) a)</pre>
+<td bgcolor="#FFF0F5" align=left> copies map 'a';<br>
+   The result map references the type of map 'a'.<br>
+<br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Printing </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>HMP_fprintMap</b>
+     (
+       FILE     *f,
+       HMP_Map   m,
+       int       indent,
+       void    (*fprintPair)(FILE *f, HMP_Dom d, HMP_Rng r, int indent)
+     )
+#define MAP_fprintMap HMP_fprintMap</pre>
+<td bgcolor="#FFF0F5" align=left> prints map 'm' to file 'f' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>HMP_printMap</b>
+     (
+       HMP_Map  m,
+       int      indent,
+       void    (*printPair)(HMP_Dom d, HMP_Rng r, int indent)
+     )
+#define MAP_printMap HMP_printMap</pre>
+<td bgcolor="#FFF0F5" align=left> prints map 'm' to 'stdout' <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Debugging & Profiling </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>HMP_technicalView</b>
+     (
+       HMP_Map m,
+       int     indent,
+       void  (*printPair)(HMP_Dom d, HMP_Rng r, int indent)
+     )</pre>
+<td bgcolor="#FFF0F5" align=left> For visual inspection and debugging purposes <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Primitive Maps </b></h2>
+<br><pre>
+   Primitive maps have an implicit meta-type which treats the
+   domain and range values as anonymous pointer.
+   The domain / range copy function return the element itself.
+   The domain / range free function do nothing.
+   The domain equal function performs a simple '==' operation.
+   The domain hash function simply hashes the domain ( pointer ) value.
+
+</pre>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>MAP_init</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>inits this module ( create meta-type )
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>MAP_quit</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>quits this module ( free meta-type )
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre> MAP(_,_) <b>MAP_newPrimMap</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>creates a primitive map
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>MAP_prim_equal</b>(MAP(_,_) a, MAP(_,_) b)</pre>
+<td bgcolor="#FFF0F5" align=left> whether the primitive maps 'a' and 'b' are equal <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre> MAP(_,_) <b>MAP_prim_copy</b>(MAP(_,_) a)</pre>
+<td bgcolor="#FFF0F5" align=left>copies the primitive map 'a'
+
+</table>
+
+</body>
+</html>

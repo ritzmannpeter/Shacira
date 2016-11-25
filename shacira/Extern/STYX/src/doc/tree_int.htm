@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[tree_int.h] Language Interface</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[tree_int.h] Language Interface</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="ptm.htm">#include "ptm.h"</a>
+<br><a href="gls.htm">#include "gls.h"</a>
+<br>
+<br>
+<br>
+<br><hr width="100%" size=2><h2><b> symbol objects - init & quit </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>tree_initSymbols</b>()</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>tree_quitSymbols</b>()</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Types & Constants </b></h2>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b> tree </b>
+<td align=left>abstract type
+
+</table>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b> treeTerm </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> treeAsg  </b>
+<td align=left>abstract type
+
+</table>
+<br><hr width="100%" size=2><h2><b> Access to Tokens </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Ttree_Name</b>(GLS_Tok x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Ttree_String</b>(GLS_Tok x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Ttree_Link</b>(GLS_Tok x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Ttree_Number</b>(GLS_Tok x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Access to Terms </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tree_tree</b>(PT_Term x, tree* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tree_Term</b>(PT_Term x, treeTerm* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tree_Asg</b>(PT_Term x, treeAsg* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> tree </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tree_Start_plv</b>(tree x, treeTerm* x1)
+#define tree_Start_0   tree_Start_plv</pre>
+<td bgcolor="#FFF0F5" align=left>&nbsp;
+</table>
+<br><hr width="100%" size=2><h2><b> Term </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>treeTerm_str</b>(treeTerm x, GLS_Tok* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>treeTerm_map</b>(treeTerm x, GLS_Lst(treeAsg)* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>treeTerm_row</b>(treeTerm x, GLS_Lst(treeTerm)* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>treeTerm_num</b>(treeTerm x, GLS_Tok* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>treeTerm_ref</b>(treeTerm x, GLS_Tok* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Asg </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>treeAsg_asg</b>(treeAsg x, GLS_Tok* x1, treeTerm* x2)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+
+</body>
+</html>

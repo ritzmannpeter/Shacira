@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[sink.h] Type: Sink</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[sink.h] Type: Sink</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="standard.htm">#include "standard.h"</a>
+<br>
+<br>
+<br>
+<br><pre>
+  This module [sink] implements a dynamic sink i.e. string stream.
+  It uses the printf-konform formatting facility.
+
+  Note: Float and double values aren't supported yet.
+
+</pre>
+<br><hr width="100%" size=2><h2><b> The Type </b></h2>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b> Sink </b>
+<td align=left> Abstract sink / string stream type 
+
+</table>
+<br><hr width="100%" size=2><h2><b> Basics </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Sink <b>Sink_open</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>creates a new sink
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Sink_putc</b>(Sink s, char c)</pre>
+<td bgcolor="#FFF0F5" align=left>adds character 'c' to sink 's'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Sink_puts</b>(Sink s, c_string str)</pre>
+<td bgcolor="#FFF0F5" align=left>adds string 'str' to sink 's'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Sink_puts_raw</b>(Sink s, c_string str)</pre>
+<td bgcolor="#FFF0F5" align=left> adds string 'str' in a printable format to sink 's' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>Sink_close</b>(Sink s)</pre>
+<td bgcolor="#FFF0F5" align=left> closes and converts sink 's' into a string;<br>
+   allocs memory<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Sink_empty</b>(Sink s)</pre>
+<td bgcolor="#FFF0F5" align=left>whether sink 's' is empty
+
+</table>
+<br><hr width="100%" size=2><h2><b> Printing </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>xultoa_aux</b>(Sink dst, unsigned long value, int radix)</pre>
+<td bgcolor="#FFF0F5" align=left> converts and adds long 'value' to sink 'dst' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>xultoa</b>(unsigned long value, int radix)</pre>
+<td bgcolor="#FFF0F5" align=left> converts long 'value' into a string; allocs memory <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Sink_vprintf</b>(Sink sink, c_string format, va_list args)</pre>
+<td bgcolor="#FFF0F5" align=left> like 'vfprintf'<br>
+   The text resulting from 'format' and arguments 'args'<br>
+   will be added to 'sink'.<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Sink_printf</b>(Sink sink, c_string format, ...)</pre>
+<td bgcolor="#FFF0F5" align=left> like 'fprintf'<br>
+   The text resulting from 'format' and arguments '...'<br>
+   will be added to 'sink'.<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>Str_printf</b>(c_string format, ...)</pre>
+<td bgcolor="#FFF0F5" align=left> like 'sprintf'<br>
+   with resulting string from 'format' and arguments '...';<br>
+   allocs memory<br>
+<br>
+
+</table>
+
+</body>
+</html>

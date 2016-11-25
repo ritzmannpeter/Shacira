@@ -1,0 +1,144 @@
+; [estyx.sty] Context-free grammar for [.sty] files
+
+Language estyx ; EBNF
+
+Regular Grammar
+
+; Character Set
+
+  let Byte        = '\00' .. '\ff' ; all extended ascii
+  let Control     = '\00' .. '\1f' ; control
+                  |          '\7f' ; DEL
+                  |          '\ff' ; space-like extended ascii
+
+; Basic elements of tokens
+
+  let Printable   = Byte - Control
+
+  ign Space       = " "            ; ASCII - Space
+  ign Line        = "\n" | "\r\n"  ; UNIX / CPM / DOS
+                  | "\r"           ; Mac
+  ign Page        = "\p"           ; weak separation convention
+
+  ign Etx         = "\1a" {Byte}   ; CPM / older DOS Versions
+
+; Layouting
+
+; spc 1 = Printable
+; spc 2 = Line
+; spc 3 = Page
+
+; Definitions and simple tokens
+
+  let Letter      = 'A'..'Z' | 'a'..'z'
+  let HexDigit    = '0'..'9' | 'a'..'f'
+  let Digit       = '0'..'9'
+  let Normal      = Letter | Digit | Space
+
+  let Quote       = '\'\"\`\\'
+  tok Parenthesis = '()[]{}'       ; one character tokens
+
+  let Special     = Printable - Normal - Parenthesis - Quote
+
+  let LitChar     = Printable - Quote
+                  | '\\' (Quote | 'prnt' | HexDigit HexDigit)
+
+; Comments et al
+
+  com Comment     = ';' {Printable}
+
+; complex tokens
+
+  tok Ide = Letter {Letter} {Digit} ; Identifier
+  tok Nat = Digit+                  ; Natural
+  tok Opr = (Special - ';')+        ; Operator
+  tok Set = '\'' {LitChar} '\''     ; CharacterSet
+  tok Seq = '\"' {LitChar} '\"'     ; CharacterSequence (String)
+
+Context Free Grammar
+
+  start Source
+  :root: "Language" Ide 
+         "Regular" "Grammar" QlxDfns
+         "Context" "Free" "Grammar" Dfns
+ 
+; REG-Section
+
+  let QlxDfns ; Qlx-Definitions
+  :nil  :
+  :cons : QlxDfn QlxDfns
+
+  let QlxDfn  ; Qlx-Definition
+  :defn : QlxCat QlxOpt Ide "=" Exp
+
+  let QlxCat  ; QlxCategory
+  :letC : "let"
+  :tokC : "tok"
+  :ignC : "ign"
+  :comC : "com"
+
+  let QlxOpt  ; QlxOption
+  :non  :
+  :ignca: "[" "ica" "]"
+
+  let Exp     ; Expression prio 0
+  :union: Exp "|" Exp1
+  :diff : Exp "-" Exp1
+  :ign1 : Exp1
+
+  let Exp1     ; Expression prio 1
+  :conc : Exp1 Exp2
+  :ign1 : Exp2
+
+  let Exp2     ; Expression prio 2
+  :opt  : "[" Exp "]"
+  :star : "{" Exp "}"
+  :plus : Exp3 "+"
+  :ign1 : Exp3
+
+  let Exp3     ; Expression prio 3
+  :range: Exp4 ".." Exp4
+  :ign2 : "(" Exp ")"
+  :ign1 : Exp4
+
+  let Exp4     ; Expression prio 4
+  :sequ : Seq
+  :set  : Set
+  :ident: Ide
+
+; CFG-Section
+
+  let Dfns    ; Definitions
+  :nil  : 
+  :cons : Dfn Dfns
+
+  let Dfn     ; Definition
+  :defn : Cat Ide Prds
+
+  let Cat     ; Category
+  :letC : "let"
+  :bgnC : "start"
+
+  let Prds    ; Productions
+  :nil  : 
+  :cons : Prd Prds
+
+  let Prd     ; Production
+  :prod : ":" Ide ":" Mbrs
+
+  let Mbrs    ; Members
+  :nil  : 
+  :cons : Mbr Mbrs
+
+  let Mbr     ; Member
+  :tkm  : Seq
+  :ntm  : Form
+
+  let Form
+  :ide  : Ide
+  :one  : "("      Form Toks "..."      ")"
+  :nul  : "[" Toks Form Toks "..." Toks "]"
+
+  let Toks
+  :nil  :
+  :cons : Seq Toks

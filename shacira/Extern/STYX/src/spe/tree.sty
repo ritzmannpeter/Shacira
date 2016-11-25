@@ -1,0 +1,44 @@
+Language tree ; [Perl] Term Literals used to represent tree-like data structures
+
+Regular Grammar
+
+let Byte        = "\00" .. "\ff"
+let Control     = "\00" .. "\1f"
+let Printable   = Byte - Control
+
+let LargeLetter = "A" .. "Z"
+let SmallLetter = "a" .. "z"
+let Letter      = SmallLetter | LargeLetter
+let Digit       = "0" .. "9"
+let LitChar     = (Byte - '\'\\') | ("\\" ('\\\''))
+
+tok Name        = Letter { ["_"] (Letter | Digit) }
+
+tok String      = "\'" {LitChar} "\'"
+tok Link        = "\"" Name { "." Name } "\""
+tok Number      = ['-'] Digit+ [ '.' Digit+ ]
+
+tok Special     = '[]{},' | "=>"
+
+ign White       = ' \t\n\r'
+
+com Com         = "#" { Printable }
+
+Context Free Grammar
+
+start plv
+:ign0: Term
+
+let Term
+:row: "[" Terms "]"
+:map: "{" Asgs  "}"
+:str: String
+:ref: Link
+:num: Number
+
+let Asg :asg:  Name "=>" Term
+
+let Terms  :nil: :cons:     Term Terms0
+let Terms0 :nil: :cons: "," Term Terms0
+let Asgs   :nil: :cons:     Asg  Asgs0
+let Asgs0  :nil: :cons: "," Asg  Asgs0

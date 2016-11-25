@@ -1,0 +1,2 @@
+
+shdevelop linux gcc %config%

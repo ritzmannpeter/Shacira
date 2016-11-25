@@ -1,0 +1,1356 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{1D7EA4D4-D5E9-439A-948A-3FD25EE00E0B}</ProjectGuid>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</IgnoreImportLibrary>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Debug/q3_cwidget_plugin.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/MP2 %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(QTDIR)\include;..\..\..\Src\GUIFramework\qt4port;..\..\..\Src\GUIFramework\QT3Framework\Widgets;..\..\..\Src\GUIFramework\QT3Framework\Generated;..\..\..\Src\GUIFramework\QT3Framework\Plugins;..\..\..\Src\GUIFramework\QT3Framework\Keypads;..\..\..\Src\GUIFramework\QT3Framework\CWidgets;..\..\..\Src\Include;..\..\..\Src\GUIFramework\qt4port;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;QT_ACCESSIBILITY_SUPPORT;WIN32;_WINDOWS;_USRDLL;QT_DLL;QT_PLUGIN;QT_THREAD_SUPPORT;_CWIDGET_PLUGIN_;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeaderOutputFile>.\Debug/q3_cwidget_plugin.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Debug/</AssemblerListingLocation>
+      <ObjectFileName>.\Debug/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug/</ProgramDataBaseFileName>
+      <BrowseInformation>true</BrowseInformation>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <StringPooling>true</StringPooling>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>$(QTDIR)\lib\qt-mt$(QTVERSION).lib;imm32.lib;wsock32.lib;winmm.lib;opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>.\Debug/q3_cwidget_plugin.pdb</ProgramDatabaseFile>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>.\Debug/q3_cwidget_plugin.lib</ImportLibrary>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Debug/q3_cwidget_plugin.bsc</OutputFile>
+    </Bscmake>
+    <PostBuildEvent>
+      <Command>copy $(OutDir)$(TargetName)$(TargetExt) $(QTDIR)\plugins\designer</Command>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Release/q3_cwidget_plugin.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/MP2 %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>MinSpace</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>$(QTDIR)\include;..\..\..\Src\GUIFramework\qt4port;..\..\..\Src\GUIFramework\QT3Framework\Widgets;..\..\..\Src\GUIFramework\QT3Framework\Generated;..\..\..\Src\GUIFramework\QT3Framework\Plugins;..\..\..\Src\GUIFramework\QT3Framework\Keypads;..\..\..\Src\GUIFramework\QT3Framework\CWidgets;..\..\..\Src\Include;..\..\..\Src\GUIFramework\qt4port;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;QT_NO_DEBUG;QT_LICENSE_PROFESSIONAL;WIN32;_WINDOWS;_USRDLL;QT_DLL;QT_PLUGIN;QT_THREAD_SUPPORT;_KEYBOARD_PLUGIN_WIN32;_CWIDGET_PLUGIN_;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeaderOutputFile>.\Release/q3_cwidget_plugin.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Release/</AssemblerListingLocation>
+      <ObjectFileName>.\Release/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release/</ProgramDataBaseFileName>
+      <BrowseInformation>true</BrowseInformation>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>$(QTDIR)\lib\qt-mt$(QTVERSION).lib;imm32.lib;wsock32.lib;winmm.lib;opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ProgramDatabaseFile>.\Release/q3_cwidget_plugin.pdb</ProgramDatabaseFile>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>.\Release/q3_cwidget_plugin.lib</ImportLibrary>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Release/q3_cwidget_plugin.bsc</OutputFile>
+    </Bscmake>
+    <PostBuildEvent />
+    <PostBuildEvent>
+      <Command>copy $(OutDir)$(TargetName)$(TargetExt) $(QTDIR)\plugins\designer</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\KeyboardLayoutGerman.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\KeyboardLayoutStandard.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CActionDialog.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CActValue.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CAlarmWidget.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CAppFrame.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CButtonGroup.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CCheckBox.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CComboBox.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CCompListView.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CComposedStack.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CCoordSystem.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CDate.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CDateTime.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CDirectory.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CFixText.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CFrame.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CGraphic.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CGroupBox.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CGroupSelectButton.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CIndReqValue.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CInfoLabel.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CListView.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CPage.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CProcGraphic.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CProgressBar.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CProtocolWindow.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CPushButton.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_cQtKeyboard.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_cQtKeyboardButton.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_cQtKeyboardLayout.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CRadioButton.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CReqValue.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CRingGraphic.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CScrollBar.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CScrollView.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CSimpleGraphic.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CSlider.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CSpinBox.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CStartupForm.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CStateButton.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CTable.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CTabWidget.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CTextEdit.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CTime.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CToolButton.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CVarDimension.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CVideo.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CVirtualKeyboard.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CWidget.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CWidgetStack.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_KeyboardLayoutGerman.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_KeyboardLayoutStandard.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Plugins\cQtPluginRegistry.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Plugins\CWidgetPlugin.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Plugins\FrameworkPlugin.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Plugins\plugin_log.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CActionDialog.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CActValue.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CAlarmWidget.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CAppFrame.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CButtonGroup.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CCheckBox.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CComboBox.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CCompListView.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CComposedStack.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CCoordSystem.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CDate.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CDateTime.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CDirectory.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CFixText.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CFrame.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CGraphic.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CGroupBox.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CGroupSelectButton.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CIndReqValue.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CInfoLabel.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\cInput.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CListView.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CPage.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\cPaintUtils.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CProcGraphic.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CProgressBar.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CProtocolWindow.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CPushButton.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Keypads\cQtKeyboard.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Keypads\cQtKeyboardButton.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Keypads\cQtKeyboardLayout.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CRadioButton.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CReqValue.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CRingGraphic.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\cRubberBand.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CScrollBar.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CScrollView.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CSimpleGraphic.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CSlider.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CSpinBox.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CStartupForm.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CStateButton.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CTable.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CTabWidget.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CTextEdit.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CTime.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CToolButton.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CVarDimension.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CVideo.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CVirtualKeyboard.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CWidget.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CWidgetBase.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CWidgetStack.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\cRubberBand.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT3Framework\Plugins\cQtPluginRegistry.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT3Framework\Plugins\CWidgetPlugin.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT3Framework\Plugins\default_icon.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT3Framework\Plugins\embedded_images.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT3Framework\Plugins\FrameworkPlugin.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT3Framework\Plugins\plugin_icons.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT3Framework\Plugins\plugin_log.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\Keypads\KeyboardAlpha.ui">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%qtdir%\bin\uic.exe %(FullPath) -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h
+%qtdir%\bin\uic.exe %(FullPath) -i %(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).cpp
+%qtdir%\bin\moc.exe ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).cpp;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%qtdir%\bin\uic.exe %(FullPath) -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h
+%qtdir%\bin\uic.exe %(FullPath) -i %(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).cpp
+%qtdir%\bin\moc.exe ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).cpp;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\Keypads\KeypadNumeric.ui">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%qtdir%\bin\uic.exe %(FullPath) -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h
+%qtdir%\bin\uic.exe %(FullPath) -i %(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).cpp
+%qtdir%\bin\moc.exe ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).cpp;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%qtdir%\bin\uic.exe %(FullPath) -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h
+%qtdir%\bin\uic.exe %(FullPath) -i %(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).cpp
+%qtdir%\bin\moc.exe ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).cpp;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CActionDialog.pp">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CActValue.pp">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CAlarmWidget.pp">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CAppFrame.pp">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CButtonGroup.pp">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CCheckBox.pp">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CComboBox.pp">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CCompListView.pp">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CComposedStack.pp">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CCoordSystem.pp">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CDate.pp">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CDateTime.pp">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CDirectory.pp">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CFixText.pp">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CFrame.pp">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CGraphic.pp">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CGroupBox.pp">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CGroupSelectButton.pp">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CIndReqValue.pp">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CInfoLabel.pp">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CListView.pp">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CPage.pp">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CProcGraphic.pp">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CProgressBar.pp">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CProtocolWindow.pp">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CPushButton.pp">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CRadioButton.pp">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CReqValue.pp">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CRingGraphic.pp">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CScrollBar.pp">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CScrollView.pp">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CSimpleGraphic.pp">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CSlider.pp">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CSpinBox.pp">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CStartupForm.pp">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CStateButton.pp">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CTable.pp">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CTabWidget.pp">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CTextEdit.pp">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CTime.pp">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CToolButton.pp">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CVarDimension.pp">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CVideo.pp">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CVirtualKeyboard.pp">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CWidget.pp">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CWidgetStack.pp">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\win32\pp.exe -f..\..\..\bin\win32\ppQt.pre -o..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h %(FullPath)
+$(QTDIR)\bin\moc ..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h -o ..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Src\GUIFramework\QT3Framework\Generated\%(Filename).h;..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,105 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>cQtKeyboardAlphaBase</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>cQtKeyboardAlphaBase</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>638</width>
+            <height>368</height>
+        </rect>
+    </property>
+    <property name="font">
+        <font>
+            <family>Arial</family>
+            <pointsize>10</pointsize>
+            <bold>1</bold>
+        </font>
+    </property>
+    <property name="caption">
+        <string> </string>
+    </property>
+    <vbox>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <property name="spacing">
+            <number>3</number>
+        </property>
+        <widget class="QTextEdit">
+            <property name="name">
+                <cstring>_text_edit</cstring>
+            </property>
+            <property name="minimumSize">
+                <size>
+                    <width>0</width>
+                    <height>100</height>
+                </size>
+            </property>
+            <property name="maximumSize">
+                <size>
+                    <width>32767</width>
+                    <height>100</height>
+                </size>
+            </property>
+            <property name="font">
+                <font>
+                    <pointsize>14</pointsize>
+                    <bold>0</bold>
+                </font>
+            </property>
+            <property name="focusPolicy">
+                <enum>StrongFocus</enum>
+            </property>
+        </widget>
+        <widget class="QLineEdit">
+            <property name="name">
+                <cstring>_line_edit</cstring>
+            </property>
+            <property name="font">
+                <font>
+                    <pointsize>14</pointsize>
+                    <bold>0</bold>
+                </font>
+            </property>
+            <property name="frameShape">
+                <enum>LineEditPanel</enum>
+            </property>
+            <property name="frameShadow">
+                <enum>Sunken</enum>
+            </property>
+        </widget>
+        <widget class="cQtKeyboard">
+            <property name="name">
+                <cstring>_keyboard</cstring>
+            </property>
+            <property name="font">
+                <font>
+                    <bold>0</bold>
+                </font>
+            </property>
+        </widget>
+    </vbox>
+</widget>
+<connections>
+    <connection>
+        <sender>_keyboard</sender>
+        <signal>acceptInput()</signal>
+        <receiver>cQtKeyboardAlphaBase</receiver>
+        <slot>accept()</slot>
+    </connection>
+    <connection>
+        <sender>_keyboard</sender>
+        <signal>rejectInput()</signal>
+        <receiver>cQtKeyboardAlphaBase</receiver>
+        <slot>reject()</slot>
+    </connection>
+</connections>
+<layoutdefaults spacing="6" margin="11"/>
+<includehints>
+    <includehint>cQtKeyboard.h</includehint>
+</includehints>
+</UI>

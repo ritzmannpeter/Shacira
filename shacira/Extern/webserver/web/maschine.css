@@ -1,0 +1,47 @@
+<style type="text/css">
+
+body{
+    font-size: 14px;
+    font-family: arial, verdana, sans-serif;
+}
+
+h1{
+	font-size: 18px;
+    font-family: arial, verdana, sans-serif;
+}
+
+table{
+    font-size: 14px;
+    font-family: arial, verdana, sans-serif;
+	width: 75%;
+	border: 1px solid black;
+	padding: 5px;
+	text-align: left;	
+}
+
+form{
+	width:80%;
+    font-size: 14px;
+    font-family: arial, verdana, sans-serif;
+}
+
+input{
+  	text-align: right;
+	width: 70px;
+}
+
+img{
+	width: 15px;
+	height: 15px;
+}
+
+p{
+    font-size: 14px;
+    font-family: arial, verdana, sans-serif;
+}
+
+
+
+
+
+

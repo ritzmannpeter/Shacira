@@ -1,0 +1,37 @@
+ 
+#include <stdarg.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <qstring.h>
+#include <qfile.h>
+
+void PluginPrintf(const char * fmt_str, ...)
+{
+#ifdef lassma
+   va_list ap;
+   va_start(ap, fmt_str);
+   try {
+      QString text;
+      QString msg = msg.sprintf(fmt_str, ap);
+      QString fileName = "e:/temp/q4_cwidget_plugin.log";
+      if (!fileName.isEmpty()) {
+         QFile file(fileName);
+         if (file.open(QIODevice::Append)) {
+#ifdef _DEBUG
+            text = "DEBUG: ";
+            text += msg;
+#else
+            text = "RELEASE: ";
+            text += msg;
+#endif
+            file.write(text.toAscii(), text.length());
+            file.close();
+         }
+      }
+   } catch (...) {
+   }
+   va_end(ap);
+#endif
+}
+
+

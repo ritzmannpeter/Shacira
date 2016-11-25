@@ -1,0 +1,62 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>Page4</class>
+<widget class="CPage">
+    <property name="name">
+        <cstring>Page4</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>866</width>
+            <height>640</height>
+        </rect>
+    </property>
+    <property name="minimumSize">
+        <size>
+            <width>0</width>
+            <height>0</height>
+        </size>
+    </property>
+    <property name="maximumSize">
+        <size>
+            <width>868</width>
+            <height>640</height>
+        </size>
+    </property>
+    <property name="font">
+        <font>
+            <family>Arial</family>
+            <pointsize>11</pointsize>
+        </font>
+    </property>
+    <property name="caption">
+        <string>Group2:Page4</string>
+    </property>
+    <property name="Group0">
+        <enum>WriteAccess</enum>
+    </property>
+    <property name="Group1">
+        <enum>WriteAccess</enum>
+    </property>
+    <property name="HelpId1">
+        <cstring></cstring>
+    </property>
+    <property name="PageGroup">
+        <cstring>group2</cstring>
+    </property>
+    <property name="PageHeadline">
+        <string>Group2:Page4</string>
+    </property>
+    <property name="LongPageHeadline">
+        <string>Group2:Page4</string>
+    </property>
+    <property name="PositionInGroup">
+        <number>0</number>
+    </property>
+</widget>
+<layoutdefaults spacing="6" margin="11"/>
+<includehints>
+    <includehint>cpage.h</includehint>
+</includehints>
+</UI>

@@ -1,0 +1,13 @@
+This 'calc' example demonstrates a few special abilities of the styx library:
+
+You can (but need not) use the styx library together with C++.
+
+The parser is capable of reading sources from files and strings. 
+The 'calc' example reads from stdin. 
+The source 'pattern_file.txt' demonstrates the parsing from a file.
+
+Use the shell script 'mx' to create the executable. 
+Don't forget 
+1) to check the setting of the environment variable STYXDIR in 'mx'
+2) to add $STYXDIR/lib to your library path.
+

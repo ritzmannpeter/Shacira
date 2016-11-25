@@ -1,0 +1,180 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>Demo2Startup</class>
+<widget class="CStartupForm">
+    <property name="name">
+        <cstring>Demo2Startup</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>868</width>
+            <height>640</height>
+        </rect>
+    </property>
+    <property name="sizePolicy">
+        <sizepolicy>
+            <hsizetype>0</hsizetype>
+            <vsizetype>0</vsizetype>
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+        </sizepolicy>
+    </property>
+    <property name="minimumSize">
+        <size>
+            <width>800</width>
+            <height>600</height>
+        </size>
+    </property>
+    <property name="maximumSize">
+        <size>
+            <width>32000</width>
+            <height>32000</height>
+        </size>
+    </property>
+    <property name="font">
+        <font>
+            <family>Arial</family>
+            <pointsize>11</pointsize>
+        </font>
+    </property>
+    <property name="caption">
+        <string>Demo2Startup</string>
+    </property>
+    <vbox>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="CGroupBox">
+            <property name="name">
+                <cstring>cGroupBox1</cstring>
+            </property>
+            <property name="sizePolicy">
+                <sizepolicy>
+                    <hsizetype>5</hsizetype>
+                    <vsizetype>1</vsizetype>
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                </sizepolicy>
+            </property>
+            <property name="minimumSize">
+                <size>
+                    <width>0</width>
+                    <height>120</height>
+                </size>
+            </property>
+            <property name="maximumSize">
+                <size>
+                    <width>32767</width>
+                    <height>120</height>
+                </size>
+            </property>
+            <property name="title">
+                <string>Status</string>
+            </property>
+            <widget class="CFixText">
+                <property name="name">
+                    <cstring>StepLabel</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>35</x>
+                        <y>70</y>
+                        <width>100</width>
+                        <height>36</height>
+                    </rect>
+                </property>
+                <property name="font">
+                    <font>
+                        <pointsize>20</pointsize>
+                    </font>
+                </property>
+                <property name="text">
+                    <string>Schritt</string>
+                </property>
+                <property name="alignment">
+                    <set>AlignVCenter</set>
+                </property>
+            </widget>
+            <widget class="CFixText">
+                <property name="name">
+                    <cstring>Step</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>150</x>
+                        <y>70</y>
+                        <width>395</width>
+                        <height>36</height>
+                    </rect>
+                </property>
+                <property name="font">
+                    <font>
+                        <pointsize>20</pointsize>
+                    </font>
+                </property>
+                <property name="text">
+                    <string></string>
+                </property>
+                <property name="alignment">
+                    <set>AlignVCenter|AlignLeft</set>
+                </property>
+            </widget>
+            <widget class="CFixText">
+                <property name="name">
+                    <cstring>cFixText13</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>35</x>
+                        <y>25</y>
+                        <width>740</width>
+                        <height>36</height>
+                    </rect>
+                </property>
+                <property name="font">
+                    <font>
+                        <pointsize>20</pointsize>
+                    </font>
+                </property>
+                <property name="text">
+                    <string>SHACIRA Systeminitialisierung</string>
+                </property>
+                <property name="alignment">
+                    <set>AlignVCenter</set>
+                </property>
+            </widget>
+        </widget>
+        <widget class="CGroupBox">
+            <property name="name">
+                <cstring>cGroupBox2</cstring>
+            </property>
+            <property name="title">
+                <string>Konsole</string>
+            </property>
+            <vbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QTextEdit">
+                    <property name="name">
+                        <cstring>Console</cstring>
+                    </property>
+                    <property name="readOnly">
+                        <bool>true</bool>
+                    </property>
+                </widget>
+            </vbox>
+        </widget>
+    </vbox>
+</widget>
+<layoutdefaults spacing="6" margin="11"/>
+<includehints>
+    <includehint>CStartupForm.h</includehint>
+    <includehint>CGroupBox.h</includehint>
+    <includehint>CFixText.h</includehint>
+    <includehint>CFixText.h</includehint>
+    <includehint>CFixText.h</includehint>
+    <includehint>CGroupBox.h</includehint>
+</includehints>
+</UI>

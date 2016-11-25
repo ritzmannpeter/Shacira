@@ -1,0 +1,118 @@
+; Definition-File für BORLAND C-Compiler
+;
+; Die Definition-Datei muß mit in das Projekt mit aufgenommen werden
+;
+; Borland-C verwendet die Funktionsnamen mit einem
+; führenden Unterstrich. Microsoft-C-Compiler erzeugen
+; jedoch die Funktionsnamen ohne den Unterstrich. Durch die
+; Definition-Datei wird dem Borland Compiler die Funktion
+; ohne Unterstrich bekanntgegeben.
+;
+; Definition-File to use with BORLAND C++ programs
+; this is needed because the FALCON DLL is build with 
+; Visual C++ which does not add a leading "_" to the
+; function names, which is expected by BORLAND C
+
+IMPORTS 
+        _is_InitBoard                   = FALCON.is_InitBoard
+        _is_ExitBoard                   = FALCON.is_ExitBoard
+        _is_InitFalcon                  = FALCON.is_InitFalcon
+        _is_ExitFalcon                  = FALCON.is_ExitFalcon
+        _is_StopLiveVideo               = FALCON.is_StopLiveVideo
+        _is_FreezeVideo                 = FALCON.is_FreezeVideo
+        _is_CaptureVideo                = FALCON.is_CaptureVideo
+        _is_SetVideoInput               = FALCON.is_SetVideoInput
+        _is_SetBrightness               = FALCON.is_SetBrightness
+        _is_SetContrast                 = FALCON.is_SetContrast
+        _is_SetSaturation               = FALCON.is_SetSaturation
+        _is_SetHue                      = FALCON.is_SetHue
+        _is_SetVideoMode                = FALCON.is_SetVideoMode
+        _is_SetDisplayMode              = FALCON.is_SetDisplayMode
+        _is_SetAGC                      = FALCON.is_SetAGC
+        _is_SetGamma                    = FALCON.is_SetGamma
+        _is_SetSyncLevel                = FALCON.is_SetSyncLevel
+        _is_ShowColorBars               = FALCON.is_ShowColorBars
+        _is_SetColorMode                = FALCON.is_SetColorMode
+        _is_SetScaler                   = FALCON.is_SetScaler
+        _is_GetImageMem                 = FALCON.is_GetImageMem
+        _is_GetImageMemPitch            = FALCON.is_GetImageMemPitch
+        _is_SetImageSize                = FALCON.is_SetImageSize
+        _is_SetImagePos                 = FALCON.is_SetImagePos
+        _is_GetError                    = FALCON.is_GetError
+        _is_SetCaptureMode              = FALCON.is_SetCaptureMode
+        _is_SetErrorReport              = FALCON.is_SetErrorReport
+        _is_SetHorFilter                = FALCON.is_SetHorFilter
+        _is_SetVertFilter               = FALCON.is_SetVertFilter
+        _is_GetBoardInfo                = FALCON.is_GetBoardInfo
+        _is_ReadEEPROM                  = FALCON.is_ReadEEPROM
+        _is_WriteEEPROM                 = FALCON.is_WriteEEPROM
+        _is_SaveImage                   = FALCON.is_SaveImage
+        _is_LoadImage                   = FALCON.is_LoadImage
+        _is_UpdateDisplay               = FALCON.is_UpdateDisplay
+        _is_SetDisplaySize              = FALCON.is_SetDisplaySize
+        _is_SetDisplayPos               = FALCON.is_SetDisplayPos
+        _is_AllocImageMem               = FALCON.is_AllocImageMem
+        _is_SetImageMem                 = FALCON.is_SetImageMem
+        _is_FreeImageMem                = FALCON.is_FreeImageMem
+        _is_IsVideoFinish               = FALCON.is_IsVideoFinish
+        _is_HasVideoStarted             = FALCON.is_HasVideoStarted
+        _is_EnableDDOverlay             = FALCON.is_EnableDDOverlay
+        _is_DisableDDOverlay            = FALCON.is_DisableDDOverlay
+        _is_ShowDDOverlay               = FALCON.is_ShowDDOverlay
+        _is_HideDDOverlay               = FALCON.is_HideDDOverlay
+        _is_ScaleDDOverlay              = FALCON.is_ScaleDDOverlay
+        _is_GetDC                       = FALCON.is_GetDC
+        _is_ReleaseDC                   = FALCON.is_ReleaseDC
+        _is_SetDDUpdateTime             = FALCON.is_SetDDUpdateTime
+        _is_LockDDOverlayMem            = FALCON.is_LockDDOverlayMem
+        _is_UnlockDDOverlayMem          = FALCON.is_UnlockDDOverlayMem
+        _is_LockDDMem                   = FALCON.is_LockDDMem
+        _is_UnlockDDMem                 = FALCON.is_UnlockDDMem
+        _is_GetDDOvlSurface             = FALCON.is_GetDDOvlSurface
+        _is_GetVsyncCount               = FALCON.is_GetVsyncCount
+        _is_GetCurrentField             = FALCON.is_GetCurrentField
+        _is_InitEvent                   = FALCON.is_InitEvent
+        _is_ExitEvent                   = FALCON.is_ExitEvent
+        _is_EnableEvent                 = FALCON.is_EnableEvent
+        _is_DisableEvent                = FALCON.is_DisableEvent
+        _is_SetVideoSize                = FALCON.is_SetVideoSize
+        _is_SetKeyColor                 = FALCON.is_SetKeyColor
+        _is_SetKeyOffset                = FALCON.is_SetKeyOffset
+        _is_PrepareStealVideo           = FALCON.is_PrepareStealVideo
+        _is_StealVideo                  = FALCON.is_StealVideo
+        _is_SetHwnd                     = FALCON.is_SetHwnd
+        _is_SetParentHwnd               = FALCON.is_SetParentHwnd
+        _is_SetUpdateMode               = FALCON.is_SetUpdateMode
+        _is_GetActiveImageMem           = FALCON.is_GetActiveImageMem
+        _is_InquireImageMem             = FALCON.is_InquireImageMem
+        _is_OvlSurfaceOffWhileMove      = FALCON.is_OvlSurfaceOffWhileMove
+        _is_AddToSequence               = FALCON.is_AddToSequence
+        _is_ClearSequence               = FALCON.is_ClearSequence
+        _is_GetActSeqBuf                = FALCON.is_GetActSeqBuf
+        _is_LockSeqBuf                  = FALCON.is_LockSeqBuf
+        _is_UnlockSeqBuf                = FALCON.is_UnlockSeqBuf
+        _is_GetColorDepth               = FALCON.is_GetColorDepth
+        _is_GetNumberOfBoards           = FALCON.is_GetNumberOfBoards
+        _is_GetPciSlot                  = FALCON.is_GetPciSlot
+        _is_GetIRQ                      = FALCON.is_GetIRQ
+        _is_SaveImageMem                = FALCON.is_SaveImageMem
+        _is_GetBoardType                = FALCON.is_GetBoardType
+        _is_BoardStatus                 = FALCON.is_BoardStatus
+        _is_CopyImageMem                = FALCON.is_CopyImageMem
+        _is_CopyImageMemLines           = FALCON.is_CopyImageMemLines
+        _is_GetNumberOfDevices          = FALCON.is_GetNumberOfDevices
+        _is_GetOsVersion                = FALCON.is_GetOsVersion
+        _is_SetAllocatedImageMem        = FALCON.is_SetAllocatedImageMem
+        _is_SetToggleMode               = FALCON.is_SetToggleMode
+        _is_SetRopEffect                = FALCON.is_SetRopEffect
+
+        _is_SetSync                     = FALCON.is_SetSync
+        _is_SetIO                       = FALCON.is_SetIO
+        _is_SetFlashStrobe              = FALCON.is_SetFlashStrobe
+        _is_SetExternalTrigger          = FALCON.is_SetExternalTrigger
+
+        _is_SetVideoCrossbar            = FALCON.is_SetVideoCrossbar
+        _is_SetDecimationMode           = FALCON.is_SetDecimationMode
+        _is_RenderBitmap                = FALCON.is_RenderBitmap
+        _is_GetDLLVersion               = FALCON.is_GetDLLVersion
+

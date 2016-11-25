@@ -1,0 +1,40 @@
+#! /bin/sh -e
+# [mx] make 'pl0c' and 'pl0r'
+
+# create subdirectories holding generated files if they don't exist
+for subdir in img gen inc prj ; do
+  [ -d ${subdir} ] || mkdir ${subdir}
+done
+
+INCLUDES="-I./inc -I${prefix}/include"
+
+# For static linking, you may need to uncomment these 2 lines
+# LDFLAGS="-static"
+# LIBS="-ldl -lrt -lpthread"
+
+#destination directory for parser and scanner table image files
+BINSTYX=./img
+#destination directory for parser and scanner table and term interface source files
+GENSTYX=./gen
+#source directory of language specification file
+SPESTYX=.
+
+export BINSTYX GENSTYX SPESTYX
+
+#create source files
+styx pl0 -makeC -makeINT -makeIMG -verbose
+
+#create header files for generated c-sources
+ctoh -ct -CPATH=./gen -HPATH=./inc -PRJ=./prj 
+
+#compile sources to program 'pl0c'
+gcc ${CFLAGS} ${INCLUDES} ${LDFLAGS} \
+    pl0c.c ./gen/pl0_pim.c ./gen/pl0_lim.c ./gen/pl0_int.c \
+    -ldstyx ${LIBS} \
+    -o pl0c
+
+#compile sources to program 'pl0r'
+gcc ${CFLAGS} ${INCLUDES} ${LDFLAGS} \
+    pl0r.c ./gen/pl0_pim.c ./gen/pl0_lim.c ./gen/pl0_int.c 
+    -ldstyx ${LIBS} \
+    -o pl0r

@@ -1,0 +1,147 @@
+commit eadc729e1e29e20f33720cae741fbd9971f77467
+Author: Heike Manns <heike@pippi.localnet>
+Date:   Sun Jul 26 15:34:37 2009 +0200
+
+    + Doxyfile for c# runtime scanner added
+
+commit 3e3095a96ebc9f1181b12bafe06b3f05612096c2
+Author: Heike Manns <heike@pippi.localnet>
+Date:   Sun Jul 26 15:32:18 2009 +0200
+
+    + c# runtime scanner integrated
+
+commit 0da510760622874adf6f704457070aa7a135a7b2
+Author: Heike Manns <heike@pippi.localnet>
+Date:   Sun Jul 19 17:03:19 2009 +0200
+
+    + local getline function in ctoh.c renamed due to a conflict with the getline function in stdio.h
+    + adjust version number
+
+commit 83089deae287c2ddd5c471ed456ed0bd6db39ba0
+Author: Heike Manns <heike@pippi.localnet>
+Date:   Sun Jul 19 16:25:05 2009 +0200
+
+    some adjustments due to new versions of gcc and vs.net
+
+commit e82bd03db7ce62b156109557fcd23520ce4b52ef
+Author: Heike Manns <heike@pippi.localnet>
+Date:   Sun Mar 29 16:46:29 2009 +0200
+
+    + minor bugfix StyxScanner.C/evalInclude: add constraint "missing include path"
+    + comment justification
+
+commit 199b12fbddbd184140b9a6b1ccd94ff05c71e163
+Author: root <root@pippi.localnet>
+Date:   Sun Feb 22 17:37:20 2009 +0100
+
+    +adjustments with respect to warnings of gcc 4.x
+
+commit 5fff9d8503b2828993f456bfa89c1f72596f2cc6
+Author: Heike Manns <heike@pippi.localnet>
+Date:   Sat Apr 5 14:17:24 2008 +0200
+
+    +
+
+commit 25134c92fcc0bd2c2c7b5b17cb1e7397dd0f8acb
+Author: Heike Manns <heike@pippi.localnet>
+Date:   Sat Apr 5 14:14:36 2008 +0200
+
+    +initial git-release
+
+---------------------------------------------------------------------------
+
+Fri Jan 26 18:36:19 CET 2007  heike@free-it.org
+  * corrections for gcc 4.x, windows port of libc++
+
+Sun Feb 12 18:10:09 CET 2006  heike@free-it.org
+  * c++ library finalized
+
+Sun May  1 17:01:52 CEST 2005  heike@free-it.org
+  * bugfix parse table export
+
+Fri Apr  8 14:39:41 CEST 2005  heike@free-it.org
+  * php affe syntax
+
+Sat Apr  2 19:01:00 CEST 2005  heike@free-it.org
+  * php-conflicts
+
+Fri Apr  1 11:50:34 CEST 2005  heike@free-it.org
+  * substitute cast to int with intCAST
+
+Fri Mar 25 19:59:25 CET 2005  heike@free-it.org
+  * update doc for conflict policy
+
+Fri Mar 25 19:57:42 CET 2005  heike@free-it.org
+  * add conflict policy
+
+Mon Feb 28 12:31:53 CET 2005  heike@free-it.org
+  * loop-cond in getShift/ReduceAction functions
+
+Fri Feb 11 10:52:30 CET 2005  heike@free-it.org
+  * styx regular grammar documentation
+
+Thu Feb 10 17:26:07 CET 2005  heike@free-it.org
+  * hide internal grammar comments 2
+
+Thu Feb 10 17:16:23 CET 2005  heike@free-it.org
+  * hide internal grammar comments
+
+Thu Feb 10 16:56:06 CET 2005  heike@free-it.org
+  * styx grammar documentation
+
+Sun Jan  9 16:21:53 CET 2005  heike@free-it.org
+  * initial3
+
+Sun Jan  9 16:18:54 CET 2005  heike@free-it.org
+  * initial2
+
+Sun Jan  9 16:11:39 CET 2005  heike@free-it.org
+  * initial
+
+---------------------------------------------------------------------------
+
+2003-01-03  Siggy Brentrup  <bsb@winnegan.de>
+
+	* libbase/ptm_pp.c (PTP_toksep): Fixed typo :-(
+
+2003-01-02  Siggy Brentrup  <bsb@winnegan.de>
+
+	* Merged changes from the debian branch in preparation of the next
+	  bugfix release (1.5.2). relevant entries from debian/changelog
+	  follow.
+
+
+2002-12-30  Siggy Brentrup  <bsb@winnegan.de>
+
+	* libbase/gstream.c (GS_csconv_string): Changed type of isize,
+	  osize from int to size_t, since otherwise iconv might break on
+	  ia64.
+
+	* libbase/ctx_app.c: Added portable cast to prevent warnings on
+	  64-bit archs.
+
+	* libutil/ctx.c: Added portable cast to prevent warnings on 64-bit
+	  archs.
+
+2002-12-29  Siggy Brentrup  <bsb@winnegan.de>
+
+	* libutil/olist.c: Added portable cast to prevent warnings on 64-bit archs.
+
+	* libbase/hmap.c: Added portable cast to prevent warnings on 64-bit archs.
+
+	* libbase/ptm_pp.c: Added portable cast to prevent warnings on 64-bit archs.
+
+	* libbase/otab.c: Added portable cast to prevent warnings on
+	  64-bit archs.
+
+	* libbase/hset.c: Added portable cast to prevent warnings on
+	  64-bit archs.
+
+	* libbase/cfg_abs.c: Added portable cast to prevent warnings on
+	  64-bit archs.
+
+	* libbase/ctx_app.c: Added portable cast to prevent warning on
+	  64-bit archs; while we are here, translate error message to
+	  english.
+
+	* ChangeLog: started standard changelog.

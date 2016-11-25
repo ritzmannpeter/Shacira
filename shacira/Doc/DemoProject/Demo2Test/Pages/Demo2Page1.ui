@@ -1,0 +1,147 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>Demo2Page1</class>
+<widget class="CPage">
+    <property name="name">
+        <cstring>Demo2Page1</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>866</width>
+            <height>640</height>
+        </rect>
+    </property>
+    <property name="minimumSize">
+        <size>
+            <width>0</width>
+            <height>0</height>
+        </size>
+    </property>
+    <property name="maximumSize">
+        <size>
+            <width>868</width>
+            <height>640</height>
+        </size>
+    </property>
+    <property name="font">
+        <font>
+            <family>Arial</family>
+            <pointsize>11</pointsize>
+        </font>
+    </property>
+    <property name="caption">
+        <string>Group1:Page1</string>
+    </property>
+    <property name="DarkFuncRef">
+        <cstring></cstring>
+    </property>
+    <property name="Group0">
+        <enum>WriteAccess</enum>
+    </property>
+    <property name="Group1">
+        <enum>WriteAccess</enum>
+    </property>
+    <property name="HelpId1">
+        <cstring>Ovw_Service</cstring>
+    </property>
+    <property name="PageGroup">
+        <cstring>group1</cstring>
+    </property>
+    <property name="PageHeadline">
+        <string>Group1:Page1</string>
+    </property>
+    <property name="LongPageHeadline">
+        <string>Group1:Page1</string>
+    </property>
+    <property name="PositionInGroup">
+        <number>0</number>
+    </property>
+    <property name="ScrollView">
+        <bool>true</bool>
+    </property>
+    <widget class="CActValue">
+        <property name="name">
+            <cstring>cActValue1</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>205</x>
+                <y>220</y>
+                <width>176</width>
+                <height>36</height>
+            </rect>
+        </property>
+        <property name="VarRef">
+            <cstring>test_var</cstring>
+        </property>
+    </widget>
+    <widget class="CFixText">
+        <property name="name">
+            <cstring>cFixText2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>36</x>
+                <y>175</y>
+                <width>145</width>
+                <height>26</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>test_var</string>
+        </property>
+        <property name="alignment">
+            <set>AlignVCenter|AlignRight</set>
+        </property>
+    </widget>
+    <widget class="CReqValue">
+        <property name="name">
+            <cstring>cReqValue1</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>205</x>
+                <y>175</y>
+                <width>180</width>
+                <height>36</height>
+            </rect>
+        </property>
+        <property name="Group0">
+            <enum>ReadOnlyAccess</enum>
+        </property>
+        <property name="VarRef">
+            <cstring>test_var</cstring>
+        </property>
+    </widget>
+    <widget class="CFixText">
+        <property name="name">
+            <cstring>cFixText1</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>30</x>
+                <y>75</y>
+                <width>260</width>
+                <height>41</height>
+            </rect>
+        </property>
+        <property name="font">
+            <font>
+                <pointsize>26</pointsize>
+            </font>
+        </property>
+        <property name="text">
+            <string>dynamic page 1</string>
+        </property>
+    </widget>
+</widget>
+<layoutdefaults spacing="6" margin="11"/>
+<includehints>
+    <includehint>CPage.h</includehint>
+    <includehint>CActValue.h</includehint>
+    <includehint>CFixText.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CFixText.h</includehint>
+</includehints>
+</UI>

@@ -1,0 +1,116 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNUNG: DIESE ARBEITSBEREICHSDATEI DARF NICHT BEARBEITET ODER GELÖSCHT WERDEN!
+
+###############################################################################
+
+Project: "App"=.\app.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name ecl_dll_base
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name framework
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name shacira_lib
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name utilities
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name DemoWidgets
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "CWidgets"=..\..\..\..\Targ\vcpp\cwidget_plugin\cwidget_plugin.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "DemoWidgets"=.\Widgets\demo_widget_plugin.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "ecl_dll_base"=..\..\..\..\Extern\ECL\targ\vcpp\ecl_dll_base\ecl_dll_base.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "framework"=..\..\..\..\Targ\vcpp\framework\framework.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "shacira_lib"=..\..\..\..\Targ\vcpp\shacira_lib\shacira_lib.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "utilities"=..\..\..\..\Targ\vcpp\utilities\utilities.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+

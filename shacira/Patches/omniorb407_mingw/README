@@ -1,0 +1,22 @@
+
+  patches for the build of omnior 4.0.7 under mingw32
+
+  1. idl/corbaidl.idl
+     LongDoubleSeq will be generally defined
+     even if HAS_LongDouble is not defined
+     this avoids compiler errors, when building
+     under mingw32.
+     This is only a workaround to build omniorb 4.0.7
+     under mingw, so it is not recommended to use
+     Long Doubles under migw32.
+
+  2. src/lib/omniORB4/orbcore/omniinternal.cc
+     removed inclusion of eh.h (this does not exist in mingw32)
+     and the call to 
+        _set_se_translator(omniORB_rethrow_exception);
+     as a consequence. The same remarks as to patch 1
+     apply to this patch.
+
+  3. With this patch mingw32-g++ compiler can be selected
+     when building omniorb under cygwin.
+     this patch is not used when building under standalone MinGW.

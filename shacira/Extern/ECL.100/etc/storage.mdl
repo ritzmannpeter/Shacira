@@ -1,0 +1,1519 @@
+
+(object Petal
+    version    	42
+    _written   	"Rose 4.5.8163.3"
+    charSet    	0)
+
+(object Design "Logical View"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    defaults   	(object defaults
+	rightMargin 	0.000000
+	leftMargin 	0.000000
+	topMargin  	0.000000
+	bottomMargin 	0.000000
+	pageOverlap 	0.000000
+	clipIconLabels 	TRUE
+	autoResize 	TRUE
+	snapToGrid 	TRUE
+	gridX      	16
+	gridY      	16
+	defaultFont 	(object Font
+	    size       	10
+	    face       	"Arial"
+	    bold       	FALSE
+	    italics    	FALSE
+	    underline  	FALSE
+	    strike     	FALSE
+	    color      	0
+	    default_color 	TRUE)
+	showMessageNum 	1
+	showClassOfObject 	TRUE
+	notation   	"Unified")
+    root_usecase_package 	(object Class_Category "Use Case View"
+	quid       	"3AAD0CFC001A"
+	exportControl 	"Public"
+	global     	TRUE
+	logical_models 	(list unit_reference_list)
+	logical_presentations 	(list unit_reference_list
+	    (object UseCaseDiagram "Main"
+		quid       	"3AAD0CFD006B"
+		title      	"Main"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	0
+		origin_y   	0
+		items      	(list diagram_item_list))))
+    root_category 	(object Class_Category "Logical View"
+	quid       	"3AAD0CFC0019"
+	exportControl 	"Public"
+	global     	TRUE
+	subsystem  	"Component View"
+	quidu      	"3AAD0CFC001B"
+	logical_models 	(list unit_reference_list
+	    (object Class "csBaseStorage"
+		quid       	"3AAD0D040309")
+	    (object Class "csQuery"
+		quid       	"3AAD0D2E0241"
+		documentation 	"Abfrage (READONLY) über Datenbestand, wahlweise ereignisgesteuert oder sequentiell über Cursor."
+		superclasses 	(list inheritance_relationship_list
+		    (object Inheritance_Relationship
+			quid       	"3AAD0D3C015B"
+			supplier   	"Logical View::csBaseStorage"
+			quidu      	"3AAD0D040309"))
+		operations 	(list Operations
+		    (object Operation "fetchNext"
+			quid       	"3AAD38420036"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "onRowAdded"
+			quid       	"3AAD2EEC00ED"
+			documentation 	"Wird aufgerufen, wenn ein neuer Datensatz zum Datenbestand hinzugefuegt wurde."
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "onRowChanged"
+			quid       	"3AAD2F40026B"
+			documentation 	"Wird aufgerufen, wenn sich ein zur Abfrage gehoerendes csRow-Objekt geaendert hat."
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "onRowRemoved"
+			quid       	"3AAD2EE7033F"
+			documentation 	"Wird aufgerufen, wenn ein Datensatz aus dem Datenbestand entfernt wurde."
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "onGetNewRowKey"
+			quid       	"3AAD31CE0081"
+			documentation 	"Wird von addRow() aufgerufen, um den Wert des KEY-Elementes des neuen Datensatzes zu ermitteln."
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)))
+	    (object Class "csStorage"
+		quid       	"3AAD0D33009A"
+		superclasses 	(list inheritance_relationship_list
+		    (object Inheritance_Relationship
+			quid       	"3AAD0D3E015E"
+			supplier   	"Logical View::csBaseStorage"
+			quidu      	"3AAD0D040309"))
+		operations 	(list Operations
+		    (object Operation "get"
+			quid       	"3AAD2C6901ED"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "put"
+			quid       	"3AAD2C6B03BD"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)))
+	    (object Class "csRow"
+		quid       	"3AAD0D4D0141"
+		documentation 	"Ermoeglicht die Bearbeitung eines einzelnen Datensatzes, der aus einer csQuery heraus ermittelt wurde."
+		superclasses 	(list inheritance_relationship_list
+		    (object Inheritance_Relationship
+			quid       	"3AAD0EBE03AF"
+			supplier   	"Logical View::csBaseStorage"
+			quidu      	"3AAD0D040309"))
+		operations 	(list Operations
+		    (object Operation "csRow"
+			quid       	"3AAD31640273"
+			documentation 	
+|Konstruktor, erzeugt ein csRecord-Objekt aus dem aktuellen Datensatz der Abfrage.
+|
+|Moegliche Varianten (ueber mode):
+|
+| - ALL: csRecord uebernimmt alle Felder aus csQuery und erzeugt neue csField-Objekte dafuer. Diese koennen ueber getField() abgefragt werden. ta_mode ist initial READONLY.
+|
+| - KEY: csRecord uebernimmt nur die Schluesselfelder aus csQuery und erhaelt eine Menge von csRecordVar-Objekte zugeordnet, welche die Felder der Abfrage bestimmen. ta_mode ist initial READONLY.
+|
+|- NEW: Ein neues (leeres) csRecord-Objekt wird zum Datenbestand hinzugefuegt. Der dazu noetige Schluesselwert wird ueber den Event onGetNewRecordKey() von der Query abgefragt. ta_mode ist initial READWRITE_INSERT.
+			
+			parameters 	(list Parameters
+			    (object Parameter "q"
+				type       	"csQuery*")
+			    (object Parameter "mode"
+				type       	"int"))
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "addField"
+			quid       	"3AAD3402033F"
+			parameters 	(list Parameters
+			    (object Parameter "fld"
+				type       	"csField*"))
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "getField"
+			quid       	"3AAD33E703A4"
+			parameters 	(list Parameters
+			    (object Parameter "idx"
+				type       	"int"))
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "edit"
+			quid       	"3AAD35C20389"
+			documentation 	"Markiert den Beginn einer EDIT-Operation, der Datensatz wird gesperrt, ta_mode wird zu READWRITE_UPDATE."
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "remove"
+			quid       	"3AAD2C510301"
+			documentation 	"Markiert den Beginn der Loeschoperation. Der Datensatz wird gesperrt, ta_mode wird zu READWRITE_DELETE."
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "save"
+			quid       	"3AAD36490242"
+			documentation 	"Markiert das Ende einer EDIT-Operation. Die geänderten Felder werden geschrieben bzw. der Datensatz geloescht, der Datensatz entsperrt,  ta_mode wird zu READONLY."
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "cancel"
+			quid       	"3AAD37370082"
+			documentation 	"Markiert das Ende einer EDIT-Operation, alle Änderungen werden verworfen, der Datensatz entsperrt,  ta_mode wird zu READONLY."
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0))
+		class_attributes 	(list class_attribute_list
+		    (object ClassAttribute "ta_mode"
+			quid       	"3AAD35EE038C"
+			documentation 	
+|Aktueller Transaktionsmodus:
+|
+| - READONLY
+| - READWRITE_INSERT
+| - READWRITE_UPDATE
+| - READWRITE_DELETE
+|
+			
+			type       	"int")
+		    (object ClassAttribute "key"
+			quid       	"3AAD3948017D"
+			type       	"cString")))
+	    (object Class "csField"
+		quid       	"3AAD0D970057"
+		superclasses 	(list inheritance_relationship_list
+		    (object Inheritance_Relationship
+			quid       	"3AAD0DAF02B5"
+			supplier   	"Logical View::csStorage"
+			quidu      	"3AAD0D33009A")))
+	    (object Class "csVar"
+		quid       	"3AAD0F780352"
+		superclasses 	(list inheritance_relationship_list
+		    (object Inheritance_Relationship
+			quid       	"3AAD0F810106"
+			supplier   	"Logical View::csStorage"
+			quidu      	"3AAD0D33009A")))
+	    (object Class "cdbQuery"
+		quid       	"3AAD11A9039F"
+		superclasses 	(list inheritance_relationship_list
+		    (object Inheritance_Relationship
+			quid       	"3AAD11E80092"
+			supplier   	"Logical View::csQuery"
+			quidu      	"3AAD0D2E0241")))
+	    (object Class "cdbRow"
+		quid       	"3AAD11B000F6"
+		superclasses 	(list inheritance_relationship_list
+		    (object Inheritance_Relationship
+			quid       	"3AAD11EC02F1"
+			supplier   	"Logical View::csRow"
+			quidu      	"3AAD0D4D0141"))
+		operations 	(list Operations
+		    (object Operation "cdbRow"
+			quid       	"3AAD322500B8"
+			parameters 	(list Parameters
+			    (object Parameter "q"
+				type       	"cdbQuery*")
+			    (object Parameter "ta"
+				type       	"cdbTransaction*")
+			    (object Parameter "mode"
+				type       	"int"))
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)))
+	    (object Class "cdbField"
+		quid       	"3AAD11B40305"
+		superclasses 	(list inheritance_relationship_list
+		    (object Inheritance_Relationship
+			quid       	"3AAD11EF011F"
+			supplier   	"Logical View::csField"
+			quidu      	"3AAD0D970057")))
+	    (object Class "cdbCursorEx"
+		quid       	"3AAD123E0096"
+		operations 	(list Operations
+		    (object Operation "exec"
+			quid       	"3AAD46C80245"
+			parameters 	(list Parameters
+			    (object Parameter "want_scroll"
+				type       	"bool"))
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)))
+	    (object Class "csMemQuery"
+		quid       	"3AAD32B6011A"
+		superclasses 	(list inheritance_relationship_list
+		    (object Inheritance_Relationship
+			quid       	"3AAD33160399"
+			supplier   	"Logical View::csQuery"
+			quidu      	"3AAD0D2E0241")))
+	    (object Class "csMemRecord"
+		quid       	"3AAD32EC0014"
+		superclasses 	(list inheritance_relationship_list
+		    (object Inheritance_Relationship
+			quid       	"3AAD331802C0"
+			supplier   	"Logical View::csRow"
+			quidu      	"3AAD0D4D0141")))
+	    (object Association "$UNNAMED$0"
+		quid       	"3AAD0D6901E2"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$1"
+			quid       	"3AAD0D6A00C1"
+			supplier   	"Logical View::csField"
+			quidu      	"3AAD0D970057"
+			client_cardinality 	(value cardinality "n")
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$2"
+			quid       	"3AAD0D6A00C2"
+			supplier   	"Logical View::csRow"
+			quidu      	"3AAD0D4D0141"
+			client_cardinality 	(value cardinality "1")
+			is_navigable 	TRUE)))
+	    (object Association "$UNNAMED$3"
+		quid       	"3AAD0DC8013E"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$4"
+			quid       	"3AAD0DC80397"
+			supplier   	"Logical View::csRow"
+			quidu      	"3AAD0D4D0141")
+		    (object Role "$UNNAMED$5"
+			quid       	"3AAD0DC803A1"
+			supplier   	"Logical View::csQuery"
+			quidu      	"3AAD0D2E0241"
+			client_cardinality 	(value cardinality "1")
+			is_navigable 	TRUE)))
+	    (object Association "$UNNAMED$6"
+		quid       	"3AAD12590320"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$7"
+			quid       	"3AAD125A01B9"
+			supplier   	"Logical View::cdbCursorEx"
+			quidu      	"3AAD123E0096"
+			client_cardinality 	(value cardinality "1")
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$8"
+			quid       	"3AAD125A01BA"
+			supplier   	"Logical View::cdbQuery"
+			quidu      	"3AAD11A9039F")))
+	    (object Association "$UNNAMED$9"
+		quid       	"3AAD12730056"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$10"
+			quid       	"3AAD1274009E"
+			supplier   	"Logical View::cdbCursorEx"
+			quidu      	"3AAD123E0096"
+			client_cardinality 	(value cardinality "1")
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$11"
+			quid       	"3AAD1274009F"
+			supplier   	"Logical View::cdbRow"
+			quidu      	"3AAD11B000F6")))
+	    (object Association "$UNNAMED$12"
+		quid       	"3AAD129B0220"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$13"
+			quid       	"3AAD129C00F5"
+			supplier   	"Logical View::cdbRow"
+			quidu      	"3AAD11B000F6"
+			client_cardinality 	(value cardinality "1")
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$14"
+			quid       	"3AAD129C00F6"
+			supplier   	"Logical View::cdbField"
+			quidu      	"3AAD11B40305")))
+	    (object Class_Category "UGrid"
+		quid       	"3AAD56B003DB"
+		exportControl 	"Public"
+		logical_models 	(list unit_reference_list
+		    (object Class "UGDataSource"
+			quid       	"3AAD56C7001C")
+		    (object Class "UGEclDataSource"
+			quid       	"3AAD56DD01B9"
+			superclasses 	(list inheritance_relationship_list
+			    (object Inheritance_Relationship
+				quid       	"3AAD56EB03D6"
+				supplier   	"Logical View::UGrid::UGDataSource"
+				quidu      	"3AAD56C7001C")))
+		    (object Class "cwContainer"
+			quid       	"3AAD57370031")
+		    (object Association "$UNNAMED$15"
+			quid       	"3AAD56F6009C"
+			roles      	(list role_list
+			    (object Role "$UNNAMED$16"
+				quid       	"3AAD56F60309"
+				supplier   	"Logical View::csQuery"
+				quidu      	"3AAD0D2E0241"
+				client_cardinality 	(value cardinality "1")
+				is_navigable 	TRUE)
+			    (object Role "$UNNAMED$17"
+				quid       	"3AAD56F6031D"
+				supplier   	"Logical View::UGrid::UGEclDataSource"
+				quidu      	"3AAD56DD01B9")))
+		    (object Association "$UNNAMED$18"
+			quid       	"3AAD5753026D"
+			roles      	(list role_list
+			    (object Role "$UNNAMED$19"
+				quid       	"3AAD57540105"
+				supplier   	"Logical View::UGrid::UGEclDataSource"
+				quidu      	"3AAD56DD01B9"
+				client_cardinality 	(value cardinality "1")
+				is_navigable 	TRUE)
+			    (object Role "$UNNAMED$20"
+				quid       	"3AAD57540106"
+				supplier   	"Logical View::UGrid::cwContainer"
+				quidu      	"3AAD57370031")))
+		    (object Association "$UNNAMED$21"
+			quid       	"3AAD576602A6"
+			roles      	(list role_list
+			    (object Role "$UNNAMED$22"
+				quid       	"3AAD57680028"
+				supplier   	"Logical View::csQuery"
+				quidu      	"3AAD0D2E0241"
+				client_cardinality 	(value cardinality "1")
+				is_navigable 	TRUE)
+			    (object Role "$UNNAMED$23"
+				quid       	"3AAD5768003C"
+				supplier   	"Logical View::UGrid::cwContainer"
+				quidu      	"3AAD57370031"))))
+		logical_presentations 	(list unit_reference_list
+		    (object ClassDiagram "Main"
+			quid       	"3AAD56BA0032"
+			title      	"Main"
+			zoom       	100
+			max_height 	28350
+			max_width  	21600
+			origin_x   	0
+			origin_y   	38
+			items      	(list diagram_item_list
+			    (object ClassView "Class" "Logical View::UGrid::UGDataSource" @1
+				ShowCompartmentStereotypes 	TRUE
+				IncludeAttribute 	TRUE
+				IncludeOperation 	TRUE
+				location   	(624, 416)
+				label      	(object ItemLabel
+				    Parent_View 	@1
+				    location   	(472, 365)
+				    fill_color 	13434879
+				    nlines     	1
+				    max_width  	304
+				    justify    	0
+				    label      	"UGDataSource")
+				icon_style 	"Icon"
+				line_color 	3342489
+				fill_color 	13434879
+				quidu      	"3AAD56C7001C"
+				width      	322
+				height     	126
+				annotation 	8
+				autoResize 	TRUE)
+			    (object ClassView "Class" "Logical View::UGrid::UGEclDataSource" @2
+				ShowCompartmentStereotypes 	TRUE
+				IncludeAttribute 	TRUE
+				IncludeOperation 	TRUE
+				location   	(624, 1168)
+				label      	(object ItemLabel
+				    Parent_View 	@2
+				    location   	(444, 1117)
+				    fill_color 	13434879
+				    nlines     	1
+				    max_width  	360
+				    justify    	0
+				    label      	"UGEclDataSource")
+				icon_style 	"Icon"
+				line_color 	3342489
+				fill_color 	13434879
+				quidu      	"3AAD56DD01B9"
+				width      	378
+				height     	126
+				annotation 	8
+				autoResize 	TRUE)
+			    (object InheritView "" @3
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3AAD56EB03D6"
+				client     	@2
+				supplier   	@1
+				line_style 	0)
+			    (object ClassView "Class" "Logical View::csQuery" @4
+				ShowCompartmentStereotypes 	TRUE
+				IncludeAttribute 	TRUE
+				IncludeOperation 	TRUE
+				location   	(1600, 1168)
+				label      	(object ItemLabel
+				    Parent_View 	@4
+				    location   	(1368, 964)
+				    fill_color 	13434879
+				    nlines     	1
+				    max_width  	464
+				    justify    	0
+				    label      	"csQuery")
+				icon_style 	"Icon"
+				line_color 	3342489
+				fill_color 	13434879
+				quidu      	"3AAD0D2E0241"
+				compartment 	(object Compartment
+				    Parent_View 	@4
+				    location   	(1368, 1072)
+				    icon_style 	"Icon"
+				    fill_color 	13434879
+				    anchor     	2
+				    nlines     	6
+				    max_width  	471)
+				width      	482
+				height     	432
+				annotation 	8
+				autoResize 	TRUE)
+			    (object AssociationViewNew "$UNNAMED$15" @5
+				location   	(1085, 1168)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3AAD56F6009C"
+				roleview_list 	(list RoleViews
+				    (object RoleView "$UNNAMED$16" @6
+					Parent_View 	@5
+					location   	(461, 0)
+					stereotype 	TRUE
+					line_color 	3342489
+					quidu      	"3AAD56F60309"
+					client     	@5
+					supplier   	@4
+					line_style 	0
+					label      	(object SegLabel @7
+					    Parent_View 	@6
+					    location   	(1331, 1222)
+					    anchor     	2
+					    anchor_loc 	1
+					    nlines     	1
+					    max_width  	15
+					    justify    	0
+					    label      	"1"
+					    pctDist    	0.900000
+					    height     	54
+					    orientation 	1))
+				    (object RoleView "$UNNAMED$17" @8
+					Parent_View 	@5
+					location   	(461, 0)
+					stereotype 	TRUE
+					line_color 	3342489
+					quidu      	"3AAD56F6031D"
+					client     	@5
+					supplier   	@2
+					line_style 	0)))
+			    (object ClassView "Class" "Logical View::UGrid::cwContainer" @9
+				ShowCompartmentStereotypes 	TRUE
+				IncludeAttribute 	TRUE
+				IncludeOperation 	TRUE
+				location   	(1088, 1984)
+				label      	(object ItemLabel
+				    Parent_View 	@9
+				    location   	(962, 1933)
+				    fill_color 	13434879
+				    nlines     	1
+				    max_width  	252
+				    justify    	0
+				    label      	"cwContainer")
+				icon_style 	"Icon"
+				line_color 	3342489
+				fill_color 	13434879
+				quidu      	"3AAD57370031"
+				width      	270
+				height     	126
+				annotation 	8
+				autoResize 	TRUE)
+			    (object AssociationViewNew "$UNNAMED$18" @10
+				location   	(855, 1575)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3AAD5753026D"
+				roleview_list 	(list RoleViews
+				    (object RoleView "$UNNAMED$19" @11
+					Parent_View 	@10
+					location   	(-217, -393)
+					stereotype 	TRUE
+					line_color 	3342489
+					quidu      	"3AAD57540105"
+					client     	@10
+					supplier   	@2
+					line_style 	0
+					label      	(object SegLabel @12
+					    Parent_View 	@11
+					    location   	(726, 1240)
+					    anchor     	2
+					    anchor_loc 	1
+					    nlines     	1
+					    max_width  	15
+					    justify    	0
+					    label      	"1"
+					    pctDist    	0.900000
+					    height     	54
+					    orientation 	1))
+				    (object RoleView "$UNNAMED$20" @13
+					Parent_View 	@10
+					location   	(-217, -393)
+					stereotype 	TRUE
+					line_color 	3342489
+					quidu      	"3AAD57540106"
+					client     	@10
+					supplier   	@9
+					line_style 	0)))
+			    (object AssociationViewNew "$UNNAMED$21" @14
+				location   	(1296, 1652)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3AAD576602A6"
+				roleview_list 	(list RoleViews
+				    (object RoleView "$UNNAMED$22" @15
+					Parent_View 	@14
+					location   	(176, -332)
+					stereotype 	TRUE
+					line_color 	3342489
+					quidu      	"3AAD57680028"
+					client     	@14
+					supplier   	@4
+					line_style 	0
+					label      	(object SegLabel @16
+					    Parent_View 	@15
+					    location   	(1492, 1441)
+					    anchor     	2
+					    anchor_loc 	1
+					    nlines     	1
+					    max_width  	15
+					    justify    	0
+					    label      	"1"
+					    pctDist    	0.900000
+					    height     	54
+					    orientation 	1))
+				    (object RoleView "$UNNAMED$23" @17
+					Parent_View 	@14
+					location   	(176, -332)
+					stereotype 	TRUE
+					line_color 	3342489
+					quidu      	"3AAD5768003C"
+					client     	@14
+					supplier   	@9
+					line_style 	0))))))))
+	logical_presentations 	(list unit_reference_list
+	    (object ClassDiagram "Main"
+		quid       	"3AAD0CFD011E"
+		title      	"Main"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	0
+		origin_y   	0
+		items      	(list diagram_item_list
+		    (object ClassView "Class" "Logical View::csBaseStorage" @18
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1104, 176)
+			label      	(object ItemLabel
+			    Parent_View 	@18
+			    location   	(950, 125)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	308
+			    justify    	0
+			    label      	"csBaseStorage")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3AAD0D040309"
+			width      	326
+			height     	126
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Logical View::csStorage" @19
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1872, 512)
+			label      	(object ItemLabel
+			    Parent_View 	@19
+			    location   	(1764, 406)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	216
+			    justify    	0
+			    label      	"csStorage")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3AAD0D33009A"
+			compartment 	(object Compartment
+			    Parent_View 	@19
+			    location   	(1764, 466)
+			    icon_style 	"Icon"
+			    fill_color 	13434879
+			    anchor     	2
+			    nlines     	3
+			    max_width  	140)
+			width      	234
+			height     	236
+			annotation 	8
+			autoResize 	TRUE)
+		    (object InheritView "" @20
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3AAD0D3E015E"
+			client     	@19
+			supplier   	@18
+			line_style 	0)
+		    (object ClassView "Class" "Logical View::csField" @21
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1872, 1040)
+			label      	(object ItemLabel
+			    Parent_View 	@21
+			    location   	(1791, 988)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	162
+			    justify    	0
+			    label      	"csField")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3AAD0D970057"
+			height     	128
+			annotation 	8
+			autoResize 	TRUE)
+		    (object InheritView "" @22
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3AAD0DAF02B5"
+			client     	@21
+			supplier   	@19
+			line_style 	0)
+		    (object ClassView "Class" "Logical View::csRow" @23
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1104, 1040)
+			label      	(object ItemLabel
+			    Parent_View 	@23
+			    location   	(959, 759)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	290
+			    justify    	0
+			    label      	"csRow")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3AAD0D4D0141"
+			compartment 	(object Compartment
+			    Parent_View 	@23
+			    location   	(959, 819)
+			    icon_style 	"Icon"
+			    fill_color 	13434879
+			    anchor     	2
+			    nlines     	10
+			    max_width  	287)
+			width      	308
+			height     	586
+			annotation 	8
+			autoResize 	TRUE)
+		    (object AssociationViewNew "$UNNAMED$0" @24
+			location   	(1519, 1040)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3AAD0D6901E2"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$1" @25
+				Parent_View 	@24
+				location   	(863, 224)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3AAD0D6A00C1"
+				client     	@24
+				supplier   	@21
+				line_style 	0
+				label      	(object SegLabel @26
+				    Parent_View 	@25
+				    location   	(1703, 1092)
+				    anchor     	2
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	15
+				    justify    	0
+				    label      	"*"
+				    pctDist    	0.707792
+				    height     	52
+				    orientation 	1))
+			    (object RoleView "$UNNAMED$2" @27
+				Parent_View 	@24
+				location   	(863, 224)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3AAD0D6A00C2"
+				client     	@24
+				supplier   	@23
+				line_style 	0
+				label      	(object SegLabel @28
+				    Parent_View 	@27
+				    location   	(1316, 1094)
+				    anchor     	2
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	15
+				    justify    	0
+				    label      	"1"
+				    pctDist    	0.777778
+				    height     	54
+				    orientation 	0))))
+		    (object ClassView "Class" "Logical View::csQuery" @29
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(352, 1040)
+			label      	(object ItemLabel
+			    Parent_View 	@29
+			    location   	(144, 859)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	416
+			    justify    	0
+			    label      	"csQuery")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3AAD0D2E0241"
+			compartment 	(object Compartment
+			    Parent_View 	@29
+			    location   	(144, 919)
+			    icon_style 	"Icon"
+			    fill_color 	13434879
+			    anchor     	2
+			    nlines     	6
+			    max_width  	412)
+			width      	434
+			height     	386
+			annotation 	8
+			autoResize 	TRUE)
+		    (object InheritView "" @30
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3AAD0D3C015B"
+			client     	@29
+			supplier   	@18
+			line_style 	0)
+		    (object AssociationViewNew "$UNNAMED$3" @31
+			location   	(759, 1040)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3AAD0DC8013E"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$4" @32
+				Parent_View 	@31
+				location   	(455, 528)
+				label      	(object SegLabel @33
+				    Parent_View 	@32
+				    location   	(793, 1090)
+				    hidden     	TRUE
+				    anchor     	1
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	60
+				    justify    	0
+				    label      	""
+				    pctDist    	0.185484
+				    height     	50
+				    orientation 	1)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3AAD0DC80397"
+				client     	@31
+				supplier   	@23
+				line_style 	0)
+			    (object RoleView "$UNNAMED$5" @34
+				Parent_View 	@31
+				location   	(455, 528)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3AAD0DC803A1"
+				client     	@31
+				supplier   	@29
+				line_style 	0
+				label      	(object SegLabel @35
+				    Parent_View 	@34
+				    location   	(625, 998)
+				    anchor     	2
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	15
+				    justify    	0
+				    label      	"1"
+				    pctDist    	0.708075
+				    height     	43
+				    orientation 	1))))
+		    (object InheritView "" @36
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3AAD0EBE03AF"
+			client     	@23
+			supplier   	@18
+			line_style 	0)
+		    (object ClassView "Class" "Logical View::cdbQuery" @37
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(352, 1696)
+			label      	(object ItemLabel
+			    Parent_View 	@37
+			    location   	(246, 1645)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	212
+			    justify    	0
+			    label      	"cdbQuery")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3AAD11A9039F"
+			width      	230
+			height     	126
+			annotation 	8
+			autoResize 	TRUE)
+		    (object InheritView "" @38
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3AAD11E80092"
+			client     	@37
+			supplier   	@29
+			line_style 	0)
+		    (object ClassView "Class" "Logical View::cdbCursorEx" @39
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(640, 2256)
+			label      	(object ItemLabel
+			    Parent_View 	@39
+			    location   	(506, 2175)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	268
+			    justify    	0
+			    label      	"cdbCursorEx")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3AAD123E0096"
+			compartment 	(object Compartment
+			    Parent_View 	@39
+			    location   	(506, 2235)
+			    icon_style 	"Icon"
+			    fill_color 	13434879
+			    anchor     	2
+			    nlines     	2
+			    max_width  	171)
+			width      	286
+			height     	186
+			annotation 	8
+			autoResize 	TRUE)
+		    (object AssociationViewNew "$UNNAMED$6" @40
+			location   	(487, 1960)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3AAD12590320"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$7" @41
+				Parent_View 	@40
+				location   	(263, 456)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3AAD125A01B9"
+				client     	@40
+				supplier   	@39
+				line_style 	0
+				label      	(object SegLabel @42
+				    Parent_View 	@41
+				    location   	(612, 2085)
+				    anchor     	2
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	15
+				    justify    	0
+				    label      	"1"
+				    pctDist    	0.746412
+				    height     	54
+				    orientation 	0))
+			    (object RoleView "$UNNAMED$8" @43
+				Parent_View 	@40
+				location   	(263, 456)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3AAD125A01BA"
+				client     	@40
+				supplier   	@37
+				line_style 	0)))
+		    (object ClassView "Class" "Logical View::cdbRow" @44
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1104, 1696)
+			label      	(object ItemLabel
+			    Parent_View 	@44
+			    location   	(993, 1615)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	222
+			    justify    	0
+			    label      	"cdbRow")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3AAD11B000F6"
+			compartment 	(object Compartment
+			    Parent_View 	@44
+			    location   	(993, 1675)
+			    icon_style 	"Icon"
+			    fill_color 	13434879
+			    anchor     	2
+			    nlines     	2
+			    max_width  	219)
+			width      	240
+			height     	186
+			annotation 	8
+			autoResize 	TRUE)
+		    (object InheritView "" @45
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3AAD11EC02F1"
+			client     	@44
+			supplier   	@23
+			line_style 	0)
+		    (object AssociationViewNew "$UNNAMED$9" @46
+			location   	(870, 1975)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3AAD12730056"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$10" @47
+				Parent_View 	@46
+				location   	(70, 471)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3AAD1274009E"
+				client     	@46
+				supplier   	@39
+				line_style 	0
+				label      	(object SegLabel @48
+				    Parent_View 	@47
+				    location   	(781, 2143)
+				    anchor     	2
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	15
+				    justify    	0
+				    label      	"1"
+				    pctDist    	0.774752
+				    height     	37
+				    orientation 	0))
+			    (object RoleView "$UNNAMED$11" @49
+				Parent_View 	@46
+				location   	(70, 471)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3AAD1274009F"
+				client     	@46
+				supplier   	@44
+				line_style 	0)))
+		    (object ClassView "Class" "Logical View::cdbField" @50
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1872, 1696)
+			label      	(object ItemLabel
+			    Parent_View 	@50
+			    location   	(1781, 1645)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	182
+			    justify    	0
+			    label      	"cdbField")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3AAD11B40305"
+			width      	200
+			height     	126
+			annotation 	8
+			autoResize 	TRUE)
+		    (object InheritView "" @51
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3AAD11EF011F"
+			client     	@50
+			supplier   	@21
+			line_style 	0)
+		    (object AssociationViewNew "$UNNAMED$12" @52
+			location   	(1497, 1696)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3AAD129B0220"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$13" @53
+				Parent_View 	@52
+				location   	(137, 192)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3AAD129C00F5"
+				client     	@52
+				supplier   	@44
+				line_style 	0
+				label      	(object SegLabel @54
+				    Parent_View 	@53
+				    location   	(1305, 1751)
+				    anchor     	2
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	15
+				    justify    	0
+				    label      	"1"
+				    pctDist    	0.703030
+				    height     	55
+				    orientation 	0))
+			    (object RoleView "$UNNAMED$14" @55
+				Parent_View 	@52
+				location   	(137, 192)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3AAD129C00F6"
+				client     	@52
+				supplier   	@50
+				line_style 	0)))
+		    (object CategoryView "Logical View::UGrid" @56
+			location   	(272, 208)
+			label      	(object ItemLabel
+			    Parent_View 	@56
+			    location   	(128, 124)
+			    fill_color 	13434879
+			    nlines     	2
+			    max_width  	288
+			    justify    	0
+			    label      	"UGrid")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3AAD56B003DB"
+			width      	300
+			height     	180)))
+	    (object ClassDiagram "Memory Storage"
+		quid       	"3AAD327101D9"
+		title      	"Memory Storage"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	0
+		origin_y   	0
+		items      	(list diagram_item_list
+		    (object ClassView "Class" "Logical View::csBaseStorage" @57
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1040, 208)
+			label      	(object ItemLabel
+			    Parent_View 	@57
+			    location   	(886, 157)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	308
+			    justify    	0
+			    label      	"csBaseStorage")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3AAD0D040309"
+			width      	326
+			height     	126
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Logical View::csStorage" @58
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1840, 592)
+			label      	(object ItemLabel
+			    Parent_View 	@58
+			    location   	(1733, 486)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	214
+			    justify    	0
+			    label      	"csStorage")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3AAD0D33009A"
+			width      	232
+			height     	236
+			annotation 	8
+			autoResize 	TRUE)
+		    (object InheritView "" @59
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3AAD0D3E015E"
+			client     	@58
+			supplier   	@57
+			line_style 	0)
+		    (object ClassView "Class" "Logical View::csQuery" @60
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(368, 1024)
+			label      	(object ItemLabel
+			    Parent_View 	@60
+			    location   	(136, 843)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	464
+			    justify    	0
+			    label      	"csQuery")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3AAD0D2E0241"
+			compartment 	(object Compartment
+			    Parent_View 	@60
+			    location   	(136, 903)
+			    icon_style 	"Icon"
+			    fill_color 	16777215
+			    anchor     	2
+			    nlines     	6
+			    max_width  	0)
+			width      	482
+			height     	386
+			annotation 	8
+			autoResize 	TRUE)
+		    (object InheritView "" @61
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3AAD0D3C015B"
+			client     	@60
+			supplier   	@57
+			line_style 	0)
+		    (object ClassView "Class" "Logical View::csRow" @62
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1040, 1024)
+			label      	(object ItemLabel
+			    Parent_View 	@62
+			    location   	(959, 972)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	162
+			    justify    	0
+			    label      	"csRow")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3AAD0D4D0141"
+			compartment 	(object Compartment
+			    Parent_View 	@62
+			    location   	(959, 1032)
+			    icon_style 	"Icon"
+			    fill_color 	16777215
+			    anchor     	2
+			    nlines     	10
+			    max_width  	30)
+			height     	128
+			annotation 	8
+			autoResize 	TRUE)
+		    (object AssociationViewNew "$UNNAMED$3" @63
+			location   	(779, 1024)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3AAD0DC8013E"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$5" @64
+				Parent_View 	@63
+				location   	(-261, 304)
+				label      	(object SegLabel @65
+				    Parent_View 	@64
+				    location   	(643, 983)
+				    hidden     	TRUE
+				    anchor     	1
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	450
+				    justify    	0
+				    label      	""
+				    pctDist    	0.800000
+				    height     	42
+				    orientation 	1)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3AAD0DC803A1"
+				client     	@63
+				supplier   	@60
+				line_style 	0
+				label      	(object SegLabel @66
+				    Parent_View 	@64
+				    location   	(627, 1078)
+				    anchor     	2
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	15
+				    justify    	0
+				    label      	"1"
+				    pctDist    	0.900000
+				    height     	54
+				    orientation 	0))
+			    (object RoleView "$UNNAMED$4" @67
+				Parent_View 	@63
+				location   	(-261, 304)
+				label      	(object SegLabel @68
+				    Parent_View 	@67
+				    location   	(842, 970)
+				    hidden     	TRUE
+				    anchor     	1
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	156
+				    justify    	0
+				    label      	""
+				    pctDist    	0.371622
+				    height     	55
+				    orientation 	0)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3AAD0DC80397"
+				client     	@63
+				supplier   	@62
+				line_style 	0)))
+		    (object InheritView "" @69
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3AAD0EBE03AF"
+			client     	@62
+			supplier   	@57
+			line_style 	0)
+		    (object ClassView "Class" "Logical View::csField" @70
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1840, 1024)
+			label      	(object ItemLabel
+			    Parent_View 	@70
+			    location   	(1759, 973)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	162
+			    justify    	0
+			    label      	"csField")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3AAD0D970057"
+			height     	126
+			annotation 	8
+			autoResize 	TRUE)
+		    (object AssociationViewNew "$UNNAMED$0" @71
+			location   	(1439, 1024)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3AAD0D6901E2"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$2" @72
+				Parent_View 	@71
+				location   	(-17, 48)
+				label      	(object SegLabel @73
+				    Parent_View 	@72
+				    location   	(1192, 983)
+				    hidden     	TRUE
+				    anchor     	1
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	450
+				    justify    	0
+				    label      	""
+				    pctDist    	0.800000
+				    height     	42
+				    orientation 	1)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3AAD0D6A00C2"
+				client     	@71
+				supplier   	@62
+				line_style 	0
+				label      	(object SegLabel @74
+				    Parent_View 	@72
+				    location   	(1161, 1078)
+				    anchor     	2
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	15
+				    justify    	0
+				    label      	"1"
+				    pctDist    	0.900000
+				    height     	54
+				    orientation 	0))
+			    (object RoleView "$UNNAMED$1" @75
+				Parent_View 	@71
+				location   	(-17, 48)
+				label      	(object SegLabel @76
+				    Parent_View 	@75
+				    location   	(1687, 983)
+				    hidden     	TRUE
+				    anchor     	1
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	450
+				    justify    	0
+				    label      	""
+				    pctDist    	0.800000
+				    height     	42
+				    orientation 	0)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3AAD0D6A00C1"
+				client     	@71
+				supplier   	@70
+				line_style 	0
+				label      	(object SegLabel @77
+				    Parent_View 	@75
+				    location   	(1717, 1078)
+				    anchor     	2
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	15
+				    justify    	0
+				    label      	"*"
+				    pctDist    	0.900000
+				    height     	54
+				    orientation 	1))))
+		    (object InheritView "" @78
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3AAD0DAF02B5"
+			client     	@70
+			supplier   	@58
+			line_style 	0)
+		    (object ClassView "Class" "Logical View::csVar" @79
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(2352, 1024)
+			label      	(object ItemLabel
+			    Parent_View 	@79
+			    location   	(2271, 973)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	162
+			    justify    	0
+			    label      	"csVar")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3AAD0F780352"
+			height     	126
+			annotation 	8
+			autoResize 	TRUE)
+		    (object InheritView "" @80
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3AAD0F810106"
+			client     	@79
+			supplier   	@58
+			line_style 	0)
+		    (object ClassView "Class" "Logical View::csMemQuery" @81
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(368, 1824)
+			label      	(object ItemLabel
+			    Parent_View 	@81
+			    location   	(232, 1773)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	272
+			    justify    	0
+			    label      	"csMemQuery")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3AAD32B6011A"
+			width      	290
+			height     	126
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Logical View::csMemRecord" @82
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1040, 1824)
+			label      	(object ItemLabel
+			    Parent_View 	@82
+			    location   	(895, 1773)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	290
+			    justify    	0
+			    label      	"csMemRecord")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3AAD32EC0014"
+			width      	308
+			height     	126
+			annotation 	8
+			autoResize 	TRUE)
+		    (object InheritView "" @83
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3AAD33160399"
+			client     	@81
+			supplier   	@60
+			line_style 	0)
+		    (object InheritView "" @84
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3AAD331802C0"
+			client     	@82
+			supplier   	@62
+			line_style 	0)))))
+    root_subsystem 	(object SubSystem "Component View"
+	quid       	"3AAD0CFC001B"
+	physical_models 	(list unit_reference_list)
+	physical_presentations 	(list unit_reference_list
+	    (object Module_Diagram "Main"
+		quid       	"3AAD0CFD006A"
+		title      	"Main"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	0
+		origin_y   	0
+		items      	(list diagram_item_list))))
+    process_structure 	(object Processes
+	quid       	"3AAD0CFC001C"
+	ProcsNDevs 	(list
+	    (object Process_Diagram "Deployment View"
+		quid       	"3AAD0CFC001E"
+		title      	"Deployment View"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	0
+		origin_y   	0
+		items      	(list diagram_item_list))))
+    properties 	(object Properties
+	quid       	"3AAD0CFC001D"))

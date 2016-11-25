@@ -1,0 +1,107 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNUNG: DIESE ARBEITSBEREICHSDATEI DARF NICHT BEARBEITET ODER GELÖSCHT WERDEN!
+
+###############################################################################
+
+Project: "KeypadDemo"=.\KeypadDemo\KeypadDemo.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name KeypadLib
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name make_plugin
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "KeypadLib"=.\KeypadLib\KeypadLib.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name make_plugin
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "framework"=..\..\Targ\vcpp\framework\framework.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "make_plugin"=.\make_plugin\make_plugin.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name qt_plugin_kbdlayouts
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name qt_plugin_keypads
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "qt_plugin_kbdlayouts"=..\..\Targ\vcpp\qt_plugin_kbdlayouts\qt_plugin_kbdlayouts.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name qt_plugin_keypads
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "qt_plugin_keypads"=..\..\Targ\vcpp\qt_plugin_keypads\qt_plugin_keypads.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+

@@ -1,0 +1,89 @@
+
+cPublicDialog entfällt, entsprechende methoden entfernen
+QWidget::parentWidget(p) -> QWidget::parentWidget()
+QWidget::name() -> QWidget->objectName()
+QObject::name() -> QObject->objectName()
+
+QPainter::redirected(widget, pixmap*) -> QPainter::redirected(pixmap*)  der erste parameter entfällt
+
+QSharedDoubleBuffer gibt es nicht mehr unter Qt: entsprechende Methodenaufrufe entfallen
+
+QToolButton(parent, name) -> QToolButton(parent), dann setObjectName(name);
+CComboBox(false, qwParent, szName) -> CComboBox(qwParent, szName)
+
+QHboxLayout,QVBoxLayout können nur noch mit dem parent konstruiert werden, die
+Parameter dann mit setMargin(..) und setSpacing(..) setzen
+
+Dasselbe gilt auch für widgets mit dem Parameter name, der muss mit setObjectName() gesetzt werden
+
+
+QFile::name() -> QFile::fileName()
+
+QStringList::split() gibts nicht mehr, ersetzten durch QString::split()
+
+QDir::setMatchAllDirs(true) ersetzen durch QDir::setFilter(QDir::AllDirs
+
+QTimer::start(5000, p) -> QTimer::start(5000)
+
+QByteArray(int) -> QByteArray(int, ' ')
+
+QPixmap = QImage ->  QPixmap = QPixmap::fromImage(QImage);
+
+(QString.contains(char) > 1) -> QString.contains(char)
+
+QString::replace(int, int, NULL) -> QString::replace(int, int);
+
+Bei abgeleiteten Formularklassen, Widgets, die direkt referenziert werden:
+
+Beispiel:
+LE_SetStrEje->setFocus() -> ui().LE_SetStrEje->setFocus()
+
+Bei abgeleiteten Wizard-Formularklassen:
+
+QWizard::...-> Wizard::...
+Basisklassenname::... Wizard::...
+
+Beispiel (clp_ecectorwizard_sub):
+
+QWizard::showPage(actualPage) -> Wizard::showPage(actualPage)
+Clp_EjectorWizard::languageChange() -> Wizard::languageChange()
+
+Bei abgeleiteten Dialog-Formularklassen:
+
+QDialog::...-> Dialog::...
+Basisklassenname::... Dialog::...
+
+Beispiel (sys_dirdialog_sub):
+
+Sys_DirDialog::languageChange() -> Dialog::languageChange()
+
+
+QScrollArea::addChild -> QScrollArea::setWidget     (?? was passiert mit mehreren widgets)
+
+ui_hlpviewer.h -> ui_hlp_viewer.h 
+
+QRegExp::search -> QRegExp::indexIn
+
+Bei QApplication::setFont(..) entfällt der zweite Parameter
+
+QStringList::split(QString) -> QString::split()
+
+indexOf bei std:: - Klassen muss wieder in find geändert werden
+
+CTextEdit::text() -> CTextEdit::toPlainText()
+
+ASSERT(expression) -> _ASSERT(expression)
+
+QString::simplifyWhiteSpace() -> QString::simplified()
+
+QPixmap = QImage -> QPixmap = QPixmap::fromImage(QImage)
+
+QFile::name() -> QFile::fileName()
+
+QDir::currentDirPath() -> QDir::currentPath()
+
+QFile x = Qfile(params) -> QFile x(params)  Assignment-Operator ist privat unter Qt 4
+
+
+
+

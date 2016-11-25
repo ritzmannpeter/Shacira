@@ -1,0 +1,29 @@
+
+   Neue Verwaltung von Bildern:
+
+    Im Gegensatz zur früheren Version wird neben dem images - Verzeichnis das Verzeichnis
+    unmatched_images angelegt. In diesen Bereich werden alle Bilder als png generiert,
+    die nicht aufgelöst werden können. Der Dateiname dieser generierten Bilder ist
+
+     generated_<lfdNr>.png
+
+    zum Beispiel generated_0015.png
+
+    Die generierten Bilder im Verzeichnis unmatched_images müssen erhalten
+    bleiben.
+    Falls dort etwas gelöscht wird muss das gesamte Verzeichnis
+    gelöscht werden und und die Images aus allen Forms neu generiert werden.
+    Im Verzeichnis unmatched images wird die Datei resolve.txt verwaltet, die
+    es ermöglicht generierten Dateien (die ja nicht "gematcht werden können" eine beliebige
+    Datei aus dem images Verzeichnis zuzuordnen,
+
+    Bei der ersten Ausführung von q4_uiport wird eine Datei mit leeren Einträgen
+    erzeugt, die dann manuell erggänzt werden muss. die manuell ergänzte Datei ist
+    nur gültig, wenn keine Bild-Dateien in unmatched_images gelöscht wurden.
+
+    Wenn generierte Daterin gelöscht werden, werden die Zuordnungen in resolve.txt
+    ungültig. Deshalb sollte in diesem Bereich keine Datei gelöscht werden.
+
+    Der zugeordnete Pfad wird anstelle der generierten Datei (Pfad) an entsprechender Stelle
+    ind ie ui-Datei eingetragen.
+

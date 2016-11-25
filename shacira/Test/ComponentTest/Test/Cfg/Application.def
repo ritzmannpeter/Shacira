@@ -1,0 +1,17 @@
+
+; user defined types
+
+[Device]
+; PPCCOM device
+IdleTime=Unsigned
+TimeControl=Boolean
+CycleTimeSet=Unsigned
+BlockMode=Boolean
+CheckBlock=Boolean
+; PSG heating device
+ServerHost=String
+CheckPSGRawValues=Boolean
+DelayTimeStartPSGServer=Unsigned
+
+[Program]
+CacheRefresh=Unsigned

@@ -1,0 +1,78 @@
+// [muster_file.cpp] pattern: parsing from a file
+
+/*
+   This is only a pattern how to parse from a file. 
+   For a concrete example you have to substitute the text within <>.
+*/
+
+// necessary includes
+
+#include "stdosx.h"    // base header STYX library
+#include "scn_base.h"  // scanner
+#include "ptm_gen.h"   // parse & term construction
+#include "symbols.h"   // symbol table
+#include "hmap.h"      // hash maps
+
+#include "<language>_lim.h"  // <language> scanner table
+#include "<language>_pim.h"  // <language> parser table
+#include "<language>_int.h"  // <language> language interface
+
+
+static void parse_and_eval(c_string szPath)
+// parse & eval file 
+{ Scn_T      pScn;               // scan table
+  Scn_Stream pCstream;           // scan stream
+  PLR_Tab    pPlr;               // parse table
+  PT_Cfg     pPCfg;              // parse configuration
+  PT_Term    pTree;              // parse result: derivation tree or NULL
+  Scn_get_<language>(&pScn);                 // create scan table
+  pPlr = PLR_get_<language>();               // create parse table
+  pCstream = Stream_file(pScn,"",szPath,""); // create scanner from 'szPath'
+  /* you can split the path into the following components
+    pCstream = Stream_file(pScn,<EnvVar>,<BaseName>,<Suffix>); 
+  */
+  pPCfg = PT_init(pPlr,pCstream); // create parse configuration
+  pTree = PT_PARSE(pPCfg,"");     // parse from first start nonterminal
+  // initializes error count with syntax error count
+  PT_setErrorCnt(PT_synErrorCnt(pPCfg));
+  // no errors --> eval derivation tree
+  if( PT_errorCnt() == 0 ) 
+  { <language><start nonterminal>   pStart;  // start nonterminal tree node
+    <language><child nonterminal 1> pChild1; // first child node
+    // ...
+    <language><child nonterminal N> pChildN; // last child node
+    // extract start nonterminal tree node
+    assert0( <language>_Start_<start nonterminal>(pTree,&pStart), "");
+    // end command --> stop process
+    if( <language><start nonterminal>_<production>
+        (pStart,&pChild1, ..., &pChildN) ) 
+    {
+      // further evaluation ...
+    }
+  }
+  if( pTree != NULL ) PT_delT(pTree); // release derivation tree
+  PT_quit(pPCfg);                     // release parse configuration
+  Stream_close(pCstream);             // close scan stream
+  Stream_free(pCstream);              // release scan stream
+  Scn_free(pScn);                     // release scan table
+  PLR_delTab(pPlr);                   // release parse table
+}
+
+
+int main(int argc, char* argv[])
+{ 
+  // modul initialisation for hash maps and symbols
+  MAP_init();
+  initSymbols();
+  // init language symbols
+  <language>_initSymbols();
+  // parse and evaluate file
+  parse_and_eval(argv[0]);
+  // release language symbols
+  <language>_quitSymbols();
+  // modul termination for hash maps and symbols
+  freeSymbols();
+  MAP_quit();
+  BUG_CORE;
+  return 0;
+}

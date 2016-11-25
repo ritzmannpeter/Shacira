@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[mem_base.h] Memory Management</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[mem_base.h] Memory Management</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="sysbase0.htm">#include "sysbase0.h"</a>
+<br>
+<br>
+<br>
+<br><hr width="100%" size=2><h2><b> Memory </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>long <b>ObjCount</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>allocated objects
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>StdCPtr <b>NewMem</b>(long objsize)</pre>
+<td bgcolor="#FFF0F5" align=left> creates an object of size 'objsize'; raises exception <br>
+
+</table>
+<br><pre>#if !defined(HAVE_CONFIG_H) || defined(HAVE_REALLOC)
+
+</pre>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>StdCPtr <b>ResizeMem</b>(StdCPtr Any, long objsize)</pre>
+<td bgcolor="#FFF0F5" align=left> resizes an object to size 'objsize'; raises exception <br>
+
+</table>
+<br><pre>#endif
+
+</pre>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>FreeMem</b>(StdCPtr Any)</pre>
+<td bgcolor="#FFF0F5" align=left>frees object 'Any'
+
+</table>
+
+</body>
+</html>

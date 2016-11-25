@@ -1,0 +1,38 @@
+[README] Example 03
+
+This example is a quick variation of the interpreter in Example 02.
+Use the shell script 'mx' to create the executable. Don't forget to check
+the setting of the environment variable STYXDIR in 'mx'.
+
+It demonstrates persistence as a feature of Styx.
+All the modification wrt. Example 02 is to split
+the [pl0.c] program apart into two parts:
+
+1) A "compiler" [pl0c.c], which parses the source,
+   does the static semantics, stores the derivation
+   tree into a file.
+
+2) A "run time system" [pl0r.c] which reads and
+   executes the so-produced binary image.
+
+"compile" [testpl0.pl0] by 'pl0c testpl0' yielding [testpl0].
+
+If you browse the file, you find it starting with
+something like "#!/p/ping/pl0r". You may want to
+adjust this path issued in [pl0c.c] to the location
+of the pl0r binary and do a 'chmod +x testpl0' for
+a real executable.
+
+Otherwise run it using 'pl0r testpl0'.
+
+One may argue, that this is not a "real" compiler,
+which should create pseudo code, at least. This is
+true, but writing an intepreter for pseudo code that
+is significantly faster then this example is not so
+trivial as one might think.
+
+Perhaps we will continue later with an example of a 
+proper to-pseudo-code compiler and a nice little machine, 
+but this may never be necessary, since there is something 
+as strong as Styx itself on top of it, which may soon be 
+ready for prime time.

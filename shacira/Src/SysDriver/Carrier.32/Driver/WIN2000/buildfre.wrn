@@ -1,0 +1,2 @@
+e:\usr\prj\dnc2\src\carrier.32\driver\carrier.c(296) : warning C4242: '=' : conversion from 'int ' to 'short ', possible loss of data
+e:\usr\prj\dnc2\src\carrier.32\driver\carrier.c(369) : warning C4242: '=' : conversion from 'int ' to 'short ', possible loss of data

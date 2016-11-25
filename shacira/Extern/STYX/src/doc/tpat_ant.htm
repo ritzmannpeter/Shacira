@@ -1,0 +1,267 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[tpat_ant.h] Language Interface</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[tpat_ant.h] Language Interface</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="ptm.htm">#include "ptm.h"</a>
+<br><a href="gls_abs.htm">#include "gls_abs.h"</a>
+<br>
+<br>
+<br>
+<br><hr width="100%" size=2><h2><b> symbol objects - init & quit </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>tpat_initSymbols</b>()</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>tpat_quitSymbols</b>()</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Types & Constants </b></h2>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b> tpat </b>
+<td align=left>abstract type
+
+</table>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b> tpatSpec </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> tpatBlock </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> tpatIdx  </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> tpatVal  </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> tpatPat  </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> tpatOptSpc </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> tpatCode </b>
+<td align=left>abstract type
+
+</table>
+<br><hr width="100%" size=2><h2><b> Access to Tokens </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Ttpat_Ide</b>(GLS_Tok x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Ttpat_Nat</b>(GLS_Tok x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Ttpat_Str</b>(GLS_Tok x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Ttpat_Reg</b>(GLS_Tok x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Ttpat_Key</b>(GLS_Tok x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Ttpat_Spc</b>(GLS_Tok x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Ttpat__other_</b>(GLS_Tok x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Access to Terms </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tpat_tpat</b>(PT_Abs_Term x, tpat* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tpat_Spec</b>(PT_Abs_Term x, tpatSpec* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tpat_Block</b>(PT_Abs_Term x, tpatBlock* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tpat_Idx</b>(PT_Abs_Term x, tpatIdx* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tpat_Val</b>(PT_Abs_Term x, tpatVal* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tpat_Pat</b>(PT_Abs_Term x, tpatPat* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tpat_OptSpc</b>(PT_Abs_Term x, tpatOptSpc* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tpat_Code</b>(PT_Abs_Term x, tpatCode* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> tpat </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tpat_Start_Spec</b>(tpat x, tpatSpec* x1)
+#define tpat_Start_0   tpat_Start_Spec</pre>
+<td bgcolor="#FFF0F5" align=left>&nbsp;
+</table>
+<br><hr width="100%" size=2><h2><b> Spec </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tpatSpec_dfn</b>(tpatSpec x, tpatCode* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Block </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tpatBlock_inc</b>(tpatBlock x, GLS_Tok* x1, GLS_Tok* x2)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tpatBlock_out</b>(tpatBlock x, GLS_Tok* x1, GLS_Tok* x2,
+                     GLS_Tok* x3, tpatBlock* x4)</pre>
+<td bgcolor="#FFF0F5" align=left>&nbsp;<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tpatBlock_blk</b>(tpatBlock x, tpatCode* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tpatBlock_tpat</b>(tpatBlock x, GLS_Tok* x1, GLS_Lst(GLS_Tok)* x2,
+                      tpatBlock* x3)</pre>
+<td bgcolor="#FFF0F5" align=left>&nbsp;<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tpatBlock_for</b>(tpatBlock x, GLS_Tok* x1, GLS_Tok* x2,
+                     GLS_Tok* x3, GLS_Tok* x4,
+                     tpatBlock* x5)</pre>
+<td bgcolor="#FFF0F5" align=left>&nbsp;<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tpatBlock_iter</b>(tpatBlock x, GLS_Tok* x1, GLS_Lst(GLS_Tok)* x2,
+                      GLS_Tok* x3, GLS_Tok* x4,
+                      tpatBlock* x5)</pre>
+<td bgcolor="#FFF0F5" align=left>&nbsp;<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tpatBlock_var</b>(tpatBlock x, GLS_Tok* x1, GLS_Tok* x2,
+                     tpatOptSpc* x3, tpatOptSpc* x4,
+                     tpatVal* x5)</pre>
+<td bgcolor="#FFF0F5" align=left>&nbsp;
+</table>
+<br><hr width="100%" size=2><h2><b> Idx </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tpatIdx_nat</b>(tpatIdx x, GLS_Tok* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tpatIdx_ide</b>(tpatIdx x, GLS_Tok* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Val </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tpatVal_reg</b>(tpatVal x, GLS_Tok* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tpatVal_idx</b>(tpatVal x, tpatOptSpc* x1, GLS_Tok* x2,
+                   GLS_Tok* x3, tpatIdx* x4,
+                   tpatOptSpc* x5)</pre>
+<td bgcolor="#FFF0F5" align=left>&nbsp;<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tpatVal_spc</b>(tpatVal x, GLS_Tok* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tpatVal_fun</b>(tpatVal x, GLS_Lst(tpatVal)* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tpatVal_str</b>(tpatVal x, GLS_Tok* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tpatVal_ide</b>(tpatVal x, GLS_Tok* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Pat </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tpatPat_dfn</b>(tpatPat x, tpatVal* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> OptSpc </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tpatOptSpc_spc</b>(tpatOptSpc x, GLS_Tok* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tpatOptSpc_nul</b>(tpatOptSpc x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Code </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tpatCode_if</b>(tpatCode x, tpatOptSpc* x1, tpatVal* x2,
+                   tpatOptSpc* x3, tpatBlock* x4,
+                   tpatCode* x5)</pre>
+<td bgcolor="#FFF0F5" align=left>&nbsp;<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tpatCode_par3</b>(tpatCode x, tpatCode* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tpatCode_par1</b>(tpatCode x, tpatCode* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tpatCode_asg</b>(tpatCode x, tpatCode* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tpatCode_par2</b>(tpatCode x, tpatCode* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tpatCode_blk</b>(tpatCode x, tpatBlock* x1, tpatCode* x2)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tpatCode_par4</b>(tpatCode x, tpatCode* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tpatCode_pat</b>(tpatCode x, tpatPat* x1, tpatCode* x2)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tpatCode_misc</b>(tpatCode x, GLS_Tok* x1, tpatCode* x2)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tpatCode_ide</b>(tpatCode x, GLS_Tok* x1, tpatCode* x2)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tpatCode_str</b>(tpatCode x, GLS_Tok* x1, tpatCode* x2)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tpatCode_else</b>(tpatCode x, tpatOptSpc* x1, tpatOptSpc* x2,
+                     tpatBlock* x3, tpatCode* x4)</pre>
+<td bgcolor="#FFF0F5" align=left>&nbsp;<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tpatCode_nul</b>(tpatCode x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tpatCode_pky</b>(tpatCode x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tpatCode_nat</b>(tpatCode x, GLS_Tok* x1, tpatCode* x2)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tpatCode_spc</b>(tpatCode x, GLS_Tok* x1, tpatCode* x2)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>tpatCode_reg</b>(tpatCode x, GLS_Tok* x1, tpatCode* x2)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="widgets_data/zz_rating.css">
+<script type="text/javascript">
+var zzTimerId;
+var widgetArgsClosure;
+var TIMEOUT_MILLIS = 10;
+function start() {
+createClosure();
+zzTimerId = window.setTimeout(widgetArgsClosure, TIMEOUT_MILLIS);
+}
+function createClosure() {
+var widgetName="RatingPanel";
+var objParams = eval('(' + '{\x22url\x22:\x22http://stuffnobodytoldmeabout.blogspot.de/2011/12/warning-msb8015.html\x22,\x22width\x22:280,\x22height\x22:42,\x22backgroundColor\x22:\x22eeeeee\x22,\x22textColor\x22:\x22444444\x22}' + ')');
+var widgetDOMNode = document.getElementById("widgetGoesHere");
+widgetArgsClosure = function() {
+if (!createWidget(widgetName, widgetDOMNode, objParams,
+window.document)) {
+zzTimerId = window.setTimeout(widgetArgsClosure, TIMEOUT_MILLIS);
+}
+};
+}
+function createWidget(widgetName, widgetDOMNode, objParams, doc) {
+var mediatorFrame = window['parent']['frames']['__GOOG_ANNON_MEDIATOR'];
+return mediatorFrame &&
+mediatorFrame.google &&
+mediatorFrame.google.annotations &&
+mediatorFrame.google.annotations.internal &&
+mediatorFrame.google.annotations.internal.createWidgetInIFrame &&
+mediatorFrame.google.annotations.internal.createWidgetInIFrame(
+widgetName, widgetDOMNode, objParams, doc);
+}
+</script>
+</head>
+<body style="margin:0; padding:0; border:0; background-color:#eeeeee;">
+<div id="widgetGoesHere"><table style="background-color: rgb(238, 238, 238); color: rgb(68, 68, 68);" class="zzRatingPanel" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="zzAggregateRating"><span style="background-color: rgb(238, 238, 238); color: rgb(68, 68, 68);" class="zzAggregateRating" role="img"><img src="widgets_data/small_star_empty-eeeeee.gif" class="zzSmallStar" zzlabel="star1"><img src="widgets_data/small_star_empty-eeeeee.gif" class="zzSmallStar" zzlabel="star2"><img src="widgets_data/small_star_empty-eeeeee.gif" class="zzSmallStar" zzlabel="star3"><img src="widgets_data/small_star_empty-eeeeee.gif" class="zzSmallStar" zzlabel="star4"><img src="widgets_data/small_star_empty-eeeeee.gif" class="zzSmallStar" zzlabel="star5"></span></td><td class="zzRatingEditor" style="padding-left: 5px;" valign="top"><span aria-label="0 Stars: No rating" aria-valuetext="0 Stars: No rating" aria-valuenow="0" style="background-color: rgb(238, 238, 238); color: rgb(68, 68, 68);" class="zzRatingEdit" aria-valuemax="5" aria-valuemin="0" role="slider" tabindex="0"><img src="widgets_data/rate_it_pill_left-eeeeee.gif" class="zzLeftEdge" zzlabel="leftEdge"><img src="widgets_data/rate_it_pill_cancel_off-eeeeee.gif" class="zzCancelHidden" zzlabel="cancel"><img src="widgets_data/rate_it_pill_star_off-eeeeee.gif" class="zzStar" zzlabel="star1"><img src="widgets_data/rate_it_pill_star_off-eeeeee.gif" class="zzStar" zzlabel="star2"><img src="widgets_data/rate_it_pill_star_off-eeeeee.gif" class="zzStar" zzlabel="star3"><img src="widgets_data/rate_it_pill_star_off-eeeeee.gif" class="zzStar" zzlabel="star4"><img src="widgets_data/rate_it_pill_star_off-eeeeee.gif" class="zzStar" zzlabel="star5"><img src="widgets_data/rate_it_pill_right-eeeeee.gif" class="zzRightEdge" zzlabel="rightEdge"></span></td></tr><tr><td class="zzAggregateRatingStat"><span style="background-color: rgb(238, 238, 238); color: rgb(68, 68, 68);" class="zzAggregateRatingStat">0</span><span style="background-color: rgb(238, 238, 238); color: rgb(68, 68, 68);" class="zzAggregateRatingStatDescription">&nbsp;Ratings</span></td><td class="zzRatingDescription"><span style="background-color: rgb(238, 238, 238); color: rgb(68, 68, 68);" class="zzRatingDescription">No rating</span></td></tr></tbody></table></div>
+<script type="text/javascript">
+start();
+</script>
+
+
+</body></html>

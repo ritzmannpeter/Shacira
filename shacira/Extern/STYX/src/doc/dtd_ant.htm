@@ -1,0 +1,512 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[dtd_ant.h] Language Interface</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[dtd_ant.h] Language Interface</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="ptm.htm">#include "ptm.h"</a>
+<br><a href="gls_abs.htm">#include "gls_abs.h"</a>
+<br>
+<br>
+<br>
+<br><hr width="100%" size=2><h2><b> symbol objects - init & quit </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>dtd_initSymbols</b>()</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>dtd_quitSymbols</b>()</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Types & Constants </b></h2>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b> dtd </b>
+<td align=left>abstract type
+
+</table>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b> dtdRoot </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> dtdEmbed </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> dtdExtern </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> dtdXDecl </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> dtdExtID </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> dtdXLiteral </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> dtdDecl </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> dtdCond </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> dtdAttribute </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> dtdAType </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> dtdADefault </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> dtdFixed </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> dtdEntity </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> dtdEntityVal </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> dtdNData </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> dtdContent </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> dtdROpr </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> dtdXName </b>
+<td align=left>abstract type
+
+</table>
+<br><hr width="100%" size=2><h2><b> Access to Tokens </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Tdtd_PERef</b>(GLS_Tok x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Tdtd_Nmtoken</b>(GLS_Tok x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Tdtd_XMLDecl</b>(GLS_Tok x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Tdtd_PI</b>(GLS_Tok x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Tdtd_Keyset</b>(GLS_Tok x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Tdtd_Name</b>(GLS_Tok x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Tdtd_Literal</b>(GLS_Tok x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Tdtd_DTDStart</b>(GLS_Tok x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Tdtd_IgnSect</b>(GLS_Tok x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Access to Terms </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtd_dtd</b>(PT_Abs_Term x, dtd* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtd_Root</b>(PT_Abs_Term x, dtdRoot* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtd_Embed</b>(PT_Abs_Term x, dtdEmbed* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtd_Extern</b>(PT_Abs_Term x, dtdExtern* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtd_XDecl</b>(PT_Abs_Term x, dtdXDecl* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtd_ExtID</b>(PT_Abs_Term x, dtdExtID* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtd_XLiteral</b>(PT_Abs_Term x, dtdXLiteral* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtd_Decl</b>(PT_Abs_Term x, dtdDecl* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtd_Cond</b>(PT_Abs_Term x, dtdCond* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtd_Attribute</b>(PT_Abs_Term x, dtdAttribute* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtd_AType</b>(PT_Abs_Term x, dtdAType* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtd_ADefault</b>(PT_Abs_Term x, dtdADefault* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtd_Fixed</b>(PT_Abs_Term x, dtdFixed* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtd_Entity</b>(PT_Abs_Term x, dtdEntity* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtd_EntityVal</b>(PT_Abs_Term x, dtdEntityVal* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtd_NData</b>(PT_Abs_Term x, dtdNData* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtd_Content</b>(PT_Abs_Term x, dtdContent* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtd_ROpr</b>(PT_Abs_Term x, dtdROpr* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtd_XName</b>(PT_Abs_Term x, dtdXName* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> dtd </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtd_Start_Root</b>(dtd x, dtdRoot* x1)
+#define dtd_Start_0   dtd_Start_Root</pre>
+<td bgcolor="#FFF0F5" align=left>&nbsp;<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtd_Start_Embed</b>(dtd x, dtdEmbed* x1)
+#define dtd_Start_1   dtd_Start_Embed</pre>
+<td bgcolor="#FFF0F5" align=left>&nbsp;
+</table>
+<br><hr width="100%" size=2><h2><b> Root </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdRoot_text</b>(dtdRoot x, dtdExtern* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdRoot_tdoc</b>(dtdRoot x, GLS_Tok* x1, dtdEmbed* x2)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Embed </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdEmbed_dfn</b>(dtdEmbed x, dtdXName* x1, dtdExtID* x2,
+                    GLS_Lst(dtdDecl)* x3)</pre>
+<td bgcolor="#FFF0F5" align=left>&nbsp;
+</table>
+<br><hr width="100%" size=2><h2><b> Extern </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdExtern_dfn</b>(dtdExtern x, dtdXDecl* x1, GLS_Lst(dtdDecl)* x2)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> XDecl </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdXDecl_nul</b>(dtdXDecl x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdXDecl_dfn</b>(dtdXDecl x, GLS_Tok* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> ExtID </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdExtID_pref</b>(dtdExtID x, GLS_Tok* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdExtID_nul</b>(dtdExtID x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdExtID_pub</b>(dtdExtID x, dtdXLiteral* x1, dtdXLiteral* x2)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdExtID_sys</b>(dtdExtID x, dtdXLiteral* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> XLiteral </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdXLiteral_pref</b>(dtdXLiteral x, GLS_Tok* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdXLiteral_lit</b>(dtdXLiteral x, GLS_Tok* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdXLiteral_nul</b>(dtdXLiteral x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Decl </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdDecl_pref</b>(dtdDecl x, GLS_Tok* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdDecl_attr</b>(dtdDecl x, dtdXName* x1, GLS_Lst(dtdAttribute)* x2)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdDecl_ent</b>(dtdDecl x, dtdEntity* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdDecl_pi</b>(dtdDecl x, GLS_Tok* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdDecl_note</b>(dtdDecl x, dtdXName* x1, dtdExtID* x2)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdDecl_elm</b>(dtdDecl x, dtdXName* x1, dtdContent* x2)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdDecl_cond</b>(dtdDecl x, dtdCond* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Cond </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdCond_cinc</b>(dtdCond x, dtdExtern* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdCond_cign</b>(dtdCond x, GLS_Tok* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdCond_ccnd</b>(dtdCond x, GLS_Tok* x1, dtdExtern* x2)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Attribute </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdAttribute_nam</b>(dtdAttribute x, dtdXName* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdAttribute_dft</b>(dtdAttribute x, dtdADefault* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdAttribute_typ</b>(dtdAttribute x, dtdAType* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> AType </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdAType_refs</b>(dtdAType x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdAType_nmts</b>(dtdAType x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdAType_str</b>(dtdAType x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdAType_ents</b>(dtdAType x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdAType_etyp</b>(dtdAType x, GLS_Lst(dtdXName)* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdAType_ref</b>(dtdAType x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdAType_nmt</b>(dtdAType x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdAType_ntyp</b>(dtdAType x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdAType_id</b>(dtdAType x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdAType_ent</b>(dtdAType x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> ADefault </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdADefault_fix</b>(dtdADefault x, dtdFixed* x1, GLS_Tok* x2)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdADefault_imp</b>(dtdADefault x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdADefault_req</b>(dtdADefault x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Fixed </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdFixed_nul</b>(dtdFixed x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdFixed_fix</b>(dtdFixed x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Entity </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdEntity_pent</b>(dtdEntity x, dtdXName* x1, dtdEntityVal* x2)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdEntity_gent</b>(dtdEntity x, dtdXName* x1, dtdEntityVal* x2)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> EntityVal </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdEntityVal_ient</b>(dtdEntityVal x, dtdXLiteral* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdEntityVal_eent</b>(dtdEntityVal x, dtdExtID* x1, dtdNData* x2)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> NData </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdNData_nul</b>(dtdNData x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdNData_dfn</b>(dtdNData x, dtdXName* x1, dtdXName* x2)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Content </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdContent_alt</b>(dtdContent x, dtdContent* x1, dtdContent* x2)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdContent_none</b>(dtdContent x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdContent_mix</b>(dtdContent x, GLS_Lst(dtdXName)* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdContent_any</b>(dtdContent x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdContent_seq</b>(dtdContent x, dtdContent* x1, dtdContent* x2)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdContent_nam</b>(dtdContent x, dtdXName* x1, dtdROpr* x2)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdContent_rexp</b>(dtdContent x, dtdContent* x1, dtdROpr* x2)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdContent_pref</b>(dtdContent x, GLS_Tok* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> ROpr </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdROpr_nul</b>(dtdROpr x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdROpr_plus</b>(dtdROpr x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdROpr_star</b>(dtdROpr x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdROpr_qry</b>(dtdROpr x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> XName </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdXName_elm</b>(dtdXName x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdXName_req</b>(dtdXName x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdXName_key</b>(dtdXName x, GLS_Tok* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdXName_alst</b>(dtdXName x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdXName_pref</b>(dtdXName x, GLS_Tok* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdXName_fix</b>(dtdXName x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdXName_inc</b>(dtdXName x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdXName_ndat</b>(dtdXName x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdXName_pub</b>(dtdXName x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdXName_nmtk</b>(dtdXName x, GLS_Tok* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdXName_none</b>(dtdXName x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdXName_pdat</b>(dtdXName x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdXName_ide</b>(dtdXName x, GLS_Tok* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdXName_any</b>(dtdXName x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdXName_impl</b>(dtdXName x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdXName_ktyp</b>(dtdXName x, dtdAType* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>dtdXName_sys</b>(dtdXName x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+
+</body>
+</html>

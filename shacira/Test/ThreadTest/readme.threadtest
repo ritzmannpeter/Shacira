@@ -1,0 +1,31 @@
+
+
+Programm zum Testen der Sychronisationsmechanismen für transiente Objekte
+und Objektringe
+
+Ausführen:
+
+threadtest <Anzahl der parallel zugreifenden Threads>
+
+Testszenario
+
+threadtest 20
+
+
+Ausgabe:
+
+<a> objects current <b> diff (<c>,<d>),(<e>,<f>)
+a=Anzahl der aktuell instantiierten transienten Objekte
+b=Anzahl der insgesamt instantiierten transienten Objekte
+c=Anzahl der neu instantiierten transienten Objekte seit der letzten Ausgabe
+d=relative Veränderung der aktuell instantiierten transienten Objekte seit der letzten Ausgabe (kann auch negativ sein)
+e=nur bei Zyklischem Test ansonsten 0
+f=Anzahl der transienten Objekte im root channel
+
+start producing: es werden to's instantiiert
+stop producing: es werden keine to's mehr instantiiert
+
+Wenn die Produktion von transienten Objekten nicht angehalten wird,
+kommt es zum Speicherüberlauf
+
+

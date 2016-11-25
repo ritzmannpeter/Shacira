@@ -1,0 +1,40 @@
+;; [sty_ebnf.reg] STYX extension: EBNF-like rule macros
+
+
+#macro StyxList0(TT,LL) =
+  let LL
+  :nil :
+  :cons: TT LL
+#end
+
+#macro StyxList1(TT,LL) =
+  StyxList0 TT LL
+
+  let LL1
+  :cons: TT LL
+#end
+
+#macro StyxDList0(TT,LL,SS) =
+  let LL
+  :nil :
+  :cons: SS TT LL
+#end
+
+#macro StyxDList1(TT,LL,SS) =
+  _DList0 TT LL SS
+
+  let LL1
+  :cons: TT LL
+#end
+
+#macro StyxOptTok(TT) =
+  let TTOpt
+  :nul :
+  :dfn : TT
+#end
+
+#macro StyxOptKey(TT,KK) =
+  let TT
+  :nul :
+  :dfn : KK
+#end

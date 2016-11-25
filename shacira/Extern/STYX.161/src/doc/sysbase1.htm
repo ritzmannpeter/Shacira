@@ -1,0 +1,231 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[sysbase1.h] Standard Definitions ( Part 1 )</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[sysbase1.h] Standard Definitions ( Part 1 )</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="sysbase0.htm">#include "sysbase0.h"</a>
+<br>
+<br>
+<br>
+<br><hr width="100%" size=2><h2><b> Byte/String & VarArg Handling </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>StdCPtr <b>BytCopy</b>(StdCPtr bytes, long len)</pre>
+<td bgcolor="#FFF0F5" align=left> copies 'len' bytes of byte array 'bytes';<br>
+   allocs memory<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bstring <b>BytToBStrCopy</b>(StdCPtr bytes, long len)</pre>
+<td bgcolor="#FFF0F5" align=left> constructs a binary string<br>
+   from 'len' bytes of byte array 'bytes';<br>
+   allocs memory<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>BytToHStrCopy</b>(StdCPtr bytes, long len)</pre>
+<td bgcolor="#FFF0F5" align=left> creates a hex string from 'len' bytes of byte array 'bytes';<br>
+   allocs memory<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>BStrToHStrCopy</b>(c_bstring bstr)</pre>
+<td bgcolor="#FFF0F5" align=left> creates a hex string from binary string 'bstr';<br>
+   allocs memory<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>IsSpaceStr</b>(c_string s)</pre>
+<td bgcolor="#FFF0F5" align=left> whether string 's' is empty or<br>
+   only contains space characters<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>size_t <b>WCStrLen</b>(wc_string ws)</pre>
+<td bgcolor="#FFF0F5" align=left> number of wide characters in string 'ws'<br>
+   ( without the termination character )<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>wc_string <b>SubWCStrCopy</b>(wc_string str, long len)</pre>
+<td bgcolor="#FFF0F5" align=left> copies 'len' wide characters of string 'str';<br>
+   appends 0, allocs memory<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>wc_string <b>WCStrCopy</b>(wc_string Str)</pre>
+<td bgcolor="#FFF0F5" align=left> copies wide character string 'Str'; allocs memory <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>WCToStrCopy</b>(wc_string wc)</pre>
+<td bgcolor="#FFF0F5" align=left> copies wide character string 'wc' into a string;<br>
+   without conversion, allocs memory<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>wc_string <b>WCStrToLower</b>(wc_string st)</pre>
+<td bgcolor="#FFF0F5" align=left> converts all letters in wide character string 'st' to lower case <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>wc_string <b>WCStrToUpper</b>(wc_string st)</pre>
+<td bgcolor="#FFF0F5" align=left> converts all letters in wide character string 'st' to upper case <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>SubStrCopy</b>(c_string str, long len)</pre>
+<td bgcolor="#FFF0F5" align=left> copies 'len' characters of string 'str';<br>
+   appends 0, allocs memory<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>StrCopy</b>(c_string Str)</pre>
+<td bgcolor="#FFF0F5" align=left>copies string 'Str'; allocs memory
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>StrToLower</b>(c_string st)</pre>
+<td bgcolor="#FFF0F5" align=left> converts all letters in string 'st' to lower case <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>StrToUpper</b>(c_string st)</pre>
+<td bgcolor="#FFF0F5" align=left> converts all letters in string 'st' to upper case <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Any_T* <b>MakeArgLst</b>(va_list args, int fixed_cnt, ...)</pre>
+<td bgcolor="#FFF0F5" align=left> MakeArgLst is a portable replacement for GetArgLst coping with the<br>
+ * idiosyncracies of different va_list implementations. Since there is<br>
+ * no portable way to pass a va_list (caller's variable arguments)<br>
+ * through '...', it has to be moved before the caller's fixed args.<br>
+ * fixed_cnt is the count of the caller's fixed arguments.<br>
+ *<br>
+ * Sample usage:<br>
+ *   variadic_func(int argcnt, TYPEA a, TYPEB b, TYPEC c, ...)<br>
+ *   {<br>
+ *     va_list va;<br>
+ *     Any_T *argl;<br>
+ *     va_start(va,c); // Must use the *last* fixed argument here<br>
+ *     argl = MakeArgLst(va, 4, argcnt, a, b, c);<br>
+ *     va_end(va);<br>
+ *     // make use of argl<br>
+ *     FreeMem(argl);<br>
+ *   }<br>
+ *<br>
+ * For an in depth discussion of variadic functions including<br>
+ * portability, see libc.info Node: Variadic Functions.<br>
+<br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Workaround for missing C library functions </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>strstr_aux</b>(c_string s1, c_string s2)</pre>
+<td bgcolor="#FFF0F5" align=left>workaround for 'strstr'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>strchr_aux</b>(c_string s, int c)</pre>
+<td bgcolor="#FFF0F5" align=left>workaround for 'strchr'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>strrchr_aux</b>(c_string s, int c)</pre>
+<td bgcolor="#FFF0F5" align=left>workaround for 'strrchr'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>strcspn_aux</b>(c_string s, c_string reject)</pre>
+<td bgcolor="#FFF0F5" align=left>workaround for 'strcspn'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>StdCPtr <b>memcpy_aux</b>(StdCPtr dst, StdCPtr src, int n)</pre>
+<td bgcolor="#FFF0F5" align=left> workaround for 'memcpy' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>memcmp_aux</b>(StdCPtr dst, StdCPtr src, int n)</pre>
+<td bgcolor="#FFF0F5" align=left>workaround for 'memcmp'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>getcwd_aux</b>(c_string buffer, int bufsize)</pre>
+<td bgcolor="#FFF0F5" align=left> workaround for 'getcwd'; evaluates $PWD <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> System Error </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>GetSystemError</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>system error message; allocs memory
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>GetSystemError_noalloc</b>(c_string buffer, int bufsize)</pre>
+<td bgcolor="#FFF0F5" align=left> system error message <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Program Execution </b></h2>
+<br><pre>#define STD_CMD_NOWAIT     0
+#define STD_CMD_WAIT_INIT  1
+#define STD_CMD_WAIT       2
+
+</pre>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>runprg</b>(c_string cmd, int cmdflg)</pre>
+<td bgcolor="#FFF0F5" align=left> executes program 'cmd'<br>
+   cmdflg=STD_CMD_NOWAIT    --&gt; asynchron, non-blocking<br>
+   cmdflg=STD_CMD_WAIT_INIT --&gt; waits for initialisation<br>
+   cmdflg=STD_CMD_WAIT      --&gt; synchron, blocking<br>
+<br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> DLL & dynamic Function Call Support </b></h2>
+<br><pre>typedef StdCPtr (*PCFUN)();
+
+</pre>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>StdCPtr <b>apply_fun_portable</b>(PCFUN f, int cnt, StdCPtr* args)</pre>
+<td bgcolor="#FFF0F5" align=left> portable dynamic call of C-function 'f'<br>
+   with 'cnt' parameters in 'args'<br>
+   ( upto 9 parameters )<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>StdCPtr <b>apply_fun</b>(PCFUN f, int cnt, StdCPtr* args)</pre>
+<td bgcolor="#FFF0F5" align=left> dynamic call of C-function 'f'<br>
+   with 'cnt' parameters in 'args'<br>
+   ( restricted to intel )<br>
+<br>
+
+</table>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b> DL_Hdl </b>
+<td align=left> Abstract handle type 
+
+</table>
+<br><pre>#define DL_LOAD_LAZY    0
+
+</pre>
+<br><pre>#if !defined(STYX_CONFIG_OSMS) && (!defined(HAVE_CONFIG_H) || (defined(HAVE_LIBDL) && defined(HAVE_DLFCN_H)))
+#define DL_LAZY         RTLD_LAZY
+#define DL_NOW          RTLD_NOW
+#define DL_BINDING_MASK RTLD_BINDING_MASK
+#define DL_GLOBAL       RTLD_GLOBAL
+#define DL_LOCAL        RTLD_LOCAL
+#else
+#define DL_LAZY         0
+#define DL_NOW          0
+#define DL_BINDING_MASK 0
+#define DL_GLOBAL       0
+#define DL_LOCAL        0
+#endif
+
+</pre>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>DL_Hdl <b>DL_open</b>(c_string dlname, int flag)</pre>
+<td bgcolor="#FFF0F5" align=left> loads dll 'dlname' in mode 'flag' ( ERROR: NULL )<br>
+   LINUX: flag=RTLD_LAZY|RTLD_NOW|-1=RTLD_NOW, MS: not used<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>DL_close</b>(DL_Hdl dlhdl)</pre>
+<td bgcolor="#FFF0F5" align=left> detaches dll 'dlhdl' ( SUCCESS: 0, ERROR: &gt; 0 ) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>StdCPtr <b>DL_symbol</b>(DL_Hdl dlhdl, c_string symname)</pre>
+<td bgcolor="#FFF0F5" align=left> address of symbol 'symname' within dll 'dlhdl' ( ERROR: NULL )<br>
+   LINUX: function|data, MS: function<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>DL_error</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>dll load error; allocs memory
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>DL_error_noalloc</b>(c_string buffer, int bufsize)</pre>
+<td bgcolor="#FFF0F5" align=left>dll load error
+
+</table>
+<br><hr width="100%" size=2><h2><b> Network Support </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>UserName</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>login name; allocs memory
+
+</table>
+
+</body>
+</html>

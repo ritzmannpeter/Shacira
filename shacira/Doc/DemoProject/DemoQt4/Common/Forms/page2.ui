@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui version="4.0" stdsetdef="1">
+ <author/>
+ <comment/>
+ <exportmacro/>
+ <class>Page2</class>
+ <widget class="CPage" name="Page2">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>866</width>
+    <height>640</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>0</width>
+    <height>0</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>868</width>
+    <height>640</height>
+   </size>
+  </property>
+  <property name="font">
+   <font>
+    <family>Arial</family>
+    <pointsize>11</pointsize>
+   </font>
+  </property>
+  <property name="Group0">
+   <enum>WriteAccess</enum>
+  </property>
+  <property name="Group1">
+   <enum>WriteAccess</enum>
+  </property>
+  <property name="HelpId1">
+   <cstring>Ovw_Service</cstring>
+  </property>
+  <property name="PageGroup">
+   <cstring>group1</cstring>
+  </property>
+  <property name="PageHeadline">
+   <string>Page2</string>
+  </property>
+  <property name="LongPageHeadline">
+   <string>Group1:Page2</string>
+  </property>
+  <property name="PositionInGroup">
+   <number>1</number>
+  </property>
+  <widget class="CReqValue" name="cReqValue1">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>115</y>
+     <width>42</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="VarRef">
+    <cstring>testvar</cstring>
+   </property>
+   <property name="autoFillBackground">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="CReqValue" name="cReqValue1_2">
+   <property name="geometry">
+    <rect>
+     <x>285</x>
+     <y>115</y>
+     <width>42</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="VarRef">
+    <cstring>testvar</cstring>
+   </property>
+   <property name="autoFillBackground">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <property name="autoFillBackground">
+   <bool>true</bool>
+  </property>
+  <property name="windowTitle">
+   <string>Page2</string>
+  </property>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
+ <customwidgets>
+  <customwidget>
+   <class>CPage</class>
+   <extends>CWidget</extends>
+   <header>CPage.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>CReqValue</class>
+   <extends>QLineEdit</extends>
+   <header>CReqValue.h</header>
+  </customwidget>
+ </customwidgets>
+ <includes>
+  <include location="local">qt4port.h</include>
+  <include location="local">CPage.h</include>
+  <include location="local">CReqValue.h</include>
+ </includes>
+ <resources>
+  <include location="demo.qrc"/>
+ </resources>
+</ui>

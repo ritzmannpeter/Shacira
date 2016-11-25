@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Plugin">
+      <UniqueIdentifier>{9c7c8973-d8c5-4a7b-808f-14e9ce0fa3ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Widgets">
+      <UniqueIdentifier>{005ab730-fd77-422d-bfaa-8c74ca5fa233}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generated">
+      <UniqueIdentifier>{22920ff0-795d-469e-b540-992c08220656}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Forms">
+      <UniqueIdentifier>{4d278d67-6c01-435b-ae2e-ea4378fd63e9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Plugins\cQtPluginRegistry.cpp">
+      <Filter>Plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Plugins\FrameworkPlugin.cpp">
+      <Filter>Plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Plugins\KbdlayoutPlugin.cpp">
+      <Filter>Plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Plugins\plugin_log.cpp">
+      <Filter>Plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Keypads\cQtKeyboard.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Keypads\cQtKeyboardButton.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Keypads\cQtKeyboardLayout.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\KeyboardLayoutGerman.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\KeyboardLayoutStandard.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_cQtKeyboard.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_cQtKeyboardButton.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_cQtKeyboardLayout.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_KeyboardLayoutGerman.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_KeyboardLayoutStandard.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT3Framework\Plugins\cQtPluginRegistry.h">
+      <Filter>Plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT3Framework\Plugins\default_icon.h">
+      <Filter>Plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT3Framework\Plugins\embedded_images.h">
+      <Filter>Plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT3Framework\Plugins\FrameworkPlugin.h">
+      <Filter>Plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT3Framework\Plugins\KbdlayoutPlugin.h">
+      <Filter>Plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT3Framework\Plugins\plugin_icons.h">
+      <Filter>Plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT3Framework\Plugins\plugin_log.h">
+      <Filter>Plugin</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\Keypads\cQtKeyboard.h">
+      <Filter>Widgets</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\Keypads\KeyboardLayoutGerman.ui">
+      <Filter>Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\Keypads\KeyboardLayoutStandard.ui">
+      <Filter>Forms</Filter>
+    </CustomBuild>
+  </ItemGroup>
+</Project>

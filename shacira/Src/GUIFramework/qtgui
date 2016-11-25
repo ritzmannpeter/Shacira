@@ -1,0 +1,73 @@
+
+#ifndef _qtgui_h_
+#define _qtgui_h_
+
+#include "GUIFramework/QT3Framework/Plugins/CWidgetFactory.h"
+#include "GUIFramework/QT3Framework/CWidgets/CWidgetBase.h"
+
+#define APP_FRAME() CWidgetBase::AppFrame();
+
+#define SH_PAGE(page_class,list) \
+   { \
+      CPage * page = new page_class(parent); \
+      list->append(page); \
+   }
+
+#define SH_DYNAMIC_PAGE(page_file,list) \
+   { \
+      CPage * page = CWidgetFactory::LoadPage(page_file, parent); \
+      if (page != NULL) { \
+         list->append(page); \
+      } \
+   }
+
+#include "CActValue.h"
+#include "CActionDialog.h"
+#include "CAlarmWidget.h"
+#include "CAppFrame.h"
+#include "CButtonGroup.h"
+#include "CCheckBox.h"
+#include "CComboBox.h"
+#include "CCompListView.h"
+#include "CComposedStack.h"
+#include "CCoordSystem.h"
+#include "CDate.h"
+#include "CDateTime.h"
+#include "CDirectory.h"
+#include "CFixText.h"
+#include "CFrame.h"
+#include "CGraphic.h"
+#include "CGroupBox.h"
+#include "CGroupSelectButton.h"
+#include "CIndReqValue.h"
+#include "CInfoLabel.h"
+#include "CListView.h"
+#include "CPage.h"
+#include "CProcGraphic.h"
+#include "CProgressBar.h"
+#include "CPushButton.h"
+#include "CRadioButton.h"
+#include "CReqValue.h"
+#include "CRingGraphic.h"
+#include "CScrollBar.h"
+#include "CSimpleGraphic.h"
+#include "CSlider.h"
+#include "CSpinBox.h"
+#include "CStartupForm.h"
+#include "CStateButton.h"
+#include "CTabWidget.h"
+#include "CTable.h"
+#include "CTextEdit.h"
+#include "CTime.h"
+#include "CToolButton.h"
+#include "CVarDimension.h"
+#include "CVideo.h"
+#include "CVirtualKeyboard.h"
+#include "CWidget.h"
+#include "CWidgetStack.h"
+#include "cQtUserInterface.h"
+#include "cQtTouchStyle.h"
+
+#endif
+
+

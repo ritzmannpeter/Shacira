@@ -1,0 +1,59 @@
+/* ------------------------------------------------------------------------ */
+/*                                                                          */
+/* [tpat.abs]                  Abstract Grammar                             */
+/*                                                                          */
+/* ------------------------------------------------------------------------ */
+
+LANGUAGE tpat
+
+TOKENS
+
+  Ide, Nat, Str, Reg, Key, Spc, _other_
+
+TYPES
+
+  tpat       = Start_Spec(Spec)
+
+  Spec       = dfn(Code)
+
+  Block      = inc(Spc, Str);
+               out(Spc, Ide, Spc, Block);
+               blk(Code);
+               tpat(Spc, GLS_Tok*, Block);
+               for(Spc, Ide, Ide, Spc, Block);
+               iter(Spc, GLS_Tok*, Ide, Spc, Block);
+               var(Spc, Ide, OptSpc, OptSpc, Val)
+
+  Idx        = nat(Nat);
+               ide(Ide)
+
+  Val        = reg(Reg);
+               idx(OptSpc, Ide, Spc, Idx, OptSpc);
+               spc(Spc);
+               fun(Val*);
+               str(Str);
+               ide(Ide)
+
+  Pat        = dfn(Val)
+
+  OptSpc     = spc(Spc);
+               nul
+
+  Code       = if(OptSpc, Val, OptSpc, Block, Code);
+               par3(Code);
+               par1(Code);
+               asg(Code);
+               par2(Code);
+               blk(Block, Code);
+               par4(Code);
+               pat(Pat, Code);
+               misc(_other_, Code);
+               ide(Key, Code);
+               str(Str, Code);
+               else(OptSpc, OptSpc, Block, Code);
+               nul;
+               pky;
+               nat(Nat, Code);
+               spc(Spc, Code);
+               reg(Reg, Code)
+

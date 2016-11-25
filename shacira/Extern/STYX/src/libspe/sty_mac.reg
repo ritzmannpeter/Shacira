@@ -1,0 +1,23 @@
+;; [sty_mac.reg] STYX-conform regular macro expressions
+
+; Macro tokens
+
+  let White   = Space | Line | Page
+  let Name    = (Letter | "_") { Letter | Digit | "_" } 
+  let MPar    = ( Printable - ( White | ',' | ')' | '=' ) )
+                { Printable - ( White | ',' | ')' | '=' ) }
+
+  tok MacInc  = "#include" White {White} (Printable-White) {Printable-White} ; Include
+  tok MacDel  = "#undefine" White {White} Name                               ; undefine Macro
+  tok MacDfn  = "#macro" White {White} Name                                  ; Macro definition
+                  {White} [ "(" {White} MPar 
+                  { {White} "," {White} MPar } {White} ")" {White} ]
+                  [ "=" 
+                    ({Byte} - ({Byte} ("#macro"|"#end") {Byte})) 
+                    "#end" ]
+
+  tok MacSep  = '\'' (Byte-'\'') [ '-' ]                                     ; End of parameter
+
+  tok MacCond = ( ( "#ifdef" | "#ifndef" ) White {White} Name )              ; Conditionals
+              | "#else" | "#end"
+

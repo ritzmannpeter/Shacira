@@ -1,0 +1,3577 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+  <meta name="robots" content="noindex">
+  <title>Shacira Language Reference</title>
+</head>
+<body alink="purple" bgcolor="white" link="navy" text="black"
+ vlink="navy">
+<b><font color="#0008b0"><a href="styx.html">contents</a></font></b><br>
+&nbsp;
+<center>
+<h1>Shacira Language Reference</h1>
+</center>
+<br>
+<br>
+<center>
+<h2>Regular Grammar</h2>
+</center>
+<br>
+The regular grammar defines the basic language elements i.e. tokens as
+certain classes of character sequences like numbers, identifiers,
+operators
+and strings.
+<p>Each <b><i><font size="+1">rule</font></i></b> defining such a
+class of character
+sequences has the following structure: <br>
+&lt;Class Type&gt;
+&lt;<font color="#b22222">
+[Member group :] Class Identifier [![+|-] Next group to activate]</font>&gt;
+:: &lt;Regular Expression&gt;
+</p>
+<p>We distinguish six <b><i><font size="+1">types of classes</font></i></b>:
+<br>
+&nbsp;
+</p>
+<ul>
+  <li>
+    <b><i><font size="+1"><font color="#000000">let</font></font></i></b>
+    <br>
+Helper class, used to define the more complex tokens
+    <br>
+They didn't belong to the language definition.
+  </li>
+  <li>
+    <b><i><font size="+1"><font color="#000000">com</font></font></i></b>
+    <br>
+Comments
+    <br>
+They didn't belong to the language definition.
+  </li>
+  <li>
+    <b><i><font size="+1"><font color="#000000">tok</font></font></i></b>
+    <br>
+Tokens
+    <br>
+They represent the regular grammar of the language definition.
+  </li>
+  <li>
+    <b><i><font color="#000000"><font size="+1">ign</font></font></i></b>
+    <br>
+Character sequences which should be ignored i.e. skipped by the scanner
+    <br>
+They didn't belong to the language definition.
+  </li>
+  <li>
+    <b><i><font color="#000000"><font size="+1">ind</font></font></i></b>
+    <br>
+(De)indent tokens
+    <br>
+Indent and dedent events will be forwarded to the parser.
+    <br>
+Otherwise these character sequences will be skipped by the scanner.
+  </li>
+  <li>
+    <b><i><font color="#000000"><font size="+1">lan</font></font></i></b>
+    <br>
+Embedded language tokens
+    <br>
+These are special token classes which has been introduced in order to
+integrate embedded languages.
+  </li>
+</ul>
+<p><br>
+A <b><i><font size="+1">regular expression</font></i></b> specifies
+the character sequences belonging to the class. Such a description
+usually
+consists of the following elements and operators:
+<br>
+&nbsp;
+</p>
+<ul>
+  <li>
+    <b><i><font size="+1">Expression1 Expression2 ... ExpressionN</font></i></b></li>
+  <br>
+Concatenation of partial expressions
+  <li><b><i><font size="+1">Expression1 | Expression2 | ... |
+ExpressionN</font></i></b></li>
+  <br>
+Union of partial expressions ( alternatives )
+  <li><b><i><font size="+1">Expression1 - Expression2 - ... -
+ExpressionN</font></i></b></li>
+  <br>
+Difference of partial expressions
+  <li><b><i><font size="+1">[ Expression ]</font></i></b></li>
+  <br>
+Optional partial expression
+  <li><b><i><font size="+1">{ Expression } or Expression *</font></i></b></li>
+  <br>
+Iteration of a partial expression ( 0 .. )
+  <li><b><i><font size="+1">Expression +</font></i></b></li>
+  <br>
+Iteration of a partial expression ( 1 .. )
+  <li><b><i><font size="+1"> Expression N </font></i></b></li>
+  <br>
+Limited iteration of a partial expression ( N-times )
+  <li><b><i><font size="+1"> Expression Minimum , Maximum</font></i></b></li>
+  <br>
+Limited iteration of a partial expression ( min .. max )
+  <li><b><i><font size="+1"> Expression Minimum , </font></i></b></li>
+  <br>
+Limited iteration of a partial expression ( min .. )
+  <li><b><i><font size="+1">( Expression )</font></i></b></li>
+  <br>
+Combination of a partial expression ( subexpression )
+  <li><b><i><font size="+1">Expression / 'QuotientCharacterset' or
+"QuotientSequence"</font></i></b></li>
+  <br>
+quotient expression
+  <li><b><i><font size="+1">&lt; LeftParanthesis &gt; InnerExpression
+&lt; RightParanthesis &gt;</font></i></b></li>
+  <br>
+non-regular dyck expression
+  <li><b><i><font size="+1">&lt;= PatternPrefix &gt;
+'PatternCharacterset' &lt; PatternSuffix &gt;</font></i></b></li>
+  <br>
+start pattern expression
+  <li><b><i><font size="+1">&lt;? PatternPrefix &gt; Pattern token
+identifier &lt; PatternSuffix &gt;</font></i></b></li>
+  <br>
+end pattern expression
+  <li><b><i><font color="#3366ff"><font size="+1">Class identifier</font></font></i></b></li>
+  <br>
+  <font color="#000000">Abreviation for the corresponding regular
+expression</font>
+  <li><b><i><font color="#009900"><font size="+1">"String"</font></font></i></b></li>
+  <br>
+  <font color="#000000">Literal: string / character sequence</font>
+  <li><b><i><font color="#009900"><font size="+1">'Characterset'</font></font></i></b></li>
+  <br>
+  <font color="#000000">Literal: characterset ( 1 .. ) </font>
+</ul>
+<h2>
+<font color="#000000"><font size="+0"></font></font></h2>
+<font color="#000000"><font size="+0">Case ignore character classes
+can be specified with an <b><i>[I]</i></b>
+behind the class identifier.</font></font>
+<br>
+<font color="#000000"><font size="+0"></font></font>&nbsp;
+<br>
+<font color="#000000"><font size="+0"></font></font>&nbsp;
+<br>
+<br>
+<table border="0" width="80%">
+  <tbody>
+    <tr valign="top">
+      <th colspan="5" align="left"> [Shacira.sty] Grammar "shacira"
+Character Set</th>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="Byte"></a>Byte</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">'\00'</font> <font color="black">..</font>
+      <font color="green">'\ff'</font></b><br>
+all extended ascii</p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="Control"></a>Control</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">'\00'</font> <font color="black">..</font>
+      <font color="green">'\1f'</font> <font color="black">|</font> <font
+ color="green">'\7f'</font> <font color="black">|</font> <font
+ color="green">'\ff'</font></b><br>
+control DEL space-like extended ascii</p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <th colspan="5" align="left"> Basic elements of tokens</th>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="Printable"></a>Printable</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="#Byte">Byte</a> <font color="black">-</font> <a
+ href="#Control">Control</a></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>ign</b></td>
+      <td align="left"><b><font color="#b22222"><a name="Space"></a>Space</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">" "</font></b><br>
+ASCII - Space</p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>ign</b></td>
+      <td align="left"><b><font color="#b22222"><a name="Tab"></a>Tab</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">"\t"</font></b><br>
+Tabulator</p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>ign</b></td>
+      <td align="left"><b><font color="#b22222"><a name="Line"></a>Line</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">"\n"</font> <font color="black">|</font>
+      <font color="green">"\r\n"</font></b><br>
+UNIX / CPM / DOS</p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>ign</b></td>
+      <td align="left"><b><font color="#b22222"><a name="Page"></a>Page</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">"\p"</font></b><br>
+weak separation convention</p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>ign</b></td>
+      <td align="left"><b><font color="#b22222"><a name="Etx"></a>Etx</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">"\1a"</font> <font color="black">{</font>
+      <a href="#Byte">Byte</a> <font color="black">}</font></b><br>
+CPM / older DOS Versions</p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <th colspan="5" align="left"> Definitions and simple tokens</th>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="Letter"></a>Letter</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">'A'</font> <font color="black">..</font>
+      <font color="green">'Z'</font> <font color="black">|</font> <font
+ color="green">'a'</font> <font color="black">..</font> <font
+ color="green">'z'</font> <font color="black">|</font> <font
+ color="green">'_'</font></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="LetterOrDigit"></a>LetterOrDigit</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">'A'</font> <font color="black">..</font>
+      <font color="green">'Z'</font> <font color="black">|</font> <font
+ color="green">'a'</font> <font color="black">..</font> <font
+ color="green">'z'</font> <font color="black">|</font> <font
+ color="green">'_'</font> <font color="black">|</font> <font
+ color="green">'0'</font> <font color="black">..</font> <font
+ color="green">'9'</font></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="HexDigit"></a>HexDigit</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">'0'</font> <font color="black">..</font>
+      <font color="green">'9'</font> <font color="black">|</font> <font
+ color="green">'a'</font> <font color="black">..</font> <font
+ color="green">'f'</font> <font color="black">|</font> <font
+ color="green">'A'</font> <font color="black">..</font> <font
+ color="green">'F'</font></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="Digit"></a>Digit</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">'0'</font> <font color="black">..</font>
+      <font color="green">'9'</font></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="Normal"></a>Normal</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="#Letter">Letter</a> <font color="black">|</font> <a
+ href="#Digit">Digit</a> <font color="black">|</font> <a href="#Space">Space</a></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="Quote"></a>Quote</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">'\'\"\`'</font></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>tok</b></td>
+      <td align="left"><b><font color="#b22222"><a name="Delimiters"></a>Delimiters</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">',;'</font></b><br>
+delimiters</p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>tok</b></td>
+      <td align="left"><b><font color="#b22222"><a name="Parenthesis"></a>Parenthesis</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">'()[]{}'</font></b><br>
+one character tokens</p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="Special"></a>Special</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="#Printable">Printable</a> <font color="black">-</font>
+      <a href="#Normal">Normal</a> <font color="black">-</font> <a
+ href="#Parenthesis">Parenthesis</a> <font color="black">-</font> <a
+ href="#Quote">Quote</a></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <th colspan="5" align="left"> single byte literals or literals,
+encoded in us-ascii, ISO 8859-1 Latin-1 or ucs4 hex values</th>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="LitChar"></a>LitChar</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="#Printable">Printable</a> <font color="black">-</font>
+      <a href="#Quote">Quote</a> <font color="black">|</font> <font
+ color="green">'\\'</font> <font color="black">(</font> <a
+ href="#Quote">Quote</a> <font color="black">|</font> <font
+ color="green">'prnt'</font> <font color="black">|</font> <a
+ href="#HexDigit">HexDigit</a> <a href="#HexDigit">HexDigit</a> <font
+ color="black">|</font> <font color="green">'xX'</font> <a
+ href="#HexDigit">HexDigit</a> <a href="#HexDigit">HexDigit</a> <a
+ href="#HexDigit">HexDigit</a> <a href="#HexDigit">HexDigit</a> <a
+ href="#HexDigit">HexDigit</a> <a href="#HexDigit">HexDigit</a> <a
+ href="#HexDigit">HexDigit</a> <a href="#HexDigit">HexDigit</a> <font
+ color="black">)</font></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <th colspan="5" align="left"> Comments et al</th>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>com</b></td>
+      <td align="left"><b><font color="#b22222"><a name="Comment"></a>Comment</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">'//'</font> <font color="black">{</font>
+      <a href="#Printable">Printable</a> <font color="black">}</font></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <th colspan="5" align="left"> Complex tokens</th>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>tok</b></td>
+      <td align="left"><b><font color="#b22222"><a name="Hex"></a>Hex</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">'0'</font> <font color="green">'x'</font>
+      <a href="#HexDigit">HexDigit</a> <font color="black">+</font></b><br>
+Natural in hexadecimal presentation</p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>tok</b></td>
+      <td align="left"><b><font color="#b22222"><a name="Ide"></a>Ide</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="#Letter">Letter</a> <font color="black">{</font> <a
+ href="#LetterOrDigit">LetterOrDigit</a> <font color="black">}</font></b><br>
+Identifier</p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>tok</b></td>
+      <td align="left"><b><font color="#b22222"><a name="Real"></a>Real</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="black">{</font> <font color="green">'-'</font>
+      <font color="black">}</font> <a href="#Digit">Digit</a> <font
+ color="black">+</font> <font color="black">(</font> <font
+ color="green">'.'</font> <font color="black">)</font> <a
+ href="#Digit">Digit</a> <font color="black">+</font></b><br>
+Real</p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>tok</b></td>
+      <td align="left"><b><font color="#b22222"><a name="Nat"></a>Nat</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="black">{</font> <font color="green">'-'</font>
+      <font color="black">}</font> <a href="#Digit">Digit</a> <font
+ color="black">+</font></b><br>
+Natural</p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>tok</b></td>
+      <td align="left"><b><font color="#b22222"><a name="Opr"></a>Opr</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">'=&lt;&gt;-+:*&amp;|!'</font></b><br>
+Operators tok Set = '\'' {LitChar} '\'' ; CharacterSet</p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>tok</b></td>
+      <td align="left"><b><font color="#b22222"><a name="Seq"></a>Seq</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">'\"'</font> <font color="black">{</font>
+      <a href="#LitChar">LitChar</a> <font color="black">}</font> <font
+ color="green">'\"'</font></b><br>
+CharacterSequence (String)</p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>tok</b></td>
+      <td align="left"><b><font color="#b22222"><a name="HexSeq"></a>HexSeq</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">'\''</font> <font color="black">{</font>
+      <a href="#HexDigit">HexDigit</a> <font color="black">}</font> <font
+ color="green">'\''</font></b><br>
+BCD character sequence</p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>tok</b></td>
+      <td align="left"><b><font color="#b22222"><a name="Param"></a>Param</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">'#'</font> <a href="#Digit">Digit</a> <font
+ color="black">+</font></b><br>
+Parameter Name</p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <th colspan="5" align="left"> Macro token definitions</th>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="White"></a>White</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="#Space">Space</a> <font color="black">|</font> <a
+ href="#Line">Line</a> <font color="black">|</font> <a href="#Page">Page</a></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="Name"></a>Name</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="black">(</font> <a href="#Letter">Letter</a> <font
+ color="black">|</font> <font color="green">"_"</font> <font
+ color="black">)</font> <font color="black">{</font> <a href="#Letter">Letter</a>
+      <font color="black">|</font> <a href="#Digit">Digit</a> <font
+ color="black">|</font> <font color="green">"_"</font> <font
+ color="black">}</font></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="MPar"></a>MPar</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="black">(</font> <a href="#Printable">Printable</a>
+      <font color="black">-</font> <font color="black">(</font> <a
+ href="#White">White</a> <font color="black">|</font> <font
+ color="green">','</font> <font color="black">|</font> <font
+ color="green">')'</font> <font color="black">|</font> <font
+ color="green">'='</font> <font color="black">)</font> <font
+ color="black">)</font> <font color="black">{</font> <a
+ href="#Printable">Printable</a> <font color="black">-</font> <font
+ color="black">(</font> <a href="#White">White</a> <font color="black">|</font>
+      <font color="green">','</font> <font color="black">|</font> <font
+ color="green">')'</font> <font color="black">|</font> <font
+ color="green">'='</font> <font color="black">)</font> <font
+ color="black">}</font></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>tok</b></td>
+      <td align="left"><b><font color="#b22222"><a name="MacInc"></a>MacInc</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">"#include"</font> <a href="#White">White</a>
+      <font color="black">{</font> <a href="#White">White</a> <font
+ color="black">}</font> <font color="black">(</font> <a
+ href="#Printable">Printable</a> <font color="black">-</font> <a
+ href="#White">White</a> <font color="black">)</font> <font
+ color="black">{</font> <a href="#Printable">Printable</a> <font
+ color="black">-</font> <a href="#White">White</a> <font color="black">}</font></b><br>
+Include</p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>tok</b></td>
+      <td align="left"><b><font color="#b22222"><a name="MacDfn"></a>MacDfn</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">"#macro"</font> <a href="#White">White</a>
+      <font color="black">{</font> <a href="#White">White</a> <font
+ color="black">}</font> <a href="#Name">Name</a> <font color="black">{</font>
+      <a href="#White">White</a> <font color="black">}</font> <font
+ color="black">[</font> <font color="green">"("</font> <font
+ color="black">{</font> <a href="#White">White</a> <font color="black">}</font>
+      <a href="#MPar">MPar</a> <font color="black">{</font> <font
+ color="black">{</font> <a href="#White">White</a> <font color="black">}</font>
+      <font color="green">","</font> <font color="black">{</font> <a
+ href="#White">White</a> <font color="black">}</font> <a href="#MPar">MPar</a>
+      <font color="black">}</font> <font color="black">{</font> <a
+ href="#White">White</a> <font color="black">}</font> <font
+ color="green">")"</font> <font color="black">{</font> <a
+ href="#White">White</a> <font color="black">}</font> <font
+ color="black">]</font> <font color="black">[</font> <font
+ color="green">"="</font> <font color="black">(</font> <font
+ color="black">{</font> <a href="#Byte">Byte</a> <font color="black">}</font>
+      <font color="black">-</font> <font color="black">(</font> <font
+ color="black">{</font> <a href="#Byte">Byte</a> <font color="black">}</font>
+      <font color="black">(</font> <font color="green">"#macro"</font>
+      <font color="black">|</font> <font color="green">"#end"</font> <font
+ color="black">)</font> <font color="black">{</font> <a href="#Byte">Byte</a>
+      <font color="black">}</font> <font color="black">)</font> <font
+ color="black">)</font> <font color="green">"#end"</font> <font
+ color="black">]</font></b><br>
+Macro definition</p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>tok</b></td>
+      <td align="left"><b><font color="#b22222"><a name="MacSep"></a>MacSep</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">'\''</font> <font color="black">(</font>
+      <a href="#Byte">Byte</a> <font color="black">-</font> <font
+ color="green">'\''</font> <font color="black">)</font> <font
+ color="black">[</font> <font color="green">'-'</font> <font
+ color="black">]</font></b><br>
+End of parameter</p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>tok</b></td>
+      <td align="left"><b><font color="#b22222"><a name="MacCond"></a>MacCond</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="black">(</font> <font color="black">(</font> <font
+ color="green">"#ifdef"</font> <font color="black">|</font> <font
+ color="green">"#ifndef"</font> <font color="black">)</font> <a
+ href="#White">White</a> <font color="black">{</font> <a href="#White">White</a>
+      <font color="black">}</font> <a href="#Name">Name</a> <font
+ color="black">)</font> <font color="black">|</font> <font
+ color="green">"#else"</font> <font color="black">|</font> <font
+ color="green">"#end"</font></b><br>
+Conditionals</p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<br>
+<br>
+<center>
+<h2>Context-free Grammar</h2>
+</center>
+<br>
+<font color="#000000">The syntax rules are described in
+<b><i>EBNF</i></b> ( Extended Backus-Naur-Form ).
+A startsymbol must exist for each source file type. That means the
+syntax
+within each file has to be conform to the corresponding start rule.
+The other are internal helper rules. </font><font color="#000000"></font>
+<p><font color="#000000">Each <b><i><font size="+1">rule</font></i></b>
+is structured as follows: &lt;Rule Type: <b><i>start</i></b> or <b><i>let</i></b>&gt;&nbsp;</font>
+&lt;<font color="#b22222">Rule Identifier</font>&gt; ::
+&lt;EBNF-konform Expression&gt;
+<br>
+An <b><i><font size="+1">EBNF-konform expression</font></i></b>
+defines a part
+of the language syntax. It consists of a set of alternative productions
+i.e.
+partial expressions, separated by the character '|'.
+</p>
+<p>A production can be specified with the help of the following
+elements and operators:
+<br>
+&nbsp;
+</p>
+<ul>
+  <li>
+    <b><i><font size="+1">Expression1 Expression2 ... ExpressionN</font></i></b></li>
+  <br>
+Concatenation of partial expressions
+  <li><b><i><font size="+1">Expression1 | Expression2 | ... |
+ExpressionN</font></i></b></li>
+  <br>
+Union of partial expressions ( alternatives )
+  <li><b><i><font size="+1">[ Expression ]</font></i></b></li>
+  <br>
+Optional partial expression
+  <li><b><i><font size="+1">{ Expression }</font></i></b></li>
+  <br>
+Iteration of a partial expression ( 0 .. )
+  <li><b><i><font size="+1">Expression +</font></i></b></li>
+  <br>
+Iteration of a partial expression ( 1 .. )
+  <li><b><i><font size="+1">( Expression )</font></i></b></li>
+  <br>
+Combination of a partial expression ( subexpression )
+  <li><b><i><font color="#3366ff"><font size="+1">Token Identifier</font></font></i></b></li>
+  <br>
+  <font color="#000000">... from the regular grammar</font>
+  <li><b><i><font color="#3366ff"><font size="+1">Rule Identifier<br>
+    </font></font></i></b><font color="#000000">... from the
+context-free grammar</font></li>
+  <li>
+    <b><i><font color="#009900"><font size="+1">Keyword<br>
+    </font></font></i></b><font color="#000000">Constant string /
+character sequence</font><br>
+  </li>
+  <li>
+    <b><i><font color="#000000"><font size="+1">[other]<br>
+    </font></font></i></b><font color="#000000">Special keyword
+denoting the
+character sequences from the set 'Sigma* \ Tokenset'</font><br>
+    <br>
+  </li>
+  <br>
+  <font color="#000000"></font>&nbsp;
+</ul>
+<br>
+<table border="0" width="80%">
+  <tbody>
+    <tr valign="top">
+      <td align="left"><b>start</b></td>
+      <td align="left"><b><font color="#b22222"><a name="Definitions"></a>Definitions</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="black">{</font> <a href="#Definition">Definition</a>
+      <font color="black">}</font></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a
+ name="ParamAssignment"></a>ParamAssignment</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="#Param">Param</a> <font color="green">=</font> <a
+ href="#Real">Real</a> <font color="green">;</font> <font
+ color="black">|</font> <a href="#Param">Param</a> <font color="green">=</font>
+      <a href="#Nat">Nat</a> <font color="green">;</font> <font
+ color="black">|</font> <a href="#Param">Param</a> <font color="green">=</font>
+      <a href="#Hex">Hex</a> <font color="green">;</font></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="Condition"></a>Condition</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="#Condition">Condition</a> <font color="green">|</font>
+      <a href="#Condition">Condition</a></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="#Ide">Ide</a></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">!</font> <a href="#Condition">Condition</a></b>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="#Condition">Condition</a> <font color="green">&amp;</font>
+      <a href="#Condition">Condition</a></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">(</font> <a href="#Condition">Condition</a>
+      <font color="green">)</font></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="#Argument">Argument</a> <a href="#RelOp">RelOp</a>
+      <a href="#Argument">Argument</a></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="ArgumentList"></a>ArgumentList</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="black">[</font> <font color="green">,</font> <a
+ href="#ArgumentList">ArgumentList</a> <font color="black">]</font></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="FuncRef"></a>FuncRef</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="ShaciraLanguage.html#Ide">Ide</a> <font
+ color="green">(</font> <a href="ShaciraLanguage.html#ArgumentList">ArgumentList</a>
+      <font color="green">)</font></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="IndexRef"></a>IndexRef</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">[</font> <a href="#FuncRef">FuncRef</a>
+      <font color="green">]</font></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">[</font> <a href="#Hex">Hex</a> <font
+ color="green">]</font></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">[</font> <a href="#Nat">Nat</a> <font
+ color="green">]</font></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">[</font> <a
+ href="ShaciraLanguage.html#FuncRef">VarRef</a> <font color="green">]</font></b>
+      </p>
+      <br>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="IndexRefList"></a>IndexRefList</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="black">[</font> <a href="#IndexRef">IndexRef</a>
+      <a href="#IndexRefList">IndexRefList</a> <font color="black">]</font></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="VarRef"></a>VarRef</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify"><b><a href="ShaciraLanguage.html#Ide">Ide</a>
+      <a href="ShaciraLanguage.html#IndexRefList">IndexRefList</a></b></td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="Argument"></a>Argument</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="#FuncRef">FuncRef</a></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="#Seq">Seq</a></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="#Hex">Hex</a></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="#Nat">Nat</a></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="#Real">Real</a></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="#VarRef">VarRef</a></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="RelOp"></a>RelOp</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">&lt;</font> <font color="green">=</font>
+      <font color="black">|</font> <font color="green">&gt;</font> <font
+ color="green">=</font> <font color="black">|</font> <font
+ color="green">&lt;</font> <font color="black">|</font> <font
+ color="green">=</font> <font color="green">=</font> <font
+ color="black">|</font> <font color="green">!</font> <font
+ color="green">=</font> <font color="black">|</font> <font
+ color="green">&gt;</font></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="Next"></a>Next</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">next</font> <font color="green">step</font>
+      <font color="green">auto</font> <font color="green">;</font> <font
+ color="black">|</font> <font color="green">next</font> <font
+ color="green">start</font> <a href="#Ide">Ide</a> <font color="green">;</font>
+      <font color="black">|</font> <font color="green">next</font> <font
+ color="green">step</font> <font color="green">manual</font> <font
+ color="green">;</font></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="BaseType"></a>BaseType</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">ulong</font> <font color="black">|</font>
+      <font color="green">bit8</font> <font color="black">|</font> <font
+ color="green">bool</font> <font color="black">|</font> <font
+ color="green">ushort</font> <font color="black">|</font> <font
+ color="green">uchar</font> <font color="black">|</font> <font
+ color="green">void</font> <font color="black">|</font> <font
+ color="green">short</font> <font color="black">|</font> <font
+ color="green">long</font> <font color="black">|</font> <font
+ color="green">char</font> <font color="black">|</font> <font
+ color="green">float</font> <font color="black">|</font> <font
+ color="green">bit16</font> <font color="black">|</font> <font
+ color="green">object</font> <font color="black">|</font> <font
+ color="green">bit32</font> <font color="black">|</font> <font
+ color="green">double</font></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="StringType"></a>StringType</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">wstring</font> <font color="black">|</font>
+      <font color="green">byte</font> <font color="black">|</font> <font
+ color="green">string</font></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="DataTypeSpec"></a>DataTypeSpec</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="#BaseType">BaseType</a> <font color="green">(</font>
+      <a href="#Nat">Nat</a> <font color="green">)</font></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="#BaseType">BaseType</a></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="#StringType">StringType</a> <font color="green">(</font>
+      <a href="#Nat">Nat</a> <font color="green">)</font></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="VarType"></a>VarType</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">set</font> <font color="black">|</font>
+      <font color="green">act</font> <font color="black">|</font> <font
+ color="green">volatile</font></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="VarTypeSpec"></a>VarTypeSpec</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">vartype</font> <font color="green">=</font>
+      <a href="#VarType">VarType</a></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="SystemFlag"></a>SystemFlag</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">hostread</font> <font color="black">|</font>
+      <font color="green">hostwrite</font></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="SystemFlags"></a>SystemFlags</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">sysflags</font> <font color="green">=</font>
+      <font color="black">{</font> <a href="#SystemFlag">SystemFlag</a>
+      <font color="green">,</font> <font color="black">}</font></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="UnitRef"></a>UnitRef</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">unit</font> <font color="green">=</font>
+      <a href="#Ide">Ide</a> <font color="black">|</font> <font
+ color="green">unit</font> <font color="green">=</font> <a href="#Seq">Seq</a></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="Description"></a>Description</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">description</font> <font color="green">=</font>
+      <a href="#Seq">Seq</a> </b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="Text"></a>Text</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b>&nbsp;<font color="green">text</font> <font color="green">=</font>
+      <a href="#Seq">Seq</a></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="Dim1"></a>Dim1</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">dim1text</font> <font color="green">=</font>
+      <a href="#Seq">Seq</a></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="Dim2"></a>Dim2</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">dim2text</font> <font color="green">=</font>
+      <a href="#Seq">Seq</a></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="Dim3"></a>Dim3</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">dim3text</font> <font color="green">=</font>
+      <a href="#Seq">Seq</a></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="Dim4"></a>Dim4</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">dim4text</font> <font color="green">=</font>
+      <a href="#Seq">Seq</a></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="FlagValue"></a>FlagValue</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="#Hex">Hex</a> <font color="black">|</font> <a
+ href="#Nat">Nat</a></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="Flags"></a>Flags</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">flags</font> <font color="green">=</font>
+      <a href="ShaciraLanguage.html#FlagValue">FlagValue</a></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a
+ name="PersistenceType"></a>PersistenceType</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">ram</font> <font color="black">|</font>
+      <font color="green">bbram</font> <font color="black">|</font> <font
+ color="green">file</font></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="Persistence"></a>Persistence</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">persist</font> <font color="green">=</font>
+      <a href="#PersistenceType">PersistenceType</a></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="File"></a>File</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">file</font> <font color="green">=</font>
+      <a href="#Ide">Ide</a></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="FilterFunc"></a>FilterFunc</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">filter</font> <font color="green">=</font>
+      <a href="ShaciraLanguage.html#FuncRef">FuncRef</a></b> </p>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="MinSpec"></a>MinSpec</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">minimum</font> <font color="green">=</font>
+      <a href="#Argument">Argument</a></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="MaxSpec"></a>MaxSpec</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">maximum</font> <font color="green">=</font>
+      <a href="ShaciraLanguage.html#Argument">Argument</a></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="Value"></a>Value</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="#Seq">Seq</a></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="#Nat">Nat</a></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">cmpr</font> <font color="green">(</font>
+      <a href="#Nat">Nat</a> <font color="green">,</font> <font
+ color="green">bcd</font> <font color="green">(</font> <a
+ href="#HexSeq">HexSeq</a> <font color="green">)</font> <font
+ color="green">)</font></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="#Hex">Hex</a></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="#Ide">Ide</a></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">bcd</font> <font color="green">(</font>
+      <a href="#HexSeq">HexSeq</a> <font color="green">)</font></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="#Real">Real</a></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="ValueSpec"></a>ValueSpec</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">values</font> <font color="green">=</font>
+      <font color="green">{</font> <font color="black">{</font> <a
+ href="ShaciraLanguage.html#Value">Value</a> <font color="green">,</font>
+      <font color="black">}</font> <font color="green">}</font></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="VarSpecSeq"></a>VarSpecSeq</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="black">[</font> <a
+ href="ShaciraLanguage.html#VarTypeSpec">VarTypeSpec</a> <font
+ color="black">]</font> <font color="black">[</font> <a
+ href="ShaciraLanguage.html#SystemFlags">SystemFlags</a> <font
+ color="black">]</font> <font color="black">[</font> <a
+ href="ShaciraLanguage.html#UnitRef">UnitRef</a> <font color="black">]</font>
+      <font color="black">[</font> <a
+ href="ShaciraLanguage.html#Description">Description</a> <font
+ color="black">]</font> <font color="black">[</font> <a
+ href="ShaciraLanguage.html#Text">Text</a> <font color="black">]</font>
+      <font color="black">[</font> <a href="ShaciraLanguage.html#Dim1">Dim1</a>
+      <font color="black">]</font> <font color="black">[</font> <a
+ href="ShaciraLanguage.html#Dim2">Dim2</a> <font color="black">]</font>
+      <font color="black">[</font> <a href="ShaciraLanguage.html#Dim3">Dim3</a>
+      <font color="black">]</font> <font color="black">[</font> <a
+ href="ShaciraLanguage.html#Dim4">Dim4</a> <font color="black">]</font>
+      <font color="black">[</font> <a href="ShaciraLanguage.html#Flags">Flags</a>
+      <font color="black">]</font> <font color="black">[</font> <a
+ href="ShaciraLanguage.html#Persistence">Persistence</a> <font
+ color="black">]</font> <font color="black">[</font> <a
+ href="ShaciraLanguage.html#File">File</a> <font color="black">]</font>
+      <font color="black">[</font> <a
+ href="ShaciraLanguage.html#FilterFunc">FilterFunc</a> <font
+ color="black">]</font> <font color="black">[</font> <a
+ href="ShaciraLanguage.html#MinSpec">MinSpec</a> <font color="black">]</font>
+      <font color="black">[</font> <a
+ href="ShaciraLanguage.html#MaxSpec">MaxSpec</a> <font color="black">]</font>
+      <font color="black">[</font> <a
+ href="ShaciraLanguage.html#ValueSpec">ValueSpec</a> <font
+ color="black">]</font></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="MapTypeSpec"></a>MapTypeSpec</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="#BaseType">BaseType</a> <font color="green">(</font>
+      <a href="#Nat">Nat</a> <font color="green">)</font></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="#StringType">StringType</a> <font color="green">(</font>
+      <a href="#Nat">Nat</a> <font color="green">)</font></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="#BaseType">BaseType</a></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="Symbol"></a>Symbol</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="#Ide">Ide</a> <font color="black">|</font> <a
+ href="#Nat">Nat</a> <font color="black">|</font> <a href="#Hex">Hex</a></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="ItemSpecifier"></a>ItemSpecifier</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="#Symbol">Symbol</a> <font color="black">|</font> <a
+ href="#Seq">Seq</a></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="ItemSpec"></a>ItemSpec</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="#ItemSpecifier">ItemSpecifier</a> <font
+ color="green">:</font> <a href="#Nat">Nat</a></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="#ItemSpecifier">ItemSpecifier</a></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="#ItemSpecifier">ItemSpecifier</a> <font
+ color="green">:</font> <a href="#Nat">Nat</a> <font color="green">-</font>
+      <a href="#Nat">Nat</a></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="EventType"></a>EventType</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">cycle</font> <font color="black">|</font>
+      <font color="green">data</font> <font color="black">|</font> <font
+ color="green">automatic</font></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="RefreshType"></a>RefreshType</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="#Nat">Nat</a></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">event</font> <a href="#EventType">EventType</a></b>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">event</font> <a href="#Nat">Nat</a></b>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="MapDef"></a>MapDef</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">map</font> <a href="#Ide">Ide</a> <a
+ href="#MapTypeSpec">MapTypeSpec</a> <font color="green">{</font> <font
+ color="black">{</font> <a href="#ItemSpec">ItemSpec</a> <font
+ color="green">,</font> <font color="black">}</font> <font
+ color="green">}</font> <font color="black">[</font> <font
+ color="green">refresh</font> <font color="green">=</font> <a
+ href="#RefreshType">RefreshType</a> <font color="black">]</font> <font
+ color="black">[</font> <font color="green">conversion</font> <font
+ color="green">=</font> <a href="#FuncRef">FuncRef</a> <font
+ color="black">]</font></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">map</font> <a href="#Ide">Ide</a> <a
+ href="#MapTypeSpec">MapTypeSpec</a> <a href="#ItemSpec">ItemSpec</a> <font
+ color="black">[</font> <font color="green">refresh</font> <font
+ color="green">=</font> <a href="#RefreshType">RefreshType</a> <font
+ color="black">]</font> <font color="black">[</font> <font
+ color="green">conversion</font> <font color="green">=</font> <a
+ href="#FuncRef">FuncRef</a> <font color="black">]</font></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="VarDef"></a>VarDef</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="#Ide">Ide</a> <font color="black">{</font> <font
+ color="green">[</font> <a href="#Nat">Nat</a> <font color="green">]</font>
+      <font color="black">}</font> <a href="#DataTypeSpec">DataTypeSpec</a>
+      <a href="#VarSpecSeq">VarSpecSeq</a> <font color="black">[</font>
+      <a href="#MapDef">MapDef</a> <font color="black">]</font> <font
+ color="green">;</font></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="UnitSpec"></a>UnitSpec</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">{</font> <font color="green">precision</font>
+      <font color="green">=</font> <a href="#Nat">Nat</a> <font
+ color="green">text</font> <font color="green">=</font> <a href="#Seq">Seq</a>
+      <font color="green">}</font></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="UnitDef"></a>UnitDef</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="ShaciraLanguage.html#Ide">Ide</a> <font
+ color="green">function</font> <font color="green">=</font> <a
+ href="ShaciraLanguage.html#FuncRef">FuncRef</a> <font color="black">{</font>
+      <a href="ShaciraLanguage.html#UnitSpec">UnitSpec</a> <font
+ color="black">}</font> <font color="green">dataset</font> <font
+ color="green">=</font> <a href="ShaciraLanguage.html#Nat">Nat</a> <font
+ color="green">device</font> <font color="green">=</font> <a
+ href="ShaciraLanguage.html#Nat">Nat</a> <font color="green">;</font></b>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="Statement"></a>Statement</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">while</font> <a href="#Condition">Condition</a></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">exec</font> <a href="#Ide">Ide</a> <font
+ color="green">;</font></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="#VarRef">VarRef</a> <font color="green">=</font> <a
+ href="#Argument">Argument</a> <font color="green">;</font></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">if</font> <a href="#Condition">Condition</a></b>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="#VarRef">VarRef</a> <font color="green">=</font> <a
+ href="#Param">Param</a> <font color="green">;</font></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">if</font> <a href="#Condition">Condition</a>
+      <font color="green">else</font></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">return</font> <font color="green">;</font></b>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="#FuncRef">FuncRef</a> <font color="green">;</font></b>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="Statements"></a>Statements</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="black">[</font> <a href="#Statement">Statement</a>
+      <a href="#Statements">Statements</a> <font color="black">]</font></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="ArgDecl"></a>ArgDecl</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="#BaseType">BaseType</a> <a href="#Ide">Ide</a></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="#StringType">StringType</a> <a href="#Ide">Ide</a></b>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="FuncDecl"></a>FuncDecl</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">conv</font> <a href="#BaseType">BaseType</a>
+      <a href="#Ide">Ide</a> <font color="green">(</font> <font
+ color="black">{</font> <a href="#ArgDecl">ArgDecl</a> <font
+ color="green">,</font> <font color="black">}</font> <font
+ color="green">)</font></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="#StringType">StringType</a> <a href="#Ide">Ide</a>
+      <font color="green">(</font> <font color="black">{</font> <a
+ href="#ArgDecl">ArgDecl</a> <font color="green">,</font> <font
+ color="black">}</font> <font color="green">)</font></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">view</font> <a href="#BaseType">BaseType</a>
+      <a href="#Ide">Ide</a> <font color="green">(</font> <font
+ color="black">{</font> <a href="#ArgDecl">ArgDecl</a> <font
+ color="green">,</font> <font color="black">}</font> <font
+ color="green">)</font></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">user</font> <a href="#Ide">Ide</a> <font
+ color="green">(</font> <font color="black">{</font> <a
+ href="#ArgDecl">ArgDecl</a> <font color="green">,</font> <font
+ color="black">}</font> <font color="green">)</font></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">plaus</font> <a href="#Ide">Ide</a> <font
+ color="green">(</font> <font color="black">{</font> <a
+ href="#ArgDecl">ArgDecl</a> <font color="green">,</font> <font
+ color="black">}</font> <font color="green">)</font></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">limit</font> <a href="#BaseType">BaseType</a>
+      <a href="#Ide">Ide</a> <font color="green">(</font> <font
+ color="black">{</font> <a href="#ArgDecl">ArgDecl</a> <font
+ color="green">,</font> <font color="black">}</font> <font
+ color="green">)</font></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">sigflt</font> <a href="#Ide">Ide</a> <font
+ color="green">(</font> <font color="black">{</font> <a
+ href="#ArgDecl">ArgDecl</a> <font color="green">,</font> <font
+ color="black">}</font> <font color="green">)</font></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">button</font> <a href="#Ide">Ide</a> <font
+ color="green">(</font> <font color="black">{</font> <a
+ href="#ArgDecl">ArgDecl</a> <font color="green">,</font> <font
+ color="black">}</font> <font color="green">)</font></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">view</font> <a href="#StringType">StringType</a>
+      <a href="#Ide">Ide</a> <font color="green">(</font> <font
+ color="black">{</font> <a href="#ArgDecl">ArgDecl</a> <font
+ color="green">,</font> <font color="black">}</font> <font
+ color="green">)</font></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">slot</font> <a href="#Ide">Ide</a> <font
+ color="green">(</font> <font color="black">{</font> <a
+ href="#ArgDecl">ArgDecl</a> <font color="green">,</font> <font
+ color="black">}</font> <font color="green">)</font></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">dark</font> <a href="#Ide">Ide</a> <font
+ color="green">(</font> <font color="black">{</font> <a
+ href="#ArgDecl">ArgDecl</a> <font color="green">,</font> <font
+ color="black">}</font> <font color="green">)</font></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">limit</font> <a href="#StringType">StringType</a>
+      <a href="#Ide">Ide</a> <font color="green">(</font> <font
+ color="black">{</font> <a href="#ArgDecl">ArgDecl</a> <font
+ color="green">,</font> <font color="black">}</font> <font
+ color="green">)</font></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="#BaseType">BaseType</a> <a href="#Ide">Ide</a> <font
+ color="green">(</font> <font color="black">{</font> <a
+ href="#ArgDecl">ArgDecl</a> <font color="green">,</font> <font
+ color="black">}</font> <font color="green">)</font></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">filter</font> <a href="#StringType">StringType</a>
+      <a href="#Ide">Ide</a> <font color="green">(</font> <font
+ color="black">{</font> <a href="#ArgDecl">ArgDecl</a> <font
+ color="green">,</font> <font color="black">}</font> <font
+ color="green">)</font></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">embed</font> <a href="#StringType">StringType</a>
+      <a href="#Ide">Ide</a> <font color="green">(</font> <font
+ color="black">{</font> <a href="#ArgDecl">ArgDecl</a> <font
+ color="green">,</font> <font color="black">}</font> <font
+ color="green">)</font></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">evflt</font> <a href="#Ide">Ide</a> <font
+ color="green">(</font> <font color="black">{</font> <a
+ href="#ArgDecl">ArgDecl</a> <font color="green">,</font> <font
+ color="black">}</font> <font color="green">)</font></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">unit</font> <a href="#BaseType">BaseType</a>
+      <a href="#Ide">Ide</a> <font color="green">(</font> <font
+ color="black">{</font> <a href="#ArgDecl">ArgDecl</a> <font
+ color="green">,</font> <font color="black">}</font> <font
+ color="green">)</font></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">conv</font> <a href="#StringType">StringType</a>
+      <a href="#Ide">Ide</a> <font color="green">(</font> <font
+ color="black">{</font> <a href="#ArgDecl">ArgDecl</a> <font
+ color="green">,</font> <font color="black">}</font> <font
+ color="green">)</font></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">init</font> <a href="#Ide">Ide</a> <font
+ color="green">(</font> <font color="black">{</font> <a
+ href="#ArgDecl">ArgDecl</a> <font color="green">,</font> <font
+ color="black">}</font> <font color="green">)</font></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">valf</font> <a href="#Ide">Ide</a> <font
+ color="green">(</font> <font color="black">{</font> <a
+ href="#ArgDecl">ArgDecl</a> <font color="green">,</font> <font
+ color="black">}</font> <font color="green">)</font></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">filter</font> <a href="#BaseType">BaseType</a>
+      <a href="#Ide">Ide</a> <font color="green">(</font> <font
+ color="black">{</font> <a href="#ArgDecl">ArgDecl</a> <font
+ color="green">,</font> <font color="black">}</font> <font
+ color="green">)</font></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">embed</font> <a href="#BaseType">BaseType</a>
+      <a href="#Ide">Ide</a> <font color="green">(</font> <font
+ color="black">{</font> <a href="#ArgDecl">ArgDecl</a> <font
+ color="green">,</font> <font color="black">}</font> <font
+ color="green">)</font></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="DeviceSpec"></a>DeviceSpec</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">device</font> <font color="green">=</font>
+      <a href="#Ide">Ide</a> </b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="DatabaseDef"></a>DatabaseDef</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">database</font> <a
+ href="ShaciraLanguage.html#Ide">Ide</a> <font color="black">[</font> <a
+ href="ShaciraLanguage.html#DeviceSpec">DeviceSpec</a> <font
+ color="black">]</font> <font color="green">{</font> <font
+ color="black">{</font> <a href="ShaciraLanguage.html#VarDef">VarDef</a>
+      <font color="black">}</font> <font color="green">}</font></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody><tbody>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left"><b>let</b></td>
+      <td align="left"><b><font color="#b22222"><a name="Definition"></a>Definition</font>&nbsp;&nbsp;</b></td>
+      <td align="right"><b>::&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">dynamic</font> <font color="green">{</font>
+      <font color="black">{</font> <a href="#Ide">Ide</a> <font
+ color="green">,</font> <font color="black">}</font> <font
+ color="green">}</font> <font color="green">;</font></b><br>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">program</font> <a href="#Ide">Ide</a> <font
+ color="green">{</font> <font color="black">{</font> <font
+ color="green">step</font> <a href="#Nat">Nat</a> <font color="green">:</font>
+      <font color="green">{</font> <font color="black">{</font> <a
+ href="#ParamAssignment">ParamAssignment</a> <font color="black">}</font>
+      <font color="black">[</font> <font color="green">initial</font> <font
+ color="green">:</font> <font color="green">exec</font> <a href="#Ide">Ide</a>
+      <font color="green">;</font> <font color="black">]</font> <font
+ color="black">[</font> <font color="green">cyclic</font> <font
+ color="green">:</font> <font color="green">exec</font> <a href="#Ide">Ide</a>
+      <font color="green">;</font> <font color="black">]</font> <font
+ color="black">[</font> <font color="green">final</font> <font
+ color="green">:</font> <font color="green">exec</font> <a href="#Ide">Ide</a>
+      <font color="green">;</font> <font color="black">]</font> <font
+ color="black">[</font> <font color="green">terminate</font> <font
+ color="green">on</font> <a href="#Condition">Condition</a> <font
+ color="green">;</font> <font color="black">]</font> <font
+ color="black">[</font> <a href="#Next">Next</a> <font color="black">]</font>
+      <font color="green">}</font> <font color="black">}</font> <font
+ color="green">}</font></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">def</font> <a href="#VarDef">VarDef</a></b>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">state</font> <a href="#Ide">Ide</a> <font
+ color="green">=</font> <a href="#Condition">Condition</a> <font
+ color="green">;</font></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">on</font> <a href="#Condition">Condition</a>
+      <font color="green">start</font> <a href="#Ide">Ide</a> <font
+ color="green">;</font></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">unit</font> <a href="#UnitDef">UnitDef</a></b>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><font color="green">proc</font> <a href="#Ide">Ide</a> <font
+ color="green">{</font> <a href="#Statements">Statements</a> <font
+ color="green">}</font></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="#VarRef">VarRef</a></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="#FuncDecl">FuncDecl</a> <font color="green">;</font></b>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="#DatabaseDef">DatabaseDef</a> <font color="green">;</font></b>
+      </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right">&nbsp;</td>
+      <td align="justify">&nbsp;</td>
+      <td>&nbsp;
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="right"><b>&nbsp;|&nbsp;</b></td>
+      <td align="justify">
+      <p><b><a href="#FuncRef">FuncRef</a></b> </p>
+      </td>
+      <td>&nbsp;
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<br>
+</body>
+</html>

@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{38257CB5-6DB7-4DB3-8F19-D24AD6934F3D}</ProjectGuid>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\omniORB_debug.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\omniORB_release.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Release/sh_tool_converter.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>..\..\..\Src\GUIFramework\QT3Framework\CWidgets;.\;$(QTDIR)\include;..\..\..\Src;..\..\..\Src\Orb;..\..\..\Src\Include;..\..\..\Extern\ECL\src;..\..\..\Src\GUIFramework\QT3Framework\Generated;..\..\..\Src\GUIFramework;..\..\..\Src\GUIFramework\qt4port;..\..\..\Src\GUIFramework\Interface;..\..\..\Src\GUIFramework\QT3Framework;..\..\..\Src\GUIFramework\QT3Framework\Plugins;Forms\Generated;..\..\..\Src\Apps\SHExplorer;..\..\..\Src\Apps\SHExplorer\Generated;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;__x86__;__WIN32__;_COS_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeaderOutputFile>.\Release/sh_tool_converter.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Release/</AssemblerListingLocation>
+      <ObjectFileName>.\Release/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0407</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>$(QTDIR)\lib\qt-mt$(QTVERSION).lib;$(QTDIR)\lib\qtmain.lib;$(QTDIR)\lib\qui.lib;addidata.lib;wsock32.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;..\..\..\Extern\ADDIDATA\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ProgramDatabaseFile>.\Release/SHExplorer.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <TargetMachine>MachineX86</TargetMachine>
+      <DelayLoadDLLs>addikern.dll;addidata.dll;addi_int.dll;%(DelayLoadDLLs)</DelayLoadDLLs>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Release/sh_tool_converter.bsc</OutputFile>
+    </Bscmake>
+    <PostBuildEvent>
+      <Command>copy $(OutDir)$(TargetName)$(TargetExt)  ..\..\..\bin\win32\SHExplorer$(TargetExt)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Debug/sh_tool_converter.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\..\..\Src\GUIFramework\QT3Framework\CWidgets;.\;$(QTDIR)\include;..\..\..\Src;..\..\..\Src\Orb;..\..\..\Src\Include;..\..\..\Extern\ECL\src;..\..\..\Src\GUIFramework\QT3Framework\Generated;..\..\..\Src\GUIFramework;..\..\..\Src\GUIFramework\qt4port;..\..\..\Src\GUIFramework\Interface;..\..\..\Src\GUIFramework\QT3Framework;..\..\..\Src\GUIFramework\QT3Framework\Plugins;Forms\Generated;..\..\..\Src\Apps\SHExplorer;..\..\..\Src\Apps\SHExplorer\Generated;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;__x86__;__WIN32__;_COS_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeaderOutputFile>.\Debug/sh_tool_converter.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Debug/</AssemblerListingLocation>
+      <ObjectFileName>.\Debug/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0407</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>$(QTDIR)\lib\qt-mt$(QTVERSION).lib;$(QTDIR)\lib\qtmain.lib;$(QTDIR)\lib\qui.lib;addidata.lib;wsock32.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;..\..\..\Extern\ADDIDATA\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>.\Debug/SHExplorerd.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <TargetMachine>MachineX86</TargetMachine>
+      <DelayLoadDLLs>addikern.dll;addidata.dll;addi_int.dll;%(DelayLoadDLLs)</DelayLoadDLLs>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Debug/sh_tool_converter.bsc</OutputFile>
+    </Bscmake>
+    <PostBuildEvent>
+      <Command>copy $(OutDir)$(TargetName)$(TargetExt)  ..\..\..\bin\win32\SHExplorerd$(TargetExt)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\Src\Tools\converter\generator.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\Src\Tools\converter\converter.cpp" />
+    <ClCompile Include="..\..\..\Src\Tools\converter\generator.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\q3_framework\q3_framework.vcxproj">
+      <Project>{487c275d-2f92-440d-9662-fdba35fadbbb}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\shacira_lib\shacira_lib.vcxproj">
+      <Project>{4945da20-bfe4-4ba3-9ade-1e17fd9e925a}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

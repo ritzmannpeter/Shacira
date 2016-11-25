@@ -1,0 +1,1873 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>DemoFrame</class>
+<widget class="CAppFrame">
+    <property name="name">
+        <cstring>DemoFrame</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1024</width>
+            <height>768</height>
+        </rect>
+    </property>
+    <property name="sizePolicy">
+        <sizepolicy>
+            <hsizetype>0</hsizetype>
+            <vsizetype>0</vsizetype>
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+        </sizepolicy>
+    </property>
+    <property name="minimumSize">
+        <size>
+            <width>1024</width>
+            <height>768</height>
+        </size>
+    </property>
+    <property name="maximumSize">
+        <size>
+            <width>1024</width>
+            <height>768</height>
+        </size>
+    </property>
+    <property name="caption">
+        <string>CAppFrameForm</string>
+    </property>
+    <property name="BGColor">
+        <color>
+            <red>162</red>
+            <green>202</green>
+            <blue>255</blue>
+        </color>
+    </property>
+    <property name="VirtualFocusColor">
+        <color>
+            <red>85</red>
+            <green>170</green>
+            <blue>255</blue>
+        </color>
+    </property>
+    <widget class="QFrame">
+        <property name="name">
+            <cstring>frame3_2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>76</x>
+                <y>1</y>
+                <width>873</width>
+                <height>768</height>
+            </rect>
+        </property>
+        <property name="minimumSize">
+            <size>
+                <width>873</width>
+                <height>768</height>
+            </size>
+        </property>
+        <property name="maximumSize">
+            <size>
+                <width>873</width>
+                <height>768</height>
+            </size>
+        </property>
+        <property name="frameShape">
+            <enum>NoFrame</enum>
+        </property>
+        <property name="frameShadow">
+            <enum>Plain</enum>
+        </property>
+        <widget class="QFrame">
+            <property name="name">
+                <cstring>frame3_2_3_3</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>1</x>
+                    <y>732</y>
+                    <width>872</width>
+                    <height>34</height>
+                </rect>
+            </property>
+            <property name="minimumSize">
+                <size>
+                    <width>872</width>
+                    <height>34</height>
+                </size>
+            </property>
+            <property name="maximumSize">
+                <size>
+                    <width>872</width>
+                    <height>34</height>
+                </size>
+            </property>
+            <property name="paletteBackgroundColor">
+                <color>
+                    <red>192</red>
+                    <green>192</green>
+                    <blue>192</blue>
+                </color>
+            </property>
+            <property name="frameShape">
+                <enum>Panel</enum>
+            </property>
+            <property name="frameShadow">
+                <enum>Plain</enum>
+            </property>
+            <widget class="CFrame">
+                <property name="name">
+                    <cstring>cFrame6_3_2_5_5_3</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>218</x>
+                        <y>0</y>
+                        <width>109</width>
+                        <height>34</height>
+                    </rect>
+                </property>
+                <property name="minimumSize">
+                    <size>
+                        <width>109</width>
+                        <height>34</height>
+                    </size>
+                </property>
+                <property name="maximumSize">
+                    <size>
+                        <width>109</width>
+                        <height>34</height>
+                    </size>
+                </property>
+                <property name="paletteBackgroundColor">
+                    <color>
+                        <red>212</red>
+                        <green>208</green>
+                        <blue>200</blue>
+                    </color>
+                </property>
+                <property name="frameShape">
+                    <enum>Box</enum>
+                </property>
+                <property name="frameShadow">
+                    <enum>Plain</enum>
+                </property>
+                <property name="DarkFuncRef">
+                    <cstring></cstring>
+                </property>
+            </widget>
+            <widget class="CFrame">
+                <property name="name">
+                    <cstring>cFrame6_3_2_5_5_5</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>436</x>
+                        <y>0</y>
+                        <width>109</width>
+                        <height>34</height>
+                    </rect>
+                </property>
+                <property name="minimumSize">
+                    <size>
+                        <width>109</width>
+                        <height>34</height>
+                    </size>
+                </property>
+                <property name="maximumSize">
+                    <size>
+                        <width>109</width>
+                        <height>34</height>
+                    </size>
+                </property>
+                <property name="paletteBackgroundColor">
+                    <color>
+                        <red>212</red>
+                        <green>208</green>
+                        <blue>200</blue>
+                    </color>
+                </property>
+                <property name="autoMask">
+                    <bool>false</bool>
+                </property>
+                <property name="frameShape">
+                    <enum>Box</enum>
+                </property>
+                <property name="frameShadow">
+                    <enum>Plain</enum>
+                </property>
+                <property name="DarkFuncRef">
+                    <cstring></cstring>
+                </property>
+            </widget>
+            <widget class="CFrame">
+                <property name="name">
+                    <cstring>cFrame6_3_2_5_5_5_3</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>654</x>
+                        <y>0</y>
+                        <width>109</width>
+                        <height>34</height>
+                    </rect>
+                </property>
+                <property name="minimumSize">
+                    <size>
+                        <width>109</width>
+                        <height>34</height>
+                    </size>
+                </property>
+                <property name="maximumSize">
+                    <size>
+                        <width>109</width>
+                        <height>34</height>
+                    </size>
+                </property>
+                <property name="paletteBackgroundColor">
+                    <color>
+                        <red>212</red>
+                        <green>208</green>
+                        <blue>200</blue>
+                    </color>
+                </property>
+                <property name="frameShape">
+                    <enum>Box</enum>
+                </property>
+                <property name="frameShadow">
+                    <enum>Plain</enum>
+                </property>
+                <property name="DarkFuncRef">
+                    <cstring></cstring>
+                </property>
+            </widget>
+            <widget class="CFrame">
+                <property name="name">
+                    <cstring>cFrame6_3_2_5_5_5_4</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>763</x>
+                        <y>0</y>
+                        <width>109</width>
+                        <height>34</height>
+                    </rect>
+                </property>
+                <property name="minimumSize">
+                    <size>
+                        <width>109</width>
+                        <height>34</height>
+                    </size>
+                </property>
+                <property name="maximumSize">
+                    <size>
+                        <width>109</width>
+                        <height>34</height>
+                    </size>
+                </property>
+                <property name="paletteBackgroundColor">
+                    <color>
+                        <red>212</red>
+                        <green>208</green>
+                        <blue>200</blue>
+                    </color>
+                </property>
+                <property name="frameShape">
+                    <enum>Box</enum>
+                </property>
+                <property name="frameShadow">
+                    <enum>Plain</enum>
+                </property>
+                <property name="DarkFuncRef">
+                    <cstring></cstring>
+                </property>
+            </widget>
+            <widget class="CFrame">
+                <property name="name">
+                    <cstring>cFrame6_3_2_5_5</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>0</x>
+                        <y>0</y>
+                        <width>109</width>
+                        <height>34</height>
+                    </rect>
+                </property>
+                <property name="minimumSize">
+                    <size>
+                        <width>109</width>
+                        <height>34</height>
+                    </size>
+                </property>
+                <property name="maximumSize">
+                    <size>
+                        <width>109</width>
+                        <height>34</height>
+                    </size>
+                </property>
+                <property name="paletteBackgroundColor">
+                    <color>
+                        <red>212</red>
+                        <green>208</green>
+                        <blue>200</blue>
+                    </color>
+                </property>
+                <property name="frameShape">
+                    <enum>Box</enum>
+                </property>
+                <property name="frameShadow">
+                    <enum>Plain</enum>
+                </property>
+                <property name="DarkFuncRef">
+                    <cstring></cstring>
+                </property>
+            </widget>
+            <widget class="CFrame">
+                <property name="name">
+                    <cstring>cFrame6_3_2_5_5_4</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>327</x>
+                        <y>0</y>
+                        <width>109</width>
+                        <height>34</height>
+                    </rect>
+                </property>
+                <property name="minimumSize">
+                    <size>
+                        <width>109</width>
+                        <height>34</height>
+                    </size>
+                </property>
+                <property name="maximumSize">
+                    <size>
+                        <width>109</width>
+                        <height>34</height>
+                    </size>
+                </property>
+                <property name="paletteBackgroundColor">
+                    <color>
+                        <red>212</red>
+                        <green>208</green>
+                        <blue>200</blue>
+                    </color>
+                </property>
+                <property name="frameShape">
+                    <enum>Box</enum>
+                </property>
+                <property name="frameShadow">
+                    <enum>Plain</enum>
+                </property>
+                <property name="DarkFuncRef">
+                    <cstring></cstring>
+                </property>
+            </widget>
+            <widget class="CFrame">
+                <property name="name">
+                    <cstring>cFrame6_3_2_5_5_2</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>109</x>
+                        <y>0</y>
+                        <width>109</width>
+                        <height>34</height>
+                    </rect>
+                </property>
+                <property name="minimumSize">
+                    <size>
+                        <width>109</width>
+                        <height>34</height>
+                    </size>
+                </property>
+                <property name="maximumSize">
+                    <size>
+                        <width>109</width>
+                        <height>34</height>
+                    </size>
+                </property>
+                <property name="paletteBackgroundColor">
+                    <color>
+                        <red>212</red>
+                        <green>208</green>
+                        <blue>200</blue>
+                    </color>
+                </property>
+                <property name="frameShape">
+                    <enum>Box</enum>
+                </property>
+                <property name="frameShadow">
+                    <enum>Plain</enum>
+                </property>
+                <property name="DarkFuncRef">
+                    <cstring></cstring>
+                </property>
+            </widget>
+            <widget class="CFrame">
+                <property name="name">
+                    <cstring>cFrame6_3_2_5_5_5_2</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>545</x>
+                        <y>0</y>
+                        <width>109</width>
+                        <height>34</height>
+                    </rect>
+                </property>
+                <property name="minimumSize">
+                    <size>
+                        <width>109</width>
+                        <height>34</height>
+                    </size>
+                </property>
+                <property name="maximumSize">
+                    <size>
+                        <width>109</width>
+                        <height>34</height>
+                    </size>
+                </property>
+                <property name="paletteBackgroundColor">
+                    <color>
+                        <red>212</red>
+                        <green>208</green>
+                        <blue>200</blue>
+                    </color>
+                </property>
+                <property name="frameShape">
+                    <enum>Box</enum>
+                </property>
+                <property name="frameShadow">
+                    <enum>Plain</enum>
+                </property>
+                <property name="DarkFuncRef">
+                    <cstring></cstring>
+                </property>
+            </widget>
+        </widget>
+        <widget class="QFrame">
+            <property name="name">
+                <cstring>frame3_2_3_2</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>1</x>
+                    <y>691</y>
+                    <width>872</width>
+                    <height>34</height>
+                </rect>
+            </property>
+            <property name="sizePolicy">
+                <sizepolicy>
+                    <hsizetype>0</hsizetype>
+                    <vsizetype>0</vsizetype>
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                </sizepolicy>
+            </property>
+            <property name="minimumSize">
+                <size>
+                    <width>872</width>
+                    <height>34</height>
+                </size>
+            </property>
+            <property name="maximumSize">
+                <size>
+                    <width>872</width>
+                    <height>34</height>
+                </size>
+            </property>
+            <property name="paletteBackgroundColor">
+                <color>
+                    <red>192</red>
+                    <green>192</green>
+                    <blue>192</blue>
+                </color>
+            </property>
+            <property name="frameShape">
+                <enum>Panel</enum>
+            </property>
+            <property name="frameShadow">
+                <enum>Plain</enum>
+            </property>
+            <widget class="CFrame">
+                <property name="name">
+                    <cstring>cFrame6_3_2_4</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>327</x>
+                        <y>0</y>
+                        <width>109</width>
+                        <height>34</height>
+                    </rect>
+                </property>
+                <property name="minimumSize">
+                    <size>
+                        <width>109</width>
+                        <height>34</height>
+                    </size>
+                </property>
+                <property name="maximumSize">
+                    <size>
+                        <width>109</width>
+                        <height>34</height>
+                    </size>
+                </property>
+                <property name="paletteBackgroundColor">
+                    <color>
+                        <red>212</red>
+                        <green>208</green>
+                        <blue>200</blue>
+                    </color>
+                </property>
+                <property name="frameShape">
+                    <enum>Box</enum>
+                </property>
+                <property name="frameShadow">
+                    <enum>Plain</enum>
+                </property>
+                <property name="DarkFuncRef">
+                    <cstring></cstring>
+                </property>
+            </widget>
+            <widget class="CFrame">
+                <property name="name">
+                    <cstring>cFrame6_3_2_3</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>218</x>
+                        <y>0</y>
+                        <width>109</width>
+                        <height>34</height>
+                    </rect>
+                </property>
+                <property name="minimumSize">
+                    <size>
+                        <width>109</width>
+                        <height>34</height>
+                    </size>
+                </property>
+                <property name="maximumSize">
+                    <size>
+                        <width>109</width>
+                        <height>34</height>
+                    </size>
+                </property>
+                <property name="paletteBackgroundColor">
+                    <color>
+                        <red>212</red>
+                        <green>208</green>
+                        <blue>200</blue>
+                    </color>
+                </property>
+                <property name="frameShape">
+                    <enum>Box</enum>
+                </property>
+                <property name="frameShadow">
+                    <enum>Plain</enum>
+                </property>
+                <property name="DarkFuncRef">
+                    <cstring></cstring>
+                </property>
+            </widget>
+            <widget class="CFrame">
+                <property name="name">
+                    <cstring>cFrame6_3_2_5</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>436</x>
+                        <y>0</y>
+                        <width>109</width>
+                        <height>34</height>
+                    </rect>
+                </property>
+                <property name="minimumSize">
+                    <size>
+                        <width>109</width>
+                        <height>34</height>
+                    </size>
+                </property>
+                <property name="maximumSize">
+                    <size>
+                        <width>109</width>
+                        <height>34</height>
+                    </size>
+                </property>
+                <property name="paletteBackgroundColor">
+                    <color>
+                        <red>212</red>
+                        <green>208</green>
+                        <blue>200</blue>
+                    </color>
+                </property>
+                <property name="font">
+                    <font>
+                        <family>Arial</family>
+                        <pointsize>9</pointsize>
+                    </font>
+                </property>
+                <property name="frameShape">
+                    <enum>Box</enum>
+                </property>
+                <property name="frameShadow">
+                    <enum>Plain</enum>
+                </property>
+                <property name="DarkFuncRef">
+                    <cstring></cstring>
+                </property>
+            </widget>
+            <widget class="CFrame">
+                <property name="name">
+                    <cstring>cFrame6_3_2_5_4</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>763</x>
+                        <y>0</y>
+                        <width>109</width>
+                        <height>34</height>
+                    </rect>
+                </property>
+                <property name="minimumSize">
+                    <size>
+                        <width>109</width>
+                        <height>34</height>
+                    </size>
+                </property>
+                <property name="maximumSize">
+                    <size>
+                        <width>109</width>
+                        <height>34</height>
+                    </size>
+                </property>
+                <property name="paletteBackgroundColor">
+                    <color>
+                        <red>212</red>
+                        <green>208</green>
+                        <blue>200</blue>
+                    </color>
+                </property>
+                <property name="frameShape">
+                    <enum>Box</enum>
+                </property>
+                <property name="frameShadow">
+                    <enum>Plain</enum>
+                </property>
+                <property name="DarkFuncRef">
+                    <cstring></cstring>
+                </property>
+            </widget>
+            <widget class="CFrame">
+                <property name="name">
+                    <cstring>cFrame6_3_2</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>0</x>
+                        <y>0</y>
+                        <width>109</width>
+                        <height>34</height>
+                    </rect>
+                </property>
+                <property name="minimumSize">
+                    <size>
+                        <width>109</width>
+                        <height>34</height>
+                    </size>
+                </property>
+                <property name="maximumSize">
+                    <size>
+                        <width>109</width>
+                        <height>34</height>
+                    </size>
+                </property>
+                <property name="paletteBackgroundColor">
+                    <color>
+                        <red>212</red>
+                        <green>208</green>
+                        <blue>200</blue>
+                    </color>
+                </property>
+                <property name="frameShape">
+                    <enum>Box</enum>
+                </property>
+                <property name="frameShadow">
+                    <enum>Plain</enum>
+                </property>
+                <property name="DarkFuncRef">
+                    <cstring></cstring>
+                </property>
+                <widget class="CActValue">
+                    <property name="name">
+                        <cstring>cActValue1_3_3</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>20</x>
+                            <y>5</y>
+                            <width>55</width>
+                            <height>24</height>
+                        </rect>
+                    </property>
+                    <property name="font">
+                        <font>
+                            <family>Arial</family>
+                            <pointsize>11</pointsize>
+                        </font>
+                    </property>
+                    <property name="VarRef">
+                        <cstring>matrix1[index1][index2]</cstring>
+                    </property>
+                </widget>
+            </widget>
+            <widget class="CFrame">
+                <property name="name">
+                    <cstring>cFrame6_3_2_2</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>109</x>
+                        <y>0</y>
+                        <width>109</width>
+                        <height>34</height>
+                    </rect>
+                </property>
+                <property name="minimumSize">
+                    <size>
+                        <width>109</width>
+                        <height>34</height>
+                    </size>
+                </property>
+                <property name="maximumSize">
+                    <size>
+                        <width>109</width>
+                        <height>34</height>
+                    </size>
+                </property>
+                <property name="paletteForegroundColor">
+                    <color>
+                        <red>0</red>
+                        <green>0</green>
+                        <blue>0</blue>
+                    </color>
+                </property>
+                <property name="paletteBackgroundColor">
+                    <color>
+                        <red>212</red>
+                        <green>208</green>
+                        <blue>200</blue>
+                    </color>
+                </property>
+                <property name="frameShape">
+                    <enum>Box</enum>
+                </property>
+                <property name="frameShadow">
+                    <enum>Plain</enum>
+                </property>
+                <property name="DarkFuncRef">
+                    <cstring></cstring>
+                </property>
+            </widget>
+            <widget class="CFrame">
+                <property name="name">
+                    <cstring>cFrame6_3_2_5_3</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>654</x>
+                        <y>0</y>
+                        <width>109</width>
+                        <height>34</height>
+                    </rect>
+                </property>
+                <property name="minimumSize">
+                    <size>
+                        <width>109</width>
+                        <height>34</height>
+                    </size>
+                </property>
+                <property name="maximumSize">
+                    <size>
+                        <width>109</width>
+                        <height>34</height>
+                    </size>
+                </property>
+                <property name="paletteBackgroundColor">
+                    <color>
+                        <red>212</red>
+                        <green>208</green>
+                        <blue>200</blue>
+                    </color>
+                </property>
+                <property name="frameShape">
+                    <enum>Box</enum>
+                </property>
+                <property name="frameShadow">
+                    <enum>Plain</enum>
+                </property>
+                <property name="DarkFuncRef">
+                    <cstring></cstring>
+                </property>
+            </widget>
+            <widget class="CFrame">
+                <property name="name">
+                    <cstring>cFrame6_3_2_5_2</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>545</x>
+                        <y>0</y>
+                        <width>109</width>
+                        <height>34</height>
+                    </rect>
+                </property>
+                <property name="minimumSize">
+                    <size>
+                        <width>109</width>
+                        <height>34</height>
+                    </size>
+                </property>
+                <property name="maximumSize">
+                    <size>
+                        <width>109</width>
+                        <height>34</height>
+                    </size>
+                </property>
+                <property name="paletteBackgroundColor">
+                    <color>
+                        <red>212</red>
+                        <green>208</green>
+                        <blue>200</blue>
+                    </color>
+                </property>
+                <property name="frameShape">
+                    <enum>Box</enum>
+                </property>
+                <property name="frameShadow">
+                    <enum>Plain</enum>
+                </property>
+                <property name="DarkFuncRef">
+                    <cstring></cstring>
+                </property>
+            </widget>
+        </widget>
+        <widget class="QFrame">
+            <property name="name">
+                <cstring>frame3_2_2</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>0</x>
+                    <y>0</y>
+                    <width>871</width>
+                    <height>35</height>
+                </rect>
+            </property>
+            <property name="minimumSize">
+                <size>
+                    <width>0</width>
+                    <height>35</height>
+                </size>
+            </property>
+            <property name="maximumSize">
+                <size>
+                    <width>32767</width>
+                    <height>35</height>
+                </size>
+            </property>
+            <property name="frameShape">
+                <enum>NoFrame</enum>
+            </property>
+            <property name="frameShadow">
+                <enum>Plain</enum>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <property name="margin">
+                    <number>0</number>
+                </property>
+                <property name="spacing">
+                    <number>0</number>
+                </property>
+                <widget class="QLayoutWidget">
+                    <property name="name">
+                        <cstring>layout17</cstring>
+                    </property>
+                    <hbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <property name="margin">
+                            <number>0</number>
+                        </property>
+                        <property name="spacing">
+                            <number>5</number>
+                        </property>
+                        <widget class="CFrame">
+                            <property name="name">
+                                <cstring>Frame_Selected_Grp</cstring>
+                            </property>
+                            <property name="minimumSize">
+                                <size>
+                                    <width>35</width>
+                                    <height>35</height>
+                                </size>
+                            </property>
+                            <property name="maximumSize">
+                                <size>
+                                    <width>35</width>
+                                    <height>35</height>
+                                </size>
+                            </property>
+                            <property name="frameShape">
+                                <enum>Box</enum>
+                            </property>
+                            <property name="frameShadow">
+                                <enum>Plain</enum>
+                            </property>
+                        </widget>
+                        <widget class="CFrame">
+                            <property name="name">
+                                <cstring>cFrame6_2</cstring>
+                            </property>
+                            <property name="paletteBackgroundColor">
+                                <color>
+                                    <red>212</red>
+                                    <green>208</green>
+                                    <blue>200</blue>
+                                </color>
+                            </property>
+                            <property name="frameShape">
+                                <enum>Box</enum>
+                            </property>
+                            <property name="frameShadow">
+                                <enum>Plain</enum>
+                            </property>
+                            <widget class="CFixText">
+                                <property name="name">
+                                    <cstring>Header</cstring>
+                                </property>
+                                <property name="geometry">
+                                    <rect>
+                                        <x>8</x>
+                                        <y>5</y>
+                                        <width>625</width>
+                                        <height>25</height>
+                                    </rect>
+                                </property>
+                                <property name="font">
+                                    <font>
+                                        <family>Arial</family>
+                                        <pointsize>12</pointsize>
+                                    </font>
+                                </property>
+                            </widget>
+                            <widget class="CInfoLabel">
+                                <property name="name">
+                                    <cstring>InfoLine_2</cstring>
+                                </property>
+                                <property name="geometry">
+                                    <rect>
+                                        <x>3</x>
+                                        <y>3</y>
+                                        <width>655</width>
+                                        <height>25</height>
+                                    </rect>
+                                </property>
+                                <property name="paletteBackgroundColor">
+                                    <color>
+                                        <red>255</red>
+                                        <green>85</green>
+                                        <blue>0</blue>
+                                    </color>
+                                </property>
+                                <property name="palette">
+                                    <palette>
+                                        <active>
+                                            <color>
+                                                <red>0</red>
+                                                <green>0</green>
+                                                <blue>0</blue>
+                                            </color>
+                                            <color>
+                                                <red>212</red>
+                                                <green>208</green>
+                                                <blue>200</blue>
+                                            </color>
+                                            <color>
+                                                <red>255</red>
+                                                <green>255</green>
+                                                <blue>255</blue>
+                                            </color>
+                                            <color>
+                                                <red>233</red>
+                                                <green>231</green>
+                                                <blue>227</blue>
+                                            </color>
+                                            <color>
+                                                <red>106</red>
+                                                <green>104</green>
+                                                <blue>100</blue>
+                                            </color>
+                                            <color>
+                                                <red>141</red>
+                                                <green>138</green>
+                                                <blue>133</blue>
+                                            </color>
+                                            <color>
+                                                <red>0</red>
+                                                <green>0</green>
+                                                <blue>0</blue>
+                                            </color>
+                                            <color>
+                                                <red>255</red>
+                                                <green>255</green>
+                                                <blue>255</blue>
+                                            </color>
+                                            <color>
+                                                <red>0</red>
+                                                <green>0</green>
+                                                <blue>0</blue>
+                                            </color>
+                                            <color>
+                                                <red>255</red>
+                                                <green>255</green>
+                                                <blue>255</blue>
+                                            </color>
+                                            <color>
+                                                <red>255</red>
+                                                <green>85</green>
+                                                <blue>0</blue>
+                                            </color>
+                                            <color>
+                                                <red>0</red>
+                                                <green>0</green>
+                                                <blue>0</blue>
+                                            </color>
+                                            <color>
+                                                <red>0</red>
+                                                <green>0</green>
+                                                <blue>128</blue>
+                                            </color>
+                                            <color>
+                                                <red>255</red>
+                                                <green>255</green>
+                                                <blue>255</blue>
+                                            </color>
+                                            <color>
+                                                <red>0</red>
+                                                <green>0</green>
+                                                <blue>0</blue>
+                                            </color>
+                                            <color>
+                                                <red>0</red>
+                                                <green>0</green>
+                                                <blue>0</blue>
+                                            </color>
+                                        </active>
+                                        <disabled>
+                                            <color>
+                                                <red>128</red>
+                                                <green>128</green>
+                                                <blue>128</blue>
+                                            </color>
+                                            <color>
+                                                <red>212</red>
+                                                <green>208</green>
+                                                <blue>200</blue>
+                                            </color>
+                                            <color>
+                                                <red>255</red>
+                                                <green>255</green>
+                                                <blue>255</blue>
+                                            </color>
+                                            <color>
+                                                <red>243</red>
+                                                <green>239</green>
+                                                <blue>230</blue>
+                                            </color>
+                                            <color>
+                                                <red>106</red>
+                                                <green>104</green>
+                                                <blue>100</blue>
+                                            </color>
+                                            <color>
+                                                <red>141</red>
+                                                <green>138</green>
+                                                <blue>133</blue>
+                                            </color>
+                                            <color>
+                                                <red>128</red>
+                                                <green>128</green>
+                                                <blue>128</blue>
+                                            </color>
+                                            <color>
+                                                <red>255</red>
+                                                <green>255</green>
+                                                <blue>255</blue>
+                                            </color>
+                                            <color>
+                                                <red>128</red>
+                                                <green>128</green>
+                                                <blue>128</blue>
+                                            </color>
+                                            <color>
+                                                <red>255</red>
+                                                <green>255</green>
+                                                <blue>255</blue>
+                                            </color>
+                                            <color>
+                                                <red>255</red>
+                                                <green>85</green>
+                                                <blue>0</blue>
+                                            </color>
+                                            <color>
+                                                <red>0</red>
+                                                <green>0</green>
+                                                <blue>0</blue>
+                                            </color>
+                                            <color>
+                                                <red>0</red>
+                                                <green>0</green>
+                                                <blue>128</blue>
+                                            </color>
+                                            <color>
+                                                <red>255</red>
+                                                <green>255</green>
+                                                <blue>255</blue>
+                                            </color>
+                                            <color>
+                                                <red>0</red>
+                                                <green>0</green>
+                                                <blue>255</blue>
+                                            </color>
+                                            <color>
+                                                <red>255</red>
+                                                <green>0</green>
+                                                <blue>255</blue>
+                                            </color>
+                                        </disabled>
+                                        <inactive>
+                                            <color>
+                                                <red>0</red>
+                                                <green>0</green>
+                                                <blue>0</blue>
+                                            </color>
+                                            <color>
+                                                <red>212</red>
+                                                <green>208</green>
+                                                <blue>200</blue>
+                                            </color>
+                                            <color>
+                                                <red>255</red>
+                                                <green>255</green>
+                                                <blue>255</blue>
+                                            </color>
+                                            <color>
+                                                <red>243</red>
+                                                <green>239</green>
+                                                <blue>230</blue>
+                                            </color>
+                                            <color>
+                                                <red>106</red>
+                                                <green>104</green>
+                                                <blue>100</blue>
+                                            </color>
+                                            <color>
+                                                <red>141</red>
+                                                <green>138</green>
+                                                <blue>133</blue>
+                                            </color>
+                                            <color>
+                                                <red>0</red>
+                                                <green>0</green>
+                                                <blue>0</blue>
+                                            </color>
+                                            <color>
+                                                <red>255</red>
+                                                <green>255</green>
+                                                <blue>255</blue>
+                                            </color>
+                                            <color>
+                                                <red>0</red>
+                                                <green>0</green>
+                                                <blue>0</blue>
+                                            </color>
+                                            <color>
+                                                <red>255</red>
+                                                <green>255</green>
+                                                <blue>255</blue>
+                                            </color>
+                                            <color>
+                                                <red>255</red>
+                                                <green>85</green>
+                                                <blue>0</blue>
+                                            </color>
+                                            <color>
+                                                <red>0</red>
+                                                <green>0</green>
+                                                <blue>0</blue>
+                                            </color>
+                                            <color>
+                                                <red>0</red>
+                                                <green>0</green>
+                                                <blue>128</blue>
+                                            </color>
+                                            <color>
+                                                <red>255</red>
+                                                <green>255</green>
+                                                <blue>255</blue>
+                                            </color>
+                                            <color>
+                                                <red>0</red>
+                                                <green>0</green>
+                                                <blue>255</blue>
+                                            </color>
+                                            <color>
+                                                <red>255</red>
+                                                <green>0</green>
+                                                <blue>255</blue>
+                                            </color>
+                                        </inactive>
+                                    </palette>
+                                </property>
+                                <property name="font">
+                                    <font>
+                                        <family>Arial</family>
+                                        <pointsize>12</pointsize>
+                                    </font>
+                                </property>
+                                <property name="EventFilter">
+                                    <enum>Info</enum>
+                                </property>
+                                <property name="InfoTypeFilter">
+                                    <number>2</number>
+                                </property>
+                            </widget>
+                            <widget class="CInfoLabel">
+                                <property name="name">
+                                    <cstring>InfoLine</cstring>
+                                </property>
+                                <property name="geometry">
+                                    <rect>
+                                        <x>3</x>
+                                        <y>3</y>
+                                        <width>655</width>
+                                        <height>25</height>
+                                    </rect>
+                                </property>
+                                <property name="palette">
+                                    <palette>
+                                        <active>
+                                            <color>
+                                                <red>0</red>
+                                                <green>0</green>
+                                                <blue>0</blue>
+                                            </color>
+                                            <color>
+                                                <red>212</red>
+                                                <green>208</green>
+                                                <blue>200</blue>
+                                            </color>
+                                            <color>
+                                                <red>255</red>
+                                                <green>255</green>
+                                                <blue>255</blue>
+                                            </color>
+                                            <color>
+                                                <red>233</red>
+                                                <green>231</green>
+                                                <blue>227</blue>
+                                            </color>
+                                            <color>
+                                                <red>106</red>
+                                                <green>104</green>
+                                                <blue>100</blue>
+                                            </color>
+                                            <color>
+                                                <red>141</red>
+                                                <green>138</green>
+                                                <blue>133</blue>
+                                            </color>
+                                            <color>
+                                                <red>0</red>
+                                                <green>0</green>
+                                                <blue>0</blue>
+                                            </color>
+                                            <color>
+                                                <red>255</red>
+                                                <green>255</green>
+                                                <blue>255</blue>
+                                            </color>
+                                            <color>
+                                                <red>0</red>
+                                                <green>0</green>
+                                                <blue>0</blue>
+                                            </color>
+                                            <color>
+                                                <red>255</red>
+                                                <green>255</green>
+                                                <blue>255</blue>
+                                            </color>
+                                            <color>
+                                                <red>255</red>
+                                                <green>255</green>
+                                                <blue>127</blue>
+                                            </color>
+                                            <color>
+                                                <red>0</red>
+                                                <green>0</green>
+                                                <blue>0</blue>
+                                            </color>
+                                            <color>
+                                                <red>0</red>
+                                                <green>0</green>
+                                                <blue>128</blue>
+                                            </color>
+                                            <color>
+                                                <red>255</red>
+                                                <green>255</green>
+                                                <blue>255</blue>
+                                            </color>
+                                            <color>
+                                                <red>0</red>
+                                                <green>0</green>
+                                                <blue>0</blue>
+                                            </color>
+                                            <color>
+                                                <red>0</red>
+                                                <green>0</green>
+                                                <blue>0</blue>
+                                            </color>
+                                        </active>
+                                        <disabled>
+                                            <color>
+                                                <red>128</red>
+                                                <green>128</green>
+                                                <blue>128</blue>
+                                            </color>
+                                            <color>
+                                                <red>212</red>
+                                                <green>208</green>
+                                                <blue>200</blue>
+                                            </color>
+                                            <color>
+                                                <red>255</red>
+                                                <green>255</green>
+                                                <blue>255</blue>
+                                            </color>
+                                            <color>
+                                                <red>243</red>
+                                                <green>239</green>
+                                                <blue>230</blue>
+                                            </color>
+                                            <color>
+                                                <red>106</red>
+                                                <green>104</green>
+                                                <blue>100</blue>
+                                            </color>
+                                            <color>
+                                                <red>141</red>
+                                                <green>138</green>
+                                                <blue>133</blue>
+                                            </color>
+                                            <color>
+                                                <red>128</red>
+                                                <green>128</green>
+                                                <blue>128</blue>
+                                            </color>
+                                            <color>
+                                                <red>255</red>
+                                                <green>255</green>
+                                                <blue>255</blue>
+                                            </color>
+                                            <color>
+                                                <red>128</red>
+                                                <green>128</green>
+                                                <blue>128</blue>
+                                            </color>
+                                            <color>
+                                                <red>255</red>
+                                                <green>255</green>
+                                                <blue>255</blue>
+                                            </color>
+                                            <color>
+                                                <red>255</red>
+                                                <green>255</green>
+                                                <blue>127</blue>
+                                            </color>
+                                            <color>
+                                                <red>0</red>
+                                                <green>0</green>
+                                                <blue>0</blue>
+                                            </color>
+                                            <color>
+                                                <red>0</red>
+                                                <green>0</green>
+                                                <blue>128</blue>
+                                            </color>
+                                            <color>
+                                                <red>255</red>
+                                                <green>255</green>
+                                                <blue>255</blue>
+                                            </color>
+                                            <color>
+                                                <red>0</red>
+                                                <green>0</green>
+                                                <blue>255</blue>
+                                            </color>
+                                            <color>
+                                                <red>255</red>
+                                                <green>0</green>
+                                                <blue>255</blue>
+                                            </color>
+                                        </disabled>
+                                        <inactive>
+                                            <color>
+                                                <red>0</red>
+                                                <green>0</green>
+                                                <blue>0</blue>
+                                            </color>
+                                            <color>
+                                                <red>212</red>
+                                                <green>208</green>
+                                                <blue>200</blue>
+                                            </color>
+                                            <color>
+                                                <red>255</red>
+                                                <green>255</green>
+                                                <blue>255</blue>
+                                            </color>
+                                            <color>
+                                                <red>243</red>
+                                                <green>239</green>
+                                                <blue>230</blue>
+                                            </color>
+                                            <color>
+                                                <red>106</red>
+                                                <green>104</green>
+                                                <blue>100</blue>
+                                            </color>
+                                            <color>
+                                                <red>141</red>
+                                                <green>138</green>
+                                                <blue>133</blue>
+                                            </color>
+                                            <color>
+                                                <red>0</red>
+                                                <green>0</green>
+                                                <blue>0</blue>
+                                            </color>
+                                            <color>
+                                                <red>255</red>
+                                                <green>255</green>
+                                                <blue>255</blue>
+                                            </color>
+                                            <color>
+                                                <red>0</red>
+                                                <green>0</green>
+                                                <blue>0</blue>
+                                            </color>
+                                            <color>
+                                                <red>255</red>
+                                                <green>255</green>
+                                                <blue>255</blue>
+                                            </color>
+                                            <color>
+                                                <red>255</red>
+                                                <green>255</green>
+                                                <blue>127</blue>
+                                            </color>
+                                            <color>
+                                                <red>0</red>
+                                                <green>0</green>
+                                                <blue>0</blue>
+                                            </color>
+                                            <color>
+                                                <red>0</red>
+                                                <green>0</green>
+                                                <blue>128</blue>
+                                            </color>
+                                            <color>
+                                                <red>255</red>
+                                                <green>255</green>
+                                                <blue>255</blue>
+                                            </color>
+                                            <color>
+                                                <red>0</red>
+                                                <green>0</green>
+                                                <blue>255</blue>
+                                            </color>
+                                            <color>
+                                                <red>255</red>
+                                                <green>0</green>
+                                                <blue>255</blue>
+                                            </color>
+                                        </inactive>
+                                    </palette>
+                                </property>
+                                <property name="font">
+                                    <font>
+                                        <family>Arial</family>
+                                        <pointsize>12</pointsize>
+                                    </font>
+                                </property>
+                                <property name="EventFilter">
+                                    <enum>Info</enum>
+                                </property>
+                            </widget>
+                        </widget>
+                        <widget class="CFrame">
+                            <property name="name">
+                                <cstring>cFrame6_3</cstring>
+                            </property>
+                            <property name="minimumSize">
+                                <size>
+                                    <width>160</width>
+                                    <height>0</height>
+                                </size>
+                            </property>
+                            <property name="maximumSize">
+                                <size>
+                                    <width>160</width>
+                                    <height>32767</height>
+                                </size>
+                            </property>
+                            <property name="paletteBackgroundColor">
+                                <color>
+                                    <red>212</red>
+                                    <green>208</green>
+                                    <blue>200</blue>
+                                </color>
+                            </property>
+                            <property name="frameShape">
+                                <enum>Box</enum>
+                            </property>
+                            <property name="frameShadow">
+                                <enum>Plain</enum>
+                            </property>
+                            <widget class="CActValue">
+                                <property name="name">
+                                    <cstring>cActValue17</cstring>
+                                </property>
+                                <property name="geometry">
+                                    <rect>
+                                        <x>17</x>
+                                        <y>5</y>
+                                        <width>127</width>
+                                        <height>24</height>
+                                    </rect>
+                                </property>
+                                <property name="minimumSize">
+                                    <size>
+                                        <width>0</width>
+                                        <height>20</height>
+                                    </size>
+                                </property>
+                                <property name="font">
+                                    <font>
+                                        <family>Arial</family>
+                                        <pointsize>12</pointsize>
+                                    </font>
+                                </property>
+                                <property name="frameShape">
+                                    <enum>NoFrame</enum>
+                                </property>
+                                <property name="VarRef">
+                                    <cstring>SetDateTime</cstring>
+                                </property>
+                            </widget>
+                        </widget>
+                    </hbox>
+                </widget>
+            </hbox>
+        </widget>
+        <widget class="CFrame">
+            <property name="name">
+                <cstring>CFramePage</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>2</x>
+                    <y>45</y>
+                    <width>871</width>
+                    <height>646</height>
+                </rect>
+            </property>
+            <property name="minimumSize">
+                <size>
+                    <width>871</width>
+                    <height>646</height>
+                </size>
+            </property>
+            <property name="maximumSize">
+                <size>
+                    <width>871</width>
+                    <height>646</height>
+                </size>
+            </property>
+            <property name="frameShape">
+                <enum>NoFrame</enum>
+            </property>
+            <property name="frameShadow">
+                <enum>Plain</enum>
+            </property>
+        </widget>
+    </widget>
+    <widget class="QButtonGroup">
+        <property name="name">
+            <cstring>QButtonGroup1_2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>64</width>
+                <height>768</height>
+            </rect>
+        </property>
+        <property name="minimumSize">
+            <size>
+                <width>64</width>
+                <height>768</height>
+            </size>
+        </property>
+        <property name="maximumSize">
+            <size>
+                <width>64</width>
+                <height>768</height>
+            </size>
+        </property>
+        <property name="frameShape">
+            <enum>NoFrame</enum>
+        </property>
+        <property name="frameShadow">
+            <enum>Plain</enum>
+        </property>
+        <property name="title">
+            <string></string>
+        </property>
+        <property name="flat">
+            <bool>true</bool>
+        </property>
+        <vbox>
+            <property name="name">
+                <cstring>unnamed</cstring>
+            </property>
+            <property name="margin">
+                <number>1</number>
+            </property>
+            <property name="spacing">
+                <number>4</number>
+            </property>
+            <widget class="CGroupSelectButton">
+                <property name="name">
+                    <cstring>SelectButton_Grp_Alarm</cstring>
+                </property>
+                <property name="minimumSize">
+                    <size>
+                        <width>64</width>
+                        <height>64</height>
+                    </size>
+                </property>
+                <property name="maximumSize">
+                    <size>
+                        <width>64</width>
+                        <height>64</height>
+                    </size>
+                </property>
+                <property name="paletteBackgroundColor">
+                    <color>
+                        <red>170</red>
+                        <green>255</green>
+                        <blue>0</blue>
+                    </color>
+                </property>
+                <property name="font">
+                    <font>
+                        <family>Arial</family>
+                        <pointsize>12</pointsize>
+                    </font>
+                </property>
+                <property name="text">
+                    <string></string>
+                </property>
+                <property name="iconSet">
+                    <iconset>image0</iconset>
+                </property>
+                <property name="usesBigPixmap">
+                    <bool>false</bool>
+                </property>
+                <property name="usesTextLabel">
+                    <bool>true</bool>
+                </property>
+                <property name="textLabel">
+                    <string>group 1</string>
+                </property>
+                <property name="autoRaise">
+                    <bool>true</bool>
+                </property>
+                <property name="HelpId1">
+                    <cstring>Alr_</cstring>
+                </property>
+                <property name="PageGroup">
+                    <cstring>group1</cstring>
+                </property>
+            </widget>
+            <widget class="CGroupSelectButton">
+                <property name="name">
+                    <cstring>SelectButton_Grp_Overview</cstring>
+                </property>
+                <property name="minimumSize">
+                    <size>
+                        <width>64</width>
+                        <height>64</height>
+                    </size>
+                </property>
+                <property name="maximumSize">
+                    <size>
+                        <width>64</width>
+                        <height>64</height>
+                    </size>
+                </property>
+                <property name="paletteBackgroundColor">
+                    <color>
+                        <red>255</red>
+                        <green>255</green>
+                        <blue>0</blue>
+                    </color>
+                </property>
+                <property name="font">
+                    <font>
+                        <family>Arial</family>
+                        <pointsize>12</pointsize>
+                    </font>
+                </property>
+                <property name="text">
+                    <string>group 2</string>
+                </property>
+                <property name="usesBigPixmap">
+                    <bool>true</bool>
+                </property>
+                <property name="autoRaise">
+                    <bool>true</bool>
+                </property>
+                <property name="HelpId1">
+                    <cstring>Ovw_</cstring>
+                </property>
+                <property name="PageGroup">
+                    <cstring>group2</cstring>
+                </property>
+                <property name="GroupPos">
+                    <number>1</number>
+                </property>
+            </widget>
+        </vbox>
+    </widget>
+    <widget class="QButtonGroup">
+        <property name="name">
+            <cstring>QButtonGroup1</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>960</x>
+                <y>0</y>
+                <width>64</width>
+                <height>768</height>
+            </rect>
+        </property>
+        <property name="minimumSize">
+            <size>
+                <width>64</width>
+                <height>768</height>
+            </size>
+        </property>
+        <property name="maximumSize">
+            <size>
+                <width>64</width>
+                <height>768</height>
+            </size>
+        </property>
+        <property name="frameShape">
+            <enum>NoFrame</enum>
+        </property>
+        <property name="frameShadow">
+            <enum>Plain</enum>
+        </property>
+        <property name="title">
+            <string></string>
+        </property>
+        <vbox>
+            <property name="name">
+                <cstring>unnamed</cstring>
+            </property>
+            <property name="margin">
+                <number>0</number>
+            </property>
+            <property name="spacing">
+                <number>4</number>
+            </property>
+        </vbox>
+    </widget>
+</widget>
+<customwidgets>
+</customwidgets>
+<images>
+    <image name="image0">
+        <data format="PNG" length="575">89504e470d0a1a0a0000000d49484452000000140000001408060000008d891d0d0000020649444154789cbd94cb6b536110c57f53925ad31a0dd1c654cc8d15b58420154551519245bb685d084a17411411114471d5ae8a28a8fd13dc484014ba5170e14a8b1b1fb50859a81b6ba820e90d89d560125a1fc171516f1e37c10a090e9cc537773873cef7cd5c51559a0d1151551580b65690559f9b228c46a38e4824e2ac69f0df2c9b6953f70e868b3e9f6fbf88b84444fe895d55eb1008043c878eedfc9cf8f844b7f6f53e07b6031d8d6aed70346a32fd72fa4ba6f48e6c2145dfe0da039f4ccf403e9fbb27223f54f5d7df04d6590e0643fe136343dfb385140bc514817d2e7ab6acbf086c0456d9eb45442d34b43c6fceebad67e37a77e6862e7f563d797540bdde0de3400fd0d6c8ea9fda5a85c160c87fe17aacd4e17491ca256b95efd8740ef003ababf3e170b8abfa95ebd41d1ddda3401daeddbea49b0d63123000875d9985b242c3303c67278ee4fdbbda99cd24ace24a33e72b46ce0c8fb8ddeb0e03eeea31aabec3f2609b69532f3f3c4e7b5765dc6ec65ea0aa9c9f3c58ce3d9d2826debe797d0a48aaeab7ba475255ccb4a9b1d1a1c5d070a7cb5e608f0f8f4bcc3c981bcbe516ee0059fb1889aad2dfbffb7477b737be129915aa727f6aead11520092c55f22aa2aa88c81a601bd00b74022badd95760169853d525a8ecb3b5298bc07b2003381b73d4440928003f2db2787cd9604bfe368d14364554736e95422b7e032a8d3ed1b6d4ec840000000049454e44ae426082</data>
+    </image>
+</images>
+<connections>
+    <connection>
+        <sender>SelectButton_Grp_Alarm</sender>
+        <signal>GroupSelected(QPixmap)</signal>
+        <receiver>Frame_Selected_Grp</receiver>
+        <slot>ShowPixmap(QPixmap)</slot>
+    </connection>
+    <connection>
+        <sender>SelectButton_Grp_Overview</sender>
+        <signal>GroupSelected(QPixmap)</signal>
+        <receiver>Frame_Selected_Grp</receiver>
+        <slot>ShowPixmap(QPixmap)</slot>
+    </connection>
+</connections>
+<layoutdefaults spacing="6" margin="11"/>
+<includehints>
+    <includehint>CAppFrame.h</includehint>
+    <includehint>CFrame.h</includehint>
+    <includehint>CFrame.h</includehint>
+    <includehint>CFrame.h</includehint>
+    <includehint>CFrame.h</includehint>
+    <includehint>CFrame.h</includehint>
+    <includehint>CFrame.h</includehint>
+    <includehint>CFrame.h</includehint>
+    <includehint>CFrame.h</includehint>
+    <includehint>CFrame.h</includehint>
+    <includehint>CFrame.h</includehint>
+    <includehint>CFrame.h</includehint>
+    <includehint>CFrame.h</includehint>
+    <includehint>CFrame.h</includehint>
+    <includehint>CActValue.h</includehint>
+    <includehint>CFrame.h</includehint>
+    <includehint>CFrame.h</includehint>
+    <includehint>CFrame.h</includehint>
+    <includehint>CFrame.h</includehint>
+    <includehint>CFrame.h</includehint>
+    <includehint>CFixText.h</includehint>
+    <includehint>CInfoLabel.h</includehint>
+    <includehint>CInfoLabel.h</includehint>
+    <includehint>CFrame.h</includehint>
+    <includehint>CActValue.h</includehint>
+    <includehint>CFrame.h</includehint>
+    <includehint>CGroupSelectButton.h</includehint>
+    <includehint>CGroupSelectButton.h</includehint>
+</includehints>
+</UI>

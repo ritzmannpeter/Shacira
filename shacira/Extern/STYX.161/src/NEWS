@@ -1,0 +1,75 @@
+Jan 10 2001 - initial release (1.2)
+Mar  4 2001 - release 1.3
+              + fixes panic mode error recovery
+              + fixes token buffer restriction. The token length is now of type long.
+              + hopefully fixes some configure problems on freeBSD (concerning libdl)
+              + adds parsing support for binary files 
+May  5 2001 - release 1.4
+              + The embedded preprocessing facility is now reentrant.
+              + The unicode support has been extended. 
+                Now the specification of unicode-keywords should be possible, too.
+
+Mar 11 2002 - release 1.5
+
+              BUG FIXES
+              ---------
+              + fixes a bug in the production of the abstract interface. 
+                Now the destructor functions for the start productions skip ignore-productions.
+              + fixes a bug regarding the early reduction facility which sometimes causes an
+                infinite loop.
+              + fixes a bug in the preprocessing facility.
+                ( an uninitilized variable sometimes causes a segmentation fault )
+              + fixes a bug in the function putBString of the module binimg.c.
+              + The print/reporting functions in the scan, parse, term and pretty print modules
+                has been revised with respect to a more consistent unicode support. 
+              + fixes the incomplete generated file Makefile.am in release 1.3 and 1.4
+              + Now the COPYING file should contain the correct GPL license.
+
+              ENHANCEMENTS
+              ------------
+              + The modules binimg.c and ptm_pp.c (persistence, pretty printing) are now reentrant.
+              + The utility programs lim_test, pim_test and stypp has been revised. Now they all
+                support preprocessing and unicode as well as dynamic loadable user-defined handlers.
+                ( Note: You have to link your handlers with the runtime library libxstyx.so )
+              + The term generation module [ptm_gen] has been extended to cope with external scanners
+                and parsers.
+              + The scanner & parser generation has been revised. In addition to the released runtime 
+                library libdstyx.so the new library libxstyx.so also contains the generation functionality.
+                Beside an improved modularisation it is now possible to include this functionality in
+                other programs. ( Look at styx as an example. )
+
+                
+Nov 30 2002 - release 1.5.1
+
+	      +	Automake conversion such that VPATH builds and dist* targets work.
+	      + Avoid duplication of libdstyx in libxstyx.
+          + fixes a bug in the function printSymbols of the module symbols.c.
+          + fixes a bug in tutorial04. <ctrl>d now aborts the caculator.
+              
+Mar 15 2003 - release 1.6
+
+          + fixes a bug in the term generation modul ptm_gen.c. Introduced with the panic mode error 
+            recovery, the term construction failed if a syntax error at position 1,1 occured.
+
+          + Starting with this release the Styx parser provides the toggle parameter -shortform
+            to enforce the usage of short or long filenames (default: long filenames).
+
+          + introduces dyck tokens to cope with nested comments, for example.
+          + introduces (de)indent tokens to support the definition of indended languages.
+            (see example06)
+          + The scanner now provides more flexibility with the introduction of flex-like scan groups.
+            (see example05)
+          + This release provides support for embedded languages through the introduction of so-called 
+            "embedded language" tokens. 
+            (see the XML/DTD language definitions for a demonstration)
+
+          + added a Styx based XML parser (library) 
+
+          Compatibility Note: The formats of the generated scan and parse tables has been changed. They
+                              must be re-generated in order to work with the new Styx version.
+
+Dec 09 2003 - release 1.6.1
+
+          + fixes broken windows project files
+          + fixes a bug in modul styx_gen.c regarding the parser generation which produced a runtime 
+            error in the windows debug version.

@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Template|Win32">
+      <Configuration>Template</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>DemoWidgets</ProjectName>
+    <SccProjectName />
+    <SccLocalPath />
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Template|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Template|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>.\Debug\</OutDir>
+    <IntDir>.\Debug\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>.\Release\</OutDir>
+    <IntDir>.\Release\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <IgnoreImportLibrary>true</IgnoreImportLibrary>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <Optimization>Disabled</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <MinimalRebuild>true</MinimalRebuild>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
+      <AdditionalIncludeDirectories>$(SHACIRADIR)\Src;$(SHACIRADIR)\Src\Include;$(SHACIRADIR)\Src\GUIFramework\QT3Framework\CWidgets;$(SHACIRADIR)\Src\GUIFramework\QT3Framework\Generated;$(QTDIR)\tools\designer\interfaces;$(QTDIR)\include;$(SHACIRADIR)\Src\GUIFramework\QT3Framework\PLugins;$(SHACIRADIR)\Src\GUIFramework\QT3Framework\Keypads;Src;Src\Generated;$(SHACIRADIR)\Src\GUIFramework\qt4port;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;QT_NO_STL;QT_DLL;QT_PLUGIN;UNICODE;QT_THREAD_SUPPORT;QT_ACCESSIBILITY_SUPPORT;QT_LICENSE_PROFESSIONAL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\Debug\</AssemblerListingLocation>
+      <BrowseInformation>true</BrowseInformation>
+      <PrecompiledHeaderOutputFile>.\Debug\demo_widget_plugin.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>.\Debug\</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug\</ProgramDataBaseFileName>
+      <AdditionalOptions> -Zm200 </AdditionalOptions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+    </ClCompile>
+    <PostBuildEvent>
+      <Command>copy Debug\demowidgets.dll $(QTDIR)\plugins\designer
+copy Debug\demowidgets.exp $(QTDIR)\plugins\designer</Command>
+      <Message>Kopiere DEBUG-VERSION des Plugin ins Qt-Verzeichnis</Message>
+    </PostBuildEvent>
+    <Midl>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TypeLibraryName>.\Debug\demo_widget_plugin.tlb</TypeLibraryName>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <TargetEnvironment>Win32</TargetEnvironment>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Debug\demo_widget_plugin.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <LinkDLL>true</LinkDLL>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <OutputFile>debug\demowidgets.dll</OutputFile>
+      <ImportLibrary>.\Debug\demowidgets.lib</ImportLibrary>
+      <AdditionalLibraryDirectories>$(SHACIRADIR)\Extern\Stl\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(QTDIR)\lib\qt-mt$(QTVERSION).lib;imm32.lib;wsock32.lib;winmm.lib;opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <Optimization>MinSpace</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <AdditionalIncludeDirectories>$(SHACIRADIR)\Src;$(SHACIRADIR)\Src\Include;$(SHACIRADIR)\Src\GUIFramework\QT3Framework\CWidgets;$(SHACIRADIR)\Src\GUIFramework\QT3Framework\Generated;$(QTDIR)\tools\designer\interfaces;$(QTDIR)\include;$(SHACIRADIR)\Src\GUIFramework\QT3Framework\PLugins;$(SHACIRADIR)\Src\GUIFramework\QT3Framework\Keypads;Src;Src\Generated;$(SHACIRADIR)\Src\GUIFramework\qt4port;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;QT_NO_STL;QT_DLL;QT_PLUGIN;UNICODE;QT_THREAD_SUPPORT;QT_ACCESSIBILITY_SUPPORT;QT_NO_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\Release\</AssemblerListingLocation>
+      <PrecompiledHeaderOutputFile>.\Release\demo_widget_plugin.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>.\Release\</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release\</ProgramDataBaseFileName>
+      <AdditionalOptions> -Zm200 </AdditionalOptions>
+    </ClCompile>
+    <PostBuildEvent>
+      <Command>copy Release\demowidgets.dll $(QTDIR)\plugins\designer
+copy Release\demowidgets.exp $(QTDIR)\plugins\designer</Command>
+      <Message>Kopiere Plugin ins Qt-Verzeichnis</Message>
+    </PostBuildEvent>
+    <Midl>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TypeLibraryName>.\Release\demo_widget_plugin.tlb</TypeLibraryName>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <TargetEnvironment>Win32</TargetEnvironment>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Release\demo_widget_plugin.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <LinkDLL>true</LinkDLL>
+      <OutputFile>Release\demowidgets.dll</OutputFile>
+      <ImportLibrary>.\Release\demowidgets.lib</ImportLibrary>
+      <AdditionalLibraryDirectories>$(SHACIRADIR)\Extern\Stl\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(QTDIR)\lib\qt-mt$(QTVERSION).lib;imm32.lib;wsock32.lib;winmm.lib;opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Template|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(SHACIRADIR)\Src;$(SHACIRADIR)\Src\Include;$(SHACIRADIR)\Src\GUIFramework\QT3Framework\CWidgets;$(SHACIRADIR)\Src\GUIFramework\QT3Framework\Generated;$(QTDIR)\tools\designer\interfaces;$(QTDIR)\include;$(SHACIRADIR)\Src\GUIFramework\QT3Framework\PLugins;$(SHACIRADIR)\Src\GUIFramework\QT3Framework\Keypads;Src;Src\Generated;$(SHACIRADIR)\Src\GUIFramework\qt4port;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CActValue.cpp" />
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CAppFrame.cpp" />
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CFixText.cpp" />
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CFrame.cpp" />
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CGroupSelectButton.cpp" />
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CPage.cpp" />
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CScrollView.cpp" />
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CTabWidget.cpp" />
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CToolButton.cpp" />
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CWidget.cpp" />
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CWidgetBase.cpp" />
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CWidgetStack.cpp" />
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CActValue.cpp" />
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CAppFrame.cpp" />
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CFixText.cpp" />
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CFrame.cpp" />
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CGroupSelectButton.cpp" />
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CPage.cpp" />
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CScrollView.cpp" />
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CTabWidget.cpp" />
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CToolButton.cpp" />
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CWidget.cpp" />
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CWidgetStack.cpp" />
+    <ClCompile Include="Src\dactvalue.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'"> -Zm200   -Zm200 </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Src\dframe.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'"> -Zm200   -Zm200 </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Plugin\dplugin.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'"> -Zm200   -Zm200 </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> -Zm200   -Zm200 </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Src\Generated\moc_dactvalue.cpp" />
+    <ClCompile Include="Src\Generated\moc_dframe.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="Src\dactvalue.pp">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SHACIRADIR)\bin\win32\pp -o%(RootDir)%(Directory)Generated\%(Filename).h %(FullPath) -qt 3
+$(QTDIR)\bin\moc %(RootDir)%(Directory)Generated\%(Filename).h -o %(RootDir)%(Directory)Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RootDir)%(Directory)Generated\%(Filename).h;%(RootDir)%(Directory)Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SHACIRADIR)\bin\win32\pp -o%(RootDir)%(Directory)Generated\%(Filename).h %(FullPath) -qt 3
+$(QTDIR)\bin\moc %(RootDir)%(Directory)Generated\%(Filename).h -o %(RootDir)%(Directory)Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RootDir)%(Directory)Generated\%(Filename).h;%(RootDir)%(Directory)Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Template|Win32'">$(SHACIRADIR)\bin\win32\pp -o%(RootDir)%(Directory)Generated\%(Filename).h %(FullPath) -qt 3
+$(QTDIR)\bin\moc %(RootDir)%(Directory)Generated\%(Filename).h -o %(RootDir)%(Directory)Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Template|Win32'">%(RootDir)%(Directory)Generated\%(Filename).h;%(RootDir)%(Directory)Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="Src\dframe.pp">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SHACIRADIR)\bin\win32\pp -o%(RootDir)%(Directory)Generated\%(Filename).h %(FullPath) -qt 3
+$(QTDIR)\bin\moc %(RootDir)%(Directory)Generated\%(Filename).h -o %(RootDir)%(Directory)Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RootDir)%(Directory)Generated\%(Filename).h;%(RootDir)%(Directory)Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SHACIRADIR)\bin\win32\pp -o%(RootDir)%(Directory)Generated\%(Filename).h %(FullPath) -qt 3
+$(QTDIR)\bin\moc %(RootDir)%(Directory)Generated\%(Filename).h -o %(RootDir)%(Directory)Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RootDir)%(Directory)Generated\%(Filename).h;%(RootDir)%(Directory)Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Template|Win32'">$(SHACIRADIR)\bin\win32\pp -o%(RootDir)%(Directory)Generated\%(Filename).h %(FullPath) -qt 3
+$(QTDIR)\bin\moc %(RootDir)%(Directory)Generated\%(Filename).h -o %(RootDir)%(Directory)Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Template|Win32'">%(RootDir)%(Directory)Generated\%(Filename).h;%(RootDir)%(Directory)Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Src\Generated\dactvalue.h" />
+    <ClInclude Include="Src\Generated\dframe.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

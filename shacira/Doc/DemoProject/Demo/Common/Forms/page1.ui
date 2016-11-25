@@ -1,0 +1,1229 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>Page1</class>
+<widget class="CPage">
+    <property name="name">
+        <cstring>Page1</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>866</width>
+            <height>640</height>
+        </rect>
+    </property>
+    <property name="minimumSize">
+        <size>
+            <width>0</width>
+            <height>0</height>
+        </size>
+    </property>
+    <property name="maximumSize">
+        <size>
+            <width>868</width>
+            <height>640</height>
+        </size>
+    </property>
+    <property name="font">
+        <font>
+            <family>Arial</family>
+            <pointsize>11</pointsize>
+        </font>
+    </property>
+    <property name="caption">
+        <string>Group1:Page1</string>
+    </property>
+    <property name="DarkFuncRef">
+        <cstring></cstring>
+    </property>
+    <property name="Group0">
+        <enum>WriteAccess</enum>
+    </property>
+    <property name="Group1">
+        <enum>WriteAccess</enum>
+    </property>
+    <property name="HelpId1">
+        <cstring>Ovw_Service</cstring>
+    </property>
+    <property name="PageGroup">
+        <cstring>group1</cstring>
+    </property>
+    <property name="PageHeadline">
+        <string>Group1:Page1</string>
+    </property>
+    <property name="LongPageHeadline">
+        <string>Group1:Page1</string>
+    </property>
+    <property name="PositionInGroup">
+        <number>0</number>
+    </property>
+    <widget class="DFrame">
+        <property name="name">
+            <cstring>dFrame1_2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>85</x>
+                <y>155</y>
+                <width>64</width>
+                <height>326</height>
+            </rect>
+        </property>
+        <property name="frameShape">
+            <enum>NoFrame</enum>
+        </property>
+        <vbox>
+            <property name="name">
+                <cstring>unnamed</cstring>
+            </property>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_4</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[0][0]</cstring>
+                </property>
+            </widget>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_2_2</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[0][1]</cstring>
+                </property>
+            </widget>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_3_9</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[0][2]</cstring>
+                </property>
+            </widget>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_3_2_2</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[0][3]</cstring>
+                </property>
+            </widget>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_3_3_2</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[0][4]</cstring>
+                </property>
+            </widget>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_3_4_2</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[0][5]</cstring>
+                </property>
+            </widget>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_3_5_2</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[0][6]</cstring>
+                </property>
+            </widget>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_3_6_2</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[0][7]</cstring>
+                </property>
+            </widget>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_3_7_2</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[0][8]</cstring>
+                </property>
+            </widget>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_3_8_2</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[0][9]</cstring>
+                </property>
+            </widget>
+        </vbox>
+    </widget>
+    <widget class="DFrame">
+        <property name="name">
+            <cstring>dFrame1</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>140</x>
+                <y>155</y>
+                <width>64</width>
+                <height>326</height>
+            </rect>
+        </property>
+        <property name="frameShape">
+            <enum>NoFrame</enum>
+        </property>
+        <vbox>
+            <property name="name">
+                <cstring>unnamed</cstring>
+            </property>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[1][0]</cstring>
+                </property>
+            </widget>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_2</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[1][1]</cstring>
+                </property>
+            </widget>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_3</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[1][2]</cstring>
+                </property>
+            </widget>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_3_2</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[1][3]</cstring>
+                </property>
+            </widget>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_3_3</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[1][4]</cstring>
+                </property>
+            </widget>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_3_4</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[1][5]</cstring>
+                </property>
+            </widget>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_3_5</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[1][6]</cstring>
+                </property>
+            </widget>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_3_6</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[1][7]</cstring>
+                </property>
+            </widget>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_3_7</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[1][8]</cstring>
+                </property>
+            </widget>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_3_8</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[1][9]</cstring>
+                </property>
+            </widget>
+        </vbox>
+    </widget>
+    <widget class="DFrame">
+        <property name="name">
+            <cstring>dFrame1_4</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>195</x>
+                <y>155</y>
+                <width>64</width>
+                <height>326</height>
+            </rect>
+        </property>
+        <property name="frameShape">
+            <enum>NoFrame</enum>
+        </property>
+        <vbox>
+            <property name="name">
+                <cstring>unnamed</cstring>
+            </property>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_6</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[2][0]</cstring>
+                </property>
+            </widget>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_2_4</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[2][1]</cstring>
+                </property>
+            </widget>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_3_11</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[2][2]</cstring>
+                </property>
+            </widget>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_3_2_4</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[2][3]</cstring>
+                </property>
+            </widget>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_3_3_4</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[2][4]</cstring>
+                </property>
+            </widget>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_3_4_4</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[2][5]</cstring>
+                </property>
+            </widget>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_3_5_4</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[2][6]</cstring>
+                </property>
+            </widget>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_3_6_4</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[2][7]</cstring>
+                </property>
+            </widget>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_3_7_4</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[2][8]</cstring>
+                </property>
+            </widget>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_3_8_4</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[2][9]</cstring>
+                </property>
+            </widget>
+        </vbox>
+    </widget>
+    <widget class="DFrame">
+        <property name="name">
+            <cstring>dFrame1_3</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>250</x>
+                <y>155</y>
+                <width>64</width>
+                <height>326</height>
+            </rect>
+        </property>
+        <property name="frameShape">
+            <enum>NoFrame</enum>
+        </property>
+        <vbox>
+            <property name="name">
+                <cstring>unnamed</cstring>
+            </property>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_5</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[3][0]</cstring>
+                </property>
+            </widget>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_2_3</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[3][1]</cstring>
+                </property>
+            </widget>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_3_10</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[3][2]</cstring>
+                </property>
+            </widget>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_3_2_3</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[3][3]</cstring>
+                </property>
+            </widget>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_3_3_3</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[3][4]</cstring>
+                </property>
+            </widget>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_3_4_3</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[3][5]</cstring>
+                </property>
+            </widget>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_3_5_3</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[3][6]</cstring>
+                </property>
+            </widget>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_3_6_3</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[3][7]</cstring>
+                </property>
+            </widget>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_3_7_3</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[3][8]</cstring>
+                </property>
+            </widget>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_3_8_3</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[3][9]</cstring>
+                </property>
+            </widget>
+        </vbox>
+    </widget>
+    <widget class="DFrame">
+        <property name="name">
+            <cstring>dFrame1_5</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>305</x>
+                <y>155</y>
+                <width>64</width>
+                <height>326</height>
+            </rect>
+        </property>
+        <property name="frameShape">
+            <enum>NoFrame</enum>
+        </property>
+        <vbox>
+            <property name="name">
+                <cstring>unnamed</cstring>
+            </property>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_7</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[4][0]</cstring>
+                </property>
+            </widget>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_2_5</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[4][1]</cstring>
+                </property>
+            </widget>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_3_12</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[4][2]</cstring>
+                </property>
+            </widget>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_3_2_5</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[4][3]</cstring>
+                </property>
+            </widget>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_3_3_5</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[4][4]</cstring>
+                </property>
+            </widget>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_3_4_5</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[4][5]</cstring>
+                </property>
+            </widget>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_3_5_5</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[4][6]</cstring>
+                </property>
+            </widget>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_3_6_5</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[4][7]</cstring>
+                </property>
+            </widget>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_3_7_5</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[4][8]</cstring>
+                </property>
+            </widget>
+            <widget class="CReqValue">
+                <property name="name">
+                    <cstring>cReqValue1_2_2_3_8_5</cstring>
+                </property>
+                <property name="VarRef">
+                    <cstring>matrix1[4][9]</cstring>
+                </property>
+            </widget>
+        </vbox>
+    </widget>
+    <widget class="CFixText">
+        <property name="name">
+            <cstring>cFixText1_3</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>25</x>
+                <y>165</y>
+                <width>55</width>
+                <height>25</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>index1</string>
+        </property>
+    </widget>
+    <widget class="CFixText">
+        <property name="name">
+            <cstring>cFixText1_2_2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>100</x>
+                <y>130</y>
+                <width>55</width>
+                <height>25</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>index2</string>
+        </property>
+    </widget>
+    <widget class="CPushButton">
+        <property name="name">
+            <cstring>cPushButton5_2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>95</x>
+                <y>505</y>
+                <width>86</width>
+                <height>26</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>set values</string>
+        </property>
+        <property name="ButtonFuncRef">
+            <cstring>SetMatrix(\"matrix1\")</cstring>
+        </property>
+    </widget>
+    <widget class="CPushButton">
+        <property name="name">
+            <cstring>cPushButton5</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>95</x>
+                <y>475</y>
+                <width>86</width>
+                <height>26</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>reset values</string>
+        </property>
+        <property name="ButtonFuncRef">
+            <cstring>ResetMatrix(\"matrix1\")</cstring>
+        </property>
+    </widget>
+    <widget class="CPushButton">
+        <property name="name">
+            <cstring>cPushButton5_3</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>210</x>
+                <y>475</y>
+                <width>86</width>
+                <height>26</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>count now</string>
+        </property>
+        <property name="ButtonFuncRef">
+            <cstring>ExecuteCommand(\"DemoProgram1\",1)</cstring>
+        </property>
+    </widget>
+    <widget class="CPushButton">
+        <property name="name">
+            <cstring>cPushButton5_3_2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>210</x>
+                <y>505</y>
+                <width>86</width>
+                <height>26</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>stop count</string>
+        </property>
+        <property name="ButtonFuncRef">
+            <cstring>ExecuteCommand(\"DemoProgram1\",0)</cstring>
+        </property>
+    </widget>
+    <widget class="CFrame">
+        <property name="name">
+            <cstring>cFrame1</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>15</x>
+                <y>20</y>
+                <width>491</width>
+                <height>106</height>
+            </rect>
+        </property>
+        <property name="frameShape">
+            <enum>NoFrame</enum>
+        </property>
+        <property name="DarkFuncRef">
+            <cstring></cstring>
+        </property>
+        <widget class="CFixText">
+            <property name="name">
+                <cstring>cFixText1</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>20</x>
+                    <y>30</y>
+                    <width>55</width>
+                    <height>25</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>index1</string>
+            </property>
+        </widget>
+        <widget class="CFixText">
+            <property name="name">
+                <cstring>cFixText1_2</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>20</x>
+                    <y>55</y>
+                    <width>55</width>
+                    <height>25</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>index2</string>
+            </property>
+        </widget>
+        <widget class="CPushButton">
+            <property name="name">
+                <cstring>i2inc</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>140</x>
+                    <y>55</y>
+                    <width>20</width>
+                    <height>26</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>+</string>
+            </property>
+            <property name="ButtonFuncRef">
+                <cstring>Increment(1)</cstring>
+            </property>
+        </widget>
+        <widget class="CPushButton">
+            <property name="name">
+                <cstring>i1dec</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>170</x>
+                    <y>30</y>
+                    <width>20</width>
+                    <height>26</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>-</string>
+            </property>
+            <property name="ButtonFuncRef">
+                <cstring>Decrement(0)</cstring>
+            </property>
+        </widget>
+        <widget class="CPushButton">
+            <property name="name">
+                <cstring>i2dec</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>170</x>
+                    <y>55</y>
+                    <width>20</width>
+                    <height>26</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>-</string>
+            </property>
+            <property name="ButtonFuncRef">
+                <cstring>Decrement(1)</cstring>
+            </property>
+        </widget>
+        <widget class="CComboBox">
+            <item>
+                <property name="text">
+                    <string>0</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>1</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>2</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>3</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>4</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>5</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>6</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>7</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>8</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>9</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>10</string>
+                </property>
+            </item>
+            <property name="name">
+                <cstring>cComboBox1_2</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>225</x>
+                    <y>55</y>
+                    <width>70</width>
+                    <height>26</height>
+                </rect>
+            </property>
+            <property name="VarRef">
+                <cstring>index2</cstring>
+            </property>
+            <property name="PlausFuncRef">
+                <cstring>IndexPlausFunction(1)</cstring>
+            </property>
+        </widget>
+        <widget class="CPushButton">
+            <property name="name">
+                <cstring>i1inc</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>140</x>
+                    <y>30</y>
+                    <width>20</width>
+                    <height>26</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>+</string>
+            </property>
+            <property name="ButtonFuncRef">
+                <cstring>Increment(0)</cstring>
+            </property>
+        </widget>
+        <widget class="CActValue">
+            <property name="name">
+                <cstring>cActValue1</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>355</x>
+                    <y>30</y>
+                    <width>91</width>
+                    <height>24</height>
+                </rect>
+            </property>
+            <property name="VarRef">
+                <cstring>act_value</cstring>
+            </property>
+        </widget>
+        <widget class="CReqValue">
+            <property name="name">
+                <cstring>cReqValue1_2</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>80</x>
+                    <y>55</y>
+                    <width>42</width>
+                    <height>25</height>
+                </rect>
+            </property>
+            <property name="VarRef">
+                <cstring>index2</cstring>
+            </property>
+            <property name="PlausFuncRef">
+                <cstring>IndexPlausFunction(1)</cstring>
+            </property>
+        </widget>
+        <widget class="CReqValue">
+            <property name="name">
+                <cstring>cReqValue1</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>80</x>
+                    <y>30</y>
+                    <width>42</width>
+                    <height>25</height>
+                </rect>
+            </property>
+            <property name="Listening">
+                <bool>true</bool>
+            </property>
+            <property name="VarRef">
+                <cstring>index1</cstring>
+            </property>
+            <property name="PlausFuncRef">
+                <cstring>IndexPlausFunction(0)</cstring>
+            </property>
+            <property name="UserFuncRef">
+                <cstring>CopyIndex()</cstring>
+            </property>
+        </widget>
+        <widget class="CComboBox">
+            <item>
+                <property name="text">
+                    <string>0</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>1</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>2</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>3</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>4</string>
+                </property>
+            </item>
+            <property name="name">
+                <cstring>cComboBox1</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>225</x>
+                    <y>30</y>
+                    <width>70</width>
+                    <height>26</height>
+                </rect>
+            </property>
+            <property name="VarRef">
+                <cstring>index1</cstring>
+            </property>
+            <property name="PlausFuncRef">
+                <cstring>IndexPlausFunction(0)</cstring>
+            </property>
+            <property name="UserFuncRef">
+                <cstring>CopyIndex()</cstring>
+            </property>
+        </widget>
+        <widget class="CReqValue">
+            <property name="name">
+                <cstring>cReqValue1_2_3</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>355</x>
+                    <y>60</y>
+                    <width>90</width>
+                    <height>25</height>
+                </rect>
+            </property>
+            <property name="DarkFuncRef">
+                <cstring>DarkConstState(0)</cstring>
+            </property>
+            <property name="VarRef">
+                <cstring>test_var</cstring>
+            </property>
+        </widget>
+    </widget>
+    <widget class="CReqValue">
+        <property name="name">
+            <cstring>cReqValue55</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>70</x>
+                <y>565</y>
+                <width>126</width>
+                <height>31</height>
+            </rect>
+        </property>
+        <property name="VarRef">
+            <cstring>unit_test</cstring>
+        </property>
+    </widget>
+    <widget class="CPushButton">
+        <property name="name">
+            <cstring>cPushButton9</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>280</x>
+                <y>565</y>
+                <width>131</width>
+                <height>31</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Switch unit</string>
+        </property>
+        <property name="ButtonFuncRef">
+            <cstring>SwitchUnit()</cstring>
+        </property>
+    </widget>
+    <widget class="CStateButton">
+        <property name="name">
+            <cstring>cStateButton1_2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>380</x>
+                <y>430</y>
+                <width>86</width>
+                <height>37</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>English (US)</string>
+        </property>
+        <property name="ButtonFuncRef">
+            <cstring>SetLanguage(\"en-US\")</cstring>
+        </property>
+    </widget>
+    <widget class="CStateButton">
+        <property name="name">
+            <cstring>cStateButton1</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>380</x>
+                <y>380</y>
+                <width>86</width>
+                <height>37</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>French</string>
+        </property>
+        <property name="ButtonFuncRef">
+            <cstring>SetLanguage(\"fr\")</cstring>
+        </property>
+    </widget>
+    <widget class="CReqValue">
+        <property name="name">
+            <cstring>cReqValue54</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>380</x>
+                <y>300</y>
+                <width>130</width>
+                <height>36</height>
+            </rect>
+        </property>
+        <property name="VarRef">
+            <cstring>inp_lang</cstring>
+        </property>
+        <property name="PlausFuncRef">
+            <cstring>PlausLang()</cstring>
+        </property>
+        <property name="UserFuncRef">
+            <cstring>SetLang()</cstring>
+        </property>
+    </widget>
+    <widget class="DActValue">
+        <property name="name">
+            <cstring>dActValue1</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>380</x>
+                <y>170</y>
+                <width>130</width>
+                <height>24</height>
+            </rect>
+        </property>
+        <property name="VarRef">
+            <cstring>act_language</cstring>
+        </property>
+        <property name="AlarmColor">
+            <color>
+                <red>255</red>
+                <green>0</green>
+                <blue>0</blue>
+            </color>
+        </property>
+        <property name="NotAlarmColor">
+            <color>
+                <red>0</red>
+                <green>170</green>
+                <blue>0</blue>
+            </color>
+        </property>
+    </widget>
+    <widget class="CTextEdit">
+        <property name="name">
+            <cstring>cTextEdit1</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>380</x>
+                <y>210</y>
+                <width>140</width>
+                <height>76</height>
+            </rect>
+        </property>
+        <property name="VarRef">
+            <cstring>act_language</cstring>
+        </property>
+    </widget>
+</widget>
+<customwidgets>
+</customwidgets>
+<layoutdefaults spacing="6" margin="11"/>
+<includehints>
+    <includehint>CPage.h</includehint>
+    <includehint>dframe.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>dframe.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>dframe.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>dframe.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>dframe.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CFixText.h</includehint>
+    <includehint>CFixText.h</includehint>
+    <includehint>CPushButton.h</includehint>
+    <includehint>CPushButton.h</includehint>
+    <includehint>CPushButton.h</includehint>
+    <includehint>CPushButton.h</includehint>
+    <includehint>CFrame.h</includehint>
+    <includehint>CFixText.h</includehint>
+    <includehint>CFixText.h</includehint>
+    <includehint>CPushButton.h</includehint>
+    <includehint>CPushButton.h</includehint>
+    <includehint>CPushButton.h</includehint>
+    <includehint>CComboBox.h</includehint>
+    <includehint>CPushButton.h</includehint>
+    <includehint>CActValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CComboBox.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CPushButton.h</includehint>
+    <includehint>CStateButton.h</includehint>
+    <includehint>CStateButton.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>dactvalue.h</includehint>
+    <includehint>CTextEdit.h</includehint>
+</includehints>
+</UI>

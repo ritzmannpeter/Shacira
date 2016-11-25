@@ -1,0 +1,144 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>DatasetViewerForm</class>
+<widget class="QWidget">
+    <property name="name">
+        <cstring>DatasetViewerForm</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>675</width>
+            <height>116</height>
+        </rect>
+    </property>
+    <property name="font">
+        <font>
+            <family>Arial</family>
+            <pointsize>11</pointsize>
+        </font>
+    </property>
+    <property name="caption">
+        <string>Form1</string>
+    </property>
+    <vbox>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <property name="margin">
+            <number>0</number>
+        </property>
+        <property name="spacing">
+            <number>0</number>
+        </property>
+        <widget class="QGroupBox">
+            <property name="name">
+                <cstring>Container</cstring>
+            </property>
+            <property name="title">
+                <string>selection</string>
+            </property>
+            <widget class="QToolButton">
+                <property name="name">
+                    <cstring>SelectFileButton</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>10</x>
+                        <y>20</y>
+                        <width>110</width>
+                        <height>23</height>
+                    </rect>
+                </property>
+                <property name="text">
+                    <string>select file</string>
+                </property>
+            </widget>
+            <widget class="QLabel">
+                <property name="name">
+                    <cstring>legacy_file</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>130</x>
+                        <y>20</y>
+                        <width>501</width>
+                        <height>21</height>
+                    </rect>
+                </property>
+                <property name="text">
+                    <string>empty</string>
+                </property>
+            </widget>
+            <widget class="QLabel">
+                <property name="name">
+                    <cstring>tpl_file</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>130</x>
+                        <y>50</y>
+                        <width>501</width>
+                        <height>21</height>
+                    </rect>
+                </property>
+                <property name="text">
+                    <string>empty</string>
+                </property>
+            </widget>
+            <widget class="QToolButton">
+                <property name="name">
+                    <cstring>SelectTplButton</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>10</x>
+                        <y>50</y>
+                        <width>110</width>
+                        <height>23</height>
+                    </rect>
+                </property>
+                <property name="text">
+                    <string>select template</string>
+                </property>
+            </widget>
+            <widget class="QLabel">
+                <property name="name">
+                    <cstring>regtext_file</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>130</x>
+                        <y>80</y>
+                        <width>501</width>
+                        <height>21</height>
+                    </rect>
+                </property>
+                <property name="text">
+                    <string>empty</string>
+                </property>
+            </widget>
+            <widget class="QToolButton">
+                <property name="name">
+                    <cstring>SelectRegtextButton</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>10</x>
+                        <y>80</y>
+                        <width>110</width>
+                        <height>23</height>
+                    </rect>
+                </property>
+                <property name="text">
+                    <string>select text</string>
+                </property>
+                <property name="accel">
+                    <string>Ctrl+S</string>
+                </property>
+            </widget>
+        </widget>
+    </vbox>
+</widget>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

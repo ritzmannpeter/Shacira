@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[meta_int.h] Language Interface</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[meta_int.h] Language Interface</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="ptm.htm">#include "ptm.h"</a>
+<br><a href="gls.htm">#include "gls.h"</a>
+<br>
+<br>
+<br>
+<br><hr width="100%" size=2><h2><b> symbol objects - init & quit </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>meta_initSymbols</b>()</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>meta_quitSymbols</b>()</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Types & Constants </b></h2>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b> meta </b>
+<td align=left>abstract type
+
+</table>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b> metaSource </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> metaTyp  </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> metaElm  </b>
+<td align=left>abstract type
+
+</table>
+<br><hr width="100%" size=2><h2><b> Access to Tokens </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Tmeta_Ide</b>(GLS_Tok x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Access to Terms </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>meta_meta</b>(PT_Term x, meta* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>meta_Source</b>(PT_Term x, metaSource* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>meta_Typ</b>(PT_Term x, metaTyp* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>meta_Elm</b>(PT_Term x, metaElm* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> meta </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>meta_Start_Source</b>(meta x, metaSource* x1)
+#define meta_Start_0   meta_Start_Source</pre>
+<td bgcolor="#FFF0F5" align=left>&nbsp;
+</table>
+<br><hr width="100%" size=2><h2><b> Source </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>metaSource_dfn</b>(metaSource x, GLS_Lst(metaElm)* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Typ </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>metaTyp_dfn</b>(metaTyp x, GLS_Tok* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>metaTyp_nul</b>(metaTyp x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Elm </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>metaElm_grp</b>(metaElm x, GLS_Tok* x1, metaTyp* x2,
+                   GLS_Lst(metaElm)* x3)</pre>
+<td bgcolor="#FFF0F5" align=left>&nbsp;<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>metaElm_txt</b>(metaElm x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+
+</body>
+</html>

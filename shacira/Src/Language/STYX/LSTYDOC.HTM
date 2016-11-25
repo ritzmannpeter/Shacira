@@ -1,0 +1,162 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Lars Doelle">
+   <meta name="GENERATOR" content="Mozilla/4.5 [de] (WinNT; I) [Netscape]">
+   <title>lstydoc</title>
+</head>
+<body>
+
+<center>
+<h2>
+Legende lexikalische Grammatik</h2></center>
+In der lexikalischen Grammatik werden die elementaren Sprachelemente (
+Token ), also bestimmte Klassen von Zeichenfolgen wie Zahlen, Bezeichner,
+Operatoren und Strings etc. definiert.
+<p>Jede <b><i><font size=+1>Regel</font></i></b> definiert eine Klasse
+von Zeichenfolgen und hat folgenden Aufbau: &lt;Art der Klasse> &lt;<font color="#FF0000">Name
+der Klasse</font>> :: &lt;regul&auml;rer Ausdruck>
+<p>Es gibt vier verschiedene <b><i><font size=+1>Arten von Klassen</font></i></b>:
+<br>&nbsp;
+<ul>
+<li>
+<b><i><font size=+1><font color="#000000">let</font></font></i></b></li>
+
+<br>Hilfsklassen, die zur Definition der eigentlichen Sprachelemente verwendet
+werden
+<br>Sie tauchen in der Sprachdefinition nicht auf.
+<li>
+<b><i><font size=+1><font color="#000000">com</font></font></i></b></li>
+
+<br>Kommentare
+<br>Sie tauchen in der Sprachdefinition nicht auf
+<li>
+<b><i><font size=+1><font color="#000000">tok</font></font></i></b></li>
+
+<br>Sprachelemente
+<br>Sie tauchen in der Sprachdefinition auf.
+<li>
+<b><i><font color="#000000"><font size=+1>ign</font></font></i></b></li>
+
+<br>Zeichenfolgen, die vom Scanner zu ignorieren bzw. zu &uuml;berlesen
+sind
+<br>Sie tauchen in der Sprachdefinition nicht auf.</ul>
+
+<p><br>Der <b><i><font size=+1>regul&auml;re Ausdruck</font></i></b> beschreibt
+die zur Klasse zusammengefa&szlig;ten Zeichenfolgen. F&uuml;r die Beschreibung
+stehen folgende Elemente und Operatoren zur Verf&uuml;gung:
+<br>&nbsp;
+<ul>
+<li>
+<b><i><font size=+1>Teilausdruck1 Teilausdruck2 ... TeilausdruckN</font></i></b></li>
+
+<br>Sequenz von Teilausdr&uuml;cken durch Hintereinanderschreibung
+<li>
+<b><i><font size=+1>Teilausdruck1 | Teilausdruck2 | ... | TeilausdruckN</font></i></b></li>
+
+<br>Vereinigung mehrerer Teilausdr&uuml;cke ( Alternativen )
+<li>
+<b><i><font size=+1>Teilausdruck1 - Teilausdruck2 - ... - TeilausdruckN</font></i></b></li>
+
+<br>Differenz mehrerer Teilausdr&uuml;cke
+<li>
+<b><i><font size=+1>[ Teilausdruck ]</font></i></b></li>
+
+<br>optionaler Teilausdruck
+<li>
+<b><i><font size=+1>{ Teilausdruck }</font></i></b></li>
+
+<br>0 - N -malige Wiederholung eines Teilausdrucks
+<li>
+<b><i><font size=+1>Teilausdruck +</font></i></b></li>
+
+<br>1 - N -malige Wiederholung eines Teilausdrucks
+<li>
+<b><i><font size=+1>( Teilausdruck )</font></i></b></li>
+
+<br>Zusammenfassung eines Teilausdrucks
+<li>
+<b><i><font color="#3366FF"><font size=+1>Name einer Hilfsklasse</font></font></i></b></li>
+
+<br><font color="#000000">als Abk&uuml;rzung f&uuml;r die zugeh&ouml;rigen
+Zeichenfolgen</font>
+<li>
+<b><i><font color="#009900"><font size=+1>"String"</font></font></i></b></li>
+
+<br><font color="#000000">konstanter String / Zeichenfolge</font>
+<li>
+<b><i><font color="#009900"><font size=+1>'Zeichen'</font></font></i></b></li>
+
+<br><font color="#000000">ein einzelnes Zeichen</font></ul>
+
+<h2>
+<font color="#000000"><font size=+0></font></font></h2>
+<font color="#000000"><font size=+0>Sprachelemente, bei denen keine Unterscheidung
+der Gro&szlig;- und Kleinschreibung erfolgt, sind mit <b><i>[I]</i></b>
+hinter dem Namen des Elements gekennzeichnet.</font></font>
+<br><font color="#000000"><font size=+0></font></font>&nbsp;
+<br><font color="#000000"><font size=+0></font></font>&nbsp;
+<center>
+<h2>
+<font color="#000000">Legende kontextfreie Grammatik</font></h2></center>
+<font color="#000000">Die Regeln, die die Synatx der Sprache festlegen,
+liegen in <b><i>EBNF</i></b> ( erweitere Backus-Naur-Form ) vor. F&uuml;r
+jeden Dateityp existiert wenigstens eine Startregel. D.h. jede Datei mu&szlig;
+syntaktisch einer Startregel des betreffenden&nbsp; Dateityps gen&uuml;gen.
+Alle anderen Regeln sind Hilfsregeln.</font><font color="#000000"></font>
+<p><font color="#000000">Jede <b><i><font size=+1>Regel</font></i></b>
+ist wie folgt aufgebaut: &lt;Art der Regel: <b><i>start</i></b> oder <b><i>let</i></b>>&nbsp;</font>
+&lt;<font color="#FF0000">Name der Regel</font>> :: &lt;EBNF-Ausdruck>
+<br>Jeder <b><i><font size=+1>EBNF-Ausdruck</font></i></b> beschreibt die
+Syntax eines Teils der Sprache und besteht aus ein oder mehreren alternativen
+Produktionen bzw. Teilausdr&uuml;cken, die jeweils auf einer neuen Zeile
+beginnen und durch das Zeichen '|' voneinander getrennt sind.
+<p>F&uuml;r die Beschreibung einer Produktion stehen folgende Elemente
+und Operatoren zur Verf&uuml;gung:
+<br>&nbsp;
+<ul>
+<li>
+<b><i><font size=+1>Teilausdruck1 Teilausdruck2 ... TeilausdruckN</font></i></b></li>
+
+<br>Sequenz von Teilausdr&uuml;cken durch Hintereinanderschreibung
+<li>
+<b><i><font size=+1>Teilausdruck1 | Teilausdruck2 | ... | TeilausdruckN</font></i></b></li>
+
+<br>Vereinigung mehrerer Teilausdr&uuml;cke ( Alternativen )
+<li>
+<b><i><font size=+1>[ Teilausdruck ]</font></i></b></li>
+
+<br>optionaler Teilausdruck
+<li>
+<b><i><font size=+1>{ Teilausdruck }</font></i></b></li>
+
+<br>0 - N -malige Wiederholung eines Teilausdrucks
+<li>
+<b><i><font size=+1>Teilausdruck +</font></i></b></li>
+
+<br>1 - N -malige Wiederholung eines Teilausdrucks
+<li>
+<b><i><font size=+1>( Teilausdruck )</font></i></b></li>
+
+<br>Zusammenfassung eines Teilausdrucks
+<li>
+<b><i><font color="#3366FF"><font size=+1>Name eines elementaren Sprachelements
+bzw. Token</font></font></i></b></li>
+
+<br><font color="#000000">aus der lexikalischen Grammatik</font>
+<li>
+<b><i><font color="#3366FF"><font size=+1>Name einer Hilfsregel<br>
+</font></font></i></b><font color="#000000">aus der kontextfreien Grammatik</font></li>
+
+<li>
+<b><i><font color="#009900"><font size=+1>Schl&uuml;sselwort<br>
+</font></font></i></b><font color="#000000">konstante Zeichenfolge</font><br>
+<BR></li>
+
+<br><font color="#000000"></font>&nbsp;</ul>
+
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

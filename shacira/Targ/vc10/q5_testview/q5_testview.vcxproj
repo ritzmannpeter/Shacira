@@ -1,0 +1,1308 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{B35093E6-1CB1-4B12-906B-9E41983A5980}</ProjectGuid>
+    <Keyword>Qt4VSv1.0</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="..\q5_app_debug.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="..\q5_app_release.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>QT_DLL</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\GeneratedFiles;.;.\GeneratedFiles\$(ConfigurationName);E:\usr\prj\Shacira\Src\GUIFramework\qt4port;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Disabled</Optimization>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>QT_DLL</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\GeneratedFiles;.;.\GeneratedFiles\$(ConfigurationName);E:\usr\prj\Shacira\Src\GUIFramework\qt4port;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\Src\GUIFramework\qt4port\headerview.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\qt4port\listview.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\qt4port\listviewitem.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\qt4port\listviewitemdelegate.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\qt4port\listviewitemiterator.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_listview.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_q4_testview.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_testview.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_mosaic.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_listview.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_q4_testview.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_testview.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="q4_testview.cpp" />
+    <ClCompile Include="testview.cpp" />
+    <ClCompile Include="wizard.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\Src\GUIFramework\qt4port\headerview.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\qt4port\listviewitemdelegate.h" />
+    <ClInclude Include="GeneratedFiles\ui_q4_testview.h" />
+    <ClInclude Include="GeneratedFiles\ui_testwizard.h" />
+    <CustomBuild Include="q4_testview.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing q4_testview.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  "-D$(NOINHERIT)\." -DWIN32 -D__WIN32__ -D_LIB -D__x86__ -DQT_DISABLE_DEPRECATED_BEFORE=0x000000 -DQT_DLL -DQT_CORE_LIB -DQT_GUI_LIB -DQT_XML_LIB -DQT4 -DQT5 -D_MBCS  "-I.\GeneratedFiles" "-I." "-I.\GeneratedFiles\$(ConfigurationName)\." "-IE:\usr\prj\Shacira\Src\GUIFramework\qt4port" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtDesigner" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtPrintSupport"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing q4_testview.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  "-D$(NOINHERIT)\." -DWIN32 -D__WIN32__ -D_LIB -D__x86__ -DQT_DISABLE_DEPRECATED_BEFORE=0x000000 -DQT_NO_DEBUG -DQT_DLL -DQT_CORE_LIB -DQT_GUI_LIB -DQT_XML_LIB -DQT4 -DQT5 -D_MBCS  "-I.\GeneratedFiles" "-I." "-I.\GeneratedFiles\$(ConfigurationName)\." "-IE:\usr\prj\Shacira\Src\GUIFramework\qt4port" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtDesigner" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtPrintSupport"</Command>
+    </CustomBuild>
+    <ClInclude Include="wizard.h" />
+    <CustomBuild Include="testview.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing testview.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  "-D$(NOINHERIT)\." -DWIN32 -D__WIN32__ -D_LIB -D__x86__ -DQT_DISABLE_DEPRECATED_BEFORE=0x000000 -DQT_DLL -DQT_CORE_LIB -DQT_GUI_LIB -DQT_XML_LIB -DQT4 -DQT5 -D_MBCS  "-I.\GeneratedFiles" "-I." "-I.\GeneratedFiles\$(ConfigurationName)\." "-IE:\usr\prj\Shacira\Src\GUIFramework\qt4port" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtDesigner" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtPrintSupport"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing testview.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  "-D$(NOINHERIT)\." -DWIN32 -D__WIN32__ -D_LIB -D__x86__ -DQT_DISABLE_DEPRECATED_BEFORE=0x000000 -DQT_NO_DEBUG -DQT_DLL -DQT_CORE_LIB -DQT_GUI_LIB -DQT_XML_LIB -DQT4 -DQT5 -D_MBCS  "-I.\GeneratedFiles" "-I." "-I.\GeneratedFiles\$(ConfigurationName)\." "-IE:\usr\prj\Shacira\Src\GUIFramework\qt4port" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtDesigner" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtPrintSupport"</Command>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\qt4port\listview.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing listview.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  "-D$(NOINHERIT)\." -DWIN32 -D__WIN32__ -D_LIB -D__x86__ -DQT_DISABLE_DEPRECATED_BEFORE=0x000000 -DQT_DLL -DQT_CORE_LIB -DQT_GUI_LIB -DQT_XML_LIB -DQT4 -DQT5 -D_MBCS  "-I.\GeneratedFiles" "-I." "-I.\GeneratedFiles\$(ConfigurationName)\." "-IE:\usr\prj\Shacira\Src\GUIFramework\qt4port" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtDesigner" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtPrintSupport"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing listview.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  "-D$(NOINHERIT)\." -DWIN32 -D__WIN32__ -D_LIB -D__x86__ -DQT_DISABLE_DEPRECATED_BEFORE=0x000000 -DQT_NO_DEBUG -DQT_DLL -DQT_CORE_LIB -DQT_GUI_LIB -DQT_XML_LIB -DQT4 -DQT5 -D_MBCS  "-I.\GeneratedFiles" "-I." "-I.\GeneratedFiles\$(ConfigurationName)\." "-IE:\usr\prj\Shacira\Src\GUIFramework\qt4port" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtDesigner" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtPrintSupport"</Command>
+    </CustomBuild>
+    <ClInclude Include="..\..\..\Src\GUIFramework\qt4port\listviewitem.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\qt4port\listviewitemiterator.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\qt4port\listviews.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\qt4port\qheader.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\qt4port\qobjectlist.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\qt4port\qptrlist.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\mosaic.qrc">
+      <FileType>Document</FileType>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(FullPath);..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_1.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_10.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_100.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_101.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_102.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_103.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_104.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_105.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_106.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_107.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_108.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_109.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_11.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_110.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_111.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_112.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_113.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_114.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_115.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_116.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_117.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_118.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_119.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_12.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_120.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_121.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_122.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_123.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_124.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_125.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_126.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_127.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_128.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_129.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_13.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_130.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_131.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_132.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_133.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_134.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_135.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_136.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_137.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_138.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_139.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_14.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_140.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_141.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_142.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_143.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_144.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_145.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_146.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_147.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_148.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_149.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_15.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_150.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_151.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_152.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_153.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_154.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_155.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_156.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_157.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_158.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_159.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_16.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_160.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_161.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_162.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_163.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_164.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_165.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_166.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_167.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_168.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_169.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_17.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_170.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_171.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_172.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_173.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_174.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_175.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_176.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_177.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_178.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_179.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_18.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_180.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_181.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_182.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_183.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_184.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_185.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_186.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_187.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_188.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_189.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_19.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_190.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_191.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_192.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_193.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_194.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_195.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_196.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_197.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_198.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_199.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_2.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_20.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_200.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_201.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_202.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_203.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_204.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_205.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_206.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_207.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_208.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_209.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_21.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_210.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_211.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_212.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_213.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_214.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_215.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_216.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_217.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_218.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_219.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_22.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_220.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_221.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_222.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_223.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_224.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_225.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_226.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_227.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_228.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_229.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_23.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_230.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_231.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_232.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_233.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_234.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_235.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_236.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_237.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_238.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_239.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_24.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_240.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_241.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_242.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_243.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_244.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_245.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_246.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_247.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_248.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_249.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_25.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_250.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_251.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_252.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_253.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_254.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_255.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_256.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_257.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_258.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_259.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_26.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_260.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_261.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_262.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_263.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_264.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_265.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_266.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_267.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_268.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_269.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_27.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_270.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_271.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_272.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_273.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_274.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_275.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_276.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_277.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_28.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_29.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_3.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_30.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_31.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_32.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_33.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_34.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_35.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_36.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_37.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_38.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_39.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_4.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_40.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_41.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_42.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_43.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_44.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_45.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_46.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_47.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_48.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_49.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_5.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_50.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_51.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_52.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_53.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_54.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_55.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_56.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_57.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_58.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_59.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_6.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_60.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_61.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_62.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_63.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_64.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_65.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_66.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_67.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_68.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_69.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_7.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_70.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_71.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_72.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_73.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_74.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_75.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_76.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_77.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_78.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_79.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_8.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_80.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_81.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_82.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_83.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_84.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_85.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_86.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_87.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_88.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_89.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_9.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_90.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_91.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_92.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_93.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_94.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_95.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_96.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_97.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_98.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_99.png;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Rcc%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\qrc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\rcc.exe" -name "%(Filename)" -no-compress "%(FullPath)" -o .\GeneratedFiles\qrc_%(Filename).cpp</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(FullPath);..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_1.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_10.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_100.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_101.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_102.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_103.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_104.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_105.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_106.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_107.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_108.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_109.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_11.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_110.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_111.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_112.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_113.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_114.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_115.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_116.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_117.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_118.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_119.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_12.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_120.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_121.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_122.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_123.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_124.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_125.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_126.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_127.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_128.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_129.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_13.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_130.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_131.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_132.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_133.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_134.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_135.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_136.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_137.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_138.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_139.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_14.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_140.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_141.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_142.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_143.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_144.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_145.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_146.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_147.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_148.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_149.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_15.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_150.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_151.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_152.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_153.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_154.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_155.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_156.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_157.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_158.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_159.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_16.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_160.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_161.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_162.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_163.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_164.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_165.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_166.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_167.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_168.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_169.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_17.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_170.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_171.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_172.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_173.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_174.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_175.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_176.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_177.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_178.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_179.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_18.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_180.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_181.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_182.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_183.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_184.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_185.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_186.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_187.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_188.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_189.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_19.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_190.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_191.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_192.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_193.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_194.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_195.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_196.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_197.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_198.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_199.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_2.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_20.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_200.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_201.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_202.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_203.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_204.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_205.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_206.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_207.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_208.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_209.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_21.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_210.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_211.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_212.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_213.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_214.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_215.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_216.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_217.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_218.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_219.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_22.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_220.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_221.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_222.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_223.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_224.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_225.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_226.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_227.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_228.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_229.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_23.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_230.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_231.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_232.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_233.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_234.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_235.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_236.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_237.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_238.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_239.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_24.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_240.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_241.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_242.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_243.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_244.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_245.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_246.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_247.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_248.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_249.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_25.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_250.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_251.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_252.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_253.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_254.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_255.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_256.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_257.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_258.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_259.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_26.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_260.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_261.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_262.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_263.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_264.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_265.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_266.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_267.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_268.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_269.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_27.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_270.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_271.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_272.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_273.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_274.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_275.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_276.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_277.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_28.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_29.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_3.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_30.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_31.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_32.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_33.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_34.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_35.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_36.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_37.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_38.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_39.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_4.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_40.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_41.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_42.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_43.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_44.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_45.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_46.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_47.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_48.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_49.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_5.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_50.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_51.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_52.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_53.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_54.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_55.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_56.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_57.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_58.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_59.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_6.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_60.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_61.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_62.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_63.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_64.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_65.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_66.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_67.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_68.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_69.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_7.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_70.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_71.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_72.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_73.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_74.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_75.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_76.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_77.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_78.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_79.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_8.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_80.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_81.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_82.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_83.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_84.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_85.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_86.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_87.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_88.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_89.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_9.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_90.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_91.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_92.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_93.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_94.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_95.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_96.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_97.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_98.png;..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_99.png;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Rcc%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\qrc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\rcc.exe" -name "%(Filename)" -no-compress "%(FullPath)" -o .\GeneratedFiles\qrc_%(Filename).cpp</Command>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_1.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_10.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_100.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_101.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_102.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_103.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_104.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_105.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_106.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_107.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_108.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_109.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_11.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_110.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_111.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_112.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_113.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_114.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_115.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_116.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_117.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_118.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_119.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_12.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_120.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_121.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_122.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_123.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_124.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_125.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_126.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_127.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_128.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_129.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_13.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_130.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_131.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_132.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_133.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_134.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_135.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_136.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_137.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_138.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_139.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_14.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_140.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_141.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_142.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_143.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_144.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_145.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_146.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_147.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_148.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_149.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_15.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_150.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_151.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_152.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_153.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_154.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_155.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_156.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_157.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_158.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_159.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_16.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_160.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_161.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_162.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_163.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_164.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_165.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_166.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_167.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_168.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_169.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_17.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_170.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_171.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_172.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_173.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_174.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_175.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_176.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_177.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_178.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_179.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_18.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_180.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_181.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_182.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_183.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_184.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_185.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_186.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_187.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_188.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_189.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_19.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_190.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_191.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_192.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_193.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_194.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_195.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_196.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_197.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_198.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_199.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_2.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_20.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_200.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_201.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_202.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_203.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_204.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_205.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_206.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_207.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_208.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_209.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_21.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_210.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_211.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_212.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_213.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_214.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_215.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_216.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_217.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_218.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_219.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_22.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_220.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_221.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_222.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_223.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_224.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_225.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_226.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_227.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_228.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_229.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_23.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_230.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_231.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_232.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_233.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_234.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_235.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_236.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_237.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_238.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_239.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_24.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_240.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_241.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_242.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_243.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_244.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_245.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_246.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_247.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_248.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_249.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_25.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_250.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_251.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_252.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_253.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_254.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_255.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_256.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_257.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_258.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_259.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_26.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_260.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_261.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_262.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_263.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_264.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_265.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_266.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_267.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_268.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_269.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_27.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_270.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_271.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_272.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_273.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_274.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_275.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_276.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_277.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_28.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_29.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_3.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_30.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_31.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_32.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_33.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_34.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_35.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_36.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_37.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_38.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_39.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_4.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_40.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_41.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_42.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_43.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_44.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_45.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_46.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_47.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_48.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_49.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_5.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_50.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_51.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_52.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_53.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_54.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_55.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_56.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_57.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_58.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_59.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_6.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_60.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_61.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_62.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_63.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_64.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_65.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_66.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_67.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_68.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_69.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_7.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_70.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_71.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_72.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_73.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_74.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_75.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_76.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_77.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_78.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_79.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_8.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_80.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_81.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_82.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_83.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_84.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_85.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_86.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_87.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_88.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_89.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_9.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_90.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_91.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_92.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_93.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_94.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_95.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_96.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_97.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_98.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_99.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <CustomBuild Include="testwizard.ui">
+      <FileType>Document</FileType>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+    </CustomBuild>
+    <CustomBuild Include="q4_testview.ui">
+      <FileType>Document</FileType>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+    </CustomBuild>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties UicDir=".\GeneratedFiles" MocDir=".\GeneratedFiles\$(ConfigurationName)" MocOptions="" RccDir=".\GeneratedFiles" lupdateOnBuild="0" lupdateOptions="" lreleaseOptions="" QtVersion_x0020_Win32="4.8.7" Qt5Version_x0020_Win32="5.5.1" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

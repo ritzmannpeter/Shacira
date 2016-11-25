@@ -1,0 +1,134 @@
+
+Jan 26 2007 - release 1.7.5
+
+          + finalize C++ library
+          + corrections/bugfixes regarding gcc 4.x
+          + bugfix parse table export
+          + documentation complement
+
+
+============ release notes 1.2 - 1.7 ==============================================
+
+Jan 10 2001 - initial release (1.2)
+Mar  4 2001 - release 1.3
+              + fixes panic mode error recovery
+              + fixes token buffer restriction. The token length is now of type long.
+              + hopefully fixes some configure problems on freeBSD (concerning libdl)
+              + adds parsing support for binary files 
+May  5 2001 - release 1.4
+              + The embedded preprocessing facility is now reentrant.
+              + The unicode support has been extended. 
+                Now the specification of unicode-keywords should be possible, too.
+
+Mar 11 2002 - release 1.5
+
+              BUG FIXES
+              ---------
+              + fixes a bug in the production of the abstract interface. 
+                Now the destructor functions for the start productions skip ignore-productions.
+              + fixes a bug regarding the early reduction facility which sometimes causes an
+                infinite loop.
+              + fixes a bug in the preprocessing facility.
+                ( an uninitilized variable sometimes causes a segmentation fault )
+              + fixes a bug in the function putBString of the module binimg.c.
+              + The print/reporting functions in the scan, parse, term and pretty print modules
+                has been revised with respect to a more consistent unicode support. 
+              + fixes the incomplete generated file Makefile.am in release 1.3 and 1.4
+              + Now the COPYING file should contain the correct GPL license.
+
+              ENHANCEMENTS
+              ------------
+              + The modules binimg.c and ptm_pp.c (persistence, pretty printing) are now reentrant.
+              + The utility programs lim_test, pim_test and stypp has been revised. Now they all
+                support preprocessing and unicode as well as dynamic loadable user-defined handlers.
+                ( Note: You have to link your handlers with the runtime library libxstyx.so )
+              + The term generation module [ptm_gen] has been extended to cope with external scanners
+                and parsers.
+              + The scanner & parser generation has been revised. In addition to the released runtime 
+                library libdstyx.so the new library libxstyx.so also contains the generation functionality.
+                Beside an improved modularisation it is now possible to include this functionality in
+                other programs. ( Look at styx as an example. )
+
+                
+Nov 30 2002 - release 1.5.1
+
+	      +	Automake conversion such that VPATH builds and dist* targets work.
+	      + Avoid duplication of libdstyx in libxstyx.
+        + fixes a bug in the function printSymbols of the module symbols.c.
+        + fixes a bug in tutorial04. <ctrl>d now aborts the caculator.
+              
+Mar 15 2003 - release 1.6
+
+          + fixes a bug in the term generation modul ptm_gen.c. Introduced with the panic mode error 
+            recovery, the term construction failed if a syntax error at position 1,1 occured.
+
+          + Starting with this release the Styx parser provides the toggle parameter -shortform
+            to enforce the usage of short or long filenames (default: long filenames).
+
+          + introduces dyck tokens to cope with nested comments, for example.
+          + introduces (de)indent tokens to support the definition of indended languages.
+            (see example06)
+          + The scanner now provides more flexibility with the introduction of flex-like scan groups.
+            (see example05)
+          + This release provides support for embedded languages through the introduction of so-called 
+            "embedded language" tokens. 
+            (see the XML/DTD language definitions for a demonstration)
+
+          + added a Styx based XML parser (library) 
+
+          Compatibility Note: The formats of the generated scan and parse tables has been changed. They
+                              must be re-generated in order to work with the new Styx version.
+
+Dec 09 2003 - release 1.6.1
+
+          + fixes broken windows project files
+          + fixes a bug in modul styx_gen.c regarding the parser generation which produced a runtime 
+            error in the windows debug version.
+
+Aug 01 2004
+
+          + added bibliography and fixes some typos in the documentation
+
+Aug 10 2004
+
+          + The new program lim2dot converts the scanner tables into a dot file 
+            in order to visualize them with graphviz i.e. dotty.
+
+Aug 30 2004
+
+          + The new program pim2dot converts the parse tables into a dot file 
+            in order to visualize them with graphviz i.e. dotty.
+
+Oct 30 2004
+
+          + extends the regular expression syntax which now provides limited iteration and pattern as well as
+            quotient tokens for the specification of heredoc comments, among others.
+
+Nov 07 2004
+
+          + fixes a bug in the preprocessing modul scn_pre.c regarding the separation of macro parameters.
+          + improves the diagnose output during the scanner generation in the modul scn_gen.c.
+
+Nov 21 2004
+
+          + extends the regular expression syntax. Now it is possible to assign a token definition to a list
+            of scan groups. Further, the specification of the next scan group to be activated has become more
+            flexible and allows to control the group stack of the scanner.
+
+Dec 12 2004 
+
+          + extends the scanner and the corresponding programs for an optional support of n character look-ahead.
+
+Dec 20 2004
+
+          + fixes a bug in the generation modul styx_gen.c regarding the special other token.
+          + adds some example grammars, e.g. for the smalltalk80 and PHP programming language.
+
+Dec 23 2004
+
+          + extends the C++ scanner which is now able to handle the above mentioned features, too.
+
+Dec 27 2004 - release 1.7
+
+          Compatibility Note: The formats of the generated scan and parse tables has been changed. They
+                              must be re-generated in order to work with the new Styx version.

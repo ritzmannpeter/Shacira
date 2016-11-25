@@ -1,0 +1,543 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Generated">
+      <UniqueIdentifier>{41b25f1d-9092-4abf-9948-dd8f8bb77bff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Forms">
+      <UniqueIdentifier>{24537dfe-4b6d-481c-ad94-331c7d838bee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dialogs">
+      <UniqueIdentifier>{4e5570b0-088a-490c-842c-74b663cb3fe8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CCSInterface">
+      <UniqueIdentifier>{17979035-3c3b-42d2-8bd8-09977a759eb4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Widgets">
+      <UniqueIdentifier>{1f5895a1-6753-45ef-b329-6c8bc0125f8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Keypads">
+      <UniqueIdentifier>{ad29136c-e7b9-4201-b7ca-4fc4efe022b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Styles">
+      <UniqueIdentifier>{8aae2ef3-4f76-4d30-9112-862a5bcc960c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HTML">
+      <UniqueIdentifier>{83683fa5-d6dd-4475-97b0-fcad59b2c3b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Factory">
+      <UniqueIdentifier>{ab7fd809-27e8-44ef-b64f-f25de872b98e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Plugin">
+      <UniqueIdentifier>{5391422f-1907-4f22-b215-bd77379938a9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\ContextExplorer.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\KeyboardAlpha.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\KeyboardLayoutGerman.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\KeyboardLayoutStandard.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\KeypadNumeric.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CActionDialog.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CActValue.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CAlarmWidget.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CAppFrame.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CButtonGroup.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CCheckBox.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CComboBox.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CCompListView.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CComposedStack.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CCoordSystem.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CDate.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CDateTime.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CDirectory.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CFixText.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CFrame.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CGraphic.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CGroupBox.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CGroupSelectButton.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_cGuiThread.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CIndReqValue.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CInfoLabel.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CListView.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_ContextExplorer.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_ContextExplorerDialog.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CPage.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CProcGraphic.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CProgressBar.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CProtocolWindow.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CPublicDialog.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CPushButton.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_cQtKeyboard.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_cQtKeyboardAlpha.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_cQtKeyboardButton.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_cQtKeyboardInput.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_cQtKeyboardLayout.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_cQtKeypadNumeric.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_cQtTouchStyle.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CRadioButton.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CReqValue.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CRingGraphic.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CScrollBar.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CScrollView.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CSimpleGraphic.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CSlider.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CSpinBox.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CStartupForm.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CStateButton.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CTable.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CTabWidget.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CTextEdit.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CTime.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CToolButton.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CVarDimension.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CVideo.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CVirtualKeyboard.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CWidget.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_cWidgetComm.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_CWidgetStack.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_KeyboardAlpha.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_KeyboardLayoutGerman.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_KeyboardLayoutStandard.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Generated\moc_KeypadNumeric.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Dialogs\ContextExplorerDialog.cpp">
+      <Filter>Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Dialogs\cQtNavigationWidget.cpp">
+      <Filter>Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Interface\cCCSInterface.cpp">
+      <Filter>CCSInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Interface\cContextChooser.cpp">
+      <Filter>CCSInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CActionDialog.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CActValue.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CAlarmWidget.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CAppFrame.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\cAsyncFunction.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CButtonGroup.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CCheckBox.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CComboBox.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\cCommInterface.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CCompListView.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CComposedStack.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CCoordSystem.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CDate.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CDateTime.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CDirectory.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CFixText.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CFrame.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CGraphic.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CGroupBox.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CGroupSelectButton.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\cGuiEvents.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\cGuiThread.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CIndReqValue.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CInfoLabel.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\cInput.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\ClickFilter.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CListView.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CPage.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\cPaintUtils.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CProcGraphic.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CProgressBar.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CProtocolWindow.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CPushButton.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CRadioButton.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CReqValue.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CRingGraphic.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\cRubberBand.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CScrollBar.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CScrollView.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\cSignalManager.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CSimpleGraphic.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CSlider.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CSpinBox.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CStartupForm.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CStateButton.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\cSyncView.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CTable.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CTabWidget.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CTextEdit.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CTime.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CToolButton.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CVarDimension.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CVideo.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\cViewInterface.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CVirtualKeyboard.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CWidget.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CWidgetBase.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\cWidgetComm.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CWidgetStack.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Keypads\cQtKeyboard.cpp">
+      <Filter>Keypads</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Keypads\cQtKeyboardAlpha.cpp">
+      <Filter>Keypads</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Keypads\cQtKeyboardButton.cpp">
+      <Filter>Keypads</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Keypads\cQtKeyboardInput.cpp">
+      <Filter>Keypads</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Keypads\cQtKeyboardLayout.cpp">
+      <Filter>Keypads</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Keypads\cQtKeypadNumeric.cpp">
+      <Filter>Keypads</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Keypads\cQtNumberValidator.cpp">
+      <Filter>Keypads</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Keypads\cQtPathValidator.cpp">
+      <Filter>Keypads</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Keypads\cQtPropertyWidget.cpp">
+      <Filter>Keypads</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Keypads\cQtStringValidator.cpp">
+      <Filter>Keypads</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Styles\cQtTouchStyle.cpp">
+      <Filter>Styles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Html\cFormRequest.cpp">
+      <Filter>HTML</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Html\cHTMLDocument.cpp">
+      <Filter>HTML</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Html\cHTMLElement.cpp">
+      <Filter>HTML</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Plugins\CWidgetFactory.cpp">
+      <Filter>Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\Plugins\plugin_log.cpp">
+      <Filter>Plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\cApplicationGuard.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\cContextExplorer.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\cGroup.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\cGroupList.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\cHelpInterface.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\cNode.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\cNodeList.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT3Framework\cQTUserInterface.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\cUserInterface.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT3Framework\Dialogs\cQtNavigationWidget.h">
+      <Filter>Dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CWidgetBase.h">
+      <Filter>Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT3Framework\Html\cFormRequest.h">
+      <Filter>HTML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT3Framework\Html\cHTMLDocument.h">
+      <Filter>HTML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT3Framework\Html\cHTMLElement.h">
+      <Filter>HTML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT3Framework\Plugins\CWidgetFactory.h">
+      <Filter>Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT3Framework\cApplicationGuard.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\cGroup.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\cGroupList.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\cHelpInterface.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT3Framework\cQTUserInterface.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\cUserInterface.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\Interface\cContextChooser.h">
+      <Filter>CCSInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT3Framework\cContextExplorer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\Dialogs\ContextExplorer.ui">
+      <Filter>Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\Dialogs\ContextExplorerDialog.h">
+      <Filter>Dialogs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\cGuiThread.h">
+      <Filter>Widgets</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\CPublicDialog.h">
+      <Filter>Widgets</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\CWidgets\cWidgetComm.h">
+      <Filter>Widgets</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\Keypads\cQtKeyboardAlpha.h">
+      <Filter>Keypads</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\Keypads\cQtKeyboardInput.h">
+      <Filter>Keypads</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\Keypads\cQtKeypadNumeric.h">
+      <Filter>Keypads</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT3Framework\Styles\cQtTouchStyle.h">
+      <Filter>Styles</Filter>
+    </CustomBuild>
+  </ItemGroup>
+</Project>

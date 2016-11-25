@@ -1,0 +1,46 @@
+; [ptok2.sty] Test pattern token with groups
+
+Language ptok2
+
+Regular Grammar
+
+ExGroup HDoc
+ExGroup CG
+Group   MG1 = ptok2 HDoc
+Group   MG2 = ptok2 CG
+
+  ign :MG2:W = ' \t\n\r'
+  tok PS1!HDoc  = <= "<<<" W* > 'a..z0..9_$' < '\n\r' > / '\n\r'
+  tok :HDoc:PE1 = <? '\n\r' > PS1 < '\n\r' >
+  tok :MG1:TA !+ CG = "<"
+  tok :CG :TE!-= ">"
+  tok :CG :Pat    = ( 'a' ..'z' | '0' ..'9' | '$' ) { 'a' ..'z' | '0' ..'9' | '$' }
+  tok M   = '-' '-'*
+  tok D   = < "/*" > < "*/" > / "*/"
+  tok E   = "*/"
+  tok F   = '\'\"'+
+
+Context Free Grammar
+
+start PTOK
+:nul  :
+:dfn1 : PS1 Body PS1 PTOK
+:dfn2 : M PTOK
+:dfn3 : "<" IdLst ">" PTOK
+:dfn4 : D PTOK
+:dfn5 : E PTOK
+:dfn6 : "\"\'" PTOK
+
+let Body
+:nul :
+:stm1: PE1 Body
+:stm2: "<" IdLst ">" Body
+:stm3: [other] Body
+
+;let Lst
+;:nil :
+;:cons: PE1 Lst
+
+let IdLst
+:nil :
+:cons: Pat IdLst

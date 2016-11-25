@@ -1,0 +1,17 @@
+#! /bin/sh -e
+# [mx] make 'mcfg.img'
+
+#destination directory for parser and scanner table image files
+BINSTYX=.
+#destination directory for parser and scanner table and term interface source files
+GENSTYX=.
+#source directory of language specification file
+SPESTYX=.
+
+export BINSTYX GENSTYX SPESTYX
+
+#create source files
+styx mcfg -makeIMG -verbose
+
+#test example
+#lim_test mcfg ide.config.in

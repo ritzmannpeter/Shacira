@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Dateien">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Preprocessor">
+      <UniqueIdentifier>{108728c6-3c73-46d4-92a4-ed1133957250}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generierte Dateien">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>moc;h;cpp</Extensions>
+      <ParseFiles>true</ParseFiles>
+    </Filter>
+    <Filter Include="Plugin">
+      <UniqueIdentifier>{7ac722ad-e06f-41c7-986b-fe2b4e0b60d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generated">
+      <UniqueIdentifier>{f3aa4401-51e9-4d11-a5a1-7f7624dcb546}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src">
+      <UniqueIdentifier>{c41723e3-288d-463a-9598-2eb81dfddbce}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Generated\moc_dframe.cpp">
+      <Filter>Generierte Dateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Generated\moc_dactvalue.cpp">
+      <Filter>Generierte Dateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\dactvalue.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\dframe.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT4Framework\Plugins\plugin_log.cpp">
+      <Filter>Plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT4Framework\Plugins\pluginfactory.cpp">
+      <Filter>Plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="Generated\moc_pluginfactory.cpp">
+      <Filter>Generierte Dateien</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="Generated\dframe.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Generated\dactvalue.h">
+      <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Src\dactvalue.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Src\dframe.pp">
+      <Filter>Preprocessor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\..\..\Src\GUIFramework\QT4Framework\Plugins\pluginfactory.h">
+      <Filter>Plugin</Filter>
+    </CustomBuild>
+  </ItemGroup>
+</Project>

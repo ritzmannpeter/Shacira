@@ -1,0 +1,5 @@
+
+#define default_config $(SHACIRADIR)/AutoConfig/configurations/win32_mingw_debug.cfg
+#define qt $(SHACIRADIR)/Targ/tools/mingw/qt
+#define omniorb $(SHACIRADIR)/Targ/tools/mingw/omniorb
+

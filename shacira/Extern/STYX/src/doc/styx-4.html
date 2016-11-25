@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="LinuxDoc-Tools 0.9.65">
+ <TITLE>The Styx Handbook: The Concrete Derivation Tree</TITLE>
+ <LINK HREF="styx-5.html" REL=next>
+ <LINK HREF="styx-3.html" REL=previous>
+ <LINK HREF="styx.html#toc4" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="styx-5.html">Next</A>
+<A HREF="styx-3.html">Previous</A>
+<A HREF="styx.html#toc4">Contents</A>
+<HR>
+<H2><A NAME="s4">4.</A> <A HREF="styx.html#toc4">The Concrete Derivation Tree</A></H2>
+
+<P>Before defining the mapping onto terms and the how the depth grammar is derived from a Styx language 
+definition, a closer look on the result of the parsing process appears to be helpful.</P>
+<P>Conceptually, we distinguish between the <EM>concrete derivation tree</EM>, i.e. the derivation tree 
+that corresponds to both the parsed source and to the surface grammar as specified in the context 
+free grammar section in the Styx source file. See the 
+<A HREF="styx-2.html#tree">derivation tree</A> above for
+an example how this tree looks like.</P>
+<P>To be a little more formal, the tree is made up from nodes which represent either terminals (tokens,
+keywords,comments) or non-terminals, which may have a list of nodes as their children. Each node 
+contains a source reference (filename,line,column), where it's text in the source starts.</P>
+<P>Terminal nodes contain the symbol that represents the (normalized) token literally together with a 
+symbol that names the regular set to which it belongs. Non-terminal nodes contain both the non-terminal 
+and the production symbol.</P>
+<P>Excurse on comments: While the location of keywords and (real) tokens within this tree is already
+clearly defined by the grammar and the source itself, the placement of comments within this tree could 
+be somewhat arbitrary. This comes from the fact that comments are accepted by the parser and added to 
+the tree whenever they appear in the source. That's intended and OK so far. Now, if a comment appears 
+at the beginning of a non-terminal production (node), we have to chose a proper place for it, which can 
+be either the beginning of the current node or a place immediate before the node in the list of the parent
+node. When designing the Styx parser we've chosen the later. Note that this rule applies recursively 
+(and likely, when the comment is in the end of a production), so that a comment node will never appear in 
+the beginning or end of an inner node. Note that, though it is a formally satisfying convention
+(all comments have normal places), this may be wrong when looking at the comments themselves. 
+E.g. looking at a comment in a C source, this referees to decide whether a comment belongs to the following 
+function or is a comment separating a group of functions. Depending on this the comment might better
+be placed lower or higher within the tree. The section about pretty printing deals in more detail with 
+this issue.</P>
+<P>Now, that the structure of the concrete derivation tree is outlined and after having had a look on an 
+example tree, it should be clear to the reader that this structure is not useful for accessing parts of 
+the sources in general. (A proper interface to this structure exists anyway. There are of course cases when, 
+for example, having access to the position of a specific keyword or a comment may make very much sense.) 
+Instead, we would normally prefer to have a more abstract view onto the tree, especially, we do not like to 
+be bugged by keywords, comments, identical productions (those of the form "let X :y: Z") and likely features 
+that we consider to belong to the language surface.</P>
+<P>On one side we want to abstract from some of the details, on the other hand we also like to become more 
+concrete. It normally does not help very much to have universal derivation tree type and functions that 
+apply on any node.
+Instead, we want use the notations (non-terminal names and productions) as introduced in the grammar when 
+dealing with the tree. This leads to the question how a proper interface to the derivation tree can be
+constructed. The Styx implementation has chosen to do this by using the concept of a depth grammar.</P>
+
+<HR>
+<A HREF="styx-5.html">Next</A>
+<A HREF="styx-3.html">Previous</A>
+<A HREF="styx.html#toc4">Contents</A>
+</BODY>
+</HTML>

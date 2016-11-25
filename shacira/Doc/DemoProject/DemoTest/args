@@ -1,0 +1,10 @@
+RootName=DemoApp
+TouchScreen=true
+FullScreen=false
+CursorDisabled=false
+DefaultGroupID=6
+;EnableDelayedDataLoad=true
+EnableGUILog=true
+;StartupLanguage=fr
+DefaultLanguage=en-US
+

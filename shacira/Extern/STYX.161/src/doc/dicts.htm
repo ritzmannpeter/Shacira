@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[dicts.h] Type: Dictionary Iterator</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[dicts.h] Type: Dictionary Iterator</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="standard.htm">#include "standard.h"</a>
+<br>
+<br>
+<br>
+<br><hr width="100%" size=2><h2><b> The Type </b></h2>
+<br><pre>
+   The dictionary iterator provides sequentiell, platform-independant access to
+   a specified part of the file system.
+   Supported platforms are Unix and Windows.
+
+</pre>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b>DII</b>
+<td align=left> Abstract dictionary iterator type 
+
+</table>
+<br><hr width="100%" size=2><h2><b> Create & Drop </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>DII <b>DII_make</b>
+    (
+      c_string PathName, c_string Pattern,
+      c_bool recursive, c_bool skipErr
+    )</pre>
+<td bgcolor="#FFF0F5" align=left> creates a ['recursive'] dictionary iterator for<br>
+   directory 'PathName' and file 'Pattern'<br>
+   'skipErr' --&gt; error message on open failure, otherwise the program aborts<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>DII_drop</b>(DII dii)</pre>
+<td bgcolor="#FFF0F5" align=left>drops dictionary iterator 'dii'
+
+</table>
+<br><hr width="100%" size=2><h2><b> Dictionary iterator access </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>DII_empty</b>(DII dii)</pre>
+<td bgcolor="#FFF0F5" align=left>empty dictionary iterator ?
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>DII_next</b>(DII dii)</pre>
+<td bgcolor="#FFF0F5" align=left>next dictionary entry
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>DII_isFile</b>(DII dii)</pre>
+<td bgcolor="#FFF0F5" align=left>dictionary entry = file ?
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>DII_isDir</b>(DII dii)</pre>
+<td bgcolor="#FFF0F5" align=left>dictionary entry = directory ?
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>DII_isCDev</b>(DII dii)</pre>
+<td bgcolor="#FFF0F5" align=left>dictionary entry = character device ?
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>DII_isBDev</b>(DII dii)</pre>
+<td bgcolor="#FFF0F5" align=left>dictionary entry = block device ?
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>DII_isFifo</b>(DII dii)</pre>
+<td bgcolor="#FFF0F5" align=left>dictionary entry = FIFO ?
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>DII_get_file</b>(DII dii)</pre>
+<td bgcolor="#FFF0F5" align=left> filename of dictionary entry; allocs memory <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>DII_get_base</b>(DII dii)</pre>
+<td bgcolor="#FFF0F5" align=left> basename of dictionary entry; allocs memory <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>DII_get_ext</b>(DII dii)</pre>
+<td bgcolor="#FFF0F5" align=left> extension of dictionary entry; allocs memory <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>DII_get_path</b>(DII dii)</pre>
+<td bgcolor="#FFF0F5" align=left>path of dictionary entry; allocs memory
+
+</table>
+<br><hr width="100%" size=2><h2><b> Convenient iterator macros </b></h2>
+<br><pre>
+#define DII_FORALL(dii,Path,Pattern)           \
+for (dii = DII_make(Path,Pattern,C_False,C_False); \
+DII_empty(dii)?DII_drop(dii),C_False:C_True; DII_next(dii))
+
+#define DII_FORALL_R(dii,Path,Pattern)        \
+for (dii = DII_make(Path,Pattern,C_True,C_False); \
+DII_empty(dii)?DII_drop(dii),C_False:C_True; DII_next(dii))
+
+#define DII_SFORALL(dii,Path,Pattern)         \
+for (dii = DII_make(Path,Pattern,C_False,C_True); \
+DII_empty(dii)?DII_drop(dii),C_False:C_True; DII_next(dii))
+
+#define DII_SFORALL_R(dii,Path,Pattern)      \
+for (dii = DII_make(Path,Pattern,C_True,C_True); \
+DII_empty(dii)?DII_drop(dii),C_False:C_True; DII_next(dii))
+
+</pre>
+
+</body>
+</html>

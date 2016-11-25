@@ -1,0 +1,1943 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>cQtKeyboardLayoutStandard</class>
+ <widget class="cQtKeyboardLayout" name="cQtKeyboardLayoutStandard">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>674</width>
+    <height>285</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>656</width>
+    <height>225</height>
+   </size>
+  </property>
+  <property name="autoFillBackground">
+   <bool>true</bool>
+  </property>
+  <property name="quickOverwrite">
+   <bool>true</bool>
+  </property>
+  <layout class="QVBoxLayout">
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item>
+    <layout class="QVBoxLayout">
+     <property name="spacing">
+      <number>0</number>
+     </property>
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
+     <item>
+      <layout class="QGridLayout">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <property name="spacing">
+        <number>4</number>
+       </property>
+       <item row="3" column="9">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton99">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>&lt;\n,</string>
+         </property>
+         <property name="keyValue">
+          <string>,</string>
+         </property>
+         <property name="keyValueShift">
+          <string>&lt;</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="5">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton14">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>F</string>
+         </property>
+         <property name="keyFont">
+          <enum>cQtKeyboardButton::fontBigFont</enum>
+         </property>
+         <property name="keyValue">
+          <string>f</string>
+         </property>
+         <property name="keyValueShift">
+          <string>F</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton22">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>Q</string>
+         </property>
+         <property name="keyFont">
+          <enum>cQtKeyboardButton::fontBigFont</enum>
+         </property>
+         <property name="keyValue">
+          <string>q</string>
+         </property>
+         <property name="keyValueShift">
+          <string>Q</string>
+         </property>
+         <property name="keyValueAlt">
+          <string>@</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="12">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton72_2">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="../qresources/shacira.qrc">
+           <normaloff>:/shacira/images/img_2.png</normaloff>:/shacira/images/img_2.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>200</width>
+           <height>200</height>
+          </size>
+         </property>
+         <property name="keyType">
+          <enum>cQtKeyboardButton::typeLeft</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="2">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton33">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>Z</string>
+         </property>
+         <property name="keyFont">
+          <enum>cQtKeyboardButton::fontBigFont</enum>
+         </property>
+         <property name="keyValue">
+          <string>z</string>
+         </property>
+         <property name="keyValueShift">
+          <string>Z</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="12">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton32">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>{\n[</string>
+         </property>
+         <property name="keyValue">
+          <string>[</string>
+         </property>
+         <property name="keyValueShift">
+          <string>{</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="8">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton8">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>*\n8</string>
+         </property>
+         <property name="keyValue">
+          <string>8</string>
+         </property>
+         <property name="keyValueShift">
+          <string>*</string>
+         </property>
+         <property name="keyValueAlt">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="12">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton76">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="../qresources/shacira.qrc">
+           <normaloff>:/shacira/images/img_8.png</normaloff>:/shacira/images/img_8.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>200</width>
+           <height>200</height>
+          </size>
+         </property>
+         <property name="keyType">
+          <enum>cQtKeyboardButton::typePgUp</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="8">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton17">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>J</string>
+         </property>
+         <property name="keyFont">
+          <enum>cQtKeyboardButton::fontBigFont</enum>
+         </property>
+         <property name="keyValue">
+          <string>j</string>
+         </property>
+         <property name="keyValueShift">
+          <string>J</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="5">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton25">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>R</string>
+         </property>
+         <property name="keyFont">
+          <enum>cQtKeyboardButton::fontBigFont</enum>
+         </property>
+         <property name="keyValue">
+          <string>r</string>
+         </property>
+         <property name="keyValueShift">
+          <string>R</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton1">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>!\n1</string>
+         </property>
+         <property name="keyValue">
+          <string>1</string>
+         </property>
+         <property name="keyValueShift">
+          <string>!</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="5">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton36">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>V</string>
+         </property>
+         <property name="keyFont">
+          <enum>cQtKeyboardButton::fontBigFont</enum>
+         </property>
+         <property name="keyValue">
+          <string>v</string>
+         </property>
+         <property name="keyValueShift">
+          <string>V</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0" colspan="2">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton42">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="../qresources/shacira.qrc">
+           <normaloff>:/shacira/images/img_10.png</normaloff>:/shacira/images/img_10.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>200</width>
+           <height>200</height>
+          </size>
+         </property>
+         <property name="keyType">
+          <enum>cQtKeyboardButton::typeNormal</enum>
+         </property>
+         <property name="keyValue">
+          <string>&quot;\t&quot;</string>
+         </property>
+         <property name="keyValueShift">
+          <string>&quot;\t&quot;</string>
+         </property>
+         <property name="keyWidthX10">
+          <UInt>20</UInt>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="11">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton106">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>_\n-</string>
+         </property>
+         <property name="keyValue">
+          <string>-</string>
+         </property>
+         <property name="keyValueShift">
+          <string>_</string>
+         </property>
+         <property name="keyValueAlt">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="11">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton20">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>:\n;</string>
+         </property>
+         <property name="keyValue">
+          <string>;</string>
+         </property>
+         <property name="keyValueShift">
+          <string>:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="8">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton28">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>U</string>
+         </property>
+         <property name="keyFont">
+          <enum>cQtKeyboardButton::fontBigFont</enum>
+         </property>
+         <property name="keyValue">
+          <string>u</string>
+         </property>
+         <property name="keyValueShift">
+          <string>U</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="4">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton4">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>$\n4</string>
+         </property>
+         <property name="keyValue">
+          <string>4</string>
+         </property>
+         <property name="keyValueShift">
+          <string>$</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0" colspan="2">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton199">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="../qresources/shacira.qrc">
+           <normaloff>:/shacira/images/img_9.png</normaloff>:/shacira/images/img_9.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>200</width>
+           <height>200</height>
+          </size>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="keyType">
+          <enum>cQtKeyboardButton::typeShift</enum>
+         </property>
+         <property name="keyValue">
+          <string>Ctrl</string>
+         </property>
+         <property name="keyWidthX10">
+          <UInt>20</UInt>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="8">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton39">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>M</string>
+         </property>
+         <property name="keyFont">
+          <enum>cQtKeyboardButton::fontBigFont</enum>
+         </property>
+         <property name="keyValue">
+          <string>m</string>
+         </property>
+         <property name="keyValueShift">
+          <string>M</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="4">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton13">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>D</string>
+         </property>
+         <property name="keyFont">
+          <enum>cQtKeyboardButton::fontBigFont</enum>
+         </property>
+         <property name="keyValue">
+          <string>d</string>
+         </property>
+         <property name="keyValueShift">
+          <string>D</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="2">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton41">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="../qresources/shacira.qrc">
+           <normaloff>:/shacira/images/img_4.png</normaloff>:/shacira/images/img_4.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>200</width>
+           <height>200</height>
+          </size>
+         </property>
+         <property name="keyType">
+          <enum>cQtKeyboardButton::typeOk</enum>
+         </property>
+         <property name="keyWidthX10">
+          <UInt>20</UInt>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="10" colspan="2">
+        <widget class="cQtKeyboardButton" name="_button_del">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>Delete</string>
+         </property>
+         <property name="keyType">
+          <enum>cQtKeyboardButton::typeDelete</enum>
+         </property>
+         <property name="keyValue">
+          <string/>
+         </property>
+         <property name="keyValueShift">
+          <string/>
+         </property>
+         <property name="keyValueAlt">
+          <string/>
+         </property>
+         <property name="keyWidthX10">
+          <UInt>20</UInt>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0" colspan="2">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton43">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="../qresources/shacira.qrc">
+           <normaloff>:/shacira/images/img_12.png</normaloff>:/shacira/images/img_12.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>200</width>
+           <height>200</height>
+          </size>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="keyType">
+          <enum>cQtKeyboardButton::typeShiftLock</enum>
+         </property>
+         <property name="keyWidthX10">
+          <UInt>20</UInt>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="11">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton31">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>P</string>
+         </property>
+         <property name="keyFont">
+          <enum>cQtKeyboardButton::fontBigFont</enum>
+         </property>
+         <property name="keyValue">
+          <string>p</string>
+         </property>
+         <property name="keyValueShift">
+          <string>P</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="7">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton7">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>&amp;&amp;\n7</string>
+         </property>
+         <property name="keyValue">
+          <string>7</string>
+         </property>
+         <property name="keyValueShift">
+          <string>&amp;</string>
+         </property>
+         <property name="keyValueAlt">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="11">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton101">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>?\n/</string>
+         </property>
+         <property name="keyValue">
+          <string>/</string>
+         </property>
+         <property name="keyValueShift">
+          <string>?</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="7">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton16">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>H</string>
+         </property>
+         <property name="keyFont">
+          <enum>cQtKeyboardButton::fontBigFont</enum>
+         </property>
+         <property name="keyValue">
+          <string>h</string>
+         </property>
+         <property name="keyValueShift">
+          <string>H</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="4">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton24">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>E</string>
+         </property>
+         <property name="keyFont">
+          <enum>cQtKeyboardButton::fontBigFont</enum>
+         </property>
+         <property name="keyValue">
+          <string>e</string>
+         </property>
+         <property name="keyValueShift">
+          <string>E</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton40">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="../qresources/shacira.qrc">
+           <normaloff>:/shacira/images/img_6.png</normaloff>:/shacira/images/img_6.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>200</width>
+           <height>200</height>
+          </size>
+         </property>
+         <property name="keyType">
+          <enum>cQtKeyboardButton::typeCancel</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="14">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton74">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="../qresources/shacira.qrc">
+           <normaloff>:/shacira/images/img_7.png</normaloff>:/shacira/images/img_7.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>200</width>
+           <height>200</height>
+          </size>
+         </property>
+         <property name="keyType">
+          <enum>cQtKeyboardButton::typeRight</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="4">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton35">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>C</string>
+         </property>
+         <property name="keyFont">
+          <enum>cQtKeyboardButton::fontBigFont</enum>
+         </property>
+         <property name="keyValue">
+          <string>c</string>
+         </property>
+         <property name="keyValueShift">
+          <string>C</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="14">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton105">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>|\n\  ~</string>
+         </property>
+         <property name="keyValue">
+          <string>\</string>
+         </property>
+         <property name="keyValueShift">
+          <string>|</string>
+         </property>
+         <property name="keyValueAlt">
+          <string>~</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="10">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton10">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>)\n0</string>
+         </property>
+         <property name="keyValue">
+          <string>0</string>
+         </property>
+         <property name="keyValueShift">
+          <string>)</string>
+         </property>
+         <property name="keyValueAlt">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="14">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton63">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="../qresources/shacira.qrc">
+           <normaloff>:/shacira/images/img_3.png</normaloff>:/shacira/images/img_3.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>200</width>
+           <height>200</height>
+          </size>
+         </property>
+         <property name="keyType">
+          <enum>cQtKeyboardButton::typePgDown</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="10">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton19">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>L</string>
+         </property>
+         <property name="keyFont">
+          <enum>cQtKeyboardButton::fontBigFont</enum>
+         </property>
+         <property name="keyValue">
+          <string>l</string>
+         </property>
+         <property name="keyValueShift">
+          <string>L</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="7">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton27">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>Y</string>
+         </property>
+         <property name="keyFont">
+          <enum>cQtKeyboardButton::fontBigFont</enum>
+         </property>
+         <property name="keyValue">
+          <string>y</string>
+         </property>
+         <property name="keyValueShift">
+          <string>Y</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton3">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>#\n3</string>
+         </property>
+         <property name="keyValue">
+          <string>3</string>
+         </property>
+         <property name="keyValueShift">
+          <string>#</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="7">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton38">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>N</string>
+         </property>
+         <property name="keyFont">
+          <enum>cQtKeyboardButton::fontBigFont</enum>
+         </property>
+         <property name="keyValue">
+          <string>n</string>
+         </property>
+         <property name="keyValueShift">
+          <string>N</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="3">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton12">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>S</string>
+         </property>
+         <property name="keyFont">
+          <enum>cQtKeyboardButton::fontBigFont</enum>
+         </property>
+         <property name="keyValue">
+          <string>s</string>
+         </property>
+         <property name="keyValueShift">
+          <string>S</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="13" colspan="2">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton108">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>Back</string>
+         </property>
+         <property name="keyType">
+          <enum>cQtKeyboardButton::typeBackspace</enum>
+         </property>
+         <property name="keyWidthX10">
+          <UInt>20</UInt>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="13" colspan="2">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton103">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>Enter\nNewline</string>
+         </property>
+         <property name="default">
+          <bool>true</bool>
+         </property>
+         <property name="keyType">
+          <enum>cQtKeyboardButton::typeNewLine</enum>
+         </property>
+         <property name="keyWidthX10">
+          <UInt>20</UInt>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="4" colspan="6">
+        <widget class="cQtKeyboardButton" name="_button_space">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>Space</string>
+         </property>
+         <property name="keyType">
+          <enum>cQtKeyboardButton::typeNormal</enum>
+         </property>
+         <property name="keyValue">
+          <string>&quot; &quot;</string>
+         </property>
+         <property name="keyValueShift">
+          <string>&quot; &quot;</string>
+         </property>
+         <property name="keyWidthX10">
+          <UInt>60</UInt>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="10">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton30">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>O</string>
+         </property>
+         <property name="keyFont">
+          <enum>cQtKeyboardButton::fontBigFont</enum>
+         </property>
+         <property name="keyValue">
+          <string>o</string>
+         </property>
+         <property name="keyValueShift">
+          <string>O</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="6">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton6">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>^\n6</string>
+         </property>
+         <property name="keyValue">
+          <string>6</string>
+         </property>
+         <property name="keyValueShift">
+          <string>^</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="10">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton100">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>&gt;\n.</string>
+         </property>
+         <property name="keyValue">
+          <string>.</string>
+         </property>
+         <property name="keyValueShift">
+          <string>&gt;</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="6">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton15">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>G</string>
+         </property>
+         <property name="keyFont">
+          <enum>cQtKeyboardButton::fontBigFont</enum>
+         </property>
+         <property name="keyValue">
+          <string>g</string>
+         </property>
+         <property name="keyValueShift">
+          <string>G</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton23">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>W</string>
+         </property>
+         <property name="keyFont">
+          <enum>cQtKeyboardButton::fontBigFont</enum>
+         </property>
+         <property name="keyValue">
+          <string>w</string>
+         </property>
+         <property name="keyValueShift">
+          <string>W</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="13">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton73">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="../qresources/shacira.qrc">
+           <normaloff>:/shacira/images/img_11.png</normaloff>:/shacira/images/img_11.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>200</width>
+           <height>200</height>
+          </size>
+         </property>
+         <property name="keyType">
+          <enum>cQtKeyboardButton::typeDown</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="3">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton34">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>X</string>
+         </property>
+         <property name="keyFont">
+          <enum>cQtKeyboardButton::fontBigFont</enum>
+         </property>
+         <property name="keyValue">
+          <string>x</string>
+         </property>
+         <property name="keyValueShift">
+          <string>X</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="13">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton104">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>}\n]</string>
+         </property>
+         <property name="keyValue">
+          <string>]</string>
+         </property>
+         <property name="keyValueShift">
+          <string>}</string>
+         </property>
+         <property name="keyValueAlt">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="9">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton9">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>(\n9</string>
+         </property>
+         <property name="keyValue">
+          <string>9</string>
+         </property>
+         <property name="keyValueShift">
+          <string>(</string>
+         </property>
+         <property name="keyValueAlt">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="13">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton75">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="../qresources/shacira.qrc">
+           <normaloff>:/shacira/images/img_5.png</normaloff>:/shacira/images/img_5.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>200</width>
+           <height>200</height>
+          </size>
+         </property>
+         <property name="keyType">
+          <enum>cQtKeyboardButton::typeUp</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="9">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton18">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>K</string>
+         </property>
+         <property name="keyFont">
+          <enum>cQtKeyboardButton::fontBigFont</enum>
+         </property>
+         <property name="keyValue">
+          <string>k</string>
+         </property>
+         <property name="keyValueShift">
+          <string>K</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="6">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton26">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>T</string>
+         </property>
+         <property name="keyFont">
+          <enum>cQtKeyboardButton::fontBigFont</enum>
+         </property>
+         <property name="keyValue">
+          <string>t</string>
+         </property>
+         <property name="keyValueShift">
+          <string>T</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton2">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>@\n2</string>
+         </property>
+         <property name="keyValue">
+          <string>2</string>
+         </property>
+         <property name="keyValueShift">
+          <string>@</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="6">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton37">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>B</string>
+         </property>
+         <property name="keyFont">
+          <enum>cQtKeyboardButton::fontBigFont</enum>
+         </property>
+         <property name="keyValue">
+          <string>b</string>
+         </property>
+         <property name="keyValueShift">
+          <string>B</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton11">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>A</string>
+         </property>
+         <property name="keyFont">
+          <enum>cQtKeyboardButton::fontBigFont</enum>
+         </property>
+         <property name="keyValue">
+          <string>a</string>
+         </property>
+         <property name="keyValueShift">
+          <string>A</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="12">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton107">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>+\n=</string>
+         </property>
+         <property name="keyValue">
+          <string>=</string>
+         </property>
+         <property name="keyValueShift">
+          <string>+</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="12">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton21">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>&quot;\n'</string>
+         </property>
+         <property name="keyValue">
+          <string>'</string>
+         </property>
+         <property name="keyValueShift">
+          <string>&quot;</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="2" colspan="2">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton72">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>Alt</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="keyType">
+          <enum>cQtKeyboardButton::typeAlt</enum>
+         </property>
+         <property name="keyValue">
+          <string>Alt</string>
+         </property>
+         <property name="keyWidthX10">
+          <UInt>20</UInt>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="9">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton29">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>I</string>
+         </property>
+         <property name="keyFont">
+          <enum>cQtKeyboardButton::fontBigFont</enum>
+         </property>
+         <property name="keyValue">
+          <string>i</string>
+         </property>
+         <property name="keyValueShift">
+          <string>I</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="5">
+        <widget class="cQtKeyboardButton" name="cQtKeyboardButton133">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>%\n5</string>
+         </property>
+         <property name="keyValue">
+          <string>5</string>
+         </property>
+         <property name="keyValueShift">
+          <string>%</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QTextEdit" name="_error">
+       <property name="maximumSize">
+        <size>
+         <width>32767</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="palette">
+        <palette>
+         <active>
+          <colorrole role="Base">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>255</red>
+             <green>255</green>
+             <blue>127</blue>
+            </color>
+           </brush>
+          </colorrole>
+         </active>
+         <inactive>
+          <colorrole role="Base">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>255</red>
+             <green>255</green>
+             <blue>127</blue>
+            </color>
+           </brush>
+          </colorrole>
+         </inactive>
+         <disabled>
+          <colorrole role="Base">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>240</red>
+             <green>240</green>
+             <blue>240</blue>
+            </color>
+           </brush>
+          </colorrole>
+         </disabled>
+        </palette>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="autoFillBackground">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>cQtKeyboardButton</class>
+   <extends>QPushButton</extends>
+   <header>cqtkeyboardbutton.h</header>
+  </customwidget>
+  <customwidget>
+   <class>cQtKeyboardLayout</class>
+   <extends>QFrame</extends>
+   <header>cqtkeyboardlayout.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <includes>
+  <include location="local">qt4port.h</include>
+  <include location="local">cQtKeyboardButton.h</include>
+  <include location="local">cQtKeyboardLayout.h</include>
+ </includes>
+ <resources>
+  <include location="../qresources/shacira.qrc"/>
+ </resources>
+ <connections/>
+</ui>

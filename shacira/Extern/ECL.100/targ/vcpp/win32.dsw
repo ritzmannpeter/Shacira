@@ -1,0 +1,260 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+
+Project: "ecl_dll_base"=.\ecl_dll_base\ecl_dll_base.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "ecl_dll_dbi"=.\ecl_dll_dbi\ecl_dll_dbi.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name ecl_dll_base
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "ecl_dll_win"=.\ecl_dll_win\ecl_dll_win.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name ecl_dll_base
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "ecl_lib_base"=.\ecl_lib_base\ecl_lib_base.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "ecl_lib_dbi"=.\ecl_lib_dbi\ecl_lib_dbi.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "ecl_lib_store"=.\ecl_lib_store\ecl_lib_store.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "ecl_lib_tom"=.\ecl_lib_tom\ecl_lib_tom.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test_dbi_dll"=.\test_dbi_dll\test_dbi_dll.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name ecl_dll_base
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name ecl_dll_dbi
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test_dbi_lib"=.\test_dbi_lib\test_dbi_lib.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name ecl_lib_base
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name ecl_lib_dbi
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name ecl_lib_store
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test_elo"=.\test_elo\test_elo.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name ecl_lib_base
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test_event"=.\test_event\test_event.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name ecl_lib_base
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test_prof"=.\test_prof\test_prof.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name ecl_lib_base
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test_sql"=.\test_sql\test_sql.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name ecl_lib_base
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name ecl_lib_dbi
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test_vcpp"=.\test_vcpp\test_vcpp.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test_view"=.\test_view\test_view.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name ecl_dll_base
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name ecl_dll_win
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test_win"=.\test_win\test_win.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name ecl_dll_base
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name ecl_dll_dbi
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name ecl_dll_win
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+

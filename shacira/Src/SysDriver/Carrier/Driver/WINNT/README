@@ -1,0 +1,7 @@
+
+   Driver generation
+
+   to generate the driver set the NT4 DDK environment (free or checked),
+   change to this directory and execute build.
+
+

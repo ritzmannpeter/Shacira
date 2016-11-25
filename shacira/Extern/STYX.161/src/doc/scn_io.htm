@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[scn_io.h] Scanner Definition Primimitives</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[scn_io.h] Scanner Definition Primimitives</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="standard.htm">#include "standard.h"</a>
+<br><a href="binimg.htm">#include "binimg.h"</a>
+<br>
+<br>
+<br>
+<br><pre>
+   Beside copying and disposing of scanner definitions
+   this module provides functions that
+   1) generate a C module for a given scanner definition
+   2) unload a scanner definition to a binary image file
+   3) load a scanner definition from a binary image file.
+
+</pre>
+<br><hr width="100%" size=2><h2><b> Types & Macros </b></h2>
+<br>
+  <p><b>Identifier of other other</b>
+
+
+<br><pre>#define SCN_TOK_Other "[other]"
+
+</pre>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b> Scn_T </b>
+<td align=left> Abstract scanner type 
+
+</table>
+<br><hr width="100%" size=2><h2><b> Basics </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>Scn_LanguageId</b>(Scn_T x)</pre>
+<td bgcolor="#FFF0F5" align=left> language or group name of scanner definition 'x' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Scn_T <b>Scn_copy</b>(Scn_T x)</pre>
+<td bgcolor="#FFF0F5" align=left>copies scanner definition 'x'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Scn_free</b>(Scn_T x)</pre>
+<td bgcolor="#FFF0F5" align=left>frees scanner definition 'x'
+
+</table>
+<br><hr width="100%" size=2><h2><b> Binary Image </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Scn_T <b>Scn_fget_bin</b>(BinImg_T img)</pre>
+<td bgcolor="#FFF0F5" align=left> loads a scanner definition<br>
+   from binary image 'img' (reentrant)<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Scn_T <b>Scn_get_bin</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left> loads a scanner definition<br>
+   from the current ( previously opened ) image<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Scn_get</b>(c_string Language, Scn_T *x)</pre>
+<td bgcolor="#FFF0F5" align=left> loads a scanner definition named 'Language' into 'x'<br>
+   from image [$PATH/]&lt;Language&gt;.lim<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Scn_get_env</b>(c_string Environ, c_string Language, Scn_T *x)</pre>
+<td bgcolor="#FFF0F5" align=left> loads a scanner definition named 'Language' into 'x'<br>
+   from image [$'Environ'/]&lt;Language&gt;.lim<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Scn_fput_bin</b>(BinImg_T img, Scn_T x)</pre>
+<td bgcolor="#FFF0F5" align=left> unloads scanner definition 'x'<br>
+   to binary image 'img' (reentrant)<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Scn_put_bin</b>(Scn_T x)</pre>
+<td bgcolor="#FFF0F5" align=left> unloads scanner definition 'x'<br>
+   to the current ( previously opened ) image<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Scn_put</b>(c_string Environ, Scn_T x)</pre>
+<td bgcolor="#FFF0F5" align=left> unloads scanner definition 'x'<br>
+   to image [$'Environ'/]&lt;Language&gt;.lim<br>
+<br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> C-Module </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Scn_C_Source</b>(FILE* fp, c_string fid, Scn_T x)</pre>
+<td bgcolor="#FFF0F5" align=left> writes source for scanner ( group ) definition 'x' to file 'fp';<br>
+   produces a source header if filename 'fid' is not empty<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Scn_C_Modul</b>(c_string Environ, Scn_T x, c_bool shortform)</pre>
+<td bgcolor="#FFF0F5" align=left> creates source [$'Environ'/]&lt;Language&gt;_lim.c<br>
+   for scanner ( group ) definition 'x'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Scn_Src_Source</b>(FILE* fp, c_string fid, Scn_T x)</pre>
+<td bgcolor="#FFF0F5" align=left> writes source for scanner ( group ) definition 'x' to file 'fp';<br>
+   produces a source header if filename 'fid' is not empty<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Scn_Src_Modul</b>(c_string Environ, Scn_T x)</pre>
+<td bgcolor="#FFF0F5" align=left> creates source [$'Environ'/]&lt;Language&gt;.ltbl<br>
+   for scanner ( group ) definition 'x'<br>
+<br>
+
+</table>
+
+</body>
+</html>

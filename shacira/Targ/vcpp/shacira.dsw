@@ -1,0 +1,443 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNUNG: DIESE ARBEITSBEREICHSDATEI DARF NICHT BEARBEITET ODER GELÖSCHT WERDEN!
+
+###############################################################################
+
+Project: "Memview"=.\sh_app_memview\sh_app_memview.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name ecl_dll_base
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name shacira_lib
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "XMLTestClient"=.\sh_app_xmlcons\test_client\XMLTestClient.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "_make_all"=.\_make_all\_make_all.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name sh_app_mdlc
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name sh_app_syscons
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name sh_app_text
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name sh_dll_client
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name sh_dll_s7device
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name sh_app_gateway
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name shacira_lib
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name utilities
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name ecl_dll_base
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name make_qt_plugins
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name Memview
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name sh_app_shexplorer
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name sh_app_infcons
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name sh_app_clonep
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name sh_app_perscons
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name sh_tool_pp
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name sh_app_xmlcons
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "make_keyboard_plugin"=.\make_keyboard_plugin\make_keyboard_plugin.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name make_keypad_plugin
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name q3_kbdlayout_plugin
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "make_keypad_plugin"=.\make_keypad_plugin\make_keypad_plugin.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name q3_keypad_plugin
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "make_qt_plugins"=.\make_qt_plugins\make_qt_plugins.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name make_keyboard_plugin
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name q3_cwidget_plugin
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "make_shacira_lib"=.\make_shacira_lib\make_shacira_lib.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name shacira_lib
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "q3_cwidget_plugin"=.\q3_cwidget_plugin\q3_cwidget_plugin.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "q3_framework"=.\q3_framework\q3_framework.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name make_qt_plugins
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "q3_kbdlayout_plugin"=.\q3_kbdlayout_plugin\q3_kbdlayout_plugin.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "q3_keypad_plugin"=.\q3_keypad_plugin\q3_keypad_plugin.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "sh_app_clonep"=.\sh_app_clonep\sh_app_clonep.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name utilities
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name shacira_lib
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name ecl_dll_base
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "sh_app_infcons"=.\sh_app_infcons\sh_app_infcons.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name ecl_dll_base
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name shacira_lib
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "sh_app_mdlc"=.\sh_app_mdlc\sh_app_mdlc.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name ecl_dll_base
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name shacira_lib
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name utilities
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "sh_app_perscons"=.\sh_app_perscons\sh_app_perscons.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name shacira_lib
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "sh_app_shexplorer"=.\sh_app_shexplorer\sh_app_shexplorer.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name ecl_lib_base
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name shacira_lib
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name q3_framework
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "sh_app_syscons"=.\sh_app_syscons\sh_app_syscons.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name ecl_dll_base
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name shacira_lib
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "sh_app_text"=.\sh_app_text\sh_app_text.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name utilities
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "sh_app_xmlcons"=.\sh_app_xmlcons\sh_app_xmlcons.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name shacira_lib
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "sh_dll_client"=.\sh_dll_client\sh_dll_client.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name ecl_dll_base
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name shacira_lib
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "sh_dll_s7device"=.\sh_dll_s7device\sh_dll_s7device.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name ecl_dll_base
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name shacira_lib
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "sh_tool_pp"=.\sh_tool_pp\sh_tool_pp.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "shacira_lib"=.\shacira_lib\shacira_lib.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "utilities"=.\utilities\utilities.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+

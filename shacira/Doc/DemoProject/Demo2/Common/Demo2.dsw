@@ -1,0 +1,137 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNUNG: DIESE ARBEITSBEREICHSDATEI DARF NICHT BEARBEITET ODER GELÖSCHT WERDEN!
+
+###############################################################################
+
+Project: "Demo2"=.\Demo2.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name shacira_lib
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name utilities
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name q3_framework
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "q3_cwidget_plugin"=..\..\..\..\Targ\vcpp\q3_cwidget_plugin\q3_cwidget_plugin.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name q3_kbdlayout_plugin
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name q3_keypad_plugin
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "q3_framework"=..\..\..\..\Targ\vcpp\q3_framework\q3_framework.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "q3_kbdlayout_plugin"=..\..\..\..\Targ\vcpp\q3_kbdlayout_plugin\q3_kbdlayout_plugin.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name q3_keypad_plugin
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "q3_keypad_plugin"=..\..\..\..\Targ\vcpp\q3_keypad_plugin\q3_keypad_plugin.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "sh_app_mdlc"=..\..\..\..\Targ\vcpp\sh_app_mdlc\sh_app_mdlc.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name shacira_lib
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name utilities
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "shacira_lib"=..\..\..\..\Targ\vcpp\shacira_lib\shacira_lib.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "utilities"=..\..\..\..\Targ\vcpp\utilities\utilities.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+

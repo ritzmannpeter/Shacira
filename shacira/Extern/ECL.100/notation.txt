@@ -1,0 +1,212 @@
+
+  Konventionen für ECL Source-Code                              ______ /
+-------------------------------------------------------------- /__ ___/  -----
+                                                              /___/  /_____
+                                                                 /_____
+1. Bezeichnerkonventionen
+-------------------------
+
+1.1 Klassennamen
+----------------
+
+ - beginnt mit kleinem "c"
+ - gefolgt von Klassenname in Groß-/Kleinschreibung
+ - Keine Underscores!
+
+Beispiele: cClassName, cBase, cNumberCruncher
+
+ - Spezielle Klassennamen: wie Klassenname
+ - zwischen "c" und Klassennamen ein zusaetzliches Modulpräfix
+ - nur ECL-intern!
+
+Beispiele: cwWindow, cdbCursor
+
+
+1.2 Namen von Methoden
+----------------------
+
+ - beschreibendes Verb in Kleinbuchstaben
+ - Optionale Ergaenzung in Groß-/Kleinschreibung
+ - Keine Underscores!
+
+Beispiele: doWhatever(), setValue(), getValue()
+
+
+1.3 Namen von Parametern, Variablen und Komponenten
+---------------------------------------------------
+
+ - Nur Kleinbuchstaben
+ - Keine ungarische Notation!!
+ - Jedoch: Postfix _ptr oder _<typkürzel> erlaubt, wenn nötig
+ - Underscores zulaessig!
+
+Beispiel: var_ptr, count,
+
+
+1.4 Namen von Strukturen und Aufzaehltypen
+------------------------------------------
+
+ - Nur Großbuchstaben
+ - Underscores zulaessig
+
+Beispiel: STRUCT_NAME
+
+
+1.5 Konstanten (in Aufzaehltypen)
+---------------------------------
+
+ - Typ-Präfix in Kleinbuchstaben
+ - Ergaenzung in Groß-/Kleinschreibung
+ - Keine Underscores
+
+Beispiel: enumValue
+
+
+2. Gestaltung
+-------------
+
+2.1 Einrückungen und Leerzeilen
+-------------------------------
+
+ - Einrückweite: 3 (keine TABs!!)
+ - Leerzeilen innerhalb von Klassen, Funktionen: max. 1
+ - Leerzeilen vor Ueberschriften: genau 2
+ - Leerzeilen vor Klassendefinitionen: genau 4
+
+
+2.2 Formatierung
+----------------
+
+2.2.1 Klassendefinitionen
+-------------------------
+
+   class cClass1 : public cClass {
+   public:
+      // public componentes here
+   protected:
+      // protected componentes here
+   private:
+      // private componentes here
+   };
+
+
+2.2.2 Methoden
+--------------
+
+2.2.2.1 Inline (lang)
+---------------------
+
+Nicht ueber Modulgrenzen hinweg verwenden!
+
+   class cClassName {
+
+   public:
+
+      // Kurzbeschreibung, moeglichst Einzeiler
+      int doWhatever() const
+      {
+         // insert code here
+         return ...;
+      }
+
+   };
+
+
+2.2.2.2 Inline (kurz)
+---------------------
+
+Typische One-Liner
+
+   class cClassName {
+
+   public:
+
+      // Kurzbeschreibung, moeglichst Einzeiler
+      inline int getValue() const
+         { return value; }
+
+   };
+
+
+2.2.2.3 Normal
+--------------
+
+   class cClassName {
+
+   public:
+
+      // Kurzbeschreibung, moeglichst Einzeiler
+      int doWhatever() const;
+
+   };
+
+   int cClassName::doWhatever() const
+   {
+      // insert code here
+      return ...;
+   }
+
+
+2.2.3 Statements
+----------------
+
+Leerzeichen beachten!!!
+
+ - if ( condition )
+      statement;
+
+ - if ( condition ) {
+      statement;
+   } else if ( condition ) {
+      statement;
+   } else {
+      statement;
+   }
+
+ - while ( condition )
+      statement;
+
+ - while ( condition ) {
+      statement;
+   }
+
+ - do {
+      statement;
+   } while ( condition )
+
+ - for ( init ; condition ; increment )
+      statement;
+
+ - for ( init ; condition ; increment ) {
+      statement;
+   }
+
+ - switch ( value ) {
+   case CONST:
+      statement;
+      break;
+   default:
+      statement;
+      break;
+   }
+
+
+3.1 Interfaces
+--------------
+
+ECL-Programme verwenden MAKEHEAD, um Header-Dateien automatisch zu extrahieren.
+Dazu muss die folgende Syntax im .CPP-File eingehalten werden:
+
+   ... wird nicht exportiert ...
+
+   #ifdef __INTERFACE__
+   ... wird exportiert ...
+   #endif /*__INTERFACE__*/
+
+   ... wird nicht exportiert ...
+
+
+
+
+... 2 b continued ...
+

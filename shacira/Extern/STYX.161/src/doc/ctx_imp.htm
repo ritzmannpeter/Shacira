@@ -1,0 +1,14 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[ctx_imp.h] Program Context Implementation Types</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[ctx_imp.h] Program Context Implementation Types</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<pre></pre><br><a href="standard.htm">#include "standard.h"</a>
+<br>
+<pre></pre><pre>ConcreteType( CTX_L_Imp )</pre><pre>{</pre><pre>  /* static  */</pre><pre>  c_string  ide; /* Identifier */</pre><pre>  c_byte    cat; /* Category   */</pre><pre>  c_byte    typ; /* Type       */</pre><pre>  c_string  dft; /* Default    */</pre><pre>  /* dynamic */</pre><pre>  c_bool    asg; /* ?assigned  */</pre><pre>  StdCPtr   val; /* Value      */</pre><pre>};</pre><pre></pre><pre>ConcreteType( CTX_T_Imp )</pre><pre>{</pre><pre>  short     cnt;</pre><pre>  c_string  prg;</pre><pre>  CTX_L_Imp tbl; /* [cnt] */</pre><pre>};</pre><pre></pre><pre>#define CTX_T_IMP(tbl) ((CTX_T_Imp)(tbl))</pre><pre></pre>
+</body>
+</html>

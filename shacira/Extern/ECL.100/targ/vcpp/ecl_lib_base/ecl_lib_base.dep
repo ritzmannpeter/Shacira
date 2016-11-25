@@ -1,0 +1,298 @@
+# Microsoft Developer Studio erstellte Abhängigkeitsdatei, einbezogen von ecl_lib_base.mak
+
+..\..\..\src\base\eb_base.cpp : \
+	"..\..\..\..\..\..\..\bin\msdev6\vc98\include\basetsd.h"\
+	"..\..\..\src\base\eb_base.hpp"\
+	
+
+..\..\..\src\base\eb_bprintf.cpp : \
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_bprintf.hpp"\
+	
+
+..\..\..\src\base\eb_docview.cpp : \
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_collect.hpp"\
+	"..\..\..\src\base\eb_docview.hpp"\
+	"..\..\..\src\base\eb_elo.hpp"\
+	"..\..\..\src\base\eb_list.hpp"\
+	"..\..\..\src\base\eb_object.hpp"\
+	"..\..\..\src\base\eb_str.hpp"\
+	
+
+..\..\..\src\base\eb_elo.cpp : \
+	"..\..\..\src\base\eb_array.hpp"\
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_collect.hpp"\
+	"..\..\..\src\base\eb_elo.hpp"\
+	"..\..\..\src\base\eb_list.hpp"\
+	"..\..\..\src\base\eb_map.hpp"\
+	"..\..\..\src\base\eb_object.hpp"\
+	"..\..\..\src\base\eb_str.hpp"\
+	
+
+..\..\..\src\base\eb_eloex.cpp : \
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_collect.hpp"\
+	"..\..\..\src\base\eb_elo.hpp"\
+	"..\..\..\src\base\eb_eloex.hpp"\
+	"..\..\..\src\base\eb_list.hpp"\
+	"..\..\..\src\base\eb_object.hpp"\
+	"..\..\..\src\base\eb_str.hpp"\
+	
+
+..\..\..\src\base\eb_err.cpp : \
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_err.hpp"\
+	
+
+..\..\..\src\base\eb_event.cpp : \
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_collect.hpp"\
+	"..\..\..\src\base\eb_event.hpp"\
+	"..\..\..\src\base\eb_list.hpp"\
+	"..\..\..\src\base\eb_map.hpp"\
+	
+
+..\..\..\src\base\eb_object.cpp : \
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_object.hpp"\
+	
+
+..\..\..\src\base\eb_str.cpp : \
+	"..\..\..\..\..\..\..\bin\msdev6\vc98\include\basetsd.h"\
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_str.hpp"\
+	
+
+..\..\..\src\base\eb_strex.cpp : \
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_str.hpp"\
+	"..\..\..\src\base\eb_strex.hpp"\
+	
+
+..\..\..\src\base\eb_time.cpp : \
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_str.hpp"\
+	"..\..\..\src\base\eb_time.hpp"\
+	
+
+..\..\..\src\base\eb_array.cpp : \
+	"..\..\..\src\base\eb_array.hpp"\
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_collect.hpp"\
+	
+
+..\..\..\src\base\eb_collect.cpp : \
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_collect.hpp"\
+	
+
+..\..\..\src\base\eb_list.cpp : \
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_collect.hpp"\
+	"..\..\..\src\base\eb_list.hpp"\
+	
+
+..\..\..\src\base\eb_map.cpp : \
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_collect.hpp"\
+	"..\..\..\src\base\eb_map.hpp"\
+	
+
+..\..\..\src\base\eb_geo2d.cpp : \
+	"..\..\..\src\base\eb_array.hpp"\
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_collect.hpp"\
+	"..\..\..\src\base\eb_geo2d.hpp"\
+	"..\..\..\src\base\eb_math.hpp"\
+	
+
+..\..\..\src\base\eb_math.cpp : \
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_math.hpp"\
+	
+
+..\..\..\src\base\eb_clip.cpp : \
+	"..\..\..\..\..\..\..\bin\msdev6\vc98\include\basetsd.h"\
+	"..\..\..\src\base\eb_array.hpp"\
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_clip.hpp"\
+	"..\..\..\src\base\eb_collect.hpp"\
+	"..\..\..\src\base\eb_err.hpp"\
+	"..\..\..\src\base\eb_except.hpp"\
+	"..\..\..\src\base\eb_list.hpp"\
+	"..\..\..\src\base\eb_sema.hpp"\
+	"..\..\..\src\base\eb_store.hpp"\
+	"..\..\..\src\base\eb_str.hpp"\
+	"..\..\..\src\base\eb_thread.hpp"\
+	
+
+..\..\..\src\base\eb_msg.cpp : \
+	"..\..\..\..\..\..\..\bin\msdev6\vc98\include\basetsd.h"\
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_bprintf.hpp"\
+	"..\..\..\src\base\eb_collect.hpp"\
+	"..\..\..\src\base\eb_err.hpp"\
+	"..\..\..\src\base\eb_except.hpp"\
+	"..\..\..\src\base\eb_list.hpp"\
+	"..\..\..\src\base\eb_msg.hpp"\
+	"..\..\..\src\base\eb_queue.hpp"\
+	"..\..\..\src\base\eb_ring.hpp"\
+	"..\..\..\src\base\eb_sema.hpp"\
+	"..\..\..\src\base\eb_shmem.hpp"\
+	"..\..\..\src\base\eb_store.hpp"\
+	"..\..\..\src\base\eb_str.hpp"\
+	"..\..\..\src\base\eb_thread.hpp"\
+	
+
+..\..\..\src\base\eb_npipe.cpp : \
+	"..\..\..\..\..\..\..\bin\msdev6\vc98\include\basetsd.h"\
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_collect.hpp"\
+	"..\..\..\src\base\eb_err.hpp"\
+	"..\..\..\src\base\eb_except.hpp"\
+	"..\..\..\src\base\eb_list.hpp"\
+	"..\..\..\src\base\eb_npipe.hpp"\
+	"..\..\..\src\base\eb_queue.hpp"\
+	"..\..\..\src\base\eb_ring.hpp"\
+	"..\..\..\src\base\eb_sema.hpp"\
+	"..\..\..\src\base\eb_shmem.hpp"\
+	"..\..\..\src\base\eb_store.hpp"\
+	"..\..\..\src\base\eb_str.hpp"\
+	"..\..\..\src\base\eb_thread.hpp"\
+	
+
+..\..\..\src\base\eb_queue.cpp : \
+	"..\..\..\..\..\..\..\bin\msdev6\vc98\include\basetsd.h"\
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_collect.hpp"\
+	"..\..\..\src\base\eb_err.hpp"\
+	"..\..\..\src\base\eb_except.hpp"\
+	"..\..\..\src\base\eb_list.hpp"\
+	"..\..\..\src\base\eb_queue.hpp"\
+	"..\..\..\src\base\eb_ring.hpp"\
+	"..\..\..\src\base\eb_sema.hpp"\
+	"..\..\..\src\base\eb_shmem.hpp"\
+	"..\..\..\src\base\eb_store.hpp"\
+	"..\..\..\src\base\eb_str.hpp"\
+	"..\..\..\src\base\eb_thread.hpp"\
+	
+
+..\..\..\src\base\eb_ring.cpp : \
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_collect.hpp"\
+	"..\..\..\src\base\eb_err.hpp"\
+	"..\..\..\src\base\eb_list.hpp"\
+	"..\..\..\src\base\eb_ring.hpp"\
+	"..\..\..\src\base\eb_sema.hpp"\
+	"..\..\..\src\base\eb_shmem.hpp"\
+	"..\..\..\src\base\eb_str.hpp"\
+	
+
+..\..\..\src\base\eb_sema.cpp : \
+	"..\..\..\..\..\..\..\bin\msdev6\vc98\include\basetsd.h"\
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_collect.hpp"\
+	"..\..\..\src\base\eb_list.hpp"\
+	"..\..\..\src\base\eb_sema.hpp"\
+	"..\..\..\src\base\eb_str.hpp"\
+	
+
+..\..\..\src\base\eb_shmem.cpp : \
+	"..\..\..\..\..\..\..\bin\msdev6\vc98\include\basetsd.h"\
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_err.hpp"\
+	"..\..\..\src\base\eb_shmem.hpp"\
+	"..\..\..\src\base\eb_str.hpp"\
+	
+
+..\..\..\src\base\eb_cmdarg.cpp : \
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_cmdarg.hpp"\
+	"..\..\..\src\base\eb_err.hpp"\
+	"..\..\..\src\base\eb_file.hpp"\
+	"..\..\..\src\base\eb_str.hpp"\
+	
+
+..\..\..\src\base\eb_cmdline.cpp : \
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_cmdline.hpp"\
+	"..\..\..\src\base\eb_str.hpp"\
+	"..\..\..\src\base\eb_strex.hpp"\
+	
+
+..\..\..\src\base\eb_dde.cpp : \
+	"..\..\..\..\..\..\..\bin\msdev6\vc98\include\basetsd.h"\
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_dde.hpp"\
+	"..\..\..\src\base\eb_err.hpp"\
+	"..\..\..\src\base\eb_str.hpp"\
+	
+
+..\..\..\src\base\eb_except.cpp : \
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_collect.hpp"\
+	"..\..\..\src\base\eb_err.hpp"\
+	"..\..\..\src\base\eb_except.hpp"\
+	"..\..\..\src\base\eb_list.hpp"\
+	"..\..\..\src\base\eb_sema.hpp"\
+	"..\..\..\src\base\eb_store.hpp"\
+	"..\..\..\src\base\eb_str.hpp"\
+	"..\..\..\src\base\eb_thread.hpp"\
+	
+
+..\..\..\src\base\eb_file.cpp : \
+	"..\..\..\..\..\..\..\bin\msdev6\vc98\include\basetsd.h"\
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_err.hpp"\
+	"..\..\..\src\base\eb_file.hpp"\
+	"..\..\..\src\base\eb_str.hpp"\
+	
+
+..\..\..\src\base\eb_osver.cpp : \
+	"..\..\..\..\..\..\..\bin\msdev6\vc98\include\basetsd.h"\
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_osver.hpp"\
+	
+
+..\..\..\src\base\eb_process.cpp : \
+	"..\..\..\..\..\..\..\bin\msdev6\vc98\include\basetsd.h"\
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_collect.hpp"\
+	"..\..\..\src\base\eb_err.hpp"\
+	"..\..\..\src\base\eb_except.hpp"\
+	"..\..\..\src\base\eb_list.hpp"\
+	"..\..\..\src\base\eb_process.hpp"\
+	"..\..\..\src\base\eb_sema.hpp"\
+	"..\..\..\src\base\eb_store.hpp"\
+	"..\..\..\src\base\eb_str.hpp"\
+	"..\..\..\src\base\eb_thread.hpp"\
+	
+
+..\..\..\src\base\eb_prof.cpp : \
+	"..\..\..\..\..\..\..\bin\msdev6\vc98\include\basetsd.h"\
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_prof.hpp"\
+	"..\..\..\src\base\eb_str.hpp"\
+	
+
+..\..\..\src\base\eb_res.cpp : \
+	"..\..\..\..\..\..\..\bin\msdev6\vc98\include\basetsd.h"\
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_res.hpp"\
+	"..\..\..\src\base\eb_str.hpp"\
+	
+
+..\..\..\src\base\eb_thread.cpp : \
+	"..\..\..\..\..\..\..\bin\msdev6\vc98\include\basetsd.h"\
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_collect.hpp"\
+	"..\..\..\src\base\eb_err.hpp"\
+	"..\..\..\src\base\eb_except.hpp"\
+	"..\..\..\src\base\eb_list.hpp"\
+	"..\..\..\src\base\eb_sema.hpp"\
+	"..\..\..\src\base\eb_store.hpp"\
+	"..\..\..\src\base\eb_str.hpp"\
+	"..\..\..\src\base\eb_thread.hpp"\
+	

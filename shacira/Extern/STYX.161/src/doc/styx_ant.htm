@@ -1,0 +1,332 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[styx_ant.h] Language Interface</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[styx_ant.h] Language Interface</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="ptm.htm">#include "ptm.h"</a>
+<br><a href="gls_abs.htm">#include "gls_abs.h"</a>
+<br>
+<br>
+<br>
+<br><hr width="100%" size=2><h2><b> symbol objects - init & quit </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>styx_initSymbols</b>()</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>styx_quitSymbols</b>()</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Types & Constants </b></h2>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b> styx </b>
+<td align=left>abstract type
+
+</table>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b> styxSource </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> styxOptCfg </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> styxQlxDfn </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> styxQlxCat </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> styxQlxGrp </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> styxQlxOpt </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> styxExp  </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> styxDfn  </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> styxCat  </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> styxDfnOpt </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> styxLay  </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> styxPrd  </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> styxMbr  </b>
+<td align=left>abstract type
+
+</table>
+<br><hr width="100%" size=2><h2><b> Access to Tokens </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Tstyx_Ide</b>(GLS_Tok x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Tstyx_Set</b>(GLS_Tok x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Tstyx_Seq</b>(GLS_Tok x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Access to Terms </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styx_styx</b>(PT_Abs_Term x, styx* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styx_Source</b>(PT_Abs_Term x, styxSource* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styx_OptCfg</b>(PT_Abs_Term x, styxOptCfg* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styx_QlxDfn</b>(PT_Abs_Term x, styxQlxDfn* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styx_QlxCat</b>(PT_Abs_Term x, styxQlxCat* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styx_QlxGrp</b>(PT_Abs_Term x, styxQlxGrp* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styx_QlxOpt</b>(PT_Abs_Term x, styxQlxOpt* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styx_Exp</b>(PT_Abs_Term x, styxExp* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styx_Dfn</b>(PT_Abs_Term x, styxDfn* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styx_Cat</b>(PT_Abs_Term x, styxCat* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styx_DfnOpt</b>(PT_Abs_Term x, styxDfnOpt* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styx_Lay</b>(PT_Abs_Term x, styxLay* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styx_Prd</b>(PT_Abs_Term x, styxPrd* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styx_Mbr</b>(PT_Abs_Term x, styxMbr* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> styx </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styx_Start_Source</b>(styx x, styxSource* x1)
+#define styx_Start_0   styx_Start_Source</pre>
+<td bgcolor="#FFF0F5" align=left>&nbsp;
+</table>
+<br><hr width="100%" size=2><h2><b> Source </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styxSource_root</b>(styxSource x, GLS_Tok* x1, GLS_Lst(styxQlxDfn)* x2,
+                       styxOptCfg* x3)</pre>
+<td bgcolor="#FFF0F5" align=left>&nbsp;
+</table>
+<br><hr width="100%" size=2><h2><b> OptCfg </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styxOptCfg_nul</b>(styxOptCfg x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styxOptCfg_cfg</b>(styxOptCfg x, GLS_Lst(styxDfn)* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> QlxDfn </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styxQlxDfn_xgrp</b>(styxQlxDfn x, GLS_Tok* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styxQlxDfn_igrp</b>(styxQlxDfn x, GLS_Tok* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styxQlxDfn_defn</b>(styxQlxDfn x, styxQlxCat* x1, styxQlxOpt* x2,
+                       styxQlxGrp* x3, GLS_Tok* x4,
+                       styxQlxGrp* x5, styxExp* x6)</pre>
+<td bgcolor="#FFF0F5" align=left>&nbsp;
+</table>
+<br><hr width="100%" size=2><h2><b> QlxCat </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styxQlxCat_letC</b>(styxQlxCat x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styxQlxCat_indC</b>(styxQlxCat x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styxQlxCat_ignC</b>(styxQlxCat x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styxQlxCat_comC</b>(styxQlxCat x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styxQlxCat_lanC</b>(styxQlxCat x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styxQlxCat_tokC</b>(styxQlxCat x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> QlxGrp </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styxQlxGrp_non</b>(styxQlxGrp x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styxQlxGrp_igrp</b>(styxQlxGrp x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styxQlxGrp_grp</b>(styxQlxGrp x, GLS_Tok* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> QlxOpt </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styxQlxOpt_ignca</b>(styxQlxOpt x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styxQlxOpt_non</b>(styxQlxOpt x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Exp </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styxExp_dyck</b>(styxExp x, styxExp* x1, styxExp* x2,
+                    styxExp* x3)</pre>
+<td bgcolor="#FFF0F5" align=left>&nbsp;<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styxExp_nul</b>(styxExp x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styxExp_opt</b>(styxExp x, styxExp* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styxExp_set</b>(styxExp x, GLS_Tok* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styxExp_conc</b>(styxExp x, styxExp* x1, styxExp* x2)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styxExp_sequ</b>(styxExp x, GLS_Tok* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styxExp_star</b>(styxExp x, styxExp* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styxExp_range</b>(styxExp x, styxExp* x1, styxExp* x2)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styxExp_ident</b>(styxExp x, GLS_Tok* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styxExp_union</b>(styxExp x, styxExp* x1, styxExp* x2)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styxExp_diff</b>(styxExp x, styxExp* x1, styxExp* x2)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styxExp_plus</b>(styxExp x, styxExp* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Dfn </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styxDfn_defn</b>(styxDfn x, styxCat* x1, styxDfnOpt* x2,
+                    GLS_Tok* x3, GLS_Lst(styxPrd)* x4)</pre>
+<td bgcolor="#FFF0F5" align=left>&nbsp;
+</table>
+<br><hr width="100%" size=2><h2><b> Cat </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styxCat_bgnC</b>(styxCat x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styxCat_letC</b>(styxCat x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> DfnOpt </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styxDfnOpt_non</b>(styxDfnOpt x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styxDfnOpt_errnt</b>(styxDfnOpt x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Lay </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styxLay_dft</b>(styxLay x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styxLay_rec</b>(styxLay x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styxLay_grp</b>(styxLay x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Prd </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styxPrd_prod</b>(styxPrd x, styxLay* x1, GLS_Tok* x2,
+                    GLS_Lst(styxMbr)* x3)</pre>
+<td bgcolor="#FFF0F5" align=left>&nbsp;
+</table>
+<br><hr width="100%" size=2><h2><b> Mbr </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styxMbr_else</b>(styxMbr x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styxMbr_ntm</b>(styxMbr x, GLS_Tok* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>styxMbr_tkm</b>(styxMbr x, GLS_Tok* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+
+</body>
+</html>

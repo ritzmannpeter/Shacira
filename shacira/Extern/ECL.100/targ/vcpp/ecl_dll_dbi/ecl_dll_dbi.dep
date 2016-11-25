@@ -1,0 +1,259 @@
+# Microsoft Developer Studio erstellte Abhängigkeitsdatei, einbezogen von ecl_dll_dbi.mak
+
+..\..\..\src\dbi\edb_dml.cpp : \
+	"..\..\..\src\base\eb_array.hpp"\
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_collect.hpp"\
+	"..\..\..\src\base\eb_err.hpp"\
+	"..\..\..\src\base\eb_event.hpp"\
+	"..\..\..\src\base\eb_list.hpp"\
+	"..\..\..\src\base\eb_object.hpp"\
+	"..\..\..\src\base\eb_res.hpp"\
+	"..\..\..\src\base\eb_sema.hpp"\
+	"..\..\..\src\base\eb_str.hpp"\
+	"..\..\..\src\base\eb_time.hpp"\
+	"..\..\..\src\dbi\edb_cursor.hpp"\
+	"..\..\..\src\dbi\edb_database.hpp"\
+	"..\..\..\src\dbi\edb_dml.hpp"\
+	"..\..\..\src\dbi\edb_sql.hpp"\
+	"..\..\..\src\dbi\edb_transaction.hpp"\
+	"..\..\..\src\store\es_base.hpp"\
+	"..\..\..\src\store\es_store.hpp"\
+	"..\..\..\src\store\es_var.hpp"\
+	
+
+..\..\..\src\dbi\edb_function.cpp : \
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_collect.hpp"\
+	"..\..\..\src\base\eb_err.hpp"\
+	"..\..\..\src\base\eb_event.hpp"\
+	"..\..\..\src\base\eb_list.hpp"\
+	"..\..\..\src\base\eb_object.hpp"\
+	"..\..\..\src\base\eb_res.hpp"\
+	"..\..\..\src\base\eb_sema.hpp"\
+	"..\..\..\src\base\eb_str.hpp"\
+	"..\..\..\src\base\eb_time.hpp"\
+	"..\..\..\src\dbi\edb_cursor.hpp"\
+	"..\..\..\src\dbi\edb_cursor_ex.hpp"\
+	"..\..\..\src\dbi\edb_database.hpp"\
+	"..\..\..\src\dbi\edb_function.hpp"\
+	"..\..\..\src\dbi\edb_sql.hpp"\
+	"..\..\..\src\dbi\edb_transaction.hpp"\
+	"..\..\..\src\store\es_base.hpp"\
+	"..\..\..\src\store\es_store.hpp"\
+	"..\..\..\src\store\es_var.hpp"\
+	
+
+..\..\..\src\dbi\edb_transaction.cpp : \
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_collect.hpp"\
+	"..\..\..\src\base\eb_err.hpp"\
+	"..\..\..\src\base\eb_event.hpp"\
+	"..\..\..\src\base\eb_except.hpp"\
+	"..\..\..\src\base\eb_list.hpp"\
+	"..\..\..\src\base\eb_msg.hpp"\
+	"..\..\..\src\base\eb_sema.hpp"\
+	"..\..\..\src\base\eb_store.hpp"\
+	"..\..\..\src\base\eb_str.hpp"\
+	"..\..\..\src\base\eb_thread.hpp"\
+	"..\..\..\src\dbi\edb_database.hpp"\
+	"..\..\..\src\dbi\edb_transaction.hpp"\
+	
+
+..\..\..\src\dbi\edb_cursor.cpp : \
+	"..\..\..\src\base\eb_array.hpp"\
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_collect.hpp"\
+	"..\..\..\src\base\eb_err.hpp"\
+	"..\..\..\src\base\eb_event.hpp"\
+	"..\..\..\src\base\eb_object.hpp"\
+	"..\..\..\src\base\eb_res.hpp"\
+	"..\..\..\src\base\eb_str.hpp"\
+	"..\..\..\src\base\eb_time.hpp"\
+	"..\..\..\src\dbi\edb_cursor.hpp"\
+	"..\..\..\src\dbi\edb_database.hpp"\
+	"..\..\..\src\dbi\edb_sql.hpp"\
+	"..\..\..\src\store\es_base.hpp"\
+	"..\..\..\src\store\es_store.hpp"\
+	"..\..\..\src\store\es_var.hpp"\
+	
+
+..\..\..\src\dbi\edb_cursor_ex.cpp : \
+	"..\..\..\src\base\eb_array.hpp"\
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_collect.hpp"\
+	"..\..\..\src\base\eb_err.hpp"\
+	"..\..\..\src\base\eb_event.hpp"\
+	"..\..\..\src\base\eb_object.hpp"\
+	"..\..\..\src\base\eb_res.hpp"\
+	"..\..\..\src\base\eb_str.hpp"\
+	"..\..\..\src\base\eb_time.hpp"\
+	"..\..\..\src\dbi\edb_cursor.hpp"\
+	"..\..\..\src\dbi\edb_cursor_ex.hpp"\
+	"..\..\..\src\dbi\edb_database.hpp"\
+	"..\..\..\src\dbi\edb_sql.hpp"\
+	"..\..\..\src\store\es_base.hpp"\
+	"..\..\..\src\store\es_store.hpp"\
+	"..\..\..\src\store\es_var.hpp"\
+	
+
+..\..\..\src\dbi\edb_database.cpp : \
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_err.hpp"\
+	"..\..\..\src\base\eb_event.hpp"\
+	"..\..\..\src\base\eb_object.hpp"\
+	"..\..\..\src\base\eb_res.hpp"\
+	"..\..\..\src\base\eb_str.hpp"\
+	"..\..\..\src\base\eb_time.hpp"\
+	"..\..\..\src\dbi\edb_cursor.hpp"\
+	"..\..\..\src\dbi\edb_database.hpp"\
+	"..\..\..\src\dbi\edb_record.hpp"\
+	"..\..\..\src\dbi\edb_sql.hpp"\
+	"..\..\..\src\store\es_base.hpp"\
+	"..\..\..\src\store\es_store.hpp"\
+	"..\..\..\src\store\es_var.hpp"\
+	
+
+..\..\..\src\dbi\edb_dictionary.cpp : \
+	"..\..\..\src\base\eb_array.hpp"\
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_collect.hpp"\
+	"..\..\..\src\base\eb_err.hpp"\
+	"..\..\..\src\base\eb_event.hpp"\
+	"..\..\..\src\base\eb_list.hpp"\
+	"..\..\..\src\base\eb_object.hpp"\
+	"..\..\..\src\base\eb_res.hpp"\
+	"..\..\..\src\base\eb_sema.hpp"\
+	"..\..\..\src\base\eb_str.hpp"\
+	"..\..\..\src\base\eb_time.hpp"\
+	"..\..\..\src\dbi\edb_cursor.hpp"\
+	"..\..\..\src\dbi\edb_database.hpp"\
+	"..\..\..\src\dbi\edb_dictionary.hpp"\
+	"..\..\..\src\dbi\edb_sql.hpp"\
+	"..\..\..\src\store\es_base.hpp"\
+	"..\..\..\src\store\es_store.hpp"\
+	"..\..\..\src\store\es_var.hpp"\
+	
+
+..\..\..\src\dbi\edb_record.cpp : \
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_err.hpp"\
+	"..\..\..\src\base\eb_str.hpp"\
+	"..\..\..\src\dbi\edb_database.hpp"\
+	"..\..\..\src\dbi\edb_record.hpp"\
+	
+
+..\..\..\src\dbi\edb_sql.cpp : \
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_str.hpp"\
+	"..\..\..\src\dbi\edb_sql.hpp"\
+	
+
+..\..\..\src\dbi\edb_field.cpp : \
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_collect.hpp"\
+	"..\..\..\src\base\eb_err.hpp"\
+	"..\..\..\src\base\eb_event.hpp"\
+	"..\..\..\src\base\eb_list.hpp"\
+	"..\..\..\src\base\eb_object.hpp"\
+	"..\..\..\src\base\eb_res.hpp"\
+	"..\..\..\src\base\eb_sema.hpp"\
+	"..\..\..\src\base\eb_str.hpp"\
+	"..\..\..\src\base\eb_time.hpp"\
+	"..\..\..\src\dbi\edb_cursor.hpp"\
+	"..\..\..\src\dbi\edb_cursor_ex.hpp"\
+	"..\..\..\src\dbi\edb_database.hpp"\
+	"..\..\..\src\dbi\edb_field.hpp"\
+	"..\..\..\src\dbi\edb_query.hpp"\
+	"..\..\..\src\dbi\edb_row.hpp"\
+	"..\..\..\src\dbi\edb_sql.hpp"\
+	"..\..\..\src\dbi\edb_transaction.hpp"\
+	"..\..\..\src\store\es_base.hpp"\
+	"..\..\..\src\store\es_field.hpp"\
+	"..\..\..\src\store\es_filter.hpp"\
+	"..\..\..\src\store\es_query.hpp"\
+	"..\..\..\src\store\es_row.hpp"\
+	"..\..\..\src\store\es_store.hpp"\
+	"..\..\..\src\store\es_var.hpp"\
+	
+
+..\..\..\src\dbi\edb_query.cpp : \
+	"..\..\..\src\base\eb_array.hpp"\
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_collect.hpp"\
+	"..\..\..\src\base\eb_err.hpp"\
+	"..\..\..\src\base\eb_event.hpp"\
+	"..\..\..\src\base\eb_list.hpp"\
+	"..\..\..\src\base\eb_object.hpp"\
+	"..\..\..\src\base\eb_osver.hpp"\
+	"..\..\..\src\base\eb_res.hpp"\
+	"..\..\..\src\base\eb_sema.hpp"\
+	"..\..\..\src\base\eb_str.hpp"\
+	"..\..\..\src\base\eb_time.hpp"\
+	"..\..\..\src\dbi\edb_cursor.hpp"\
+	"..\..\..\src\dbi\edb_cursor_ex.hpp"\
+	"..\..\..\src\dbi\edb_database.hpp"\
+	"..\..\..\src\dbi\edb_function.hpp"\
+	"..\..\..\src\dbi\edb_query.hpp"\
+	"..\..\..\src\dbi\edb_row.hpp"\
+	"..\..\..\src\dbi\edb_sql.hpp"\
+	"..\..\..\src\dbi\edb_transaction.hpp"\
+	"..\..\..\src\store\es_base.hpp"\
+	"..\..\..\src\store\es_filter.hpp"\
+	"..\..\..\src\store\es_query.hpp"\
+	"..\..\..\src\store\es_row.hpp"\
+	"..\..\..\src\store\es_store.hpp"\
+	"..\..\..\src\store\es_var.hpp"\
+	
+
+..\..\..\src\dbi\edb_row.cpp : \
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_collect.hpp"\
+	"..\..\..\src\base\eb_err.hpp"\
+	"..\..\..\src\base\eb_event.hpp"\
+	"..\..\..\src\base\eb_list.hpp"\
+	"..\..\..\src\base\eb_object.hpp"\
+	"..\..\..\src\base\eb_res.hpp"\
+	"..\..\..\src\base\eb_sema.hpp"\
+	"..\..\..\src\base\eb_str.hpp"\
+	"..\..\..\src\base\eb_time.hpp"\
+	"..\..\..\src\dbi\edb_cursor.hpp"\
+	"..\..\..\src\dbi\edb_cursor_ex.hpp"\
+	"..\..\..\src\dbi\edb_database.hpp"\
+	"..\..\..\src\dbi\edb_dictionary.hpp"\
+	"..\..\..\src\dbi\edb_field.hpp"\
+	"..\..\..\src\dbi\edb_query.hpp"\
+	"..\..\..\src\dbi\edb_row.hpp"\
+	"..\..\..\src\dbi\edb_sql.hpp"\
+	"..\..\..\src\dbi\edb_transaction.hpp"\
+	"..\..\..\src\store\es_base.hpp"\
+	"..\..\..\src\store\es_field.hpp"\
+	"..\..\..\src\store\es_filter.hpp"\
+	"..\..\..\src\store\es_query.hpp"\
+	"..\..\..\src\store\es_row.hpp"\
+	"..\..\..\src\store\es_store.hpp"\
+	"..\..\..\src\store\es_var.hpp"\
+	
+
+..\..\..\src\dbi\edb_var.cpp : \
+	"..\..\..\src\base\eb_array.hpp"\
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_collect.hpp"\
+	"..\..\..\src\base\eb_err.hpp"\
+	"..\..\..\src\base\eb_event.hpp"\
+	"..\..\..\src\base\eb_list.hpp"\
+	"..\..\..\src\base\eb_object.hpp"\
+	"..\..\..\src\base\eb_res.hpp"\
+	"..\..\..\src\base\eb_sema.hpp"\
+	"..\..\..\src\base\eb_str.hpp"\
+	"..\..\..\src\base\eb_time.hpp"\
+	"..\..\..\src\dbi\edb_cursor.hpp"\
+	"..\..\..\src\dbi\edb_cursor_ex.hpp"\
+	"..\..\..\src\dbi\edb_database.hpp"\
+	"..\..\..\src\dbi\edb_sql.hpp"\
+	"..\..\..\src\dbi\edb_transaction.hpp"\
+	"..\..\..\src\dbi\edb_var.hpp"\
+	"..\..\..\src\store\es_base.hpp"\
+	"..\..\..\src\store\es_store.hpp"\
+	"..\..\..\src\store\es_var.hpp"\
+	

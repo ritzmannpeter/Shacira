@@ -1,0 +1,5 @@
+#!/bin/sh
+
+export PATH=`pwd`/gen:$PATH
+
+pim_test pl0 testpl0.pl0

@@ -1,0 +1,26 @@
+[StyxDoc/Examples/README] Tutorial Examples
+
+This directory is to become a sequence of tutorial
+example to demonstrate and introduce certain features
+of the Styx system.
+
+It could contain examples in the following sequence:
+
+1) A trivial calculator to get things started
+
+2) An interpreter extending 1) to introduce
+   finite maps and the advantage of using a
+   derivation tree.
+
+3) Splitting 2) into a "compiler" and a "runtime
+   system" demonstrating persistence.
+
+4) Varying 2) to "compile" to C code to demonstrate
+   the unparser.
+
+5) Varying 1) to demonstrate early reduction and the
+   integration with C++
+
+6) Some language definitions demonstating special features
+
+Note: The makefiles are linux/gcc-based.

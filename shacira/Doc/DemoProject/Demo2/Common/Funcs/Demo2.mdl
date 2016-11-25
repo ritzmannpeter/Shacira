@@ -1,0 +1,26 @@
+
+/// this is a demo model file
+
+filter uchar Second();
+
+database test {
+
+    current_second uchar
+    vartype=act
+    filter=Second()
+    ;
+
+    test_var short
+    vartype=volatile
+    persist=file
+    ;
+
+    test_var_max short
+    vartype=volatile
+    persist=file
+    ;
+
+    EventTest[50] long
+    persist=file;
+};
+

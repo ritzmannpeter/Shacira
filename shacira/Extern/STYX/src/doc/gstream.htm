@@ -1,0 +1,216 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[gstream.h] Generic Character ( Set ) & Stream Library</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[gstream.h] Generic Character ( Set ) & Stream Library</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="standard.htm">#include "standard.h"</a>
+<br>
+<br>
+<br>
+<br><pre>
+   [gstream] supports the conversion of strings from one character set to another.
+   Beside that it provides a generic stream library which is able to handle different
+   character sets.
+   Supported platforms are Unix and Windows.
+
+</pre>
+<br><hr width="100%" size=2><h2><b> Types and macros </b></h2>
+<br> <b>Default multibyte and wide character sets</b> 
+
+<br><pre>#if defined( _MSDOS ) || defined( _WIN32 )
+#define CS_ID_WCHAR   "1200"
+#else
+#define CS_ID_WCHAR   "UCS-4"
+#endif
+#define CS_ID_MBYTE   "UTF-8"
+
+</pre>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b>CSConv_T</b>
+<td align=left> Character set conversion type
+
+<TR valign=top>
+<td align=left><b>GStream_T</b>
+<td align=left> Generic stream type
+
+</table>
+<br> <b>Types of generic stream functions</b> 
+
+<br><pre>// read byte vector function (RC&gt;=0 &lt;==&gt; bytes read, RC=-1 &lt;==&gt; error)
+typedef int (*GS_getb_T)(GStream_T gstream, c_byte* b, int cnt);
+// put byte vector function (RC&gt;=0 &lt;==&gt; bytes written, RC=-1 &lt;==&gt; error)
+typedef int (*GS_putb_T)(GStream_T gstream, c_byte* b, int cnt);
+// fseek function
+// (RC = new byte position = origin + offset &lt;==&gt; OK, RC=-1 &lt;==&gt; error)
+typedef LONG_INT (*GS_seek_T)(GStream_T gstream, long offset, int origin);
+// close and free function
+typedef void (*GS_destruct_T)(GStream_T gstream);
+
+</pre>
+<br><hr width="100%" size=2><h2><b> Multibyte and wide character set support </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>GS_csconv_ucs4_utf8</b>
+    (
+      wc_string in, size_t insize,
+      c_string out, size_t outsize
+    )</pre>
+<td bgcolor="#FFF0F5" align=left> ucs4 --&gt; utf-8 ( RFC 2279 )<br>
+   'insize' contains the number of wide characters in 'in', L'\0' inclusive.<br>
+   'outsize' contains the number of bytes in 'out', '\0' inclusive.<br>
+   'out': utf-8 representation of 'in' or NULL<br>
+   RC: &gt;=0 on O.K. ( number of written bytes )<br>
+     | =-1 on possible incomplete input<br>
+     | =-2 on error<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>GS_csconv_utf8_ucs4</b>
+    (
+      c_string in, size_t insize,
+      wc_string out, size_t outsize
+    )</pre>
+<td bgcolor="#FFF0F5" align=left> utf-8 --&gt; ucs4 ( RFC 2279 )<br>
+   'insize' contains the number of bytes in 'in', '\0' inclusive.<br>
+   'outsize' contains the number of wide characters in 'out', L'\0' inclusive.<br>
+   'out': ucs4 representation of 'in' or NULL<br>
+   RC: &gt;=0 on O.K. ( number of written wide characters )<br>
+     | =-1 on possible incomplete input<br>
+     | =-2 on error<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>GS_ucs4_to_utf8</b>(wc_string in)</pre>
+<td bgcolor="#FFF0F5" align=left> ucs4 --&gt; utf-8 ( RFC 2279 )<br>
+   RC: utf-8 representation of 'in' or NULL; allocs memory<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>wc_string <b>GS_utf8_to_ucs4</b>(c_string in)</pre>
+<td bgcolor="#FFF0F5" align=left> utf-8 --&gt; ucs4 ( RFC 2279 )<br>
+   RC: ucs4 representation of 'in' or NULL; allocs memory<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>GS_fprint_utf8</b>(FILE* fp, c_string s, c_bool raw)</pre>
+<td bgcolor="#FFF0F5" align=left> print utf-8 string 's' to file 'fp'<br>
+   raw --&gt; printable ascii or hex<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>GS_fprint_ucs4</b>(FILE* fp, wc_string ws, c_bool raw)</pre>
+<td bgcolor="#FFF0F5" align=left> print ucs4 string 'ws' to file 'fp'<br>
+   raw --&gt; printable ascii or hex<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>CSConv_T <b>GS_csconv_new</b>(c_string ct, c_string cs)</pre>
+<td bgcolor="#FFF0F5" align=left> create new character set conversion description ( RC=NULL on error ) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>GS_csconv_free</b>(CSConv_T csci)</pre>
+<td bgcolor="#FFF0F5" align=left> free character set conversion description <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>GS_csconv_string</b>
+    (
+      CSConv_T csci, c_string in, int insize,
+      c_string out, int* outsize
+    )</pre>
+<td bgcolor="#FFF0F5" align=left> character set conversion of 'in' to 'out'<br>
+   'outsize' contains the number of bytes in 'out'.<br>
+   'in' and 'out' must be a valid character buffers with size &gt; 0.<br>
+   RC: &gt;=0 on O.K. ( number of conversions / characters )<br>
+     | =-1 on possible incomplete input<br>
+     | =-2 on error<br>
+<br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Generic stream support </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>GS_stream_file_free</b>(GStream_T gstream)</pre>
+<td bgcolor="#FFF0F5" align=left>free file stream 'gstream'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>GS_stream_file_destruct</b>(GStream_T gstream)</pre>
+<td bgcolor="#FFF0F5" align=left> close and free file stream 'gstream' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>GStream_T <b>GS_stream_file_new</b>
+          (
+            FILE* fp, c_string cs, c_bool close
+          )</pre>
+<td bgcolor="#FFF0F5" align=left> create new generic stream on a file opened for binary I/O<br>
+   'cs'   : character set name ( UCS4, UTF-8, MS:CodePage / GNU:iconv-based )<br>
+   'close': true &lt;--&gt; close file on stream destruction<br>
+   RC: stream on O.K. | NULL on error<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>GS_stream_string_free</b>(GStream_T gstream)</pre>
+<td bgcolor="#FFF0F5" align=left> free string stream 'gstream' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>GStream_T <b>GS_stream_string_new</b>
+          (
+            c_string s, unsigned int len, c_string cs
+          )</pre>
+<td bgcolor="#FFF0F5" align=left> create new generic stream on a string buffer<br>
+   'len': string size in bytes, inclusive terminating bytes<br>
+   'cs' : character set name ( UCS4, UTF-8, MS:CodePage / GNU:iconv-based )<br>
+   RC: stream on O.K. | NULL on error<br>
+   Note: During write operations when reaching the end of the buffer<br>
+         's' will be deleted and recreated.<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>GS_stream_string_set</b>
+       (
+         GStream_T gstream, c_string s, unsigned int len
+       )</pre>
+<td bgcolor="#FFF0F5" align=left> reset the string buffer of generic stream 'gstream'<br>
+   'len': string size in bytes, inclusive terminating bytes<br>
+   RC: True = O.K.<br>
+   Note: The character set of 's' and 'gstream' must be the same.<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>GS_stream_string_insert</b>
+       (
+         GStream_T gstream, c_string s, unsigned int len
+       )</pre>
+<td bgcolor="#FFF0F5" align=left> insert 's' into the string buffer of generic stream 'gstream'<br>
+   'len': string size in bytes, exclusive terminating bytes<br>
+   RC: True = O.K.<br>
+   Note: The character set of 's' and 'gstream' must be the same.<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>GS_stream_get_wcval</b>(GStream_T gstream, wc_int* wc)</pre>
+<td bgcolor="#FFF0F5" align=left> get wide character 'wc' from 'gstream'<br>
+   RC: =1 on O.K. | =0 on O.K. and EOF | =-1 on error<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>GS_stream_get_wcrc</b>(GStream_T gstream)</pre>
+<td bgcolor="#FFF0F5" align=left> get wide character from 'gstream'<br>
+   RC: &gt;=0 as wide character or =-1 on EOF | =-2 on error<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>GS_stream_put_wcval</b>(GStream_T gstream, wc_int wc)</pre>
+<td bgcolor="#FFF0F5" align=left> put wide character 'wc' to 'gstream'<br>
+   RC: &gt;=0 on O.K. | =-1 on error<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>GS_stream_bytepos</b>(GStream_T gstream, unsigned int* pos)</pre>
+<td bgcolor="#FFF0F5" align=left> get ( relative ) stream position in bytes<br>
+   RC: =0 on O.K. | =-1 on error<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>GS_getb_T <b>GS_fun_getb</b>(GStream_T gstream)</pre>
+<td bgcolor="#FFF0F5" align=left> get byte function of 'gstream' or NULL <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>GS_putb_T <b>GS_fun_putb</b>(GStream_T gstream)</pre>
+<td bgcolor="#FFF0F5" align=left> put byte function of 'gstream' or NULL <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>GS_seek_T <b>GS_fun_seek</b>(GStream_T gstream)</pre>
+<td bgcolor="#FFF0F5" align=left> position function of 'gstream' or NULL <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>GS_destruct_T <b>GS_fun_destruct</b>(GStream_T gstream)</pre>
+<td bgcolor="#FFF0F5" align=left> close and free function of 'gstream' or NULL <br>
+
+</table>
+
+</body>
+</html>

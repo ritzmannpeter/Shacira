@@ -1,0 +1,215 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[line_scn.h] Source Line Scanner</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[line_scn.h] Source Line Scanner</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><pre>
+
+  [line_scn] contains a set of functions for source analysis.
+
+  1. The primitive
+
+  |      string Line_get(FILE *SysIn)
+
+  reads the next line from the source file 'SysIn' and returns it as a string.
+
+  '\x1a' (DOS) and '(-1)' (UNIX) are recognized as end of file.
+  The end of line characters '\n' eg. '\r\n' and trailing spaces will be removed.
+
+  2. Further this module provides a simple AWK-mechanism.
+
+  3. The primitive
+
+  |      string Line_getCFunNam(string CDecl)
+
+	 extracts the function name from a C-deklaration/definition.
+
+  4. The primitive
+
+  |      string Line_replace(string txt, MAP(symbol,symbol) ReplaceRules)
+
+ supports simple text replacement. Each occurance of a key in the given text will
+ be replaced by the associated value.
+
+  5. The following functions support the removement/extraction of HTML/XML-tags,
+     C-comments and spaces in a given text.
+
+  |      string Line_withTag(string txt)
+  |      string Line_withoutTag(string txt)
+  |      string Line_withCCom(string txt)
+  |      string Line_withCComText(string txt)
+  |      string Line_withoutCCom(string txt)
+  |      string Line_withoutWhite(string txt)
+  |      string Line_clip[L|R](string txt)
+
+  6. Finally this module defines a set of functions for URI-Creation/Evaluation. ( RFC 2396 )
+
+
+</pre>
+<br><a href="standard.htm">#include "standard.h"</a>
+<br><a href="symbols.htm">#include "symbols.h"</a>
+<br><a href="hmap.htm">#include "hmap.h"</a>
+<br><a href="otab.htm">#include "otab.h"</a>
+<br>
+<br>
+<br>
+<br><hr width="100%" size=2><h2><b> Single line scanner </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>Line_get</b>(FILE *SysIn)</pre>
+<td bgcolor="#FFF0F5" align=left> get a single line or NULL; allocs memory<br>
+   All '\r', final '\n', trailing spaces and tabs<br>
+   are removed and other tabs expanded.<br>
+   Both (-1) and (0x1a) are treated as EOF-character.<br>
+<br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Split line & AWK </b></h2>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b> AWK </b>
+<td align=left> Abstract AWK type 
+
+</table>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>ROW(c_string) <b>StrToWords</b>(c_string s)</pre>
+<td bgcolor="#FFF0F5" align=left> get a row with all the words of line 's' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>AWK_defKey</b>(AWK awk, c_string key, void (*act)(ROW(c_string) wrd))</pre>
+<td bgcolor="#FFF0F5" align=left> adds a line key / action pair to 'awk' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>AWK <b>AWK_new</b>(c_string Comment)</pre>
+<td bgcolor="#FFF0F5" align=left> creates an AWK structure<br>
+   parameter: comment key<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>AWK_free</b>(AWK awk)</pre>
+<td bgcolor="#FFF0F5" align=left>frees 'awk'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>AWK_apply</b>(AWK awk, c_string FileName)</pre>
+<td bgcolor="#FFF0F5" align=left> evaluates 'FileName' according to the rules in 'awk' <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Text substitution </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>Line_clipR</b>(c_string txt)</pre>
+<td bgcolor="#FFF0F5" align=left> removes trailing white space; allocs memory <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>Line_clipL</b>(c_string txt)</pre>
+<td bgcolor="#FFF0F5" align=left> removes leading white space; allocs memory <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>Line_clip</b>(c_string txt)</pre>
+<td bgcolor="#FFF0F5" align=left> removes trailing and leading white space; allocs memory <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>Line_withoutWhite</b>(c_string txt)</pre>
+<td bgcolor="#FFF0F5" align=left> removes white space; allocs memory <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>Line_withTok</b>
+       (
+         c_string txt,
+         void (*getNextTokPos)(c_string s, c_string* ta, c_string* te)
+       )</pre>
+<td bgcolor="#FFF0F5" align=left> get token text only or NULL; allocs memory <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>Line_withoutTok</b>
+       (
+         c_string txt,
+         void (*getNextTokPos)(c_string s, c_string* ta, c_string* te)
+       )</pre>
+<td bgcolor="#FFF0F5" align=left> get text without token or NULL; allocs memory <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>Line_withoutTag</b>(c_string txt)</pre>
+<td bgcolor="#FFF0F5" align=left> get text without HTML/XML-tags or NULL; allocs memory <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>Line_withCCom</b>(c_string txt)</pre>
+<td bgcolor="#FFF0F5" align=left> get C-comment only or NULL; allocs memory <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>Line_withCComText</b>(c_string txt)</pre>
+<td bgcolor="#FFF0F5" align=left> get C-comment text only or NULL; allocs memory <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>Line_withoutCCom</b>(c_string txt)</pre>
+<td bgcolor="#FFF0F5" align=left> get text without C-comment or NULL; allocs memory <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>Line_getCFunNam</b>(c_string CDecl)</pre>
+<td bgcolor="#FFF0F5" align=left> extracts C-function name or NULL; allocs memory<br>
+   assertion: no comments in between 'CDecl'<br>
+   evaluation from right to left:<br>
+     ... &lt;Space&gt; &lt;ID&gt; &lt;Space&gt; ( &lt;Parameter&gt; )<br>
+   | ... ( ... &lt;ID&gt; ... ) ...\&lt;ID&gt; ( &lt;Parameter&gt; )<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>Line_replace</b>(c_string txt, MAP(symbol,symbol) ReplaceRules)</pre>
+<td bgcolor="#FFF0F5" align=left> replaces 'txt' according 'ReplaceRules'; allocs memory<br>
+   assertion: disjunct keys<br>
+<br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> URI Generation & Evaluation </b></h2>
+<br><pre>#define URI_SCHEME    0
+#define URI_AUTHORITY 1
+#define URI_PATH      2
+#define URI_QUERY     3
+#define URI_FRACTION  4
+
+</pre>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>URI_hasFileScheme</b>(MAP(long,symbol) parts)</pre>
+<td bgcolor="#FFF0F5" align=left> whether URI has a file scheme <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>URI_setFileScheme</b>(MAP(long,symbol) parts)</pre>
+<td bgcolor="#FFF0F5" align=left> set URI scheme to file scheme <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>URI_hasAuthority</b>(MAP(long,symbol) parts)</pre>
+<td bgcolor="#FFF0F5" align=left> whether URI has a non-empty authority <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>URI_hasFraction</b>(MAP(long,symbol) parts)</pre>
+<td bgcolor="#FFF0F5" align=left> whether URI has a non-empty fraction <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>URI_setDftFraction</b>(c_string dftfraction, MAP(long,symbol) parts)</pre>
+<td bgcolor="#FFF0F5" align=left> set URI fraction to default fraction 'dftfraction', if non-defined <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>URI_getFraction</b>(MAP(long,symbol) parts)</pre>
+<td bgcolor="#FFF0F5" align=left> get URI fraction or NULL <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>URI_getPath</b>(MAP(long,symbol) parts)</pre>
+<td bgcolor="#FFF0F5" align=left>get URI path or NULL
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>URI_setPath</b>(c_string path, MAP(long,symbol) parts)</pre>
+<td bgcolor="#FFF0F5" align=left> set URI path to 'path' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>URI_EscToAscChar</b>(c_string uri_part)</pre>
+<td bgcolor="#FFF0F5" align=left> get ascii value of escaped character or -1 <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>URI_isLocalFile</b>(MAP(long,symbol) parts)</pre>
+<td bgcolor="#FFF0F5" align=left> whether URI references a local file <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>URI_isTreeLocalFile</b>(c_string abspath, MAP(long,symbol) parts)</pre>
+<td bgcolor="#FFF0F5" align=left> whether URI references a file within the local tree 'abspath' <br>
+ True &lt;--&gt;<br>
+   (empty or file scheme) and empty authority and path located in tree<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>URI_desParts</b>(c_string txt, MAP(long,symbol) parts)</pre>
+<td bgcolor="#FFF0F5" align=left> destructs URI 'txt' to its components in 'parts' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>URI_consParts</b>(MAP(long,symbol) parts, c_bool localURI)</pre>
+<td bgcolor="#FFF0F5" align=left> constructs URI from its components in 'parts'; allocs memory <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>URI_RelToAbs</b>
+     (
+       c_string rel, c_string base, c_string doc, MAP(long,symbol) abs_parts
+     )</pre>
+<td bgcolor="#FFF0F5" align=left> destructs relative URI 'rel' to its absolute components in 'parts' <br>
+
+</table>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[xml_io.h] curl Wrapper</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[xml_io.h] curl Wrapper</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="standard.htm">#include "standard.h"</a>
+<br><a href="xml_dfn.htm">#include "xml_dfn.h"</a>
+<br><a href="gstream.htm">#include "gstream.h"</a>
+<br>
+<br>
+<br>
+<br><pre>
+   The module [xml_io] uses the library libcurl to fetch files identified
+   by an URL.
+
+</pre>
+<br><hr width="100%" size=2><h2><b> Init & Quit </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>XML_io_init</b>()</pre>
+<td bgcolor="#FFF0F5" align=left> init URL-based I/O; to be called once during application setup <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>XML_io_quit</b>()</pre>
+<td bgcolor="#FFF0F5" align=left> quit URL-based I/O; to be called once during application cleanup <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Creation & Disposal </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>UrlHdl_T <b>XML_io_create_handle</b>()</pre>
+<td bgcolor="#FFF0F5" align=left> create a new handle to access URL-based resources;<br>
+   RC: handle or NULL<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>XML_io_drop_handle</b>(UrlHdl_T hdl)</pre>
+<td bgcolor="#FFF0F5" align=left>drop handle 'hdl'
+
+</table>
+<br><hr width="100%" size=2><h2><b> URL Access </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>XML_io_download</b>
+       (
+         UrlHdl_T hdl, c_string url, c_string auth,
+         GStream_T stream, void (*prMsg)(c_string msg)
+       )</pre>
+<td bgcolor="#FFF0F5" align=left> download resource 'url' and put it to 'stream';<br>
+   optionally, use 'auth' (format: user:passwd) for authorisation<br>
+   and 'prMsg' as error callback<br>
+<br>
+
+</table>
+
+</body>
+</html>

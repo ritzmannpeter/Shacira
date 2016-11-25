@@ -1,0 +1,414 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[scn_base.h] Basic Token Separation</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[scn_base.h] Basic Token Separation</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="symbols.htm">#include "symbols.h"</a>
+<br><a href="scn_io.htm">#include "scn_io.h"</a>
+<br>
+<br>
+<br>
+<br>
+  <p>The module [scn_base] implements the scan stream interface based on a given
+  STYX-konform scanner definition. ( see <a href="scn_gen.htm">[scn_gen]</a> )
+  <p>The scan stream is reentrant and allows multiple scan operations at a time.
+  <br>
+
+
+<br><hr width="100%" size=2><h2><b> Macros </b></h2>
+<br>
+  <p><b>Token definition flags</b>
+  ( see <a href="scn_gen.htm">Scn_dfnToken</a> )
+
+
+<br><pre>#define SCN_FLG_IgnoreToken  1    /* token has to be ignored          */
+#define SCN_FLG_IgnoreCase   2    /* case insensitive token           */
+#define SCN_FLG_EofToken     4    /* eof token in embedded language   */
+#define SCN_FLG_SwitchToken  8    /* switch to/from embedded language */
+#define SCN_FLG_CfgToken     16   /* embedded language token          */
+#define SCN_FLG_IndentToken  32   /* (de)indent token                 */
+#define SCN_FLG_PatternToken 64   /* (start or end) pattern token     */
+#define SCN_FLG_GroupStack   128  /* push/pop token group             */
+
+</pre>
+<br>
+  <p><b>Token preprocessing result values</b>
+
+
+<br><pre>#define SCN_FLG_RescanNone     0
+#define SCN_FLG_RescanString   1
+#define SCN_FLG_RescanBString  2
+#define SCN_FLG_RescanFile     3
+#define SCN_FLG_RescanBFile    4
+#define SCN_FLG_RescanExtFile  5
+#define SCN_FLG_RescanExtBFile 6
+#define SCN_FLG_RescanChar     7
+#define SCN_FLG_RescanChrItr   8
+#define SCN_FLG_RescanBChrItr  9
+
+</pre>
+<br><hr width="100%" size=2><h2><b> Stream of tokens </b></h2>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b> Scn_Stream </b>
+<td align=left> Stream onto a scanner                 
+
+</table>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b> Scn_Stream_Itr </b>
+<td align=left> Character iterator onto a scan stream 
+
+</table>
+<br><pre>
+   Type of token preprocessing function
+   RC = SCN_FLG_RescanChrItr   & valid cMacVal --&gt; rescan character iterator cMacVal
+                                                   ( frees character iterator )
+   RC = SCN_FLG_RescanBChrItr  & valid cMacVal --&gt; rescan binary char iterator cMacVal
+                                                   ( frees character iterator )
+   RC = SCN_FLG_RescanString   & valid cMacVal --&gt; rescan string cMacVal
+   RC = SCN_FLG_RescanFile     & valid cMacVal --&gt; rescan file cMacVal
+   RC = SCN_FLG_RescanBString  & valid cMacVal --&gt; rescan binary string cMacVal
+   RC = SCN_FLG_RescanBFile    & valid cMacVal --&gt; rescan binary file cMacVal
+   RC = SCN_FLG_RescanExtFile  & valid cMacVal --&gt; rescan file cMacVal,
+                                                   with main stream read function if possible
+   RC = SCN_FLG_RescanExtBFile & valid cMacVal --&gt; rescan binary file cMacVal,
+                                                   with main stream read function if possible
+   RC = SCN_FLG_RescanChar     & valid cMacVal --&gt; rescan character cMacVal
+                                                   ( single byte or ucs4 )
+   RC = SCN_FLG_RescanNone     & valid cMacVal --&gt; replace cTokVal with cMacVal
+                                                   ( single byte or utf-8 )
+   ELSE                                        --&gt; ignore cTokVal
+
+</pre>
+<br><pre>typedef int (*Scn_PreMacFun)
+            (
+              Scn_Stream pStream, c_string cTokNam,
+              c_string cTokVal, symbol* cMacVal
+            );
+
+</pre>
+<br>
+   Type of the embedded language token constructor
+
+
+<br><pre>typedef Any_T (*Scn_eTerm)
+              (
+                Abs_T CurPTCfg, c_string language, c_string StartSymbol
+              );
+
+</pre>
+<br>
+   Type of the embedded language accept token recognizer
+
+
+<br><pre>typedef c_bool (*Scn_eAccept)(Abs_T CurPTCfg);
+
+</pre>
+<br><hr width="100%" size=2><h2><b> Accessing scanner definition </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>Scn_id</b>(Scn_T scn)</pre>
+<td bgcolor="#FFF0F5" align=left> name of the scanner (group) 'scn'; allocs memory<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>short <b>Scn_check_Token</b>(Scn_T scn, c_string s)</pre>
+<td bgcolor="#FFF0F5" align=left> whether string 's' is a token in scanner 'scn';<br>
+   result = token number ( &gt; 0 ) or 0<br>
+   assertion: Scn_groups(scn) = 0<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>short <b>Scn_check_WCToken</b>(Scn_T scn, wc_string s)</pre>
+<td bgcolor="#FFF0F5" align=left> whether wide string 's' is a token in scanner 'scn';<br>
+   result = token number ( &gt; 0 ) or 0<br>
+   assertion: Scn_groups(scn) = 0<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>Scn_tokens</b>(Scn_T scn)</pre>
+<td bgcolor="#FFF0F5" align=left> number of tokens defined in scanner ( group ) 'scn' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>Scn_tokid</b>(Scn_T scn, int i)</pre>
+<td bgcolor="#FFF0F5" align=left> name of the i-th token definied in scanner 'scn'; allocs memory<br>
+   assertion: Scn_groups(scn) = 0<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_byte <b>Scn_tokFlags</b>(Scn_T scn, int i)</pre>
+<td bgcolor="#FFF0F5" align=left> flags of the i-th token definied in scanner 'scn'<br>
+   assertion: Scn_groups(scn) = 0<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>Scn_dycks</b>(Scn_T scn)</pre>
+<td bgcolor="#FFF0F5" align=left> number of dyck token defined in scanner ( group ) 'scn' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Scn_T <b>Scn_dyck</b>(Scn_T scn, int i)</pre>
+<td bgcolor="#FFF0F5" align=left> i-th dyck scanner definied in scanner group 'scn'<br>
+   assertion: Scn_dycks(scn) &gt; 0<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>Scn_dycktoken</b>(Scn_T scn, int i)</pre>
+<td bgcolor="#FFF0F5" align=left> i-th dyck token definied in scanner group 'scn'<br>
+   assertion: Scn_dycks(scn) &gt; 0<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>Scn_groups</b>(Scn_T scn)</pre>
+<td bgcolor="#FFF0F5" align=left> number of groups defined in scanner ( group ) 'scn' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Scn_T <b>Scn_group</b>(Scn_T scn, int i)</pre>
+<td bgcolor="#FFF0F5" align=left> i-th scanner definied in scanner group 'scn'<br>
+   assertion: Scn_groups(scn) &gt; 0<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>Scn_SwitchGroup</b>(Scn_T scn, int i)</pre>
+<td bgcolor="#FFF0F5" align=left> switch group of the i-th token definied in scanner group 'scn' or -1<br>
+   assertion: Scn_groups(scn) = 0<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>long <b>Scn_check_GroupToken</b>(Scn_T scn, c_string s)</pre>
+<td bgcolor="#FFF0F5" align=left> whether string 's' is a token in scanner group 'scn';<br>
+   result: high = group index , low = token number ( &gt; 0 ) or 0<br>
+   assertion: Scn_groups(scn) &gt; 0<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>long <b>Scn_check_GroupWCToken</b>(Scn_T scn, wc_string s)</pre>
+<td bgcolor="#FFF0F5" align=left> whether wide string 's' is a token in scanner group 'scn';<br>
+   result: high = group index , low = token number ( &gt; 0 ) or 0<br>
+   assertion: Scn_groups(scn) &gt; 0<br>
+<br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Character iterator definition </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Scn_Stream_Itr <b>Stream_Itr_new</b>
+               (
+                 int      f_getc (StdCPtr file),
+                 void     f_close(StdCPtr file),
+                 c_string   f_wc2mb(wc_string wc),
+                 LONG_INT f_seek (StdCPtr file, long offset, int origin),
+                 StdCPtr  file,
+                 c_string   fileid
+               )</pre>
+<td bgcolor="#FFF0F5" align=left> creates and initializes a character iterator<br>
+   onto the open character source 'file'<br>
+   'f_getc' : next character<br>
+   'f_close': closes character source<br>
+   'f_wc2mb': converts wide to multibyte character<br>
+   'f_seek' : positions character source<br>
+   'fileid' : character source identifier<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Stream_Itr_free</b>(Scn_Stream_Itr itr)</pre>
+<td bgcolor="#FFF0F5" align=left>frees character iterator 'itr'
+
+</table>
+<br><hr width="100%" size=2><h2><b> Scan stream definition </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Scn_Stream <b>Stream_bgn</b>(Scn_T scn, Scn_Stream_Itr itr)</pre>
+<td bgcolor="#FFF0F5" align=left> creates and initializes a scan stream<br>
+   onto scanner 'scn' and character iterator 'itr'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Stream_close</b>(Scn_Stream t)</pre>
+<td bgcolor="#FFF0F5" align=left> closes character source i.e. file of scan stream 't' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Stream_free</b>(Scn_Stream t)</pre>
+<td bgcolor="#FFF0F5" align=left>frees scan stream 't'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Stream_reset</b>(Scn_Stream t)</pre>
+<td bgcolor="#FFF0F5" align=left> re-initializes scan process in current scan stream 't' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Stream_premac_set</b>(Scn_Stream t, Scn_PreMacFun cPreMac)</pre>
+<td bgcolor="#FFF0F5" align=left> adds 'cPreMac' to scan stream 't'<br>
+   for token preprocessing & macro expansion<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Stream_eterm_set</b>
+     (
+       Scn_Stream t, Abs_T CurPTCfg, Scn_eTerm eTerm, Scn_eAccept eAccept
+     )</pre>
+<td bgcolor="#FFF0F5" align=left> adds 'eTerm', 'eAccept' and 'CurPTCfg' to scan stream 't'<br>
+   for embedded language token construction<br>
+   ( deactivates other token concatenation )<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Stream_add_ctxval</b>(Scn_Stream t, Any_T id, Any_T val)</pre>
+<td bgcolor="#FFF0F5" align=left> adds the context pair 'id' |--&gt; 'val' to scan stream 't';<br>
+   updates existing entries<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Stream_concat_other</b>(Scn_Stream t)</pre>
+<td bgcolor="#FFF0F5" align=left> activates other token concatenation in scan stream 't' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Stream_skip_character</b>(Scn_Stream t, int cC)</pre>
+<td bgcolor="#FFF0F5" align=left> skips character 'cC' ( but tracks position ) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Stream_enable_lookahead</b>(Scn_Stream t)</pre>
+<td bgcolor="#FFF0F5" align=left> activates n character lookahead in scan stream 't' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Stream_binmode_set</b>(Scn_Stream t)</pre>
+<td bgcolor="#FFF0F5" align=left> activates binary mode in scan stream 't'<br>
+   ( deactivates other token concatenation )<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Scn_Stream <b>Stream_line</b>
+           (
+             Scn_T scn, StdCPtr line, int (*cGet)(StdCPtr line), c_string id
+           )
+#define STREAM_STDIN(scn) \
+	Stream_line(scn,stdin,(int (*)(StdCPtr f))fgetc,"&lt;stdin&gt;")</pre>
+<td bgcolor="#FFF0F5" align=left> creates a scan stream<br>
+   onto scanner 'scn' and character stream 'line'<br>
+   'cGet': next character<br>
+   'id'  : character stream identifier<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Scn_Stream <b>Stream_file</b>(Scn_T scn, c_string EnvVar, c_string FileName, c_string Ext)</pre>
+<td bgcolor="#FFF0F5" align=left> creates a scan stream<br>
+   onto scanner 'scn' and file [$'EnvVar'/]'FileName''Ext'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Scn_Stream <b>Stream_extfile</b>
+           (
+             Scn_T scn, c_string EnvVar, c_string FileName, c_string Ext,
+             int (*cGet)(FILE* f)
+           )</pre>
+<td bgcolor="#FFF0F5" align=left> creates a scan stream<br>
+   onto scanner 'scn' and file [$'EnvVar'/]'FileName''Ext'<br>
+   with external next character function 'cGet'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Scn_Stream <b>Stream_bstring</b>(Scn_T scn, c_bstring bstr)</pre>
+<td bgcolor="#FFF0F5" align=left> creates a scan stream onto scanner 'scn' and binary string 'bstr' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Stream_bstring_set</b>(Scn_Stream stream, c_bstring bstr)</pre>
+<td bgcolor="#FFF0F5" align=left> re-initializes scan stream 'stream' with binary string 'bstr' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Scn_Stream <b>Stream_string</b>(Scn_T scn, c_string Text)</pre>
+<td bgcolor="#FFF0F5" align=left> creates a scan stream onto scanner 'scn' and string 'Text' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Stream_string_set</b>(Scn_Stream stream, c_string Text)</pre>
+<td bgcolor="#FFF0F5" align=left> re-initializes scan stream 'stream' with string 'Text' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Stream_string_insert</b>(Scn_Stream stream, c_string Text)</pre>
+<td bgcolor="#FFF0F5" align=left> inserts string 'Text' at current position in scan stream 'stream' <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Defining token numbers </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Stream_defEofId</b>(Scn_Stream t, short tid)</pre>
+<td bgcolor="#FFF0F5" align=left> defines 'tid' as EOF token number in scan stream 't' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Stream_defErrId</b>(Scn_Stream t, short tid)</pre>
+<td bgcolor="#FFF0F5" align=left> defines 'tid' as error token number in scan stream 't' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Stream_defTokId</b>(Scn_Stream t, c_string Name, short tid)</pre>
+<td bgcolor="#FFF0F5" align=left> defines 'tid' as number for token 'Name' in scan stream 't' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Stream_defKeyId</b>(Scn_Stream t, c_string Text, short tid)</pre>
+<td bgcolor="#FFF0F5" align=left> defines 'tid' as number for keyword 'Text' in scan stream 't' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Stream_defWCKeyId</b>(Scn_Stream t, wc_string Text, short tid)</pre>
+<td bgcolor="#FFF0F5" align=left> defines 'tid' as number for wide keyword 'Text' in scan stream 't' <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Scan stream operations </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Stream_next</b>(Scn_Stream t)</pre>
+<td bgcolor="#FFF0F5" align=left> separates the next token in scan stream 't';<br>
+   That's the workhorse operation.<br>
+<br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Accessing current token </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>symbol <b>Stream_csym</b>(Scn_Stream t)</pre>
+<td bgcolor="#FFF0F5" align=left> symbol of the current token in scan stream 't' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>short <b>Stream_ctid</b>(Scn_Stream t)</pre>
+<td bgcolor="#FFF0F5" align=left> token number of the current token in scan stream 't' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>short <b>Stream_ctid_nokey</b>(Scn_Stream t)</pre>
+<td bgcolor="#FFF0F5" align=left> token number of the current token in scan stream 't'<br>
+   (non-indent token --&gt; ignore keyword)<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>Stream_ctnam</b>(Scn_Stream t)</pre>
+<td bgcolor="#FFF0F5" align=left> name of the current token in scan stream 't' or NULL (EOF) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Stream_cica</b>(Scn_Stream t)</pre>
+<td bgcolor="#FFF0F5" align=left> whether the current token in scan stream 't'<br>
+   has the attribute 'ignore case'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>Stream_cbuf</b>(Scn_Stream t)</pre>
+<td bgcolor="#FFF0F5" align=left> string of the current token in scan stream 't' or NULL<br>
+   ( not valid for an embedded language token )<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>wc_string <b>Stream_wcbuf</b>(Scn_Stream t)</pre>
+<td bgcolor="#FFF0F5" align=left> wide string of the current token in scan stream 't' or NULL<br>
+   ( not valid for an embedded language token )<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>long <b>Stream_clen</b>(Scn_Stream t)</pre>
+<td bgcolor="#FFF0F5" align=left> length of the current token in scan stream 't'<br>
+   ( not valid for an embedded language and the follow token )<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>symbol <b>Stream_cfil</b>(Scn_Stream t)</pre>
+<td bgcolor="#FFF0F5" align=left> source identifier of the current token in scan stream 't' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>long  <b>Stream_clin</b>(Scn_Stream t)</pre>
+<td bgcolor="#FFF0F5" align=left> first line number of the current token in scan stream 't' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>long  <b>Stream_ccol</b>(Scn_Stream t)</pre>
+<td bgcolor="#FFF0F5" align=left> first column number of the current token in scan stream 't' <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Accessing scan stream definition </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Scn_T <b>Stream_scn</b>(Scn_Stream t)</pre>
+<td bgcolor="#FFF0F5" align=left>scanner definition of scan stream 't'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Scn_PreMacFun <b>Stream_premac</b>(Scn_Stream t)</pre>
+<td bgcolor="#FFF0F5" align=left> preprocessor of scan stream 't' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Scn_eTerm <b>Stream_etermFun</b>(Scn_Stream t)</pre>
+<td bgcolor="#FFF0F5" align=left> embedded language token constructor of scan stream 't' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Scn_eAccept <b>Stream_etermEof</b>(Scn_Stream t)</pre>
+<td bgcolor="#FFF0F5" align=left> embedded language accept token recognizer of scan stream 't' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Abs_T <b>Stream_etermCfg</b>(Scn_Stream t)</pre>
+<td bgcolor="#FFF0F5" align=left> current parse term configuration of scan stream 't' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Stream_binmode</b>(Scn_Stream t)</pre>
+<td bgcolor="#FFF0F5" align=left> whether current scan stream 't' has binary mode <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Stream_lookahead</b>(Scn_Stream t)</pre>
+<td bgcolor="#FFF0F5" align=left> whether current scan stream 't' has n character lookahead enabled <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Stream_unicode</b>(Scn_Stream t)</pre>
+<td bgcolor="#FFF0F5" align=left> whether current scan stream 't' is unicode-based <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>StdCPtr <b>Stream_cstream</b>(Scn_Stream t)</pre>
+<td bgcolor="#FFF0F5" align=left> character stream of current scan stream 't' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Any_T <b>Stream_get_ctxval</b>(Scn_Stream t, Any_T id)</pre>
+<td bgcolor="#FFF0F5" align=left> value of context variable 'id' in scan stream 't' or NULL <br>
+
+</table>
+
+</body>
+</html>

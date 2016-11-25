@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Programs">
+      <UniqueIdentifier>{ecb49c62-0616-4d76-b35b-3894f1d63941}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Functions">
+      <UniqueIdentifier>{4be9a1f6-9bfc-4b4d-919f-f7025c0b1fed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Devices">
+      <UniqueIdentifier>{92864cbd-a7e8-47b1-8d5c-9a41b0dc2c8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Init">
+      <UniqueIdentifier>{fd3d543c-af55-4989-a4a0-995149c7ae1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Text">
+      <UniqueIdentifier>{e3e8c9b5-d7fc-4c20-b387-265ebee3731b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generated">
+      <UniqueIdentifier>{875a0969-2b72-449e-b2a7-38ee66ddd833}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Forms">
+      <UniqueIdentifier>{d21208c1-e9be-428a-928d-ff79d4f599fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Widgets">
+      <UniqueIdentifier>{b85281e3-a8ca-4081-ac36-67a7045e4713}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Programs\Demo2Program.cpp">
+      <Filter>Programs</Filter>
+    </ClCompile>
+    <ClCompile Include="Funcs\Demo2.tab.cpp">
+      <Filter>Functions</Filter>
+    </ClCompile>
+    <ClCompile Include="Funcs\Demo2GUI.cpp">
+      <Filter>Functions</Filter>
+    </ClCompile>
+    <ClCompile Include="Funcs\Demo2GUI.tab.cpp">
+      <Filter>Functions</Filter>
+    </ClCompile>
+    <ClCompile Include="Funcs\Demo2MDL.cpp">
+      <Filter>Functions</Filter>
+    </ClCompile>
+    <ClCompile Include="Devices\cDemo2Device.cpp">
+      <Filter>Devices</Filter>
+    </ClCompile>
+    <ClCompile Include="Init\CustomInit.cpp">
+      <Filter>Init</Filter>
+    </ClCompile>
+    <ClCompile Include="Text\CustomText.cpp">
+      <Filter>Text</Filter>
+    </ClCompile>
+    <ClCompile Include="Generated\Demo2Frame.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="Generated\Demo2Page1.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="Generated\Demo2Page2.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="Generated\Demo2Page3.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="Generated\Demo2Startup.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="Generated\moc_Demo2Frame.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="Generated\moc_Demo2FrameImpl.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="Generated\moc_Demo2Page1.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="Generated\moc_Demo2Page2.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="Generated\moc_Demo2Page3.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="Generated\moc_Demo2Startup.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="Generated\moc_Demo2StartupImpl.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="Forms\Demo2FrameImpl.cpp">
+      <Filter>Forms</Filter>
+    </ClCompile>
+    <ClCompile Include="Forms\Demo2PageList.cpp">
+      <Filter>Forms</Filter>
+    </ClCompile>
+    <ClCompile Include="Forms\Demo2StartupImpl.cpp">
+      <Filter>Forms</Filter>
+    </ClCompile>
+    <ClCompile Include="Demo2.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Programs\Demo2Program.h">
+      <Filter>Programs</Filter>
+    </ClInclude>
+    <ClInclude Include="Funcs\Demo2.h">
+      <Filter>Functions</Filter>
+    </ClInclude>
+    <ClInclude Include="Funcs\Demo2GUI.h">
+      <Filter>Functions</Filter>
+    </ClInclude>
+    <ClInclude Include="Devices\cDemo2Device.h">
+      <Filter>Devices</Filter>
+    </ClInclude>
+    <ClInclude Include="Text\CustomText.h">
+      <Filter>Text</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="Funcs\Demo2.mdl">
+      <Filter>Functions</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Funcs\Demo2GUI.dec">
+      <Filter>Functions</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Forms\Demo2Frame.ui">
+      <Filter>Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Forms\Demo2FrameImpl.h">
+      <Filter>Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Forms\Demo2Page1.ui">
+      <Filter>Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Forms\Demo2Page2.ui">
+      <Filter>Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Forms\Demo2Page3.ui">
+      <Filter>Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Forms\Demo2Startup.ui">
+      <Filter>Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Forms\Demo2StartupImpl.h">
+      <Filter>Forms</Filter>
+    </CustomBuild>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,1745 @@
+<!DOCTYPE UI><UI version="3.0" stdsetdef="1">
+<class>DrvInstForm</class>
+<widget class="QMainWindow">
+    <property name="name">
+        <cstring>DrvInstForm</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>380</width>
+            <height>435</height>
+        </rect>
+    </property>
+    <property name="sizePolicy">
+        <sizepolicy>
+            <hsizetype>5</hsizetype>
+            <vsizetype>5</vsizetype>
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+        </sizepolicy>
+    </property>
+    <property name="minimumSize">
+        <size>
+            <width>326</width>
+            <height>435</height>
+        </size>
+    </property>
+    <property name="maximumSize">
+        <size>
+            <width>600</width>
+            <height>600</height>
+        </size>
+    </property>
+    <property name="font">
+        <font>
+            <family>Arial</family>
+            <pointsize>10</pointsize>
+        </font>
+    </property>
+    <property name="caption">
+        <string>2i DNC EEPROM-Einschub Treiberinstallation</string>
+    </property>
+    <property name="icon">
+        <pixmap>image0</pixmap>
+    </property>
+    <grid>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <property name="margin">
+            <number>11</number>
+        </property>
+        <property name="spacing">
+            <number>6</number>
+        </property>
+        <widget class="QTabWidget" row="0" column="0">
+            <property name="name">
+                <cstring>TabWidget2</cstring>
+            </property>
+            <property name="maximumSize">
+                <size>
+                    <width>600</width>
+                    <height>600</height>
+                </size>
+            </property>
+            <property name="backgroundOrigin">
+                <enum>ParentOrigin</enum>
+            </property>
+            <widget class="QWidget">
+                <property name="name">
+                    <cstring>tab</cstring>
+                </property>
+                <attribute name="title">
+                    <string>Treiber</string>
+                </attribute>
+                <grid>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <property name="margin">
+                        <number>11</number>
+                    </property>
+                    <property name="spacing">
+                        <number>6</number>
+                    </property>
+                    <widget class="QGroupBox" row="1" column="0">
+                        <property name="name">
+                            <cstring>GroupBox1</cstring>
+                        </property>
+                        <property name="title">
+                            <string>Informationen</string>
+                        </property>
+                        <grid>
+                            <property name="name">
+                                <cstring>unnamed</cstring>
+                            </property>
+                            <property name="margin">
+                                <number>11</number>
+                            </property>
+                            <property name="spacing">
+                                <number>6</number>
+                            </property>
+                            <widget class="QTextEdit" row="0" column="0">
+                                <property name="name">
+                                    <cstring>Info</cstring>
+                                </property>
+                                <property name="readOnly">
+                                    <bool>true</bool>
+                                </property>
+                            </widget>
+                        </grid>
+                    </widget>
+                    <widget class="QFrame" row="0" column="0">
+                        <property name="name">
+                            <cstring>Frame3</cstring>
+                        </property>
+                        <property name="frameShape">
+                            <enum>StyledPanel</enum>
+                        </property>
+                        <property name="frameShadow">
+                            <enum>Raised</enum>
+                        </property>
+                        <grid>
+                            <property name="name">
+                                <cstring>unnamed</cstring>
+                            </property>
+                            <property name="margin">
+                                <number>11</number>
+                            </property>
+                            <property name="spacing">
+                                <number>6</number>
+                            </property>
+                            <widget class="QLabel" row="1" column="0">
+                                <property name="name">
+                                    <cstring>TextLabel1_2</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>Adr. High</string>
+                                </property>
+                            </widget>
+                            <widget class="QLabel" row="3" column="0">
+                                <property name="name">
+                                    <cstring>TextLabel1_3_4</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>Read</string>
+                                </property>
+                            </widget>
+                            <widget class="QLabel" row="4" column="0">
+                                <property name="name">
+                                    <cstring>TextLabel1_3</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>Write</string>
+                                </property>
+                            </widget>
+                            <widget class="QLabel" row="5" column="0">
+                                <property name="name">
+                                    <cstring>TextLabel1_3_2</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>Status</string>
+                                </property>
+                            </widget>
+                            <widget class="QPushButton" row="5" column="3">
+                                <property name="name">
+                                    <cstring>Test</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>Testen</string>
+                                </property>
+                            </widget>
+                            <widget class="QGroupBox" row="0" column="3" rowspan="5" colspan="1">
+                                <property name="name">
+                                    <cstring>Installation</cstring>
+                                </property>
+                                <property name="sizePolicy">
+                                    <sizepolicy>
+                                        <hsizetype>0</hsizetype>
+                                        <vsizetype>0</vsizetype>
+                                        <horstretch>0</horstretch>
+                                        <verstretch>0</verstretch>
+                                    </sizepolicy>
+                                </property>
+                                <property name="title">
+                                    <string>Installation</string>
+                                </property>
+                                <property name="alignment">
+                                    <set>AlignLeft</set>
+                                </property>
+                                <widget class="QLabel">
+                                    <property name="name">
+                                        <cstring>TextLabel1_4</cstring>
+                                    </property>
+                                    <property name="geometry">
+                                        <rect>
+                                            <x>10</x>
+                                            <y>20</y>
+                                            <width>67</width>
+                                            <height>20</height>
+                                        </rect>
+                                    </property>
+                                    <property name="text">
+                                        <string>Basisadresse</string>
+                                    </property>
+                                </widget>
+                                <widget class="QPushButton">
+                                    <property name="name">
+                                        <cstring>Install</cstring>
+                                    </property>
+                                    <property name="geometry">
+                                        <rect>
+                                            <x>10</x>
+                                            <y>100</y>
+                                            <width>80</width>
+                                            <height>26</height>
+                                        </rect>
+                                    </property>
+                                    <property name="text">
+                                        <string>Installieren</string>
+                                    </property>
+                                </widget>
+                                <widget class="QComboBox">
+                                    <property name="name">
+                                        <cstring>PortBase</cstring>
+                                    </property>
+                                    <property name="geometry">
+                                        <rect>
+                                            <x>20</x>
+                                            <y>50</y>
+                                            <width>60</width>
+                                            <height>22</height>
+                                        </rect>
+                                    </property>
+                                </widget>
+                            </widget>
+                            <widget class="QLabel" row="2" column="0">
+                                <property name="name">
+                                    <cstring>TextLabel1_3_3</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>Cmd</string>
+                                </property>
+                            </widget>
+                            <widget class="QLineEdit" row="1" column="1">
+                                <property name="name">
+                                    <cstring>AddrHigh</cstring>
+                                </property>
+                                <property name="sizePolicy">
+                                    <sizepolicy>
+                                        <hsizetype>0</hsizetype>
+                                        <vsizetype>0</vsizetype>
+                                        <horstretch>0</horstretch>
+                                        <verstretch>0</verstretch>
+                                    </sizepolicy>
+                                </property>
+                                <property name="minimumSize">
+                                    <size>
+                                        <width>40</width>
+                                        <height>20</height>
+                                    </size>
+                                </property>
+                                <property name="maximumSize">
+                                    <size>
+                                        <width>40</width>
+                                        <height>20</height>
+                                    </size>
+                                </property>
+                                <property name="paletteBackgroundColor">
+                                    <color>
+                                        <red>192</red>
+                                        <green>192</green>
+                                        <blue>192</blue>
+                                    </color>
+                                </property>
+                                <property name="frameShape">
+                                    <enum>LineEditPanel</enum>
+                                </property>
+                                <property name="frameShadow">
+                                    <enum>Sunken</enum>
+                                </property>
+                                <property name="readOnly">
+                                    <bool>true</bool>
+                                </property>
+                            </widget>
+                            <widget class="QLineEdit" row="1" column="2">
+                                <property name="name">
+                                    <cstring>AddrHighV</cstring>
+                                </property>
+                                <property name="sizePolicy">
+                                    <sizepolicy>
+                                        <hsizetype>0</hsizetype>
+                                        <vsizetype>0</vsizetype>
+                                        <horstretch>0</horstretch>
+                                        <verstretch>0</verstretch>
+                                    </sizepolicy>
+                                </property>
+                                <property name="minimumSize">
+                                    <size>
+                                        <width>40</width>
+                                        <height>20</height>
+                                    </size>
+                                </property>
+                                <property name="maximumSize">
+                                    <size>
+                                        <width>40</width>
+                                        <height>20</height>
+                                    </size>
+                                </property>
+                                <property name="paletteBackgroundColor">
+                                    <color>
+                                        <red>192</red>
+                                        <green>192</green>
+                                        <blue>192</blue>
+                                    </color>
+                                </property>
+                                <property name="frameShape">
+                                    <enum>LineEditPanel</enum>
+                                </property>
+                                <property name="frameShadow">
+                                    <enum>Sunken</enum>
+                                </property>
+                                <property name="readOnly">
+                                    <bool>true</bool>
+                                </property>
+                            </widget>
+                            <widget class="QLineEdit" row="2" column="1">
+                                <property name="name">
+                                    <cstring>Cmd</cstring>
+                                </property>
+                                <property name="sizePolicy">
+                                    <sizepolicy>
+                                        <hsizetype>0</hsizetype>
+                                        <vsizetype>0</vsizetype>
+                                        <horstretch>0</horstretch>
+                                        <verstretch>0</verstretch>
+                                    </sizepolicy>
+                                </property>
+                                <property name="minimumSize">
+                                    <size>
+                                        <width>40</width>
+                                        <height>20</height>
+                                    </size>
+                                </property>
+                                <property name="maximumSize">
+                                    <size>
+                                        <width>40</width>
+                                        <height>20</height>
+                                    </size>
+                                </property>
+                                <property name="paletteBackgroundColor">
+                                    <color>
+                                        <red>192</red>
+                                        <green>192</green>
+                                        <blue>192</blue>
+                                    </color>
+                                </property>
+                                <property name="frameShape">
+                                    <enum>LineEditPanel</enum>
+                                </property>
+                                <property name="frameShadow">
+                                    <enum>Sunken</enum>
+                                </property>
+                                <property name="readOnly">
+                                    <bool>true</bool>
+                                </property>
+                            </widget>
+                            <widget class="QLineEdit" row="2" column="2">
+                                <property name="name">
+                                    <cstring>CmdV</cstring>
+                                </property>
+                                <property name="sizePolicy">
+                                    <sizepolicy>
+                                        <hsizetype>0</hsizetype>
+                                        <vsizetype>0</vsizetype>
+                                        <horstretch>0</horstretch>
+                                        <verstretch>0</verstretch>
+                                    </sizepolicy>
+                                </property>
+                                <property name="minimumSize">
+                                    <size>
+                                        <width>40</width>
+                                        <height>20</height>
+                                    </size>
+                                </property>
+                                <property name="maximumSize">
+                                    <size>
+                                        <width>40</width>
+                                        <height>20</height>
+                                    </size>
+                                </property>
+                                <property name="paletteBackgroundColor">
+                                    <color>
+                                        <red>192</red>
+                                        <green>192</green>
+                                        <blue>192</blue>
+                                    </color>
+                                </property>
+                                <property name="frameShape">
+                                    <enum>LineEditPanel</enum>
+                                </property>
+                                <property name="frameShadow">
+                                    <enum>Sunken</enum>
+                                </property>
+                                <property name="readOnly">
+                                    <bool>true</bool>
+                                </property>
+                            </widget>
+                            <widget class="QLineEdit" row="3" column="1">
+                                <property name="name">
+                                    <cstring>Read</cstring>
+                                </property>
+                                <property name="sizePolicy">
+                                    <sizepolicy>
+                                        <hsizetype>0</hsizetype>
+                                        <vsizetype>0</vsizetype>
+                                        <horstretch>0</horstretch>
+                                        <verstretch>0</verstretch>
+                                    </sizepolicy>
+                                </property>
+                                <property name="minimumSize">
+                                    <size>
+                                        <width>40</width>
+                                        <height>20</height>
+                                    </size>
+                                </property>
+                                <property name="maximumSize">
+                                    <size>
+                                        <width>40</width>
+                                        <height>20</height>
+                                    </size>
+                                </property>
+                                <property name="paletteBackgroundColor">
+                                    <color>
+                                        <red>192</red>
+                                        <green>192</green>
+                                        <blue>192</blue>
+                                    </color>
+                                </property>
+                                <property name="frameShape">
+                                    <enum>LineEditPanel</enum>
+                                </property>
+                                <property name="frameShadow">
+                                    <enum>Sunken</enum>
+                                </property>
+                                <property name="readOnly">
+                                    <bool>true</bool>
+                                </property>
+                            </widget>
+                            <widget class="QLineEdit" row="3" column="2">
+                                <property name="name">
+                                    <cstring>ReadV</cstring>
+                                </property>
+                                <property name="sizePolicy">
+                                    <sizepolicy>
+                                        <hsizetype>0</hsizetype>
+                                        <vsizetype>0</vsizetype>
+                                        <horstretch>0</horstretch>
+                                        <verstretch>0</verstretch>
+                                    </sizepolicy>
+                                </property>
+                                <property name="minimumSize">
+                                    <size>
+                                        <width>40</width>
+                                        <height>20</height>
+                                    </size>
+                                </property>
+                                <property name="maximumSize">
+                                    <size>
+                                        <width>40</width>
+                                        <height>20</height>
+                                    </size>
+                                </property>
+                                <property name="paletteBackgroundColor">
+                                    <color>
+                                        <red>192</red>
+                                        <green>192</green>
+                                        <blue>192</blue>
+                                    </color>
+                                </property>
+                                <property name="frameShape">
+                                    <enum>LineEditPanel</enum>
+                                </property>
+                                <property name="frameShadow">
+                                    <enum>Sunken</enum>
+                                </property>
+                                <property name="readOnly">
+                                    <bool>true</bool>
+                                </property>
+                            </widget>
+                            <widget class="QLineEdit" row="4" column="1">
+                                <property name="name">
+                                    <cstring>Write</cstring>
+                                </property>
+                                <property name="sizePolicy">
+                                    <sizepolicy>
+                                        <hsizetype>0</hsizetype>
+                                        <vsizetype>0</vsizetype>
+                                        <horstretch>0</horstretch>
+                                        <verstretch>0</verstretch>
+                                    </sizepolicy>
+                                </property>
+                                <property name="minimumSize">
+                                    <size>
+                                        <width>40</width>
+                                        <height>20</height>
+                                    </size>
+                                </property>
+                                <property name="maximumSize">
+                                    <size>
+                                        <width>40</width>
+                                        <height>20</height>
+                                    </size>
+                                </property>
+                                <property name="paletteBackgroundColor">
+                                    <color>
+                                        <red>192</red>
+                                        <green>192</green>
+                                        <blue>192</blue>
+                                    </color>
+                                </property>
+                                <property name="frameShape">
+                                    <enum>LineEditPanel</enum>
+                                </property>
+                                <property name="frameShadow">
+                                    <enum>Sunken</enum>
+                                </property>
+                                <property name="readOnly">
+                                    <bool>true</bool>
+                                </property>
+                            </widget>
+                            <widget class="QLineEdit" row="4" column="2">
+                                <property name="name">
+                                    <cstring>WriteV</cstring>
+                                </property>
+                                <property name="sizePolicy">
+                                    <sizepolicy>
+                                        <hsizetype>0</hsizetype>
+                                        <vsizetype>0</vsizetype>
+                                        <horstretch>0</horstretch>
+                                        <verstretch>0</verstretch>
+                                    </sizepolicy>
+                                </property>
+                                <property name="minimumSize">
+                                    <size>
+                                        <width>40</width>
+                                        <height>20</height>
+                                    </size>
+                                </property>
+                                <property name="maximumSize">
+                                    <size>
+                                        <width>40</width>
+                                        <height>20</height>
+                                    </size>
+                                </property>
+                                <property name="paletteBackgroundColor">
+                                    <color>
+                                        <red>192</red>
+                                        <green>192</green>
+                                        <blue>192</blue>
+                                    </color>
+                                </property>
+                                <property name="frameShape">
+                                    <enum>LineEditPanel</enum>
+                                </property>
+                                <property name="frameShadow">
+                                    <enum>Sunken</enum>
+                                </property>
+                                <property name="readOnly">
+                                    <bool>true</bool>
+                                </property>
+                            </widget>
+                            <widget class="QLineEdit" row="5" column="1">
+                                <property name="name">
+                                    <cstring>Status</cstring>
+                                </property>
+                                <property name="sizePolicy">
+                                    <sizepolicy>
+                                        <hsizetype>0</hsizetype>
+                                        <vsizetype>0</vsizetype>
+                                        <horstretch>0</horstretch>
+                                        <verstretch>0</verstretch>
+                                    </sizepolicy>
+                                </property>
+                                <property name="minimumSize">
+                                    <size>
+                                        <width>40</width>
+                                        <height>20</height>
+                                    </size>
+                                </property>
+                                <property name="maximumSize">
+                                    <size>
+                                        <width>40</width>
+                                        <height>20</height>
+                                    </size>
+                                </property>
+                                <property name="paletteBackgroundColor">
+                                    <color>
+                                        <red>192</red>
+                                        <green>192</green>
+                                        <blue>192</blue>
+                                    </color>
+                                </property>
+                                <property name="frameShape">
+                                    <enum>LineEditPanel</enum>
+                                </property>
+                                <property name="frameShadow">
+                                    <enum>Sunken</enum>
+                                </property>
+                                <property name="readOnly">
+                                    <bool>true</bool>
+                                </property>
+                            </widget>
+                            <widget class="QLineEdit" row="5" column="2">
+                                <property name="name">
+                                    <cstring>StatusV</cstring>
+                                </property>
+                                <property name="sizePolicy">
+                                    <sizepolicy>
+                                        <hsizetype>0</hsizetype>
+                                        <vsizetype>0</vsizetype>
+                                        <horstretch>0</horstretch>
+                                        <verstretch>0</verstretch>
+                                    </sizepolicy>
+                                </property>
+                                <property name="minimumSize">
+                                    <size>
+                                        <width>40</width>
+                                        <height>20</height>
+                                    </size>
+                                </property>
+                                <property name="maximumSize">
+                                    <size>
+                                        <width>40</width>
+                                        <height>20</height>
+                                    </size>
+                                </property>
+                                <property name="paletteBackgroundColor">
+                                    <color>
+                                        <red>192</red>
+                                        <green>192</green>
+                                        <blue>192</blue>
+                                    </color>
+                                </property>
+                                <property name="frameShape">
+                                    <enum>LineEditPanel</enum>
+                                </property>
+                                <property name="frameShadow">
+                                    <enum>Sunken</enum>
+                                </property>
+                                <property name="readOnly">
+                                    <bool>true</bool>
+                                </property>
+                            </widget>
+                            <widget class="QLineEdit" row="0" column="1">
+                                <property name="name">
+                                    <cstring>AddrLow</cstring>
+                                </property>
+                                <property name="sizePolicy">
+                                    <sizepolicy>
+                                        <hsizetype>0</hsizetype>
+                                        <vsizetype>0</vsizetype>
+                                        <horstretch>0</horstretch>
+                                        <verstretch>0</verstretch>
+                                    </sizepolicy>
+                                </property>
+                                <property name="minimumSize">
+                                    <size>
+                                        <width>40</width>
+                                        <height>20</height>
+                                    </size>
+                                </property>
+                                <property name="maximumSize">
+                                    <size>
+                                        <width>40</width>
+                                        <height>20</height>
+                                    </size>
+                                </property>
+                                <property name="paletteBackgroundColor">
+                                    <color>
+                                        <red>192</red>
+                                        <green>192</green>
+                                        <blue>192</blue>
+                                    </color>
+                                </property>
+                                <property name="frameShape">
+                                    <enum>LineEditPanel</enum>
+                                </property>
+                                <property name="frameShadow">
+                                    <enum>Sunken</enum>
+                                </property>
+                                <property name="readOnly">
+                                    <bool>true</bool>
+                                </property>
+                            </widget>
+                            <widget class="QLineEdit" row="0" column="2">
+                                <property name="name">
+                                    <cstring>AddrLowV</cstring>
+                                </property>
+                                <property name="sizePolicy">
+                                    <sizepolicy>
+                                        <hsizetype>0</hsizetype>
+                                        <vsizetype>0</vsizetype>
+                                        <horstretch>0</horstretch>
+                                        <verstretch>0</verstretch>
+                                    </sizepolicy>
+                                </property>
+                                <property name="minimumSize">
+                                    <size>
+                                        <width>40</width>
+                                        <height>20</height>
+                                    </size>
+                                </property>
+                                <property name="maximumSize">
+                                    <size>
+                                        <width>40</width>
+                                        <height>20</height>
+                                    </size>
+                                </property>
+                                <property name="paletteBackgroundColor">
+                                    <color>
+                                        <red>192</red>
+                                        <green>192</green>
+                                        <blue>192</blue>
+                                    </color>
+                                </property>
+                                <property name="frameShape">
+                                    <enum>LineEditPanel</enum>
+                                </property>
+                                <property name="frameShadow">
+                                    <enum>Sunken</enum>
+                                </property>
+                                <property name="readOnly">
+                                    <bool>true</bool>
+                                </property>
+                            </widget>
+                            <widget class="QLabel" row="0" column="0">
+                                <property name="name">
+                                    <cstring>TextLabel1</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>Adr. Low</string>
+                                </property>
+                            </widget>
+                        </grid>
+                    </widget>
+                </grid>
+            </widget>
+            <widget class="QWidget">
+                <property name="name">
+                    <cstring>tab</cstring>
+                </property>
+                <attribute name="title">
+                    <string>System</string>
+                </attribute>
+                <grid>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <property name="margin">
+                        <number>11</number>
+                    </property>
+                    <property name="spacing">
+                        <number>6</number>
+                    </property>
+                    <widget class="QFrame" row="0" column="0">
+                        <property name="name">
+                            <cstring>Frame4</cstring>
+                        </property>
+                        <property name="sizePolicy">
+                            <sizepolicy>
+                                <hsizetype>7</hsizetype>
+                                <vsizetype>7</vsizetype>
+                                <horstretch>0</horstretch>
+                                <verstretch>0</verstretch>
+                            </sizepolicy>
+                        </property>
+                        <property name="frameShape">
+                            <enum>StyledPanel</enum>
+                        </property>
+                        <property name="frameShadow">
+                            <enum>Raised</enum>
+                        </property>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>TextLabel2_2</cstring>
+                            </property>
+                            <property name="geometry">
+                                <rect>
+                                    <x>10</x>
+                                    <y>30</y>
+                                    <width>95</width>
+                                    <height>20</height>
+                                </rect>
+                            </property>
+                            <property name="text">
+                                <string>Plattform</string>
+                            </property>
+                        </widget>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>TextLabel2_3</cstring>
+                            </property>
+                            <property name="geometry">
+                                <rect>
+                                    <x>10</x>
+                                    <y>50</y>
+                                    <width>95</width>
+                                    <height>20</height>
+                                </rect>
+                            </property>
+                            <property name="text">
+                                <string>Hauptversion</string>
+                            </property>
+                        </widget>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>TextLabel2_3_2</cstring>
+                            </property>
+                            <property name="geometry">
+                                <rect>
+                                    <x>10</x>
+                                    <y>70</y>
+                                    <width>95</width>
+                                    <height>20</height>
+                                </rect>
+                            </property>
+                            <property name="text">
+                                <string>Nebenversion</string>
+                            </property>
+                        </widget>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>TextLabel2_3_3</cstring>
+                            </property>
+                            <property name="geometry">
+                                <rect>
+                                    <x>10</x>
+                                    <y>90</y>
+                                    <width>95</width>
+                                    <height>20</height>
+                                </rect>
+                            </property>
+                            <property name="text">
+                                <string>Build</string>
+                            </property>
+                        </widget>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>TextLabel2</cstring>
+                            </property>
+                            <property name="geometry">
+                                <rect>
+                                    <x>10</x>
+                                    <y>10</y>
+                                    <width>95</width>
+                                    <height>20</height>
+                                </rect>
+                            </property>
+                            <property name="text">
+                                <string>Betriebssystem</string>
+                            </property>
+                        </widget>
+                        <widget class="QLineEdit">
+                            <property name="name">
+                                <cstring>System</cstring>
+                            </property>
+                            <property name="geometry">
+                                <rect>
+                                    <x>110</x>
+                                    <y>10</y>
+                                    <width>160</width>
+                                    <height>20</height>
+                                </rect>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>0</hsizetype>
+                                    <vsizetype>0</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="minimumSize">
+                                <size>
+                                    <width>160</width>
+                                    <height>20</height>
+                                </size>
+                            </property>
+                            <property name="maximumSize">
+                                <size>
+                                    <width>160</width>
+                                    <height>20</height>
+                                </size>
+                            </property>
+                            <property name="paletteBackgroundColor">
+                                <color>
+                                    <red>192</red>
+                                    <green>192</green>
+                                    <blue>192</blue>
+                                </color>
+                            </property>
+                            <property name="frameShape">
+                                <enum>LineEditPanel</enum>
+                            </property>
+                            <property name="frameShadow">
+                                <enum>Sunken</enum>
+                            </property>
+                            <property name="readOnly">
+                                <bool>true</bool>
+                            </property>
+                        </widget>
+                        <widget class="QLineEdit">
+                            <property name="name">
+                                <cstring>MajorVersion</cstring>
+                            </property>
+                            <property name="geometry">
+                                <rect>
+                                    <x>110</x>
+                                    <y>50</y>
+                                    <width>160</width>
+                                    <height>20</height>
+                                </rect>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>0</hsizetype>
+                                    <vsizetype>0</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="minimumSize">
+                                <size>
+                                    <width>160</width>
+                                    <height>20</height>
+                                </size>
+                            </property>
+                            <property name="maximumSize">
+                                <size>
+                                    <width>160</width>
+                                    <height>20</height>
+                                </size>
+                            </property>
+                            <property name="paletteBackgroundColor">
+                                <color>
+                                    <red>192</red>
+                                    <green>192</green>
+                                    <blue>192</blue>
+                                </color>
+                            </property>
+                            <property name="frameShape">
+                                <enum>LineEditPanel</enum>
+                            </property>
+                            <property name="frameShadow">
+                                <enum>Sunken</enum>
+                            </property>
+                            <property name="readOnly">
+                                <bool>true</bool>
+                            </property>
+                        </widget>
+                        <widget class="QLineEdit">
+                            <property name="name">
+                                <cstring>MinorVersion</cstring>
+                            </property>
+                            <property name="geometry">
+                                <rect>
+                                    <x>110</x>
+                                    <y>70</y>
+                                    <width>160</width>
+                                    <height>20</height>
+                                </rect>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>0</hsizetype>
+                                    <vsizetype>0</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="minimumSize">
+                                <size>
+                                    <width>160</width>
+                                    <height>20</height>
+                                </size>
+                            </property>
+                            <property name="maximumSize">
+                                <size>
+                                    <width>160</width>
+                                    <height>20</height>
+                                </size>
+                            </property>
+                            <property name="paletteBackgroundColor">
+                                <color>
+                                    <red>192</red>
+                                    <green>192</green>
+                                    <blue>192</blue>
+                                </color>
+                            </property>
+                            <property name="frameShape">
+                                <enum>LineEditPanel</enum>
+                            </property>
+                            <property name="frameShadow">
+                                <enum>Sunken</enum>
+                            </property>
+                            <property name="readOnly">
+                                <bool>true</bool>
+                            </property>
+                        </widget>
+                        <widget class="QLineEdit">
+                            <property name="name">
+                                <cstring>BuildNumber</cstring>
+                            </property>
+                            <property name="geometry">
+                                <rect>
+                                    <x>110</x>
+                                    <y>90</y>
+                                    <width>160</width>
+                                    <height>20</height>
+                                </rect>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>0</hsizetype>
+                                    <vsizetype>0</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="minimumSize">
+                                <size>
+                                    <width>160</width>
+                                    <height>20</height>
+                                </size>
+                            </property>
+                            <property name="maximumSize">
+                                <size>
+                                    <width>160</width>
+                                    <height>20</height>
+                                </size>
+                            </property>
+                            <property name="paletteBackgroundColor">
+                                <color>
+                                    <red>192</red>
+                                    <green>192</green>
+                                    <blue>192</blue>
+                                </color>
+                            </property>
+                            <property name="frameShape">
+                                <enum>LineEditPanel</enum>
+                            </property>
+                            <property name="frameShadow">
+                                <enum>Sunken</enum>
+                            </property>
+                            <property name="readOnly">
+                                <bool>true</bool>
+                            </property>
+                        </widget>
+                        <widget class="QLineEdit">
+                            <property name="name">
+                                <cstring>VersionString</cstring>
+                            </property>
+                            <property name="geometry">
+                                <rect>
+                                    <x>110</x>
+                                    <y>110</y>
+                                    <width>160</width>
+                                    <height>20</height>
+                                </rect>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>0</hsizetype>
+                                    <vsizetype>0</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="minimumSize">
+                                <size>
+                                    <width>160</width>
+                                    <height>20</height>
+                                </size>
+                            </property>
+                            <property name="maximumSize">
+                                <size>
+                                    <width>160</width>
+                                    <height>20</height>
+                                </size>
+                            </property>
+                            <property name="paletteBackgroundColor">
+                                <color>
+                                    <red>192</red>
+                                    <green>192</green>
+                                    <blue>192</blue>
+                                </color>
+                            </property>
+                            <property name="frameShape">
+                                <enum>LineEditPanel</enum>
+                            </property>
+                            <property name="frameShadow">
+                                <enum>Sunken</enum>
+                            </property>
+                            <property name="readOnly">
+                                <bool>true</bool>
+                            </property>
+                        </widget>
+                        <widget class="QLineEdit">
+                            <property name="name">
+                                <cstring>PlatformId</cstring>
+                            </property>
+                            <property name="geometry">
+                                <rect>
+                                    <x>110</x>
+                                    <y>30</y>
+                                    <width>160</width>
+                                    <height>20</height>
+                                </rect>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>0</hsizetype>
+                                    <vsizetype>0</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="minimumSize">
+                                <size>
+                                    <width>160</width>
+                                    <height>20</height>
+                                </size>
+                            </property>
+                            <property name="maximumSize">
+                                <size>
+                                    <width>160</width>
+                                    <height>20</height>
+                                </size>
+                            </property>
+                            <property name="paletteBackgroundColor">
+                                <color>
+                                    <red>192</red>
+                                    <green>192</green>
+                                    <blue>192</blue>
+                                </color>
+                            </property>
+                            <property name="frameShape">
+                                <enum>LineEditPanel</enum>
+                            </property>
+                            <property name="frameShadow">
+                                <enum>Sunken</enum>
+                            </property>
+                            <property name="readOnly">
+                                <bool>true</bool>
+                            </property>
+                        </widget>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>TextLabel2_3_4</cstring>
+                            </property>
+                            <property name="geometry">
+                                <rect>
+                                    <x>10</x>
+                                    <y>130</y>
+                                    <width>54</width>
+                                    <height>20</height>
+                                </rect>
+                            </property>
+                            <property name="text">
+                                <string>Sysverz.</string>
+                            </property>
+                        </widget>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>TextLabel2_3_4_2</cstring>
+                            </property>
+                            <property name="geometry">
+                                <rect>
+                                    <x>10</x>
+                                    <y>150</y>
+                                    <width>72</width>
+                                    <height>20</height>
+                                </rect>
+                            </property>
+                            <property name="text">
+                                <string>Arbeitsverz.</string>
+                            </property>
+                        </widget>
+                        <widget class="QLineEdit">
+                            <property name="name">
+                                <cstring>CurrentDirectory</cstring>
+                            </property>
+                            <property name="geometry">
+                                <rect>
+                                    <x>90</x>
+                                    <y>150</y>
+                                    <width>410</width>
+                                    <height>20</height>
+                                </rect>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>0</hsizetype>
+                                    <vsizetype>0</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="minimumSize">
+                                <size>
+                                    <width>160</width>
+                                    <height>20</height>
+                                </size>
+                            </property>
+                            <property name="maximumSize">
+                                <size>
+                                    <width>600</width>
+                                    <height>20</height>
+                                </size>
+                            </property>
+                            <property name="paletteBackgroundColor">
+                                <color>
+                                    <red>192</red>
+                                    <green>192</green>
+                                    <blue>192</blue>
+                                </color>
+                            </property>
+                            <property name="frameShape">
+                                <enum>LineEditPanel</enum>
+                            </property>
+                            <property name="frameShadow">
+                                <enum>Sunken</enum>
+                            </property>
+                            <property name="readOnly">
+                                <bool>true</bool>
+                            </property>
+                        </widget>
+                        <widget class="QLineEdit">
+                            <property name="name">
+                                <cstring>SystemDirectory</cstring>
+                            </property>
+                            <property name="geometry">
+                                <rect>
+                                    <x>90</x>
+                                    <y>130</y>
+                                    <width>410</width>
+                                    <height>20</height>
+                                </rect>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>0</hsizetype>
+                                    <vsizetype>0</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="minimumSize">
+                                <size>
+                                    <width>160</width>
+                                    <height>20</height>
+                                </size>
+                            </property>
+                            <property name="maximumSize">
+                                <size>
+                                    <width>600</width>
+                                    <height>20</height>
+                                </size>
+                            </property>
+                            <property name="paletteBackgroundColor">
+                                <color>
+                                    <red>192</red>
+                                    <green>192</green>
+                                    <blue>192</blue>
+                                </color>
+                            </property>
+                            <property name="frameShape">
+                                <enum>LineEditPanel</enum>
+                            </property>
+                            <property name="frameShadow">
+                                <enum>Sunken</enum>
+                            </property>
+                            <property name="readOnly">
+                                <bool>true</bool>
+                            </property>
+                        </widget>
+                    </widget>
+                </grid>
+            </widget>
+            <widget class="QWidget">
+                <property name="name">
+                    <cstring>tab</cstring>
+                </property>
+                <attribute name="title">
+                    <string>Konfiguration</string>
+                </attribute>
+                <grid>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <property name="margin">
+                        <number>11</number>
+                    </property>
+                    <property name="spacing">
+                        <number>6</number>
+                    </property>
+                    <widget class="QFrame" row="0" column="0">
+                        <property name="name">
+                            <cstring>Frame5</cstring>
+                        </property>
+                        <property name="frameShape">
+                            <enum>StyledPanel</enum>
+                        </property>
+                        <property name="frameShadow">
+                            <enum>Raised</enum>
+                        </property>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>TextLabel2_4</cstring>
+                            </property>
+                            <property name="geometry">
+                                <rect>
+                                    <x>20</x>
+                                    <y>20</y>
+                                    <width>120</width>
+                                    <height>20</height>
+                                </rect>
+                            </property>
+                            <property name="text">
+                                <string>Hardware Version</string>
+                            </property>
+                        </widget>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>TextLabel2_4_2</cstring>
+                            </property>
+                            <property name="geometry">
+                                <rect>
+                                    <x>20</x>
+                                    <y>40</y>
+                                    <width>120</width>
+                                    <height>20</height>
+                                </rect>
+                            </property>
+                            <property name="text">
+                                <string>Kapazitätsprüfung</string>
+                            </property>
+                        </widget>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>TextLabel2_4_3</cstring>
+                            </property>
+                            <property name="geometry">
+                                <rect>
+                                    <x>20</x>
+                                    <y>60</y>
+                                    <width>106</width>
+                                    <height>20</height>
+                                </rect>
+                            </property>
+                            <property name="text">
+                                <string>Wiederholungen</string>
+                            </property>
+                        </widget>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>TextLabel2_4_3_2</cstring>
+                            </property>
+                            <property name="geometry">
+                                <rect>
+                                    <x>20</x>
+                                    <y>80</y>
+                                    <width>106</width>
+                                    <height>20</height>
+                                </rect>
+                            </property>
+                            <property name="text">
+                                <string>Stabilität</string>
+                            </property>
+                        </widget>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>TextLabel2_4_3_3</cstring>
+                            </property>
+                            <property name="geometry">
+                                <rect>
+                                    <x>20</x>
+                                    <y>100</y>
+                                    <width>110</width>
+                                    <height>20</height>
+                                </rect>
+                            </property>
+                            <property name="text">
+                                <string>Schreibverögerung</string>
+                            </property>
+                        </widget>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>TextLabel2_4_3_4</cstring>
+                            </property>
+                            <property name="geometry">
+                                <rect>
+                                    <x>20</x>
+                                    <y>120</y>
+                                    <width>106</width>
+                                    <height>20</height>
+                                </rect>
+                            </property>
+                            <property name="text">
+                                <string>Simulation</string>
+                            </property>
+                        </widget>
+                        <widget class="QLineEdit">
+                            <property name="name">
+                                <cstring>Version</cstring>
+                            </property>
+                            <property name="geometry">
+                                <rect>
+                                    <x>140</x>
+                                    <y>20</y>
+                                    <width>40</width>
+                                    <height>20</height>
+                                </rect>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>0</hsizetype>
+                                    <vsizetype>0</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="minimumSize">
+                                <size>
+                                    <width>40</width>
+                                    <height>20</height>
+                                </size>
+                            </property>
+                            <property name="maximumSize">
+                                <size>
+                                    <width>40</width>
+                                    <height>20</height>
+                                </size>
+                            </property>
+                            <property name="paletteBackgroundColor">
+                                <color>
+                                    <red>192</red>
+                                    <green>192</green>
+                                    <blue>192</blue>
+                                </color>
+                            </property>
+                            <property name="frameShape">
+                                <enum>LineEditPanel</enum>
+                            </property>
+                            <property name="frameShadow">
+                                <enum>Sunken</enum>
+                            </property>
+                            <property name="readOnly">
+                                <bool>true</bool>
+                            </property>
+                        </widget>
+                        <widget class="QLineEdit">
+                            <property name="name">
+                                <cstring>CheckMode</cstring>
+                            </property>
+                            <property name="geometry">
+                                <rect>
+                                    <x>140</x>
+                                    <y>40</y>
+                                    <width>40</width>
+                                    <height>20</height>
+                                </rect>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>0</hsizetype>
+                                    <vsizetype>0</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="minimumSize">
+                                <size>
+                                    <width>40</width>
+                                    <height>20</height>
+                                </size>
+                            </property>
+                            <property name="maximumSize">
+                                <size>
+                                    <width>40</width>
+                                    <height>20</height>
+                                </size>
+                            </property>
+                            <property name="paletteBackgroundColor">
+                                <color>
+                                    <red>192</red>
+                                    <green>192</green>
+                                    <blue>192</blue>
+                                </color>
+                            </property>
+                            <property name="frameShape">
+                                <enum>LineEditPanel</enum>
+                            </property>
+                            <property name="frameShadow">
+                                <enum>Sunken</enum>
+                            </property>
+                            <property name="readOnly">
+                                <bool>true</bool>
+                            </property>
+                        </widget>
+                        <widget class="QLineEdit">
+                            <property name="name">
+                                <cstring>Retries</cstring>
+                            </property>
+                            <property name="geometry">
+                                <rect>
+                                    <x>140</x>
+                                    <y>60</y>
+                                    <width>40</width>
+                                    <height>20</height>
+                                </rect>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>0</hsizetype>
+                                    <vsizetype>0</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="minimumSize">
+                                <size>
+                                    <width>40</width>
+                                    <height>20</height>
+                                </size>
+                            </property>
+                            <property name="maximumSize">
+                                <size>
+                                    <width>40</width>
+                                    <height>20</height>
+                                </size>
+                            </property>
+                            <property name="paletteBackgroundColor">
+                                <color>
+                                    <red>192</red>
+                                    <green>192</green>
+                                    <blue>192</blue>
+                                </color>
+                            </property>
+                            <property name="frameShape">
+                                <enum>LineEditPanel</enum>
+                            </property>
+                            <property name="frameShadow">
+                                <enum>Sunken</enum>
+                            </property>
+                            <property name="readOnly">
+                                <bool>true</bool>
+                            </property>
+                        </widget>
+                        <widget class="QLineEdit">
+                            <property name="name">
+                                <cstring>Stability</cstring>
+                            </property>
+                            <property name="geometry">
+                                <rect>
+                                    <x>140</x>
+                                    <y>80</y>
+                                    <width>40</width>
+                                    <height>20</height>
+                                </rect>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>0</hsizetype>
+                                    <vsizetype>0</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="minimumSize">
+                                <size>
+                                    <width>40</width>
+                                    <height>20</height>
+                                </size>
+                            </property>
+                            <property name="maximumSize">
+                                <size>
+                                    <width>40</width>
+                                    <height>20</height>
+                                </size>
+                            </property>
+                            <property name="paletteBackgroundColor">
+                                <color>
+                                    <red>192</red>
+                                    <green>192</green>
+                                    <blue>192</blue>
+                                </color>
+                            </property>
+                            <property name="frameShape">
+                                <enum>LineEditPanel</enum>
+                            </property>
+                            <property name="frameShadow">
+                                <enum>Sunken</enum>
+                            </property>
+                            <property name="readOnly">
+                                <bool>true</bool>
+                            </property>
+                        </widget>
+                        <widget class="QLineEdit">
+                            <property name="name">
+                                <cstring>DelayTime</cstring>
+                            </property>
+                            <property name="geometry">
+                                <rect>
+                                    <x>140</x>
+                                    <y>100</y>
+                                    <width>40</width>
+                                    <height>20</height>
+                                </rect>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>0</hsizetype>
+                                    <vsizetype>0</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="minimumSize">
+                                <size>
+                                    <width>40</width>
+                                    <height>20</height>
+                                </size>
+                            </property>
+                            <property name="maximumSize">
+                                <size>
+                                    <width>40</width>
+                                    <height>20</height>
+                                </size>
+                            </property>
+                            <property name="paletteBackgroundColor">
+                                <color>
+                                    <red>192</red>
+                                    <green>192</green>
+                                    <blue>192</blue>
+                                </color>
+                            </property>
+                            <property name="frameShape">
+                                <enum>LineEditPanel</enum>
+                            </property>
+                            <property name="frameShadow">
+                                <enum>Sunken</enum>
+                            </property>
+                            <property name="readOnly">
+                                <bool>true</bool>
+                            </property>
+                        </widget>
+                        <widget class="QLineEdit">
+                            <property name="name">
+                                <cstring>SimulateHardware</cstring>
+                            </property>
+                            <property name="geometry">
+                                <rect>
+                                    <x>140</x>
+                                    <y>120</y>
+                                    <width>40</width>
+                                    <height>20</height>
+                                </rect>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>0</hsizetype>
+                                    <vsizetype>0</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="minimumSize">
+                                <size>
+                                    <width>40</width>
+                                    <height>20</height>
+                                </size>
+                            </property>
+                            <property name="maximumSize">
+                                <size>
+                                    <width>40</width>
+                                    <height>20</height>
+                                </size>
+                            </property>
+                            <property name="paletteBackgroundColor">
+                                <color>
+                                    <red>192</red>
+                                    <green>192</green>
+                                    <blue>192</blue>
+                                </color>
+                            </property>
+                            <property name="frameShape">
+                                <enum>LineEditPanel</enum>
+                            </property>
+                            <property name="frameShadow">
+                                <enum>Sunken</enum>
+                            </property>
+                            <property name="readOnly">
+                                <bool>true</bool>
+                            </property>
+                        </widget>
+                    </widget>
+                </grid>
+            </widget>
+        </widget>
+    </grid>
+</widget>
+<toolbars>
+</toolbars>
+<images>
+    <image name="image0">
+        <data format="XPM.GZ" length="1259">789ca591cf6ec3200cc6ef790a14dfa289fe552fd51e61528f95aa1e0c55d41d7a69bbc334eddd0b21c6268166d53e05870f7ec2c6cc1ab5df7da86656ddee78ffb4ca9ef1aa9ad3d7e5f27d38beff54f56aa9dcb7568bfaadaa515905f34ede1ab26debadf6d66eecca6ebc056fdb96603da169068841a7ee97830283182037c00931091d23cf009ac6d033bab7dd52520b703d821110041319910f184918448e837af8ee7a8aa1bec4fe00258cb9e216f750d6546072e74415ebf90b3350a93f1964dce70c42a58f18485d21d7482f30c6292c84890fc6f4ab82099464c26086772593e612c13c61343166fa1c5d668c04b30cdf4b32c3bb537f9849fbf3ffb7f8dd560fdc9d0b96</data>
+    </image>
+</images>
+<connections>
+    <connection>
+        <sender>Test</sender>
+        <signal>clicked()</signal>
+        <receiver>DrvInstForm</receiver>
+        <slot>Test_clicked()</slot>
+    </connection>
+    <connection>
+        <sender>Install</sender>
+        <signal>clicked()</signal>
+        <receiver>DrvInstForm</receiver>
+        <slot>Install_clicked()</slot>
+    </connection>
+</connections>
+<includes>
+    <include location="local" impldecl="in implementation">DrvInstForm.ui.h</include>
+</includes>
+<slots>
+    <slot>Test_clicked()</slot>
+    <slot>Install_clicked()</slot>
+    <slot>init()</slot>
+</slots>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

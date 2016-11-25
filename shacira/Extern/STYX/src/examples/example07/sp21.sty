@@ -1,0 +1,156 @@
+;; [sp21.sty] Context-free grammar for the STEP exchange format, ISO 10303 Part 21
+
+
+Language sp21 ;; STEP exchange format, ISO 10303 Part 21
+
+Regular Grammar
+
+; Character Set
+
+  let Byte        = '\00' .. '\ff' ; all extended ascii
+  let Control     = '\00' .. '\1f' ; control
+                  |          '\7f' ; DEL
+                  |          '\ff' ; space-like extended ascii
+
+; Basic elements of tokens
+
+  let Printable   = Byte - Control
+
+  ign Space       = " "  | "\t"  ; ASCII - Space
+  ign Line        = "\n" | "\r"  ; UNIX / Windows / DOS / Mac
+  ign Page        = "\p"         ; weak separation convention
+
+  ign Etx         = "\1a" {Byte} ; CPM / older DOS Versions
+
+; Definitions and simple tokens
+
+  let ULetter     = 'A'..'Z' | '_'
+  let LLetter     = 'a'..'z'
+  let Letter      = ULetter | LLetter
+  let Hex1        = '0'..'9' | 'a'..'f' | 'A' .. 'Z'
+  let Hex2        = Hex1 Hex1
+  let Hex4        = Hex2 Hex2
+  let Digit       = '0'..'9'
+  let Special     = '!\"*$%&.#+,-()?/:;<=>@[]{}|^~\`'
+  let Character   = Letter | Digit | Special | ' ' | '\'' | '\\'
+  let Directive   = ( "\\P" ULetter "\\" )
+                  | ( "\\S\\" Character )
+                  | ( "\\X" Hex1 "\\" )
+                  | ( "\\X2\\" Hex2 { Hex2 } "\\X0\\" )
+                  | ( "\\X4\\" Hex4 { Hex4 } "\\X0\\" )
+  let LitChar     = Letter | Digit | Special | ' ' | "\'\'" | "\\\\" | Directive
+  let Sign        = "+" | "-"
+  let Nat         = Digit { Digit }
+  let Alpha       = ULetter { ULetter | Digit }
+
+; Comments et al
+
+  com Comment  = "/*" ({Byte}-({Byte}"*/"{Byte})) "*/"
+               | "//" ({Byte}-({Byte} Line {Byte})) Line
+
+; Complex tokens
+
+  tok Key   = [ "!" ] Alpha                  ; KEYWORD
+
+  tok Enum  = "." Alpha "."                  ; ENUMERATION
+
+  tok Ide   = "#" Nat                        ; ENTITY_INSTANCE_NAME
+
+  tok Int   = [ Sign ] Nat                   ; INTEGER
+
+  tok Flt   = [ Sign ] Nat "." { Digit }
+              [ "E" [ Sign ] Nat ]           ; REAL
+
+  tok Str   = '\'' {LitChar} '\''            ; STRING
+
+  tok Bin   = "\"" 
+              ( "0" | "1" | "2" | "3" ) 
+              { Hex1 } "\""                  ; BINARY
+
+  tok Opr   = '(),;=*$' 
+            | ( [ "END-" ] "ISO-10303-21;" )
+            | "HEADER;"
+            | "ENDSEC;"                      ; Operator
+
+Context Free Grammar
+
+start Step21
+:root: "ISO-10303-21;" HdrSec DataSecs "END-ISO-10303-21;"
+
+let HdrSec
+:dfn : "HEADER;" HdrEntities "ENDSEC;" ; min. 3 elements
+
+let HdrEntities
+:cons: HdrEntity HdrEntities2
+
+let HdrEntities2
+:cons: HdrEntity HdrEntities1
+
+let HdrEntities1
+:cons: HdrEntity HdrEntities0
+
+let HdrEntities0
+:nil :
+:cons: HdrEntity HdrEntities0
+
+let DataSecs
+:cons: DataSec DataSecs0
+
+let DataSecs0
+:nil :
+:cons: DataSec DataSecs0
+
+let HdrEntity
+:dfn : Key "(" Params ")" ";"
+
+let Params0
+:nil :
+:cons: "," Param Params0 
+
+let Params
+:nil :
+:ign0: Params1 
+
+let Params1
+:cons: Param Params0 
+
+let Params2
+:nil :
+:ign0: "(" Params1 ")"
+
+let Param
+:typ : Key "(" Param ")"
+:null: "*"
+:opt : "$"
+:ide : Ide
+:int : Int
+:flt : Flt
+:str : Str
+:bin : Bin
+:enum: Enum
+:list: "(" Params ")"
+
+let DataSec
+:dfn : "DATA" Params2 ";" Instances "ENDSEC;"
+
+let Instances
+:nil :
+:cons: Instance Instances
+
+let Instance
+:dfn : Ide "=" Record ";"
+
+let Record0
+:srec: Key "(" Params ")"
+
+let Record
+:crec: "(" SRecords ")"
+:ign0: Record0
+
+let SRecords
+:cons: Record0 SRecords0
+
+let SRecords0
+:nil :
+:cons: Record0 SRecords0
+

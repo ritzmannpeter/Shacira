@@ -1,0 +1,117 @@
+; [xml.sty] Grammatik fuer [.xml]-Dateien
+
+; Extensible Markup Language
+
+Language xml
+
+Regular Grammar
+
+#include xml2.lex
+
+; xml-relevant tokens
+
+tok Name      = Ide
+
+lan :dtd:Embed!dtd = TagEnd
+
+tok DTDStart!dtdEmbed = "<!" KDOCTYPE
+;;tok DTDStart = "<!" KDOCTYPE
+
+tok Literal   = "\"" {Char-'<\"'} "\""
+              | "\'" {Char-'<\''} "\'"
+
+let DChar     = Char - ( '<>&=,*?+|()[]%#' | Space | NameChar )
+tok CharData  = DChar + - ( {DChar} ( Literal | TagEnd ) {DChar} )
+
+tok Empty     = Space+
+
+tok Comment   = "<!--" ({Char} - ({Char} "--" {Char})) "-->"
+
+Context Free Grammar
+
+start XDoc
+;;:dfn : Prolog EDecl MDecls
+;; simplified version
+:dfn : XDecl Content
+
+;start XExtern
+;:dfn : XDecl Content
+
+;let Prolog
+;:dfn : XDecl TMDecls 
+
+;let MDecls
+;:nil :
+;:cons: MDecl MDecls
+
+;let TMDecls
+;:nil :
+;:cons: MDecl TMDecls
+;:ign0: TDecls
+
+;let TDecls
+;:cons: TDecl MDecls
+
+let MDecl
+:pi  : PI
+:spc : White0
+:xcom: Comment
+
+let XDecl
+:nul :
+:dfn : XMLDecl
+
+let TDecl
+:typ : DTDStart dtdEmbed
+
+let White0
+:spc : Empty
+
+let White
+:nul :
+:ign0: White0
+
+let EDecl
+:dfn : "<" Name Attrs EBody
+
+let EBody
+:nul : "/>"
+:dfn : ">" Content "</" Name White ">"
+
+let Attrs
+:cons: Attr Attrs
+:ign0: Attrs0
+
+let Attrs0
+:nil :
+:cons: Attr0 Attrs0
+
+let Attr0
+:spc : White0
+
+let Attr
+:dfn : White0 Name White "=" White Literal
+
+let Content
+:nil : 
+:cons: CDecl Content
+
+let CDecl
+:elm : EDecl    
+:lit : Literal
+:sect: CDSect  
+:data: CharData
+:pref: PERef  
+:eref: ERef  
+:cref: DCharRef
+:href: HCharRef
+:name: Name   
+:nmtk: Nmtoken
+:xopr: XMLOpr 
+:eq  : "="   
+:etg0: ">"  
+:etg1: "/>"
+:ign0: MDecl
+:else: [other]
+; only in this simplified version
+:ign1: TDecl

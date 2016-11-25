@@ -1,0 +1,59 @@
+; [meta.sty] Meta-grammar for composed, indendet files
+
+Language meta
+
+
+Regular Grammar
+
+; Character Set
+
+  let Byte        = '\00' .. '\ff' ; all extended ascii
+  let Control     = '\00' .. '\1f' ; control
+                  |          '\7f' ; DEL
+                  |          '\ff' ; space-like extended ascii
+
+; Basic elements of tokens
+
+  let Printable   = Byte - Control
+
+  ign Space       = " "            ; ASCII - Space
+  ign Line        = "\n" | "\r\n"  ; UNIX / CPM / DOS
+                  | "\r"           ; Mac
+  ign Page        = "\p"           ; weak separation convention
+
+  ign Etx         = "\1a" {Byte}   ; CPM / older DOS Versions
+
+  let Digit       = '0' .. '9'
+  let Letter      = 'a' .. 'z' | 'A' .. 'Z'
+
+; final tokens
+
+  tok Ide         = ( Letter | '_' ) { Digit | Letter | '_.' }
+  tok Opr         = ':()'
+
+; comments
+
+  com Comment     = ';' {Printable}
+
+
+Context Free Grammar
+
+  start Source
+  :dfn : Parts
+
+  let Parts
+  :nil :
+  :cons: Elm Parts
+
+  let Typ
+  :nul :
+  :dfn : ":" Ide
+
+  let Elm
+  :txt : "text" 
+  :grp : Ide Typ XParts 
+
+  let XParts
+  :nil :
+  :ign0: "(" Parts ")"
+

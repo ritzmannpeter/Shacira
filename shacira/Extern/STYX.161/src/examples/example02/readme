@@ -1,0 +1,35 @@
+[README] Example 02
+
+Here we have the first non-trivial example of a styx application.
+It is a somewhat complete little programming language approximately
+of the complexety of LISP.
+
+The example demonstrates to use of the derivation tree as a
+source representation beyond parsing. Here, we use it to keep
+the definition of functions available for execution.
+
+Additionally, full static and dynamic semantics of the language
+is implemented to introduce the use of the "Map" and "symbol"
+data type together with other handy library routines as the
+tree iterator and the PT_error routine.
+
+An (atypical) use of the pretty printing abilities is also
+provided.
+
+The profiling webed into the example gives an impression of
+the efficiency of the whole library material. Note that the
+interpreter is not optimized for speed.
+
+With a total of about 250 lines of C code and 100 lines for
+the grammar, which took about 4 hours to be written from
+scratch including debugging, this example also shows efficient
+a compiler/interpreter author can be with styx.
+
+Use the shell script 'mx' to create the executable. 
+Don't forget 
+1) to check the setting of the environment variable STYXDIR in 'mx'
+2) to add $STYXDIR/lib to your library path.
+
+Execute the example program [testpl0.pl0] by 'pl0 testpl0.pl0'
+or adjust the path in the first line of [testpl0.pl0], set the
+executable flag and call it directly.

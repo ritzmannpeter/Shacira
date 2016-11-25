@@ -1,0 +1,94 @@
+ 
+ Version 1.19 17.05.01
+  * Beim Lesen von Blöcken, die durch 222 teilbar sind 
+    z.B. 444 Byte oder 222 Worte
+	z.B. 666 Byte oder 333 Worte ..
+	wurde der letzten 222 Byte nicht gelesen, es erfolgte keine Fehlermeldung
+
+   * Beim Schreiben von Blöcken, die durch 222 teilbar sind 
+    z.B. 444 Byte oder 222 Worte
+	z.B. 666 Byte oder 333 Worte ..
+	wurde der letzten 222 Byte nicht gelesen, es erfolgte keine Fehlermeldung
+    
+
+ Version 1.18 29.1.01
+   * Immer noch Fehler in 1.17 vorhanden bei Eingangs sowie Merkerbereich nun behoben
+ 
+ Version 1.17 4.12.00
+   * Lesen und Schreiben DB mehr als 111 Worte am Stück
+     Obwohl DB groß genug war kam Meldung DB existiert nicht 
+	 nun OK
+ 
+ Version 1.16 16.11.00
+   * Easy Version und PCS7-LINK
+     ES7GetMPIMembers eingefügt.
+	 Timeoutverhalten verbessert
+
+ Version 1.15 10.10.00
+   *Easy-Version Referenz wurde nicht freigegeben.
+    
+   
+  Version 1.14 13.7.00
+   * S7Exit hatte am Ende langen TimeOut, nun behoben
+   * RS232 MPI-Kabel 5.1 lief mit der 3.11-DLL unter WIN 95/98 nicht
+   
+   
+  Version 1.13 10.3.00
+   * Bei Lesen (S7RdDW, S7RdMW ...)
+     kam es beim Lesen von genau 111 Worten zur Meldung, Datenbereich existiert nicht
+	 nun OK
+
+   * Bei Lesen (S7RdMB, S5RdAB .. )
+     kam es beim Lesen von genau 222 Byte zur Meldung, Datenbereich existiert nicht
+	 nun OK
+  
+  Version 1.12 25.10.99
+  * S7SetTimeout eingefügt:
+
+  Version 1.11 5.8.99
+  * Eventhandling in RS232 entfernt, und ueber non overlapped
+    geloest ! Fuehrte zu Abstuerzen mit Visualbasic
+    
+
+  
+  Version 1.10 7.6.99
+  * Betrieb mit mehreren COM gleichzeitig gab Probleme 
+  * Bei Kommunikationsfehler kam es zu einer Endlosschleife nun behoben
+
+  Version 1.09 5.5.99
+  * MaxMPIAdr war auf 127 gesetzt, Siemens Kabel Version 5.0 zeigt damit 
+    Probleme nun auf 126 gesetzt alles OK.
+  
+  
+  Version 1.08
+  * Lesen von Bytes hat immer 1 geliefert nun OK, es werden auch Fehler 
+    gemeldet
+  
+  Version 1.07 22.3.99
+  * Die lokale MPI-Adresse wurde nicht verarbeitet und immer mit 0 gearbeitet 
+    nun behoben
+  
+  Version 1.06 9.3.99
+  * Bei lesen oder Schreiben von Datenwortadressen > 32767 kam es intern zum 
+    ueberlauf nun OK
+
+  Version 1.05 2.3.99
+  * LockCom und UnlockCom fuer WIN95 un NT eingefuehrt, so kann auf die gleiche
+    Schnittstelle quasi gleichzeitig zugegriffen werden
+  
+  Version 1.04 2.2.99
+  * TS-Adapeter hgeht nun auch
+  * Mehrere SPS können mit Init auf gleiche Com mit andere SPSMPIAdr angesprochen 
+    werden
+
+                                                          
+  * Lesen und Schreiben von groesseren Datenbloecken am Stueck 
+    nun koennen bis zu 256 Datenworte am Stueck oder geschrieben werden
+  * Optimierung der RS232-Kommunikation bezueglich der Prozessorzeit
+
+  Version 1.02 15.7.98
+  * S7_E_NOCOM war mit -2 besetzt nun -4, 
+  
+                 
+  Version 1.01 3.6.98
+  * Fehler bei S7RdDB ind S7WrDB, die Adressierung war nicht korrekt

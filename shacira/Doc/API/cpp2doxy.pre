@@ -1,0 +1,581 @@
+##
+## Transform Leibingers source documentation into
+## a doxygen readable format. (AUG-2002 -ET-)
+##
+
+#case off               ## Compare ignores case
+
+#var use_file           ## YES -> Datei wird bearbeitet; NO -> Datei wird ignoriert
+                        ## Sonst -> Datei wird bearbeitet, Kommentarbehandlung aus
+
+#var in_header          ## Actually parsing a header file?
+#var file_author        ## name of author of the file to be parsed
+#var file_date          ## date when the file was created
+#var cur_state          ## Current state (replaces all in_xxx vars)
+#var has_rows           ## Flag that describes, whether rows where allready inserted in the table
+#var macro_func         ## the name of the macro-function
+#var bol_emit           ## Has a BOL marker already been emitted?
+
+
+#set ID      %1[A-Za-z_] %[A-Za-z0-9_]
+#set LETTER  %[\-+A-Za-z0-9_]   ## A Letter consists also of the signs "-" and "+"
+#set TAGS    %-3[-+()]
+
+
+
+#init:
+   $(setvar(in_header) : ($(right(2):$(__INPUT__)) == ".h" ? "YES" | )).
+
+
+
+## ---------------------------------------------------------------------------
+## Begin parsing of the file. Try to find the out the documentation style
+## of the file:
+##
+##  - Rose Generated: First comment in file is "//##"
+##  - Leibinger 2002: First comment is a comment line filled with
+##                    "*" or "/" characters and an optional (+) tag
+##
+#state start:
+   "//##" %c                            : $[rose_file:"//## " $1] .
+   "/" %1-[*/] %TAGS %10-[*/] %t        : "/**" \n $[file_header] .
+   "/" %10-[*/] %t                      : "/**" \n $[file_header] .
+   %c                                   : $1 \n .
+
+
+
+## ===========================================================================
+## LEIBINGER FILE CONVERSION RULES
+## ===========================================================================
+
+
+## ---------------------------------------------------------------------------
+## Parse the file (after file header). Try to find out the comment style.
+##
+#state in_file:
+   %c "//" %t "__HIDE_FOR_DOXYGEN__" %t %c          : .                                               ## inserted by maximilian
+   %c "//" %t "__BEGIN_HIDE_FOR_DOXYGEN__" %t %c    : $[hide_until("__END_HIDE_FOR_DOXYGEN__")].      ## inserted by maximilian
+   "//" %10-[*] %t                                  : ($(in_header) ? $[doc_group:start]       | $[ignore_doc_group:start]) .
+   %t "/*" %10-[*] %t                               : ($(in_header) ? $[maybe_doc_group:start] | $[ignore_doc_group:start]) .
+   %t %10-[/] %t                                    : $[doc_header:start] .                           ## modified by maximilian
+## %t "//" %t %25-[-] %t                            : $[attr_header:start $1] .
+   %t "using" %1-t %ID "::" %ID %t ";"              : "// using " $3 "::" $4 ";" \n .  ## -ET- avoids Doxygen parsing error
+   %c                                               : $1 \n .
+   <EOF>                                            : .
+
+##
+## Hide everything until "token" is found in a C++ style comment.
+##
+#state hide_until(token):
+   %c "//" %t $(token) %c               : $[return].
+   %c                                   : .
+
+##
+## Ignore the rest of the file.
+##
+#state ignore_rest:
+   %t "using" %1-t %ID "::" %ID %t ";"  : "// using " $3 "::" $4 ";" \n .  ## -ET- avoids Doxygen parsing error
+   %c                                   : $1 \n .
+
+##
+## Hide the rest of the file.
+##
+#state hide_rest:
+   %c                                   : \n .
+
+
+## ---------------------------------------------------------------------------
+## Convert the file header to Doxygen format. If a line "Autodoc: Yes" could
+## be found, continue with the 'in_file' state. If a line "Autodoc: No" could
+## be found, goto 'hide_rest'. Otherwise goto 'ignore_rest'.
+##
+#state file_header:
+   %t %1-[*/] %TAGS %10-[*/] %t         : " */" \n $[in_file]
+                                          ($(use_file) == "YES" ? $[in_file] | ($(use_file) == "NO" ? $[hide_rest] | $[ignore_rest])) .
+   %t %10-[*/] %t                       : " */" \n $[in_file]
+                                          ($(use_file) == "YES" ? $[in_file] | ($(use_file) == "NO" ? $[hide_rest] | $[ignore_rest])) .
+   %t %[*/] %t "File:" %t %c            : " * @file "   $5 \n .
+   %t %[*/] %t "Description:" %t %c     : " * @brief "  $5 \n .
+   %t %[*/] %t "Author:" %t %c          : " * @author " $5 \n $(setvar(file_author):$5) .
+   %t %[*/] %t "Created:" %t %c         : " * @date "   $5 \n $(setvar(file_date):$5) .
+   %t %[*/] %t "Autodoc:" %t yes %t     : $(setvar(use_file):YES) .
+   %t %[*/] %t "Autodoc:" %t no %t      : $(setvar(use_file):NO) .
+   %t %[*/] %t %c                       : " * " $4 \n .
+   %c                                   : " * " $1 \n .
+
+## ---------------------------------------------------------------------------
+## Convert a normal document header (class, method, function) to Doxygen
+## format.
+##
+## #state doc_header_old:
+##   start                                : "/**" \n .
+##   %10-[/] %t                           : " */" \n $[return] .
+##   "//" %t "Method" %c ":" %t %c        : .
+##   "//" %t "Function" %c ":" %t %c      : .
+##   "//" %t "Class" %c ":" %t %c         : .
+##   "//" %t "Argument" %c ":" %t %c      : "\param".
+##   "//" %t "Description:" %t %c         : " * @brief " $3 \n .
+##   "//" %t "Result:" %t "NONE" %c       : .
+##   "//" %t "Result:" %t %[>] %t %c      : " * @return " \n $5 .
+##   "//" %t "Exceptions:" %t "NONE" %c   : .
+##   "//" %t "Exceptions:" %t %c          : " * @exceptions " $3 \n .
+##   "//" %t "Author:" %t %c              : ($(in_header) ? " * @author " $3 \n | $[strip_author_name:$3] )  .
+##   "//" %t "Created:" %t %c             : ($(in_header) ? " * @date "   $3 \n | $[strip_date:$3] ) .
+##   "//" %10-t %1-2[<>] %t %c            : " * @param " $4 \n .
+##   "//" %t %c                           : " * " $1 $2 \n .
+##   %c                                   : .
+
+
+## ---------------------------------------------------------------------------
+## Do not document author's name unless it is different from the file's author.
+## This one is stored in the variable $(file_author)
+##
+##state strip_author_name:
+##   %c $(file_author) %c                 : " *" \n $[return] .
+##   %c                                   : " * @author " $1 \n $[return] .
+
+
+## ---------------------------------------------------------------------------
+## Do not document date unless it is different from the file's creation date.
+## This one is stored in the variable $(file_date)
+##
+##state strip_date:
+##   %c $(file_date) %c                   : " *" \n $[return] .
+##   %c                                   : " * @date " $1 \n $[return] .
+
+
+## ---------------------------------------------------------------------------
+## Convert a group header (constructor/destructor, attributes, methods) to
+## Doxygen format. Group headers are only converted for .h files.
+##
+#state doc_group:
+   start                                : "/**" \n .
+   "//" %10-[*] %-1[/] %t               : " */" \n $[return] .
+   %t %10-[*] "/" %t                    : " */" \n $[return] .
+   "//*" %t %c                          : " * @name" $[in_doc_group: "//*" $1 $2] .
+   %t "*" %t %c                         : " * @name" $[in_doc_group: $1 "*" $2 $3] .
+   %c                                   : .
+
+#state maybe_doc_group:
+   start                                : .
+   %t "*" %t                            : $[alternate_doc_header:start] .
+   %c                                   : "/**" \n $[doc_group: $1] .
+
+#state in_doc_group:
+   "//" %10-[*] %-1[/] %t               : " */" \n $[in_file] .
+   %t %10-[*] "/" %t                    : " */" \n $[in_file] .
+   "//*" %t %c                          : " " $2 \n .
+   %t "*" %t %c                         : " " $3 \n .
+   %c                                   : .
+
+#state ignore_doc_group:
+   start                                : .
+   "//" %10-[*] %-1[/] %t               : $[return] .
+   %t %10-[*] "/" %t                    : $[return] .
+   %c                                   : .
+
+
+## ---------------------------------------------------------------------------
+## Convert an attribute header to Doxygen format.
+##
+## #state attr_header:
+##    start %c                             : $1 "/**" \n .
+##    %t "//" %t %25-[-] %t                : $1 " */" \n $[return] .
+##    %t "//" %c                           : $1 " *" $2 \n .
+##    %t %c                                : $1 " */" \n $1 \n $[return] .
+
+
+
+## ===========================================================================
+## ROSE FILE CONVERSION RULES
+## ===========================================================================
+
+
+#state rose_file:
+   %0-t "//##" %1-t %ID ":" %t %ID "%" %c : $1 "/**" \n $[rose_doc] .
+   %0-t "//##" %c                         : . ## ignore ugly Rose comments...
+   %1-t "//" %1-t %c                      : $1 "//" ($(in_header) ? $(rose_maybe_group:$3) | $2 $3) "\n" .
+   %c                                     : $1 \n .
+
+#state rose_doc:
+   %t "//" %1-t %c                      : $1 " * " $3 \n .
+   %t "//" %t                           : $1 " * " \n .
+   %t "//##" %c                         : $1 " */" \n $[return] .
+   %t %c                                : $1 " */" \n $1 $2 \n $[return] .
+
+#func rose_maybe_group:
+   "Class" %c                           : " Class"   $1 \n .
+   "Using" %c                           : " Using"   $1 \n .
+   %c                                   : "! @name " $1 \n .
+
+
+## ===========================================================================
+## NEW LEIBINGER FILE CONVERSION RULES (by Maximilian Thiel and -ET-)
+## ===========================================================================
+
+
+## ---------------------------------------------------------------------------
+## Convert a normal document header (class, method, function) to Doxygen format.
+##
+
+#state doc_header:
+   start                          : $(set_active_state : in_doc_header)         $(put_string: init) .
+   %t %10-[/] %t                  : $(change_active_state : in_doc_header)      $(put_string: leave) $[return] .  ## End of Comment
+   %t "//" %-4t %3-l %c ":" %t %c : $(check_cmd($6) : $3)                       .
+   %t "//" %-14t %c               :                                             $(put_string: "   " $3) .
+   %t "//" %c                     :                                             $(put_string: $2) .
+   %c                             :                                             .
+
+#state alternate_doc_header:
+   start                          : $(set_active_state : in_doc_header)         $(put_string: init) .
+   %t %10-[*] "/" %t              : $(change_active_state : in_doc_header)      $(put_string: leave) $[in_file] .  ## End of Comment
+   %t "*"  %-4t %3-l %c ":" %t %c : $(check_cmd($6) : $3)                       .
+   %t "*"  %-14t %c               :                                             $(put_string: "   " $3) .
+   %t "*"  %c                     :                                             $(put_string: $2) .
+   %c                             :                                             .
+
+#func check_cmd(params):
+   "Function" %c                : $(change_active_state : in_doc_header)        .
+   "Method" %c                  : $(change_active_state : in_doc_header)        .
+   "Class" %c                   : $(change_active_state : in_doc_header)        .
+   "Macro" %c                   : $(change_active_state : in_macro)             $(put_string: $(params)) .
+   "Description" %c             : $(change_active_state : in_brief)             $(put_string: $(params)) .
+   "Package" %c                 : $(check_package_cmd : $(params))              .
+   "Argument" %c                : $(check_arg_cmd : $(params))                  .
+   "Parameter" %c               : $(check_arg_cmd : $(params))                  .
+   "Input" %c                   : $(check_arg_cmd : $(params))                  .
+   "Output" %c                  : $(check_arg_cmd : $(params))                  .
+   "Result" %c                  : $(check_result_cmd : $(params))               .
+   "Return" %c                  : $(check_result_cmd : $(params))               .
+   "Table" %c                   : $(change_active_state : in_table_stryker)     $(put_string: "              " $(params)) .
+   "Enum" %c                    : $(change_active_state : in_enumeration)       $(put_string: "              " $(params)) .
+   "End" %c                     : $(change_active_state : in_doc_header)        .
+   "Text" %c                    : $(change_active_state : in_doc_header)        .
+   "Example" %c                 : $(change_active_state : in_example)           $(put_string: $(params)) .
+   "Exception" %c               : $(check_except_cmd : $(params))               .
+   "Attention" %c               : $(change_active_state : in_attention)         $(put_string: $(params)) .
+   "Note" %c                    : $(change_active_state : in_comment)           $(put_string: $(params)) .
+   "Comment" %c                 : $(change_active_state : in_comment)           $(put_string: $(params)) .
+   "Author" %c                  : $(change_active_state : in_author)            $(put_string: $(params)) .
+   "Created" %c                 : $(change_active_state : in_created)           $(put_string: $(params)) .
+   "Image" %c                   : $(change_active_state : in_image)             $(put_string: $(params)) .
+   "Modification" %c            : $(change_active_state : in_ignore)            .
+   %t %c                        :                                               $(put_string: $2 $(params)) .
+   %c                           :                                               $(put_string: $1 $(params)) .
+
+#func check_arg_cmd:
+   "As follows" %t %-1[:] %c    : $(check_arg_cmd : $3)                         .
+   "NONE"                       : $(change_active_state : in_doc_header)        .
+   %t %1-2[<>] %c               : $(change_active_state : in_parameter)         $(put_string: ">" $3) .
+   %t %1-c                      : $(change_active_state : in_parameter)         $(put_string: ">" $2) .
+   %c                           : $(change_active_state : in_parameter)         $(put_string: $1) .
+
+#func check_result_cmd:
+   "NONE"                       : $(change_active_state : in_doc_header)        .
+   %t %1-2[<>] %c               : $(change_active_state : in_result)            $(put_string: ">" $3) .
+   %t %1-c                      : $(change_active_state : in_result)            $(put_string: ">" $2) .
+   %c                           : $(change_active_state : in_result)            $(put_string: $1) .
+
+#func check_except_cmd:
+   "NONE"                       : $(change_active_state : in_doc_header)        .
+   %c                           : $(change_active_state : in_exception)         $(put_string: $1) .
+
+#func check_package_cmd:
+   "NONE"                       : $(change_active_state : in_doc_header)        .
+   %t %c                        : ($2 == "" ?
+                                     $(change_active_state : in_doc_header)
+                                   | $(change_active_state : in_package)        $(put_string: $2)) .
+
+
+##
+## Change the current state to "new_state" (if not already so)
+##
+#func change_active_state:
+    %c : ($(cur_state) == $1 ? | $(put_string: end) $(set_active_state: $1) $(put_string: start) ) .
+
+##
+## Sets the current state
+##
+#func set_active_state:
+    %c                                    :  $(setvar(cur_state) : $1) .
+
+
+## ---------------------------------------------------------------------------
+## function "put_string(string)"
+## pass the string to the active state
+
+#func put_string:
+    %c : ($(cur_state) == "in_brief"         ? $(doc_brief:         $1) | )
+         ($(cur_state) == "in_desc"          ? $(doc_desc:          $1) | )
+         ($(cur_state) == "in_table"         ? $(doc_table:         $1) | )
+         ($(cur_state) == "in_table_stryker" ? $(doc_table_stryker: $1) | )
+         ($(cur_state) == "in_package"       ? $(doc_package:       $1) | )
+         ($(cur_state) == "in_example"       ? $(doc_example:       $1) | )
+         ($(cur_state) == "in_parameter"     ? $(doc_param(param):  $(ltrim:$1)) | )
+         ($(cur_state) == "in_result"        ? $(doc_param(return): $(ltrim:$1)) | )
+         ($(cur_state) == "in_exception"     ? $(doc_exception:     $1) | )
+         ($(cur_state) == "in_attention"     ? $(doc_attention:     $1) | )
+         ($(cur_state) == "in_comment"       ? $(doc_comment:       $1) | )
+         ($(cur_state) == "in_author"        ? $(doc_author:        $1) | )
+         ($(cur_state) == "in_created"       ? $(doc_created:       $1) | )
+         ($(cur_state) == "in_image"         ? $(doc_image:         $1) | )
+         ($(cur_state) == "in_macro"         ? $(doc_macro:         $1) | )
+         ($(cur_state) == "in_enumeration"   ? $(doc_enumeration:   $1) | )
+         ($(cur_state) == "in_doc_header"    ? $(doc_helper:        $1) | )
+         ($(cur_state) == "in_ignore"        ? $(doc_ignore:        $1) | ) .
+
+
+
+
+## ---------------------------------------------------------------------------
+## STATE-FUNCTIONS (STATE-HANDLER)
+## every state-handler provides at least an start, an end and  a "%c"-Argument.
+## the start-argument is called at the beginning of the state, the end argument at the end of the state.
+## Attention: the start-argument has to activate the state!
+
+
+
+## ---------------------------------------------------------------------------
+## function "doc_helper(string)"
+## this is a helper function for the doc_header.
+## (not a really state-handler)
+
+#func doc_helper:
+   start                                  : $(setvar(bol_emit):) .
+   end                                    : .
+   init                                   : "/**" \n $(setvar(macro_func):"").
+   leave                                  : " */" \n $(macro_func) \n.
+   %c                                     : $(bol:) $1 $(eol:) .
+
+
+## ---------------------------------------------------------------------------
+## function "doc_brief(string)"
+## function which is called in the Brief-Documentation-State.
+
+#func doc_brief:
+    start                                 : $(bol:) "@brief ".
+    end                                   : .
+    %t                                    : $(bol:) $(doc_desc: start) $(eol:).                 ## an empty line was found -> start Description
+    %c                                    : $(bol:) $1 $(eol:).
+
+
+
+## ---------------------------------------------------------------------------
+## function "doc_desc(string)"
+## function which is called in the Documentation-State.
+
+#func doc_desc:
+    start                                 : .
+    end                                   : .
+    %c                                    : $(bol:) $1 $(eol:) .
+
+
+## ---------------------------------------------------------------------------
+## function "doc_table(string)"
+## function which is called in the Table-State or called by a derived state (like table_stryker).
+## start: Insert the HTML-<Table>-Tag with Border == 0
+## end  : Insert the HTML-</Table>-Tag
+## To insert a Row use: "<<< col1 ||| col2 ||| .... >>> "
+## converts the flag "\b" to bold, "\a","\e", "\em" and "\i" to italic, "\c" and "\p" to typewrite-Font.
+## (only the following word is "font-modified"). "\s" is converted to a non breakable space!
+
+#func doc_table:
+    start                                 : "\\htmlonly" \n "<table border=0 cellspacing=0 cellpadding=4>" \n.
+    end                                   : "</table>" \n "\\endhtmlonly" \n.
+    %c "<<<" %c                           : $(doc_table: $1) "<TR><TD valign=top>" $(doc_table: $2) $(setvar(has_rows):"YES") \n.
+    %c ">>>" %c                           : $(doc_table: $1) "</TD></TR>" \n $(doc_table: $2) \n.
+    %c "|||" %c                           : $(doc_table: $1) "</TD><TD valign=top>"     $(doc_table: $2).
+    %c                                    : $(convert2html_font: $1) \n.
+
+
+## ---------------------------------------------------------------------------
+## function "doc_table_stryker(string)"
+## this is a special 1-or-2-column table which interpreted a ">" at the beginning of a row as a new table-row and a ":" as
+## column-seperator. Be aware that the first column is right-aligned with font set to bold, if there are two columns.
+## EXAMPLE:
+## //           > -1 : if the value is smaller than 0 ...
+
+#func doc_table_stryker:
+    start                                 : $(doc_table: start) $(setvar(has_rows):"NO").
+    end                                   : ($(has_rows)  == "YES" ? $(doc_table: ">>>") | ) $(doc_table: end).
+    %3-t %1[>] %t %c ":" %c               : $(doc_table_stryker: $1 "<<<" $3 $4 "|||" $5).
+    %3-t %1[>] %t %c "-" %c               : $(doc_table_stryker: $1 "<<<" $3 $4 "|||" $5).
+    %3-t %1[>] %t %c "//" %c              : $(doc_table_stryker: $1 "<<<" $3 $4 "|||" $5).
+    %3-t %1[>] %t %c                      : $(doc_table_stryker: $1 "<<<" $3 $4).
+    %3-t "<<<" %t %c "|||" %c             : ($(has_rows)  == "YES" ? $(doc_table: ">>>") | )
+                                            $(doc_table: "<<<" $2 "\\s \\s \\s</TD><td align = right valign = top > <B>" $3 "</B>" "|||" $4).
+    %3-t "<<<" %t %c                      : ($(has_rows)  == "YES" ? $(doc_table: ">>>") | )  $(doc_table: "<<< " $3).
+    %c                                    : $(doc_table: $1).
+
+
+## ---------------------------------------------------------------------------
+## function "in_enumeration(string)"
+## function which is called in  Enumeration-State.
+## start: Insert the HTML-<OrderdList>-Tag
+## end  : Insert the HTML-</OrderdList>-Tag
+## To insert an Item use: ">"
+## converts the flag "\b" to bold, "\a","\e", "\em" and "\i" to italic, "\c" and "\p" to typewrite-Font.
+## (only the following word is "font-modified"). "\s" is converted to a non breakable space!
+
+#func doc_enumeration:
+    start                                 : "\\htmlonly" \n "<ol>" \n.
+    end                                   : "</ol>" \n "\\endhtmlonly" \n.
+    %3-t %1[>] %t %c                      : "<B><li></B> " $(doc_enumeration: $4 ).
+    %c                                    : $(convert2html_font: $1) \n.
+
+
+## ---------------------------------------------------------------------------
+## function "doc_example(string)"
+## function which is called in the Example-State.
+
+#func doc_example:
+    start                                 : $(bol:) "@par Example:" $(eol:) $(bol:) "@code" $(eol:) .
+    end                                   : $(bol:) "@endcode" $(eol:) .
+    %c                                    : $(bol:) $1 $(eol:) .
+
+
+## ---------------------------------------------------------------------------
+## Changes every line beginning with one of ">", "<" or "<>" in a line
+## tagged with "@<tag>". Other lines are prefixed by some spaces. Called
+## in the "in_parameter" or "in_result" state.
+
+#func doc_param(tag):
+    start                                 : .
+    end                                   : .
+    %t %1-2[<>] %t %c                     : $(bol:) "@" $(tag) " " $4 $(eol:) .
+    %t %1-c                               : $(bol:) "   "          $2 $(eol:) .
+    %c                                    : $(bol:)                $1 $(eol:) .
+
+
+## ---------------------------------------------------------------------------
+## function "doc_exception(string)"
+## function which is called in the Exception-State.
+
+#func doc_exception:
+    start                                 : $(bol:) "@exception " .
+    end                                   : .
+    %c                                    : $(bol:) $1 $(eol:) .
+
+
+## ---------------------------------------------------------------------------
+## function "doc_package(string)"
+## function which is called in the Package-State.
+
+#func doc_package:
+    start                                 : .
+    end                                   : .
+    %t %c                                 : ($2 == "" ? | $(bol:) "@ingroup " $2 $(eol:)) .
+
+
+## ---------------------------------------------------------------------------
+## function "doc_attention(string)"
+## function which is called in the Attention-State.
+
+#func doc_attention:
+    start                                 : $(bol:) "@attention " .
+    end                                   : .
+    %t                                    : $(bol:) $(eol:) .
+    %c                                    : $(bol:) "<B>" $1 "</B>" $(eol:) .
+
+
+## ---------------------------------------------------------------------------
+## function "doc_comment(string)"
+## function which is called in the comment-State.
+
+#func doc_comment:
+    start                                 : $(bol:) "@note " .
+    end                                   : .
+    %c                                    : $(bol:) $1 $(eol:) .
+
+
+## ---------------------------------------------------------------------------
+## function "doc_author(string)"
+## function which is called in the Author-State.
+## Do not document author's name unless it is different from the file's author.
+## This one is stored in the variable $(file_author)
+
+#func doc_author:
+    start                                 : .
+    end                                   : .
+    %t                                    : .
+    %c $(file_author) %c                  : .
+    %c                                    : $(bol:) "@author " $1 $(eol:) .
+
+
+## ---------------------------------------------------------------------------
+## function "doc_created(string)"
+## function which is called in the Created-State.
+## Do not document date unless it is different from the file's creation date.
+## This one is stored in the variable $(file_date)
+
+#func doc_created:
+    start                                 : .
+    end                                   : .
+    %t                                    : .
+    %c $(file_date) %c                    : .
+    %c                                    : $(bol:) "@date " $1 $(eol:) .
+
+
+## ---------------------------------------------------------------------------
+## function "doc_image(string)"
+## function which is called in the Image-State.
+
+#func doc_image:
+    start                                 : .
+    end                                   : .
+    %t                                    : $(bol:) $(eol:) .
+    %c                                    : $(bol:) "@image html " $1 $(eol:) .
+
+
+## ---------------------------------------------------------------------------
+## function "doc_macro(string)"
+## function which is called in the Macro-State.
+
+#func doc_macro:
+    start                                 : $(setvar(macro_func):"").
+    end                                   : .
+    %t                                    : .
+    %c                                    : $(setvar(macro_func): $1 "{}").
+
+
+
+## ---------------------------------------------------------------------------
+## Ignore everything in this section.
+
+#func doc_ignore:
+    start                                 : $(bol:) .
+    end                                   : $(eol:) .
+    %c                                    : .
+
+
+## ---------------------------------------------------------------------------
+## function "convert2html_font(string)"
+## converts the flag "\b" to bold, "\a","\e", "\em" and "\i" to italic, "\c" and "\p" to typewrite-Font.
+## (only the following word is "font-modified"). "\s" is converted to a non breakable space!
+
+#func convert2html_font:
+    %c "\\b"  %1-t %LETTER %t %c          : $(convert2html_font: $1 "<B> "  $3 " </B>"  $5 ).
+    %c "\\a"  %1-t %LETTER %t %c          : $(convert2html_font: $1 "<EM> " $3 " </EM>" $5 ).
+    %c "\\e"  %1-t %LETTER %t %c          : $(convert2html_font: $1 "<EM> " $3 " </EM>" $5 ).
+    %c "\\em" %1-t %LETTER %t %c          : $(convert2html_font: $1 "<EM> " $3 " </EM>" $5 ).
+    %c "\\i"  %1-t %LETTER %t %c          : $(convert2html_font: $1 "<EM> " $3 " </EM>" $5 ).
+    %c "\\c"  %1-t %LETTER %t %c          : $(convert2html_font: $1 "<TT> " $3 " </TT>" $5 ).
+    %c "\\p"  %1-t %LETTER %t %c          : $(convert2html_font: $1 "<TT> " $3 " </TT>" $5 ).
+    %c "\\s"  %t %c                       : $(convert2html_font: $1 "&nbsp;" $3 ).
+    %t                                    : .
+    %c                                    : $1.
+
+
+## ===========================================================================
+## UTILITY FUNCTIONS
+## ===========================================================================
+
+
+#func bol:
+    %c : ($(bol_emit) == "YES" ? | " * ") $(setvar(bol_emit): "YES") .
+
+#func eol:
+    %c : \n $(setvar(bol_emit):) .
+
+#func ltrim:
+    %t %c : $2 .

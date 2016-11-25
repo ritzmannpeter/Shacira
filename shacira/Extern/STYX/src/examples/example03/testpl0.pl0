@@ -1,0 +1,44 @@
+#!pl0r
+
+# [test.pl0] A PL0 example "program"
+
+# first we define a few operation the hard way.
+
+fun add(a,b) = if a = 0 then b else 1 + add(a-1,b)
+
+fun times(a,b) = if a = 0 then 0 else add(times(a-1,b),b)
+
+fun fact(n) 
+  = if n = 0 then
+      1
+    else
+      times(n, fact(n-1))
+
+fun profile() = fact(6)
+
+# now try the evaluator with primitive ground expression
+
+run 1
+run 1+3
+run 2*7-1
+
+# now try the evaluator using functions
+
+run add(0,3)
+run add(1,3)
+run add(7,3)
+
+run times(7,3)
+
+# following an example for profiling.
+# It may take a moment to compute, but
+# executes 2839 function calls and
+# evaluates a total of 23347 expression.
+
+# on a fast machine, you might want to
+# increase the argument slightly to gain
+# a visible effect. Then notice that the
+# interpreter is not yet optimized for
+# speed.
+
+run profile()

@@ -1,0 +1,192 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[bnf.h] Type: BNF</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[bnf.h] Type: BNF</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="prs_dfn.htm">#include "prs_dfn.h"</a>
+<br>
+<br>
+<br>
+<br><pre>
+   [bnf] implements a more abstract interface to the more technical definition
+   of a context free grammar, provided by the above parse module [prs].
+
+</pre>
+<br><hr width="100%" size=2><h2><b> Types </b></h2>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b>BNF_BNF</b>
+<td align=left> Abstract BNF type               
+
+<TR valign=top>
+<td align=left><b>BNF_NTM</b>
+<td align=left> Abstract nonterminal type       
+
+<TR valign=top>
+<td align=left><b>BNF_TOK</b>
+<td align=left> Abstract token type             
+
+<TR valign=top>
+<td align=left><b>BNF_KEY</b>
+<td align=left> Abstract keyword type           
+
+<TR valign=top>
+<td align=left><b>BNF_PRD</b>
+<td align=left> Abstract production type        
+
+<TR valign=top>
+<td align=left><b>BNF_MBR</b>
+<td align=left> Abstract production symbol type 
+
+</table>
+<br><hr width="100%" size=2><h2><b> Create & Delete </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>BNF_BNF <b>BNF_create</b>(PLR_Tab PTab)</pre>
+<td bgcolor="#FFF0F5" align=left> creates a BNF-view from the parse table 'PTab' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>BNF_delBNF</b>(BNF_BNF Bnf)</pre>
+<td bgcolor="#FFF0F5" align=left>deletes BNF-view 'Bnf'
+
+</table>
+<br><hr width="100%" size=2><h2><b> Access to BNF-view </b></h2>
+<br><hr width="100%" size=2><h2><b> Language and startsymbols </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>BNF_language</b>(BNF_BNF Bnf)</pre>
+<td bgcolor="#FFF0F5" align=left>Language name
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>BNF_startCnt</b>(BNF_BNF Bnf)</pre>
+<td bgcolor="#FFF0F5" align=left>Number of startsymbols
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>BNF_NTM <b>BNF_startNth</b>(BNF_BNF Bnf, int Nth)</pre>
+<td bgcolor="#FFF0F5" align=left>Nth startsymbol ( Nth &gt;= 1 )
+
+</table>
+<br><hr width="100%" size=2><h2><b> Nonterminals </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>BNF_ntCnt</b>(BNF_BNF Bnf)</pre>
+<td bgcolor="#FFF0F5" align=left>Number of nonterminals
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>BNF_NTM <b>BNF_ntNth</b>(BNF_BNF Bnf, int Nth)</pre>
+<td bgcolor="#FFF0F5" align=left>Nth nonterminal ( Nth &gt;= 1 )
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>BNF_ntIntern</b>(BNF_BNF Bnf, BNF_NTM Nt)</pre>
+<td bgcolor="#FFF0F5" align=left>Nonterminal to symbol id
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>BNF_ntName</b>(BNF_BNF Bnf, BNF_NTM Nt)</pre>
+<td bgcolor="#FFF0F5" align=left>Nonterminal to name
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>BNF_NTM <b>BNF_ntId</b>(BNF_BNF Bnf, c_string NtName)</pre>
+<td bgcolor="#FFF0F5" align=left>Name to nonterminal
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>BNF_NTM <b>BNF_internNt</b>(BNF_BNF Bnf, int symbol)</pre>
+<td bgcolor="#FFF0F5" align=left>Symbol id to nonterminal
+
+</table>
+<br><hr width="100%" size=2><h2><b> Productions </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>BNF_ntProdCnt</b>(BNF_BNF Bnf, BNF_NTM Nt)</pre>
+<td bgcolor="#FFF0F5" align=left>Number of productions
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>BNF_PRD <b>BNF_ntProdNth</b>(BNF_BNF Bnf, BNF_NTM Nt, int Nth)</pre>
+<td bgcolor="#FFF0F5" align=left> Nth production ( Nth &gt;= 1 ) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>BNF_prodIntern</b>(BNF_BNF Bnf, BNF_PRD Prd)</pre>
+<td bgcolor="#FFF0F5" align=left>Production to id
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>BNF_prodName</b>(BNF_BNF Bnf, BNF_PRD Prd)</pre>
+<td bgcolor="#FFF0F5" align=left>Production to name
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>BNF_PRD <b>BNF_ntProdId</b>(BNF_BNF Bnf, BNF_NTM Nt, c_string ProdName)</pre>
+<td bgcolor="#FFF0F5" align=left> Name to production <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>BNF_NTM <b>BNF_prodNtId</b>(BNF_BNF Bnf, BNF_PRD Prd)</pre>
+<td bgcolor="#FFF0F5" align=left>Production nonterminal
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>BNF_PRD <b>BNF_internProd</b>(BNF_BNF Bnf, int symbol)</pre>
+<td bgcolor="#FFF0F5" align=left>Id to production
+
+</table>
+<br><hr width="100%" size=2><h2><b> Production symbols </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>BNF_prodMbrCnt</b>(BNF_BNF Bnf, BNF_PRD Prd)</pre>
+<td bgcolor="#FFF0F5" align=left> Number of production symbols <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>BNF_MBR <b>BNF_prodMbrNth</b>(BNF_BNF Bnf, BNF_PRD Prd, int Nth)</pre>
+<td bgcolor="#FFF0F5" align=left> Nth production symbol ( Nth &gt;= 1 ) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>BNF_isMbrNtm</b>(BNF_BNF Bnf, BNF_MBR Mbr)</pre>
+<td bgcolor="#FFF0F5" align=left> Production symbol is nonterminal ? <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>BNF_isMbrTok</b>(BNF_BNF Bnf, BNF_MBR Mbr)</pre>
+<td bgcolor="#FFF0F5" align=left> Production symbol is token ? <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>BNF_isMbrKey</b>(BNF_BNF Bnf, BNF_MBR Mbr)</pre>
+<td bgcolor="#FFF0F5" align=left> Production symbol is keyword ? <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>BNF_NTM <b>BNF_MbrNtm</b>(BNF_BNF Bnf, BNF_MBR Mbr)</pre>
+<td bgcolor="#FFF0F5" align=left> Production symbol to nonterminal <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>BNF_TOK <b>BNF_MbrTok</b>(BNF_BNF Bnf, BNF_MBR Mbr)</pre>
+<td bgcolor="#FFF0F5" align=left>Production symbol to token
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>BNF_KEY <b>BNF_MbrKey</b>(BNF_BNF Bnf, BNF_MBR Mbr)</pre>
+<td bgcolor="#FFF0F5" align=left> Production symbol to keyword <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Tokens </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>BNF_tokCnt</b>(BNF_BNF Bnf)</pre>
+<td bgcolor="#FFF0F5" align=left>Number of tokens
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>BNF_TOK <b>BNF_tokNth</b>(BNF_BNF Bnf, int Nth)</pre>
+<td bgcolor="#FFF0F5" align=left>Nth token ( Nth &gt;= 1 )
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>BNF_tokIntern</b>(BNF_BNF Bnf, BNF_TOK Tok)</pre>
+<td bgcolor="#FFF0F5" align=left>Token to symbol id
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>BNF_tokName</b>(BNF_BNF Bnf, BNF_TOK Tok)</pre>
+<td bgcolor="#FFF0F5" align=left>Token to name
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>BNF_TOK <b>BNF_tokId</b>(BNF_BNF Bnf, c_string TokName)</pre>
+<td bgcolor="#FFF0F5" align=left>Name to token
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>BNF_TOK <b>BNF_internTok</b>(BNF_BNF Bnf, int symbol)</pre>
+<td bgcolor="#FFF0F5" align=left>Symbol id to token
+
+</table>
+<br><hr width="100%" size=2><h2><b> Keywords </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>BNF_keyCnt</b>(BNF_BNF Bnf)</pre>
+<td bgcolor="#FFF0F5" align=left>Number of keywords
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>BNF_KEY <b>BNF_keyNth</b>(BNF_BNF Bnf, int Nth)</pre>
+<td bgcolor="#FFF0F5" align=left>Nth keyword ( Nth &gt;= 1 )
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>BNF_keyIntern</b>(BNF_BNF Bnf, BNF_KEY Key)</pre>
+<td bgcolor="#FFF0F5" align=left>Keyword to symbol id
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>BNF_keyName</b>(BNF_BNF Bnf, BNF_KEY Key)</pre>
+<td bgcolor="#FFF0F5" align=left>Keyword to name
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>BNF_KEY <b>BNF_keyId</b>(BNF_BNF Bnf, c_string KeyName)</pre>
+<td bgcolor="#FFF0F5" align=left>Name to keyword
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>BNF_KEY <b>BNF_internKey</b>(BNF_BNF Bnf, int symbol)</pre>
+<td bgcolor="#FFF0F5" align=left>Symbol id to keyword
+
+</table>
+
+</body>
+</html>

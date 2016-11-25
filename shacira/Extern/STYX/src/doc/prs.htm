@@ -1,0 +1,239 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[prs.h] LALR(1) Parser</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[prs.h] LALR(1) Parser</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="prs_io.htm">#include "prs_io.h"</a>
+<br><a href="otab.htm">#include "otab.h"</a>
+<br>
+<br>
+<br>
+<br>
+   <p>This module [prs] does the actual - low level - parsing based on a given
+   STYX-konform parse table definition. ( see <a href="prs_gen.htm">[prs_gen]</a> )
+   <p>The parser is reentrant and allows multiple parse operations at a time.
+   <p>A second facility refers to its flexible configuration which for example
+      allows the use of another scanner than provided by the STYX system.
+   <br>
+   <p>Within the STYX system the parse interface will only be used by the higher
+   level parse and term construction module <a href="ptm_gen.htm">[ptm_gen]</a>.
+   <br>
+   <p>Beside that the module offers access to the parse table definition.
+   <br>
+   <p>The parser handles syntax errors as described below:
+   <p>On activated early reduction mode and in the case none of the nonterminals
+      are specified as resumption points the parse process will stop.
+   <p>Otherwise a variant of the panic-mode error recovery method which only tracks
+      the specified nonterminals will be applied.
+   <br>
+
+
+<br><hr width="100%" size=2><h2><b> Types </b></h2>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b>PLR_Pdf</b>
+<td align=left> Abstract parser type 
+
+</table>
+<br><hr width="100%" size=4><h2><font color="#008B8B"><b> Parse interface </b></font></h2>
+<br><hr width="100%" size=2><h2><b> Configuration </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PLR_Pdf <b>PLR_createPdf</b>(PLR_Tab PTab, StdCPtr extCfg)</pre>
+<td bgcolor="#FFF0F5" align=left> creates a parser for table 'PTab' and external configuration 'extCfg' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PLR_addGetF</b>(PLR_Pdf Parser, int (*getToken)(PLR_Pdf Parser))</pre>
+<td bgcolor="#FFF0F5" align=left> adds next token function 'getToken' to 'Parser' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PLR_addCurSyF</b>(PLR_Pdf Parser, c_string (*getCurSy)(PLR_Pdf Parser))</pre>
+<td bgcolor="#FFF0F5" align=left> adds current token name debug function 'getCurSy' to 'Parser' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PLR_addRedF</b>
+     (
+       PLR_Pdf Parser,
+       StdCPtr (*redVal)(PLR_Pdf Parser, int symcnt, int prodId, c_bool accept)
+     )</pre>
+<td bgcolor="#FFF0F5" align=left> adds reduction function 'redVal' to 'Parser' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PLR_addSftF</b>
+     (
+       PLR_Pdf Parser, StdCPtr (*shiftVal)(PLR_Pdf Parser, int symbol)
+     )</pre>
+<td bgcolor="#FFF0F5" align=left> adds shift function 'shiftVal' to 'Parser' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PLR_addErrF</b>(PLR_Pdf Parser, void (*error)(PLR_Pdf Parser))</pre>
+<td bgcolor="#FFF0F5" align=left> adds error function 'error' to 'Parser' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PLR_addDbgF</b>(PLR_Pdf Parser, void (*debug)(PLR_Pdf Parser, StdCPtr val))</pre>
+<td bgcolor="#FFF0F5" align=left> adds debug function 'debug' to 'Parser' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PLR_delPdf</b>(PLR_Pdf Parser)</pre>
+<td bgcolor="#FFF0F5" align=left>removes 'Parser'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>StdCPtr <b>PLR_CfgExt</b>(PLR_Pdf Parser)
+#define PLR_CFGEXT(type,pdf) ((type)PLR_CfgExt(pdf))</pre>
+<td bgcolor="#FFF0F5" align=left> external configuration of 'Parser' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PLR_Tab <b>PLR_CfgTab</b>(PLR_Pdf Parser)</pre>
+<td bgcolor="#FFF0F5" align=left>parse table of 'Parser'
+
+</table>
+<br><hr width="100%" size=2><h2><b> Parsing </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>PLR_parse</b>(PLR_Pdf Parser, c_string StartSymbol, c_bool interprete)</pre>
+<td bgcolor="#FFF0F5" align=left> does the parsing for start nonterminal 'StartSymbol'<br>
+   interprete --&gt; early reduction<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>PLR_accept</b>(PLR_Pdf Parser)</pre>
+<td bgcolor="#FFF0F5" align=left> whether the parser accepts the EOF token <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>StdCPtr <b>PLR_topVal</b>(PLR_Pdf Parser)</pre>
+<td bgcolor="#FFF0F5" align=left> pops and returns the top stack value of 'Parser' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>ROW(StdCPtr) <b>PLR_valStack</b>(PLR_Pdf Parser)</pre>
+<td bgcolor="#FFF0F5" align=left> returns the value stack of 'Parser' ( use with care ! ) <br>
+
+</table>
+<br><hr width="100%" size=4><h2><font color="#008B8B"><b> Parse table interface </b></font></h2>
+<br><hr width="100%" size=2><h2><b> Copy & Delete </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PLR_Tab <b>PLR_copyTab</b>(PLR_Tab PTab)</pre>
+<td bgcolor="#FFF0F5" align=left>copies parse table 'PTab'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PLR_delTab</b>(PLR_Tab PTab)</pre>
+<td bgcolor="#FFF0F5" align=left>removes parse table 'PTab'
+
+</table>
+<br><hr width="100%" size=2><h2><b> Accessing </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>PLR_language</b>(PLR_Tab PTab)</pre>
+<td bgcolor="#FFF0F5" align=left>language name of parse table 'PTab'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>PLR_conflictCnt</b>(PLR_Tab PTab)</pre>
+<td bgcolor="#FFF0F5" align=left> number of conflicts of parse table 'PTab';<br>
+   available only after construction<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>PLR_tokenCnt</b>(PLR_Tab PTab)</pre>
+<td bgcolor="#FFF0F5" align=left>number of tokens of parse table 'PTab'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>PLR_nontermCnt</b>(PLR_Tab PTab)</pre>
+<td bgcolor="#FFF0F5" align=left> number of nonterminals of parse table 'PTab' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>PLR_startCnt</b>(PLR_Tab PTab)</pre>
+<td bgcolor="#FFF0F5" align=left> number of startsymbols of parse table 'PTab' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>PLR_symbolCnt</b>(PLR_Tab PTab)</pre>
+<td bgcolor="#FFF0F5" align=left>number of symbols of parse table 'PTab'
+
+</table>
+<br>
+  <p><b>Nonterminal conversion macros</b>
+
+
+<br><pre>/* Nonterminal index to symbol */
+#define PLR_NTI_TO_NTS(t,i)   (PLR_tokenCnt(t)+(i))
+/* Nonterminal symbol to index */
+#define PLR_NTS_TO_NTI(t,s)   ((s)-PLR_tokenCnt(t))
+/* Nonterminal symbol to class */
+#define PLR_NTS_TO_NTC(t,s)   PLR_ntClass((t), \
+                                PLR_ntClassId((t),PLR_NTS_TO_NTI(t,s)))
+
+</pre>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>PLR_startSymbol</b>(PLR_Tab PTab, int startId)</pre>
+<td bgcolor="#FFF0F5" align=left> startsymbol 'startId' of parse table 'PTab'<br>
+   [startId=0..StartCnt-1] --&gt; [0..SymbolCnt-1]<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>PLR_isErrorNt</b>(PLR_Tab PTab, int ntId)</pre>
+<td bgcolor="#FFF0F5" align=left> whether 'ntId' is an error nonterminal of parse table 'PTab'<br>
+   [ntId=0..NtCnt-1]<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>PLR_ntClassId</b>(PLR_Tab PTab, int ntId)</pre>
+<td bgcolor="#FFF0F5" align=left> class index of nonterminal 'ntId' of parse table 'PTab'<br>
+   [ntId=0..NtCnt-1] --&gt; [0..NtCnt-1]<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>PLR_ntClass</b>(PLR_Tab PTab, int ntClsId)</pre>
+<td bgcolor="#FFF0F5" align=left> class symbol of nonterminal 'ntId' of parse table 'PTab'<br>
+   [ntClsId=0..NtCnt-1] --&gt; [0..SymbolCnt-1]<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>PLR_symType</b>(PLR_Tab PTab, int symId)</pre>
+<td bgcolor="#FFF0F5" align=left> type of symbol 'symId' of parse table 'PTab' [symId=0..SymbolCnt-1] <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>PLR_symName</b>(PLR_Tab PTab, int symId)</pre>
+<td bgcolor="#FFF0F5" align=left> name of symbol 'symId' of parse table 'PTab' [symId=0..SymbolCnt-1] <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>PLR_prodCnt</b>(PLR_Tab PTab)</pre>
+<td bgcolor="#FFF0F5" align=left> number of productions of parse table 'PTab' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>PLR_prodNonTerm</b>(PLR_Tab PTab, int prodId)</pre>
+<td bgcolor="#FFF0F5" align=left> nonterminal of production 'prodId' of parse table 'PTab'<br>
+   [prodId=0..PCnt-1] --&gt; [0..SymbolCnt-1]<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>PLR_prodMethod</b>(PLR_Tab PTab, int prodId)</pre>
+<td bgcolor="#FFF0F5" align=left>unused
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>PLR_prodSymCnt</b>(PLR_Tab PTab, int prodId)</pre>
+<td bgcolor="#FFF0F5" align=left> number of members of production 'prodId'<br>
+   of parse table 'PTab' [prodId=0..PCnt-1]<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>PLR_prodSymbol</b>(PLR_Tab PTab, int prodId, int psymId)</pre>
+<td bgcolor="#FFF0F5" align=left> symbol of production 'prodId' and member 'psymId'<br>
+   of parse table 'PTab'<br>
+   [prodId=0..PCnt-1,psymId=0..PSCnt-1] --&gt; [0..SymbolCnt-1]<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>PLR_prodSymFrm</b>(PLR_Tab PTab, int prodId, int psymId)</pre>
+<td bgcolor="#FFF0F5" align=left> layout info for production 'prodId' and member 'psymId'<br>
+   of parse table 'PTab'<br>
+   [prodId=0..PCnt-1,psymId=0..PSCnt-1] --&gt;<br>
+   [negative(--&gt;NL)] column position<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>PLR_prodName</b>(PLR_Tab PTab, int prodId)</pre>
+<td bgcolor="#FFF0F5" align=left> name of production 'prodId' of parse table 'PTab'<br>
+   [prodId=0..PCnt-1]<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>PLR_stateCnt</b>(PLR_Tab PTab)</pre>
+<td bgcolor="#FFF0F5" align=left>number of states in parse table 'PTab'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>ROW(int) <b>PLR_shiftValues</b>(PLR_Tab PTab, int stateId)</pre>
+<td bgcolor="#FFF0F5" align=left> shift value ( tokenId, followStateId ) ...<br>
+   of state 'stateId' in parse table 'PTab'; allocs result row<br>
+   [followStateId,stateId=0..StateCnt-1, tokenId=0..TokenCnt-1]<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>ROW(int) <b>PLR_gotoValues</b>(PLR_Tab PTab, int ntId)</pre>
+<td bgcolor="#FFF0F5" align=left> goto value ( followStateId, fromStateId ) ...<br>
+   of nonterminal 'ntId' in parse table 'PTab'; allocs result row<br>
+   [followStateId,fromStateId=0..StateCnt-1, ntId=0..NtCnt-1]<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>ROW(int) <b>PLR_actionValues</b>(PLR_Tab PTab, int stateId)</pre>
+<td bgcolor="#FFF0F5" align=left> action value ( error=-2|accept=-1|prodId, tokenId|startId|-1 ) ...<br>
+   of state 'stateId' in parse table 'PTab'; allocs result row<br>
+   [stateId=0..StateCnt-1, prodId=0..PCnt-1,<br>
+    tokenId=0..TokenCnt-1, startId=TokenCnt..TokenCnt+StartCnt-1]<br>
+<br>
+
+</table>
+
+</body>
+</html>

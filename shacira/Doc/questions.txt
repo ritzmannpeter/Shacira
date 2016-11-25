@@ -1,0 +1,15 @@
+
+
+MosaicFrameImpl:
+
+   virtual bool GetTranslation(QString & translated_text, CONST_STRING_T string_id, ULONG_T int_id, CONST_STRING_T text,
+                               CONST_STRING_T param1, CONST_STRING_T param2, CONST_STRING_T param3, CONST_STRING_T param4);
+
+
+CAppFrame:
+
+   virtual bool GetTranslation(QString & translated_text, const QString & string_id, ULONG_T int_id, const QString & text,
+                               const QString & param1, const QString & param2, const QString & param3, const QString & param4);
+
+
+

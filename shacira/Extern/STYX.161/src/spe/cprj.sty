@@ -1,0 +1,229 @@
+; [cprj.sty] Project definition
+
+Language cprj
+
+Regular Grammar
+
+  let Byte        = '\00' .. '\ff' ; extended ASCII
+  let Control     = '\00' .. '\1f' ; control
+                  |          '\7f' ; DEL
+
+  let Printable   = Byte - Control
+
+  ign Space       = '\t '
+  ign Line        = "\n" | "\r\n"  ; UNIX / CPM / DOS
+                  | "\r"           ; Mac
+  ign Page        = "\p"           ; weak separation convention
+
+  let Letter      = 'A'..'Z' | 'a'..'z'
+  let Digit       = '0'..'9'
+  let Special     = '._-@:;/\\?*&+(){}' ; ?,*,& sind Datei-Pattern
+  let Ide         = ( Letter | Digit | Special )
+                    { Letter | Digit | Special } 
+  let MIde        = Ide | "$" Ide | "%" Ide "%" | "$" "(" Ide ")" 
+  
+  tok Name        = MIde { MIde }
+
+  tok Opr         = Byte - Control - Letter - Special - Space - Digit
+
+  tok Val         = ("="|"~") { Printable } Line
+                  ; ohne/mit Makro-Expansion
+
+  com Comment     = '#' [ (Printable - 'ime') {Printable} ] Line
+
+; Macro tokens
+
+  let White   = Space | Line | Page
+  let MName   = (Letter | "_") { Letter | Digit | "_" } 
+  let MPar    = ( Printable - ( White | ',' | ')' | '=' ) )
+                { Printable - ( White | ',' | ')' | '=' ) }
+
+  tok MacInc  = "#include" White {White} (Printable-White) {Printable-White} ; Include
+  tok MacDel  = "#undefine" White {White} Name                               ; undefine Macro
+  tok MMacDfn = "#macro" White {White} MName                                 ; Macro definition
+                  {White} [ "(" {White} MPar 
+                  { {White} "," {White} MPar } {White} ")" {White} ]
+                  [ "=" 
+                    ({Byte} - ({Byte} ("#macro"|"#end") {Byte})) 
+                    "#end" ]
+
+  tok MacSep  = '\'' (Byte-'\'') [ '-' ]                                     ; End of parameter
+
+  tok MacCond = ( ( "#ifdef" | "#ifndef" ) White {White} MName )             ; Conditionals
+                | "#else" | "#end"
+
+
+Context Free Grammar
+
+start ProjectDfn
+:root: Project
+
+let RelOp
+:eq: ".eq."
+:le: ".le."
+:lt: ".lt."
+:ge: ".ge."
+:gt: ".gt."
+:ne: ".ne."
+
+let MacDfn
+:val : Val                             ; Value
+:cond: Name RelOp Name "?" Val ":" Val ; Conditional value
+
+let Project
+:inc : "use" Name Project           ; Include project definition file(s)
+:mac : "Macro" Name MacDfn Project  ; Define macro
+                                    ; extended: %<envvar>:<dftval>%
+                                    ;           %<envvar>:&<macnam>%
+                                    ; If the environment variable is undefined
+                                    ; use the default or macro value.
+:typ : "Type" TypDfn Project        ; Define source or target type
+:exec: "exec" Val Project           ; Execute system command
+:rule: "Rule" Name                  ; Define project build rule 
+                                    ; with target and source definitions 
+       "build" RuleAttr DstDfn     
+       Project1 
+       "from" Name SrcDfn
+       Project
+; rule name, rule attribut, target definition, build parameter, 
+; source type, expression(pathlist)
+; pathlist: 1) source directory path ( including file pattern '*' and '?' ), 
+;           2) dependant rule for internal targets
+;                RuleName[.TargetSuffixList as restriction] --> dependant targets
+;              the dependant targets will be derived from the source dependencies
+;              belonging to the sources ( --> targets ) of the dependant rule.
+; internal source / target definition:
+; if a source type specifies an intermediate build result ( ObjectSuffix )
+; each source file will be applied to the corresponding source type command.
+; under the condition ObjectSuffix(source type) != Suffix(target type)
+; each target file will be applied to the corresponding target type command.
+; external source / target definition:
+; each unit of source and target files will be applied to the corresponding
+; source type command.
+:ign0: Project3                     ; Default project rule environment
+
+let Project1 ; Project rule environment
+:inc : "use" Name Project2
+:ign0: Project0 
+
+let Project2
+:nul :
+
+let RuleAttr
+:nul:     ; Non-executable: no target inference
+:exe: "!" ; Executable: source and target inference
+:ex2: "!" "-" ; Executable: source and external target inference
+
+let OptTPrefix
+:nul :
+:pre : "TPrefix" Name
+
+let OptSPrefix
+:nul :
+:pre : "SPrefix" Name
+
+let DstDfn
+:ext : "by" "Command"
+:int : Name DstName OptTPrefix OptSPrefix 
+; target type, target specification, source module / target prefix
+
+let DstName
+:root: "by" "Root"
+:src : "by" "Source"
+:dir : "by" "Directory"
+:nam : Name
+;                 for all target type suffixes i:
+; Name        --> Name[.<i-th suffix>], all source files
+; by Root     --> <basename main source file>[.<i-th suffix>], 
+;                 main source file + dependant source files
+; by Source   --> <basename source file>[.<i-th suffix>], source file
+; by Dirctory --> <source directory name>[.<i-th suffix>], 
+;                 all source files within that directory 
+; by Command  --> functional / external collection of the
+;                 source and target file units
+
+let RegExp
+:nul :
+:exp : "RegExp" Val
+
+let SrcAttr
+:exp : RegExp
+:rexp: "recursive" RegExp ; recursive traversal of the pathlist directories with an
+                          ; optional regular expression to restrict the traversal
+
+let SrcDfn
+:dfn : Name SrcAttr
+
+let TypDfn
+:one : Name
+:two : Name Name
+; type name [target suffixes]
+;           example: dll.lib
+;           For some sources a translation produces targets of different types.
+;           example: sty --> c,lim,pim
+; type name [source suffixes[;[include suffixes][;object suffix]]]
+;           examples: c.cpp.cxx;h.hpp.hxx;obj
+;                     src;&C
+;                     rc
+; Within the include section a source type reference can be specified instead of 
+; a regular suffix.
+; source file dependency inference:
+; module: basename source  file |--> basename include file, else: [program] source
+; module: basename include file |--> basename source  file, else: interface
+
+let Project0 ; Project rule environment
+:dprj: "Project" Name Project0          ; Define project directories: 
+:ddst: "Targets" Name Project0          ; project / target / intermediate directory
+:dobj: "Objects" Name Project0          ; Rules with external source/target definitions
+                                        ; could define multiple target directories
+:ext : "Externals"                      ; Define external include / library pathlist 
+       Name Project0                    ; for additional non-infered
+                                        ; libraries and object files
+:oext: "Optional" "Externals"           ; Define external include / library pathlist 
+       Name Project0                    ; for additional infered
+                                        ; libraries and object files
+:lib : "Libraries" Name Project0        ; Define (external) libraries and object files
+:cmd : "Command" Name Val Project0      ; Define type-specific 'nanomake' command for
+                                        ; (re)source compiler, linker, ... 
+                                        ; type =/~ command line
+:par : "Parameter" Name Name Val        ; Define type-specific command parameter for
+       Project0                         ; (re)source compiler, linker, ... 
+                                        ; type parameter=/~ value
+:res : "Repository" Name Project0       ; Define type repository: 
+                                        ; type-specific DPS Library 
+; Types of DPS library functions:
+; Function 'direct source dependencies' : 
+;   void <Typname>_parse
+;        (
+;          string szSrcPath, StdCPtr  pBag,
+;          void (*addDepFile)(StdCPtr pBag, string szDepFile), 
+;          bool* pbRoot
+;        )
+; Function 'source / target units' : 
+;   void <Typname>_getFiles
+;        (
+;          ROW(string) pDstPathes, SET(string) pSrcPathes, StdCPtr pBag,
+;          void (*addGroup)(StdCPtr pGBag, StdCPtr* ppTBag, StdCPtr* ppSBag),
+;          void (*addTarget)(StdCPtr pBag, string szDstFile, string szDstPath),
+;          void (*addSource)(StdCPtr pBag, string szSrcFile)
+;          // target directories ( Targets <Name> )
+;          // complete source pathes
+;          // ( DstFile, DstPath )[] |--> { SrcFile }
+;        )
+; Function 'library initialisation', RC=0/errorcode : long DpsLib_init(void)
+; Function 'library termination', RC=memory counter : long DpsLib_quit(void)
+; Function 'target comparison for sort' : 
+;  int <Typname>_cmpTargets(string szLftDstPath, string szRgtDstPath)
+:ign0: Project2                         ; End of project definition
+
+let Project3 ; Default project rule environment ( see above )
+:dprj: "Project" Name Project
+:ddst: "Targets" Name Project
+:dobj: "Objects" Name Project
+:ext : "Externals" Name Project
+:oext: "Optional" "Externals" Name Project 
+:lib : "Libraries" Name Project 
+:cmd : "Command" Name Val Project
+:par : "Parameter" Name Name Val Project                 
+:res : "Repository" Name Project 
+:ign0: Project2 

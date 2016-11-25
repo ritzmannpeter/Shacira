@@ -1,0 +1,23 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[syscbhdl.h] Types of system handlers ( abort ... )</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[syscbhdl.h] Types of system handlers ( abort ... )</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<pre></pre><p> <p><b>External abort handler</b><br>
+    called if an exception was raised<br>
+    Note, that normal program execution isn't possible at this time.
+
+<pre>typedef void (*PHDL_ABORT)(char* abortmsg);</pre><pre></pre><p> <p><b>External trap handler</b><br>
+    called if an exception was raised and no abort handler was defined<br>
+    After that the program aborts. ( used by the xaron project )
+
+<pre>typedef void (*PHDL_TRAP)();</pre><pre></pre><p> <p><b>External memory handler</b><br>
+    called once if memory allocation failed in order to release memory
+
+<pre>typedef void (*PHDL_FREEMEM)(size_t cnt);</pre><pre></pre>
+</body>
+</html>

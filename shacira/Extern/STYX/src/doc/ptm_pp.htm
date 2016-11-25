@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[ptm_pp.h] Parse Tree Transformation & Pretty Printing</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[ptm_pp.h] Parse Tree Transformation & Pretty Printing</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="ptm.htm">#include "ptm.h"</a>
+<br><a href="prs.htm">#include "prs.h"</a>
+<br>
+<br>
+<br>
+<br><pre>
+   The module [ptm_pp] supports some means for source-source-transformations.
+
+   1) It performs a tree-to-tree transformation based on the corresponding
+      grammar specifications. It handles comments, too.
+
+      source tree based on CFG 1
+      specification of CFG 2
+      --------------------------------------------&gt;  concrete target tree
+      abstraction(CFG 1)   = abstraction(CFG 2)      based on CFG 2
+      regexp(token(CFG 1)) = regexp(token(CFG 2))
+
+   2) It provides the pretty printing of parse trees. This is usefull after
+      a transformation, because the target tree doesn't contain any position
+      information.
+
+   Note:
+   This module is still under construction. The main thing todo refer to the
+   layout results which are some times broken.
+   Embedded languages won't be supported, either.
+
+   Using the reentrant interface functions you can perform multiple
+   transformations at a time.
+
+</pre>
+<br><hr width="100%" size=2><h2><b> Macros </b></h2>
+<br>
+  <p><b>Token separation types</b>
+
+
+<br><pre>#define PTP_SEP_NON 0 // none
+#define PTP_SEP_SPC 1 // space
+#define PTP_SEP_IND 2 // indent
+#define PTP_SEP_ROW 3 // row
+
+</pre>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b>PTP_T</b>
+<td align=left> Abstract transformation and pp type 
+
+</table>
+<br><hr width="100%" size=2><h2><b> Init & Quit </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PTP_init</b>(PLR_Tab tab)</pre>
+<td bgcolor="#FFF0F5" align=left> initializes transformation and pretty printing<br>
+   based on parse table 'tab' as target grammar specification<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PTP_T <b>PTP_init_reentrant</b>(PLR_Tab tab)</pre>
+<td bgcolor="#FFF0F5" align=left>reentrant version of PTP_init
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PTP_quit</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>terminates transformation and pretty printing
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PTP_quit_reentrant</b>(PTP_T ctx)</pre>
+<td bgcolor="#FFF0F5" align=left> reentrant version of PTP_quit; consumes 'ctx' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PTP_set_line</b>(int len)</pre>
+<td bgcolor="#FFF0F5" align=left>set 'len' as line length for pretty printing
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PTP_set_line_reentrant</b>(PTP_T ctx, int len)</pre>
+<td bgcolor="#FFF0F5" align=left> reentrant version of PTP_set_line <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PTP_tok_sep</b>(symbol t_lft, symbol t_rgt, int sep)</pre>
+<td bgcolor="#FFF0F5" align=left> specifies the kind of seperation ( 'sep' )<br>
+   between the token 't_rgt' and 't_lft';<br>
+   replaces a previously defined seperation<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PTP_tok_sep_reentrant</b>(PTP_T ctx, symbol t_lft, symbol t_rgt, int sep)</pre>
+<td bgcolor="#FFF0F5" align=left> reentrant version of PTP_tok_sep <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PTP_tok_conv</b>(symbol t_id, symbol (*conv)(symbol t_id, symbol t_src))</pre>
+<td bgcolor="#FFF0F5" align=left> specifies a conversion 'conv' for token 't_id';<br>
+   replaces a previously defined conversion<br>
+   't_id' = NULL --&gt; apply 'conv' to all tokens<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PTP_tok_conv_reentrant</b>
+     (
+       PTP_T ctx, symbol t_id, symbol (*conv)(symbol t_id, symbol t_src)
+     )</pre>
+<td bgcolor="#FFF0F5" align=left> reentrant version of PTP_tok_conv <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PTP_tok_cset</b>(c_bool utf8, c_bool wprint)</pre>
+<td bgcolor="#FFF0F5" align=left> specifies source character set (single/multi-byte) and<br>
+   pp output (on multi-byte source character set)<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PTP_tok_cset_reentrant</b>(PTP_T ctx, c_bool utf8, c_bool wprint)</pre>
+<td bgcolor="#FFF0F5" align=left> reentrant version of PTP_tok_cset <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Term Pretty Printer </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PTP_pp</b>(PT_Term tree, FILE* fp)</pre>
+<td bgcolor="#FFF0F5" align=left> performs pretty printing on parse term 'tree'<br>
+   ( output to file 'fp' )<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PTP_pp_reentrant</b>(PTP_T ctx, PT_Term tree, FILE* fp)</pre>
+<td bgcolor="#FFF0F5" align=left> rrentrant version of PTP_pp <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Tree Transformation </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PT_Term <b>PTP_nt_transform_aux</b>(PT_Term tree, symbol nt)</pre>
+<td bgcolor="#FFF0F5" align=left> performs tree-to-tree transformation on source 'tree';<br>
+   uses 'nt' as startsymbol<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PT_Term <b>PTP_nt_transform_aux_reentrant</b>
+        (
+          PTP_T ctx, PT_Term tree, symbol nt
+        )</pre>
+<td bgcolor="#FFF0F5" align=left> reentrant version of PTP_nt_transform_aux <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PT_Term <b>PTP_transform</b>(PT_Term tree)</pre>
+<td bgcolor="#FFF0F5" align=left> performs tree-to-tree transformation on source 'tree' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PT_Term <b>PTP_transform_reentrant</b>(PTP_T ctx, PT_Term tree)</pre>
+<td bgcolor="#FFF0F5" align=left> reentrant version of PTP_transform <br>
+
+</table>
+
+</body>
+</html>

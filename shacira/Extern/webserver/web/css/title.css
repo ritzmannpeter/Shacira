@@ -1,0 +1,17 @@
+body{
+    font-size: 36px;
+    background-image: url(../images/titlebg.jpg);
+    background-repeat:no-repeat;
+    color: #FFFFFF;
+    font-family: arial, verdana, sans-serif
+}
+img
+{
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right:100px;
+    width: 42px;
+    height: 50px;
+    text-align: left;
+
+}

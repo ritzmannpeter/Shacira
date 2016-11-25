@@ -1,0 +1,28 @@
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libstyxcs", "libstyxcs\libstyxcs.csproj", "{B0D80FD9-F1C2-425F-BE78-326CDC5BF5E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StyxScannerTest", "StyxScannerTest\StyxScannerTest.csproj", "{43CC8D32-FBF0-44BE-9DD5-AFA7845DF838}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B0D80FD9-F1C2-425F-BE78-326CDC5BF5E6} = {B0D80FD9-F1C2-425F-BE78-326CDC5BF5E6}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B0D80FD9-F1C2-425F-BE78-326CDC5BF5E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0D80FD9-F1C2-425F-BE78-326CDC5BF5E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0D80FD9-F1C2-425F-BE78-326CDC5BF5E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0D80FD9-F1C2-425F-BE78-326CDC5BF5E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43CC8D32-FBF0-44BE-9DD5-AFA7845DF838}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43CC8D32-FBF0-44BE-9DD5-AFA7845DF838}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43CC8D32-FBF0-44BE-9DD5-AFA7845DF838}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43CC8D32-FBF0-44BE-9DD5-AFA7845DF838}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,34 @@
+#! @SHELL@ -e
+# [mx] make 'calc'
+
+# create subdirectories holding generated files if they don't exist
+for subdir in img gen inc prj ; do
+  [ -d ${subdir} ] || mkdir ${subdir}
+done
+
+INCLUDES="-I./inc -I@includedir@"
+
+# For static linking, you may need to uncomment these 2 lines
+# LDFLAGS=-static
+# LIBS="-ldl -lrt -lpthread"
+
+#destination directory for parser and scanner table image files
+BINSTYX=./img
+#destination directory for parser and scanner table and term interface source files
+GENSTYX=./gen
+#source directory of language specification file
+SPESTYX=.
+
+export BINSTYX GENSTYX SPESTYX
+
+#create source files
+styx calc -makeC -makeINT -verbose
+
+#create header files for generated c-sources
+ctoh -ct -CPATH=./gen -HPATH=./inc -PRJ=./prj 
+
+#compile sources to program 'calctut'
+gcc ${CFLAGS} ${INCLUDES} ${LDFLAGS} \
+	calctut.c ./gen/calc_pim.c ./gen/calc_lim.c ./gen/calc_int.c \
+	-ldstyx ${LIBS} \
+	-o calctut

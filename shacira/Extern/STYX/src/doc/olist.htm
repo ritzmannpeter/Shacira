@@ -1,0 +1,256 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[olist.h] Type: Operational List</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[olist.h] Type: Operational List</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="standard.htm">#include "standard.h"</a>
+<br><a href="prim.htm">#include "prim.h"</a>
+<br>
+<br>
+<br>
+<br><hr width="100%" size=2><h2><b> Types </b></h2>
+<br><pre>
+   This module implements an operational, double linked list data type.
+   In distinction from functional lists operational lists consist of
+   a header and the double linked elements.
+   Beside element type information the header contains references to the
+   first, last and current element.
+
+</pre>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b>OL_Lst</b>
+<td align=left> Abstract operational list type 
+
+<TR valign=top>
+<td align=left><b>OL_Obj</b>
+<td align=left> Abstract list element type     
+
+</table>
+<br><hr width="100%" size=2><h2><b> Creation and basic access </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>OL_Lst <b>OL_create</b>
+       (                                         
+         OL_Obj (*copy)(OL_Obj obj),             
+         void (*del)(OL_Obj obj),                
+         c_bool (*equal)(OL_Obj lobj, OL_Obj robj) 
+       )
+#define OL_CREATE(type,cpy,del,equ)                \
+        OL_create                                  \
+        (                                          \
+          (OL_Obj (*)(OL_Obj obj))           cpy,  \
+          (void (*)(OL_Obj obj))             del,  \
+          (c_bool (*)(OL_Obj lobj, OL_Obj robj)) equ \
+        )
+#define OL_CREATE_ADT(type) OL_CREATE(type,primCopy,primFree,primEqual)</pre>
+<td bgcolor="#FFF0F5" align=left> creates an operational list <br>
+ function parameter:  <br>
+ copies an element    <br>
+ frees an element     <br>
+ equality on elements <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>OL_init</b>(OL_Lst objlist)
+#define OL_INIT OL_init</pre>
+<td bgcolor="#FFF0F5" align=left> resets / initializes list 'objlist' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>INT <b>OL_cnt</b>(OL_Lst objlist)
+#define OL_CNT OL_cnt</pre>
+<td bgcolor="#FFF0F5" align=left> number of elements in list 'objlist' <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> List copy as reading cursor </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>OL_Lst <b>OL_copyL</b>(OL_Lst dst, OL_Lst src)
+#define OL_COPY_L OL_copyL</pre>
+<td bgcolor="#FFF0F5" align=left> copies list 'src';<br>
+   fills list 'dst' with references to elements in 'src'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>OL_delC</b>(OL_Lst objlist)
+#define OL_DEL_C OL_delC</pre>
+<td bgcolor="#FFF0F5" align=left> removes list 'objlist' only - without elements <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Get & Search </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>OL_Obj <b>OL_first</b>(OL_Lst objlist)
+#define OL_FIRST(type,lst) ( ABS_CAST(type,OL_first(lst)) )</pre>
+<td bgcolor="#FFF0F5" align=left> first element of list 'objlist' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>OL_Obj <b>OL_last</b>(OL_Lst objlist)
+#define OL_LAST(type,lst) ( ABS_CAST(type,OL_last(lst)) )</pre>
+<td bgcolor="#FFF0F5" align=left> last element of list 'objlist' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>OL_Obj <b>OL_next</b>(OL_Lst objlist)
+#define OL_NEXT(type,lst) ( ABS_CAST(type,OL_next(lst)) )</pre>
+<td bgcolor="#FFF0F5" align=left> next element of list 'objlist' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>OL_Obj <b>OL_prev</b>(OL_Lst objlist)
+#define OL_PREV(type,lst) ( ABS_CAST(type,OL_prev(lst)) )</pre>
+<td bgcolor="#FFF0F5" align=left> previous element of list 'objlist' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>OL_Obj <b>OL_curr</b>(OL_Lst objlist)
+#define OL_CURR(type,lst) ( ABS_CAST(type,OL_curr(lst)) )</pre>
+<td bgcolor="#FFF0F5" align=left> current element of list 'objlist' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>INT <b>OL_find</b>(OL_Lst objlist, OL_Obj obj, c_bool (*cmp)(OL_Obj lobj, OL_Obj obj))
+#define OL_FIND_EQ(lst,obj)  \
+        OL_find(lst,ABS_CAST(OL_Obj,obj),(c_bool (*)(OL_Obj lobj, OL_Obj Obj))NULL)
+#define OL_FIND(lst,obj,cmp) \
+        OL_find(lst,ABS_CAST(OL_Obj,obj),(c_bool (*)(OL_Obj lobj, OL_Obj Obj)) cmp)</pre>
+<td bgcolor="#FFF0F5" align=left> position of key element 'obj' in list 'objlist' or 0 ( linear search ) <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Insert & Update </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>OL_Obj <b>OL_h_ins</b>(OL_Lst objlist, OL_Obj newobj)
+#define OL_H_INS(type,lst,obj) \
+        ( ABS_CAST(type,OL_h_ins(lst,ABS_CAST(OL_Obj,obj))) )</pre>
+<td bgcolor="#FFF0F5" align=left> inserts 'newobj' as first element in list 'objlist' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>OL_Obj <b>OL_t_ins</b>(OL_Lst objlist, OL_Obj newobj)
+#define OL_T_INS(type,lst,obj) \
+        ( ABS_CAST(type,OL_t_ins(lst,ABS_CAST(OL_Obj,obj))) )</pre>
+<td bgcolor="#FFF0F5" align=left> inserts 'newobj' as last element in list 'objlist' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>OL_Obj <b>OL_c_ins</b>(OL_Lst objlist, OL_Obj newobj)
+#define OL_C_INS(type,lst,obj) \
+        ( ABS_CAST(type,OL_c_ins(lst,ABS_CAST(OL_Obj,obj))) )</pre>
+<td bgcolor="#FFF0F5" align=left> inserts 'newobj' before current element in list 'objlist'<br>
+   ( or as last element, if 'objlist' is empty )<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>OL_Obj <b>OL_s_ins</b>(OL_Lst objlist, OL_Obj newobj,
+                c_bool (*cmpLE)(OL_Obj lobj, OL_Obj newobj))
+#define OL_S_INS(type,lst,obj,cmpLE)                    \
+        (                                               \
+          ABS_CAST(type,OL_s_ins                        \
+          (lst,ABS_CAST(OL_Obj,obj),                    \
+          (c_bool (*)(OL_Obj lobj, OL_Obj newobj))cmpLE)) \
+        )</pre>
+<td bgcolor="#FFF0F5" align=left> inserts element 'newobj' in list 'objlist' ( sorted ) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>OL_Obj <b>OL_upd</b>(OL_Lst objlist, OL_Obj newobj)
+#define OL_UPD(type,lst,obj) \
+        ( ABS_CAST(type,OL_upd(lst,ABS_CAST(OL_Obj,obj))) )</pre>
+<td bgcolor="#FFF0F5" align=left> updates current element in list 'objlist' with 'newobj' <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Copy & Append </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>OL_Lst <b>OL_copy</b>(OL_Lst objlist)
+#define OL_COPY OL_copy</pre>
+<td bgcolor="#FFF0F5" align=left> copies list 'objlist' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>OL_Lst <b>OL_append</b>(OL_Lst dst, OL_Lst src)
+#define OL_APPEND OL_append</pre>
+<td bgcolor="#FFF0F5" align=left> appends list 'src' to list 'dst'; 'src' won't be removed <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Delete </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>OL_clear</b>(OL_Lst objlist)
+#define OL_CLEAR OL_clear</pre>
+<td bgcolor="#FFF0F5" align=left> clears list 'objlist'; removes all elements <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>OL_delL</b>(OL_Lst objlist)
+#define OL_DEL_L OL_delL</pre>
+<td bgcolor="#FFF0F5" align=left> removes list 'objlist <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>OL_delE</b>(OL_Lst objlist)
+#define OL_DEL_E OL_delE</pre>
+<td bgcolor="#FFF0F5" align=left> removes current element in list 'objlist' <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Printing </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>OL_print</b>(OL_Lst objlist, void (*pMbr)(OL_Obj obj), int cols, int indent)
+#define OL_PRINT(lst,pMbr,cols,ind) \
+        OL_print(lst,(void (*)(OL_Obj obj)) pMbr,(cols),(ind))</pre>
+<td bgcolor="#FFF0F5" align=left> prints list 'objlist' to stdout <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>OL_print_ex</b>
+     (
+       OL_Lst objlist,
+       void (*pMbr)(OL_Obj obj,Any_T any,int nl,c_bool last),
+       Any_T any, int cols, int indent
+     )
+#define OL_PRINT_EX(lst,pMbr,any,cols,ind) \
+        OL_print_ex(lst, \
+                    (void (*)(OL_Obj o,Any_T any,int nl,c_bool last))pMbr, \
+                    (any),(cols),(ind))</pre>
+<td bgcolor="#FFF0F5" align=left> prints list 'objlist' to stdout <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Predicates on lists & Mapping </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>OL_equal</b>(OL_Lst left,OL_Lst right)
+#define OL_EQUAL OL_equal</pre>
+<td bgcolor="#FFF0F5" align=left> left = right ? <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>StdCPtr <b>OL_map</b>
+        (                                         
+          int argcnt,                             
+          void (*fun)(OL_Obj* objs, StdCPtr any), 
+          StdCPtr any,                            
+          OL_Lst objlist, ...                     
+        )
+#define OL_MAP_F OL_map</pre>
+<td bgcolor="#FFF0F5" align=left> executes 'fun' on each element in all lists <br>
+ function parameter:    <br>
+ number of arguments    <br>
+ element map function   <br>
+ any additional context <br>
+ operational lists      <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>OL_forall</b>
+     (                                         
+       int argcnt,                             
+       c_bool (*fun)(OL_Obj* objs, StdCPtr any), 
+       StdCPtr any,                            
+       OL_Lst objlist, ...                     
+     )
+#define OL_FORALL_P OL_forall</pre>
+<td bgcolor="#FFF0F5" align=left> executes 'fun' on each element in all lists;<br>
+   on false execution stops<br>
+ function parameter:    <br>
+ number of arguments    <br>
+ element map function   <br>
+ any additional context <br>
+ operational lists      <br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>OL_exists</b>
+     (                                         
+       int argcnt,                             
+       c_bool (*fun)(OL_Obj* objs, StdCPtr any), 
+       StdCPtr any,                            
+       OL_Lst objlist, ...                     
+     )
+#define OL_EXISTS_P OL_exists</pre>
+<td bgcolor="#FFF0F5" align=left> executes 'fun' on each element in all lists;<br>
+   on true execution stops<br>
+ function parameter:    <br>
+ number of arguments    <br>
+ element map function   <br>
+ any additional context <br>
+ operational lists      <br>
+<br>
+
+</table>
+
+</body>
+</html>

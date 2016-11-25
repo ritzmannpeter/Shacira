@@ -1,0 +1,948 @@
+; [php.sty] Styx grammar for the PHP5 language
+
+
+Language php
+
+Regular Grammar
+
+ExGroup GScript   ; ST_IN_SCRIPTING
+ExGroup GDQuote   ; ST_DOUBLE_QUOTES
+ExGroup GBQuote   ; ST_BACKQUOTE
+ExGroup GHeredoc  ; ST_HEREDOC
+ExGroup GSQuote   ; ST_SINGLE_QUOTES
+
+Group GLiteral   = GDQuote GBQuote GHeredoc
+Group GLitScript = GScript GDQuote GBQuote GHeredoc
+
+; Character Set
+
+  let Byte           = ; '\00' .. '\ff' ; all extended ascii
+                       '\x00000000' .. '\x0000d7ff' |
+                       '\x0000e000' .. '\x0000fffd' |
+                       '\x00010000' .. '\x0010ffff'
+
+  let Control        = '\00' .. '\1f' ; control
+                     |          '\7f' ; DEL
+                     |          '\ff' ; space-like extended ascii
+
+; Basic elements of tokens
+
+  ign Etx            = "\1a" {Byte}   ; CPM / older DOS Versions
+
+  let Space          = '\t '          ; ASCII - Space / Tab
+  let Line           = '\n\r'         ; UNIX / CPM / DOS
+
+  let Digit          = '0' .. '9'
+  let Hex            = Digit | 'a' .. 'f' | 'A' .. 'F'
+  let Letter         = 'a' .. 'z' | 'A' .. 'Z'
+  let LabelChar      = Letter | '_' | '\7f' .. '\ff'
+
+  let LNumber        = Digit+
+  let DNumber        = ( Digit* '.' Digit+ ) | ( Digit+ '.' Digit* )
+  let ENumber        = ( ( LNumber | DNumber ) 'eE' [ '+-' ] LNumber )
+  let HNumber        = "0x" Hex+
+  let Label          = LabelChar { Digit | LabelChar }
+  let White          = ( Space | Line )+
+  let TabSpace       = Space*
+  let Tokens         = ';:,.[]()|^&+-/*=%!~$<>?@'
+  let Newline        = "\r" | "\n" | "\r\n"
+
+  let OpenTag        = "<script" White "language" {White} "=" {White} 
+                       ( "php" | "\'php\'" | "\"php\"" ) {White} ">"
+                     | "<?php" White
+
+; Initial tokens
+
+#ifdef CSHORTTAG
+
+#ifdef CASPTAG
+tok TOpenTag!GScript      = "<?" | "<%" | OpenTag
+tok TOpenTagEcho!GScript  = "<?=" | "<%="
+#else
+tok TOpenTag!GScript      = "<?" | OpenTag
+tok TOpenTagEcho!GScript  = "<?=" 
+#end
+#macro OPENTAGECHO
+
+#else
+
+#ifdef CASPTAG
+tok TOpenTag!GScript      = "<%" | OpenTag
+tok TOpenTagEcho!GScript  = "<%=" 
+#macro OPENTAGECHO
+#else
+tok TOpenTag!GScript      = OpenTag
+#end
+
+#end
+
+tok TInlineHtml           = ( (Byte-'<')+ ) - Etx
+tok THtmlComment          = "<!--" ({Byte} - ({Byte} "--" {Byte})) "-->"
+tok THtmlElmOpr           = "<"
+
+; GScript tokens
+
+#ifdef CASPTAG
+tok :GScript:TCloseTag!   = ( "?>" | "%>" | "</script" {White} ">" ) [Newline]
+#else
+tok :GScript:TCloseTag!   = ( "?>" | "</script" {White} ">" ) [Newline]
+#end
+
+ign :GScript:TWhite       = Space | Newline
+
+#ifdef CASPTAG
+com :GScript:TLineComment = ("#"|"//") ({Byte}-({Byte}("?>"|"%>"|Newline){Byte})) [Newline]
+#else
+com :GScript:TLineComment = ("#"|"//") ({Byte}-({Byte}("?>"|Newline){Byte})) [Newline]
+#end
+
+com :GScript:TComment     = "/*" ({Byte}-({Byte}"*/"{Byte})) "*/" - TDocComment
+com :GScript:TDocComment  = "/**" ({Byte}-({Byte}"*/"{Byte})) "*/"
+
+tok :GScript:TOperator    = "::" | "=>" | "++" | "--" | "==" | "!=" | "<>" | "===" | "!==" |
+                            "<=" | ">=" | "-=" | "+=" | "*=" | "/=" | ".=" | "%=" | "<<=" |
+                            ">>=" | "&=" | "|=" | "^=" | "||" | "&&" | "<<" | ">>" |
+                            Tokens
+
+tok :GScript:TDouble      = DNumber | ENumber
+tok :GScript:TDoubleQuote = "\"" { ( Byte - '\\\"' ) | ( "\\" Byte ) } "\""
+tok :GScript:TSingleQuote = "\'" { ( Byte - '\'\\' ) | ( "\\" Byte ) } "\'"
+
+tok :GScript:TOpenCurly   !+ GScript = "{"
+tok :GScript:TCloseCurly  !-         = "}"
+
+tok :GScript:TOpenDQuote!GDQuote     = "\""
+tok :GScript:TOpenBQuote!GBQuote     = "\`"
+tok :GScript:TOpenSQuote!GSQuote     = "\'"
+
+tok :GScript:THeredoc!GHeredoc       = <= "<<<" TabSpace > 'a..zA..Z0..9\7f..\ff_' < '\n\r' > / '\n\r'
+
+; GHeredoc tokens
+
+tok :GHeredoc:THeredocEnd      = <? Newline > THeredoc < [';'] Newline > / ';\n\r'
+
+tok :GHeredoc:THLiteral        = "\\" '0' .. '7' 1,3
+                               | "\\x" Hex 1,2
+                               | "\\" 'ntr\\${\"\'\`'
+                               | ( Byte - ( '\\${-' | Line | Digit | LabelChar ) )+
+                               | '-${'
+
+; Script & literal tokens
+
+tok :GLitScript:TVariable      = "$" Label
+tok :GLitScript:TString        = Label
+tok :GLitScript:TObjOperator   = "->"
+tok :GLitScript:TInteger       = LNumber | HNumber
+
+tok :GLiteral:TDOpenCurly!+GScript = "${"
+tok :GLiteral:TOpenCurlyD!+GScript = "{$" / "$"
+
+tok :GBQuote:TBLiteral         = "\\" '0' .. '7' 1,3
+                               | "\\x" Hex 1,2
+                               | "\\" 'ntr\\${\`\"\''
+                               | ( Byte - ( '\\${-\`' | Digit | LabelChar ) )+
+                               | '-${'
+
+tok :GDQuote:TDLiteral         = "\\" '0' .. '7' 1,3
+                               | "\\x" Hex 1,2
+                               | "\\" 'ntr\\${\"\'\`'
+                               | ( Byte - ( '\\${-\"' | Digit | LabelChar ) )+
+                               | '-${'
+
+tok :GSQuote:TSLiteral         = ( ( Byte - '\\\'' ) | "\\" ( Byte - '\\\'' ) )+ | "\\\'" | "\\\\"
+
+tok :GDQuote:TCloseDQuote!GScript = "\""
+tok :GBQuote:TCloseBQuote!GScript = "\`"
+tok :GSQuote:TCloseSQuote!GScript = "\'"
+
+
+Context Free Grammar
+
+let Key
+:k001 : "<"
+:k002 : ">"
+:k003 : "("
+:k004 : ")"
+:k005 : "{"
+:k006 : "}"
+:bopn : "["
+:bcls : "]"
+:k009 : ";" 
+:k010 : "<=" 
+:k011 : ">=" 
+:k012 : "!=" 
+:k013 : "!==" 
+:k014 : "<>" 
+:k015 : "==" 
+:k016 : "===" 
+:k017 : ">>" 
+:k018 : "<<" 
+:k019 : "=" 
+:k020 : "." 
+:k021 : ":" 
+:k022 : "?" 
+:k023 : "!" 
+:k024 : ".=" 
+:k025 : "+=" 
+:k026 : "-=" 
+:k027 : "*=" 
+:k028 : "/=" 
+:k029 : "%=" 
+:k030 : "<<=" 
+:k031 : ">>=" 
+:k032 : "^" 
+:k033 : "~" 
+:k034 : "&" 
+:k035 : "|" 
+:k036 : "|=" 
+:k037 : "&=" 
+:k038 : "^=" 
+:k039 : "~=" 
+:k040 : "@" 
+:k041 : "+"
+:k042 : "++"
+:k043 : "*"
+:k044 : "/"
+:k045 : "%"
+:k046 : ","
+:k047 : "&&"
+:k048 : "||"
+:k049 : "$"
+:k050 : "::"
+:k051 : "->"
+:k052 : "if"
+:k053 : "while"
+:k054 : "do"
+:k055 : "for"
+:k056 : "switch"
+:k057 : "break"
+:k058 : "continue"
+:k059 : "return"
+:k060 : "global"
+:k061 : "static"
+:k062 : "declare"
+:k063 : "echo"
+:k064 : "use"
+:k065 : "unset"
+:k066 : "throw"
+:k067 : "try"
+:k068 : "foreach"
+:k069 : "as"
+:k070 : "catch"
+:k071 : "array"
+:k072 : "__LINE__"
+:k073 : "__FILE__"
+:k074 : "__CLASS__"
+:k075 : "__FUNCTION__"
+:k076 : "__METHOD__"
+:k077 : "case"
+:k078 : "default"
+:k079 : "endif"
+:k080 : "endwhile"
+:k081 : "endfor"
+:k082 : "endforeach"
+:k083 : "else"
+:k084 : "elseif"
+:k085 : "var"
+:k086 : "public"
+:k087 : "private"
+:k088 : "protected"
+:k090 : "final"
+:k091 : "abstract"
+:k092 : "const"
+:k093 : "function"
+:k094 : "class"
+:k095 : "extends"
+:k096 : "interface"
+:k097 : "implements"
+:k098 : "include"
+:k099 : "include_once"
+:k100 : "require"
+:k101 : "require_once"
+:k102 : "OR"
+:k103 : "XOR"
+:k104 : "AND"
+:k105 : "print"
+:k106 : "list"
+:k107 : "instanceof"
+:k108 : "new"
+:k109 : "clone"
+:k110 : "exit"
+:k111 : "die"
+:k112 : "isset"
+:k113 : "empty"
+:k114 : "eval"
+:k115 : "int"
+:k116 : "integer"
+:k117 : "real"
+:k118 : "float"
+:k119 : "double"
+:k120 : "bool"
+:k121 : "boolean"
+:k122 : "string"
+:k123 : "object"
+:k124 : "enddeclare"
+:k125 : "endswitch"
+:k126 : "-"
+:k127 : "--"
+
+let Key1
+:oopr : "=>"
+:ign0 : Key
+
+start Source
+:src : TopStms
+
+let TopStms
+:nil  :
+:cons : HtmlStm TopStms
+:ign0 : TopStms1
+
+let TopStms1
+:cons : PhpOpen TopStms2
+
+let TopStms2
+:cons : InStm TopStms2
+:ign0 : TopStms3
+
+let TopStms3
+:cons : PhpClose TopStms
+
+let PhpOpen
+:open : TOpenTag
+
+let PhpClose
+:close: TCloseTag
+
+let HtmlStm
+:hdta : TInlineHtml
+:hcom : THtmlComment
+:key  : Key1
+:else : [other]
+
+let InStm
+:stm : Stm
+:cls : ClsDeclStm
+:fun : FunDeclStm
+
+let InStms
+:nil :
+:cons: InStm InStms
+
+let Stm
+:noop : ";"
+:blk  : "{" InStms "}"
+:if   : "if" "(" Exp ")" IfStm
+:while: "while" "(" Exp ")" WhileStm
+:do   : "do" Stm "while" "(" Exp ")" ";"
+:for  : "for" "(" ExpFor ";" ExpFor ";" ExpFor ")" ForStm
+:case : "switch" "(" Exp ")" Cases
+:brk  : "break" OptExp ";"
+:cont : "continue" OptExp ";"
+:retn : "return" OptExp ";"
+:gdecl: "global" GlobalVars ";"
+:sdecl: "static" StaticVars ";"
+:decl : "declare" "(" DeclArgs ")" DeclStm
+:echo : "echo" Exps ";"
+:use  : "use" UseFile ";"
+:unset: "unset" Vars ";"
+:throw: "throw" Exp ";"
+:try  : "try" "{" InStms "}" Catches
+:each : "foreach" "(" ExpEach ")" EachStm
+:exp  : Exp ";"
+
+let DeclArgs
+:cons : DeclArg DeclArgs0
+
+let DeclArgs0
+:nil  : 
+:cons : "," DeclArg DeclArgs0
+
+let DeclArg
+:arg  : TString "=" StaticScalar
+
+let DeclStm
+:std  : Stm
+:new  : ":" InStms "enddeclare" ";"
+
+let ExpEach
+:exp  : Exp "as" VarRef OptAs ; Exp \ Var
+
+let OptAs
+:non  :
+:val  : "=>" VarRef
+
+let EachStm
+:std  : Stm
+:new  : ":" InStms "endforeach" ";"
+
+let Catches
+:cons : Catch Catches0
+
+let Catches0
+:nil  :
+:cons : Catch Catches0
+
+let Catch
+:catch: "catch" "(" TString TVariable ")" "{" InStms "}"
+
+let UseFile
+:cdstr: "(" TDoubleQuote ")"
+:dstr : TDoubleQuote
+:csstr: "(" TSingleQuote ")"
+:sstr : TSingleQuote 
+
+let Vars
+:cons : Var Vars0
+
+let Vars0
+:nil  :
+:cons : "," Var Vars0
+
+let Exps
+:cons : Exp Exps0
+
+let Exps0
+:nil  :
+:cons : "," Exp Exps0
+
+let GlobalVars
+:cons : GlobalVar GlobalVars0
+
+let GlobalVars0
+:nil  :
+:cons : "," GlobalVar GlobalVars0
+
+let StaticVars
+:cons : StaticVar StaticVars0
+
+let StaticVars0
+:nil  :
+:cons : "," StaticVar StaticVars0
+
+let GlobalVar
+:var  : TVariable
+:ivar : "$" Var
+
+let StaticVar
+:var  : TVariable OptVal
+
+let StaticScalar
+:std  : CommonScalar
+:lbl  : TString
+:arr  : "array" "(" StaticArrayPairs ")"
+:pos  : "+" StaticScalar
+:neg  : "-" StaticScalar
+
+let StaticArrayPairs
+:nil  :
+:cons : StaticArrayPair StaticArrayPairs1
+
+let StaticArrayPairs1
+:cons : "," StaticArrayPair StaticArrayPairs1
+:ign0 : StaticArrayPairs0
+:ign1 : "," StaticArrayPairs0
+
+let StaticArrayPairs0
+:nil  : 
+
+let StaticArrayPair
+:one  : StaticScalar
+:pair : StaticScalar "=>" StaticScalar
+
+let CommonScalar
+:int  : TInteger
+:real : TDouble
+:line : "__LINE__"
+:file : "__FILE__"
+:cls  : "__CLASS__"
+:fun  : "__FUNCTION__"
+:meth : "__METHOD__"
+:dstr : TDoubleQuote
+:sstr : TSingleQuote
+:scc  : TString "::" TString
+
+let Cases
+:ign0 : "{" Cases0 "}"
+:ign1 : "{" ";" Cases0 "}"
+:ign2 : ":" Cases0 "endswitch" ";"
+:ign3 : ":" ";" Cases0 "endswitch" ";"
+
+let Cases0
+:nil  :
+:cons : Case Cases0
+
+let Case
+:case : "case" Exp CaseSep InStms
+:dft  : "default" CaseSep InStms
+
+let CaseSep
+:col  : ":"
+:sem  : ";"
+
+let ForStm
+:std  : Stm
+:new  : ":" InStms "endfor" ";"
+
+let ExpFor
+:nil  :
+:cons : Exp ExpFor0
+
+let ExpFor0
+:nil  :
+:cons : "," Exp ExpFor0
+
+let WhileStm
+:std  : Stm
+:new  : ":" InStms "endwhile" ";"
+
+let IfStm
+:std  : Stm ElseIfs
+:new  : ":" InStms ElseIfs1 "endif" ";"
+
+let ElseIfs0
+:nil  :
+
+let ElseIfs
+:cons : ElseIf ElseIfs
+:ign0 : ElseIfs0
+:ign1 : ElseIfs2
+
+let ElseIfs2
+:cons : ElseIf2 ElseIfs0
+
+let ElseIfs1
+:cons : ElseIf1 ElseIfs1
+:ign0 : ElseIfs0
+:ign1 : ElseIfs3
+
+let ElseIfs3
+:cons : ElseIf3 ElseIfs0
+
+let ElseIf
+:cstm : "elseif" "(" Exp ")" Stm
+
+let ElseIf2
+:estm : "else" Stm
+
+let ElseIf1
+:cstms: "elseif" "(" Exp ")" ":" InStms
+
+let ElseIf3
+:estms: "else" ":" InStms
+
+let ClsDeclStm
+:cdecl: ClsTyp TString OptBase Implements
+        "{" ClsStms "}"
+:idecl: "interface" TString Extends
+        "{" ClsStms "}"
+
+let Modifier1
+:var  : "var"
+
+let Modifier
+:pub  : "public"
+:priv : "private"
+:prot : "protected"
+:stat : "static"
+:fin  : "final"
+:abs  : "abstract"
+
+let Modifiers1
+:cons : Modifier1 Modifiers0
+
+let Modifiers0
+:nil  :
+
+let Modifiers
+:cons : Modifier Modifiers
+:ign0 : Modifiers0
+
+let Constants
+:cons : Constant Constants0
+
+let Constants0
+:nil  :
+:cons : Constant Constants0
+
+let Constant
+:lbl  : TString OptVal
+:clbl : "const" TString OptVal
+
+let ClsStm
+:vdecl: Modifiers1 StaticVars ";"
+:cdecl: Constants ";"
+:fdecl: Modifiers "function" FunId "(" FunPars ")"
+        FunBody
+
+let FunBody
+:abs  : ";"
+:body : "{" InStms "}"
+
+let ClsStms
+:nil  :
+:cons : ClsStm ClsStms
+
+let Extends
+:nil  :
+:cons : "extends" TString Extends0
+
+let Extends0
+:nil  :
+:cons : "," TString Extends0
+
+let Implements
+:nil  :
+:cons : "implements" TString Implements0
+
+let Implements0
+:nil  :
+:cons : "," TString Implements0
+
+let OptBase
+:non  :
+:base : "extends" TString
+
+let ClsTyp
+:cls  : "class"
+:abs  : "abstract" "class"
+:fin  : "final" "class"
+
+let FunDeclStm
+:fdecl: "function" FunId "(" FunPars ")" "{" InStms "}"
+
+let FunPars0
+:nil  :
+:cons : "," FunPar FunPars0
+
+let FunPars
+:nil  :
+:cons : FunPar FunPars0
+
+let FunPar
+:pvar : OptTyp TVariable OptVal
+:pref : OptTyp "&" TVariable OptVal
+
+let OptTyp
+:non  :
+:lbl  : TString
+
+let OptVal
+:non  :
+:val  : "=" StaticScalar
+
+let FunId
+:ref  : "&" TString
+:lbl  : TString
+
+let Var
+:var  : VarCall VarProps
+
+let VarProps
+:nil  :
+:cons : VarProp VarProps
+
+let VarProp
+:vprop: "->" ObjProp FunArgs1
+
+let VarCall
+:call : FunCall
+:base : BaseVar
+
+let FunCall
+:sfun : TString FunArgs
+:vfun : RefVar FunArgs
+:mfun : TString "::" MethodCall
+
+let MethodCall
+:sfun : TString FunArgs
+:vfun : RefVar FunArgs
+
+let FunArgs0
+:nil  :
+:cons : "," FunArg FunArgs0
+
+let FunArgs2
+:nil  :
+:cons : FunArg FunArgs0
+
+let FunArgs
+:ign0 : "(" FunArgs2 ")"
+
+let FunArgs1
+:nil  :
+:ign0 : FunArgs
+
+let FunArg
+:ign0 : Exp
+:vref : "&" Var
+
+let BaseVar
+:nobj : RefVar
+:smbr : TString "::" RefVar
+
+let VarRef
+:vref : "&" Var
+:ign0 : Var
+
+let ExpRef
+:vref : "&" Var
+:ign0 : Exp0 
+
+let RefVar
+:avar : RefVar "[" OptExp "]"
+:evar : RefVar "{" Exp "}"
+:cvar : CompVar ; CompVar.exp only after at least one CompVar.iref
+
+let CompVar
+:var  : TVariable
+:exp  : "{" Exp "}"
+:iref : "$" CompVar
+
+let CompVar1
+:ign0 : CompVar
+:lbl  : TString
+
+let OptExp
+:non  :
+:ign0 : Exp
+
+let OptExp1
+:non  :
+:ign0 : "(" OptExp ")"
+
+let Exp
+;;:affe : "@" Exp
+:ign0 : Exp0 
+:ign1 : ExpX
+:affe : "@" ExpX
+
+let ExpX
+:inc  : "include" Exp
+:oinc : "include_once" Exp
+:use  : "require" Exp
+:ouse : "require_once" Exp
+
+let Exp0
+:or   : Exp0 "OR" Exp1
+:ign0 : Exp1
+
+let Exp1
+:xor  : Exp1 "XOR" Exp2
+:ign0 : Exp2
+
+let Exp2
+:and  : Exp2 "AND" Exp3
+:ign0 : Exp3
+
+let Exp3
+:ign0 : Exp4
+:ign1 : ExpX3
+:affe : "@" ExpX3
+
+let ExpX3
+:print: "print" Exp3
+
+let Exp4
+:ign0 : Exp5
+:ign1 : ExpX4
+:affe : "@" ExpX4
+
+let ExpX4
+:vasg : Var "=" VarAsg
+:lasg : "list" "(" AsgElms ")" "=" Exp4
+:addeq: Var "+=" Exp4
+:subeq: Var "-=" Exp4
+:muleq: Var "*=" Exp4
+:diveq: Var "/=" Exp4
+:modeq: Var "%=" Exp4
+:coneq: Var ".=" Exp4
+:andeq: Var "&=" Exp4
+:oreq : Var "|=" Exp4
+:xoreq: Var "^=" Exp4
+:sleq : Var "<<=" Exp4
+:sreq : Var ">>=" Exp4
+
+let Exp5
+:cexp : Exp5 "?" Exp5 ":" Exp6
+:ign0 : Exp6
+
+let Exp6
+:or   : Exp6 "||" Exp7
+:ign0 : Exp7
+
+let Exp7
+:and  : Exp7 "&&" Exp8
+:ign0 : Exp8
+
+let Exp8
+:bor  : Exp8 "|" Exp9
+:ign0 : Exp9
+
+let Exp9
+:bxor : Exp9 "^" Exp10
+:ign0 : Exp10
+
+let Exp10
+:band : Exp10 "&" Exp11
+:ign0 : Exp11
+
+let Exp11
+:eq   : Exp12 "==" Exp12
+:neq1 : Exp12 "!=" Exp12
+:neq2 : Exp12 "<>" Exp12
+:eqid : Exp12 "===" Exp12
+:neqid: Exp12 "!==" Exp12
+:ign0 : Exp12
+
+let Exp12
+:lt   : Exp13 "<" Exp13
+:gt   : Exp13 ">" Exp13
+:le   : Exp13 "<=" Exp13
+:ge   : Exp13 ">=" Exp13
+:ign0 : Exp13
+
+let Exp13
+:sl   : Exp13 "<<" Exp14
+:sr   : Exp13 ">>" Exp14
+:ign0 : Exp14
+
+let Exp14
+:add  : Exp14 "+" Exp15
+:sub  : Exp14 "-" Exp15
+:conc : Exp14 "." Exp15
+:ign0 : Exp15
+
+let Exp15
+:mlt  : Exp15 "*" Exp16
+:div  : Exp15 "/" Exp16
+:mod  : Exp15 "%" Exp16
+:ign0 : Exp16
+
+let Exp16
+:affe : "@" Exp16
+:pos  : "+" Exp16
+:neg  : "-" Exp16
+:not  : "!" Exp16
+:bnot : "~" Exp16
+:cast : Cast Exp16
+:vinc : Var "++"
+:vdec : Var "--"
+:incv : "++" Var 
+:decv : "--" Var 
+:inst : Exp17 "instanceof" ClsIdRef
+:obj  : "new" ClsIdRef FunArgs1
+:clone: "clone" Exp16 ; php5
+:ign0 : Exp17
+
+let Exp17
+:var  : Var
+:lit  : Scalar
+:shell: TOpenBQuote Encapses TCloseBQuote
+:arr  : "array" "(" ArrayPairs ")"
+:ifun : BuiltIn
+:exit1: "exit" OptExp1
+:exit2: "die" OptExp1
+:ign0 : "(" Exp ")"
+
+let VarAsg
+:oref : "&" "new" ClsIdRef FunArgs1
+:vref : "&" Var
+:ign0 : Exp5
+
+let BuiltIn
+:isset: "isset" "(" Vars ")"
+:empty: "empty" "(" Var ")"
+:eval : "eval" "(" Exp ")"
+
+let Cast
+:int1 : "(" "int" ")"
+:int2 : "(" "integer" ")"
+:real1: "(" "real" ")"
+:real2: "(" "float" ")"
+:real3: "(" "double" ")"
+:bool1: "(" "bool" ")"
+:bool2: "(" "boolean" ")"
+:str  : "(" "string" ")"
+:arr  : "(" "array" ")"
+:obj  : "(" "object" ")"
+:unset: "(" "unset" ")"
+
+let ArrayPairs
+:nil  :
+:cons : ArrayPair ArrayPairs1
+
+let ArrayPairs1
+:cons : "," ArrayPair ArrayPairs1
+:ign0 : ArrayPairs0
+:ign1 : "," ArrayPairs0
+
+let ArrayPairs0
+:nil  : 
+
+let ArrayPair
+:one  : ExpRef
+:pair : Exp "=>" ExpRef
+
+let Scalar
+:lbl  : TString
+:std  : CommonScalar
+:dstr : TOpenDQuote Encapses TCloseDQuote
+:sstr : TOpenSQuote Encapses TCloseSQuote
+:hstr : THeredoc Encapses THeredoc
+
+let Encapses
+:nil  :
+:cons : Encaps Encapses
+
+let Encaps
+:lbl  : TString
+:hlbl : THeredocEnd
+:int  : TInteger
+:svar : TVariable ; optional followed by:
+                  ; "[" ( TString | TVariable | TInteger | THeredocEnd ) "]"
+                  ; "=>" ( TString | THeredocEnd )
+:cvar : TOpenCurlyD Var "}"
+:exp1 : TDOpenCurly Exp "}"
+:exp2 : TDOpenCurly TString "[" Exp "]" "}"
+:blit : TBLiteral
+:dlit : TDLiteral
+:slit : TSLiteral
+:hlit : THLiteral
+;:oopr : "=>"
+;:bopn : "["
+;:bcls : "]"
+:key  : Key1
+:else : [other]
+
+let AsgElms0
+:nil  :
+:cons : "," AsgElm AsgElms0
+
+let AsgElms
+:cons : AsgElm AsgElms0
+
+let AsgElm
+:non  :
+:var  : Var
+:list : "list" "(" AsgElms ")"
+
+let ClsIdRef
+:lbl  : TString
+:dref : DynClsIdRef
+
+let DynClsIdRef
+:var  : BaseVar
+:prop : BaseVar "->" ObjProps
+
+let ObjProps
+:cons : ObjProp ObjProps0
+
+let ObjProps0
+:nil  :
+:cons : "->" ObjProp ObjProps0
+
+let ObjProp
+:apart: ObjProp "[" OptExp "]"
+:epart: ObjProp "{" Exp "}"
+:vpart: CompVar1

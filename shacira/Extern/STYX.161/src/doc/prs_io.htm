@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[prs_io.h] LALR(1) Parser/Generator: parse table input/output</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[prs_io.h] LALR(1) Parser/Generator: parse table input/output</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="prs_dfn.htm">#include "prs_dfn.h"</a>
+<br><a href="binimg.htm">#include "binimg.h"</a>
+<br>
+<br>
+<br>
+<br><pre>
+   This module provides functions that
+   1) generate a C module for a given parse table
+   2) unload a parse table to a binary image file
+   3) load a parse table from a binary image file.
+
+</pre>
+<br><hr width="100%" size=2><h2><b> C-Module </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PLR_CTab_Source</b>(FILE* fp, c_string fid, PLR_Tab PTab)</pre>
+<td bgcolor="#FFF0F5" align=left> writes source for parse table 'PTab' to file 'fp';<br>
+   produces a source header if filename 'fid' is not empty<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PLR_CTab_Modul</b>(c_string Environ, PLR_Tab PTab, c_bool shortform)
+#define PLR_printCTab PLR_CTab_Modul</pre>
+<td bgcolor="#FFF0F5" align=left> creates source [$'Environ'/]&lt;Language&gt;_pim.c for parse table 'PTab' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PLR_Src_Source</b>(FILE* fp, c_string fid, PLR_Tab PTab)</pre>
+<td bgcolor="#FFF0F5" align=left> writes source for parse table 'PTab' to file 'fp';<br>
+   produces a source header if filename 'fid' is not empty<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PLR_Src_Modul</b>(c_string Environ, PLR_Tab PTab)
+#define PLR_printCTab PLR_CTab_Modul</pre>
+<td bgcolor="#FFF0F5" align=left> creates source [$'Environ'/]&lt;Language&gt;.ptbl for parse table 'PTab' <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Binary Image </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PLR_fputTab_bin</b>(BinImg_T img, PLR_Tab PTab)</pre>
+<td bgcolor="#FFF0F5" align=left> unloads parse table 'PTab'<br>
+   to binary image 'img' (reentrant)<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PLR_putTab_bin</b>(PLR_Tab PTab)</pre>
+<td bgcolor="#FFF0F5" align=left> unloads parse table 'PTab'<br>
+   to the current ( previously opened ) image<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PLR_putTab</b>(c_string Environ, PLR_Tab PTab)</pre>
+<td bgcolor="#FFF0F5" align=left> unloads parse table 'PTab' to image [$'Environ'/]&lt;Language&gt;.pim <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PLR_Tab <b>PLR_fgetTab_bin</b>(BinImg_T img)</pre>
+<td bgcolor="#FFF0F5" align=left> loads a parse table<br>
+   from binary image 'img' (reentrant)<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PLR_Tab <b>PLR_getTab_bin</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left> loads a parse table<br>
+   from the current ( previously opened ) image<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PLR_Tab <b>PLR_getTab</b>(c_string Language)</pre>
+<td bgcolor="#FFF0F5" align=left> loads a parse table named 'Language'<br>
+   from image [$PATH/]&lt;Language&gt;.pim<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PLR_Tab <b>PLR_getTab_env</b>(c_string Environ, c_string Language)</pre>
+<td bgcolor="#FFF0F5" align=left> loads a parse table named 'Language'<br>
+   from image [$'Environ'/]&lt;Language&gt;.pim<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PLR_Tab <b>PLR_getETab</b>(Any_T Environ, c_string Language)</pre>
+<td bgcolor="#FFF0F5" align=left> like PLR_getTab / PLR_getTab_env;<br>
+   can be used as embedded language parser contructor<br>
+   ( see function 'PT_setEParser' )<br>
+<br>
+
+</table>
+
+</body>
+</html>

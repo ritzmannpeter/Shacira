@@ -1,0 +1,350 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[hset.h] Type: Hash Set/Relation</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[hset.h] Type: Hash Set/Relation</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="standard.htm">#include "standard.h"</a>
+<br><a href="prim.htm">#include "prim.h"</a>
+<br>
+<br>
+<br>
+<br><pre>
+   [hset] implements sets and relations based on finite maps.
+
+</pre>
+<br><hr width="100%" size=2><h2><b> Types </b></h2>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b>HS_Set</b>
+<td align=left> Abstract set/relation type           
+
+<TR valign=top>
+<td align=left><b>HS_Elm</b>
+<td align=left> Abstract set/relation element type   
+
+<TR valign=top>
+<td align=left><b>HS_Dom</b>
+<td align=left> Abstract tuple component type        
+
+<TR valign=top>
+<td align=left><b>HS_Itr</b>
+<td align=left> Abstract set/relation iterator type  
+
+</table>
+<br><pre>#define SET(type)   HS_Set   /* Polymorphic SET - Type */
+
+</pre>
+<br><hr width="100%" size=2><h2><b> Set/Relation Iterator </b></h2>
+<br> No changes are allowed on the underlaying set/relation while iterating ! 
+
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>HS_Itr <b>HS_createItr</b>(HS_Set set)
+#define HS_CREATE_ITR HS_createItr</pre>
+<td bgcolor="#FFF0F5" align=left> creates an iterator on set/relation 'set' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>HS_dropItr</b>(HS_Itr itr)
+#define HS_DROP_ITR HS_dropItr</pre>
+<td bgcolor="#FFF0F5" align=left> removes iterator 'itr' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>HS_emptyItr</b>(HS_Itr itr)
+#define HS_EMPTY_ITR HS_emptyItr</pre>
+<td bgcolor="#FFF0F5" align=left> whether iterator 'itr' is empty <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>HS_get</b>(HS_Itr itr, HS_Elm* elm)
+#define HS_GET(itr,pElm) HS_get(itr,(HS_Elm*)(pElm))</pre>
+<td bgcolor="#FFF0F5" align=left> get the next element from iterator 'itr' into 'elm' <br>
+
+</table>
+<br> <p><b>iterator macro for convenience</b> 
+
+<br><pre>#define HS_FORALL(elm,itr,set) for                            \
+                               (                              \
+                                 itr = HS_CREATE_ITR(set);    \
+                                 HS_EMPTY_ITR(itr)            \
+                                 ? (HS_DROP_ITR(itr), C_False)  \
+                                 : (HS_GET(itr, &elm), C_True); \
+                               )
+
+</pre>
+<br><hr width="100%" size=4><h2><font color="#008B8B"><b> Sets & Relations </b></font></h2>
+<br><hr width="100%" size=2><h2><b> Creation of sets </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>HS_Set <b>HS_createSet</b>
+       (                                    
+         c_bool (*equal)(HS_Elm l, HS_Elm r), 
+         long (*hash)(HS_Elm elm)           
+       )
+#define HS_CREATE_SET(type,equ,hsh)                                       \
+        HS_createSet                                                      \
+        (                                                                 \
+          (c_bool (*)(HS_Elm l, HS_Elm r))(equ),(long (*)(HS_Elm elm))(hsh) \
+        )
+#define HS_CREATE_ADTSET(type) HS_CREATE_SET(type,primEqual,primHash)</pre>
+<td bgcolor="#FFF0F5" align=left> creates a new set <br>
+ function parameter:       <br>
+ equality on set elements  <br>
+ hash value of set element <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Basics for sets and relations </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>HS_dropSet</b>(HS_Set set)
+#define HS_DROP_SET HS_dropSet</pre>
+<td bgcolor="#FFF0F5" align=left> removes set/relation 'set' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>HS_Set <b>HS_clear</b>(HS_Set set)
+#define HS_CLEAR HS_clear</pre>
+<td bgcolor="#FFF0F5" align=left> clears set/relation 'set'; removes all elements <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>HS_Set <b>HS_copy</b>(HS_Set set)
+#define HS_COPY HS_copy</pre>
+<td bgcolor="#FFF0F5" align=left> copies set/relation 'set' <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Operations and predicates on one set/relation </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>long <b>HS_card</b>(HS_Set set)
+#define HS_CARD HS_card</pre>
+<td bgcolor="#FFF0F5" align=left> cardinality of set/relation 'set' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>HS_emptySet</b>(HS_Set set)
+#define HS_EMPTY_SET HS_emptySet</pre>
+<td bgcolor="#FFF0F5" align=left> whether set/relation 'set' is empty <br>
+
+</table>
+<br><pre>
+   The following functions can also be applied to relations.
+   In this case the element represents a tuple.
+
+</pre>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>HS_setElm</b>(HS_Elm elm, HS_Set set)
+#define HS_SET_ELM(elm,set) HS_setElm(ABS_CAST(HS_Elm,elm),set)</pre>
+<td bgcolor="#FFF0F5" align=left> set = set U { elm } <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>HS_delElm</b>(HS_Elm elm, HS_Set set)
+#define HS_DEL_ELM(elm,set) HS_delElm((HS_Elm)(elm),set)</pre>
+<td bgcolor="#FFF0F5" align=left> set = set \ { elm } <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>HS_mbrElm</b>(HS_Elm elm, HS_Set set)
+#define HS_MBR_ELM(elm,set) HS_mbrElm((HS_Elm)(elm),set)</pre>
+<td bgcolor="#FFF0F5" align=left> whether 'elm' is a member of set/relation 'set' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>HS_Set <b>HS_part</b>(HS_Set set, c_bool (*wherepart)(HS_Elm elm))
+#define HS_PART(set,where) HS_part(set,(c_bool (*)(HS_Elm elm))(where))</pre>
+<td bgcolor="#FFF0F5" align=left> result = { e in set | wherepart(e) } <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Operations and predicates on two sets/relations </b></h2>
+<br> <p>The predicate functions expects equal types ! 
+
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>HS_equal</b>(HS_Set l, HS_Set r)
+#define HS_EQUAL HS_equal</pre>
+<td bgcolor="#FFF0F5" align=left> l = r ? <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>HS_subset</b>(HS_Set l, HS_Set r)
+#define HS_SUBSET HS_subset</pre>
+<td bgcolor="#FFF0F5" align=left> l &lt;= r ? <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>HS_Set <b>HS_union</b>(HS_Set dst, HS_Set l, HS_Set r)
+#define HS_UNION HS_union</pre>
+<td bgcolor="#FFF0F5" align=left> dst = l U r <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>HS_Set <b>HS_minus</b>(HS_Set dst, HS_Set l, HS_Set r)
+#define HS_MINUS HS_minus</pre>
+<td bgcolor="#FFF0F5" align=left> dst = l \ r <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>HS_Set <b>HS_inter</b>(HS_Set dst, HS_Set l, HS_Set r)
+#define HS_INTER HS_inter</pre>
+<td bgcolor="#FFF0F5" align=left> dst = l & r <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>HS_Set <b>HS_product</b>(HS_Set l, HS_Set r, c_bool plane)
+#define HS_PRODUCT HS_product</pre>
+<td bgcolor="#FFF0F5" align=left> result = l X r ( plane --&gt; no tuple hierarchy ) <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Creation of relations </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>HS_Set <b>HS_createRel</b>
+       (                                    
+         int argcnt,                        
+         c_bool (*equal)(HS_Dom l, HS_Dom r), 
+         long (*hash)(HS_Dom d), ...        
+       )
+#define HS_CREATE_REL_2(t1,e1,h1,t2,e2,h2)    \
+        HS_createRel                          \
+        (                                     \
+          4,                                  \
+          (c_bool (*)(HS_Dom l, HS_Dom r))(e1), \
+          (long (*)(HS_Dom d))(h1),           \
+          (c_bool (*)(HS_Dom l, HS_Dom r))(e2), \
+          (long (*)(HS_Dom d))(h2)            \
+        )
+#define HS_CREATE_ADTREL_2(t1,t2) \
+        HS_CREATE_REL_2(t1,primEqual,primHash,t2,primEqual,primHash)</pre>
+<td bgcolor="#FFF0F5" align=left> creates a new relation <br>
+ function parameter:                    <br>
+ tuple arity; number of following pairs <br>
+ equality on tuple components           <br>
+ hash value of tuple component          <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Basics for relations </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>HS_arity</b>(HS_Elm tpl)
+#define HS_ARITY HS_arity</pre>
+<td bgcolor="#FFF0F5" align=left> number of tuple components <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>HS_Dom <b>HS_tplcol</b>(HS_Elm tpl, int Nth)
+#define HS_TPLCOL(typ,t,n) ((typ)HS_tplcol(t,n))</pre>
+<td bgcolor="#FFF0F5" align=left> Nth tuple component ( Nth &gt;= 1 ) <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Operations and predicates on one relation </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>HS_setTpl</b>(int argcnt, HS_Set rel, HS_Dom dom, ...)
+#define HS_SETTPL_2(d1,d2,rel) HS_setTpl(3,rel,(HS_Dom)(d1),(HS_Dom)(d2))</pre>
+<td bgcolor="#FFF0F5" align=left> rel = rel U { (dom,...) } <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>HS_delTpl</b>(int argcnt, HS_Set rel, HS_Dom dom, ...)
+#define HS_DELTPL_2(d1,d2,rel) HS_delTpl(3,rel,(HS_Dom)(d1),(HS_Dom)(d2))</pre>
+<td bgcolor="#FFF0F5" align=left> rel = rel \ { (dom,...) } <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>HS_mbrTpl</b>
+     (
+       int argcnt, HS_Set rel, HS_Dom dom, ...
+     )
+#define HS_MBRTPL_2(d1,d2,rel) HS_mbrTpl(3,rel,(HS_Dom)(d1),(HS_Dom)(d2))</pre>
+<td bgcolor="#FFF0F5" align=left> whether (dom,...) is a member of relation 'rel' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>HS_Set <b>HS_project</b>(HS_Set rel, int Nth)
+#define HS_PROJECT HS_project</pre>
+<td bgcolor="#FFF0F5" align=left> result = rel.Nth column ( Nth &gt;= 1 ) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>HS_Set <b>HS_range</b>
+       (
+         int argcnt, HS_Set rel, HS_Dom dom, ...
+       )
+#define HS_RANGE_1(d,rel) HS_range(2,rel,(HS_Dom)(d))</pre>
+<td bgcolor="#FFF0F5" align=left> result = Range((dom,...)) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>HS_Set <b>HS_domain</b>
+       (
+         int argcnt, HS_Set rel, HS_Dom rng, ...
+       )
+#define HS_DOMAIN_1(r,rel) HS_domain(2,rel,(HS_Dom)(r))</pre>
+<td bgcolor="#FFF0F5" align=left> result = Domain((rng,...)) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>HS_Set <b>HS_trans</b>(HS_Set rel)
+#define HS_TRANS HS_trans</pre>
+<td bgcolor="#FFF0F5" align=left> R' (reverse elements) <br>
+
+</table>
+<br><pre>
+   The following functions can be applied only to binary relations
+   over a single domain !
+
+</pre>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>HS_Set <b>HS_rclosure</b>(HS_Set dst, HS_Set rel, HS_Set set)
+#define HS_IR_RCLOSURE     HS_rclosure
+#define HS_R_RCLOSURE(d,r) HS_rclosure(d,r,(HS_Set)NULL)</pre>
+<td bgcolor="#FFF0F5" align=left> dst = R + Id ( relation 'rel', domain 'set' ) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>HS_Set <b>HS_sclosure</b>(HS_Set dst, HS_Set rel)
+#define HS_SCLOSURE HS_sclosure</pre>
+<td bgcolor="#FFF0F5" align=left> dst = R + R' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>HS_Set <b>HS_closure</b>(HS_Set dst, HS_Set rel, HS_Set set)
+#define HS_IR_CLOSURE     HS_closure
+#define HS_R_CLOSURE(d,r) HS_closure(d,r,(HS_Set)NULL)</pre>
+<td bgcolor="#FFF0F5" align=left> dst = R* ( relation 'rel', domain 'set' ) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>HS_Set <b>HS_iclosure</b>(HS_Set dst, HS_Set rel)
+#define HS_ICLOSURE HS_iclosure</pre>
+<td bgcolor="#FFF0F5" align=left> dst = R+ <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>HS_Set <b>HS_eclosure</b>
+       (
+         HS_Set dst, HS_Set rel, HS_Set set, int (*compare)(HS_Dom l, HS_Dom r)
+       )
+#define HS_IR_ECLOSURE       HS_eclosure
+#define HS_R_ECLOSURE(d,r,c) HS_eclosure(d,r,(HS_Set)NULL,c)</pre>
+<td bgcolor="#FFF0F5" align=left> dst = (R + R')* ( relation 'rel', domain 'set' and 'compare' ) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>HS_quotient</b>(HS_Set eclosure,int (*compare)(HS_Dom l, HS_Dom r))
+#define HS_QUOTIENT(ecl,cmp) \
+        HS_quotient(ecl,(int (*)(HS_Dom l, HS_Dom r))(cmp))</pre>
+<td bgcolor="#FFF0F5" align=left> re-sets class representants [eclosure] of partition 'eclosure' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>HS_Dom <b>HS_class</b>(HS_Dom dom, HS_Set eclosure)
+#define HS_CLASS(typ,dom,ecl) ((typ)HS_class((HS_Dom)(dom),ecl))</pre>
+<td bgcolor="#FFF0F5" align=left> get class representant [dom] of domain 'dom' in partition 'eclosure' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>HS_Set <b>HS_kern</b>(HS_Set dst, HS_Set iclosure)
+#define HS_KERN HS_kern</pre>
+<td bgcolor="#FFF0F5" align=left> dst = R+ \ square(R+) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>HS_Set <b>HS_conclusion</b>(HS_Set dst, HS_Set rel)
+#define HS_CONCLUSION HS_conclusion</pre>
+<td bgcolor="#FFF0F5" align=left> dst = square(R) <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Operations and predicates on two relations </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>HS_Set <b>HS_join</b>
+       (
+         int argcnt, HS_Set l, HS_Set r,  ...
+       )
+#define HS_JOIN(l,r)         HS_join(2,l,r)
+#define HS_JOIN_1(l,r,cl,cr) HS_join(4,l,r,(long)(cl),(long)(cr))</pre>
+<td bgcolor="#FFF0F5" align=left> joins two relations, using columns ( cl, cr ),... <br>
+ ( long cl, long cr ) <br>
+
+</table>
+<br><pre>
+   The following functions can be applied only to binary relations !
+
+</pre>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>HS_Set <b>HS_compose</b>(HS_Set dst, HS_Set l, HS_Set r)
+#define HS_COMPOSE HS_compose</pre>
+<td bgcolor="#FFF0F5" align=left> dst = l * r ( special binary relation --&gt; binary relation ) <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Printing </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>HS_fprint</b>
+     (
+       FILE* file,
+       HS_Set set,
+       int indent,
+       void (*fpMember)(FILE *file, HS_Elm elm)
+     )
+#define HS_PRINT(set,ind,pMbr) \
+        HS_fprint(STDOUT,set,(ind),(void (*)(FILE *file, HS_Elm elm))(pMbr))</pre>
+<td bgcolor="#FFF0F5" align=left> prints set/relation 'set' to 'file' <br>
+
+</table>
+
+</body>
+</html>

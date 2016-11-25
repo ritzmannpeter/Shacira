@@ -1,0 +1,87 @@
+/* -------------------------------------------------------------------------- */
+/*                                                                            */
+/* [memosx.c(mem_base)]        Memory Management                              */
+/*                                                                            */
+/* Copyright (c) 1993 by D\olle, Manns                                        */
+/* -------------------------------------------------------------------------- */
+
+#include "sysbase0.h"
+
+#if defined( _MSDOS ) || defined( _WIN32 )
+#include <windows.h>
+#endif
+
+/*I------------------------------- Memory ----------------------------------- */
+
+static long obj_count = 0L;
+
+long ObjCount(void)
+/* allocated objects */
+{
+  return obj_count;
+}
+
+#ifdef _MSDOS
+_NO_DLL_EXPORT_ HugeCPtr NewHMem(long objsize)
+/* creates a huge object of size 'objsize'; raises exception */
+{ HugeCPtr res = NULL;
+  if(objsize == 0) objsize = 1;
+  res = _halloc(objsize,1);
+  if( res == (StdCPtr)NULL ) 
+  { PHDL_FREEMEM hdl_freemem = getFreeMemHdl();
+    if( hdl_freemem != (PHDL_FREEMEM)NULL )
+    {
+      (*hdl_freemem)(objsize);
+      res = _halloc(objsize,1);
+    }
+    if( res == (StdCPtr)NULL ) 
+      bug0(False, "halloc failed");
+  }
+  InterlockedIncrement(&obj_count);
+  return res;
+}
+
+_NO_DLL_EXPORT_ void FreeHMem(HugeCPtr Any)
+/* frees huge object 'Any' */
+{
+  InterlockedDecrement(&obj_count);
+  _hfree(Any);
+}
+#endif
+
+StdCPtr NewMem(long objsize)
+/* creates an object of size 'objsize'; raises exception */
+{ StdCPtr res;
+  if(objsize == 0) objsize = 1;
+#ifdef _MSDOS
+  assert1((objsize & 0xffff0000L) == 0,"invalid objsize = %ld",objsize);
+#endif
+  res = malloc((unsigned int)objsize);
+  if( res == (StdCPtr)NULL ) 
+  { PHDL_FREEMEM hdl_freemem = getFreeMemHdl();
+    if( hdl_freemem != (PHDL_FREEMEM)NULL )
+    {
+      (*hdl_freemem)(objsize);
+      res = malloc((unsigned int)objsize);
+    }
+    if( res == (StdCPtr)NULL ) 
+      bug2(False, "malloc failed for size %ld, res = %ld",objsize,(long)res);
+  }
+#if defined( _MSDOS ) || defined( _WIN32 )
+  InterlockedIncrement(&obj_count);
+#else
+  ++obj_count;
+#endif
+  return res;
+}
+
+void FreeMem(StdCPtr Any)
+/* frees object 'Any' */
+{
+#if defined( _MSDOS ) || defined( _WIN32 )
+  InterlockedDecrement(&obj_count);
+#else
+  --obj_count;
+#endif
+  free(Any);
+}

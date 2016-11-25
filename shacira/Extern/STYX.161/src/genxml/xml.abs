@@ -1,0 +1,52 @@
+/* ------------------------------------------------------------------------ */
+/*                                                                          */
+/* [xml.abs]                   Abstract Grammar                             */
+/*                                                                          */
+/* ------------------------------------------------------------------------ */
+
+LANGUAGE xml
+
+TOKENS
+
+  DCharRef, HCharRef, ERef, PERef, Nmtoken, XMLDecl, PI, CDSect, XMLOpr, Name, dtdEmbed, DTDStart, Literal, CharData, Empty, Comment, _other_
+
+TYPES
+
+  xml        = Start_XDoc(XDoc)
+
+  XDoc       = dfn(XDecl, CDecl*)
+
+  XDecl      = nul;
+               dfn(XMLDecl)
+
+  White      = nul;
+               spc(Empty)
+
+  EDecl      = dfn(Name, Attr*, EBody)
+
+  EBody      = dfn(CDecl*, Name, White);
+               nul
+
+  Attr       = spc(White);
+               dfn(White, Name, White, White, Literal)
+
+  CDecl      = eref(ERef);
+               data(CharData);
+               nmtk(Nmtoken);
+               cref(DCharRef);
+               sect(CDSect);
+               xcom(Comment);
+               xopr(XMLOpr);
+               pref(PERef);
+               name(Name);
+               pi(PI);
+               elm(EDecl);
+               etg0;
+               lit(Literal);
+               else(_other_);
+               etg1;
+               typ(DTDStart, dtdEmbed);
+               spc(White);
+               eq;
+               href(HCharRef)
+

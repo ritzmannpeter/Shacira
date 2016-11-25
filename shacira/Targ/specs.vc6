@@ -1,0 +1,25 @@
+
+make=make
+rm=rm
+mkdir=mkdir
+cp=cp
+rmdir=rm -rf
+pp=pp
+
+ctools=vc6
+configuration=debug
+BUILDCFG=win32_$(ctools)_$(configuration)
+qt=$(shacira)/Targ/Tools/$(ctools)/qt3
+QTDIR=$(qt)
+QTVERSION=337
+omniorb=$(shacira)/Targ/Tools/)ctools)/omniORB4
+PYTHONPATH=$(omniorb)/lib/python
+msys=$(shacira)/Targ/Tools/gnu/msys
+mingw=$(shacira)/Targ/Tools/gnu/mingw
+vstudio=c:/Programme/Microsoft Visual Studio
+msdev=$(vstudio)/Common/MSDev98/Bin
+vcpp=$(vstudio)/VC98/Bin
+mstools=$(vstudio)/Common/Tools/WinNT
+PATH=c:/windows/system32;$(mingw)/bin;$(msys)/bin;$(shacira)/Targ;$(shacira)/Targ/Tools/$(ctools);$(qt)/bin;$(omniorb)/bin;$(msdev);$(vcpp);$(mstools)
+
+

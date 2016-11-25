@@ -1,0 +1,23 @@
+# [mx] make 'calc'
+
+#styx installation root directory
+export STYXDIR=/usr/local/styx
+
+#destination directory for parser and scanner table image files
+export BINSTYX=./gen
+#destination directory for parser and scanner table and term interface source files
+export GENSTYX=./gen
+#source directory of language specification file
+export SPESTYX=.
+
+#create source and image files
+styx calc -makeC -makeIMG -verbose
+
+#create header files for generated c-sources
+ctoh -ct -CPATH=./gen -HPATH=./inc -PRJ=./prj
+
+#compile sources to program 'calc'
+gcc -I$STYXDIR/include -I./inc -L$STYXDIR/lib -ldstyx -lstdc++ -o calc calc.cpp ./gen/calc_pim.c ./gen/calc_lim.c ./gen/calc_int.c 
+
+#add styx library to runtime path before executing 'calc'
+#export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$STYXDIR/lib

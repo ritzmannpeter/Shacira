@@ -1,0 +1,1 @@
+reviewWidget.processData({ "stuffnobodytoldmeabout.blogspot.de": { "target": "stuffnobodytoldmeabout.blogspot.de", "0": [ 62, 5 ], "1": [ 59, 4 ], "2": [ 64, 5 ], "4": [ 77, 5 ] } } )

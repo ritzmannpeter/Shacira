@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui version="4.0" stdsetdef="1">
+ <author/>
+ <comment/>
+ <exportmacro/>
+ <class>Page3</class>
+ <widget class="CPage" name="Page3">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>866</width>
+    <height>640</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>0</width>
+    <height>0</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>868</width>
+    <height>640</height>
+   </size>
+  </property>
+  <property name="font">
+   <font>
+    <family>Arial</family>
+    <pointsize>11</pointsize>
+   </font>
+  </property>
+  <property name="Group0">
+   <enum>WriteAccess</enum>
+  </property>
+  <property name="Group1">
+   <enum>WriteAccess</enum>
+  </property>
+  <property name="HelpId1">
+   <cstring>Ovw_Service</cstring>
+  </property>
+  <property name="PageGroup">
+   <cstring>group2</cstring>
+  </property>
+  <property name="PageHeadline">
+   <string>Group2:Page3</string>
+  </property>
+  <property name="LongPageHeadline">
+   <string>Group2:Page3</string>
+  </property>
+  <property name="PositionInGroup">
+   <number>0</number>
+  </property>
+  <property name="autoFillBackground">
+   <bool>true</bool>
+  </property>
+  <property name="windowTitle">
+   <string>Group2:Page3</string>
+  </property>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
+ <customwidgets>
+  <customwidget>
+   <class>CPage</class>
+   <extends>CWidget</extends>
+   <header>CPage.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <includes>
+  <include location="local">qt4port.h</include>
+  <include location="local">CPage.h</include>
+ </includes>
+ <resources>
+  <include location="demo.qrc"/>
+ </resources>
+</ui>

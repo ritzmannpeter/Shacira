@@ -1,0 +1,25 @@
+@echo off
+REM Mega-MAKEHEAD (Autor: Markus Wuertz, 14.12.1999)
+REM - Y2K tauglich --------------------------> ^^
+REM - Unterstuetzt Wildcards und Dateilisten
+REM - automatische Dateierweiterung .C oder .CPP -> .H oder .HPP
+REM - sucht pp.exe/pperror.msg/ppChead.pre im Verzeichnis von MAKEHEAD.BTM
+
+IFF %#=0 THEN
+  echo [BTM] Aufruf: MAKEHEAD filename
+ELSE
+  SET APP_MSG_FILE=%@PATH[%_BATCHNAME]pperror.msg
+  FOR %file IN (%$) DO GOSUB ONEFILE
+ENDIFF
+QUIT
+
+:ONEFILE
+IFF exist %@PATH[%FILE]%@NAME[%FILE].c THEN
+  %@PATH[%_BATCHNAME]pp -o%@PATH[%FILE]%@NAME[%FILE].h  %@PATH[%_BATCHNAME]ppChead.pre %@PATH[%FILE]%@NAME[%FILE].c
+ELSEIFF exist %@PATH[%FILE]%@NAME[%FILE].cpp THEN
+  %@PATH[%_BATCHNAME]pp -o%@PATH[%FILE]%@NAME[%FILE].hpp %@PATH[%_BATCHNAME]ppChead.pre %@PATH[%FILE]%@NAME[%FILE].cpp
+ELSE
+  echo %@PATH[%FILE]%@NAME[%FILE].c/.cpp not found
+  QUIT 1
+ENDIFF
+

@@ -1,0 +1,142 @@
+
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+<meta name="robots" content="noindex">
+<title>stypp Command description</title>
+</head>
+<body bgcolor=white text=black link=navy vlink=navy alink=purple>
+<b><font color=\"#008B8B\"><a href="styx.html">contents</a></font></b><br>
+&nbsp;
+<H1><font color=red>stypp</font>  Pretty Printer</H1>
+<BR>
+
+  <p>'stypp' serves as a pretty printer for source files written in a styx-conform language.
+  Beside that it can be used to port source files, provided that the abstract syntax of the 
+  source and target language are equivalent. The conversion includes all comments. A user-defined
+  token conversion handler can be applied.
+  <p>The work on this program, especially on the pretty printer layout, ist still in progress.
+  The current version doesn't support the embedded language facility.
+
+<BR>
+<BR>
+
+<H2>Arguments</H2>
+<BR>
+<table width=100% border=0 cellspacing=10>
+<COL WIDTH=2*>
+<COL WIDTH=1*>
+<COL WIDTH=6*>
+<thead>
+<TR valign=top bgcolor=#DDDDFF><TD align=left>Name<TD align=left>Type<TD align=left>Semantic
+<tbody>
+
+<TR valign=top><TD align=left><B>srclang</B><TD align=left><B><font color=navy> name</font></B><TD align=left> source language name
+
+<TR valign=top><TD align=left><B>dstlang</B><TD align=left><B><font color=navy> name</font></B><TD align=left> target language name
+
+<TR valign=top><TD align=left><B>filename</B><TD align=left><B><font color=navy> path</font></B><TD align=left> path of source file to transform
+
+</table>
+<BR>
+
+<BR>
+
+<BR>
+
+<H2>Options</H2>
+An option will be specified as follows: <B>-&lt;Name&gt;=&lt;Value&gt;</B>
+<BR>A flag is toggled that way: <B>-&lt;Name&gt;</B>
+<BR>The default value will be applied when the option wasn't specified.
+<BR>
+<BR>
+<table width=100% border=0 cellspacing=10>
+<COL WIDTH=2*>
+<COL WIDTH=1*>
+<COL WIDTH=3*>
+<COL WIDTH=4*>
+<thead>
+<TR valign=top bgcolor=#DDDDFF><TD align=left>Name<TD align=left>Type<TD align=left>Default value<TD align=left>Semantic
+<tbody>
+
+<TR valign=top><TD align=left><B>charset</B><TD align=left><B><font color=navy> string</font></B><TD align=left>""<TD align=left> source file character set ( UTF-8, UCS4, ... )
+
+<TR valign=top><TD align=left><B>skipset</B><TD align=left><B><font color=navy> string</font></B><TD align=left>""<TD align=left> ( ascii ) characters to be skipped
+
+<TR valign=top><TD align=left><B>wprint</B><TD align=left><B><font color=navy> flag</font></B><TD align=left>false<TD align=left> unicode output ( on non-default character set )
+
+<TR valign=top><TD align=left><B>prepar</B><TD align=left><B><font color=navy> string</font></B><TD align=left>""<TD align=left> standard preprocessing: yes or list index~value , ...
+
+<TR valign=top><TD align=left><B>premac</B><TD align=left><B><font color=navy> string</font></B><TD align=left>""<TD align=left> standard preprocessing:  pre-defined macro , ...
+
+<TR valign=top><TD align=left><B>prefun</B><TD align=left><B><font color=navy> string</font></B><TD align=left>""<TD align=left> user-defined preprocessing: Function@Library ( not with prepar-option )
+
+<TR valign=top><TD align=left><B>Start</B><TD align=left><B><font color=navy> string</font></B><TD align=left>""<TD align=left> start symbol
+
+<TR valign=top><TD align=left><B>xaron</B><TD align=left><B><font color=navy> flag</font></B><TD align=left>false<TD align=left> create a derivation tree ( lisp like representation )
+
+<TR valign=top><TD align=left><B>early</B><TD align=left><B><font color=navy> flag</font></B><TD align=left>false<TD align=left> use early reduction
+
+<TR valign=top><TD align=left><B>shiftfun</B><TD align=left><B><font color=navy> string</font></B><TD align=left>""<TD align=left> user-defined token conversion: Function@Library ( see [ptm_gen] )
+
+<TR valign=top><TD align=left><B>reducefun</B><TD align=left><B><font color=navy> string</font></B><TD align=left>""<TD align=left> user-defined nonterminal conversion: Function@Library ( see [ptm_gen] )
+
+<TR valign=top><TD align=left><B>ppfun</B><TD align=left><B><font color=navy> string</font></B><TD align=left>""<TD align=left> user-defined token conversion: Function@Library ( see [ptm_pp] )
+
+</table>
+<BR>
+
+  <p>The options 'prepar' and 'premac' are only useful with styx-like preprocessing. 
+  <p>If your language uses the same preprocessing directives as specified in [styx.sty], 
+  but differnt macro token identifiers and keywords, the option 'prepar' can be used to 
+  enable preprocessing and specify the differences as a comma separated list:
+  </p>
+  <ol>
+  <li><b>0~name of identifier token</b>
+  <li><b>1~name of macro definition token</b>
+  <li><b>2~name of argument separator token</b>
+  <li><b>3~name of include token</b>
+  <li><b>4~name of conditional token</b>
+  <li><b>5~name of undefine token</b>
+  <li><b>6~#macro keyword</b>
+  <li><b>7~#end keyword</b>
+  <li><b>8~#ifdef keyword</b>
+  <li><b>9~#ifndef keyword</b>
+  <li><b>10~#else keyword</b>
+  <li><b>11~#include keyword</b>
+  <li><b>12~#undefine keyword</b>
+  <li><b>13~environment variable or path list as search path for include files</b>
+  <li><b>14~include file character set ( default: charset-option )</b>
+  </ol>
+  <p>The option 'premac' supports pre-defined macros in connection with 
+  styx-like preprocessing.
+  <p>Dynamic library support is a prerequisite for the user-defined callback handler.
+
+<BR>
+
+<BR>
+
+<H2>Environment</H2>
+An environment variable will be specified as followed: <B>-&lt;Name&gt;=&lt;Value&gt;</B>
+<BR>The default value will be applied when no environment variable was specified.
+<BR>
+<BR>
+<table width=100% border=0 cellspacing=10>
+<COL WIDTH=2*>
+<COL WIDTH=1*>
+<COL WIDTH=3*>
+<COL WIDTH=4*>
+<thead>
+<TR valign=top bgcolor=#DDDDFF><TD align=left>Name<TD align=left>Type<TD align=left>Default value<TD align=left>Semantic
+<tbody>
+
+<TR valign=top><TD align=left><B>BINSTYX</B><TD align=left><B><font color=navy> path</font></B><TD align=left>PATH<TD align=left> search environment for [srclang.pim], [srclang.lim], [dstlang.pim] and [dstlang.lim]
+
+</table>
+<BR>
+
+<BR>
+
+<BR>
+</body>
+</html>

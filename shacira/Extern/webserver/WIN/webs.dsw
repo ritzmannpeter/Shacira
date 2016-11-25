@@ -1,0 +1,74 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNUNG: DIESE ARBEITSBEREICHSDATEI DARF NICHT BEARBEITET ODER GELÖSCHT WERDEN!
+
+###############################################################################
+
+Project: "ecl_dll_base"=..\..\Shacira\Extern\ECL\targ\vcpp\ecl_dll_base\ecl_dll_base.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "ecl_lib_base"=..\..\Shacira\Extern\ECL\targ\vcpp\ecl_lib_base\ecl_lib_base.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "interface_lib"=..\..\Shacira\Targ\vcpp\interface_lib\interface_lib.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "webs"=.\webs.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name shacira_lib
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name interface_lib
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name ecl_dll_base
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+

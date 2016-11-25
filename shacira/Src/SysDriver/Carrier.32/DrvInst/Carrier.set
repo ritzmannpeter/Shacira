@@ -1,0 +1,12 @@
+
+; Carrier driver settings
+
+[Settings]
+PortBase=0x360
+Version=1
+;CheckMode=1
+;Retries=20
+;Stability=10
+;DelayTime=15
+;ForceDirectAccess=0
+SimulateHardware=1

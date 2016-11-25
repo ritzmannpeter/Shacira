@@ -1,0 +1,30 @@
+Installed products:
+-------------------
+
+Qt 3.3.3
+   - QTable required
+
+omniORB 3.0.4
+
+
+General environment variables
+-----------------------------
+
+QTDIR -> Qt directory like ...\Qt\3.3.3
+QTVERSION=333 -> Qt version
+PATH -> expand with Qt bin directory like ...\Qt\3.3.3\bin
+
+ORBDIR -> directory with file "version_OmniORB.in" (need not to be the
+   directory  ...\Omni304 where OmniORB is installed)
+PATH -> expand with OmniORB bin directory like ...\Omni304\bin\x86_win32
+
+SHACIRADIR -> ...\Shacira
+ECLDIR -> ...\Shacira\extern\ecl
+
+
+Environment variables for Mosaic
+--------------------------------
+
+MOSAICDIR -> Directory that contains \Shacira, \Mosaic and \MosaicTest
+PATH -> expand with %SHACIRADIR%\bin\win32;%MOSAICDIR%\Mosaic\bin\win32
+

@@ -1,0 +1,80 @@
+
+#ifndef _hostenum_
+#define _hostenum_
+
+#define REGISTER_T      1
+#define TEXT_T          2
+
+//
+// XXX_ACCESS_T: Informationsstruktur fuer Read- und Writefunktionen
+//
+
+#pragma pack(8)
+typedef struct {
+        UWORD reg_no;                // Parameter fuer RegRead / RegWrite
+        unsigned short ind_info;   
+        short ind1;
+        short ind2;
+        short ind3;
+        short format;              // Format bei Anzeige des Registers
+   short decimals;            // Anzahl Nachkommastellen
+   short background;          // 0=Vordergrund, sonst Hintergrund
+   unsigned short host_ctrl;  // Controlwort des HostTab Eintrags
+   int mult_reg;              // Multiplexregister, fuer Plaus etc.
+   int plaus_funcind;   // Userfunktionstabellenindex der Plausfunktion
+   int plaus_paramind;  // Paramtabindex der Plausfunktion
+}       REG_ACCESS_T;
+
+#pragma pack(8)
+typedef struct {
+        int text_ind;              // Parameter fuer TXTVAR_Read/Write
+        int row;
+   short background;          // 0=Vordergrund, sonst Hintergrund
+}       TEXT_ACCESS_T;
+
+#pragma pack(8)
+typedef struct {
+   int ctrl;                  // Bedeutung haengt ab von der Art der Daten
+}       BIN_ACCESS_T;
+
+
+#pragma pack(8)
+typedef struct {
+   char * name;               // FM Variablenname mit konstanten Indizes     
+   char * screen_line;        // Bildschirmzeile des Soll-/Istwerts oder NULL
+   char * dim;                // Dimensionsstring vom Bildschirm oder NULL
+   long var_no;               // Variablennummer
+   unsigned short status;
+   int data_type;             // COMM_TYPE_...
+   int permissions;           // COMM_PERM_...
+   int is_background;         // 0=Kein Background, sonst Background
+   int type;
+   unsigned short host_ctrl;  /* Controlwort des HostTab Eintrags */
+   union {
+      REG_ACCESS_T reg;
+      TEXT_ACCESS_T text;
+   } access;
+} HOST_ITEM_T;
+#pragma pack()
+
+// Definitionen fuer den status Parameter in der HOST_ITEM_T Struktur
+// Im status Parameter werden Fehlerzustaende codiert, ein gesetztes Bit
+// bedeutet, dass der assoziierte Fehler aufgetreten ist.
+#define HOST_ITEM_STATUS_FORMAT     0x0001   // Variablennummer falsch, Format
+                                             // ist Defaultwert
+#define HOST_ITEM_STATUS_ACCESS     0x0002   // Zugriff auf Register/Textvar.
+                                             // ist nicht moeglich
+#define HOST_ITEM_STATUS_NOTEXIST   0x0004   // Register/Textvariable nicht
+                                             // gefunden
+#define HOST_ITEM_OK(status) ((status)==0)
+
+
+// Callbackfunktion, um ein Hostitem zu bearbeiten. Die cb1 und cb2 Zeiger
+// koennen als weiterfuehrende Callbackfunktionen je nach Bedarf verwendet
+// werden.
+typedef int  (*P_ENUM_CALLBACK)(void *data, HOST_ITEM_T * host_item);
+
+int EnumHostItems (void *data, P_ENUM_CALLBACK callback);
+                                               
+#endif  /* _hostenum_ */
+

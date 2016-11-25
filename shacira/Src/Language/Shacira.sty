@@ -1,0 +1,531 @@
+; [Shacira.sty] Grammar "shacira"
+
+Language Shacira
+
+Regular Grammar
+
+; Character Set
+
+  let Byte        = '\00' .. '\ff' ; all extended ascii
+  let Control     = '\00' .. '\1f' ; control
+                  |          '\7f' ; DEL
+                  |          '\ff' ; space-like extended ascii
+
+; Basic elements of tokens
+
+  let Printable   = Byte - Control
+  ign Space       = " "            ; ASCII - Space
+  ign Tab         = "\t"           ; Tabulator
+  ign Line        = "\n" | "\r\n"  ; UNIX / CPM / DOS
+  ign Page        = "\p"           ; weak separation convention
+  ign Etx         = "\1a" {Byte}   ; CPM / older DOS Versions
+
+; Definitions and simple tokens
+
+  let Letter      = 'A'..'Z' | 'a'..'z' | '_'
+  let LetterOrDigit = 'A'..'Z' | 'a'..'z' | '_' | '0'..'9' 
+  let HexDigit    = '0'..'9' | 'a'..'f' | 'A' .. 'F'
+  let Digit       = '0'..'9'
+  let Normal      = Letter | Digit | Space
+  let Quote       = '\'\"\`'
+  tok Delimiters  = ',;'           ; delimiters
+  tok Parenthesis = '()[]{}'       ; one character tokens
+  let Special     = Printable - Normal - Parenthesis - Quote
+
+; single byte literals or literals, encoded in us-ascii, ISO 8859-1 Latin-1 or ucs4 hex values
+  let LitChar     = Printable - Quote
+                  | '\\' ( Quote | 'prnt' | 
+                           HexDigit HexDigit |
+                           'xX' HexDigit HexDigit HexDigit HexDigit HexDigit HexDigit HexDigit HexDigit )
+
+; Comments et al
+
+;  com Comment     = '//' {Printable}
+  com Comment  = "/*" ({Byte}-({Byte}"*/"{Byte})) "*/"
+               | "//" ({Byte}-({Byte} Line {Byte})) Line
+
+; Complex tokens
+
+  tok Hex = '0' 'x' HexDigit+       ; Natural in hexadecimal presentation
+  tok Ide = Letter {LetterOrDigit}  ; Identifier
+  tok Real = {'-'} Digit+ ('.') Digit+    ; Real
+  tok Nat = {'-'} Digit+            ; Natural
+  tok Opr = '=<>-+:*&|!'            ; Operators
+;  tok Set = '\'' {LitChar} '\''    ; CharacterSet
+  tok Seq = '\"' {LitChar} '\"'     ; CharacterSequence (String)
+  tok HexSeq = '\'' {HexDigit} '\'' ; BCD character sequence
+  tok Param = '#' Digit+            ; Parameter Name
+
+; Macro token definitions
+
+  let White   = Space | Line | Page
+  let Name    = (Letter | "_") { Letter | Digit | "_" } 
+  let MPar    = ( Printable - ( White | ',' | ')' | '=' ) )
+                { Printable - ( White | ',' | ')' | '=' ) }
+
+  tok MacInc  = "#include" White {White} (Printable-White) {Printable-White} ; Include
+  tok MacDfn  = "#macro" White {White} Name                                  ; Macro definition
+                  {White} [ "(" {White} MPar 
+                  { {White} "," {White} MPar } {White} ")" {White} ]
+                  [ "=" 
+                    ({Byte} - ({Byte} ("#macro"|"#end") {Byte})) 
+                    "#end" ]
+
+  tok MacSep  = '\'' (Byte-'\'') [ '-' ]                                     ; End of parameter
+
+  tok MacCond = ( ( "#ifdef" | "#ifndef" ) White {White} Name )              ; Conditionals
+              | "#else" | "#end" | "#endif"
+
+; End Macro token definitions
+
+Context Free Grammar
+
+start Definitions
+:defs: DefList
+:non: ; empty line
+
+let DefList
+:nil:
+:cons: Definition DefList
+
+let Symbol
+:ide:   Ide
+:hex:   Hex
+:dec:   Nat
+
+let Definition
+:dyndec:    DynamicDecls ";"
+:dbdef:     DatabaseDef ";"
+:funcdec:   FuncDecl ";"
+:state:     State ";"
+:proc:      Procedure
+:prog:      Program
+:cond:      StartCondition ";"
+:funcref:   FuncRef
+:varref:    VarRef
+:vardef:    "def" VarDef
+:unitdef:   "unit" UnitDef
+
+let DynamicDecls
+:def: "dynamic" "{" IdeList "}"
+
+let IdeList
+:nil:
+:cons: Ide IdeList0
+let IdeList0
+:nil:
+:cons: "," Ide IdeList0
+
+let DatabaseDef
+:def: "database" Ide DeviceSpec "{" VarDefList "}"
+
+let DeviceSpec
+:nul:
+:spec:  "device" "=" Ide
+
+let FuncDecl
+:emb1 :  "embed" BaseType Ide "(" ArgDeclList ")"
+:emb2 :  "embed" StringType Ide "(" ArgDeclList ")"
+:conv1:  "conv" BaseType Ide "(" ArgDeclList ")"
+:conv2:  "conv" StringType Ide "(" ArgDeclList ")"
+:filt1:  "filter" BaseType Ide "(" ArgDeclList ")"
+:filt2:  "filter" StringType Ide "(" ArgDeclList ")"
+:lim1 :  "limit" BaseType Ide "(" ArgDeclList ")"
+:lim2 :  "limit" StringType Ide "(" ArgDeclList ")"
+:view1:  "view" BaseType Ide "(" ArgDeclList ")"
+:view2:  "view" StringType Ide "(" ArgDeclList ")"
+:plaus:  "plaus" Ide "(" ArgDeclList ")"
+:dark :  "dark" Ide "(" ArgDeclList ")"
+:user :  "user" Ide "(" ArgDeclList ")"
+:btn  :  "button" Ide "(" ArgDeclList ")"
+:sigflt: "sigflt" Ide "(" ArgDeclList ")"
+:slot :  "slot" Ide "(" ArgDeclList ")"
+:valf :  "valf" Ide "(" ArgDeclList ")"
+:free1:  BaseType Ide "(" ArgDeclList ")"
+:free2:  StringType Ide "(" ArgDeclList ")"
+:unit :  "unit" BaseType Ide "(" ArgDeclList ")"
+:init :  "init" Ide "(" ArgDeclList ")"
+:evflt:  "evflt" Ide "(" ArgDeclList ")"
+:acc1:   "access" BaseType Ide "(" ArgDeclList ")"
+:acc2:   "access" StringType Ide "(" ArgDeclList ")"
+:devst:  "devstat" BaseType Ide "(" ArgDeclList ")"
+
+let FuncRef
+:ref:  Ide "(" ArgumentList ")"
+
+let VarRef
+:ref:  Ide IndexRefList
+
+let UnitRef
+:nul:
+:ref1:  "unit" "=" Ide
+:ref2:  "unit" "=" Seq
+
+let DevState
+:state1: "device" "=" Nat
+:state2: "device" "=" FuncRef
+
+let UnitDef
+:def: Ide "function" "=" FuncRef UnitSpecList "dataset" "=" Nat DevState ";"
+:defe: Ide "function" "=" FuncRef UnitSpecList "dataset" "=" Nat DevState "dynamic" ";"
+
+let UnitSpec
+:spec: "{" "precision" "=" Nat "text" "=" Seq "}"
+
+let UnitSpecList
+:nil:
+:cons: UnitSpec UnitSpecList
+
+let VarDefList
+:nil:
+:cons: VarDef VarDefList
+
+let VarDef
+:def: Ide DimSpecList DataTypeSpec VarSpecSeq MapDef ";"
+
+let DimSpecList
+:nil:
+:cons: DimSpec DimSpecList
+
+let DimSpec
+:dimspec: "[" Nat "]"
+
+let VarSpecSeq
+:specs:  VarTypeSpec SystemFlags UnitRef Description Text Dim1 Dim2 Dim3 Dim4 Flags Persistence File FilterFunc AccessFunc MinSpec MaxSpec ValueSpec Option
+
+let Description
+:nul:
+:desc:     "description" "=" Seq
+
+let Text
+:nul:
+:text:     "text" "=" Seq
+
+let Dim1
+:nul:
+:text:     "dim1text" "=" Seq
+
+let Dim2
+:nul:
+:text:     "dim2text" "=" Seq
+
+let Dim3
+:nul:
+:text:     "dim3text" "=" Seq
+
+let Dim4
+:nul:
+:text:     "dim4text" "=" Seq
+
+let Flags
+:nul:
+:value:     "flags" "=" FlagValue
+
+let SystemFlags
+:nul:
+:value:     "sysflags" "=" SystemFlagList
+
+let SystemFlagList
+:nil:
+:cons: SystemFlag SystemFlagList0
+let SystemFlagList0
+:nil:
+:cons: "," SystemFlag SystemFlagList0
+
+let SystemFlag
+:hread:   "hostread"
+:hwrite:  "hostwrite"
+:ofs1:    "d1offset"
+:ofs2:    "d2offset"
+:ofs3:    "d3offset"
+:ofs4:    "d4offset"
+:em63:    "em63"
+
+let FlagValue
+:chex: Hex
+:cnat: Nat
+
+let VarTypeSpec
+:nul:
+:vartype:  "vartype" "=" VarType
+
+let Persistence
+:nul:
+:persist:  "persist" "=" PersistenceType
+
+let File
+:nul:
+:file:     "file" "=" Ide
+
+let FilterFunc
+:nul:
+:ref:      "filter" "=" FuncRef
+
+let AccessFunc
+:nul:
+:ref:      "access" "=" FuncRef
+
+let MinSpec
+:nul:
+:spec:      "minimum" "=" Argument
+
+let MaxSpec
+:nul:
+:spec:      "maximum" "=" Argument
+
+let OptionValue
+:chex: Hex
+:cnat: Nat
+
+let Option
+:nul:
+:value:     "option" "=" OptionValue
+
+let ValueSpec
+:nul:
+:spec:      "values" "=" "{" ValueSpecList "}"
+
+let Value
+:nat:    Nat
+:hex:    Hex
+:real:   Real
+:str:    Seq
+:ide:    Ide
+:bcd:    Bcd
+:cmpr:   Cmpr
+
+let Bcd
+:bcd:  "bcd" "(" HexSeq ")"
+
+let Cmpr
+:cmpr:   "cmpr" "(" Nat "," Bcd ")"
+
+let ValueSpecList
+:nil:
+:cons: Value ValueSpecList0
+let ValueSpecList0
+:nil:
+:cons: "," Value ValueSpecList0
+
+let PersistenceType
+:ram:        "ram"
+:bbram:      "bbram"
+:filebased:  "file"
+:setup:      "setup"
+
+let RefreshType
+:event1:     "event" EventType
+:event2:     "event" Nat
+:cyclic:     Nat
+
+let VarType
+:set:        "set"
+:act:        "act"
+:volatile:   "volatile"
+:virtual:    "virtual"
+
+let EventType
+:cycle:      "cycle"
+:data:       "data"
+:automatic:  "automatic"
+
+let MapDef
+:nul:
+:map1:   "map" Ide MapTypeSpec ItemSpec Refresh ConvFunc
+:map2:   "map" Ide MapTypeSpec "{"  ItemSpecList "}" Refresh ConvFunc
+
+let ItemSpecList
+:nil:
+:cons: ItemSpec ItemSpecList0
+let ItemSpecList0
+:nil:
+:cons: "," ItemSpec ItemSpecList0
+
+let ItemSpec
+:spec1:    ItemSpecifier
+:spec2:    ItemSpecifier ":" Nat
+:spec3:    ItemSpecifier ":" Nat "-" Nat
+
+let ItemSpecifier
+:name:    Seq
+:symbol:  Symbol
+
+let Refresh
+:nul:
+:refresh:  "refresh" "=" RefreshType
+
+let ConvFunc
+:nul:
+:conv :  "conversion" "=" FuncRef
+
+; function declarations
+
+let ArgDeclList
+:nil:
+:cons: ArgDecl ArgDeclList0
+let ArgDeclList0
+:nil:
+:cons: "," ArgDecl ArgDeclList0
+
+let ArgDecl
+:argdec1: BaseType Ide
+:argdec2: StringType Ide
+
+let DataTypeSpec
+:type1: BaseType
+:type2: BaseType "(" Nat ")"
+:type3: StringType "(" Nat ")"
+:type4: StringType
+
+let MapTypeSpec
+:type1: BaseType
+:type2: BaseType "(" Nat ")"
+:type3: StringType "(" Nat ")"
+:type4: StringType
+
+let BaseType
+:void:   "void"
+:bool:   "bool"
+:char:   "char"
+:uchar:  "uchar"
+:short:  "short"
+:ushort: "ushort"
+:long:   "long"
+:ulong:  "ulong"
+:float:  "float"
+:double: "double"
+:object: "object"
+:bit8:   "bit8"
+:bit16:  "bit16"
+:bit32:  "bit32"
+
+let StringType
+:string:  "string"
+:wstring: "wstring"
+:byte:    "byte"
+
+let IndexRefList
+:nil:
+:cons: IndexRef IndexRefList
+
+let IndexRef
+:func: "[" FuncRef "]"
+:var: "[" VarRef "]"
+:cnat: "[" Nat "]"
+:chex: "[" Hex "]"
+
+let ArgumentList
+:nil:
+:cons: Argument ArgumentList0
+let ArgumentList0
+:nil:
+:cons: "," Argument ArgumentList0
+
+let Argument
+:func: FuncRef
+:var: VarRef
+:chex: Hex
+:cnat: Nat
+:creal: Real
+:cstring: Seq
+
+; Programming
+
+let State
+:state: "state" Ide "=" Condition
+
+let Procedure
+:proc: "proc" Ide StatementBlock
+
+let Program
+:prog: "program" Ide "{" Steps "}"
+
+let StartCondition
+:cond: "on" Condition "start" Ide
+
+let Statements
+:nil:
+:cons: Statement Statements
+
+let Statement
+:if   : "if" Condition StatementBlock
+:ifels: "if" Condition StatementBlock "else" StatementBlock
+:proc : "exec" Ide ";"
+:func : FuncRef ";"
+:assg1: VarRef "=" Argument ";"
+:assg2: VarRef "=" Param ";"
+:while: "while" Condition StatementBlock
+:ret  : "return" ";"
+
+let StatementBlock
+:stmts:  "{" Statements "}"
+
+let Condition
+:atom  : AtomicCondition
+;:atom   : Argument RelOp Argument
+:or    : Condition "|" Condition
+:and   : Condition "&" Condition
+:not   : "!" Condition 
+:name  : Ide
+:brack : "(" Condition ")"
+
+let AtomicCondition
+:rel  : Argument RelOp Argument
+;:nrel : VarRef RelOp Nat
+;:hrel : VarRef RelOp Hex
+;:rrel : VarRef RelOp Real
+;:vrel : VarRef RelOp VarRef
+;:frel : VarRef RelOp FuncRef
+
+let RelOp
+:lt   : "<"
+:le   : "<" "="
+:gt   : ">"
+:ge   : ">" "="
+:eq   : "=" "="
+:ne   : "!" "="
+
+let Steps
+:nil:
+:cons: Step Steps
+
+let Step
+:step: "step" Nat ":" "{" StepCommands "}"
+
+let StepCommands
+:cmds: ParamAssignments Initial Cyclic Final Terminate Next 
+
+let ParamAssignments
+:nil:
+:cons: ParamAssignment ParamAssignments
+
+let ParamAssignment
+:assnat: Param "=" Nat ";"
+:assreal: Param "=" Real ";"
+:asshex: Param "=" Hex ";"
+
+let Initial
+:init: "initial" ":" "exec" Ide ";"
+:non:
+ 
+let Cyclic
+:cyclic: "cyclic" ":" "exec" Ide ";"
+:non:
+ 
+let Final
+:final: "final" ":" "exec" Ide ";"
+:non:
+ 
+let Terminate
+:term: "terminate" "on" Condition ";"
+:non:
+
+let Next
+:auto: "next" "step" "auto" ";"
+:manual: "next" "step" "manual" ";"
+:program: "next" "start" Ide ";"
+:non:
+
+
+
+

@@ -1,0 +1,465 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Dialogs\ContextExplorer.ui">
+      <FileType>Document</FileType>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\..\..\..\Src\GUIFramework\Qt4Framework\Generated\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\..\..\..\Src\GUIFramework\Qt4Framework\Generated\ui_%(Filename).h" "%(FullPath)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\..\..\..\Src\GUIFramework\Qt4Framework\Generated\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\..\..\..\Src\GUIFramework\Qt4Framework\Generated\ui_%(Filename).h" "%(FullPath)"</Command>
+    </CustomBuild>
+    <None Include="..\..\..\Src\GUIFramework\qtgui" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\Src\GUIFramework\cGroup.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\cGroupList.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\cHelpInterface.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\cNode.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\cNodeList.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\cUserInterface.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\Interface\cCCSInterface.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\Interface\cContextChooser.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT4Framework\cContextExplorer.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT4Framework\cQTUserInterface.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\ApplicationFilter.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\cAsyncFunction.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\cCommInterface.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\cDataRefreshMap.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\cGuiEvents.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\cGuiSignal.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\cInput.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\cPaintUtils.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\cRubberBand.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\cSignalManager.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\cSyncView.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\cViewInterface.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CWidgetBase.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\cWidgetMap.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\guievents.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\guiops.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\guisignals.h" />
+    <CustomBuild Include="..\..\..\Src\GUIFramework\qt4port\listview.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing listview.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp"  -D__x86__ -D__WIN32__ -D_LIB -DQT_CORE_LIB -DQT_GUI_LIB -DQT_XML_LIB -DQT4 -D_MBCS  "-I.\..\..\..\Src\GUIFramework\QT4Framework\Plugins" "-I.\..\..\..\Src\GUIFramework\QT4Framework\CWidgets" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Dialogs" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Keypads" "-I.\..\..\..\Src\include" "-I.\..\..\..\Src" "-I.\..\..\..\Extern\ECL\src" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Generated" "-I.\..\..\..\Src\GUIFramework\QT4Framework" "-I.\..\..\..\Src\GUIFramework" "-I.\..\..\..\Src\GUIFramework\qt4port" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\omniORB4" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\COS" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtXml"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing listview.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp"  -D__x86__ -D__WIN32__ -D_LIB -DQT_NO_DEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_XML_LIB -DQT4 -D_MBCS  "-I.\..\..\..\Src\GUIFramework\QT4Framework\Plugins" "-I.\..\..\..\Src\GUIFramework\QT4Framework\CWidgets" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Dialogs" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Keypads" "-I.\..\..\..\Src\include" "-I.\..\..\..\Src" "-I.\..\..\..\Extern\ECL\src" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Generated" "-I.\..\..\..\Src\GUIFramework\QT4Framework" "-I.\..\..\..\Src\GUIFramework" "-I.\..\..\..\Src\GUIFramework\qt4port" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\omniORB4" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\COS" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtXml"</Command>
+    </CustomBuild>
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT4Framework\Html\cFormRequest.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT4Framework\Html\cHTMLDocument.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT4Framework\Html\cHTMLElement.h" />
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Keypads\cQtKeyboardInput.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing cQtKeyboardInput.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp"  -D__x86__ -D__WIN32__ -D_LIB -DQT_CORE_LIB -DQT_GUI_LIB -DQT_XML_LIB -DQT4 -D_MBCS  "-I.\..\..\..\Src\GUIFramework\QT4Framework\Plugins" "-I.\..\..\..\Src\GUIFramework\QT4Framework\CWidgets" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Dialogs" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Keypads" "-I.\..\..\..\Src\include" "-I.\..\..\..\Src" "-I.\..\..\..\Extern\ECL\src" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Generated" "-I.\..\..\..\Src\GUIFramework\QT4Framework" "-I.\..\..\..\Src\GUIFramework" "-I.\..\..\..\Src\GUIFramework\qt4port" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\omniORB4" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\COS" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtXml"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing cQtKeyboardInput.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp"  -D__x86__ -D__WIN32__ -D_LIB -DQT_NO_DEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_XML_LIB -DQT4 -D_MBCS  "-I.\..\..\..\Src\GUIFramework\QT4Framework\Plugins" "-I.\..\..\..\Src\GUIFramework\QT4Framework\CWidgets" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Dialogs" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Keypads" "-I.\..\..\..\Src\include" "-I.\..\..\..\Src" "-I.\..\..\..\Extern\ECL\src" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Generated" "-I.\..\..\..\Src\GUIFramework\QT4Framework" "-I.\..\..\..\Src\GUIFramework" "-I.\..\..\..\Src\GUIFramework\qt4port" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\omniORB4" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\COS" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtXml"</Command>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Keypads\cQtKeyboardAlpha.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing cQtKeyboardAlpha.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp"  -D__x86__ -D__WIN32__ -D_LIB -DQT_CORE_LIB -DQT_GUI_LIB -DQT_XML_LIB -DQT4 -D_MBCS  "-I.\..\..\..\Src\GUIFramework\QT4Framework\Plugins" "-I.\..\..\..\Src\GUIFramework\QT4Framework\CWidgets" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Dialogs" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Keypads" "-I.\..\..\..\Src\include" "-I.\..\..\..\Src" "-I.\..\..\..\Extern\ECL\src" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Generated" "-I.\..\..\..\Src\GUIFramework\QT4Framework" "-I.\..\..\..\Src\GUIFramework" "-I.\..\..\..\Src\GUIFramework\qt4port" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\omniORB4" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\COS" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtXml"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing cQtKeyboardAlpha.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp"  -D__x86__ -D__WIN32__ -D_LIB -DQT_NO_DEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_XML_LIB -DQT4 -D_MBCS  "-I.\..\..\..\Src\GUIFramework\QT4Framework\Plugins" "-I.\..\..\..\Src\GUIFramework\QT4Framework\CWidgets" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Dialogs" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Keypads" "-I.\..\..\..\Src\include" "-I.\..\..\..\Src" "-I.\..\..\..\Extern\ECL\src" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Generated" "-I.\..\..\..\Src\GUIFramework\QT4Framework" "-I.\..\..\..\Src\GUIFramework" "-I.\..\..\..\Src\GUIFramework\qt4port" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\omniORB4" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\COS" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtXml"</Command>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Keypads\cQtKeypadNumeric.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing cQtKeypadNumeric.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp"  -D__x86__ -D__WIN32__ -D_LIB -DQT_CORE_LIB -DQT_GUI_LIB -DQT_XML_LIB -DQT4 -D_MBCS  "-I.\..\..\..\Src\GUIFramework\QT4Framework\Plugins" "-I.\..\..\..\Src\GUIFramework\QT4Framework\CWidgets" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Dialogs" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Keypads" "-I.\..\..\..\Src\include" "-I.\..\..\..\Src" "-I.\..\..\..\Extern\ECL\src" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Generated" "-I.\..\..\..\Src\GUIFramework\QT4Framework" "-I.\..\..\..\Src\GUIFramework" "-I.\..\..\..\Src\GUIFramework\qt4port" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\omniORB4" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\COS" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtXml"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing cQtKeypadNumeric.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp"  -D__x86__ -D__WIN32__ -D_LIB -DQT_NO_DEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_XML_LIB -DQT4 -D_MBCS  "-I.\..\..\..\Src\GUIFramework\QT4Framework\Plugins" "-I.\..\..\..\Src\GUIFramework\QT4Framework\CWidgets" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Dialogs" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Keypads" "-I.\..\..\..\Src\include" "-I.\..\..\..\Src" "-I.\..\..\..\Extern\ECL\src" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Generated" "-I.\..\..\..\Src\GUIFramework\QT4Framework" "-I.\..\..\..\Src\GUIFramework" "-I.\..\..\..\Src\GUIFramework\qt4port" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\omniORB4" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\COS" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtXml"</Command>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Styles\stylecontrol.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing stylecontrol.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp"  -D__x86__ -D__WIN32__ -D_LIB -DQT_CORE_LIB -DQT_GUI_LIB -DQT_XML_LIB -DQT4 -D_MBCS  "-I.\..\..\..\Src\GUIFramework\QT4Framework\Plugins" "-I.\..\..\..\Src\GUIFramework\QT4Framework\CWidgets" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Dialogs" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Keypads" "-I.\..\..\..\Src\include" "-I.\..\..\..\Src" "-I.\..\..\..\Extern\ECL\src" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Generated" "-I.\..\..\..\Src\GUIFramework\QT4Framework" "-I.\..\..\..\Src\GUIFramework" "-I.\..\..\..\Src\GUIFramework\qt4port" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\omniORB4" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\COS" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtXml"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing stylecontrol.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp"  -D__x86__ -D__WIN32__ -D_LIB -DQT_NO_DEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_XML_LIB -DQT4 -D_MBCS  "-I.\..\..\..\Src\GUIFramework\QT4Framework\Plugins" "-I.\..\..\..\Src\GUIFramework\QT4Framework\CWidgets" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Dialogs" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Keypads" "-I.\..\..\..\Src\include" "-I.\..\..\..\Src" "-I.\..\..\..\Extern\ECL\src" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Generated" "-I.\..\..\..\Src\GUIFramework\QT4Framework" "-I.\..\..\..\Src\GUIFramework" "-I.\..\..\..\Src\GUIFramework\qt4port" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\omniORB4" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\COS" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtXml"</Command>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Styles\cQtTouchStyle.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing cQtTouchStyle.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp"  -D__x86__ -D__WIN32__ -D_LIB -DQT_CORE_LIB -DQT_GUI_LIB -DQT_XML_LIB -DQT4 -D_MBCS  "-I.\..\..\..\Src\GUIFramework\QT4Framework\Plugins" "-I.\..\..\..\Src\GUIFramework\QT4Framework\CWidgets" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Dialogs" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Keypads" "-I.\..\..\..\Src\include" "-I.\..\..\..\Src" "-I.\..\..\..\Extern\ECL\src" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Generated" "-I.\..\..\..\Src\GUIFramework\QT4Framework" "-I.\..\..\..\Src\GUIFramework" "-I.\..\..\..\Src\GUIFramework\qt4port" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\omniORB4" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\COS" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtXml"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing cQtTouchStyle.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp"  -D__x86__ -D__WIN32__ -D_LIB -DQT_NO_DEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_XML_LIB -DQT4 -D_MBCS  "-I.\..\..\..\Src\GUIFramework\QT4Framework\Plugins" "-I.\..\..\..\Src\GUIFramework\QT4Framework\CWidgets" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Dialogs" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Keypads" "-I.\..\..\..\Src\include" "-I.\..\..\..\Src" "-I.\..\..\..\Extern\ECL\src" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Generated" "-I.\..\..\..\Src\GUIFramework\QT4Framework" "-I.\..\..\..\Src\GUIFramework" "-I.\..\..\..\Src\GUIFramework\qt4port" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\omniORB4" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\COS" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtXml"</Command>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Keypads\cQtKeyboardButton.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing cQtKeyboardButton.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp"  -D__x86__ -D__WIN32__ -D_LIB -DQT_CORE_LIB -DQT_GUI_LIB -DQT_XML_LIB -DQT4 -D_MBCS  "-I.\..\..\..\Src\GUIFramework\QT4Framework\Plugins" "-I.\..\..\..\Src\GUIFramework\QT4Framework\CWidgets" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Dialogs" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Keypads" "-I.\..\..\..\Src\include" "-I.\..\..\..\Src" "-I.\..\..\..\Extern\ECL\src" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Generated" "-I.\..\..\..\Src\GUIFramework\QT4Framework" "-I.\..\..\..\Src\GUIFramework" "-I.\..\..\..\Src\GUIFramework\qt4port" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\omniORB4" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\COS" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtXml"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing cQtKeyboardButton.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp"  -D__x86__ -D__WIN32__ -D_LIB -DQT_NO_DEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_XML_LIB -DQT4 -D_MBCS  "-I.\..\..\..\Src\GUIFramework\QT4Framework\Plugins" "-I.\..\..\..\Src\GUIFramework\QT4Framework\CWidgets" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Dialogs" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Keypads" "-I.\..\..\..\Src\include" "-I.\..\..\..\Src" "-I.\..\..\..\Extern\ECL\src" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Generated" "-I.\..\..\..\Src\GUIFramework\QT4Framework" "-I.\..\..\..\Src\GUIFramework" "-I.\..\..\..\Src\GUIFramework\qt4port" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\omniORB4" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\COS" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtXml"</Command>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Keypads\cQtKeyboardLayout.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing cQtKeyboardLayout.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp"  -D__x86__ -D__WIN32__ -D_LIB -DQT_CORE_LIB -DQT_GUI_LIB -DQT_XML_LIB -DQT4 -D_MBCS  "-I.\..\..\..\Src\GUIFramework\QT4Framework\Plugins" "-I.\..\..\..\Src\GUIFramework\QT4Framework\CWidgets" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Dialogs" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Keypads" "-I.\..\..\..\Src\include" "-I.\..\..\..\Src" "-I.\..\..\..\Extern\ECL\src" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Generated" "-I.\..\..\..\Src\GUIFramework\QT4Framework" "-I.\..\..\..\Src\GUIFramework" "-I.\..\..\..\Src\GUIFramework\qt4port" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\omniORB4" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\COS" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtXml"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing cQtKeyboardLayout.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp"  -D__x86__ -D__WIN32__ -D_LIB -DQT_NO_DEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_XML_LIB -DQT4 -D_MBCS  "-I.\..\..\..\Src\GUIFramework\QT4Framework\Plugins" "-I.\..\..\..\Src\GUIFramework\QT4Framework\CWidgets" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Dialogs" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Keypads" "-I.\..\..\..\Src\include" "-I.\..\..\..\Src" "-I.\..\..\..\Extern\ECL\src" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Generated" "-I.\..\..\..\Src\GUIFramework\QT4Framework" "-I.\..\..\..\Src\GUIFramework" "-I.\..\..\..\Src\GUIFramework\qt4port" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\omniORB4" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\COS" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtXml"</Command>
+    </CustomBuild>
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT4Framework\uiupdate.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\qt4port\image.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\qt4port\listviewitemdelegate.h" />
+    <CustomBuild Include="..\..\..\Src\GUIFramework\qt4port\tablewidget.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing tablewidget.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp"  -D__x86__ -D__WIN32__ -D_LIB -DQT_CORE_LIB -DQT_GUI_LIB -DQT_XML_LIB -DQT4 -D_MBCS  "-I.\..\..\..\Src\GUIFramework\QT4Framework\Plugins" "-I.\..\..\..\Src\GUIFramework\QT4Framework\CWidgets" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Dialogs" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Keypads" "-I.\..\..\..\Src\include" "-I.\..\..\..\Src" "-I.\..\..\..\Extern\ECL\src" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Generated" "-I.\..\..\..\Src\GUIFramework\QT4Framework" "-I.\..\..\..\Src\GUIFramework" "-I.\..\..\..\Src\GUIFramework\qt4port" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\omniORB4" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\COS" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtXml"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing tablewidget.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp"  -D__x86__ -D__WIN32__ -D_LIB -DQT_NO_DEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_XML_LIB -DQT4 -D_MBCS  "-I.\..\..\..\Src\GUIFramework\QT4Framework\Plugins" "-I.\..\..\..\Src\GUIFramework\QT4Framework\CWidgets" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Dialogs" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Keypads" "-I.\..\..\..\Src\include" "-I.\..\..\..\Src" "-I.\..\..\..\Extern\ECL\src" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Generated" "-I.\..\..\..\Src\GUIFramework\QT4Framework" "-I.\..\..\..\Src\GUIFramework" "-I.\..\..\..\Src\GUIFramework\qt4port" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\omniORB4" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\COS" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtXml"</Command>
+    </CustomBuild>
+    <ClInclude Include="..\..\..\Src\GUIFramework\qt4port\popupmenu.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\qt4port\tablewidgetitem.h" />
+    <CustomBuild Include="..\..\..\Src\GUIFramework\qt4port\wizard.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing wizard.h...</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing wizard.h...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp"  -D__x86__ -D__WIN32__ -D_LIB -DQT_CORE_LIB -DQT_GUI_LIB -DQT_XML_LIB -DQT4 -D_MBCS  "-I.\..\..\..\Src\GUIFramework\QT4Framework\Plugins" "-I.\..\..\..\Src\GUIFramework\QT4Framework\CWidgets" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Dialogs" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Keypads" "-I.\..\..\..\Src\include" "-I.\..\..\..\Src" "-I.\..\..\..\Extern\ECL\src" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Generated" "-I.\..\..\..\Src\GUIFramework\QT4Framework" "-I.\..\..\..\Src\GUIFramework" "-I.\..\..\..\Src\GUIFramework\qt4port" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\omniORB4" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\COS" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtXml"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp"  -D__x86__ -D__WIN32__ -D_LIB -DQT_NO_DEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_XML_LIB -DQT4 -D_MBCS  "-I.\..\..\..\Src\GUIFramework\QT4Framework\Plugins" "-I.\..\..\..\Src\GUIFramework\QT4Framework\CWidgets" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Dialogs" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Keypads" "-I.\..\..\..\Src\include" "-I.\..\..\..\Src" "-I.\..\..\..\Extern\ECL\src" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Generated" "-I.\..\..\..\Src\GUIFramework\QT4Framework" "-I.\..\..\..\Src\GUIFramework" "-I.\..\..\..\Src\GUIFramework\qt4port" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\omniORB4" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\COS" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtXml"</Command>
+    </CustomBuild>
+    <ClInclude Include="..\..\..\Src\GUIFramework\qt4port\headerview.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\qt4port\listviewitem.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\qt4port\listviewitemiterator.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\qt4port\qheader.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\qt4port\qobjectlist.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\qt4port\qptrlist.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\qt4port\qt4port.h" />
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Dialogs\ContextExplorerDialog.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing ContextExplorerDialog.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp"  -D__x86__ -D__WIN32__ -D_LIB -DQT_CORE_LIB -DQT_GUI_LIB -DQT_XML_LIB -DQT4 -D_MBCS  "-I.\..\..\..\Src\GUIFramework\QT4Framework\Plugins" "-I.\..\..\..\Src\GUIFramework\QT4Framework\CWidgets" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Dialogs" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Keypads" "-I.\..\..\..\Src\include" "-I.\..\..\..\Src" "-I.\..\..\..\Extern\ECL\src" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Generated" "-I.\..\..\..\Src\GUIFramework\QT4Framework" "-I.\..\..\..\Src\GUIFramework" "-I.\..\..\..\Src\GUIFramework\qt4port" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\omniORB4" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\COS" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtXml"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing ContextExplorerDialog.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp"  -D__x86__ -D__WIN32__ -D_LIB -DQT_NO_DEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_XML_LIB -DQT4 -D_MBCS  "-I.\..\..\..\Src\GUIFramework\QT4Framework\Plugins" "-I.\..\..\..\Src\GUIFramework\QT4Framework\CWidgets" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Dialogs" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Keypads" "-I.\..\..\..\Src\include" "-I.\..\..\..\Src" "-I.\..\..\..\Extern\ECL\src" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Generated" "-I.\..\..\..\Src\GUIFramework\QT4Framework" "-I.\..\..\..\Src\GUIFramework" "-I.\..\..\..\Src\GUIFramework\qt4port" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\omniORB4" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\COS" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtXml"</Command>
+    </CustomBuild>
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT4Framework\Dialogs\cQtNavigationWidget.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\ui_ContextExplorer.h" />
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\cWidgetComm.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp"  -D__x86__ -D__WIN32__ -D_LIB -DQT_CORE_LIB -DQT_GUI_LIB -DQT_XML_LIB -DQT4 -D_MBCS  "-I.\..\..\..\Src\GUIFramework\QT4Framework\Plugins" "-I.\..\..\..\Src\GUIFramework\QT4Framework\CWidgets" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Dialogs" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Keypads" "-I.\..\..\..\Src\include" "-I.\..\..\..\Src" "-I.\..\..\..\Extern\ECL\src" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Generated" "-I.\..\..\..\Src\GUIFramework\QT4Framework" "-I.\..\..\..\Src\GUIFramework" "-I.\..\..\..\Src\GUIFramework\qt4port" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\omniORB4" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\COS" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtXml"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp"  -D__x86__ -D__WIN32__ -D_LIB -DQT_NO_DEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_XML_LIB -DQT4 -D_MBCS  "-I.\..\..\..\Src\GUIFramework\QT4Framework\Plugins" "-I.\..\..\..\Src\GUIFramework\QT4Framework\CWidgets" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Dialogs" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Keypads" "-I.\..\..\..\Src\include" "-I.\..\..\..\Src" "-I.\..\..\..\Extern\ECL\src" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Generated" "-I.\..\..\..\Src\GUIFramework\QT4Framework" "-I.\..\..\..\Src\GUIFramework" "-I.\..\..\..\Src\GUIFramework\qt4port" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\omniORB4" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\COS" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtXml"</Command>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CPublicDialog.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -DQT_XML_LIB -DQT_NETWORK_LIB -DQ4_FRAMEWORK_LIB -D__x86__ -D__WIN32__ -DQT4 "-I." "-I.\..\..\..\Src\GUIFramework\QT4Framework\Plugins" "-I.\..\..\..\Src\GUIFramework\QT4Framework\CWidgets" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Dialogs" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Keypads" "-I.\GeneratedFiles" "-I$(QTDIR)\include" "-I$(QTDIR)\include\qtmain" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtNetwork" "-I.\..\..\..\Src\include" "-I.\..\..\..\Src" "-I.\..\..\..\Extern\ECL\src" "-I..\..\..\..\OmniORB.$(ORBVERSION)\include\omniORB4" "-I..\..\..\..\OmniORB.$(ORBVERSION)\include" "-I..\..\..\..\OmniORB.$(ORBVERSION)\include\COS" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Generated" "-I.\..\..\..\Src\GUIFramework" "-I." "-I."</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_XML_LIB -DQT_NETWORK_LIB -DQ4_FRAMEWORK_LIB -D__x86__ -D__WIN32__ -DQT4 "-I." "-I.\..\..\..\Src\GUIFramework\QT4Framework\Plugins" "-I.\..\..\..\Src\GUIFramework\QT4Framework\CWidgets" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Dialogs" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Keypads" "-I.\GeneratedFiles" "-I$(QTDIR)\include" "-I$(QTDIR)\include\qtmain" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtNetwork" "-I.\..\..\..\Src\include" "-I.\..\..\..\Src" "-I.\..\..\..\Extern\ECL\src" "-I..\..\..\..\OmniORB.$(ORBVERSION)\include\omniORB4" "-I..\..\..\..\OmniORB.$(ORBVERSION)\include" "-I..\..\..\..\OmniORB.$(ORBVERSION)\include\COS" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Generated" "-I.\..\..\..\Src\GUIFramework" "-I." "-I."</Command>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\cGuiThread.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);$(QTDIR)\bin\moc.exe;%(FullPath);%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing cGuiThread.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp"  -D__x86__ -D__WIN32__ -D_LIB -DQT_CORE_LIB -DQT_GUI_LIB -DQT_XML_LIB -DQT4 -D_MBCS  "-I.\..\..\..\Src\GUIFramework\QT4Framework\Plugins" "-I.\..\..\..\Src\GUIFramework\QT4Framework\CWidgets" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Dialogs" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Keypads" "-I.\..\..\..\Src\include" "-I.\..\..\..\Src" "-I.\..\..\..\Extern\ECL\src" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Generated" "-I.\..\..\..\Src\GUIFramework\QT4Framework" "-I.\..\..\..\Src\GUIFramework" "-I.\..\..\..\Src\GUIFramework\qt4port" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\omniORB4" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\COS" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtXml"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);$(QTDIR)\bin\moc.exe;%(FullPath);%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing cGuiThread.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_%(Filename).cpp"  -D__x86__ -D__WIN32__ -D_LIB -DQT_NO_DEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_XML_LIB -DQT4 -D_MBCS  "-I.\..\..\..\Src\GUIFramework\QT4Framework\Plugins" "-I.\..\..\..\Src\GUIFramework\QT4Framework\CWidgets" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Dialogs" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Keypads" "-I.\..\..\..\Src\include" "-I.\..\..\..\Src" "-I.\..\..\..\Extern\ECL\src" "-I.\..\..\..\Src\GUIFramework\QT4Framework\Generated" "-I.\..\..\..\Src\GUIFramework\QT4Framework" "-I.\..\..\..\Src\GUIFramework" "-I.\..\..\..\Src\GUIFramework\qt4port" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\omniORB4" "-I.\..\..\..\..\OmniORB.$(ORBVERSION)\include\COS" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtXml"</Command>
+    </CustomBuild>
+    <ClInclude Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\iProperty.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\Src\GUIFramework\cGroup.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\cGroupList.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\cHelpInterface.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\cNode.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\cNodeList.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\cUserInterface.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\Interface\cCCSInterface.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\Interface\cContextChooser.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\cContextExplorer.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\cQTUserInterface.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\ApplicationFilter.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CActionDialog.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CActValue.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CAlarmWidget.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CAppFrame.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\cAsyncFunction.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CButtonGroup.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CCheckBox.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CComboBox.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\cCommInterface.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CCompListView.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CComposedStack.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CCoordSystem.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CDate.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CDateTime.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CDirectory.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CFixText.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CFrame.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CGraphic.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CGraphicsView.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CGroupBox.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CGroupSelectButton.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\cGuiEvents.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\cGuiThread.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CIndReqValue.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CInfoLabel.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\cInput.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CListView.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CPage.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\cPaintUtils.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CProcGraphic.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CProgressBar.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CProtocolWindow.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CPushButton.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CRadioButton.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CReqValue.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CRingGraphic.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\cRubberBand.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CScrollBar.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CScrollView.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\cSignalManager.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CSimpleGraphic.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CSlider.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CSpinBox.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CStartupForm.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CStateButton.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\cSyncView.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CTable.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CTabWidget.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CTextEdit.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CTime.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CToolButton.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CUnported.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CVarDimension.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CVideo.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\cViewInterface.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CVirtualKeyboard.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CWidget.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CWidgetBase.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\cWidgetComm.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CWidgetStack.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Dialogs\ContextExplorerDialog.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Dialogs\cQtNavigationWidget.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CActionDialog.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CActValue.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CAlarmWidget.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CAppFrame.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CButtonGroup.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CCalendarView.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CCheckBox.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CComboBox.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CCompListView.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CComposedStack.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CCoordSystem.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CDate.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CDateTime.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CDirectory.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CDirectoryView.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CFixText.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CFrame.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CGraphic.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CGraphicsView.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CGroupBox.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CGroupSelectButton.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_cGuiThread.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CIndReqValue.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CInfoLabel.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CListView.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_ContextExplorerDialog.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CPage.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CProcGraphic.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CProgressBar.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CProtocolWindow.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CPublicDialog.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CPushButton.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_cQtKeyboard.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_cQtKeyboardAlpha.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_cQtKeyboardButton.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_cQtKeyboardInput.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_cQtKeyboardLayout.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_cQtKeypadNumeric.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_cQtTouchStyle.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CRadioButton.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CReqValue.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CRingGraphic.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CScrollBar.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CScrollView.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CSimpleGraphic.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CSlider.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CSpinBox.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CStartupForm.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CStateButton.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CTable.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CTabWidget.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CTextEdit.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CTime.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CToolButton.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CUnported.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CVarDimension.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CVideo.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CVirtualKeyboard.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CWidget.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_cWidgetComm.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_CWidgetStack.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_KeyboardAlpha.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_KeypadNumeric.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_listview.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_stylecontrol.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_tablewidget.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\moc_wizard.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Html\cFormRequest.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Html\cHTMLDocument.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Html\cHTMLElement.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Keypads\cQtKeyboard.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Keypads\cQtKeyboardAlpha.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Keypads\cQtKeyboardButton.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Keypads\cQtKeyboardInput.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Keypads\cQtKeyboardLayout.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Keypads\cQtKeypadNumeric.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Keypads\cQtNumberValidator.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Keypads\cQtPathValidator.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Keypads\cQtPropertyWidget.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Keypads\cQtStringValidator.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Keypads\KeyboardAlpha.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Keypads\KeypadNumeric.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Plugins\plugin_log.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Styles\cQtTouchStyle.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\Styles\stylecontrol.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\uiupdate.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\qt4port\headerview.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\qt4port\image.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\qt4port\listview.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\qt4port\listviewitem.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\qt4port\listviewitemdelegate.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\qt4port\listviewitemiterator.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\qt4port\popupmenu.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\qt4port\qt4port.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\qt4port\tablewidget.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\qt4port\tablewidgetitem.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\qt4port\wizard.cpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{EBF485F9-8925-4886-851C-93D3BE5DBB47}</ProjectGuid>
+    <Keyword>Qt4VSv1.0</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="..\q4_lib_debug.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\omniORB_debug.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="..\q4_lib_release.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\omniORB_release.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectName)d</TargetName>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>__x86__;__WIN32__;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\..\..\..\Src\GUIFramework\QT4Framework\Plugins;.\..\..\..\Src\GUIFramework\QT4Framework\CWidgets;.\..\..\..\Src\GUIFramework\QT4Framework\Dialogs;.\..\..\..\Src\GUIFramework\QT4Framework\Keypads;.\..\..\..\Src\include;.\..\..\..\Src;.\..\..\..\Extern\ECL\src;.\..\..\..\Src\GUIFramework\QT4Framework\Generated;.\..\..\..\Src\GUIFramework\QT4Framework;.\..\..\..\Src\GUIFramework;.\..\..\..\Src\GUIFramework\qt4port;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Disabled</Optimization>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(TargetPath)</OutputFile>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>__x86__;__WIN32__;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\..\..\..\Src\GUIFramework\QT4Framework\Plugins;.\..\..\..\Src\GUIFramework\QT4Framework\CWidgets;.\..\..\..\Src\GUIFramework\QT4Framework\Dialogs;.\..\..\..\Src\GUIFramework\QT4Framework\Keypads;.\..\..\..\Src\include;.\..\..\..\Src;.\..\..\..\Extern\ECL\src;.\..\..\..\Src\GUIFramework\QT4Framework\Generated;.\..\..\..\Src\GUIFramework\QT4Framework;.\..\..\..\Src\GUIFramework;.\..\..\..\Src\GUIFramework\qt4port;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(TargetPath)</OutputFile>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties UicDir=".\..\..\..\Src\GUIFramework\Qt4Framework\Generated" MocDir=".\..\..\..\Src\GUIFramework\Qt4Framework\Generated" MocOptions="" RccDir=".\..\..\..\Src\GUIFramework\Qt4Framework\Generated" lupdateOnBuild="0" lupdateOptions="" lreleaseOptions="" QtVersion_x0020_Win32="4.8.7" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

@@ -1,0 +1,5 @@
+
+#include "utool/OXDockCtrlBars.rc"
+#include "utool/OXCoolToolBar.rc"
+#include "utool/OXFrameWndDock.rc"
+#include "utool/OXMenuBar.rc"

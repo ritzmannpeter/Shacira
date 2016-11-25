@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[literal.h] Literal Conversion</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[literal.h] Literal Conversion</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="standard.htm">#include "standard.h"</a>
+<br>
+<br>
+<br>
+<br><hr width="100%" size=2><h2><b> String to C-Literal </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>LIT_c_str_lit</b>(c_string s)</pre>
+<td bgcolor="#FFF0F5" align=left> converts string 's' to a C-Literal; allocs memory<br>
+   ( single byte character set or UTF-8 )<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>LIT_c_char_lit</b>(char c)</pre>
+<td bgcolor="#FFF0F5" align=left> converts character 'c' to a C-Literal; allocs memory<br>
+   ( single byte character set or UTF-8 )<br>
+<br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> STYX-Literal to string </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>LIT_hex2_char</b>(int h1, int h2)</pre>
+<td bgcolor="#FFF0F5" align=left> constructs a single byte character from the hex values 'h1' and 'h2' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>LIT_hex_val</b>(int h, int p)</pre>
+<td bgcolor="#FFF0F5" align=left><br>
+   constructs a unicode character from up to 8 hex values;<br>
+   has to be called for each hex value and the result added to get the final code<br>
+   h = hex digit, p = position [ 0 .. 7 ]<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>wc_string <b>LIT_styx_lit_str</b>(long *len, c_string s, c_bool* ucs4)</pre>
+<td bgcolor="#FFF0F5" align=left> converts STYX literal 's' to a string; allocs memory<br>
+   ( 'ucs4' --&gt; unicode character found in literal )<br>
+<br>
+
+</table>
+
+</body>
+</html>

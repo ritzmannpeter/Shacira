@@ -1,0 +1,188 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[rational.h] Type: Rational</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[rational.h] Type: Rational</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="standard.htm">#include "standard.h"</a>
+<br><a href="integer.htm">#include "integer.h"</a>
+<br>
+<br>
+<br>
+<br><hr width="100%" size=2><h2><b> The Type </b></h2>
+<br><pre>
+   [rational] implements the algebraic operations for rationals.
+   A rational number is represented by its numerator and denominator.
+   NF: gcd(Z,N)=1 /\ N&gt;0
+
+</pre>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b>Rational</b>
+<td align=left> Abstract rational type 
+
+</table>
+<br><hr width="100%" size=2><h2><b> Basics </b></h2>
+<br><pre>
+   In the following functions the integer and rational operands won't be
+   consumed and the resulting integer or rational have to be released.
+
+</pre>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Rational <b>Rat_cons</b>(Integer Z, Integer N)</pre>
+<td bgcolor="#FFF0F5" align=left> constructs a rational<br>
+   from numerator 'Z' and denominator 'N'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Rational <b>Rat_copy</b>(Rational a)</pre>
+<td bgcolor="#FFF0F5" align=left>copies rational 'a'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Rat_free</b>(Rational a)</pre>
+<td bgcolor="#FFF0F5" align=left>frees rational 'a'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Rational <b>Rat_Int_to</b>(Integer a)</pre>
+<td bgcolor="#FFF0F5" align=left> constructs a rational from numerator 'a' ( a/1 ) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Rational <b>Rat_Int_div</b>(Integer a, Integer b)</pre>
+<td bgcolor="#FFF0F5" align=left> divides integer 'a' thru integer 'b'<br>
+   giving a rational<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Rat_des</b>(Rational r, Integer* z, Integer* n)</pre>
+<td bgcolor="#FFF0F5" align=left> destructs rational 'r'<br>
+   to numerator 'z' and denominator 'n'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Integer <b>Rat_nom</b>(Rational r)</pre>
+<td bgcolor="#FFF0F5" align=left>copies numerator of rational 'r'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Integer <b>Rat_den</b>(Rational r)</pre>
+<td bgcolor="#FFF0F5" align=left>copies denominator of rational 'r'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>showRat</b>(Rational r)</pre>
+<td bgcolor="#FFF0F5" align=left>prints rational 'r' to stdout; for debugging
+
+</table>
+<br><hr width="100%" size=2><h2><b> Comparison </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Rat_is0</b>(Rational r)</pre>
+<td bgcolor="#FFF0F5" align=left>r == 0 ?
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>Rat_cmp</b>(Rational a, Rational b)</pre>
+<td bgcolor="#FFF0F5" align=left>a &lt; b ? -1 : a == b ? 0 : 1
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Rat_eq</b>(Rational a, Rational b)</pre>
+<td bgcolor="#FFF0F5" align=left>a == b ?
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Rat_ne</b>(Rational a, Rational b)</pre>
+<td bgcolor="#FFF0F5" align=left>a != b ?
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Rat_lt</b>(Rational a, Rational b)</pre>
+<td bgcolor="#FFF0F5" align=left>a &lt; b ?
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Rat_le</b>(Rational a, Rational b)</pre>
+<td bgcolor="#FFF0F5" align=left>a &lt;= b ?
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Rat_gt</b>(Rational a, Rational b)</pre>
+<td bgcolor="#FFF0F5" align=left>a &gt; b ?
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Rat_ge</b>(Rational a, Rational b)</pre>
+<td bgcolor="#FFF0F5" align=left>a &gt;= b ?
+
+</table>
+<br><hr width="100%" size=2><h2><b> Arithmetic </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>Rat_sgn</b>(Rational r)</pre>
+<td bgcolor="#FFF0F5" align=left>signum of rational 'r' (0,-1,1)
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Rational <b>Rat_abs</b>(Rational r)</pre>
+<td bgcolor="#FFF0F5" align=left>absolute value |r|
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Rational <b>Rat_neg</b>(Rational r)</pre>
+<td bgcolor="#FFF0F5" align=left>negation -r
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Rational <b>Rat_inv</b>(Rational r)</pre>
+<td bgcolor="#FFF0F5" align=left>inverse 1 / r ( r != 0 )
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Rational <b>Rat_add</b>(Rational a, Rational b)</pre>
+<td bgcolor="#FFF0F5" align=left>addition a + b
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Rational <b>Rat_sub</b>(Rational a, Rational b)</pre>
+<td bgcolor="#FFF0F5" align=left>substraction a - b
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Rational <b>Rat_mlt</b>(Rational a, Rational b)</pre>
+<td bgcolor="#FFF0F5" align=left>multiplication a * b
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Rational <b>Rat_quo</b>(Rational a, Rational b)</pre>
+<td bgcolor="#FFF0F5" align=left>division a / b
+
+</table>
+<br><hr width="100%" size=2><h2><b> Conversion </b></h2>
+<br>
+  <p><b>Q --> Z</b>
+
+
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Integer <b>Rat_floor</b>(Rational r)</pre>
+<td bgcolor="#FFF0F5" align=left>greatest Integer z with z &lt;= r
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Integer <b>Rat_ceiling</b>(Rational r)</pre>
+<td bgcolor="#FFF0F5" align=left>smallest Integer z with z &gt;= r
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Integer <b>Rat_round</b>(Rational r)</pre>
+<td bgcolor="#FFF0F5" align=left>rounding
+
+</table>
+<br>
+  <p><b>Q --> Q</b>
+
+
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Rational <b>Rat_fix_floor</b>(Rational r, int b, long n)</pre>
+<td bgcolor="#FFF0F5" align=left> Rational(floor(r * b ^ n), b ^n) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Rational <b>Rat_fix_ceiling</b>(Rational r, int b, long n)</pre>
+<td bgcolor="#FFF0F5" align=left> Rational(ceiling(r * b ^ n), b ^n) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Rational <b>Rat_fix_round</b>(Rational r, int b, long n)</pre>
+<td bgcolor="#FFF0F5" align=left> Rational(round(r * b ^ n), b ^n) <br>
+
+</table>
+<br>
+  <p><b>Q <--> String</b>
+
+
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>Rat_to_Str</b>(Rational r, int Base, int Digits)</pre>
+<td bgcolor="#FFF0F5" align=left> converts rational 'r' into a string; allocs memory <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Rational <b>Rat_Str_to</b>(c_string s, int Base)</pre>
+<td bgcolor="#FFF0F5" align=left> converts string 's' into a rational; not consuming 's' <br>
+ assuming 'Rat_Str_ok(s,Base)' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Rat_s_ok</b>(c_string s, int Base)</pre>
+<td bgcolor="#FFF0F5" align=left> whether string 's' represents a fix point numeral <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Xaron Support </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Rat_references</b>(Rational x, StdCPtr (*act)(StdCPtr r))</pre>
+<td bgcolor="#FFF0F5" align=left> performs 'act' on all pointer references in rational 'x'<br>
+   ( garbage collection service for xaron )<br>
+<br>
+
+</table>
+
+</body>
+</html>

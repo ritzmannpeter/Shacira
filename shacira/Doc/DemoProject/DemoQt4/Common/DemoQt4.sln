@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "appqt4", "appqt4.vcxproj", "{2161598B-3FFC-F08E-A893-C73025C34626}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "q4_dwidget_plugin", "Widgets\q4_dwidget_plugin.vcxproj", "{722A459B-7DFB-445F-A285-7E7264464C87}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "q4_cwidget_plugin", "..\..\..\..\Targ\vc10\q4_cwidget_plugin\q4_cwidget_plugin.vcxproj", "{1EC9F331-1C1D-4B26-A536-B4D9B5B00FCD}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "q4_framework", "..\..\..\..\Targ\vc10\q4_framework\q4_framework.vcxproj", "{EBF485F9-8925-4886-851C-93D3BE5DBB47}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "shacira_lib", "..\..\..\..\Targ\vc10\shacira_lib\shacira_lib.vcxproj", "{4945DA20-BFE4-4BA3-9ADE-1E17FD9E925A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "q4_keypad_plugin", "..\..\..\..\Targ\vc10\q4_keypad_plugin\q4_keypad_plugin.vcxproj", "{40285375-D203-4695-8D9A-5AF7D3D699F9}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "q4_kbdlayout_plugin", "..\..\..\..\Targ\vc10\q4_kbdlayout_plugin\q4_kbdlayout_plugin.vcxproj", "{258C9777-00B4-40B5-A0C3-A24C2BC3816A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2161598B-3FFC-F08E-A893-C73025C34626}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2161598B-3FFC-F08E-A893-C73025C34626}.Debug|Win32.Build.0 = Debug|Win32
+		{2161598B-3FFC-F08E-A893-C73025C34626}.Release|Win32.ActiveCfg = Release|Win32
+		{2161598B-3FFC-F08E-A893-C73025C34626}.Release|Win32.Build.0 = Release|Win32
+		{722A459B-7DFB-445F-A285-7E7264464C87}.Debug|Win32.ActiveCfg = Debug|Win32
+		{722A459B-7DFB-445F-A285-7E7264464C87}.Debug|Win32.Build.0 = Debug|Win32
+		{722A459B-7DFB-445F-A285-7E7264464C87}.Release|Win32.ActiveCfg = Release|Win32
+		{722A459B-7DFB-445F-A285-7E7264464C87}.Release|Win32.Build.0 = Release|Win32
+		{1EC9F331-1C1D-4B26-A536-B4D9B5B00FCD}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1EC9F331-1C1D-4B26-A536-B4D9B5B00FCD}.Debug|Win32.Build.0 = Debug|Win32
+		{1EC9F331-1C1D-4B26-A536-B4D9B5B00FCD}.Release|Win32.ActiveCfg = Release|Win32
+		{1EC9F331-1C1D-4B26-A536-B4D9B5B00FCD}.Release|Win32.Build.0 = Release|Win32
+		{EBF485F9-8925-4886-851C-93D3BE5DBB47}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EBF485F9-8925-4886-851C-93D3BE5DBB47}.Debug|Win32.Build.0 = Debug|Win32
+		{EBF485F9-8925-4886-851C-93D3BE5DBB47}.Release|Win32.ActiveCfg = Release|Win32
+		{EBF485F9-8925-4886-851C-93D3BE5DBB47}.Release|Win32.Build.0 = Release|Win32
+		{4945DA20-BFE4-4BA3-9ADE-1E17FD9E925A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4945DA20-BFE4-4BA3-9ADE-1E17FD9E925A}.Debug|Win32.Build.0 = Debug|Win32
+		{4945DA20-BFE4-4BA3-9ADE-1E17FD9E925A}.Release|Win32.ActiveCfg = Release|Win32
+		{4945DA20-BFE4-4BA3-9ADE-1E17FD9E925A}.Release|Win32.Build.0 = Release|Win32
+		{40285375-D203-4695-8D9A-5AF7D3D699F9}.Debug|Win32.ActiveCfg = Debug|Win32
+		{40285375-D203-4695-8D9A-5AF7D3D699F9}.Debug|Win32.Build.0 = Debug|Win32
+		{40285375-D203-4695-8D9A-5AF7D3D699F9}.Release|Win32.ActiveCfg = Release|Win32
+		{40285375-D203-4695-8D9A-5AF7D3D699F9}.Release|Win32.Build.0 = Release|Win32
+		{258C9777-00B4-40B5-A0C3-A24C2BC3816A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{258C9777-00B4-40B5-A0C3-A24C2BC3816A}.Debug|Win32.Build.0 = Debug|Win32
+		{258C9777-00B4-40B5-A0C3-A24C2BC3816A}.Release|Win32.ActiveCfg = Release|Win32
+		{258C9777-00B4-40B5-A0C3-A24C2BC3816A}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		QtVersion = 4.8.3
+	EndGlobalSection
+EndGlobal

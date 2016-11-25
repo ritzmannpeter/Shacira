@@ -1,0 +1,3283 @@
+<!doctype linuxdoc system>
+
+<!-- The Styx Handbook -->
+
+<article>
+
+<!-- Title information -->
+
+<title>The Styx Handbook
+<author>Lars D&ouml;lle, Heike Manns
+<htmlurl url="mailto:lars.doelle@on-line.de" name="lars.doelle@on-line.de">
+<htmlurl url="mailto:heike@free-it.org" name="heike@free-it.org">
+<date>Version 1.7.5, 7 March 2007
+<abstract>
+Styx is a scanner and parser generator designed to address some
+shortcomings of the traditional lex/yacc combination.
+It has unique features like automatic derivation of depth grammar, production of 
+the derivation tree including it's C interface which provides access to the 
+abstract syntax tree, preservation of full source information and pretty printing 
+to facilitate source-source translation, persistence to aid rapid interpreter writing.
+For application in contemporary computing environments, it supports unicode,
+reentrancy and offers thread-safeness. Last but not least, Styx works well
+under many different OSes, among them dos, windows, and serveral unixes.
+It has been successfully used in many applications and is known to provide
+rapid compiler development. Both from our practical experience as well as
+from the amount of written code, the gain in development time for realistic
+languages versus lex/yacc is a factor of about 5-10.
+
+<!-- Table of contents -->
+<toc>
+<!-- Begin the document -->
+
+<sect>Introduction and Overview
+<p>
+This section contains an overview on the Styx framework and a comparison with
+lex/yacc combination.
+<p>
+<sect1>The supported translation framework
+<p>
+To give an idea what Styx is about, we first look on the overall compilation
+process (see diagram 1) as supported by this tool:
+<p>
+<verb>
+  Source     - - - - - - - - - &gt;    Object
+   Code         Translate            Code
+     |                                ^
+     |                                |
+     |                                |
+   Parse              =            Unparse
+     |                                |
+     |                                |
+     V                                |
+  Source          Rewrite           Object
+Derivation   ------------------&gt;  Derivation
+   Tree                              Tree
+</verb>
+<p>
+The diagram commutes, i.e. the following equation holds:
+<p>
+<f>Translate(Source) = Unparse(Rewrite(Parse(Source)))</f>
+<p>
+By this equation, the translation falls apart into a combination of three steps,
+<itemize>
+<item>Parsing the source to a term
+<item>Rewriting the source term to an object term
+<item>Unparsing the object term
+</itemize>
+<p>
+While both source and object are (textual or binary) strings, intermediate forms 
+within the compilation are trees, i.e. hierarchical representations of their respective 
+linear counterparts.
+<p>
+The first and the last step of a translation are string-to-tree
+and tree-to-string transformations, while the inner step is a tree-to-tree
+transformation, the heart-piece of the translation.
+<p>
+To simplify the inner translation, we are interested to have a simple
+structure, if possible, thereby not only omitting keywords but also
+other language features often referred to as "syntactic sugar".
+<p>
+Not only the internal representation of both the source and the object
+distinguishes itself from the external one. Referring to their grammars,
+we call the grammars of the string representations the <em>surface grammar</em>
+of the languages, while the simpler, internal grammar is called the 
+<em>depth grammar</em>.
+<p>
+Also, while syntactical notions may apply well to the external strings,
+the rewriting can be further simplified if the trees are treated as
+<em>terms</em>, thereby allowing algebraic means and notions to be applied.
+By this, the depth grammar becomes a recursive system of the types of the terms.
+<p>
+In practice, having done the step from and to the linear forms is a
+substantial gain. By having abstracted from the surface properties of
+a concrete code to be translated, and having arranged things to be
+manageable as separate parts, we achieved a reduction of the translation 
+processes complexity.
+<p>
+<sect1>Reasons for this framework
+<p>
+The advantage of this construction may not be apparent to someone with
+few experience in compiler writing. Especially, having a derivation tree
+may not appear as a gain with regard to the "semantic actions" of yacc.
+Yacc's semantic actions have been designed to support one pass compilation,
+meaning the code generation intentionally happens during parsing and is
+in fact controlled by the parser.
+<p>
+While this approach was necessary in times when memory was extremely short,
+it has consequences on the language design. As soon as definitions become
+recursive, which is the case for every non-trivial language, a one pass
+compilation is not longer possible. This has lead to work-around constructions
+like forward-declarations and header-files.
+<p>
+Additionally, many constructions can not be compiled into code immediately
+or need to produce entries in so-called symbol tables. Typical examples
+are all sorts of definitions. The texts that constitutes these definitions
+has to be translated to some internal form anyway.
+<p>
+As soon as a derivation tree of the source becomes available, these
+complications and hand-crafted representations are not longer necessary.
+Because representations of the definitions are already present, one could
+simply refer to the definition's derivation tree. Dealing with recursive
+constructions, any number of passes can both easily and efficiently been
+done over the tree, i.e. collecting the recursive definitions in a first
+go only considering the headers and using them in the second, diving into
+to bodies.
+<p>
+The more complicated the compilation process would be with yacc the more
+substantial becomes the gain from using this framework. Practically, a
+compiler writer will therefore construct a derivation tree within yacc's
+semantic actions anyway. Generating this from the grammar, is the most
+substantial advantage of Styx over the lex/yacc combination.
+<p>
+The advantage of this framework becomes even more clear, if one thinks of
+an interpreted language. Because Styx also provides means to make the
+derivation tree persistent, the <em>complete</em> "compilation" of such
+languages may eventually been done by it. After writing down the grammar,
+the language designer can immediately concentrate on writing the interpreter,
+instead of being bothered with making an internal representation of the
+source, which is already provided by the Styx framework. Even in making such
+an interpreter, Styx gives some support by offering an appropriate interface
+to the source tree.
+
+<sect1>The role of Styx within this framework
+<p>
+Styx is designed to handle the first and the last step of the translation,
+that is, both the parsing and unparsing, or the string-to-tree and 
+tree-to-string transformations, where source and object can be represented 
+textually or binary.
+<p>
+Given a surface grammar, it does not only produce a scanner and a parser,
+but also automatically derives the depth grammar, creates the derivation
+tree (term) and provides a versatile interface oriented on the abstract
+language.
+<p>
+The unparsing is done by means of a pretty printer, or, if a binary format
+is of interest, it supports making the tree persistent. This is especially
+useful for interpreted languages when not instruction code is produced, but
+the derivation tree is evaluated directly.
+<p>
+Additionally, the result of the parsing process still maintains all source
+information including keywords and comments. By this, source-source
+translations are easily implemented with this tool, too.
+
+<sect1>The supported language model
+<p>
+While lex and yacc were designed to cope with the many abnormalities used in
+(surface) language design, Styx is somewhat more restrictive. It preferably
+supports languages designed by a canonical, two level model.
+<p>
+By this, the tokens separated by the scanner have to be in regular or ( since version 1.6 ) 
+dyck grammars, and the context-free language has to be deterministic (LALR(1)).
+<p>
+This excludes versatile support of some constructions that we considered to
+be weird. Examples are languages that have no context-free grammar (like C, 
+which comes with the context-dependent "typedef" construction).
+<p>
+This decision was be made because Styx has been used for internal language
+design, therefore it did not have to cope with all the oddities out. Now that
+we have released Styx to public use, this design decision may cause troubles
+to other people, although one can work around these restrictions.
+
+<sect1>Comparison to the lex/yacc combination
+<p>
+lex and yacc follow a different concept. Basically, they do not even provide
+the first step of this framework. Instead of providing the generation of
+a derivation tree, the allow to add "semantic actions", which means in
+most cases, that the tree has to be hand-crafted and constructed manually
+within the action slots.
+<p>
+The central disadvantage of lex/yacc's approach is, that the burden of designing
+and making this structures is placed on the shoulders of the developers. Not
+only, that this costs quite a lot of time, it also typically leads to
+unsystematically constructed internal structures and a non-comformant interface
+to them, if any. Often, the raw implementation of the tree structure is used
+instead, making changes in it's representation a subtle task.
+<p>
+Styx's restriction mentioned in the previous section are not substantial.
+Styx provides means to cope with abnormalities, but the slots where one can
+handle them are as weird as these language features are themselves.
+Since Styx is available in source form, one may additionally adjust it to
+strange needs. So, comparing to lex/yacc, the restrictions are minor.
+It only means that when one does weird things, the implementation may
+become weird in these places and the support less handy.
+<p>
+More substantial restrictions are both in the parser and scanner. The parser
+is LALR(1), which means that a look-ahead of only one token is supported.
+Likely the scanner, in versions prior to 1.7, does a look-ahead of only one character. 
+This later restriction has been introduced to guarantee an effective scanner, which is
+linear by the length of the string, while lex provides an arbitrary look
+ahead, meaning that lex complexity can become quadratic for abnormal token
+designs. With version 1.7 it is possible to force the scanner to do a look-ahead of more 
+than the default case of one character.
+<p>
+Additionally, lex allows to switch between different sets of tokens (languages) 
+to be able to do even more weird things. Since version 1.6 the Styx scanner is able 
+to handle different token sets, too. Like the lex/yacc combination, the scanner and 
+parser are separated within Styx (also much more integrated), so one can plug-in any 
+other, even a hand-crafted scanner, if nothing else helps.
+The disadvantage of doing so is again, that the many supports that Styx offers for 
+the canonical design do not apply anymore. One has to write additional code, about 
+to the amount that people applying the lex/yacc combination are already used to.
+
+<sect>A walk-through applying Styx
+<p>
+<sect1>The language definition
+<p>
+Both the regular as well as the context free grammar of the language is
+combined into one source. Keyword tokens need not be defined separately
+within the lexical grammar, but are instead extracted from the context
+free part of the definition. All grammatical information is contained into
+one file with the extension ".sty".
+<p>
+To give a small example how this looks like, here see the calculator
+language below.
+<p>
+<verb>
+; [calc.sty] Grammar "Calculator"
+
+Language calc
+
+Regular Grammar
+
+  ign Ign         = ' \n\r'          ; "white" characters
+  tok Tok         = '()+-*/'         ; one character tokens
+  tok Int         = ('0'..'9')+      ; Integer
+  tok Wrd         = "end"
+
+Context Free Grammar
+
+start Cmd
+:exp: Exp
+:end: "end"
+
+let Exp  :ign0: Exp1
+:add : Exp  "+" Exp1
+:sub : Exp  "-" Exp1
+
+let Exp1 :ign0: Exp2
+:mlt : Exp1 "*" Exp2
+:div : Exp1 "/" Exp2
+
+let Exp2
+:neg : "-" Exp2
+:ign0: "(" Exp ")"
+:int : Int
+</verb>
+<p>
+Notes on the source above.
+<p>
+<itemize>
+<item>Overall, the source consists of three parts. The first, naming the
+    language, the second, proving the regular sets and the third, defining
+    the context free grammar.
+<item>In the regular grammar, the single quoted strings denote sets of
+    characters, while the double quoted strings denote strings. It provides
+    the terminals of the language.
+<item>The context free grammar consists of a list of definitions of
+    non-terminals each followed by their productions. The products are named
+    by the word between the two colons. Double quoted strings within the
+    production rules denote terminals (<em>keywords</em>), while names are used
+    for both terminals and non-terminals.
+<item>Although the language defined by the <em>start</em> productions is either
+    an expression or the word "end", this example language was designed for
+    a typical calculator tool, so one could enter an arbitrary list of
+    expressions, and terminate the session by "end". This is not mentioned
+    within the grammar. Instead, the Styx parser can be instructed to separate
+    prefixes from a source stream, so one can read in one expression after the
+    other. Of course, a start production will normally describe a whole file.
+</itemize>
+<p>
+<sect1>The derived depth grammar / term algebra
+<p>
+Applying Styx, we derive the follow depth grammar (transformed to abstract
+types) from <em>calc.sty</em>
+<p>
+<verb>
+; [calc.abs] Types of 'calc' Terms
+
+LANGUAGE calc
+
+TOKENS
+
+  Int
+
+TYPES
+
+  calc    = Start_Cmd(Cmd)
+
+  Cmd     = end;
+            exp(Exp)
+
+  Exp     = mlt(Exp, Exp);
+            int(Int);
+            neg(Exp);
+            sub(Exp, Exp);
+            div(Exp, Exp);
+            add(Exp, Exp)
+
+</verb>
+<p>
+Some notes apply to this:
+<itemize>
+<item>First of all, note that a transition from grammatical to algebraic notions
+    have been done. While we talk in the .sty file about regular and context
+    free productions, we have the signature of typed term algebras in the .abs
+    file.
+<item>Beside "Int", all regular grammar productions have been removed
+    automatically. This is both possible and necessary, since they only
+    contribute to the surface grammar.
+<item>The surface grammar, which knows about three different non-terminals for
+    expressions, necessary to express the binding strength of the
+    operations, has been mapped onto one type (Exp). This congruence was hinted
+    by the use of the ":ign0:" productions.
+</itemize>
+<p>
+<sect1>Testing the language definition
+<p>
+Even without writing down a single line of C code, one can already test the
+language. With the following test string given in a file, we can test both the
+scanner and the parser separately, yielding the following results.
+<p>
+<verb>1+2*(3-4)/5</verb>
+<p>
+<verb>
+calc-example:000001:001 Int     : 1
+calc-example:000001:002 Tok     : +
+calc-example:000001:003 Int     : 2
+calc-example:000001:004 Tok     : *
+calc-example:000001:005 Tok     : (
+calc-example:000001:006 Int     : 3
+calc-example:000001:007 Tok     : -
+calc-example:000001:008 Int     : 4
+calc-example:000001:009 Tok     : )
+calc-example:000001:010 Tok     : /
+calc-example:000001:011 Int     : 5
+</verb>
+<p>
+<label id="tree">
+<verb>
+Derivation Tree from Source : calc-example
+
+[calc.Start_Cmd (1,1)
+ [Cmd.exp (1,1)
+  [Exp.add (1,1)
+   [Exp.ign0 (1,1)
+    [Exp1.ign0 (1,1)
+     [Exp2.int (1,1)
+      [Int (1,1) "1"]]]]
+   [Keyword (1,2) "+"]
+   [Exp1.div (1,3)
+    [Exp1.mlt (1,3)
+     [Exp1.ign0 (1,3)
+      [Exp2.int (1,3)
+       [Int (1,3) "2"]]]
+     [Keyword (1,4) "*"]
+     [Exp2.ign0 (1,5)
+      [Keyword (1,5) "("]
+      [Exp.sub (1,6)
+       [Exp.ign0 (1,6)
+        [Exp1.ign0 (1,6)
+         [Exp2.int (1,6)
+          [Int (1,6) "3"]]]]
+       [Keyword (1,7) "-"]
+       [Exp1.ign0 (1,8)
+        [Exp2.int (1,8)
+         [Int (1,8) "4"]]]]
+      [Keyword (1,9) ")"]]]
+    [Keyword (1,10) "/"]
+    [Exp2.int (1,11)
+     [Int (1,11) "5"]]]]]]
+</verb>
+<p>
+As one can see from the parser test result, full source information is
+maintained. Not only that the keywords are preserved, but also the starting
+positions of both the productions and the terminals are kept in the derivation
+tree for later reference to the source, may be for diagnostics, may be for
+other purposes.
+<p>
+Note that the source tree shown by the parser test is the internal representation,
+which is bound to the concrete surface grammar as specified in the calc.sty
+file. One may have access to this representation, of course, but usually, the 
+compiler writer will give preference to the abstract (depth) grammar as given by
+the (generated) calc.abs above.
+<p>
+<sect1>The C language interface
+<p>
+Styx provides a proper C language interface for this abstract grammar, by
+means of a mapping convention. As soon one knows the mapping by heart, the
+C interface (header) file is of few use. One will typically prefer working with
+the .abs file for reference purposes. This becomes clear when having a look at
+the C interface file below, which is much longer then the (content-identical)
+.abs file:
+<verb>
+/* ------------------------------------------------------------------------ */
+/*                                                                          */
+/* [calc_int.h]               Language Interface                            */
+/*                                                                          */
+/* ------------------------------------------------------------------------ */
+
+/* File generated by 'ctoh'. Don't change manually. */
+
+#ifndef calc_int_INCL
+#define calc_int_INCL
+
+
+#include "ptm.h"
+#include "gls.h"
+
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
+/* --------------------- symbol objects - init & quit --------------------- */
+
+void calc_initSymbols();               /*                                   */
+void calc_quitSymbols();               /*                                   */
+
+/* -------------------------- Types & Constants --------------------------- */
+
+AbstractType( calc );
+
+AbstractType( calcCmd  );
+AbstractType( calcExp  );
+
+/* --------------------------- Access to Tokens --------------------------- */
+
+c_bool Tcalc_Int(GLS_Tok x);           /*                                   */
+
+/* --------------------------- Access to Terms ---------------------------- */
+
+c_bool calc_calc(PT_Term x, calc* x1);   /*                                 */
+c_bool calc_Cmd(PT_Term x, calcCmd* x1); /*                                 */
+c_bool calc_Exp(PT_Term x, calcExp* x1); /*                                 */
+
+/* --------------------------------- calc --------------------------------- */
+
+c_bool calc_Start_Cmd(calc x, calcCmd* x1)
+#define calc_Start_0   calc_Start_Cmd
+;
+
+
+/* --------------------------------- Cmd ---------------------------------- */
+
+c_bool calcCmd_end(calcCmd x);              /*                              */
+c_bool calcCmd_exp(calcCmd x, calcExp* x1); /*                              */
+
+/* --------------------------------- Exp ---------------------------------- */
+
+c_bool calcExp_mlt(calcExp x, calcExp* x1, calcExp* x2); /*                 */
+c_bool calcExp_int(calcExp x, GLS_Tok* x1);              /*                 */
+c_bool calcExp_neg(calcExp x, calcExp* x1);              /*                 */
+c_bool calcExp_sub(calcExp x, calcExp* x1, calcExp* x2); /*                 */
+c_bool calcExp_div(calcExp x, calcExp* x1, calcExp* x2); /*                 */
+c_bool calcExp_add(calcExp x, calcExp* x1, calcExp* x2); /*                 */
+
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif
+</verb>
+<p>
+The interface will not be explained in full length in this walk-through,
+instead only two relevant sections will be highlighted:
+<itemize>
+<item>The "AbstractType"s introduce the types of parse, mainly Cmd and
+    Exp. <tt>AbstractType</tt> simply expands to <tt>void*</tt>,
+    and is introduced to hide the implementation.
+<item>The most interesting part is the section in the end with the "Exp"
+    header above it. This section gives access to the expressions in
+    the derivation tree.
+</itemize>
+<p>
+To each variant within the discriminated union of the Exp terms, one
+destructor (in notions of algebra, not of C++) is provided. The naming
+convention of them is "LanguageType_Variant". Their first argument is
+the term to rip apart. The remaining arguments are variables for the parts
+of the decomposition. The result of the functions is a boolean value that
+becomes true if the destructor applies to the considered term, i.e. if we
+have used it on the right variant.
+<p>
+<sect1>Using the interface
+<p>
+With this preparation we can look at the source of the evaluator.
+This is pretty straight forward. Speaking in notions of abstract algebra,
+the following C function is the canonical evaluation homomorphism on Exps. 
+It maps the type of Exps to C integers by assigning a corresponding C function
+of the C integer algebra to every function of the term algebra of Exps.
+Additionally, since an integer literal is also provided in the language,
+the integer denotation is mapped onto it's meaning.
+<p>
+<verb>
+int evalExp(calcExp ex)
+{ calcExp x1; calcExp x2; GLS_Tok x3;
+  if (calcExp_mlt(ex, &amp;x1, &amp;x2)) return evalExp(x1) * evalExp(x2);
+  if (calcExp_div(ex, &amp;x1, &amp;x2)) return evalExp(x1) / evalExp(x2);
+  if (calcExp_add(ex, &amp;x1, &amp;x2)) return evalExp(x1) + evalExp(x2);
+  if (calcExp_sub(ex, &amp;x1, &amp;x2)) return evalExp(x1) - evalExp(x2);
+  if (calcExp_neg(ex, &amp;x2))      return             - evalExp(x2);
+  if (calcExp_int(ex, &amp;x3))      return atoi(GLS_Tok_string(x3));
+  BUG;
+}
+</verb>
+<p>
+Together with a few lines to initiate and apply the Styx parser, the
+above function forms the desired calculator.
+<p>
+Please note that the full advantage of Styx over yacc is not expressed
+by this walk-trough. One can do this trivial example likely efficient
+with yacc's semantic actions. Note especially that the above evaluator is
+in contrary to yacc not hooked into the parser, but instead applied on the
+result of the parsing process. When the term was evaluated by evalExp the 
+parser has already been gone, having done it's purpose by leaving a term 
+derived from the source.
+<p>
+The advantage of Styx's design immediately becomes apparent as soon as one
+adds functions to the example grammar and defines an interpreter on top of it. 
+Using Styx one would then find everything prepared as needed, while lex/yacc 
+would require to do all the things that Styx offers implicitly. 
+<em>Perhaps we will extend the example appropriately in the next version of the 
+document. Meanwhile we leave it as an exercise to the reader. 
+(Hint: Use the symbols and finite maps described below to move along easily.)</em>
+
+<sect>The Styx Language Specification
+<p>
+This sections gives some explanations on how to write a language
+specification for Styx. Contrary to yacc, Styx is reflectively implemented,
+meaning it is written with it's own help. Thus, a proper Styx definition
+for the Styx language exists within the Styx source distribution. For
+omitted details you might like to refer to this source (styx.sty), from
+which we cite often in this part of the document. This does not only provides
+a proper definition, but also gives a plethora of examples.
+<p>
+<sect1>The overall source
+<p>
+Referring back to the above walk-through, a specification of a language
+is written down within one file consisting of three sections:
+<itemize>
+<item>A <tt>Language</tt> section stating the name of the language.
+<item>An optional <tt>Regular Grammar</tt> section defining the tokens.
+<item>An optional <tt>Context Free Grammar</tt> section, which, tautologically,
+      is the section where the context free grammar is defined.
+</itemize>
+Note: Since version 1.3 the preprocessing facility <em>#include</em> can be used
+      to modularize the specification in order to re-use parts of them.
+<verb>
+  start Source
+  :root : "Language" Ide 
+          QlxDfns0
+          OptCfg
+ 
+  let OptCfg
+  :non  :
+  :cfg  : "Context" "Free" "Grammar" 
+            Dfns
+
+  let QlxDfns0
+  :nil  :
+  :ign0 : "Regular" "Grammar"
+            QlxDfns
+
+</verb>
+An extra twist is implemented within the Styx generators.
+As naming convention it is required that the Styx source files are named 
+like the corresponding languages and have the extension ".sty". Thus, if you 
+specify a language named "calc", you have to name the language definition 
+file "calc.sty".
+<p>
+<sect1>Lexical Conventions
+<p>
+<sect2>Character Set, Formatters and Comments
+<p>
+The character set for the source is ASCII. For later reference, we distinguish
+between printable characters and control characters:
+<verb>
+; Character Set
+
+  let Byte        = '\00' .. '\ff' ; all extended ASCII
+  let Control     = '\00' .. '\1f' ; control
+                  |          '\7f' ; DEL
+                  |          '\ff' ; space-like extended ASCII
+
+  let Printable   = Byte - Control
+</verb>
+<p>
+Space, Newline, Return and Formfeed are used to separate tokens and are otherwise
+completely ignored. The source itself is format-free. Note that also the page
+separator character may be used, we do never refer the source by pages.
+Additionally, no tabulator characters may be used with in source. We had so
+many problems with different programs having different ideas about how to
+expand them, that we drooped them from this specification.
+<p>
+<verb>
+  ign Space       = " "                 ; ASCII - Space
+  ign Line        = "\n" | "\r\n" | "r" ; UNIX / DOS / Mac
+  ign Page        = "\p"                ; weak separation convention
+</verb>
+<p>
+<em>Comments</em> start with a semicolon and extend to the end of the line.
+<p>
+<verb>
+; Comments et al
+
+  com Comment     = ';' {Printable}
+</verb>
+<p>
+<sect2>Identifier, Literals and Operators
+<p>
+The regular tokens are Identifier (consisting of letters and digits, starting
+with a letter), three sorts of literals and a set operators.
+<p>
+<verb>
+; complex tokens
+
+  tok Ide = Letter {Letter} {Digit} ; Identifier
+  tok Nat = Digit+                  ; Natural
+  tok Set = '\'' {LitChar} '\''     ; CharacterSet
+  tok Seq = '\"' {LitChar} '\"'     ; CharacterSequence (String)
+  tok Opr = (Special - ';=&lt;&gt;')+ | '=&lt;&gt;' ; Operator
+</verb>
+<p>
+Beside the <em>natural numbers</em>, which are later used to denote characters by their
+ASCII code, we distinguish two sorts of strings form the literals. Single quoted strings 
+denote <em>sets of characters</em> and double quoted strings <em>sequences of characters</em>. 
+When containing only a single character, their meaning is of course identical.
+<p>
+Contrary to C syntax, both the single and the double quote has to be escaped when used inside 
+these literals themselves. Additionally, a hexadecimal notation for (unicode) characters is 
+provided within the character literals. Some control characters (form feed, return, newline, 
+tabulator) can also be denoted within the quotation by a single character after the backslash.
+<p>
+<label id="unicode literals">
+For completeness, here are the remaining definitions for the literals:
+<verb>
+; Definitions
+
+  let Letter      = 'A'..'Z' | 'a'..'z'
+  let HexDigit    = '0'..'9' | 'a'..'f'
+  let Digit       = '0'..'9'
+  let Normal      = Letter | Digit | Space
+
+  let Quote       = '\'\"\`\\'
+  tok Parenthesis = '()[]{}'       ; one character tokens
+
+  let Special     = Printable - Normal - Parenthesis - Quote
+
+  let LitChar     = Printable - Quote
+                  | '\\' (Quote | 'prnt' | HexDigit HexDigit)
+                  | '\\' 'xX' HexDigit HexDigit HexDigit HexDigit HexDigit HexDigit HexDigit HexDigit
+</verb>
+<p>
+The remaining tokens are <em>operators</em> and <em>parenthesis</em>. Both token classes do not 
+have a meaning for themselves, but are used to form reserved words later in the regular grammar. 
+Operators are made up from special characters.
+<p>
+<sect2>Preprocessing macros
+<p>
+<label id="macros">
+The tokens in this section have a special meaning for the Styx preprocessor.
+They were introduced to provide modularization, macro expansion and conditional compilation.
+<verb>
+; Preprocessing tokens
+
+  let White   = Space | Line | Page
+  let Name    = (Letter | "_") { Letter | Digit | "_" } 
+  let MPar    = ( Printable - ( White | ',' | ')' | '=' ) )
+                { Printable - ( White | ',' | ')' | '=' ) }
+
+  tok MacInc  = "#include" White {White} (Printable-White) {Printable-White} ; Include
+  tok MacDfn  = "#macro" White {White} Name                                  ; Macro definition
+                  {White} [ "(" {White} MPar 
+                  { {White} "," {White} MPar } {White} ")" {White} ]
+                  [ "=" 
+                    ({Byte} - ({Byte} ("#macro"|"#end") {Byte})) 
+                    "#end" ]
+
+  tok MacSep  = '\'' (Byte-'\'') [ '-' ]                                     ; End of parameter
+
+  tok MacCond = ( ( "#ifdef" | "#ifndef" ) White {White} Name )              ; Conditionals
+              | "#else" | "#end"
+
+</verb>
+<p>
+The reserved words are "Language", "Regular", "Grammar", "Context", "Free",
+"let", "tok", "ign", "com", "ica", "ind", "lan", "InGroup", "ExGroup", "Group",
+"other", "start" and "err". 
+Further, "cons", "nil" and words starting with "ign" have a special meaning 
+when used as production names.
+<p>
+<sect1>The Regular Grammar
+<p>
+Next to the introducing "Regular Grammar" keywords, the regular grammar is specified as 
+a collection of equations. Following a leading keyword, that gives some hints how to cope 
+with the equation, and eventually some option and group information (see below) a name is 
+assigned to a regular expression. Have a look at the preceding definitions to get an idea 
+who this looks like.
+<p>
+As with modern (f)lex implementations Styx now i.e. since version 1.6 supports the definition 
+of inclusive or exclusive groups of regular expressions, too. They are useful to switch between 
+different regular languages.
+( see Example05 for a demonstration )
+<p>
+<verb>
+; REG-Section
+
+  let QlxDfns ; Qlx-Definitions
+  :nil  :
+  :cons : QlxDfn 
+          QlxDfns
+
+  let QlxDfn  ; Qlx-Definition
+  :defn : QlxCat QlxOpt QlxGrp0 Ide QlxGrp1 "=" ExpQuot ; regular expression definition
+  :igrp : "InGroup" Ide                                 ; inclusive group definition
+  :xgrp : "ExGroup" Ide                                 ; exclusive group definition
+  :mgrp : "Group"   Ide = Ids                           ; group list definition, introduced in version 1.7
+
+  let Ids  ; Group list members
+  :cons: Ide Ids0 ; 'Ide' can refer to a QlxGroup or the language as initial QlxGroup.
+
+  let Ids0
+  :nil :
+  :cons: Ide Ids0
+
+  let QlxGrp
+  :non  :                ; no group information
+
+  let QlxGrp0  
+  :grp  : ":" Ide ":"    ; The regular expression belongs to QlxGroup or group list 'Ide'.
+  :ign0 : QlxGrp         ; The regular expression belong to initial QlxGroup.
+
+  let QlxGrp1  
+  :grp  : "!"  Ide       ; The recognition of the regular expression activates QlxGroup 'Ide'.
+  :igrp : "!"            ; The recognition of the regular expression activates initial QlxGroup.
+                         ; The following definitions has been added in version 1.7:
+  :pgrp : "!+" Ide       ; The recognition of the regular expression pushes the current QlxGroup onto the stack
+                         ; and activates QlxGroup 'Ide'.
+  :pigrp: "!+"           ; The recognition of the regular expression pushes the current QlxGroup onto the stack
+                         ; and activates initial QlxGroup.
+  :pop  : "!-"           ; The recognition of the regular expression pops and activates the top QlxGroup on the stack.  
+  :ign0 : QlxGrp
+
+  let QlxCat ; QlxCategory
+  :letC : "let"
+  :tokC : "tok"
+  :indC : "ind"
+  :lanC : "lan" ; Embedded language: 
+                ; lan :Ide_Language: Ide_Startsymbol ! Ide_EofOrFollowTokenLanguage = Ide_EofOrFollowToken+
+  :ignC : "ign"
+  :comC : "com"
+</verb>
+<p>
+Groups and group lists must be defined before they can be referenced. With this exception the definitions can 
+come in any order. This means that an applied occurrence does not need to follow it's definition textually. 
+It is only required that no recursion is used. So, you can order the definition due to other purposes.
+Note that contrary to the lex program no implicit semantics is placed on the order of the definitions, too.
+<p>
+<sect2>Categories
+<p>
+The leading keyword in the equations (see QlxCat) describes the usage of a token. 
+First, the equations introduced using "let" are auxiliary. They do not specify tokens 
+but only regular sets eventually used in them. As a consequence they can't neither be 
+grouped nor switch to some group.
+See in the above section for typical applications of this feature.
+<p>
+The next keyword "tok" introduces regular tokens. The identifier following this keyword 
+and the optional option and group information are the only ones that can later be used 
+within the context free grammar. Also, when implicitly used there as keywords, only these 
+regular sets will be considered.
+<p>
+<label id="indended languages">
+In order to support the specification of indented languages (since version 1.6), the keyword "ind" 
+introduces so-called indent tokens as regular tokens. In the context free grammar they will be 
+referenced by the corresponding minimal indent and dedent keywords. 
+( see Example06 for a demonstration )
+<p>
+<label id="embedded languages">
+Another regular token variant (since version 1.6) are the so-called embedded language tokens. 
+They are introduced by the keyword "lan" and their values are not just strings but trees i.e. terms. 
+Within such a definition the initial keyword must be followed by the name of the embedded language,
+the start symbol from which the parsing process should start and either the name of the "hosting"
+language along with a list of follow tokens or the name of the embedded language along with a list
+of so-called eof tokens.
+
+In the context free grammar they are referenced by concatenating the names of the embedded 
+language and the start symbol.
+( look at the <ref id="XML parser example" name="XML language definition"> in the reference 
+section for a demonstration )
+<p>
+Last, the remaining keywords ("ign" and "com") introduce tokens that will be more or less 
+ignored. "com" is for comments, and the semantic is, that they will be stored in the derivation 
+tree (for evtl. source-source translation), but will not be accessible through the language 
+specific interface. Also, both "com" and "ign" tokens can be inserted at any place within the 
+language sources.
+<p>
+"ign" tokens are completely ignored and never even leave the scanner.
+Conceptually, they do their duty as formatting character. Because the scanner knows about 
+the newline character and provides line and column position with each token, these classes 
+of characters may (somehow indirect) be accessible in the source tree later. If no strange 
+things are done with the control characters (i.e. only uses space and newline as formatters), 
+on can fully reproduce the source from the derivation tree modulo trailing spaces and empty lines.
+<p>
+Collectively, all definitions beside the "let" ones are considered to form the tokens of the 
+language. Styx's lexical analyzer requires from each of these token definitions that they are 
+disjunctive from each other. So, no two of them may contain the same word. While the lex program 
+resolves possible non-empty intersection by an implicit "priority", one has to make this explicit 
+when using Styx. 
+There are many ways to do this. One possibility is to use the difference operator ("-") to clarify 
+the situation. Styx will issue errors as soon as non-empty intersections are detected.
+<p>
+In the language interface, the tokens will be offered as <em>symbols</em>.
+Basically, these are unique strings allowing them to be compared by the C identity predicate ("=="). 
+String equal tokens will only stored once by this mean, too.
+<p>
+<sect2>Normalizing Token
+<p>
+This can become a disadvantage when the tokens are abnormally defined within the language. 
+Although we considered this a weak design anyway, few means are provided to introduce a normalizer 
+for such tokens. In order to support case insensitive languages, a normalizer for these is build 
+into Styx. 
+<verb>
+  let QlxOpt  ; QlxOption
+  :non  :
+  :ignca: "[" "ica" "]"
+</verb>
+The "[ica]" option before the defined identifier indicates that the case has to be ignored. As a 
+result all of the corresponding token values will be normalized to small letters. Note that using 
+abnormal tokens has many disadvantages, among others a possible lost of source information.
+People who define such abnormalities are typically unable to decide whether they really mean what 
+they do. I've seen, for example, PASCAL implementations, which were case insensitive but identifiers 
+like "FileRead" being defined in them. This certainly means asking for trouble. We cannot help bad 
+design and strongly suggest not to use normalizers on tokens.
+<p>
+<sect2>Regular Expressions
+<p>
+Here we finally come to the right hand side of the regular equations.
+<p>
+<verb>
+  let Exp4     ; Expression prio 4
+  :sequ : Seq
+  :set  : Set
+  :ident: Ide
+</verb>
+<p>
+The meaning of the set and sequence literals has already been defined when these token were introduced. 
+The identifier denotes the regular set corresponding to some other equation.
+<p>
+<verb>
+  let Exp3     ; Expression prio 3
+  :ign1 : Exp4
+  :range: Exp4 ".." Exp4
+  :ign2 : "(" Exp ")"
+</verb>
+<p>
+Round parenthesis may be used to group expressions, the double dot operator ".." can be applied to 
+construct character ranges. It's both arguments have to be single characters.
+<p>
+<verb>
+  let Exp2     ; Expression prio 2
+  :opt  : "[" Exp "]"
+  :star : "{" Exp "}"
+  :puls0: Exp "*"
+  :plus : Exp3 "+"
+  :plusn: Exp3 Limit
+  :ign1 : Exp3
+
+  let Limit              ; occurrence limit
+  :ntime: Nat            ; exact ntimes
+  :range: Nat "," OptNat ; minimum and optional maximum
+
+  let OptNat
+  :non : 
+  :nat : Nat
+</verb>
+<p>
+Next in binding strength come the different sorts of monoids and options. The "+" suffix means one or 
+more occurrences. The curly brackets or, since version 1.7, the "*" suffix is for zero or more occurrences and 
+the square brackets means zero or one occurrence. Limited occurrences ( introduced in version 1.7 ) can be expressed 
+by specifying a number or a range.
+<p>
+<verb>
+  let Exp1     ; Expression prio 1
+  :conc : Exp1 Exp2
+  :ign1 : Exp2
+</verb>
+<p>
+The concatenation is denoted by simply concatenating expressions. The corresponding operator is omitted.
+<p>
+<verb>
+  let Exp     ; Expression prio 0
+  :union: Exp "|" Exp1
+  :diff : Exp "-" Exp1
+  :ign1 : Exp1
+</verb>
+<p>
+Finally, and weakest in binding strength, we have the set union ("|") and difference ("-") operations.
+<p>
+The following definitions refer to version 1.6 and 1.7. They introduce dyck, pattern and quotient expressions 
+in order to cope with nested and heredoc comments, among others. 
+<p>
+Quotient expressions are introduced in version 1.7. 
+The quotient part of the expression can be a non-unicode character set or a sequence. ".." within the character set 
+denotes a character range.
+In the first case, all characters belonging to the set will be stripped from the end of the token and re-scanned.
+In the second case, the defined sequence will be stripped from the end of the token and re-scanned. The scanner 
+reports an error if the token doesn't end with that sequence.
+<p>
+<verb>
+  let ExpQuot ; quotient 
+  :quot : ExpDyck "/" Exp4 ; Exp4 = Set or Seq
+  :ign0 : ExpDyck
+</verb>
+<p>
+Dyck expressions, introduced in version 1.6, specify the left parenthesis, the inner part and the right parenthesis. 
+To give an example, &lt; /* &gt; &lt; */ &gt; describe recursive C-like comments.
+<p>
+Pattern expressions are introduced in version 1.7. 
+The production 'spat' specifies a start pattern token. The non-unicode character set argument constitutes the pattern, 
+while the expression arguments constitutes the pattern prefix and suffix. ".." within the character set denotes a
+character range. There must always be a corresponding end pattern token of production 'epat' which tries to match 
+the current start pattern. The ID of the end pattern token refers to the non-matching case. 
+<p>
+<verb>
+  let ExpDyck ; dyck ( Exp )
+  :dyck : "&lt;" Exp "&gt;" Exp0 "&lt;" Exp "&gt;"
+  :spat : "&lt;" "=" Exp0 "&gt;" Set "&lt;" Exp0 "&gt;"
+  :epat : "&lt;" "?" Exp0 "&gt;" Ide "&lt;" Exp0 "&gt;" ; Ide = start token ID
+  :ign0 : Exp
+
+  let Exp0
+  :non  : ; no restriction on the inner part
+  :ign0 : Exp
+</verb>
+<p>
+<sect1>The Context-Free Grammar
+<p>
+Here we deal with the definition of the context free grammar section in the Styx sources. This is 
+straight forward and basically a triple list.
+<p>
+On the top level we have a list of definitions (Dfns) of non-terminal identifiers, whose body consist 
+of a list of productions (Prds) for these non-terminals, again each identified by a name. 
+The body of the individual productions is formed by a list of members (Mbrs), which are either identifiers 
+denoting terminals or non-terminals, strings denoting keywords or a non-specified sequence denoted by the
+keyword "[other]".
+<p>
+The non-terminal names defined have to be unique within the scope of the source and disjunctive from the names 
+of the regular sets defined in the previous section. The production names have to be unique within each 
+non-terminal definition.
+<p>
+The keywords (string members) have to belong to one of the defined regular sets of tokens.
+<p>
+<verb>
+; CFG-Section
+
+  let Dfns    ; Definitions
+  :nil  : 
+  :cons : Dfn 
+          Dfns
+
+  let Dfn     ; Definition
+  :defn : Cat DfnOpt Ide 
+          Prds
+
+  let Prds    ; Productions
+  :nil  : 
+  :cons : Prd 
+          Prds
+
+  let Prd     ; Production
+  :prod : Lay Ide ":" 
+            Mbrs
+
+  let Mbrs    ; Members
+  :nil  : 
+  :cons : Mbr 
+          Mbrs
+
+  let Mbr     ; Member
+  :ntm  : Ide
+  :tkm  : Seq
+  :else : "[" "other" "]"
+</verb>
+<p>
+Some options extend this construction, of which the most important is the distinction between 
+start and inner productions. Start productions indicate those non-terminals which can later 
+be parsed individually, while the inner productions can only be parsed as part of a start
+production. Referring back to the regular grammar specification this distinction is much like 
+the "let" and "tok" categories. We use a similar syntactic construction for the distinction, 
+a leading keyword. The start productions are indicated by a leading "start" and the inner
+productions by a leading "let".
+<p>
+<verb>
+  let Cat     ; Category
+  :letC : "let"
+  :bgnC : "start"
+</verb>
+<p>
+The remaining options deal with error recovery and pretty printing.
+<p>
+<label id="error option">
+Use the error option to specify a non-terminal as resumption point within the implemented 
+panic-mode error recovery. To enforce the default error handling where the parse process stops 
+when a syntax error occurs you should omit the error option.
+<p>
+<verb>
+  let DfnOpt  ; DfnOption
+  :non  :
+  :errnt: "[" "err" "]"
+</verb>
+<p>
+<label id="layout option">
+The layout option gives the pretty printer some hints for the layout of the corresponding 
+grammar phrases. Choose the colon (":") as default or if you aren't interested in that facility. 
+( look at the <ref id="pplayout" name="layout specification"> for details )
+<p>
+<verb>
+  let Lay
+  :reg  : ":"
+  :line : "?"
+  :nof  : "!"
+</verb>
+<p>
+<sect2>Normalizing Productions
+<p>
+Some of the identifiers for the production names are reserved for normalization. These are "cons", 
+"nil" and "ign(0-9)+". Beside other keywords used in the Styx grammar, you are otherwise free to 
+chose these names. The mentioned identifiers serve it's duty as indications of how to make up the 
+depth grammar. A separate section is devoted to this topic. See below.
+<p>
+<sect>The Concrete Derivation Tree
+<p>
+Before defining the mapping onto terms and the how the depth grammar is derived from a Styx language 
+definition, a closer look on the result of the parsing process appears to be helpful.
+<p>
+Conceptually, we distinguish between the <em>concrete derivation tree</em>, i.e. the derivation tree 
+that corresponds to both the parsed source and to the surface grammar as specified in the context 
+free grammar section in the Styx source file. See the <ref id="tree" name="derivation tree"> above for
+an example how this tree looks like.
+<p>
+To be a little more formal, the tree is made up from nodes which represent either terminals (tokens,
+keywords,comments) or non-terminals, which may have a list of nodes as their children. Each node 
+contains a source reference (filename,line,column), where it's text in the source starts.
+<p>
+Terminal nodes contain the symbol that represents the (normalized) token literally together with a 
+symbol that names the regular set to which it belongs. Non-terminal nodes contain both the non-terminal 
+and the production symbol.
+<p>
+Excurse on comments: While the location of keywords and (real) tokens within this tree is already
+clearly defined by the grammar and the source itself, the placement of comments within this tree could 
+be somewhat arbitrary. This comes from the fact that comments are accepted by the parser and added to 
+the tree whenever they appear in the source. That's intended and OK so far. Now, if a comment appears 
+at the beginning of a non-terminal production (node), we have to chose a proper place for it, which can 
+be either the beginning of the current node or a place immediate before the node in the list of the parent
+node. When designing the Styx parser we've chosen the later. Note that this rule applies recursively 
+(and likely, when the comment is in the end of a production), so that a comment node will never appear in 
+the beginning or end of an inner node. Note that, though it is a formally satisfying convention
+(all comments have normal places), this may be wrong when looking at the comments themselves. 
+E.g. looking at a comment in a C source, this referees to decide whether a comment belongs to the following 
+function or is a comment separating a group of functions. Depending on this the comment might better
+be placed lower or higher within the tree. The section about pretty printing deals in more detail with 
+this issue.
+<p>
+Now, that the structure of the concrete derivation tree is outlined and after having had a look on an 
+example tree, it should be clear to the reader that this structure is not useful for accessing parts of 
+the sources in general. (A proper interface to this structure exists anyway. There are of course cases when, 
+for example, having access to the position of a specific keyword or a comment may make very much sense.) 
+Instead, we would normally prefer to have a more abstract view onto the tree, especially, we do not like to 
+be bugged by keywords, comments, identical productions (those of the form "let X :y: Z") and likely features 
+that we consider to belong to the language surface.
+<p>
+On one side we want to abstract from some of the details, on the other hand we also like to become more 
+concrete. It normally does not help very much to have universal derivation tree type and functions that 
+apply on any node.
+Instead, we want use the notations (non-terminal names and productions) as introduced in the grammar when 
+dealing with the tree. This leads to the question how a proper interface to the derivation tree can be
+constructed. The Styx implementation has chosen to do this by using the concept of a depth grammar.
+<p>
+<sect>Mapping Trees to Terms
+<p>
+As outlined in the introduction, it is not only an advantage for a proper interface on a derivation tree 
+to use an (abstract) depth grammar, but also to switch from grammatical to algebraic notions. Basically 
+by this, non-terminals are mapped onto (abstract data-)<em>types</em> and productions are mapped onto 
+<em>functions</em>. Words in the domain of languages became <em>terms</em>. Grammars are treated as 
+<em>signatures</em> (loosely speaking "header files") of term algebras, then. This is far more than an 
+overall renaming, but a transition to a different more appropriate concept with different tools and 
+properties.
+<p>
+Within Styx, the transition from the concrete (surface) grammar to the corresponding term algebra is done 
+in one step, and one final outcome is the C interface of a concrete language. The abstract grammar is 
+somewhat bypassed, see the notes at the end of the section.
+<p>
+This section mainly defines how we derive the term algebra from the concrete grammar. Having this, the 
+C interface can be explained in more detail.
+<p>
+<sect1>Well-formed productions
+<p>
+Before we can do our transformation, we have to place some requirements onto the concrete grammar first. 
+These conditions are tested by the Styx system and non-well-formed productions are diagnosed.
+<p>
+Within this and the following subsections, we ignore any keyword members in the productions bodies. This 
+may or may not be indicated. Further, we treat the individual production rules (with keywords ignored)
+as predicates.
+<p>
+A production is well-formed if it belongs to one of the following groups:
+<p>
+<itemize>
+<item><tt>let X :nil  :</tt> where the production contains no (identifier)
+                             members.
+<item><tt>let X :cons : Y Z</tt> and contains exactly two (identifier) members.
+<item><tt>let X :ign# : Y</tt> where the production name starts with "ign" and
+                               continues with a natural number (that's what the
+                               "#" indicates) and the production contains exactly
+                               one (identifier) members.
+<item><tt>let X :name : X1 .. Xn</tt> where "name" is not "nil", "cons" or
+                                      starts with "ign". No restriction apply
+                                      to the production members.
+</itemize>
+<p>
+This grouping serves two purposes. The first two groups will be used to derive list-like productions, 
+while the "ign" production are used to define identity productions. The later typically occur with 
+expressions that have different levels binding strength or when likely classes of productions are excluded 
+or included into certain contexts. When producing the abstract grammar, we consider these non-terminal to 
+be equivalent. As examples, see the definitions of Exp, Exp1-2 in the introduction and Exp, Exp1-4 in the 
+lexical Styx grammar itself. For lists, the context free grammar of Styx (Dfns, Prds, Mbrs) are proper 
+examples.
+<p>
+<sect1>An induced congruence relation
+<p>
+We get rid of the superficial distinction between the different non-terminals by means of a congruence 
+relation over the non-terminal names induced by the special production names "cons","nil" and "ign".
+<p>
+The congruence relation is defined as follows:
+<itemize>
+<item>X <=> X
+<item>X <=> Y --> Y <=> X
+<item>X <=> Y && Y <=> Z --> X <=> Z
+<item>let X :ign*: Y   --> X <=> Y
+<item>let X :cons: Y Z --> X <=> Z  
+<item>X <=> Y && let X :id: X1 .. Xn && let Y :id: Y1 .. Yn && 1 <= i <= n --> Xi <=> Yi
+</itemize>
+<p>
+While the first three formulas define an equality by stating the properties of the relation 
+(reflexive,symmetric,transitive), the next two specify the equations induced by the concrete grammar. 
+By this, two non-terminals are treated as equivalent when they appear both on the left and right side 
+of an "ign" production or on the left side and on the end of a "cons" production (in which case they 
+both mean lists of the same type later).
+<p>
+The final rule makes a congruence from this equality. It states, that if we have two equivalent 
+non-terminals, that both contain productions with the same name, then the equality is extended over 
+the bodies of that productions by pairing each identifier successively and concluding the equality of 
+the so-yielded pairs (ignoring keyword members).
+<p>
+<sect1>Classes and Representatives
+<p>
+What we have gained so far is that we have evtl. grouped different (terminal and non-terminal) identifiers 
+into the classes introduced by the above congruence relation. Using this relation each identifier corresponds
+to a set of its equivalents. 
+As an example, "Exp2" in the introduction example expands to the set [Exp2] = {Exp,Exp1,Exp2}. 
+These classes will later be mapped to the abstract types of the term algebra to be produces.
+<p>
+[X] = { Y | Y <=> X }
+<p>
+We assign to each of these classes a unique name by picking the lexically smallest identifier as the 
+representative of the class. In our example, this is "Exp". We denote the so chosen representative 
+of [X] by X^.
+<p>
+<sect1>Compatibility Conditions
+<p>
+Having set up equivalent identifiers, we now come to the productions. Basically, all we have to do is to 
+merge the productions of the different equivalent non-terminals and to drop the "ign" productions. But this 
+is only possible under additional conditions. Basically, what can go wrong is, that by the congruence 
+terminal and non-terminals have been concluded to be equivalent, that we cannot merge productions with same 
+names and different numbers of (identifier) members, and that lists would contain additional non-list 
+productions.
+<p>
+This leads to the following conditions:
+<itemize>
+<item>X <=> Y --> Type(X) = Type(Y), where Type(Z) = { terminal, nonterminal }
+<item>let X :id: X1 .. Xm && let Y :id: Y1 .. Yn && X <=> Y --> m = n
+<item>(let X :nil: || let X :cons: A B) --> 
+      not exists P,prod: P <=> X && let P :prod: c && prod not in { ign, nil, cons }
+</itemize>
+<p>
+While generating the abstract grammar, Styx will validate these compatibility conditions.
+<p>
+<sect1>Conversion to term algebras
+<p>
+After all this preparation and conditions, we can finally convert the concrete grammar to a signature.
+<p>
+To do this, we map all non-terminals NT which does not have list-productions (those named "cons" or "nil") 
+to their representative names NT^. Likely, all terminal names T are mapped to their representatives T^. 
+Collectively, these form the types of the algebra.
+<p>
+Every non-list production (ignoring keywords) of the form "let X :prod: X1 .. Xn" is mapped to a function 
+"prod : |X1| .. |Xn| -> X^". "|Xi|" denotes here the right hand side translation of the (non-)terminal 
+names to types. The difference is, that we have to cope with list-production, which have been omitted earlier.
+|X| is X^ if we have a non-list non-terminal or a terminal X. If X is a non-terminal with a production 
+"let A :cons: B C" and X <=> A, |X| is List(|B|). (If only have nil-productions, the translation is
+List(void)).
+<p>
+The set of the so-yielded functions forms the signature of the derived term algebra and what we finally get 
+as a data model for the (abstract) derivation tree is the initial term algebra that corresponds to this 
+signature.
+<p>
+To give another example for this derivation, here is the abstract of the Styx grammar itself:
+<p>
+<verb>
+/* ------------------------------------------------------------------------ */
+/*                                                                          */
+/* [styx.abs]                  Abstract Grammar                             */
+/*                                                                          */
+/* ------------------------------------------------------------------------ */
+
+LANGUAGE styx
+
+TOKENS
+
+  Ide, Nat, Set, Seq
+
+TYPES
+
+  styx        = Start_Source(Source)
+
+  Source      = root(Ide, QlxDfn*, OptCfg)
+
+  OptCfg      = non;
+                cfg(Dfn*)
+
+  QlxDfn      = igrp(Ide);
+                defn(QlxCat, QlxOpt, QlxGrp, Ide, QlxGrp, Exp);
+                mgrp(Ide, Ide*);
+                xgrp(Ide)
+
+  QlxCat      = tokC;
+                indC;
+                ignC;
+                comC;
+                lanC;
+                letC
+
+  QlxGrp      = pgrp(Ide);
+                non;
+                pigrp;
+                grp(Ide);
+                igrp;
+                pop
+
+  QlxOpt      = ignca;
+                non
+
+  Exp         = opt(Exp);
+                plusn(Exp, Limit);
+                plus0(Exp);
+                star(Exp);
+                quot(Exp, Exp);
+                plus(Exp);
+                epat(Exp, Ide, Exp);
+                union(Exp, Exp);
+                sequ(Seq);
+                dyck(Exp, Exp, Exp);
+                non;
+                range(Exp, Exp);
+                ident(Ide);
+                diff(Exp, Exp);
+                set(Set);
+                spat(Exp, Set, Exp);
+                conc(Exp, Exp)
+
+  OptNat      = non;
+                nat(Nat)
+
+  Limit       = ntime(Nat);
+                range(Nat, OptNat)
+
+  Dfn         = defn(Cat, DfnOpt, Ide, Prd*)
+
+  Cat         = letC;
+                bgnC
+
+  DfnOpt      = errnt;
+                non
+
+  Lay         = dft;
+                rec;
+                grp
+
+  Prd         = prod(Lay, Ide, Mbr*)
+
+  Mbr         = else;
+                tkm(Seq);
+                ntm(Ide)
+
+</verb>
+<p>
+Two notes on notation: The form List(X) is denoted as X*. The functions are abbreviated for convenience 
+extracting the result type, so Exp = ... star(Exp) denotes the function star: Exp -> Exp. For constants, 
+i.e. functions with no parameters, the argument parenthesis are omitted, so "QlxOpt = non; ignca"
+spells the two functions non: -> QlxOpt and ignca: -> QlxOpt.
+<p>
+There's an extra rule for the start production(s) one may deduce from the examples.
+<p>
+<sect1>A note on the implementation
+<p>
+After all these definitions, we only have the mapping from a grammar to a signature. The mapping from the 
+concrete derivation tree onto corresponding terms is straight forward and will be informally be explained 
+by having a look on the implementation.
+<p>
+One might expect that the derivation tree is copied to yield a term. But this is not the case. Instead, the 
+above introduced mapping has been carefully chosen to be done on the fly. So, what the Styx parser produces,
+is the concrete derivation tree as shown in the introducing example. With delivering it, it's job is done. 
+The conventions defined in these section are implemented only within the C interface, which permits an
+abstract access to the concrete derivation tree.
+<p>
+All the necessary normalization is done within the access functions, the "term destructors" of the 
+C interface. Looking closer at the structure of the derivation tree, one can already imagine what these 
+functions have to do.
+Provided with a reference to the tree, they decent into it skipping every "ign" production they pass. 
+After this, they end at a normal production and have to check for the production identifier. If this is OK, 
+they start decomposing the children of the node into the result slot, thereby skipping all keywords and 
+comments they meet. That's all.
+<p>
+The advantage of doing so is, that while having a rather compact view on the derivation tree, complete source
+information is still preserved and can be accessed from this abstract view whenever needed.
+<p>
+In practice, this interface have both been proven to be efficient as well during language design and 
+application. Often the design starts out with the abstract grammar finding an appropriate surface grammar, 
+or having the surface grammar already given, concentrates on extracting a proper abstract grammar, which can 
+be easily done just by assigning proper production names.
+<p>
+<sect1>Relation between the abstract grammar and the algebra.
+<p>
+Only to prevent confusion between terms and words in abstract grammar which are sometimes loosely treated as 
+synonyms in the text, a few additional notes apply here.
+<p>
+When talking about terms, we're talking about values having specific types. These values are abstract in that
+we do not offer details of their implementation through their interface. In fact, Styx can produce different
+implementation of terms with an identical interface. Abstract data types are abstract with respect to their 
+implementation.
+<p>
+In contrary, abstract grammars are abstractions of the surface details of the concrete grammar. An abstract 
+grammar preserves the depth structure of the language, but simplifies the derivation tree by dropping 
+unnecessary details as done above, for example. One can easily see that the structure is preserved by 
+recognizing, that the mapping from concrete derivation tree to it's abstract correspondent is a homomorphism.
+<p>
+The ".abs" file generated by Styx has both possible readings. On can read it as the abstract grammar as well 
+as the signature of the term algebra.
+<p>
+Referring to the first, we can write down words of the abstract grammar, too. The word "1+2*(3-4)/5" of the 
+introduction example would spell "add(1,div(mul(2,sub(3,4)),5))" in the abstract grammar. Superficially, 
+this looks precisely like a denoted term of the corresponding algebra.
+<p>
+
+<sect>The Handyman's Guide to Styx
+<p>
+As the title of the chapter suggests, more technical details of how to
+apply Styx within a concrete project are about to follow in the sequel.
+We describe inhere the usual steps we take when creating a new project
+and introduce some of the library material needed.
+<p>
+<sect1>Setting up a Styx project
+<p>
+Though one can use Styx in whatever way he or she likes, the following
+notes might be considered helpful. Styx was originally designed to be
+applied within a highly productive environment, which is only partially
+released with the Styx sources itself. To inter-operate with it, Styx
+provides some hooks, that may be useful in other project setups, too.
+<p>
+This left-over is mainly visible in the command line syntax and the
+way the command line inter-operates with the shell environment.
+<p>
+To structure our projects in the file system, we choose to separate
+original and generated sources from the generated binaries. Names of
+generated files were automatically derived by changing the extension.
+<p>
+Now, to save us keystrokes, most of the command line arguments, especially
+the directory paths, can be supplied by the shell environment, too.
+<p>
+Please refer to the manual pages of the respective programs for more
+details.
+<p>
+<sect1>Writing and Testing a Grammar
+<p>
+Like everyone, the author has his own a preferred method of getting
+a Styx project up. We describe his personal way here while introducing
+the applied tools and intermediate products.
+<p>
+First, to prevent starting from scratch, we typically "clone" a likely
+project to have all the initial and one-time-work stuff done. You might
+want to use one of the examples included in the distribution for this
+purpose.
+<p>
+Next, we start coding the actual source of the grammar, the '.sty' file.
+The author prefers doing this iterating the steps described following
+thereby approximating and finally reaching the intended product, while
+other (my colleague for instance) might prefer a one pass approach.
+<p>
+Having coded a '.sty' source file, it is time to apply the scanner/parser
+generator onto it, which is the program named '<url url="cmd_styx.htm" name="styx">'. 
+It may or may not come up with diagnostics, we fix them and retry until the generation
+finally succeeds. At this stage, the use of the '-diagnose' option
+might help to get enough information to analyze why the specified grammar
+is not LALR(1). To do so, you should really know a bit about this sort
+of parser generator, please refer to the <ref id="book1" name="Dragon Book"> or the
+<ref id="book2" name="yacc documentation"> if not.
+<p>
+Without any options, all 'styx' creates is the '.abs' file, which contains
+the generated depth grammar. One might want to validate that the intended
+abstract grammar has in fact been found by 'styx' and fine-tune it somewhat,
+if necessary.
+<p>
+Controlled by options, the 'styx' program allows to generate different goals
+and for immediate testing, one might like to choose the '-makeIMG' option,
+to generate binary table images (a '.lim' and an optional '.pim' file), which
+can be read by two test utilities.
+<p>
+To test the grammar, it needs an example source (technically speaking, a
+"word" of the grammar) stored in a file. Having this, one can apply the
+'<url url="cmd_lim_test.htm" name="lim_test">' program to validate the scanner table 
+and the '<url url="cmd_pim_test.htm" name="pim_test">' program for the parser. 
+Both programs use the environment variable BINSTYX which defaults to the environment 
+variable PATH, so you want to make sure that the generated images are placed properly.
+<p>
+Version 1.7 allows the visualization of grammars. The program '<url url="cmd_lim2dot.htm" name="lim2dot">' 
+converts a binary scanner table image into an appropriate '.dot' file which can be viewed with the graphviz tool 
+'<url url="http://www.graphviz.org" name="dotty">'.
+Based on the binary image '<url url="cmd_pim2dot.htm" name="pim2dot">' creates '.dot' files for the parse table 
+or the nonterminal relation of the corresponding grammar.
+<p>
+At this point we have a properly specified grammar of the language and
+know at least that it will parse our example word yielding an intended
+abstract grammar.
+<p>
+Since we typically want to continue compiling or interpreting this word,
+we can finalize the work so far by applying 'styx' with the '-makeINT'
+and the '-makeC' option to create the C interface of the abstract grammar
+and to get C sources of the scanner/parser tables that can be compiled
+into the intended product.
+<p>
+Now comes a little trick. Since the authors of Styx did not write header files for a decade 
+but left this job to a silly program named '<url url="cmd_ctoh.htm" name="ctoh">', 
+you have to apply it onto the generated C sources to get the necessary '.h' files, too. 
+Please refer to the man page of this useful program (it saves about 1/3 of lines to code) 
+for the parameters.
+
+<sect1>Using the generated interface
+<p>
+Having parsed a source (which is explained in the next section), we have
+the root of the derivation tree. To further process the source, one typically
+has to traverse this tree recursively. Styx provides two complete different
+means to do so, the first viewing the derivation tree as a term of a typed
+term algebra as defined in the related '.abs' file, while the second is the
+"meta" view of the derivation tree, granting grammar independent access.
+Depending on the particular task, a compiler writer might prefer one or the
+other view during the process of dealing with the derivation tree.
+
+<sect2>The interface derived from the specific grammar
+<p>It contains "destructors" for each token, nonterminal and "abstract" production.
+<sect2>The meta interface
+<p>The <url url="ptm.htm" name="term interface"> provides the data type <em>PT_Term</em> 
+   along with basic construction and access methods ( positional info etc. ) as well 
+   as term iterators.
+<p>Iteration of term lists in an abstract grammar will be done with the
+   <url url="gls.htm" name="generic language support"> which defines the data types 
+   <em>GLS_List</em> and <em>GLS_Tok</em>.
+<sect2>Library data types
+  <p>
+  <itemize>
+  <item>Names of grammar symbols and token values within the derivation tree are represented
+        as <url url="symbols.htm" name="symbols">.
+  <item>The <url url="prs.htm" name="(low level) parse interface"> gives access to the grammar 
+        specification ( tokens, nonterminals and productions etc. )
+  <item><url url="hmap.htm" name="Finite maps"> are an important means for the creation of specific
+        term views. An usual application would be the mapping of identifiers to their corresponding
+        definitions.
+  <item><url url="otab.htm" name="Dynamic arrays"> and <url url="list.htm" name="lists">
+  <p>Refer towards semantics, compare with attributed grammars,
+     refer to "Bits of history and future".
+  </itemize>
+
+<sect1>Putting it all together
+<p>
+<itemize>
+<item>initializing and quitting the modules
+<item>actual parsing
+</itemize>
+
+<sect>A realistic Styx example
+<p>
+<em>This is to become the section about Example02. For convenience,
+    we first include the related README here, literally</em>
+<p>
+Here we have the first non-trivial example of a Styx application.
+It is a somewhat complete little programming language approximately
+of the complexity of LISP, called PL0 as usual.
+<p>
+The example demonstrates to use of the derivation tree as a
+source representation beyond parsing. Here, we use it to keep
+the definitions of functions available for execution.
+<p>
+Additionally, full static and dynamic semantics of the language
+is implemented to introduce the use of the "Map" and "symbol"
+data type together with other handy library routines as the
+tree iterator and the PT_error routine.
+<p>
+An (atypical) use of the pretty printing abilities is also
+provided.
+<p>
+The profiling webbed into the example gives an impression of
+the efficiency of the whole library material. Note that the
+interpreter in this example is not optimized for speed.
+<p>
+With a total of about 250 lines of C code and 100 lines for
+the grammar, which took about 4 hours to be written from
+scratch including debugging, this example also shows how
+efficient a compiler/interpreter author can be with Styx.
+<p>
+<em>Execute the example program 'testpl0.pl0' by 'pl0 testpl0.pl0'
+or adjust the path in the first line of 'testpl0.pl0', set the
+executable flag and call it directly.</em>
+<p>
+<em>Prepare the reader for a lengthy chapter introducing some
+    compiler writing methodology, too</em>
+
+<sect1>The concrete PL0 syntax
+<p>
+Following, we dissect the concrete grammar of the language;
+<p>
+<verb>
+; [pl0.sty] Grammar "pl0" - a toy language
+
+Language pl0
+</verb>
+
+<sect2>The Regular Grammar
+<p>
+There is not much worth to notice, here. Comparing with the calculator
+grammar above, the newly introduced tokens are identifiers and comments.
+<p>
+The comments will not become visible in the abstract derivation tree
+as indicated by the preceding "com" but well kept in the concrete one.
+Note the hexadecimal denotation within the comments production, which
+restricts the comments to 7 bit characters.
+<p>
+<verb>
+Regular Grammar
+
+  ign Ign         = ' \n\r'               ; "white" characters
+  tok Tok         = ',&lt;=()+-*/'           ; one character tokens
+  tok Int         = ('0'..'9')+           ; Integer
+  tok Ide         = ('a' .. 'z')+         ; Identifier and Keywords
+  com Com         = "#" {"\20" .. "\7e"}  ; Comments
+</verb>
+
+<sect2>Core Productions
+<p>
+In the beginning of the grammar the overall structure of a PL0 program
+is defined to be a sequence of function definitions followed by a sequence
+of expressions to "run".
+<p>
+The function definitions introduced then, simply gives expressions a name
+and some arguments to be substituted.
+<p>
+<verb>
+Context Free Grammar
+
+start Program
+:pgm: Dfns Runs
+
+let Dfn
+:fun: "fun" Ide "(" Args ")" "=" Exp
+
+let Run
+:run: "run" Exp
+</verb>
+<p>
+Again referring back to the calculator example, find the expressions be
+extended by some predicates (les, equ), an if-then-else construction (if),
+a function call (app) and by variables (ide).
+<p>
+Notice again that we use "ign0" predictions to indicate the binding
+strength of the operators of the object language. We have put these
+into the same line as the defined nonterminal symbol to emphasize
+them.
+<p>
+<verb>
+let Exp  :ign0: Exp1
+:if  : "if" Exp1 "then" Exp "else" Exp
+
+let Exp1 :ign0: Exp2
+:les : Exp2 "&lt;" Exp2
+:equ : Exp2 "=" Exp2
+
+let Exp2 :ign0: Exp3
+:add : Exp2 "+" Exp3
+:sub : Exp2 "-" Exp3
+
+let Exp3 :ign0: Exp4
+:mlt : Exp3 "*" Exp4
+:div : Exp3 "/" Exp4
+
+let Exp4
+:neg : "-" Exp4          ; Unary minus
+:ign0: "(" Exp ")"
+:int : Int               ; Literal
+:var : Ide               ; Variable
+:app : Ide "(" Exps ")"  ; Application
+</verb>
+
+<sect2>Productions for Lists
+<p>
+The grammar finally ends with the syntax of several lists that were
+previously used. Notice the occurrence of 'cons' and 'nil' productions,
+which hint the grammar abstractor.
+<p>
+<verb>
+; Lists
+
+let Args
+:nil :
+:cons: Ide Args0
+let Args0
+:nil :
+:cons: "," Ide Args0
+
+let Exps
+:nil :
+:cons: Exp Exps0
+let Exps0
+:nil :
+:cons: "," Exp Exps0
+
+let Dfns
+:nil :
+:cons: Dfn Dfns
+
+let Runs
+:nil :
+:cons: Run Runs
+</verb>
+
+<sect1>The generated abstract grammar
+<p>
+Having applied the '<url url="cmd_styx.htm" name="styx">' program as indicated above,
+we yield the following abstract grammar.
+<p>
+The most noteworthy fact is, that it is much shorter and ways more handy
+then the concrete one from which it originates.
+<p>
+Two highlights are to be emphasized. First, like in the calculator grammar,
+the surface property of binding strength of the operators has been removed.
+As a result, we gain only a single, handy expression type. The second effect
+is that the list productions could have been removed completely, leaving
+only the trailing asterisk ("*") as a list type operator or indicator.
+Styx is well able to derive lists of lists of any degree, so you are not
+bound to possible inabilities of the tool here.
+<p>
+<verb>
+/* ------------------------------------------------------------------------ */
+/*                                                                          */
+/* [pl0.abs]                   Abstract Grammar                             */
+/*                                                                          */
+/* ------------------------------------------------------------------------ */
+
+LANGUAGE pl0
+
+TOKENS
+
+  Int, Ide
+
+TYPES
+
+  pl0        = Start_Program(Program)
+
+  Program    = pgm(Dfn*, Run*)
+
+  Dfn        = fun(Ide, Ide*, Exp)
+
+  Run        = run(Exp)
+
+  Exp        = if(Exp, Exp, Exp);
+               div(Exp, Exp);
+               var(Ide);
+               equ(Exp, Exp);
+               neg(Exp);
+               app(Ide, Exp*);
+               mlt(Exp, Exp);
+               int(Int);
+               les(Exp, Exp);
+               sub(Exp, Exp);
+               add(Exp, Exp)
+
+</verb>
+<p>
+As an addition to the earlier described development task, we have to admit,
+that is was not completely right with regard to the use of the abstract grammar,
+at least during design.
+<p>
+In fact, we design the abstract grammar first, only sketching the surface
+grammar. The design of a proper concrete grammar is typically a production
+step by itself. Similar, compare writing a document versus typesetting
+it.
+<p>
+While a nice depth grammar makes the design handy to the compiler author,
+a proper surface grammar help much to make the language usable for their
+users.
+
+<sect1>An example PL0 program
+<p>
+A grammar does not help much without a "typical" example.
+Here is the one from the Example02:
+<p>
+<verb>
+#!/p/bing/pl0
+
+# [test.pl0] A PL0 example "program"
+
+# first we define a few operation the hard way.
+
+fun add(a,b) = if a = 0 then b else 1 + add(a-1,b)
+
+fun times(a,b) = if a = 0 then 0 else add(times(a-1,b),b)
+
+fun fact(n) 
+  = if n = 0 then
+      1
+    else
+      times(n, fact(n-1))
+
+fun profile() = fact(6)
+
+# now try the evaluator with primitive ground expressions
+
+run 1
+run 1+3
+run 2*7-1
+
+# now try the evaluator using functions
+
+run add(0,3)
+run add(1,3)
+run add(7,3)
+
+run times(7,3)
+
+# following an example for profiling.
+# It may take a moment to compute, but
+# executes 2839 function calls and
+# evaluates a total of 23347 expressions.
+
+# on a fast machine, you might want to
+# increase the argument slightly to gain
+# a visible effect. Then notice that the
+# interpreter is not yet optimized for
+# speed.
+
+run profile()
+</verb>
+
+<sect1>The Semantic of PL0 programs
+<p>
+Although the intended meaning of the programs should already be intuitively
+clear from the preceding language example, we cannot seriously continue
+without explicifying it at least descriptive.
+<p>
+Hereby we have carefully to distinguish between the <em>Static Semantic</em>,
+which defines the <em>wellformedness</em> of PL0 programs in a sense, that
+they can be compiled without problems, and the <em>Dynamic Semantic</em>, the
+actual meaning of the program when executed.
+<p>
+Reading the article the first time, one might find this section nothing
+but lengthy and self evident. Be welcome to skip it, but keep in
+mind to come back to it after having scanned the implementation of the
+language, since this chapter is nothing but a pre-formalized version of
+the program to come.
+<p>
+Additionally, it provides a little of the development methodology, we
+use when designing a language and an interpreter, though mostly provided
+in the form of an example.
+
+<sect2>The Static Semantic
+<p>
+In programming languages, the static semantic typically deals with scope and
+type rules. Since PL0 is a typeless language (all data will be integer), we
+have only few to care for:
+
+<sect3>Uniqueness of defining occurrences
+<p>
+Requirements like the following are often called "scope" rules. They define
+the textual range within which a defining identifier can excludes other with
+the same name. Scope rules guarantee the existence of a proper mapping to be
+associated with the scope that allows to find a unique definition for that
+name.
+<p>
+<enum>
+<item>Every occurrence of a function name in the head of a function
+      definition has to be unique within the whole program.
+<item>Every occurrence of a variable in the argument list of a function
+      definition has to be unique within this list.
+</enum>
+<p>
+While the scope of the function names is "global" and the names cannot
+be reused within the whole program, the scope of the arguments is "local",
+i.e. they can be reused in another function (as we happily do in our
+example program).
+<p>
+Note that function and variables name are identified in different scopes
+and their applied occurrences are syntactically so disjunctive, that one can
+name a variable like a function without provoking possible conflicts. We
+have not exploit this opportunity in the example, though.
+
+<sect3>Definiteness of applied occurrences
+<p>
+With properly scoped definitions in hand, we can assign applied occurrences
+to their definitions. The textual region within an identifier can find its
+definition is sometimes called the "reach". As soon as we have types that
+contain names (like records or structures), the reach can become hard to
+determine and is then only recursively definable with the type checker.
+Our little example is not so difficult, though, and we have only two simple
+rules:
+<p>
+<enum>
+<item>Every applied occurrence of a function name in an expression must
+      have a defined occurrence in the head of a function definition.
+<item>Every applied occurrence of a variable in an expression has to have
+      a defined occurrence as an argument within a surrounding function
+      definition.
+</enum>
+<p>
+As a consequence of the above rule, function names can be reached in the
+"run" expressions of the program, while the use of variable names is
+completely prohibited there.
+<p>
+Another consequence is, that function definitions do not have to precede
+their application textually, they can in fact come in any suiting order.
+
+<sect3>Arity compatibility
+<p>
+This last requirement is a sort of preview of type checking. Usually,
+applying an introduced identifier has consequences in the context of its
+application. We have only a single such fact in PL0:
+<p>
+<enum>
+<item>Every expression list in a function application in an expression
+      must have the same length as the argument list in the head of
+      the corresponding function definition.
+</enum>
+<p>
+Though we could easily drop this requirement, for instance by putting
+default values in omitted arguments and dropping superfluous ones, 
+we choose to request that the proper amount of arguments is in fact passed.
+
+<sect2>Use of the Static Semantic
+<p>
+All these conditions to be asserted for a PL0 program to become well-formed
+have not use for themselves. Instead they are properties that will be
+used as preconditions (given) before we can come to dynamic semantic, to
+the meaning of the program itself.
+<p>
+This means that all these properties can safely be assumed and used when
+defining the dynamic semantic and later actually running a well-formed
+program.
+<p>
+This is very convenient, since from now on, we do not have to be concerned
+anymore whether a name is defined or not or if we have enough arguments
+for the calls. This part is done.
+
+<sect2>The Dynamic Semantic
+<p>
+After all those preparations, we can finally define the meaning of everything.
+Again we do this textually, mechanically passing the productions of the
+abstract grammar.
+<p>
+<enum>
+<item>A program is executed by evaluating the "run" expressions in source
+      order and printing their results.
+</enum>
+<p>
+The evaluation of an expression always (modulo overflows, division by
+zero and endless recursion) yields an integer value and the meaning of
+an expression depends on its production:
+<p>
+<enum>
+<item>an if-expression is evaluated by executing its first expression
+      and if this comes out to be zero, the last expression is evaluated
+      and yields the result. Otherwise the middle expression is evaluated
+      to become the result.
+<item>in all other expressions containing subexpressions these subexpressions
+      are evaluated.
+<item>if the expression has an arithmetic or relational operator
+      (div,mlt,add,sub,neg, les,equ), their corresponding C equivalent
+      (/,*,+,-,-,&lt;,=) is applied onto the values of the subexpressions
+      and gives the result of the whole expression
+<item>An integer literal evaluates to its denoted value.
+<item>A function application is evaluated by evaluating the body of the
+      corresponding definitions with all variable occurrences substituted
+      by the values provided by the evaluated actual parameter list.
+      The variables and values are thereby paired in their textual order.
+<item>Evaluation of variables is already covered by the preceding rule.
+</enum>
+
+<sect1>Implementing a PL0 interpreter
+<p>
+Having the semantics defined, writing the interpreter is more or less
+a direct translation of the English text to C using the terms of the Styx
+library. So most of this chapter is to introduce the right words and to
+describe some of the concepts of the Styx library.
+<p>
+All the program fragments below come from the file 'pl0.c' of the
+Example02 example. One may want to scan through this file to see
+how these parts fit together into a single program.
+<p>
+<sect2>Implementing the static semantics.
+<p>
+<em>simply example how to deal with list, symbol and maps.</em>
+<p>
+<verb>
+static MAP(symbol, pl0Dfn) collectFunctions(pl0Program src, bool emitErrors)
+/* collect global definitions, emit duplicate errors if required */
+{ GLS_Lst(pl0Dfn) dfns; GLS_Lst(pl0Dfn) dit;
+  MAP(symbol, pl0Dfn) glo = MAP_newPrimMap(); // global environment
+  bug0( pl0Program_pgm(src,&amp;dfns,_), "program expected");
+  GLS_FORALL(dit,dfns)
+  { GLS_Tok fid; pl0Dfn dfn = GLS_FIRST(pl0Dfn,dit);
+    bug0( pl0Dfn_fun(dfn, &amp;fid,_,_), "expecting fun Dfn");
+    if (MAP_defined(glo,GLS_Tok_symbol(fid)))
+    {
+      if (emitErrors)
+        PT_error(fid,"Function '%s' is already defined",GLS_Tok_string(fid));
+    }
+    else
+      MAP_define(glo,GLS_Tok_symbol(fid),dfn);
+  }
+  return glo;
+}
+</verb>
+<p>
+<em>simply example how to deal use the meta-term system to traverse the
+derivation tree.</em>
+<p>
+<verb>
+static void StaticSemantic(pl0Program src)
+/* Collect definitions and validate scoping rules */
+{
+  PT_Itr it; pl0Dfn d; pl0Exp e;
+  MAP(symbol, pl0Dfn) glo; // global environment.
+  MAP(symbol, void) local; // local environment, a set really.
+  //
+  // Pass 1
+  //   - function names are unique
+  //   : collect them in 'glo' for later use
+  //
+  glo = collectFunctions(src,True);
+  //
+  // Pass 2
+  //   - applied function occurences are defined ...
+  //   - ... and have the right arity
+  //   - formal parameter names are unique
+  //   - applied identfiers refer to formal parameters
+  //
+  local = NULL; // only to make gcc happy
+  PT_FORALL(it,src)
+  { PT_Term t = PT_termIT(it);
+
+    if (PT_stateIT(it) == PT_PRAE &amp;&amp; pl0_Dfn(t,&amp;d) )
+    // start of function definition
+    { GLS_Lst(GLS_Tok) fpl; GLS_Lst(GLS_Tok) fpit;
+      bug0( pl0Dfn_fun(d, _,&amp;fpl,_), "expecting fun Dfn");
+      local = MAP_newPrimMap(); // create local environment
+      GLS_FORALL(fpit,fpl)
+      { GLS_Tok fp = GLS_FIRST(GLS_Tok,fpit);
+        if (MAP_defined(local,GLS_Tok_symbol(fp)))
+          PT_error(fp,"Parameter '%s' is already defined",GLS_Tok_string(fp));
+        else
+          MAP_define(local,GLS_Tok_symbol(fp),_);
+      }
+    }
+    
+    if (PT_stateIT(it) == PT_POST &amp;&amp; pl0_Dfn(t,&amp;d) )
+    // end of function definition
+    { 
+      MAP_freeMap(local); // drop local environment
+    }
+
+    if (PT_stateIT(it) == PT_PRAE &amp;&amp; pl0_Exp(t,&amp;e) )
+    // found expression
+    { GLS_Tok fid; GLS_Tok vid; GLS_Lst(pl0Exp) apl;
+
+      if (pl0Exp_app(e, &amp;fid, &amp;apl)) // applied function
+      {
+        // check for defined occurence
+        if (MAP_defined(glo,GLS_Tok_symbol(fid)))
+        { GLS_Lst(GLS_Tok) fpl;
+          bug0( pl0Dfn_fun( MAP_apply(pl0Dfn,glo,GLS_Tok_symbol(fid)), _,&amp;fpl,_),
+                "fun expected");
+          // check for matching arity
+          if (GLS_Lst_length(fpl) != GLS_Lst_length(apl))
+            PT_error(e,"arity error");
+        }
+        else
+          PT_error(e,"undefined function '%s'",GLS_Tok_string(fid));
+      }
+      
+      if (pl0Exp_var(e, &amp;vid)) // applied variable
+      {
+        // check for defined occurrence
+        if (!MAP_defined(local,GLS_Tok_symbol(vid)))
+          PT_error(vid,"Undefined variable '%s'",GLS_Tok_string(vid));
+      }
+    }
+  }
+  MAP_freeMap(glo);
+}
+</verb>
+
+<sect2>Implementing the dynamic semantics.
+<p>
+<em>This "machine" part does the actually interpreter task.</em>
+<p>
+<verb>
+static int calls; // profiling function calls
+static int evals; // profiling evaluated expression
+</verb>
+<p>
+<em>The function 'eval' uses the generated pl0 language interface to evaluate a pl0 expression.</em>
+<p>
+<em>First the expression type was determined by applying the appropriate destructor. Then dependent 
+on the type the proper operation was applied to the recursively evaluated subexpressions.</em> 
+<p>
+<em>The values of variables and actual function parameters are taken from the local context whereas 
+function definitions will be looked up in the global context.</em>
+<p>
+<em>For the profiling task the function tracks the number of function calls and evaluated expression.</em>
+<p>
+<verb>
+static int eval(pl0Exp ex, MAP(symbol,pl0Dfn) glo, MAP(symbol,int) loc)
+/* a standard expression evaluator */
+{ pl0Exp ex1, ex2, ex3; GLS_Tok tok; GLS_Lst(pl0Exp) exps;
+  evals++; // profile
+  if( pl0Exp_equ(ex, &amp;ex1,&amp;ex2) ) return eval(ex1,glo,loc) == eval(ex2,glo,loc); else
+  if( pl0Exp_les(ex, &amp;ex1,&amp;ex2) ) return eval(ex1,glo,loc) &lt;  eval(ex2,glo,loc); else
+  if( pl0Exp_div(ex, &amp;ex1,&amp;ex2) ) return eval(ex1,glo,loc) /  eval(ex2,glo,loc); else
+  if( pl0Exp_mlt(ex, &amp;ex1,&amp;ex2) ) return eval(ex1,glo,loc) *  eval(ex2,glo,loc); else
+  if( pl0Exp_sub(ex, &amp;ex1,&amp;ex2) ) return eval(ex1,glo,loc) -  eval(ex2,glo,loc); else
+  if( pl0Exp_add(ex, &amp;ex1,&amp;ex2) ) return eval(ex1,glo,loc) +  eval(ex2,glo,loc); else
+  if( pl0Exp_neg(ex, &amp;ex1) )      return - eval(ex1,glo,loc);                    else
+  if( pl0Exp_int(ex, &amp;tok) )      return atoi(GLS_Tok_string(tok));              else
+  if( pl0Exp_var(ex, &amp;tok) )      return MAP_apply(int,loc,GLS_Tok_symbol(tok)); else
+  if( pl0Exp_if(ex, &amp;ex1,&amp;ex2,&amp;ex3) ) return eval(eval(ex1,glo,loc)?ex2:ex3,glo,loc);
+  else
+  if( pl0Exp_app(ex, &amp;tok,&amp;exps) )
+  { int res; GLS_Lst(GLS_Tok) fpit, fpl; pl0Exp body;
+    MAP(symbol,int) newloc = MAP_newPrimMap();
+    pl0Dfn dfn = MAP_apply(pl0Dfn,glo,GLS_Tok_symbol(tok));
+    bug0( pl0Dfn_fun( dfn, _, &amp;fpl, &amp;body), "function expected");
+    calls++; // profile
+    // evaluate actual parameter list creating new local environment
+    GLS_FORALL(fpit,fpl)
+    { GLS_Tok fp = GLS_FIRST(GLS_Tok,fpit);
+      pl0Exp  ap = GLS_FIRST(pl0Exp,exps);
+      MAP_define(newloc,GLS_Tok_symbol(fp),eval(ap,glo,loc));
+      exps = GLS_REST(pl0Exp,exps);
+    }
+    res = eval(body,glo,newloc); // recursively evaluate function body
+    MAP_freeMap(newloc); // free new local environment
+    return res;
+  }
+  else
+  {
+    PT_error(ex,"unrecognized expression type");
+    return 0; // fault, but we continue anyway.
+  }
+}
+</verb>
+<p>
+<em>The main function 'DynamicSemantic' executes the given pl0 program.</em>
+<p>
+<em>First all function definitions will be collected and used as global context.</em>
+<p>
+<em>In the following loop all "runable" expressions will be evaluated and printed 
+with the help of the functions 'eval' and ppExp.</em>
+<p>
+<em>For the convenient iteration of term lists the <url url="gls.htm" name="generic language interface"> 
+provides the macro 'GLS_FORALL(ListIteratorVariable,ListVariable)'</em>.
+<p>
+<verb>
+static void DynamicSemantic(pl0Program src)
+/* semantic of the program: evaluate and print each "run" expression */
+{ GLS_Lst(pl0Run) runs; GLS_Lst(pl0Run) runit;
+  MAP(symbol,pl0Dfn) glo = collectFunctions(src,False); // global environment
+  MAP(symbol,int) loc = MAP_newPrimMap(); // empty local environment
+  bug0( pl0Program_pgm(src,_,&amp;runs), "program expected");
+  GLS_FORALL(runit,runs)
+  { pl0Exp exp; pl0Run run = GLS_FIRST(pl0Run,runit);
+    bug0( pl0Run_run(run, &amp;exp), "expecting run Run");
+    calls = 0; evals = 0;              // init execution profile
+    printf("running: "); ppExp(exp);   // pretty print expression
+    printf(" = %d",eval(exp,glo,loc)); // calculate and print result
+    printf(" [%d calls, %d expressions evaluated]\n",calls,evals);
+  }
+  MAP_freeMap(loc);
+  MAP_freeMap(glo);
+}
+</verb>
+<p>
+<verb>
+static void ppExp(pl0Exp exp)
+/* somewhat misused pretty printer */
+/* This is only for demonstration purposes, so we don't care to get the   */
+/* parser table and initialize things here over and over. We do not even  */
+/* reformat. See [stypp.c] for how to do it the right way. For diagnostic */
+/* purposes, one will certainly prefer the PT_print routine.             */
+{ PLR_Tab plr = PLR_get_pl0(); // Get parser table
+  PTP_init(plr);               // Init Pretty Printer
+  PTP_pp(exp,stdout);          // slightly abused
+  PTP_quit();                  // Done Pretty Printer
+  PLR_delTab(plr);             // Free parser table
+}
+</verb>
+
+<sect2>Actual parsing and overall program organization
+<p>
+<verb>
+/* ------------------------------------------------------------------------ */
+/*                                                                          */
+/* [pl0.c]                      PL0 Interpreter                             */
+/*                                                                          */
+/* Copyright (c) 2000 by Doelle, Manns                                      */
+/* ------------------------------------------------------------------------ */
+
+#include "stdosx.h"  // General Definitions (for gcc)
+#include "ptm_gen.h" // General Parsing Routines
+#include "ptm_pp.h"  // Pretty Printer
+#include "gls.h"     // General Language Services
+#include "hmap.h"    // Datatype: Finite Maps
+#include "symbols.h" // Datatype: Symbols
+
+#include "pl0_int.h" // grammar interface
+#include "pl0_lim.h" // scanner table
+#include "pl0_pim.h" // parser  table
+
+
+/* Auxiluary Functions ----------------------------------------------------- */
+
+/* Static Semantics -------------------------------------------------------- */
+
+/* Dynamic Semantic -------------------------------------------------------- */
+
+/* Main Program ------------------------------------------------------------ */
+
+void PL0(string fileid)
+/* initialize and get source */
+{ Scn_T scn; Scn_Stream cstream; // scanner table &amp; configuration
+  PLR_Tab plr; PT_Cfg PCfg;      // parser  table &amp; configuration
+  PT_Term srcterm;               // the source term
+  //
+  // init modules
+  //
+  MAP_init(); initSymbols(); pl0_initSymbols();
+  //
+  // Parse the source file
+  //
+  Scn_get_pl0(&amp;scn);                       // Get scanner table
+  cstream = Stream_file(scn,"",fileid,"");     // Open source file
+  plr     = PLR_get_pl0();                     // Get parser table
+  PCfg    = PT_init(plr,cstream);              // Create parser
+  srcterm = PT_PARSE(PCfg,"Program");          // Parse
+  PT_setErrorCnt(PT_synErrorCnt(PCfg));        // Save error count
+  PT_quit(PCfg);                               // Free parser
+  Stream_close(cstream);                       // Close source stream
+  Stream_free(cstream);                        // Free source stream
+  Scn_free(scn);                               // Free scanner table
+  PLR_delTab(plr);                             // Free parser table
+  //
+  // done parsing, proceed if no syntax errors
+  //
+  if (PT_errorCnt() == 0)
+  { pl0Program src;
+    // get tree for start symbol
+    bug0( pl0_Start_Program((pl0)srcterm,&amp;src), "Program expected");
+    // check &amp; execute program
+    StaticSemantic(src);
+    if (PT_errorCnt() == 0) DynamicSemantic(src);
+  }
+  if (PT_errorCnt() > 0)
+  {
+    fprintf(stderr,"Total %d errors.\n",PT_errorCnt());
+    STD_ERREXIT;
+  }
+  //
+  // release allocated objects
+  //
+  PT_delT(srcterm);
+  pl0_quitSymbols();
+  freeSymbols();
+  MAP_quit();
+}
+
+int main(int argc, string argv[])
+{
+  if( argc > 1 ) PL0(argv[1]);
+  else fprintf(stderr,"missing source\n");
+  BUG_CORE; // check for object lefts over
+  return 0;
+}
+</verb>
+
+<sect>Further aspects
+<p>
+Within this chapter we'll give a short overwiew on further aspects and possibilities 
+offered by Styx like error recovery, persistence, unicode, preprocessing, early reduction and
+pretty printing. 
+
+<sect1>Some notes on dangling else grammars and abstraction
+<p>
+The following example illustrates the process to construct an abstract grammar with dangling "else".
+<p>
+<verb>
+; Dangling Else Grammar -- not obvious
+
+; Note that a grammar with dangling "else" can be properly normalized 
+; in Styx with regular means, though the construct is not obvious on 
+; first glance.
+
+; The abstract grammar comes out normalized as we want it:
+;
+;  Stm     = stmt;
+;            ifte(Cond, Stm, Stm);
+;            loop(Cond, Stm);
+;            seri(Stm*);
+;
+; We have normalized "if (C) Stm" to "if (C) Stm else ;".
+; Additionally, the empty statement (";") is normalized to
+; the empty compound ("{}").
+
+; Two problems to solve here:
+;
+; 1 - (difficult) - dangling else grammar
+; 2 - (easy     ) - normalization
+
+; In the grammar below, we have simplified all non-compound statements to 
+; "S" and the empty statement to "noop".
+;
+; Note that we have added the conditions after the "if" and "while" tokens 
+; only to make the grammar to appear a little more C-like, though they do not 
+; contribute to the problem.
+
+; The obvious consequence of the dangling-if, which is difficult to see, is 
+; the fact that instead of the intuitively expected two rules (one with and 
+; one without "else") a third rule has to be introduced for an "if" that
+; always demands an else part. This occurs in the then-branch of each 
+; if-clause having an "else".
+
+; Note that the "while" and "for" clauses have to be doubled in "Stm" and 
+; "Stm1", too. This is because a while-clause in the then-part of an if-clause 
+; with an else-part demands a containing if-clause to have an else-part, too.
+;
+; To illustrate the interesting cases:
+;
+;    if (C)
+;      while (C)
+;        if (C)
+;          S;
+;        else
+;          S;
+;    else
+;      S;
+;
+; or:
+;
+;    if (C)
+;      while (C)
+;        if (C)
+;          S;
+;
+; but one cannot write:
+;
+;    if (C)
+;      while (C)
+;        if (C)
+;          S;
+;    else
+;      S;
+;
+; as this would mean:
+;
+;    if (C)
+;      while (C)
+;        if (C)
+;          S;
+;        else
+;          S;
+;
+; We have to use parenthesis to express the former compound:
+;
+;    if (C)
+;      while (C)
+;      {
+;        if (C)
+;          S;
+;      }
+;    else
+;      S;
+;
+; The same holds of cause for the above example with the while-clauses omitted.
+;
+; The unobvious consequence of the dangling "else" is that the compound clauses 
+; between "if" and "else" have a different grammar than the top level clauses, 
+; as the inner demand an "if" to have an "else" in any case, while the outermost 
+; do not. For this reason it is unlikely to get such a grammar right on the 
+; first attempt.
+;
+; Note that all these complications are an intrinsic problem of dangling-else 
+; grammars and not caused by the Styx, which does pure BNF. One might contemplate, 
+; whether breaking shift-reduce or reduce-reduce conflicts, as allowed e.g. 
+; within Yacc, would make such a situation any clearer.
+;
+; Grammars with dangling "else" and loop-clauses like C have, as another 
+; disadvantage, the typographical problem, that one need to insert parenthesis as 
+; soon as an extra statement has been added to the bodies. This, together with the 
+; binding problems, might be a reason why some prefer to always write parenthesis
+; in conjunction with these statements.
+
+Language ife
+
+Regular Grammar
+
+; Character Set
+
+  ign B  = ' \n'
+  tok T  = "if" | "while" | "(" | "C" | ")" | "S" | "else" | ";" | "{" | "}"
+
+Context Free Grammar
+
+  start Source
+  :pgm : Stm
+
+  let Stm
+  :ign1: XIf
+  :ifte: "if" "(" Cond ")" Stm1 "else" Stm
+  :loop: "while" "(" Cond ")" Stm
+  :ign0: Stm2
+
+  let XIf
+  :ifte: "if" "(" Cond ")" Stm StmNoop  ; normalize: if (C) Stm --> if (C) Stm else {}
+
+  let Stm1
+  :ifte: "if" "(" Cond ")" Stm1 "else" Stm1
+  :loop: "while" "(" Cond ")" Stm1
+  :ign0: Stm2
+
+  let Stm2
+  :stmt: "S" ";"
+  :seri: "{" Stms "}"
+  :ign1: StmNoop ";"    ; normalize ";" -> {}
+
+  let Stms
+  :nil :
+  :cons: Stm Stms
+
+  let StmNoop
+  :seri: StmSkip
+  let StmSkip
+  :nil :
+
+  let Cond
+  :cond: "C"
+</verb>
+<p>
+
+<sect1>The error recovery mechanism
+<p>
+Normally, a parser will stop the parse process in the case of a syntax error. This is the default behavior.
+There exists several error recovery methods which allow a parser to continue the parse process after a 
+syntax error and thus behave more user-friendly. The Styx error recovery mechanism differs from that one 
+provided by yacc-compatible parsers.
+<p>
+The yacc error recovery mechanism is based on special error productions of the form
+<em>Nonterminal --> <tt>error</tt> (Token|Nonterminal) ...</em>, which the user explicitly adds to the
+grammar specification. They will be treated like normal productions. In the case of an error
+the parser continues to pop elements from its stack until reaching a top state whose corresponding
+element set contains an error production. Next the parser shifts a fictitious error token onto the 
+stack. If the error production looks like <em>Nonterminal --> <tt>error</tt></em> the parser performs an 
+"error" reduction and ignores the next input symbols until the normal parse process could continue.
+Otherwise the parser consumes as much input symbols until the error production could be reduced and then 
+continues with the normal parse process.
+<p>
+The Styx parser uses a variant of the panic-mode error recovery mechanism. There is no need for special
+user-defined error productions. This method tries to isolate the part of the sentence which contains the 
+syntax error. The parser looks for a state in its stack for which a goto-action to a single nonterminal
+exists and removes the other states. The next input symbols will be skipped until the first one which can 
+follow the above mentioned nonterminal. Now the parser performs an "error" reduction, pushes the resulting 
+state of the goto-action onto its stack and continues with the normal parse process.
+<p>
+The Styx variant of this method uses only such nonterminals as resumption points which are declared as those
+in the corresponding <ref id="error option" name="grammar definition">.
+<p>
+
+<sect1>Using persistence
+<p>
+Among others, persistence is a proper means to split a compilation process into two parts:
+<itemize>
+<item>
+The "compiler" does the parsing, static semantic and produces some kind of p-code or simply
+stores the derivation tree.
+<item>
+The "runtime system" interprets the result of the first part, i.e. reads and executes the p-code.
+</itemize>
+<p>
+<sect2>Binary image library
+<p>
+Styx features such a proceeding with the <url url="binimg.htm" name="binary image library"> which
+contains a set of functions to store data types in a machine-independent, compressed and encrypted form.
+<sect3>Supported data types
+<p>
+<verb>
+  Actually the following data types are supported.
+
+  | Type     | Bytes | C-Type                 |
+  +------------------+------------------------+----------------------------
+  | Byte     |     1 | unsigned char          |
+  | Word     |     2 | unsigned short int     |   Intrinsic C-data types
+  | Long     |     4 | signed long int        |
+  | ULong    |     4 | unsigned long int      |
+  | Int64    |     8 | signed long long int   | if supported
+  | UInt64   |     8 | unsigned long long int | if supported
+  +------------------+------------------------+----------------------------
+  | String   |       | (char *)               |   Strings
+  | Binary   |       | c_bstring              |   binary Strings
+  | Symbol   |       | symbol                 |   Symbols
+  | Function |       | (? (*)())              |   Functions
+  | Abstract |       | (?)                    |   "Objects"
+  | StdCPtr  |       | (?*)                   |   References
+</verb>
+<p>
+For each data type the library provides a pair of <em>put</em>- and <em>get</em>-function.
+<p>
+<sect3>Image representation format
+<p>
+<itemize>
+<item>Intrinsic C-data types
+<p>
+A <tt>Byte</tt> is treated as "atomic" data type and stored as is, whereas a <tt>Word</tt> in the
+order low-Byte and high-Byte. Analogous <tt>Long</tt> as well as <tt>ULong</tt> will be separated 
+into low-Word and high-Word, and so on.
+<p>
+<item>Binary, strings &amp; symbols
+<p>
+The same representation applies to a <tt>String</tt>, <tt>Binary</tt> and <tt>Symbol</tt>. First
+the length i.e. number of bytes is stored and then the data bytes in their respective order.
+<p>
+<item>Functions
+<p>
+For technical reasons the <tt>Function</tt> must be defined in a <url url="glo_tab.htm" name="global table">
+and is represented by a symbolic name representing the key to the function table entry.
+<p>
+<item>Abstract data types
+<p>
+In the case of a generic data type ( e.g. <tt>List(Alpha)</tt> ) a <em>put</em>-function typically 
+looks like:
+<verb>
+  |  void putList(List(Alpha) v, void putAlpha(Alpha v))
+  |  {
+  |    putInt(List_length(v));
+  |    for (; !List_null(v); v = List_rest(v))
+  |      putAlpha(List_first(Alpha,v));
+  |  }
+</verb>
+<p>
+In the case of a heterogeneous parameter type ( <tt>"Object"</tt> ) the user has to save the corresponding 
+<em>get</em>-function together with the value.
+<p>
+<item>References
+<p>
+References to multiple or cyclic referenced structures ( except symbols and functions ) can't be simply 
+expanded if the representation should be unique. A <tt>Reference</tt> is treated in the following way.
+In the case of the first reference the structure value is stored, otherwise a reference number to this
+structure.
+</itemize>
+<p>
+<sect3>Header information
+<p>
+Each binary image starts with some header information which contains, for example, the version of the image.
+<p>
+<sect3>Compression
+<p>
+The applied method is a variant of the Lempel-Ziv-Welch compression method.
+<p>
+<sect3>Encryption
+<p>
+The applied encryption method is a variant of the so-called linear congruence methods.
+<p>
+<sect2>Examples
+<p>
+<em>This is to become the section about Example03. For convenience,
+    we first include the related README here, literally</em>
+<p>
+<verb>
+[README] Example 03
+
+This example is a quick variation of the interpreter in Example 02.
+
+It demonstrates persistence as a feature of Styx.
+All the modification with regard to Example 02 is to split
+the [pl0.c] program apart into two parts:
+
+1) A "compiler" [pl0c.c], which parses the source,
+   does the static semantics, stores the derivation
+   tree into a file.
+
+2) A "run time system" [pl0r.c] which reads and
+   executes the so-produced binary image.
+
+"compile" [testpl0.pl0] by 'pl0c testpl0' yielding [testpl0].
+
+If you browse the file, you find it starting with
+something like "#!/p/ping/pl0r". You may want to
+adjust this path issued in [pl0c.c] to the location
+of the pl0r binary and do a 'chmod +x testpl0' for
+a real executable.
+
+Otherwise run it using 'pl0r testpl0'.
+
+One may argue, that this is not a "real" compiler,
+which should create pseudo code, at least. This is
+true, but writing an interpreter for pseudo code that
+is significantly faster then this example is not so
+trivial as one might think.
+
+Perhaps we will continue later with an example of a 
+proper to-pseudo-code compiler and a nice little machine, 
+but this may never be necessary, since there is something 
+as strong as Styx itself on top of it, which may soon be 
+ready for prime time.
+</verb>
+
+<sect1>Unicode support
+<p>
+The Styx scanner &amp; parser generator should be able to deal with
+unicode based language definitions and scan streams. Since version 1.5 
+each of the released programs support unicode. This capability was added 
+later and isn't yet tested very well.
+<p>
+First you have to design the proper grammar. Styx itself doesn't
+accept unicode specifications. You define <ref id="unicode literals" name="unicode tokens and keywords">
+with the help of the long form of the hexadecimal literal notation.
+The generated scan tables are in any case based on wide characters.
+<p>
+Scan streams which correspond to such a language definition must be
+unicode based, too. They can be created with the function 'Stream_Itr_new'
+of the <url url="scn_base.htm" name="scan stream interface">.
+<p>
+The scanner converts the scanned unicode tokens and keywords into equivalent 
+multibyte character ( UTF-8 ) strings and then into symbols. This will be 
+the final token and keyword representation within the preprocessing facility 
+( see next section ), parser and derivation tree. 
+Note that in this case the diagnose functions like 'PT_error' 
+( see <url url="ptm_gen.htm" name="parse term construction interface"> )
+expects UTF-8 based message parameters.
+
+<sect1>The preprocessing facility
+<p>
+<sect2>User-defined preprocessing
+<p>
+The <url url="scn_base.htm" name="scan stream interface"> provides a hook for user-defined i.e.
+language-specific preprocessing.
+One activates preprocessing by specifying a proper handler ( see function 'Stream_premac_set' ).
+<p>
+In this case each time after the scanner separates a token and before this will be passed to the
+parser, for example, the specified handler is called. Depending on the preprocessing result the
+scanner behaves as follows:
+<itemize>
+<item>
+The token will be taken as is and passed to the calling (parser) function. This is the same behavior 
+when no handler was specified.
+<item>
+The token will be replaced by the result of the handler and passed to the calling (parser) function.
+<item>
+The scanner ignores the token and instead rescans the result character or string of the handler.
+<item>
+The handler returns the name of a file. In this case the scanner ignores the token and rescans the file.
+<item>
+The handler returns a character iterator. Again the scanner ignores the token and rescans the character
+iterator.
+<item>
+In any other cases the scanner ignores the token and continues with the separation of the next token.
+</itemize>
+<p>
+When the scanner rescans the preprocessing result of a token a new scan stream will be created and pushed
+onto an internal stack. On EOF at the main scan stream the scanner passes the EOF token to the calling 
+(parser) function. On EOF at the current scan stream on top of the internal stack the scanner pops the
+stream and continues with the next one on top of the stack.
+<p>
+The tracking of the token locations within substreams is performed relative to the rescanned token from 
+the upper stream. Its location is parts of the substream identifier.
+<p>
+
+<sect2>Standard (Styx-compliant) preprocessing
+<p>
+The <url url="scn_pre.htm" name="Styx preprocessor"> provides modularization, macro expansion and 
+conditional compilation - with the help of the above mentioned <ref id="macros" name="macro tokens">.
+The evaluation of the preprocessing macros takes place at scan time, so the parser didn't get any note
+of it.
+<itemize>
+<item>
+A token like <em>#include path</em> forces the scanner to scan the declared file. The search path
+can be configured outside the grammar specification.
+<item>
+The sequence <em>#macro</em> introduces a new macro definition with optional parameters. The name
+of the macro must belong to the identifier token class <em>Ide</em>. Whenever the preprocessor sees
+an identifier which equals the name of a previously defined macro the identifier along with the 
+optional list of actual parameters will be replaced by the rescan result of the expanded macro definition. 
+<item>
+The actual macro parameters must belong to one of the specified token classes. Each parameter must be
+filled by a specified delimiter character which is a <em>space</em> in the default case. In order
+to handle a token sequence as a single parameter one has to specify another delimiter character with
+a leading ' in front of it.
+<item>
+The preprocessing token <em>#ifdef</em> and <em>#ifndef</em> provide means for conditional compilation. 
+Depending on the existence ( non-existence ) of the declared macro the following source code until the
+corresponding <em>#else</em> or <em>#end</em> will be evaluated or not. Is is possible to define macros 
+outside the grammar specification.
+</itemize>
+<p>
+Following the steps below you can use this preprocessing facility within your language.
+<itemize>
+<item>
+First add the preprocessing tokens to your grammar specification. If they doesn't fit you can change the
+names of the tokens and / or change the #-keywords. Your grammar must specify an identifier token which
+can have an alternate name.
+<item>
+The Styx preprocessor must be initialized once with your changes. Next activate the it in the scan stream 
+by calling the above mentioned function 'Stream_premac_set' with the function 'SPP_premac' as parameter.
+After the scan and parse process release the Styx preprocessor resources.
+</itemize>
+
+<sect1>Using early reduction
+<p>
+The Styx parser supports early reduction, a facility that allows you to parse parts of a source.
+<p>
+If you, for example, designs a schema language like the DDL part of SQL with multiple start symbols for
+the database and table definition section, you can apply early reduction to retrieve each table definition
+as a separate derivation tree, even if they are combined in one source file.
+<p>
+A second example refers to the calculator from Example 01 and demonstrates the partial parsing of the 
+following expression list in the file 'explist.calc'.
+<p>
+<verb>
+1+2
+3-1
+6*6
+9/3
+</verb>
+<p>
+<em>When applying the command 'pim_test calc -early explist.calc' you will receive this result.</em>
+<p>
+<verb>
+Derivation Tree from Source : explist.calc
+
+[calc.Start_Command (1,1)
+ [Command.exp (1,1)
+  [Exp.add (1,1)
+   [Exp.ign0 (1,1)
+    [Exp1.ign0 (1,1)
+     [Exp2.int (1,1)
+      [Int (1,1) "1"]]]]
+   [Keyword (1,2) "+"]
+   [Exp1.ign0 (1,3)
+    [Exp2.int (1,3)
+     [Int (1,3) "2"]]]]]]
+
+Derivation Tree from Source : explist.calc
+
+[calc.Start_Command (2,1)
+ [Command.exp (2,1)
+  [Exp.sub (2,1)
+   [Exp.ign0 (2,1)
+    [Exp1.ign0 (2,1)
+     [Exp2.int (2,1)
+      [Int (2,1) "3"]]]]
+   [Keyword (2,2) "-"]
+   [Exp1.ign0 (2,3)
+    [Exp2.int (2,3)
+     [Int (2,3) "1"]]]]]]
+
+Derivation Tree from Source : explist.calc
+
+[calc.Start_Command (3,1)
+ [Command.exp (3,1)
+  [Exp.ign0 (3,1)
+   [Exp1.mlt (3,1)
+    [Exp1.ign0 (3,1)
+     [Exp2.int (3,1)
+      [Int (3,1) "6"]]]
+    [Keyword (3,2) "*"]
+    [Exp2.int (3,3)
+     [Int (3,3) "6"]]]]]]
+
+Derivation Tree from Source : explist.calc
+
+[calc.Start_Command (4,1)
+ [Command.exp (4,1)
+  [Exp.ign0 (4,1)
+   [Exp1.div (4,1)
+    [Exp1.ign0 (4,1)
+     [Exp2.int (4,1)
+      [Int (4,1) "9"]]]
+    [Keyword (4,2) "/"]
+    [Exp2.int (4,3)
+     [Int (4,3) "3"]]]]]]
+</verb>
+
+<sect1>Parsing from strings and special files
+<p>
+This ability enables, for example, a background service to parse client requests "on-the-fly".
+<p>
+The function 'Stream_string' of the <url url="scn_base.htm" name="scan stream interface"> 
+let you define strings as scan streams while the function 'Stream_line' is suitable for parsing
+from special files like pipes.
+<p>
+Look at Example 01 and 04 as examples for parsing from strings and special files.
+
+<sect1>Using the scanner alone
+<p>
+There isn't much to say here beside that it's possible. The following code fragment demonstrates
+how to do it.
+<p>
+<em>First load the scanner, either with the function 'Scn_get_&lt;language&gt;' from the generated 
+source file '&lt;language&gt;_lim.c' or from the corresponding binary image '&lt;language&gt;.lim' 
+with the function 'Scn_get' of the <url url="scn_io.htm" name="scanner primitives interface">. 
+After that create a scan stream using, for example, the function 
+'Stream_file' of the <url url="scn_base.htm" name="scan stream interface">.</em>
+<p>
+<verb>
+// ...
+#include "scn_base.h"
+#include "scn_io.h"
+// ...
+Scn_T      Scn;     // Scanner
+Scn_Stream cStream; // Scan stream
+int        i;
+// ...
+// scanner &amp; scan stream creation (see above)
+// ...
+// define EOF, error and token id's
+Stream_defEofId(cStream,-1);
+Stream_defErrId(cStream, 0);
+for (i = 1; i &lt; Scn_tokens(Scn); i++)
+{ string TokenName = Scn_tokid(Scn,i);
+  Stream_defTokId( cStream, TokenName, (short)i );
+  FreeMem(TokenName);
+}
+// ...
+// scan loop
+for ( Stream_next(cStream); Stream_ctid(cStream) >= 0; Stream_next(cStream) )
+{ string FileName   = symbolToString(Stream_cfil(cStream)),
+         TokenName  = Scn_tokid(Scn,Stream_ctid(cStream)),
+         TokenValue = symbolToString(Stream_csym(cStream));
+  long   Line       = Stream_clin(cStream),
+         Column     = Stream_ccol(cStream);
+// ...
+}
+// ...
+// scanner &amp; scan stream disposal
+Stream_close(cStream);
+Stream_free(cStream);
+Scn_free(Scn);
+</verb>
+<p>
+Finally, look at the source file [lim_test.c] of the <url url="cmd_lim_test.htm" name="scanner test program"> 
+for an application.
+
+<sect1>Integration of external scanner and parser
+<p>
+<sect2>Using the Styx parser with an external scanner
+<p>
+Basically, it's possible. The <url url="prs.htm" name="(low-level) parser interface"> is
+flexible configurable by appropriate user-defined handlers for the retrieval of the next token,
+the shift and reduce operations and the reporting of syntax errors.
+<p>
+The user-defined function 'get next token', which represents the interface between scanner and parser,
+must return -1 in the case of EOF, -2 or less in the case of an error or unknown token and in the case 
+of a token the correct index from the parse table.
+<p>
+<sect2>Using the Styx parser and term generation with an external scanner
+<p>
+From version 1.5 on it's possible to combine an externally defined scanner not only with the Styx parser
+but also with the term generation facility. All what you have to do is to provide the corresponding
+<url url="scn_abs.htm" name="external scanner interface">. Use the function 'PT_init_extscn' of the
+<url url="ptm_gen.htm" name="term generation interface"> to initialize parsing and term construction.
+<p>
+<sect2>Using the Styx term generation with an external scanner and parser
+<p>
+If you plan to use the term generation facility with an external scanner and parser, which is possible
+from version 1.5 on, you must provide 
+both the <url url="scn_abs.htm" name="external scanner interface"> and the 
+<url url="prs_abs.htm" name="external parser interface"> before calling the function 'PT_init_ext' of the 
+<url url="ptm_gen.htm" name="term generation interface"> to initialize parsing and term construction.
+<p>
+
+<sect1>Constructing and accessing a derivation tree
+<p>
+As already described in the previous chapters the derivation tree with the complete source information 
+will be automatically constructed during the parse process - with the help of the
+<url url="ptm_gen.htm" name="term generation interface">. The Styx compiler produces a C interface 
+'&lt;language&gt;_int.c' to the abstract syntax tree, which in most cases will be the preferred access method,
+along with the <url url="gls.htm" name="generic language support">. 
+<p>
+In order to perform meta-operations on arbitrary derivation trees corresponding to different languages 
+you'll need dynamic access to the concrete syntax tree. The Styx framework comes along with generic methods 
+for these purposes.
+The <url url="ptm.htm" name="term interface"> provides basic operations needed to construct and access
+a derivation tree. Beside functions for the retrieval of node information it contains a 
+<em>"depth first"</em> and a <em>"breast first"</em> tree iterator - useful for the iteration of concrete
+syntax trees. 
+
+<sect1>Meta-operations
+<p>
+Styx supports the implementation of generic, language independent services. Examples are the
+<url url="cmd_styx.htm" name="Styx compiler"> itself as well as the 
+<url url="cmd_lim_test.htm" name="scanner"> and <url url="cmd_lim_test.htm" name="parser"> 
+test programs.
+<p>
+<sect2>Dynamic loading and execution of tables
+<p>
+The <url url="scn_io.htm" name="scanner primitives interface"> provides several functions to load
+a scan table from a binary image. Once loaded you could create scan streams on it and perform scan
+operations. Analogous a parse table can be loaded from a binary image ( look at the
+<url url="prs_io.htm" name="parse table load &amp; unload interface"> ) and then, for example, used 
+to initialize parsing and term construction.
+<p>
+<sect2>Dynamic scanner and parser creation
+<p>
+The Styx compiler is an example for such an application. In version 1.5 a new interface, the
+<url url="styx_gen.htm" name="Styx translation library">, provides a "high level" access to this
+functionality.
+<p>
+
+<sect1>Pretty printing
+<p>
+When a grammar specification evolves there will be a need for the automatic conversion of the "older"
+source files. The <url url="ptm_pp.htm" name="pretty printing facility"> allows a user to translate 
+source code from one grammar specification to another and then to print the translated source code. 
+The print function could be even useful without a previous transformation, for example, when a source 
+tree was dynamically constructed and consequently lacks any positional information.
+<p>
+This feature is "ready to apply" but especially the applied layout mechanism has some disadvantages and 
+will be revised in a later version. ( see also next chapter )
+<p>
+<sect2>Tree transformation
+<p>
+The transformation facility was designed with regard to the above mentioned application. It doesn't (yet) support
+tree transformations in a general sense. A tree-to-tree transformation is performed according the 
+underlying source and target grammar specifications which must satisfy the following restrictions. 
+Comments are handled, too, a must with regard to source-to-source transformations.
+<p>
+<verb>
+  source tree based on CFG 1
+  specification of CFG 2
+  ------------------------------------------------->  target tree based on CFG 2
+  abstraction(CFG 1)   = abstraction(CFG 2)
+  regexp(token(CFG 1)) = regexp(token(CFG 2)) [*]
+</verb>
+<p>
+[*] From version 1.5 on user-defined hooks can be specified in order to handle different token representations. 
+This is useful, for example, to cope with different comments.
+<p>
+<label id="pplayout">
+<sect2>Layout specification
+<p>
+The indentation of the symbols and productions in a grammar definition will be taken as layout hints.
+Take, for example, the start production of the Styx command line specification language, below. 
+Its format advises the layouter to start the arguments, options and environment section on a new line 
+and output the following definitions with an indent. The format of the list production, below, is suitable
+if each element of a list should start on a new line, too.
+<p>
+<verb>
+  start [err] Source
+  :root: "Program" Fid1 Dol Doc
+         "Arguments"   
+            Dfns OptDoc
+         "Options"     
+            Dfns OptDoc
+         "Environment" 
+            Dfns OptDoc
+
+  let [err] Dfns   ; Definitions
+  :nil  : 
+  :cons : Dfn 
+          Dfns
+</verb>
+<p>
+The <ref id="layout option" name="layout option"> in the Styx grammar allows the user to force an extra
+new line ( option "!" ) or to overrule the indentation based layout ( option "?" ). Latter tells the
+layouter that the whole grammar phrase should be printed on one line if possible. This is useful in the 
+case of expressions.
+<p>
+Another topic is the separation of the tokens. A <tt>Space</tt> will be taken as default separation character.
+If this doesn't seem suitable the user must explicitly specify which separation rule should be applied for
+two tokens. He can prevent a separation, force the tokens to be separated by a newline or according the 
+current indentation which would be the default rule in the case of comments. Obviously, these separation rules
+also influences the layout.
+<p>
+<sect2>Printing
+<p>
+Printing is done in two steps. First the appropriate positions of the grammar phrases will be determined by
+applying the above mentioned layout rules. After that the actual printing can take place.
+<p>
+<sect1>Programming language support
+<p>
+Basically, Styx is available for C/C++ development platforms. Future releases will come with small 
+runtime libraries for a wider range of popular programming languages like C# and Java. 
+The source distribution of version 1.7.5 contains a pure STL-based C++ runtime library.
+<p>
+<sect2>C++ Runtime system
+<p>
+The C++ library contains some (template) classes for the construction of scanners and parsers. If you plan
+to use them with a Styx grammar, you first have to specify the grammar and export the scanner and parse tables 
+with the <ref id="styx program" name="'styx' program">. The C++ runtime scanner and parse table classes provide 
+methods to import the exported tables.
+<p>
+Note, that there are some restrictions regarding the Styx grammar specification. The following features won't be 
+supported by the C++ runtime system:
+  <itemize>
+  <item><ref id="indended languages" name="Indended languages">
+  <item><ref id="embedded languages" name="Embedded languages">
+  </itemize>
+<p>
+Further, there won't be a generated C++ interface to the abstract syntax tree. You have to use the generic C++ 
+parse tree interface, instead, which provides the user with the necessary (token and nonterminal) class information.
+Beside that, depending on the task you want to perform, you can construct parse trees with full source information or 
+reduced abstractions.
+<p>
+Similar to the basic Styx system the C++ runtime system provides a scanner test program 'StyxScannerTest' and parser
+test program 'StyxParseTreeTest'. They are suitable to test exported Styx grammars and, secondly, they are good examples 
+for the usage of the C++ library. For more information, please have a look at the 
+<url url="http://www.speculate.de/styx/cpp/index.html" name="online source documentation">.
+<p>
+<sect2>C# Runtime system
+<p>
+The source distribution of version 1.7.6 comes with a C# runtime library.
+For now, the C# library contains the module 'StyxScanner.cs' for the construction of scanners. In order to use it with a Styx grammar,
+you first have to specify the grammar and export the scanner with the <ref id="styx program" name="'styx' program">. 
+The C# runtime scanner classes provide methods to import the exported scanner table.
+<p>
+Similar to the basic Styx system the C# runtime system provides a scanner test program 'StyxScannerTest',
+suitable to test exported Styx grammars and demonstrate the usage of the C# scanner module.
+For more information, please have a look at the 
+<url url="http://www.speculate.de/styx/cs/index.html" name="online source documentation">.
+<p>
+
+<sect>Odds'n'Ends
+<p>
+This section contains an eclectic collection of topics. Some of them
+might later evolve into a complete chapter. As a compromise between
+our intention to release Styx quickly but to provide you with a more
+or less complete documentation, much had to be left out and others
+could only be touched shortly. Expect the topics mentioned below to
+be more well-documented in a later version of this paper.
+
+<sect1>Disadvantages with regard to lex/yacc
+  <p>
+  <itemize>
+  <item>Mostly disadvantages of the scanner:
+        Irregular lexical syntaxes as used in many languages
+        cannot be scanned. Take Rpg, Fortran or Cobol with
+        their columnar lexical syntax as examples.
+  <item>The parser only supports a one-symbol look-ahead,
+        while more modern yacc versions come with lalr(2)
+        or even lalr(k). Since lalr(1) is known to handle
+        the deterministic languages, this is not a real
+        issue, since we can always reformulate the grammar
+        to cope with oddities.
+  <item>Languages that come with an ill-layered context-free
+        and context-dependent grammar (many do), cannot be
+        parsed without extra tricks. Take the "typedef"
+        declaration of C together with the application of
+        the type name in type denotations as example. Likely
+        examples are languages with definable operator
+        precedences as Algol98 or Prolog for instance.
+        Styx provides a few hooks to cope with stuff like this.
+  </itemize>
+
+<sect1>Intensive grammar abstractions
+  <p>
+  Typical example of the problem occurs already when
+  parsing expressions. As a result we want to get something
+  like 'expr ::= varid | lit | funid(expr,...)', but we have
+  prefix, infix, postfix, distfix order and whatever syntactical
+  sugar in the surface grammar. Further, the 'funid' tokens
+  come in as keywords and not as regular names.
+  <itemize>
+  <item>Node rotation
+  <item>keyword --> symbol replacements
+  </itemize>
+  <p>A Method to solve the problem would be to have some 'interface time'
+  reduction rules. The impact of such rules with regard to the abstraction
+  congruence and to unparsing remains to be investigated.
+
+<sect1>Pretty printing
+  <p>
+  <itemize>
+  <item>Allows to "translate" to a super-grammar of the parsed word.
+  <item>Incompletely developed especially with regard to token separation and
+        comment placement.
+  <item>Conceptionally wrong because of the indent format specification
+        method that causes Styx sources not be pretty printable themselves.
+        This misconception will be ironed out in one of the next releases.
+  <item>Successfully used anyway by the author to convert a language
+        with a lisp like surface grammar (and a hand-written parser)
+        to something proper with infix operators, function names before
+        the parentheses, if constructs and other. Only a little handwork
+        was needed to place the comments right and to adjust the layout
+        in certain situations due to my taste.
+  <item>Should be developed so, that it can be used as a source code
+        normalizer in a regular way.
+  </itemize>
+
+<sect1>'.ant' vs. '.int' C-Interface
+  <p>
+  <itemize>
+  <item>'.ant' provides a very space efficient representation of the
+        derivation tree to the expense that keywords and comments
+        are as well lost as source file references.
+  <item>It is a plug-in replacement.
+  <item>This format originated as a workaround of some disabilities
+        of Microsoft's memory allocation library.
+  </itemize>
+
+<sect1>Reentrancy and thread-safeness
+  <p>
+  <itemize>
+  <item>Basically, reentrancy works.
+  <item>Thread-safeness should work, but is not tested.
+  </itemize>
+
+<sect1>Bits of history and future
+<p>
+  <itemize>
+  <item>History: Speculate
+  <item>Future: Semantics (static, dynamic), Xaron
+  </itemize>
+
+<sect2>Meaning of the name "Styx"
+<p>
+The word "Styx", which is the name of the here-described software
+has two interpretations intended by us. The first, plain
+and simple is an abbreviation or more precise a ENGLISH("Verballhornung")
+of the word "syntax" which is obviously closely related to what
+Styx is for. The second, more opaque and perhaps scaring interpretation
+originates from the coincidence with the name of a place in Greek
+mythology.  It is the name of a very poisonous river that separates the
+mythological underworld, the hades, from the world on the surface
+of earth. Well knowing that analogies painfully stress the imagination,
+we do not go further into it, but leave it to the meditation of the
+ENGLISH("geneigtem") reader.
+
+<sect1>Installation, Availability and License
+  <p>
+  <itemize>
+  <item>Standard installation procedure (configure, make, make install).
+        Use 'configure --help' to get options.
+  <item>Styx is available at http://www.speculate.de/Styx.
+  <item>The Styx package is released both under GPL and LGPL, while each
+        of the licenses apply to different parts.
+  </itemize>
+
+<sect1>Authors and Credits
+  <p>
+  <itemize>
+  <item>LD & HM
+  <item>Styx intentionally is an original freeware product, .... Thanks goes
+        to the freeware community to create the environment that finally
+        allows us to present our work to a more wider audience. We hope
+        using Styx will make as much fun as it made us writing it.
+  <item>Styx was written by the authors in their spare time as a tool
+        to create another application while working as freelancers for
+        the administration of the "Freie und Hansestadt Hamburg", their
+        home town. 
+  </itemize>
+
+<sect1>Copyright and Trademarks
+  <p>
+  Styx is copyright (c) 19xx-2002,2003 by Lars Doelle and Heike Manns.
+  Dos and Windows is a trademark of Microsoft. Unix is a trademark
+  of the Santa Cruise Corporation. All other mentioned trademarks
+  are trademarks of their respective owners.
+
+<sect>References
+<p>
+<sect1>Language Reference
+<p>
+<itemize>
+<item>
+<url url="styx_cfg.htm" name="Styx">
+</itemize>
+<p>
+<sect1>Library Reference
+<p>
+<sect2>Data Types & Persistence
+<p>
+<itemize>
+<item>
+<url url="symbols.htm" name="Symbol">
+<item>
+<url url="ptm.htm" name="Parse Tree / Term">
+<item>
+<url url="hmap.htm" name="Finite Map">
+<item>
+<url url="hset.htm" name="Set & Relation">
+<item>
+<url url="binset.htm" name="Binary Set">
+<item>
+<url url="otab.htm" name="Vector / Table">
+<item>
+<url url="list.htm" name="List (functional)">
+<item>
+<url url="olist.htm" name="List (operational)">
+<item>
+<url url="sink.htm" name="Sink / String Stream">
+<item>
+<url url="gstream.htm" name="Characterset & Generic Stream">
+<item>
+<url url="binimg.htm" name="Persistence (binary image)">
+</itemize>
+<p>
+<sect2>Scanner & Parser
+<p>
+<itemize>
+<item>
+<url url="scn_base.htm" name="Scanner / Scan Stream">
+<item>
+<url url="scn_io.htm" name="Scanner Definition Primitives">
+<item>
+<url url="scn_pre.htm" name="Macro Preprocessing">
+<item>
+<url url="prs.htm" name="Parser (low level)">
+<item>
+<url url="ptm_gen.htm" name="Parse Term Construction">
+<item>
+<url url="ptm_pp.htm" name="Term Transformation & Pretty Printing">
+<item>
+<url url="gls.htm" name="Generic Language Support (default)">
+<item>
+<url url="gls_abs.htm" name="Generic Language Support (ABS)">
+<item>
+<url url="scn_abs.htm" name="External Scanner Specification">
+<item>
+<url url="prs_abs.htm" name="External Parser Specification">
+</itemize>
+<p>
+<sect2>Scanner & Parser Generation
+<p>
+<itemize>
+<item>
+<url url="scn_gen.htm" name="Regular Set & Scanner Table Production">
+<item>
+<url url="prs_gen.htm" name="BNF & Parse Table Production">
+<item>
+<url url="prs_io.htm" name="Parse Table Load / Unload">
+<item>
+<url url="styx_gen.htm" name="Styx Translation Library">
+<item>
+<url url="reg_exp.htm" name="Regular Expression Evaluation">
+</itemize>
+<p>
+<sect2>Basics
+<p>
+<itemize>
+<item>
+<url url="glo_tab.htm" name="Global Table">
+<item>
+<url url="mem_base.htm" name="Memory Management">
+<item>
+<url url="sysbase0.htm" name="Standard Definitions I">
+<item>
+<url url="sysbase1.htm" name="Standard Definitions II">
+</itemize>
+<p>
+<sect1>Manual pages
+<p>
+<itemize>
+<item>
+<label id="styx program">
+<url url="cmd_styx.htm" name="Parser and scanner generator">
+<item>
+<url url="cmd_ctoh.htm" name="C header file generator">
+<item>
+<url url="cmd_lim_test.htm" name="Scanner test program">
+<item>
+<url url="cmd_pim_test.htm" name="Parser test program">
+<item>
+<url url="cmd_ptm_img.htm" name="Parse term image test program">
+<item>
+<url url="cmd_stypp.htm" name="Pretty printer">
+<item>
+<url url="cmd_stydoc.htm" name="Reference generator for styx grammars">
+<item>
+<url url="cmd_lim2dot.htm" name="Scanner table visualisation (since version 1.7)">
+<item>
+<url url="cmd_pim2dot.htm" name="Visualisation of parse table and nonterminal relation (since version 1.7)">
+</itemize>
+<p>
+<sect1>Styx based example applications
+<p>
+<label id="XML parser example">
+<sect2>XML parser
+<p>
+<itemize>
+<item>
+<url url="xml_cfg.htm" name="XML language definition">
+<item>
+<url url="dtd_cfg.htm" name="DTD language definition">
+<item>
+<url url="xml_base.htm" name="XML parser library">
+<item>
+<url url="cmd_xml_test.htm" name="XML parser test program">
+</itemize>
+
+<sect>Bibliography
+
+<sect1>Recommended books on compiler construction
+<p>
+  <itemize>
+  <item>
+  <label id="book1">
+  <itemize>
+  <item>
+  <url url="http://www.amazon.com/exec/obidos/ASIN/0201100886" 
+       name="Compilers: Principles, Techniques and Tools">
+  <item>
+  This lecture, often called "The Dragon Book", is the standard book on writing compilers.
+  <item>
+  Authors: Aho, Sethi and Ullmann
+  <item>
+  Publisher: Addison-Wesley Pub Co, 1986
+  <item>
+  ISBN: 0201100886
+  </itemize>
+  <item>
+  <label id="book2">
+  <itemize>
+  <item>
+  <url url="http://www.amazon.com/exec/obidos/ASIN/1565920007" 
+       name="Lex & Yacc (2nd edition)">
+  <item>
+  This book describes the use of Lex & Yacc (and clones) to generate lexical analyzers and parsers.
+  <item>
+  Authors: Levine, Mason and Brown
+  <item>
+  Publisher: O'Reilly & Associates, 1992
+  <item>
+  ISBN: 1565920007
+  </itemize>
+  </itemize>
+
+<sect>Appendix
+<p>
+  Other more referential stuff. Perhaps we could place
+  the full sources of the examples (calc, pl0, pl1) here.
+
+</article>

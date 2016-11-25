@@ -1,0 +1,87 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>NewProjectMainWindow</class>
+<widget class="QMainWindow">
+    <property name="name">
+        <cstring>NewProjectMainWindow</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>600</width>
+            <height>480</height>
+        </rect>
+    </property>
+    <property name="font">
+        <font>
+            <pointsize>10</pointsize>
+        </font>
+    </property>
+    <property name="caption">
+        <string>NewProject</string>
+    </property>
+    <widget class="QComboBox">
+        <item>
+            <property name="text">
+                <string>item1</string>
+            </property>
+        </item>
+        <item>
+            <property name="text">
+                <string>item2</string>
+            </property>
+        </item>
+        <item>
+            <property name="text">
+                <string>item3</string>
+            </property>
+        </item>
+        <item>
+            <property name="text">
+                <string>item4</string>
+            </property>
+        </item>
+        <item>
+            <property name="text">
+                <string>item5</string>
+            </property>
+        </item>
+        <property name="name">
+            <cstring>comboBox1</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>70</x>
+                <y>299</y>
+                <width>435</width>
+                <height>21</height>
+            </rect>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>textLabel1</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>60</x>
+                <y>74</y>
+                <width>446</width>
+                <height>161</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>select an item
+while you hear the beeps the combo box input is blocked
+when you click on the combo box at least 2 times within the blocked period,
+the combo box will block forever</string>
+        </property>
+        <property name="alignment">
+            <set>AlignTop|AlignLeft</set>
+        </property>
+    </widget>
+</widget>
+<toolbars>
+</toolbars>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

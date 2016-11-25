@@ -1,0 +1,569 @@
+;; [sp11.sty] Context-free grammar for the EXPRESS Language, ISO 10303 Part 11
+
+
+Language sp11 ;; EXPRESS Language, ISO 10303 Part 11
+
+Regular Grammar
+
+; Character Set
+
+  let Byte        = '\00' .. '\ff' ; all extended ascii
+  let Control     = '\00' .. '\1f' ; control
+                  |          '\7f' ; DEL
+                  |          '\ff' ; space-like extended ascii
+
+; Basic elements of tokens
+
+  let Printable   = Byte - Control
+
+  ign Space       = " "  | "\t"  ; ASCII - Space
+  ign Line        = "\n" | "\r"  ; UNIX / Windows / DOS / Mac
+  ign Page        = "\p"         ; weak separation convention
+
+  ign Etx         = "\1a" {Byte} ; CPM / older DOS Versions
+
+; Definitions and simple tokens
+
+  let ULetter     = 'A'..'Z'
+  let LLetter     = 'a'..'z'
+  let Letter      = ULetter | LLetter
+  let Bit         = '0' | '1'
+  let Hex1        = '0'..'9' | 'a'..'f' | 'A' .. 'Z'
+  let Hex2        = Hex1 Hex1
+  let Hex4        = Hex2 Hex2
+  let Digit       = '0'..'9'
+  let Space11     = '\08' | '\09' | '\0a' | '\0b' | '\0c' | '\0d'
+  let NQSpecial   = '!\"#$%&+,-./:;<=>?@[\\]^_\`{|}(*)~'
+  let Sign        = '+' | '-'
+  let ComChar     = Printable | Space | Space11
+
+; Comments et al
+
+  com ComBlock    = < "(*" >  < "*)" >
+  ;;com ComBlock    = < "(*" > {ComChar}-({ComChar}("(*"|"*)"){ComChar})) < "*)" >
+  com ComLine     = "--" { Byte - Line } Line
+
+; Complex tokens
+
+  tok [ica] Ide   = Letter { Letter | Digit | '_' }
+  tok Bin         = "%" Bit+
+  tok Nat         = Digit+
+  tok Flt         = Digit+ "." [ Digit+ ] [ 'eE' [ Sign ] Digit+ ]
+  tok Lit         = '\"' Hex4+ '\"'
+  tok Str         = '\'' { Space | Space11 | Letter | Digit | NQSpecial | "\'\'" } '\''
+  tok Opr         = NQSpecial | ">=" | "<=" | "<>" | ":=" [ ':' ] | "<*" | "**" | ":<>:" | "||"
+
+
+Context Free Grammar
+
+start Step11
+:root: Schemas
+
+let Schemas
+:cons: Schema Schemas0
+
+let Schemas0
+:nil :
+:cons: Schema Schemas0
+
+let Schema
+:dfn : "SCHEMA" Ide ";" SchemaBody "END_SCHEMA" ";"
+
+let SchemaBody
+:dfn : Interfaces ConstDecl Decls
+
+let Interfaces
+:nil :
+:cons: Interface Interfaces
+
+let Interface
+:use : "USE" "FROM" Ide References ";"
+:ref : "REFERENCE" "FROM" Ide References ";"
+
+let References
+:nil :
+:ign0: "(" References1 ")"
+
+let References1
+:cons: Ref References0
+
+let References0
+:nil :
+:cons: "," Ref References0
+
+let Ref
+:one : Ide
+:two : Ide "AS" Ide
+
+
+let ConstDecl
+:nul :
+:dfn : "CONSTANT" Constants "END_CONSTANT" ";"
+
+let Constants
+:cons : Constant Constants0
+
+let Constants0
+:nil :
+:cons: Constant Constants0
+
+let Constant
+:dfn : Ide ":" TypeB ":=" Exp ";"
+
+let TypeN
+:ref  : Ide
+
+let Type
+:bin  : "BINARY" Size
+:bool : "BOOLEAN"
+:logic: "LOGICAL"
+:int  : "INTEGER"
+:num  : "NUMBER"
+:real : "REAL" OptExp3
+:str  : "STRING" Size
+
+let TypeA
+:array: "ARRAY" Bound "OF" KeyOpt KeyUniq TypeB
+:list : "LIST" Bound "OF" KeyUniq TypeB
+:bag  : "BAG" Bound "OF" TypeB
+:set  : "SET" Bound "OF" TypeB
+
+let TypeB
+:ign0: Type
+:ign1: TypeN
+:ign2: TypeA
+
+let Bound
+:dfn : "[" Exp1 ":" Exp1 "]"
+
+let Size
+:nul :
+:dfn : "(" Exp1 ")" KeyFix
+
+let KeyOpt
+:nul :
+:opt : "OPTIONAL"
+
+let KeyUniq
+:nul :
+:uniq: "UNIQUE"
+
+let KeyFix
+:nul :
+:fix : "FIXED"
+
+
+let Exp ; Prio 0
+:like: Exp1 "LIKE" Exp1
+:in  : Exp1 "IN"   Exp1
+:lt  : Exp1 "<"    Exp1
+:gt  : Exp1 ">"    Exp1
+:le  : Exp1 "<="   Exp1
+:ge  : Exp1 ">="   Exp1
+:eq  : Exp1 "="    Exp1
+:ne  : Exp1 "<>"   Exp1
+:eeq : Exp1 ":=:"  Exp1
+:ene : Exp1 ":<>:" Exp1
+:ign0: Exp1
+
+let Exp1 ; Prio 1
+:add : Exp1 "+"   Exp2
+:sub : Exp1 "-"   Exp2
+:or  : Exp1 "OR"  Exp2
+:xor : Exp1 "XOR" Exp2
+:ign0: Exp2
+
+let Exp2 ; Prio 2
+:mul : Exp2 "*"   Exp3
+:div1: Exp2 "/"   Exp3
+:div2: Exp2 "DIV" Exp3
+:mod : Exp2 "MOD" Exp3
+:and : Exp2 "AND" Exp3
+:pipe: Exp2 "||"  Exp3
+:ign0: Exp3 
+
+let Exp3 ; Prio 3
+:expo: Exp4 "**" Exp4
+:ign0: Exp4
+
+let Exp4 ; Prio 4
+:usub: "-"   Exp5
+:uadd: "+"   Exp5
+:not : "NOT" Exp5
+:ival: "{" Exp1 IvalOpr Exp1 IvalOpr Exp1 "}"
+;;:ctor: Ide "(" APars2 ")"
+:init: "[" ExpRng0 "]"
+:qry : "QUERY" "(" Ide "<*" Exp1 "|" Exp ")"
+:ign0: Exp5
+
+let IvalOpr
+:opn : "<"
+:cls : "<="
+
+let Exp5 ; Prio 5
+:exp  : "(" Exp ")"
+;;:ide  : Ide Quals ; length <= 1 for an enum reference
+:bin  : Bin
+:nat  : Nat
+:flt  : Flt
+:lit  : Lit
+:str  : Str
+:true : "TRUE"
+:false: "FALSE"
+:undef: "UNKNOWN"
+:e    : "CONST_E" Quals
+:pi   : "PI" Quals
+:self : "SELF" Quals
+:qopr : "?" Quals
+:call : Fun APars Quals ; nofun ==> len(APars) = 0, check enumref, ctor
+
+let ExpRng0
+:rng : Exp ":" Exp1
+:ign0: Exp
+
+let ExpRng
+:rng : Exp1 ":" Exp1
+:ign0: Exp1
+
+let Quals
+:nil :
+:cons: ExpQual Quals
+
+let ExpQual
+:ign0: "[" ExpRng "]"
+:grp : "\\" Ide
+:attr: "." Ide
+
+let Exps
+:cons: Exp Exps0
+
+let Exps0
+:nil :
+:cons: "," Exp Exps0
+
+let Fun0
+:ide  : Ide
+
+let Fun
+:abs  : "ABS"
+:acos : "ACOS"
+:asin : "ASIN"
+:atan : "ATAN"
+:cos  : "COS"
+:sin  : "SIN"
+:tan  : "TAN"
+:exist: "EXISTS"
+:exp  : "EXP"
+:blen : "BLENGTH"
+:frm  : "FORMAT"
+:hib  : "HIBOUND"
+:lob  : "LOBOUND"
+:len  : "LENGTH"
+:hii  : "HIINDEX"
+:loi  : "LOINDEX"
+:log  : "LOG"
+:log2 : "LOG2"
+:log10: "LOG10"
+:nvl  : "NVL"
+:odd  : "ODD"
+:role : "ROLESOF"
+:size : "SIZEOF"
+:sqrt : "SQRT"
+:typ  : "TYPEOF"
+:used : "USEDIN"
+:val  : "VALUE"
+:vin  : "VALUE_IN"
+:vuniq: "VALUE_UNIQUE"
+:ign0 : Fun0
+
+let FunP
+:ign0 : Fun0
+:ins  : "INSERT"
+:del  : "REMOVE"
+
+let FPars
+:nil :
+:ign0: "(" FPars1 ")"
+
+let FPars1
+:cons: FPar FPars0
+
+let FPars0
+:nil :
+:cons: ";" FPar FPars0
+
+let FParsP
+:nil :
+:ign0: "(" FParsP1 ")"
+
+let FParsP1
+:cons: FParP FParsP0
+
+let FParsP0
+:nil :
+:cons: ";" FParP FParsP0
+
+let FPar
+:fun : Ids ":" TypeP
+
+let FParP
+:proc: "VAR" Ids ":" TypeP
+:ign0: FPar
+
+let APars
+:nil :
+:ign0: "(" APars1 ")"
+
+let APars1
+:cons: Exp APars0
+
+let APars0
+:nil :
+:cons: "," Exp APars0
+
+;;let APars2
+;;:nil :
+;;:cons: Exp APars0
+
+let Decls
+:nil :
+:cons: Decl Decls
+
+let Decls0
+:nil :
+:cons: Decl0 Decls0
+
+let Decl0
+:obj : ObjHead ObjBody "END_ENTITY" ";"
+:typ : "TYPE" Ide "=" TypeU ";" Where1 "END_TYPE" ";"
+:fun : FunHead AHead Stmts1 "END_FUNCTION" ";"
+:proc: ProcHead AHead Stmts "END_PROCEDURE" ";"
+
+let Decl
+:rule: RuleHead AHead Stmts Where "END_RULE" ";"
+:ign0: Decl0
+
+let Ids
+:cons: Ide Ids0
+
+let Ids0
+:nil :
+:cons: "," Ide Ids0
+
+let ObjHead
+:dfn : "ENTITY" Ide SubSup SubSup1 ";"
+
+let ProcHead
+:dfn : "PROCEDURE" Ide FParsP ";"
+
+let FunHead
+:dfn : "FUNCTION" Ide FPars ":" TypeP ";"
+
+let ObjBody
+:dfn : EAttrDecls DAttrDecls IAttrDecls RuleUniqs Where1
+
+let EAttrDecls
+:nil :
+:cons: EAttrDecl EAttrDecls
+
+let EAttrDecl
+:dfn : Attrs ":" KeyOpt TypeB ";"
+
+let Attrs
+:cons: Attr Attrs0
+
+let Attrs0
+:nil :
+:cons: "," Attr Attrs0
+
+let DAttrDecls
+:nil :
+:cons: "DERIVE" DAttrDecl DAttrDecls0 
+
+let DAttrDecls0
+:nil :
+:cons: DAttrDecl DAttrDecls0 
+
+let DAttrDecl
+:dfn : Attr ":" TypeB ":=" Exp ";"
+
+let IAttrDecls
+:nil :
+:cons: "INVERSE" IAttrDecl IAttrDecls0 
+
+let IAttrDecls0
+:nil :
+:cons: IAttrDecl IAttrDecls0 
+
+let IAttrDecl
+:dfn : Attr ":" TypeI "FOR" Ide ";"
+
+let RuleUniqs
+:nil :
+:cons: "UNIQUE" LblAttrs ";" RuleUniqs0 
+
+let RuleUniqs0
+:nil :
+:cons: LblAttrs ";" RuleUniqs0 
+
+let LblAttrs
+:lbl : Ide ":" Attrs
+:nlbl: Attrs
+
+let TypeI
+:bag : "BAG" Bound "OF" TypeN
+:set : "SET" Bound "OF" TypeN
+:ign0: TypeN
+
+let TypeU
+:enum: "ENUMERATION" "OF" "(" Ids ")"
+:sel : "SELECT" "(" Ids ")"
+:ign0: Type
+:ign1: TypeN
+:ign2: TypeA
+
+let Attr
+:ide : Ide
+:qual: "SELF" "\\" Ide "." Ide
+
+let SubSup0
+:nul  :
+
+let SubSup
+:supd : "ABSTRACT" "SUPERTYPE" OptCondSubType
+:supr : "SUPERTYPE" CondSubType
+:ign0 : SubSup0
+
+let SubSup1
+:sub  : "SUBTYPE" "OF" "(" Ids ")"
+:ign0 : SubSup0
+
+let CondSubType
+:dfn : "OF" "(" ExpSup ")"
+
+let OptCondSubType
+:nul :
+:ign0: CondSubType
+
+let ExpSup ; Prio 0
+:andor: ExpSup1 "ANDOR" ExpSup1
+:ign0 : ExpSup1
+
+let ExpSup1 ; Prio 1
+:and : ExpSup2 "AND" ExpSup2
+:ign0: ExpSup2
+
+let ExpSup2
+:ide : Ide
+:sel : "ONEOF" "(" ExpSups ")"
+:exp : "(" ExpSup ")"
+
+let ExpSups
+:cons: ExpSup ExpSups0
+
+let ExpSups0
+:nil :
+:cons: "," ExpSup ExpSups0
+
+let RuleHead
+:dfn : "RULE" Ide "FOR" "(" Ids ")" ";"
+
+let AHead
+:dfn : Decls0 ConstDecl LocalDecl
+
+let LocalDecl
+:nul : 
+:dfn : "LOCAL" Vars "END_LOCAL" ";"
+
+let Vars
+:cons: Var Vars0
+
+let Vars0
+:nil :
+:cons: Var Vars0
+
+let Var
+:dfn : Ids ":" TypeP OptExp ";"
+
+let TypeP
+:tgen : "GENERIC" Label
+:agen : "AGGREGATE" Label "OF" TypeP
+:array: "ARRAY" Bound "OF" KeyOpt KeyUniq TypeP
+:list : "LIST" Bound "OF" KeyUniq TypeP
+:bag  : "BAG" Bound "OF" TypeP
+:set  : "SET" Bound "OF" TypeP
+:ign0: Type
+:ign1: TypeN
+
+let OptExp
+:nul :
+:ign0: ":=" Exp
+
+let OptExp1
+:nul :
+:ign0: "(" Exp ")"
+
+let OptExp2
+:nul :
+:ign0: "BY" Exp1
+
+let OptExp3
+:nul :
+:ign0: "(" Exp1 ")"
+
+let Where
+:cons: "WHERE" ExpLbl ";" Where0
+
+let Where0
+:nil :
+:cons: ExpLbl ";" Where0
+
+let Where1
+:nil :
+:ign0: Where
+
+let Label
+:nul :
+:ide : ":" Ide
+
+let ExpLbl
+:lbl : Ide ":" Exp
+:ign0: Exp
+
+let Stmts
+:nil :
+:cons: Stmt Stmts
+
+let Stmts1
+:cons: Stmt Stmts
+
+let StmtsElse
+:nil :
+:ign0: "ELSE" Stmts1
+
+let LoopCtrl
+:nul  :
+:for  : Ide ":=" Exp1 "TO" Exp1 OptExp2
+:while: "WHILE" Exp
+:unitl: "UNTIL" Exp
+
+let Cases
+:nil :
+:cons: Case Cases
+
+let Case
+:exp : Exps ":" Stmt
+:dft : "OTHERWISE" ":" Stmt
+
+let Stmt
+:null : ";"
+:retn : "RETURN" OptExp1 ";"
+:call : FunP APars ";"
+:setv : Ide Quals ":=" Exp ";"
+:alias: "ALIAS" Ide "FOR" Ide Quals ";" Stmts1 "END_ALIAS" ";"
+:if   : "IF" Exp "THEN" Stmts1 StmtsElse "END_IF" ";"
+:case : "CASE" Exp "OF" Cases "END_CASE" ";" ; max. 1 default case at the end
+:loop : "REPEAT" LoopCtrl ";" Stmts1 "END_REPEAT" ";"
+:block: "BEGIN" Stmts1 "END" ";"
+:esc  : "ESCAPE" ";"
+:skip : "SKIP" ";"

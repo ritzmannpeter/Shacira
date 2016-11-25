@@ -1,0 +1,340 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[cprj_int.h] Language Interface</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[cprj_int.h] Language Interface</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="ptm.htm">#include "ptm.h"</a>
+<br><a href="gls.htm">#include "gls.h"</a>
+<br>
+<br>
+<br>
+<br><hr width="100%" size=2><h2><b> symbol objects - init & quit </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>cprj_initSymbols</b>()</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>cprj_quitSymbols</b>()</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Types & Constants </b></h2>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b> cprj </b>
+<td align=left>abstract type
+
+</table>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b> cprjProjectDfn </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> cprjRelOp </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> cprjMacDfn </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> cprjProject </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> cprjRuleAttr </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> cprjOptTPrefix </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> cprjOptSPrefix </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> cprjDstDfn </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> cprjDstName </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> cprjRegExp </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> cprjSrcAttr </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> cprjSrcDfn </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> cprjTypDfn </b>
+<td align=left>abstract type
+
+</table>
+<br><hr width="100%" size=2><h2><b> Access to Tokens </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Tcprj_Name</b>(GLS_Tok x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Tcprj_Val</b>(GLS_Tok x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Access to Terms </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprj_cprj</b>(PT_Term x, cprj* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprj_ProjectDfn</b>(PT_Term x, cprjProjectDfn* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprj_RelOp</b>(PT_Term x, cprjRelOp* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprj_MacDfn</b>(PT_Term x, cprjMacDfn* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprj_Project</b>(PT_Term x, cprjProject* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprj_RuleAttr</b>(PT_Term x, cprjRuleAttr* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprj_OptTPrefix</b>(PT_Term x, cprjOptTPrefix* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprj_OptSPrefix</b>(PT_Term x, cprjOptSPrefix* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprj_DstDfn</b>(PT_Term x, cprjDstDfn* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprj_DstName</b>(PT_Term x, cprjDstName* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprj_RegExp</b>(PT_Term x, cprjRegExp* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprj_SrcAttr</b>(PT_Term x, cprjSrcAttr* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprj_SrcDfn</b>(PT_Term x, cprjSrcDfn* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprj_TypDfn</b>(PT_Term x, cprjTypDfn* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> cprj </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprj_Start_ProjectDfn</b>(cprj x, cprjProjectDfn* x1)
+#define cprj_Start_0   cprj_Start_ProjectDfn</pre>
+<td bgcolor="#FFF0F5" align=left>&nbsp;
+</table>
+<br><hr width="100%" size=2><h2><b> ProjectDfn </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprjProjectDfn_root</b>(cprjProjectDfn x, cprjProject* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> RelOp </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprjRelOp_le</b>(cprjRelOp x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprjRelOp_eq</b>(cprjRelOp x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprjRelOp_ne</b>(cprjRelOp x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprjRelOp_gt</b>(cprjRelOp x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprjRelOp_ge</b>(cprjRelOp x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprjRelOp_lt</b>(cprjRelOp x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> MacDfn </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprjMacDfn_cond</b>(cprjMacDfn x, GLS_Tok* x1, cprjRelOp* x2,
+                       GLS_Tok* x3, GLS_Tok* x4,
+                       GLS_Tok* x5)</pre>
+<td bgcolor="#FFF0F5" align=left>&nbsp;<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprjMacDfn_val</b>(cprjMacDfn x, GLS_Tok* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Project </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprjProject_dprj</b>(cprjProject x, GLS_Tok* x1, cprjProject* x2)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprjProject_exec</b>(cprjProject x, GLS_Tok* x1, cprjProject* x2)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprjProject_oext</b>(cprjProject x, GLS_Tok* x1, cprjProject* x2)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprjProject_mac</b>(cprjProject x, GLS_Tok* x1, cprjMacDfn* x2,
+                       cprjProject* x3)</pre>
+<td bgcolor="#FFF0F5" align=left>&nbsp;<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprjProject_cmd</b>(cprjProject x, GLS_Tok* x1, GLS_Tok* x2,
+                       cprjProject* x3)</pre>
+<td bgcolor="#FFF0F5" align=left>&nbsp;<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprjProject_res</b>(cprjProject x, GLS_Tok* x1, cprjProject* x2)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprjProject_lib</b>(cprjProject x, GLS_Tok* x1, cprjProject* x2)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprjProject_typ</b>(cprjProject x, cprjTypDfn* x1, cprjProject* x2)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprjProject_inc</b>(cprjProject x, GLS_Tok* x1, cprjProject* x2)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprjProject_par</b>(cprjProject x, GLS_Tok* x1, GLS_Tok* x2,
+                       GLS_Tok* x3, cprjProject* x4)</pre>
+<td bgcolor="#FFF0F5" align=left>&nbsp;<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprjProject_ddst</b>(cprjProject x, GLS_Tok* x1, cprjProject* x2)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprjProject_ext</b>(cprjProject x, GLS_Tok* x1, cprjProject* x2)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprjProject_nul</b>(cprjProject x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprjProject_rule</b>(cprjProject x, GLS_Tok* x1, cprjRuleAttr* x2,
+                        cprjDstDfn* x3, cprjProject* x4,
+                        GLS_Tok* x5, cprjSrcDfn* x6,
+                        cprjProject* x7)</pre>
+<td bgcolor="#FFF0F5" align=left>&nbsp;<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprjProject_dobj</b>(cprjProject x, GLS_Tok* x1, cprjProject* x2)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> RuleAttr </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprjRuleAttr_ex2</b>(cprjRuleAttr x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprjRuleAttr_nul</b>(cprjRuleAttr x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprjRuleAttr_exe</b>(cprjRuleAttr x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> OptTPrefix </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprjOptTPrefix_nul</b>(cprjOptTPrefix x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprjOptTPrefix_pre</b>(cprjOptTPrefix x, GLS_Tok* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> OptSPrefix </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprjOptSPrefix_pre</b>(cprjOptSPrefix x, GLS_Tok* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprjOptSPrefix_nul</b>(cprjOptSPrefix x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> DstDfn </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprjDstDfn_int</b>(cprjDstDfn x, GLS_Tok* x1, cprjDstName* x2,
+                      cprjOptTPrefix* x3, cprjOptSPrefix* x4)</pre>
+<td bgcolor="#FFF0F5" align=left>&nbsp;<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprjDstDfn_ext</b>(cprjDstDfn x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> DstName </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprjDstName_nam</b>(cprjDstName x, GLS_Tok* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprjDstName_root</b>(cprjDstName x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprjDstName_src</b>(cprjDstName x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprjDstName_dir</b>(cprjDstName x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> RegExp </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprjRegExp_exp</b>(cprjRegExp x, GLS_Tok* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprjRegExp_nul</b>(cprjRegExp x)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> SrcAttr </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprjSrcAttr_exp</b>(cprjSrcAttr x, cprjRegExp* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprjSrcAttr_rexp</b>(cprjSrcAttr x, cprjRegExp* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> SrcDfn </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprjSrcDfn_dfn</b>(cprjSrcDfn x, GLS_Tok* x1, cprjSrcAttr* x2)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+<br><hr width="100%" size=2><h2><b> TypDfn </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprjTypDfn_two</b>(cprjTypDfn x, GLS_Tok* x1, GLS_Tok* x2)</pre>
+<td bgcolor="#FFF0F5" align=left>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>cprjTypDfn_one</b>(cprjTypDfn x, GLS_Tok* x1)</pre>
+<td bgcolor="#FFF0F5" align=left>
+
+</table>
+
+</body>
+</html>

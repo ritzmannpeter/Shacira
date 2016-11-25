@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[xml_base.h] XML Base Library</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[xml_base.h] XML Base Library</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="standard.htm">#include "standard.h"</a>
+<br><a href="symbols.htm">#include "symbols.h"</a>
+<br><a href="hmap.htm">#include "hmap.h"</a>
+<br><a href="hset.htm">#include "hset.h"</a>
+<br><a href="ptm.htm">#include "ptm.h"</a>
+<br><a href="xml_dfn.htm">#include "xml_dfn.h"</a>
+<br>
+<br>
+<br>
+<br><pre>
+   The module [xml_base] provides an reentrant interface for the parsing,
+   interpretation and transformation of XML documents.
+
+</pre>
+<br><hr width="100%" size=2><h2><b> Types and macros </b></h2>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b> XmlApp_T </b>
+<td align=left> Abstract XML application type 
+
+</table>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b> XmlCtx_T </b>
+<td align=left> Abstract XML parser type 
+
+</table>
+<br><hr width="100%" size=2><h2><b> Init & Quit </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>XmlApp_T <b>XML_app_init</b>
+         (
+           XMLHDL_io_init           io_init,
+           XMLHDL_io_cleanup        io_quit,
+           XMLHDL_io_create_handle  io_create,
+           XMLHDL_io_drop_handle    io_drop,
+           XMLHDL_io_download       io_download
+         )</pre>
+<td bgcolor="#FFF0F5" align=left> init XML application;<br>
+   optional I/O handler:<br>
+   'io_init'     = init download module<br>
+   'io_quit'     = cleanup download module<br>
+   'io_create'   = create download handle<br>
+   'io_drop'     = drop download handle<br>
+   'io_download' = download URL to (string) stream<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>XML_app_quit</b>(XmlApp_T xmlapp)</pre>
+<td bgcolor="#FFF0F5" align=left> quit XML application; release resources <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>XmlCtx_T <b>XML_init</b>
+      (
+        XmlApp_T xmlapp,
+        void (*prMsg)(c_string msg), c_bool verbose, c_bool diagnose
+      )</pre>
+<td bgcolor="#FFF0F5" align=left> init XML parsing;<br>
+   'prMsg'    --&gt; print function or NULL<br>
+   'verbose'  --&gt; (de)activate progress information<br>
+   'diagnose' --&gt; (de)activate diagnose information<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>XML_quit</b>(XmlCtx_T xmlctx)</pre>
+<td bgcolor="#FFF0F5" align=left>quit XML compilation; release resources
+
+</table>
+<br><hr width="100%" size=2><h2><b> Set & Get </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>XML_set_verbose</b>(XmlCtx_T xmlctx, c_bool verbose)</pre>
+<td bgcolor="#FFF0F5" align=left> (de)activate progress information <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>XML_set_diagnose</b>(XmlCtx_T xmlctx, c_bool diagnose)</pre>
+<td bgcolor="#FFF0F5" align=left> (de)activate diagnose information <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>XML_set_context</b>(XmlCtx_T xmlctx, Any_T extctx)</pre>
+<td bgcolor="#FFF0F5" align=left> set external context information <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Any_T <b>XML_get_context</b>(XmlCtx_T xmlctx)</pre>
+<td bgcolor="#FFF0F5" align=left>get external context information
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>XML_get_trees</b>(XmlCtx_T xmlctx, symbol* root, MAP(symbol,PT_Term)* trees)</pre>
+<td bgcolor="#FFF0F5" align=left> get document trees <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Parsing & Tree construction </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>XML_load_file</b>
+    (
+      XmlCtx_T xmlctx, c_string xmldoc, c_string cset, c_bool dtd, c_bool all
+    )</pre>
+<td bgcolor="#FFF0F5" align=left> parses XML/DTD definition in file 'xmldoc' and<br>
+   constructs the corresponding tree;<br>
+   'cset' = character set name ( UCS4, UTF-8, MS:CodePage / GNU:iconv-based )<br>
+   'dtd'  = True --&gt; 'xmldoc' contains DTD definitions<br>
+   'all'  = True --&gt; loads all referenced documents<br>
+   RC &gt;  0: number of (syntax and semantic) errors<br>
+   RC = -1: tree construction failed<br>
+   RC =  0: successful load<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>XML_load_string</b>
+    (
+      XmlCtx_T xmlctx, c_string xmldoc, unsigned int len,
+      c_string cset, c_bool dtd, c_bool all
+    )</pre>
+<td bgcolor="#FFF0F5" align=left> parses XML definition in string 'xmldoc' and<br>
+   constructs the corresponding tree;<br>
+   'len'  = string size in bytes, inclusive terminating bytes<br>
+   'cset' = character set name ( UCS4, UTF-8, MS:CodePage / GNU:iconv-based )<br>
+   'dtd'  = True --&gt; 'xmldoc' contains DTD definitions<br>
+   'all'  = True --&gt; loads all referenced documents<br>
+   RC &gt;  0: number of syntax and semantic errors<br>
+   RC = -1: tree construction failed<br>
+   RC =  0: successful load<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>XML_load_url</b>
+    (
+      XmlCtx_T xmlctx, c_string xmldoc,
+      c_string cset, c_string auth, c_bool dtd, c_bool all
+    )</pre>
+<td bgcolor="#FFF0F5" align=left> parses XML definition identified by URL 'xmldoc' and<br>
+   constructs the corresponding tree;<br>
+   'cset' = character set name ( UCS4, UTF-8, MS:CodePage / GNU:iconv-based )<br>
+   'auth' = optional user authentification ( format: user:passwd )<br>
+   'dtd'  = True --&gt; 'xmldoc' contains DTD definitions<br>
+   'all'  = True --&gt; loads all referenced documents<br>
+   RC &gt;  0: number of syntax and semantic errors<br>
+   RC = -1: tree construction failed<br>
+   RC =  0: successful load<br>
+   assertion: valid I/O handler<br>
+<br>
+
+</table>
+
+</body>
+</html>

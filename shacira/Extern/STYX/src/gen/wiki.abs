@@ -1,0 +1,28 @@
+/* ------------------------------------------------------------------------ */
+/*                                                                          */
+/* [wiki.abs]                  Abstract Grammar                             */
+/*                                                                          */
+/* ------------------------------------------------------------------------ */
+
+LANGUAGE wiki
+
+TOKENS
+
+  Text
+
+TYPES
+
+  wiki         = Start_src(Term)
+
+  Term         = term(WikiText, Term);
+                 opt(Term);
+                 link(Term, Term);
+                 nul;
+                 txt(WikiText, Term)
+
+  WikiText     = par2;
+                 par1;
+                 opt;
+                 txt(Text);
+                 par3
+

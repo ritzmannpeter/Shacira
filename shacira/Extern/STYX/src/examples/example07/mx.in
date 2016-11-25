@@ -1,0 +1,23 @@
+#! @SHELL@ -e
+# [mx] make '*.img'
+
+#destination directory for parser and scanner table image files
+BINSTYX=.
+#destination directory for parser and scanner table and term interface source files
+GENSTYX=.
+#source directory of language specification file
+SPESTYX=.
+
+export BINSTYX GENSTYX SPESTYX
+
+#create source files
+styx st   -makeIMG -verbose
+styx sp11 -makeIMG -verbose
+styx sp21 -makeIMG -verbose
+styx php  -makeIMG -verbose
+
+#test example
+#pim_test st   <some smalltalk80 source>
+#pim_test sp11 <some express source>
+#pim_test sp21 <some step exchange file>
+#pim_test php  <some PHP source with standard open/close tags>

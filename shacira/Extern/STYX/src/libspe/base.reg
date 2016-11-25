@@ -1,0 +1,51 @@
+#macro MACDummy
+
+#macro MACbasetok =
+  let Byte        = '\00' .. '\ff' ; extended ASCII
+  let Control     = '\00' .. '\1f' ; control
+                  |          '\7f' ; DEL
+#end
+
+#macro MACHASH(h)=#h #end
+
+#macro MACParTest(a,b,c) =
+; a## b## c##
+#ifdef MACHASH
+; ifdef within definition
+MACHASH end
+#end
+
+
+#ifdef MACbasetok
+#ifndef MACDummy
+; MACDummy not defined
+#ifdef MACbasetok
+; (1) MACbasetok defined
+#end
+#else
+#ifdef MACbasetok
+; (2) MACbasetok defined
+#end
+; MACDummy defined
+#undefine MACDummy
+#ifndef MACDummy
+; MACDummy removed
+;#endif
+#end
+#end
+MACbasetok
+',
+MACParTest macro,parameter,test,
+#else
+',
+MACParTest macro,parameter,test, 
+#end
+
+' -
+
+#ifndef MACbasetok
+MACParTest macro parameter test2
+#else
+MACParTest macro parameter test3 
+#end
+

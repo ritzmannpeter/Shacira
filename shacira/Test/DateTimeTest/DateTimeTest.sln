@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DateTimeTest", "DateTimeTest.vcxproj", "{BF7ED659-61EC-4233-A6F0-C7DA615C46B9}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "shacira_lib", "..\..\Targ\vc10\shacira_lib\shacira_lib.vcxproj", "{4945DA20-BFE4-4BA3-9ADE-1E17FD9E925A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BF7ED659-61EC-4233-A6F0-C7DA615C46B9}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BF7ED659-61EC-4233-A6F0-C7DA615C46B9}.Debug|Win32.Build.0 = Debug|Win32
+		{BF7ED659-61EC-4233-A6F0-C7DA615C46B9}.Release|Win32.ActiveCfg = Release|Win32
+		{BF7ED659-61EC-4233-A6F0-C7DA615C46B9}.Release|Win32.Build.0 = Release|Win32
+		{4945DA20-BFE4-4BA3-9ADE-1E17FD9E925A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4945DA20-BFE4-4BA3-9ADE-1E17FD9E925A}.Debug|Win32.Build.0 = Debug|Win32
+		{4945DA20-BFE4-4BA3-9ADE-1E17FD9E925A}.Release|Win32.ActiveCfg = Release|Win32
+		{4945DA20-BFE4-4BA3-9ADE-1E17FD9E925A}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

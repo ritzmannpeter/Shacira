@@ -1,0 +1,137 @@
+
+#include "headerview.h"
+
+HeaderView::HeaderView(Qt::Orientation orientation, QWidget * parent)
+   : QHeaderView(orientation, parent)
+{
+}
+
+HeaderView::~HeaderView()
+{
+}
+
+void HeaderView::setClickEnabled(bool state)
+{
+#ifdef QT5
+   QHeaderView::setSectionsClickable(state);
+#else
+   QHeaderView::setClickable(state);
+#endif
+}
+
+void HeaderView::setMovingEnabled(bool state)
+{
+#ifdef QT5
+   QHeaderView::setSectionsMovable(state);
+#else
+   QHeaderView::setMovable(state);
+#endif
+}
+
+void HeaderView::setResizeEnabled(bool state, int column)
+{
+   if (column == -1) {
+      if (state == false) {
+#ifdef QT5
+         setSectionResizeMode(QHeaderView::Fixed);
+#else
+         setResizeMode(QHeaderView::Fixed);
+#endif
+      }
+   } else {
+      if (state == false) {
+#ifdef QT5
+         setSectionResizeMode(column, QHeaderView::Fixed);
+#else
+         setResizeMode(column, QHeaderView::Fixed);
+#endif
+      }
+   }
+}
+
+int HeaderView::headerWidth() const
+{
+   int width = 0;
+   int sectionCount = this->count();
+   int i = 0;
+   for (i=0; i<sectionCount; i++) {
+      width += sectionSize(i);
+   }
+   return width;
+}
+
+void HeaderView::setClickEnabled(bool state, int column)
+{
+#ifdef QT5
+   setSectionsClickable(state);
+#else
+   setClickable(state);
+#endif
+}
+
+bool HeaderView::isResizeEnabled(int column) const
+{
+#ifdef QT5
+   QHeaderView::ResizeMode mode = sectionResizeMode(column);
+#else
+   QHeaderView::ResizeMode mode = resizeMode(column);
+#endif
+   if (mode == QHeaderView::Fixed) {
+      return false;
+   } else {
+      return true;
+   }
+}
+
+QString HeaderView::label(int column) const
+{
+   QAbstractItemModel * model = this->model();
+   QString label = model->headerData(column, Qt::Horizontal, Qt::DisplayRole).toString();
+   return label;
+}
+
+void HeaderView::setLabel(int column, const QString & label)
+{
+   QAbstractItemModel * model = this->model();
+   model->setHeaderData(column, Qt::Horizontal, QVariant(label), Qt::DisplayRole);
+}
+
+QIcon HeaderView::iconSet(int column) const
+{
+#pragma message(__LOC__ "not ported yet")
+NOT_PORTED("not ported yet")
+   QAbstractItemModel * model = this->model();
+   QVariant headerData = model->headerData(column, Qt::Horizontal, Qt::DisplayRole);
+   return QIcon();
+}
+
+int HeaderView::sectionPos(int column) const
+{
+   return QHeaderView::sectionPosition(column);
+}
+
+void HeaderView::setStretchEnabled(bool b, int section)
+{
+#pragma message(__LOC__ "not ported yet")
+NOT_PORTED("not ported yet")
+}
+
+QSize HeaderView::sizeHint() const
+{
+   // Get the base implementation size.
+   QSize baseSize = QHeaderView::sizeHint();
+   // Override the height with a custom value.
+   baseSize.setWidth(48);
+   baseSize.setHeight(48);
+   return baseSize;
+}
+
+void HeaderView::paintSection(QPainter * painter, const QRect & rect, int logicalIndex) const
+{
+   return QHeaderView::paintSection(painter, rect, logicalIndex);
+   if (logicalIndex < _headerPixmaps.size()) {
+      painter->drawPixmap(rect, _headerPixmaps[logicalIndex]);
+   }
+}
+
+

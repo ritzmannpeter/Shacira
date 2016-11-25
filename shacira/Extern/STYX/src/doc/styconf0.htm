@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[styconf0.h] System Dependencies ( C Library )</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[styconf0.h] System Dependencies ( C Library )</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<pre>#if defined( _WIN32 ) || defined( _MSDOS ) || defined( MSDOS )</pre><pre>#define STYX_CONFIG_OSMS</pre><pre>#if _MSC_VER &gt;= 1200</pre><pre>#define HAVE_VSNPRINTF</pre><pre>#if _MSC_VER &lt; 1400</pre><pre>#define vsnprintf _vsnprintf</pre><pre>#else</pre><pre>#define _CRT_SECURE_NO_WARNINGS</pre><pre>#define _USE_32BIT_TIME_T</pre><pre>#endif</pre><pre>#endif</pre><pre>#endif</pre><pre></pre><pre>#if defined( _MSDOS ) || defined( _WIN32 )</pre><pre>#pragma warning(disable: 4018 4135 4237 4759)</pre><br>#include &lt;stdio.h&gt;
+<br>
+<br>#include &lt;stdlib.h&gt;
+<br>
+<br>#include &lt;string.h&gt;
+<br>
+<br>#include &lt;ctype.h&gt;
+<br>
+<br>#include &lt;stdarg.h&gt;
+<br>
+<br>#include &lt;errno.h&gt;
+<br>
+<br>#include &lt;io.h&gt;
+<br>
+<br>#include &lt;malloc.h&gt;
+<br>
+<br>#include &lt;process.h&gt;
+<br>
+<br>#include &lt;time.h&gt;
+<br>
+<br>#include &lt;sys/types.h&gt;
+<br>
+<br>#include &lt;sys/stat.h&gt;
+<br>
+<br>#include &lt;direct.h&gt;
+<br>
+<br>#include &lt;fcntl.h&gt;
+<br>
+<br>#include &lt;wchar.h&gt;
+<br>
+<br>#include &lt;wctype.h&gt;
+<br>
+<br>#include &lt;windows.h&gt;
+<br>
+<pre></pre><pre>#define VERSION   "1.7.6"</pre><pre></pre><pre>#else</pre><pre>#ifndef HAVE_CONFIG_H</pre><pre></pre><br>#include &lt;stdio.h&gt;
+<br>
+<br>#include &lt;stdlib.h&gt;
+<br>
+<br>#include &lt;string.h&gt;
+<br>
+<br>#include &lt;ctype.h&gt;
+<br>
+<br>#include &lt;stdarg.h&gt;
+<br>
+<br>#include &lt;errno.h&gt;
+<br>
+<br>#include &lt;unistd.h&gt;
+<br>
+<br>#include &lt;time.h&gt;
+<br>
+<br>#include &lt;sys/types.h&gt;
+<br>
+<br>#include &lt;sys/stat.h&gt;
+<br>
+<br>#include &lt;dirent.h&gt;
+<br>
+<br>#include &lt;fcntl.h&gt;
+<br>
+<br>#include &lt;wchar.h&gt;
+<br>
+<br>#include &lt;wctype.h&gt;
+<br>
+<br>#include &lt;iconv.h&gt;
+<br>
+<br>#include &lt;semaphore.h&gt;
+<br>
+<br>#include &lt;dlfcn.h&gt;
+<br>
+<pre></pre><pre>#define VERSION   "1.7.6"</pre><pre></pre><pre>#else</pre><br>#include &lt;config.h&gt;
+<br>
+<pre></pre><pre>/* The following is borrowed from w3c-wwwlib. */</pre><pre></pre><pre>/* stdio.h */</pre><pre>#ifdef HAVE_STDIO_H</pre><br>#include &lt;stdio.h&gt;
+<br>
+<pre>#endif</pre><pre></pre><pre>/* types.h */</pre><pre>#ifdef HAVE_SYS_TYPES_H</pre><br>#include &lt;sys/types.h&gt;
+<br>
+<pre>#else</pre><pre>#ifdef HAVE_TYPES_H</pre><br>#include &lt;types.h&gt;
+<br>
+<pre>#endif</pre><pre>#endif</pre><pre></pre><pre>/* unistd.h */</pre><pre>#ifdef HAVE_UNISTD_H</pre><br>#include &lt;unistd.h&gt;
+<br>
+<pre>#else</pre><pre>#ifdef HAVE_SYS_UNISTD_H</pre><br>#include &lt;sys/unistd.h&gt;
+<br>
+<pre>#endif</pre><pre>#endif</pre><pre></pre><pre>/* fcntl.h */</pre><pre>#ifdef HAVE_FCNTL_H</pre><br>#include &lt;fcntl.h&gt;
+<br>
+<pre>#else</pre><pre>#ifdef HAVE_SYS_FCNTL_H</pre><br>#include &lt;sys/fcntl.h&gt;
+<br>
+<pre>#endif</pre><pre>#endif</pre><pre></pre><pre>/* stat.h */</pre><pre>#ifdef HAVE_SYS_STAT_H</pre><br>#include &lt;sys/stat.h&gt;
+<br>
+<pre>#else</pre><pre>#ifdef HAVE_STAT_H</pre><br>#include &lt;stat.h&gt;
+<br>
+<pre>#endif</pre><pre>#endif</pre><pre></pre><pre>/* time.h */</pre><pre>#ifdef TIME_WITH_SYS_TIME</pre><br>#include &lt;sys/time.h&gt;
+<br>
+<br>#include &lt;time.h&gt;
+<br>
+<pre>#else</pre><pre>#ifdef HAVE_SYS_TIME_H</pre><br>#include &lt;sys/time.h&gt;
+<br>
+<pre>#else</pre><pre>#ifdef HAVE_TIME_H</pre><br>#include &lt;time.h&gt;
+<br>
+<pre>#endif</pre><pre>#endif</pre><pre>#endif</pre><pre></pre><pre>/* string{,s}.h */</pre><pre>#ifdef HAVE_STRING_H</pre><br>#include &lt;string.h&gt;
+<br>
+<pre>#else</pre><pre>#ifdef HAVE_STRINGS_H</pre><br>#include &lt;strings.h&gt;
+<br>
+<pre>#endif</pre><pre>#endif</pre><pre></pre><pre>/* errno.h */</pre><pre>#ifdef HAVE_ERRNO_H</pre><br>#include &lt;errno.h&gt;
+<br>
+<pre>#else</pre><pre>#ifdef HAVE_SYS_ERRNO_H</pre><br>#include &lt;sys/errno.h&gt;
+<br>
+<pre>#else</pre><pre>#ifdef HAVE_NET_ERRNO_H</pre><br>#include &lt;net/errno.h&gt;
+<br>
+<pre>#endif</pre><pre>#endif</pre><pre>#endif</pre><pre></pre><pre>/* libc.h */</pre><pre>#ifdef HAVE_LIBC_H</pre><br>#include &lt;libc.h&gt;
+<br>
+<pre>#endif</pre><pre></pre><pre>/* stdlib.h */</pre><pre>#ifdef HAVE_STDLIB_H</pre><br>#include &lt;stdlib.h&gt;
+<br>
+<pre>#endif</pre><pre></pre><pre>/* malloc.h */</pre><pre>#ifdef HAVE_MALLOC_H</pre><br>#include &lt;malloc.h&gt;
+<br>
+<pre>#endif</pre><pre></pre><pre>/* memory.h */</pre><pre>#ifdef HAVE_MEMORY_H</pre><br>#include &lt;memory.h&gt;
+<br>
+<pre>#endif</pre><pre></pre><pre>/* direct.h */</pre><pre>#ifdef HAVE_DIRECT_H</pre><br>#include &lt;direct.h&gt;
+<br>
+<pre>#endif</pre><pre></pre><pre>/* ctype.h */</pre><pre>#ifdef HAVE_CTYPE_H</pre><br>#include &lt;ctype.h&gt;
+<br>
+<pre>#endif</pre><pre></pre><pre>/* wchar.h */</pre><pre>#ifdef HAVE_WCHAR_H</pre><br>#include &lt;wchar.h&gt;
+<br>
+<pre>#endif</pre><pre></pre><pre>/* wctype.h */</pre><pre>#ifdef HAVE_WCTYPE_H</pre><br>#include &lt;wctype.h&gt;
+<br>
+<pre>#endif</pre><pre></pre><pre>/* iconv.h */</pre><pre>#ifdef HAVE_ICONV_H</pre><br>#include &lt;iconv.h&gt;
+<br>
+<pre>#endif</pre><pre></pre><pre>/* semaphore.h */</pre><pre>#ifdef HAVE_SEMAPHORE_H</pre><br>#include &lt;semaphore.h&gt;
+<br>
+<pre>#endif</pre><pre></pre><pre>/* dlfcn.h */</pre><pre>#ifdef HAVE_DLFCN_H</pre><br>#include &lt;dlfcn.h&gt;
+<br>
+<pre>#endif</pre><pre></pre><pre>/* dirent.h / ndir.h / dir.h */</pre><pre>#ifdef HAVE_DIRENT_H</pre><br>#include &lt;dirent.h&gt;
+<br>
+<pre>#define NAMLEN(dirent) strlen((dirent)-&gt;d_name)</pre><pre>#else</pre><pre>#define dirent direct</pre><pre>#define NAMLEN(dirent) (dirent)-&gt;d_namlen</pre><pre>#ifdef HAVE_SYS_NDIR_H</pre><br>#include &lt;sys/ndir.h&gt;
+<br>
+<pre>#endif</pre><pre>#ifdef HAVE_SYS_DIR_H</pre><br>#include &lt;sys/dir.h&gt;
+<br>
+<pre>#endif</pre><pre>#ifdef HAVE_DIR_H</pre><br>#include &lt;dir.h&gt;
+<br>
+<pre>#endif</pre><pre>#ifdef HAVE_NDIR_H</pre><br>#include &lt;ndir.h&gt;
+<br>
+<pre>#endif</pre><pre>#endif</pre><pre></pre><pre>/* Definition of var args */</pre><pre>#if defined(STDC_HEADERS) || defined(__STDC__)</pre><br>#include &lt;stdarg.h&gt;
+<br>
+<pre>#else</pre><br>#include &lt;varargs.h&gt;
+<br>
+<pre>#endif</pre><pre></pre><pre>#ifndef HAVE_STRERROR  /* Otherwise use the table */</pre><pre>extern char *sys_errlist[];</pre><pre>extern int sys_nerr;</pre><pre>#endif</pre><pre></pre><pre>#if !defined(HAVE_MEMCPY)</pre><pre>#define memcpy(d, s, n) bcopy((s), (d), (n))</pre><pre>#define memmove(d, s, n) bcopy((s), (d), (n))</pre><pre>#endif</pre><pre></pre><pre>#if !defined(HAVE_MEMCMP)</pre><pre>#define memcmp memcmp_aux</pre><pre>#endif</pre><pre></pre><pre>#if !defined(HAVE_STRDUP)</pre><pre>#define strdup StrCopy</pre><pre>#endif</pre><pre></pre><pre>#if !defined(HAVE_STRSTR)</pre><pre>#define strstr strstr_aux</pre><pre>#endif</pre><pre></pre><pre>#if !defined(HAVE_STRCHR)</pre><pre>#if defined(HAVE_INDEX)</pre><pre>#define strchr index</pre><pre>#else</pre><pre>#define strchr strchr_aux</pre><pre>#endif</pre><pre>#endif</pre><pre></pre><pre>#if !defined(HAVE_STRRCHR)</pre><pre>#if defined(HAVE_RINDEX)</pre><pre>#define strchr rindex</pre><pre>#else</pre><pre>#define strrchr strrchr_aux</pre><pre>#endif</pre><pre>#endif</pre><pre></pre><pre>#if !defined(HAVE_STRCSPN)</pre><pre>#define strcspn strcspn_aux</pre><pre>#endif</pre><pre></pre><pre>#if !defined(HAVE_GETCWD)</pre><pre>#define getcwd getcwd_aux</pre><pre>#endif</pre><pre></pre><pre>//TODO additional workarounds for vprintf ...</pre><pre></pre><pre>#if !defined(HAVE_VSNPRINTF)</pre><pre>#define vsnprintf(s,l,f,a) vsprintf(s,f,a)</pre><pre>#endif</pre><pre></pre><pre>#endif</pre><pre></pre><pre>#endif</pre><pre></pre><pre></pre><pre>/* Patch for problems in glibc6 */</pre><pre>#if defined(__GLIBC__)</pre><pre>#undef S_IFMT</pre><pre>#undef S_IFDIR</pre><pre>#define S_IFMT __S_IFMT</pre><pre>#define S_IFDIR __S_IFDIR</pre><pre>#endif</pre><pre></pre><pre></pre><pre>#ifndef NULL</pre><pre>#define NULL ((void *)0)</pre><pre>#endif</pre><pre></pre>
+</body>
+</html>

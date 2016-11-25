@@ -1,0 +1,6 @@
+QT_TRANSLATE_NOOP("custom", "index1")
+QT_TRANSLATE_NOOP("custom", "matrix1")
+QT_TRANSLATE_NOOP("custom", "index 1")
+QT_TRANSLATE_NOOP("custom", "index 2")
+QT_TRANSLATE_NOOP("custom", "mm")
+QT_TRANSLATE_NOOP("custom", "in")

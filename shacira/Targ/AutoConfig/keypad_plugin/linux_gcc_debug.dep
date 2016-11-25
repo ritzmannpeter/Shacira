@@ -1,0 +1,30 @@
+
+linux_gcc_debug/moc_qt_keyboard_button.o: \
+	linux_gcc_debug/moc_qt_keyboard_button.cpp
+linux_gcc_debug/moc_qt_keyboard_layout.o: \
+	linux_gcc_debug/moc_qt_keyboard_layout.cpp
+linux_gcc_debug/qt_keyboard_button.o: \
+	../../../Src/GUIFramework/QTFramework/Keypads/qt_keyboard_button.cpp \
+	../../../Src/GUIFramework/QTFramework/Keypads/qt_keyboard_button.h \
+	../../../Src/GUIFramework/QTFramework/Keypads/qt_keyboard_layout.h \
+	../../../Src/GUIFramework/QTFramework/Keypads/Plugin/qt_plugin_register.h
+
+linux_gcc_debug/moc_qt_keyboard_button.cpp: \
+	../../../Src/GUIFramework/QTFramework/Keypads/qt_keyboard_button.h
+linux_gcc_debug/qt_keyboard_layout.o: \
+	../../../Src/GUIFramework/QTFramework/Keypads/qt_keyboard_layout.cpp \
+	../../../Src/GUIFramework/QTFramework/Keypads/qt_keyboard_button.h \
+	../../../Src/GUIFramework/QTFramework/Keypads/qt_keyboard_layout.h \
+	../../../Src/GUIFramework/QTFramework/Keypads/Plugin/qt_plugin_register.h
+
+linux_gcc_debug/moc_qt_keyboard_layout.cpp: \
+	../../../Src/GUIFramework/QTFramework/Keypads/qt_keyboard_layout.h
+linux_gcc_debug/qt_plugin.o: \
+	../../../Src/GUIFramework/QTFramework/Keypads/Plugin/qt_plugin.cpp \
+	../../../Src/GUIFramework/QTFramework/Keypads/Plugin/qt_plugin.h \
+	../../../Src/GUIFramework/QTFramework/Keypads/Plugin/qt_plugin_register.h
+
+linux_gcc_debug/qt_plugin_register.o: \
+	../../../Src/GUIFramework/QTFramework/Keypads/Plugin/qt_plugin_register.cpp \
+	../../../Src/GUIFramework/QTFramework/Keypads/Plugin/qt_plugin_register.h
+

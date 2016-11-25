@@ -1,0 +1,12 @@
+[README] Example 01
+
+This example implements a simple calculator. It reads expressions of
+the form "Int op=+|-|*|/ Int" from stdin. 
+An empty line as well as the input "<ctrl>c" stops the process.
+
+Use the shell script 'mx' to create the executable. 
+Don't forget 
+1) to check the setting of the environment variable STYXDIR in 'mx'
+2) to add $STYXDIR/lib to your library path.
+
+Execute the program by 'calctut'.

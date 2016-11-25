@@ -1,0 +1,344 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNUNG: DIESE ARBEITSBEREICHSDATEI DARF NICHT BEARBEITET ODER GELÖSCHT WERDEN!
+
+###############################################################################
+
+Project: "Client"=.\ClientServerTest\Client.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name ecl_dll_base
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name shacira_lib
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "ClientDLLTest"=.\ClientDLLTest\ClientDLLTest.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name sh_dll_client
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "Convert"=.\Convert\Convert.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name shacira_lib
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name ecl_lib_base
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "DatasetViewer"=.\Convert\DatasetViewer.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name shacira_lib
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name ecl_lib_base
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "DebugLog"=.\DebugLogTest\DebugLog.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "GatewayClient"=.\ClientServerTest\GatewayClient.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name interface_lib
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name ecl_dll_base
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "KeypadDemo"=.\KeypadTest\KeypadDemo\KeypadDemo.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "NoDaveTest"=.\NoDaveTest\NoDaveTest.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "PPCClient"=.\ClientServerTest\PPCClient.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "PPCServer"=.\ClientServerTest\PPCServer.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "ParserTest"=.\ParserTest\ParserTest.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name shacira_lib
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name ecl_dll_base
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "PtrTest"=.\PtrTest\PtrTest.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name shacira_lib
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "S7Test"=.\S7Test\S7Test.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "Scanner"=.\Scanner\Scanner.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "Server"=.\ClientServerTest\Server.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "SyncTest"=.\GPTest\SyncTest\SyncTest.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "ThreadTest"=.\ThreadTest\ThreadTest.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name shacira_lib
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name ecl_lib_base
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "interface_lib"=..\Targ\vcpp\interface_lib\interface_lib.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "sh_dll_client"=..\Targ\vcpp\sh_dll_client\sh_dll_client.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name ecl_dll_base
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name shacira_dll
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "shacira_dll"=..\Targ\vcpp\shacira_dll\shacira_dll.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name ecl_dll_base
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "shacira_lib"=..\Targ\vcpp\shacira_lib\shacira_lib.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "structtest"=.\structtest\structtest.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "term"=.\term\term.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+

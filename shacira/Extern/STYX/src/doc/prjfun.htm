@@ -1,0 +1,14 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[prjfun.h] PRDPS: Types of collection functions</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[prjfun.h] PRDPS: Types of collection functions</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<pre></pre><br><a href="standard.htm">#include "standard.h"</a>
+<br>
+<pre></pre><pre>// adds dependency</pre><pre>typedef void (*PFN_AddDep)(StdCPtr pBag, c_string szDepFile);</pre><pre></pre><pre>// adds rule, i.e. project group</pre><pre>typedef void (*PFN_AddGrp)(StdCPtr pGBag, StdCPtr* ppTBag, StdCPtr* ppSBag);</pre><pre>// adds target to current rule</pre><pre>typedef void (*PFN_AddDst)</pre><pre>             (StdCPtr pTBag, c_string szDstFile, c_string szDstPath);</pre><pre>// adds source to current rule</pre><pre>typedef void (*PFN_AddSrc)(StdCPtr pSBag, c_string szSrcFile);</pre><pre></pre>
+</body>
+</html>

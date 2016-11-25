@@ -1,0 +1,24 @@
+/* ------------------------------------------------------------------------ */
+/*                                                                          */
+/* [meta.abs]                  Abstract Grammar                             */
+/*                                                                          */
+/* ------------------------------------------------------------------------ */
+
+LANGUAGE meta
+
+TOKENS
+
+  Ide
+
+TYPES
+
+  meta       = Start_Source(Source)
+
+  Source     = dfn(Elm*)
+
+  Typ        = dfn(Ide);
+               nul
+
+  Elm        = grp(Ide, Typ, Elm*);
+               txt
+

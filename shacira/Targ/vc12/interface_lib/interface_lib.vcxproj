@@ -1,0 +1,581 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <SccProjectName />
+    <SccLocalPath />
+    <ProjectGuid>{1398C09F-9C46-45F7-8A49-B960CA3120B3}</ProjectGuid>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\omniORB_release.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\omniORB_debug.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>.\Debug\</OutDir>
+    <IntDir>.\Debug\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>.\Release\</OutDir>
+    <IntDir>.\Release\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <FunctionLevelLinking>
+      </FunctionLevelLinking>
+      <Optimization>Disabled</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <MinimalRebuild>false</MinimalRebuild>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalIncludeDirectories>..\..\..\src;..\..\..\src\Include;..\..\..\Extern\ECL\Src;..\..\..\src\Orb;..\..\..\Extern\STYX\Src\INC;..\..\..\Extern\STYX\Src\LIBBASE;..\..\..\Extern\STYX\Src\MODSTD;..\..\..\Extern\FALCON\include;..\..\..\Extern\SIEMENS\C;..\..\..\Extern\ADDIDATA\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;_LIB;__x86__;__WIN32__;_COS_LIBRARY;_NO_QT_;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\Debug\</AssemblerListingLocation>
+      <PrecompiledHeaderOutputFile>.\Debug\interface_lib.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>.\Debug\</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug\</ProgramDataBaseFileName>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <AdditionalOptions>/MP2 %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <ResourceCompile>
+      <Culture>0x0407</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Debug\interface_lib.bsc</OutputFile>
+    </Bscmake>
+    <Lib>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <Optimization>MaxSpeed</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <AdditionalIncludeDirectories>..\..\..\src;..\..\..\src\Include;..\..\..\Extern\ECL\Src;..\..\..\src\Orb;..\..\..\Extern\STYX\Src\INC;..\..\..\Extern\STYX\Src\LIBBASE;..\..\..\Extern\STYX\Src\MODSTD;..\..\..\Extern\FALCON\include;..\..\..\Extern\SIEMENS\C;..\..\..\Extern\ADDIDATA\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;_LIB;__x86__;__WIN32__;_COS_LIBRARY;_NO_QT_;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\Release\</AssemblerListingLocation>
+      <PrecompiledHeaderOutputFile>.\Release\interface_lib.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>.\Release\</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release\</ProgramDataBaseFileName>
+      <AdditionalOptions>/MP2 %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <ResourceCompile>
+      <Culture>0x0407</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Release\interface_lib.bsc</OutputFile>
+    </Bscmake>
+    <Lib>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\Src\Orb\ControlDynSK.cc" />
+    <ClCompile Include="..\..\..\Src\Orb\ControlSK.cc" />
+    <ClCompile Include="..\..\..\Src\System\Channel\cAdapter.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Channel\cAdapterFactory.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Channel\cChannel.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Channel\cChannelFactory.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Channel\cChannelProxy.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Channel\cConnector.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Channel\cCOSChannel.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Channel\cLocalChannel.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Channel\cRemoteBridge.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Channel\cRemoteChannel.cpp" />
+    <ClCompile Include="..\..\..\Src\System\ClientServer\cBlockQueue.cpp" />
+    <ClCompile Include="..\..\..\Src\System\ClientServer\cClient.cpp" />
+    <ClCompile Include="..\..\..\Src\System\ClientServer\cCSAddress.cpp" />
+    <ClCompile Include="..\..\..\Src\System\ClientServer\cCSComm.cpp" />
+    <ClCompile Include="..\..\..\Src\System\ClientServer\cCSMsg.cpp" />
+    <ClCompile Include="..\..\..\Src\System\ClientServer\cInetAddress.cpp" />
+    <ClCompile Include="..\..\..\Src\System\ClientServer\cServer.cpp" />
+    <ClCompile Include="..\..\..\Src\System\ClientServer\cServerThread.cpp" />
+    <ClCompile Include="..\..\..\Src\System\ClientServer\cTCPComm.cpp" />
+    <ClCompile Include="..\..\..\Src\System\ClientServer\cUDPClient.cpp" />
+    <ClCompile Include="..\..\..\Src\System\ClientServer\cUDPComm.cpp" />
+    <ClCompile Include="..\..\..\Src\System\ClientServer\cUDPServer.cpp" />
+    <ClCompile Include="..\..\..\Src\System\cLiteString.cpp" />
+    <ClCompile Include="..\..\..\Src\System\cLiteWString.cpp" />
+    <ClCompile Include="..\..\..\Src\System\cValue.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Memory\cGarbageCollector.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Memory\cMemPool.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Objects\cProtocol.cpp" />
+    <ClCompile Include="..\..\..\Src\System\PLC\cActLine.cpp" />
+    <ClCompile Include="..\..\..\Src\System\PLC\cActProcedure.cpp" />
+    <ClCompile Include="..\..\..\Src\System\PLC\cActProgram.cpp" />
+    <ClCompile Include="..\..\..\Src\System\PLC\cAtomicCondition.cpp" />
+    <ClCompile Include="..\..\..\Src\System\PLC\cControlCondition.cpp" />
+    <ClCompile Include="..\..\..\Src\System\PLC\cControlProcedure.cpp" />
+    <ClCompile Include="..\..\..\Src\System\PLC\cControlProgram.cpp" />
+    <ClCompile Include="..\..\..\Src\System\PLC\cControlStartCondition.cpp" />
+    <ClCompile Include="..\..\..\Src\System\PLC\cControlState.cpp" />
+    <ClCompile Include="..\..\..\Src\System\PLC\cProcedureLine.cpp" />
+    <ClCompile Include="..\..\..\Src\System\PLC\cStateVariable.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Comm\cProxyReceiver.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Comm\cProxySender.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Comm\cProxyTable.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Config\cConfiguration.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Config\cConfigurationObject.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Config\cProperty.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Config\cPropertyDef.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Config\cTypeDef.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Config\cTypeFactory.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Console\cConsole.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Console\cFileConsole.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Console\cMemoryConsole.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Console\cSocketConsole.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Console\cStandardConsole.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Database\cArgument.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Database\cBlob.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Database\cConstInt.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Database\cConstReal.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Database\cConstString.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Database\cContext.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Database\cCurve.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Database\cFileContext.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Database\cFileVariable.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Database\cFuncDecl.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Database\cFuncRef.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Database\cFuncRefArg.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Database\cImage.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Database\cMapping.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Database\cRefCache.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Database\cSHVariant.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Database\cUnitDef.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Database\cVarDef.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Database\cVariable.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Database\cVariableValues.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Database\cVarRef.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Database\cVarRefArg.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Memory\cBlockBuffer.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Memory\cCharRingBuffer.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Memory\cMemoryPtr.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Memory\cPtrList.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Namespace\cNameSpace.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Namespace\cNameSpaceIterator.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Namespace\cNameSpaceNode.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Namespace\cNodeContext.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Namespace\cNodeObject.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Namespace\cTree.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Objects\cAlarm.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Objects\cCorbaProxy.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Objects\cDataChange.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Objects\cEvent.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Objects\cInfo.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Objects\cJobEntry.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Objects\cJobSpec.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Objects\cObjectBuffer.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Objects\cObjectLock.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Objects\cObjectQueue.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Objects\cProxy.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Objects\cRequest.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Objects\cState.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Objects\cStaticObject.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Objects\cTransferObject.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Objects\cTransientObject.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Objects\cUserInfo.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Process\cCellProxy.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Process\cOptions.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Process\cResources.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Process\cSHProcess.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Process\cShutDownControl.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Process\debug_log.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Structs\cDataFile.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Structs\cDataset.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Structs\cDatasetDirectory.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Structs\cExtendedObjectRing.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Structs\cFlatObject.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Structs\cFloatCurve.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Structs\cGraphicCurve.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Structs\cShortCurve.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Sys\cConvUtils.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Sys\cexceptionhnd.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Sys\cFileSystemUtils.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Sys\cSharedLibrary.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Sys\cSHFile.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Sys\cSockets.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Sys\cStringBuffer.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Sys\cSysProcess.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Sys\cSystemUtils.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Text\cText.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Text\cTextTable.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Text\SystemText.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Threads\cAsyncChannel.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Threads\cControlThread.cpp" />
+    <ClCompile Include="..\..\..\Src\System\cCustomFunctions.cpp" />
+    <ClCompile Include="..\..\..\Src\System\cError.cpp" />
+    <ClCompile Include="..\..\..\Src\System\cIniFile.cpp" />
+    <ClCompile Include="..\..\..\Src\System\cLogFile.cpp" />
+    <ClCompile Include="..\..\..\Src\System\cStringUtils.cpp" />
+    <ClCompile Include="..\..\..\Src\System\cTimeObject.cpp" />
+    <ClCompile Include="..\..\..\Src\System\cTokenizer.cpp" />
+    <ClCompile Include="..\..\..\Src\System\cVariant.cpp" />
+    <ClCompile Include="..\..\..\Src\Client\Adapters\cDataChangeAdapter.cpp" />
+    <ClCompile Include="..\..\..\Src\Client\Adapters\cDataControl.cpp" />
+    <ClCompile Include="..\..\..\Src\Client\Adapters\cEventAdapter.cpp" />
+    <ClCompile Include="..\..\..\Src\Client\Adapters\cEventControl.cpp" />
+    <ClCompile Include="..\..\..\Src\Client\RemoteDatabase\cRemoteContext.cpp" />
+    <ClCompile Include="..\..\..\Src\Client\RemoteDatabase\cRemoteVar.cpp" />
+    <ClCompile Include="..\..\..\Src\Client\GatewayInterface\cGatewayClient.cpp" />
+    <ClCompile Include="..\..\..\Src\Client\GatewayInterface\cGatewayInterface.cpp" />
+    <ClCompile Include="..\..\..\Src\Language\cSDDLParser.cpp" />
+    <ClCompile Include="..\..\..\Src\Language\cStyxParser.cpp" />
+    <ClCompile Include="..\..\..\Src\Language\Shacira_int.c" />
+    <ClCompile Include="..\..\..\Src\Language\Shacira_lim.c" />
+    <ClCompile Include="..\..\..\Src\Language\Shacira_pim.c" />
+    <ClCompile Include="..\..\..\Src\Orb\cBroker.cpp" />
+    <ClCompile Include="..\..\..\Src\Orb\cCorbaCellProxy.cpp" />
+    <ClCompile Include="..\..\..\Src\Orb\cCosEventChannelProxy.cpp" />
+    <ClCompile Include="..\..\..\Src\Orb\CorbaDefinitions.cpp" />
+    <ClCompile Include="..\..\..\Src\Orb\CosEventChannelAdminDynSK.cpp" />
+    <ClCompile Include="..\..\..\Src\Orb\CosEventChannelAdminSK.cpp" />
+    <ClCompile Include="..\..\..\Src\Orb\CosEventCommDynSK.cpp" />
+    <ClCompile Include="..\..\..\Src\Orb\CosEventCommSK.cpp" />
+    <ClCompile Include="..\..\..\Src\Orb\iCellObject.cpp" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\binimg.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\binset.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\cfg_abs.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\cfg_dfn.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\ctx_app.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\glo_tab.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\gstream.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\hmap.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\hset.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\line_scn.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\list.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\literal.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\otab.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\pathes.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\prim.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\prs.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\prs_abs.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\prs_io.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\ptm.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\ptm_gen.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\ptm_pp.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\scn_abs.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\scn_base.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\scn_io.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\scn_pre.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\sink.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\symbols.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\sysbase0.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\sysbase1.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\libutil\charlib.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\libutil\com_get.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\libutil\ctx.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\libutil\dict.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\libutil\dicts.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\libutil\hpat.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\libutil\olist.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\libutil\pgm_base.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\libstyx\prs_gen.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\libstyx\reg_exp.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\libstyx\scn_gen.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\libstyx\styx_gen.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\modstd\gls.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\modstd\memosx.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\gen\ccnv_lim.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\gen\cmd_int.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\gen\cmd_lim.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\gen\cmd_pim.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\gen\ctoh_cim.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\gen\hpat_int.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\gen\hpat_lim.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\gen\hpat_pim.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\gen\lim__cim.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\gen\pim__cim.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\gen\ptm__cim.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\gen\rexp_lim.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\gen\styd_cim.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\gen\styp_cim.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\gen\styx_cim.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\gen\styx_int.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\gen\styx_lim.c" />
+    <ClCompile Include="..\..\..\Extern\STYX\src\gen\styx_pim.c" />
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\driver\snprintf\snprintf.c" />
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\driver\mn.cpp" />
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\driver\mn_local.cpp" />
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\driver\mn_mslot.cpp" />
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\driver\mn_npipe.cpp" />
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\driver\mn_queue.cpp" />
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\system\enum_procs.cpp" />
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\base.cpp" />
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\bprintf.cpp" />
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\collect.cpp" />
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\error.cpp" />
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\event.cpp" />
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\logfile.cpp" />
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\map.cpp" />
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\message.cpp" />
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\namedpipe.cpp" />
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\object.cpp" />
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\osbase.cpp" />
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\osversion.cpp" />
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\process.cpp" />
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\profile.cpp" />
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\queue.cpp" />
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\ring.cpp" />
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\semaphore.cpp" />
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\sharedmem.cpp" />
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\string.cpp" />
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\string_ex.cpp" />
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\thread.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\Src\System\Channel\cAdapter.h" />
+    <ClInclude Include="..\..\..\Src\System\Channel\cAdapterFactory.h" />
+    <ClInclude Include="..\..\..\Src\System\Channel\cChannel.h" />
+    <ClInclude Include="..\..\..\Src\System\Channel\cChannelFactory.h" />
+    <ClInclude Include="..\..\..\Src\System\Channel\cChannelProxy.h" />
+    <ClInclude Include="..\..\..\Src\System\Channel\cConnector.h" />
+    <ClInclude Include="..\..\..\Src\System\Channel\cCOSChannel.h" />
+    <ClInclude Include="..\..\..\Src\System\Channel\cLocalChannel.h" />
+    <ClInclude Include="..\..\..\Src\System\Channel\cRemoteBridge.h" />
+    <ClInclude Include="..\..\..\Src\System\Channel\cRemoteChannel.h" />
+    <ClInclude Include="..\..\..\Src\System\ClientServer\cBlockQueue.h" />
+    <ClInclude Include="..\..\..\Src\System\ClientServer\cClient.h" />
+    <ClInclude Include="..\..\..\Src\System\ClientServer\cCSAddress.h" />
+    <ClInclude Include="..\..\..\Src\System\ClientServer\cCSComm.h" />
+    <ClInclude Include="..\..\..\Src\System\ClientServer\cCSMsg.h" />
+    <ClInclude Include="..\..\..\Src\System\ClientServer\cInetAddress.h" />
+    <ClInclude Include="..\..\..\Src\System\ClientServer\cs.h" />
+    <ClInclude Include="..\..\..\Src\System\ClientServer\cServer.h" />
+    <ClInclude Include="..\..\..\Src\System\ClientServer\cServerThread.h" />
+    <ClInclude Include="..\..\..\Src\System\ClientServer\cTCPComm.h" />
+    <ClInclude Include="..\..\..\Src\System\ClientServer\cUDPClient.h" />
+    <ClInclude Include="..\..\..\Src\System\ClientServer\cUDPComm.h" />
+    <ClInclude Include="..\..\..\Src\System\ClientServer\cUDPServer.h" />
+    <ClInclude Include="..\..\..\Src\System\cLiteString.h" />
+    <ClInclude Include="..\..\..\Src\System\cLiteWString.h" />
+    <ClInclude Include="..\..\..\Src\System\cValue.h" />
+    <ClInclude Include="..\..\..\Src\System\Memory\cGarbageCollector.h" />
+    <ClInclude Include="..\..\..\Src\System\Memory\cMemPool.h" />
+    <ClInclude Include="..\..\..\Src\System\Objects\cProtocol.h" />
+    <ClInclude Include="..\..\..\Src\System\PLC\cActLine.h" />
+    <ClInclude Include="..\..\..\Src\System\PLC\cActProcedure.h" />
+    <ClInclude Include="..\..\..\Src\System\PLC\cActProgram.h" />
+    <ClInclude Include="..\..\..\Src\System\PLC\cAtomicCondition.h" />
+    <ClInclude Include="..\..\..\Src\System\PLC\cControlCondition.h" />
+    <ClInclude Include="..\..\..\Src\System\PLC\cControlProcedure.h" />
+    <ClInclude Include="..\..\..\Src\System\PLC\cControlProgram.h" />
+    <ClInclude Include="..\..\..\Src\System\PLC\cControlStartCondition.h" />
+    <ClInclude Include="..\..\..\Src\System\PLC\cControlState.h" />
+    <ClInclude Include="..\..\..\Src\System\PLC\cProcedureLine.h" />
+    <ClInclude Include="..\..\..\Src\System\PLC\cStateVariable.h" />
+    <ClInclude Include="..\..\..\Src\System\Comm\cProxyReceiver.h" />
+    <ClInclude Include="..\..\..\Src\System\Comm\cProxySender.h" />
+    <ClInclude Include="..\..\..\Src\System\Comm\cProxyTable.h" />
+    <ClInclude Include="..\..\..\Src\System\Config\cConfiguration.h" />
+    <ClInclude Include="..\..\..\Src\System\Config\cConfigurationObject.h" />
+    <ClInclude Include="..\..\..\Src\System\Config\cProperty.h" />
+    <ClInclude Include="..\..\..\Src\System\Config\cPropertyDef.h" />
+    <ClInclude Include="..\..\..\Src\System\Config\cTypeDef.h" />
+    <ClInclude Include="..\..\..\Src\System\Config\cTypeFactory.h" />
+    <ClInclude Include="..\..\..\Src\System\Console\cConsole.h" />
+    <ClInclude Include="..\..\..\Src\System\Console\cFileConsole.h" />
+    <ClInclude Include="..\..\..\Src\System\Console\cMemoryConsole.h" />
+    <ClInclude Include="..\..\..\Src\System\Console\cSocketConsole.h" />
+    <ClInclude Include="..\..\..\Src\System\Console\cStandardConsole.h" />
+    <ClInclude Include="..\..\..\Src\System\Database\cArgument.h" />
+    <ClInclude Include="..\..\..\Src\System\Database\cBlob.h" />
+    <ClInclude Include="..\..\..\Src\System\Database\cConstInt.h" />
+    <ClInclude Include="..\..\..\Src\System\Database\cConstReal.h" />
+    <ClInclude Include="..\..\..\Src\System\Database\cConstString.h" />
+    <ClInclude Include="..\..\..\Src\System\Database\cContext.h" />
+    <ClInclude Include="..\..\..\Src\System\Database\cCurve.h" />
+    <ClInclude Include="..\..\..\Src\System\Database\cFileContext.h" />
+    <ClInclude Include="..\..\..\Src\System\Database\cFileVariable.h" />
+    <ClInclude Include="..\..\..\Src\System\Database\cFuncDecl.h" />
+    <ClInclude Include="..\..\..\Src\System\Database\cFuncRef.h" />
+    <ClInclude Include="..\..\..\Src\System\Database\cFuncRefArg.h" />
+    <ClInclude Include="..\..\..\Src\System\Database\cImage.h" />
+    <ClInclude Include="..\..\..\Src\System\Database\cMapping.h" />
+    <ClInclude Include="..\..\..\Src\System\Database\cRefCache.h" />
+    <ClInclude Include="..\..\..\Src\System\Database\cSHVariant.h" />
+    <ClInclude Include="..\..\..\Src\System\Database\cUnitDef.h" />
+    <ClInclude Include="..\..\..\Src\System\Database\cVarDef.h" />
+    <ClInclude Include="..\..\..\Src\System\Database\cVariable.h" />
+    <ClInclude Include="..\..\..\Src\System\Database\cVariableValues.h" />
+    <ClInclude Include="..\..\..\Src\System\Database\cVarRef.h" />
+    <ClInclude Include="..\..\..\Src\System\Database\cVarRefArg.h" />
+    <ClInclude Include="..\..\..\Src\System\Database\FuncSpecs.h" />
+    <ClInclude Include="..\..\..\Src\System\Memory\cBlockBuffer.h" />
+    <ClInclude Include="..\..\..\Src\System\Memory\cCharRingBuffer.h" />
+    <ClInclude Include="..\..\..\Src\System\Memory\cMemoryPtr.h" />
+    <ClInclude Include="..\..\..\Src\System\Memory\cPtrList.h" />
+    <ClInclude Include="..\..\..\Src\System\Namespace\cNameSpace.h" />
+    <ClInclude Include="..\..\..\Src\System\Namespace\cNameSpaceIterator.h" />
+    <ClInclude Include="..\..\..\Src\System\Namespace\cNameSpaceNode.h" />
+    <ClInclude Include="..\..\..\Src\System\Namespace\cNodeContext.h" />
+    <ClInclude Include="..\..\..\Src\System\Namespace\cNodeObject.h" />
+    <ClInclude Include="..\..\..\Src\System\Namespace\cTree.h" />
+    <ClInclude Include="..\..\..\Src\System\Objects\cAlarm.h" />
+    <ClInclude Include="..\..\..\Src\System\Objects\cCorbaProxy.h" />
+    <ClInclude Include="..\..\..\Src\System\Objects\cDataChange.h" />
+    <ClInclude Include="..\..\..\Src\System\Objects\cEvent.h" />
+    <ClInclude Include="..\..\..\Src\System\Objects\cInfo.h" />
+    <ClInclude Include="..\..\..\Src\System\Objects\cJobEntry.h" />
+    <ClInclude Include="..\..\..\Src\System\Objects\cJobSpec.h" />
+    <ClInclude Include="..\..\..\Src\System\Objects\cObjectBuffer.h" />
+    <ClInclude Include="..\..\..\Src\System\Objects\cObjectLock.h" />
+    <ClInclude Include="..\..\..\Src\System\Objects\cObjectQueue.h" />
+    <ClInclude Include="..\..\..\Src\System\Objects\cProxy.h" />
+    <ClInclude Include="..\..\..\Src\System\Objects\cRequest.h" />
+    <ClInclude Include="..\..\..\Src\System\Objects\cState.h" />
+    <ClInclude Include="..\..\..\Src\System\Objects\cStaticObject.h" />
+    <ClInclude Include="..\..\..\Src\System\Objects\cTransferObject.h" />
+    <ClInclude Include="..\..\..\Src\System\Objects\cTransientObject.h" />
+    <ClInclude Include="..\..\..\Src\System\Objects\cUserInfo.h" />
+    <ClInclude Include="..\..\..\Src\System\Process\cCellProxy.h" />
+    <ClInclude Include="..\..\..\Src\System\Process\cOptions.h" />
+    <ClInclude Include="..\..\..\Src\System\Process\cResources.h" />
+    <ClInclude Include="..\..\..\Src\System\Process\cSHProcess.h" />
+    <ClInclude Include="..\..\..\Src\System\Process\cShutDownControl.h" />
+    <ClInclude Include="..\..\..\Src\System\Process\debug_log.h" />
+    <ClInclude Include="..\..\..\Src\System\Structs\cDataFile.h" />
+    <ClInclude Include="..\..\..\Src\System\Structs\cDataset.h" />
+    <ClInclude Include="..\..\..\Src\System\Structs\cDatasetDirectory.h" />
+    <ClInclude Include="..\..\..\Src\System\Structs\cExtendedObjectRing.h" />
+    <ClInclude Include="..\..\..\Src\System\Structs\cFlatObject.h" />
+    <ClInclude Include="..\..\..\Src\System\Structs\cFloatCurve.h" />
+    <ClInclude Include="..\..\..\Src\System\Structs\cGraphicCurve.h" />
+    <ClInclude Include="..\..\..\Src\System\Structs\cShortCurve.h" />
+    <ClInclude Include="..\..\..\Src\System\Sys\cConvUtils.h" />
+    <ClInclude Include="..\..\..\Src\System\Sys\cexceptionhnd.h" />
+    <ClInclude Include="..\..\..\Src\System\Sys\cFileSystemUtils.h" />
+    <ClInclude Include="..\..\..\Src\System\Sys\cSHFile.h" />
+    <ClInclude Include="..\..\..\Src\System\Sys\cSockets.h" />
+    <ClInclude Include="..\..\..\Src\System\Sys\cStringBuffer.h" />
+    <ClInclude Include="..\..\..\Src\System\Sys\cSysProcess.h" />
+    <ClInclude Include="..\..\..\Src\System\Sys\cSystemUtils.h" />
+    <ClInclude Include="..\..\..\Src\System\Text\cTextTable.h" />
+    <ClInclude Include="..\..\..\Src\System\Text\SystemText.h" />
+    <ClInclude Include="..\..\..\Src\System\Threads\cAsyncChannel.h" />
+    <ClInclude Include="..\..\..\Src\System\Threads\cControlThread.h" />
+    <ClInclude Include="..\..\..\Src\System\cCustomFunctions.h" />
+    <ClInclude Include="..\..\..\Src\System\cError.h" />
+    <ClInclude Include="..\..\..\Src\System\cIniFile.h" />
+    <ClInclude Include="..\..\..\Src\System\cLogFile.h" />
+    <ClInclude Include="..\..\..\Src\System\cStringUtils.h" />
+    <ClInclude Include="..\..\..\Src\System\cTimeObject.h" />
+    <ClInclude Include="..\..\..\Src\System\cTokenizer.h" />
+    <ClInclude Include="..\..\..\Src\System\cVariant.h" />
+    <ClInclude Include="..\..\..\Src\Client\Adapters\cDataChangeAdapter.h" />
+    <ClInclude Include="..\..\..\Src\Client\Adapters\cDataControl.h" />
+    <ClInclude Include="..\..\..\Src\Client\Adapters\cEventAdapter.h" />
+    <ClInclude Include="..\..\..\Src\Client\Adapters\cEventControl.h" />
+    <ClInclude Include="..\..\..\Src\Client\RemoteDatabase\cRemoteContext.h" />
+    <ClInclude Include="..\..\..\Src\Client\RemoteDatabase\cRemoteVar.h" />
+    <ClInclude Include="..\..\..\Src\Client\GatewayInterface\cGatewayClient.h" />
+    <ClInclude Include="..\..\..\Src\Client\GatewayInterface\cGatewayInterface.h" />
+    <ClInclude Include="..\..\..\Src\Language\cSDDLParser.h" />
+    <ClInclude Include="..\..\..\Src\Language\cStyxParser.h" />
+    <ClInclude Include="..\..\..\Src\Orb\cBroker.h" />
+    <ClInclude Include="..\..\..\Src\Orb\cCorbaCellProxy.h" />
+    <ClInclude Include="..\..\..\Src\Orb\cCosEventChannelProxy.h" />
+    <ClInclude Include="..\..\..\Src\Orb\CorbaDefinitions.h" />
+    <ClInclude Include="..\..\..\Src\Orb\iCellObject.h" />
+    <ClInclude Include="..\..\..\Extern\STYX\src\MODSTD\STDOSX.H" />
+    <ClInclude Include="..\..\..\Extern\ECL\src\base\driver\snprintf\snprintf.h" />
+    <ClInclude Include="..\..\..\Extern\ECL\src\base\driver\mn.h" />
+    <ClInclude Include="..\..\..\Extern\ECL\src\base\driver\mn_local.h" />
+    <ClInclude Include="..\..\..\Extern\ECL\src\base\driver\mn_mslot.h" />
+    <ClInclude Include="..\..\..\Extern\ECL\src\base\driver\mn_npipe.h" />
+    <ClInclude Include="..\..\..\Extern\ECL\src\base\driver\mn_queue.h" />
+    <ClInclude Include="..\..\..\Extern\ECL\src\base\system\enum_procs.h" />
+    <ClInclude Include="..\..\..\Extern\ECL\src\base\bprintf.h" />
+    <ClInclude Include="..\..\..\Extern\ECL\src\base\error.h" />
+    <ClInclude Include="..\..\..\Extern\ECL\src\base\event.h" />
+    <ClInclude Include="..\..\..\Extern\ECL\src\base\namedpipe.h" />
+    <ClInclude Include="..\..\..\Extern\ECL\src\base\object.h" />
+    <ClInclude Include="..\..\..\Extern\ECL\src\base\osversion.h" />
+    <ClInclude Include="..\..\..\Extern\ECL\src\base\process.h" />
+    <ClInclude Include="..\..\..\Extern\ECL\src\base\profile.h" />
+    <ClInclude Include="..\..\..\Extern\ECL\src\base\queue.h" />
+    <ClInclude Include="..\..\..\Extern\ECL\src\base\string.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\..\Src\Language\Shacira.sty">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">cd %(RootDir)%(Directory)
+del shacira_lim.h
+del shacira_pim.h
+del shacira_int.h
+..\..\\bin\win32\styx.exe -makeIMG -makeC -makeINT Shacira
+..\..\\bin\win32\ctoh.exe
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RootDir)%(Directory)shacira_lim.c;%(RootDir)%(Directory)shacira_lim.h;%(RootDir)%(Directory)shacira_pim.c;%(RootDir)%(Directory)shacira_pim.h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cd %(RootDir)%(Directory)
+del shacira_lim.h
+del shacira_pim.h
+del shacira_int.h
+..\..\\bin\win32\styx.exe -makeIMG -makeC -makeINT Shacira
+..\..\\bin\win32\ctoh.exe
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RootDir)%(Directory)shacira_lim.c;%(RootDir)%(Directory)shacira_lim.h;%(RootDir)%(Directory)shacira_pim.c;%(RootDir)%(Directory)shacira_pim.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Orb\Control.hh">
+      <FileType>Document</FileType>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Orb\CosEventChannelAdmin.hh">
+      <FileType>Document</FileType>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Orb\CosEventComm.hh">
+      <FileType>Document</FileType>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\..\Src\Orb\Control.idl">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)..\..\..\..\OmniORB.$(ORBVERSION)\bin\x86_win32\omniidl.exe -C%(RootDir)%(Directory)..\Orb -I%(RootDir)%(Directory)..\Orb -bcxx -WbBOA -Wba %(FullPath)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RootDir)%(Directory)%(Filename).hh;%(RootDir)%(Directory)%(Filename)SK.cpp;%(RootDir)%(Directory)%(Filename)DynSK.cpp;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RootDir)%(Directory)%(Filename).hh;%(RootDir)%(Directory)%(Filename)SK.cpp;%(RootDir)%(Directory)%(Filename)DynSK.cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)..\..\..\..\OmniORB.$(ORBVERSION)\bin\x86_win32\omniidl.exe -C%(RootDir)%(Directory)..\Orb -I%(RootDir)%(Directory)..\Orb -bcxx -WbBOA -Wba %(FullPath)</Command>
+    </CustomBuild>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Sys_FileHandlingWizard</class>
+ <widget class="QWizard" name="Sys_FileHandlingWizard">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>572</width>
+    <height>393</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>Arial</family>
+    <pointsize>12</pointsize>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>File handling</string>
+  </property>
+  <property name="autoFillBackground">
+   <bool>true</bool>
+  </property>
+  <property name="modal">
+   <bool>true</bool>
+  </property>
+  <property name="wizardStyle">
+   <enum>QWizard::ClassicStyle</enum>
+  </property>
+  <widget class="QWizardPage" name="WizardPage">
+   <property name="autoFillBackground">
+    <bool>true</bool>
+   </property>
+   <property name="title">
+    <string>Working with mold data</string>
+   </property>
+   <widget class="QLabel" name="pixmapLabel1">
+    <property name="geometry">
+     <rect>
+      <x>3</x>
+      <y>10</y>
+      <width>41</width>
+      <height>43</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="../../qresources/demo.qrc">:/demo/images/img_2.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+    <property name="wordWrap">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="CButtonGroup" name="cButtonGroup4">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>10</y>
+      <width>495</width>
+      <height>280</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <widget class="CRadioButton" name="RadioButtonSave_2">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>25</y>
+       <width>475</width>
+       <height>55</height>
+      </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="text">
+      <string>Load data group
+(e.g. core pulling data)</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+     <property name="VarRef">
+      <cstring>SetCfgMachFileHandling</cstring>
+     </property>
+     <property name="Mode">
+      <enum>CRadioButton::SetPattern</enum>
+     </property>
+    </widget>
+    <widget class="CRadioButton" name="RadioButtonSaveAs">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>95</y>
+       <width>475</width>
+       <height>45</height>
+      </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="text">
+      <string>Import multiple mold data files
+to internal data carrier</string>
+     </property>
+     <property name="VarRef">
+      <cstring>SetCfgMachFileHandling</cstring>
+     </property>
+     <property name="Mode">
+      <enum>CRadioButton::SetPattern</enum>
+     </property>
+     <property name="BitPos">
+      <number>1</number>
+     </property>
+    </widget>
+    <widget class="CRadioButton" name="RadioButtonSaveAs_2">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>155</y>
+       <width>475</width>
+       <height>45</height>
+      </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="text">
+      <string>Export multiple mold data files
+from internal data carrier</string>
+     </property>
+     <property name="VarRef">
+      <cstring>SetCfgMachFileHandling</cstring>
+     </property>
+     <property name="Mode">
+      <enum>CRadioButton::SetPattern</enum>
+     </property>
+     <property name="BitPos">
+      <number>2</number>
+     </property>
+    </widget>
+    <widget class="CRadioButton" name="RadioButton_DeleteAll">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>215</y>
+       <width>475</width>
+       <height>45</height>
+      </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="text">
+      <string>Delete all data files in the internal data carrier</string>
+     </property>
+     <property name="VarRef">
+      <cstring>SetCfgMachFileHandling</cstring>
+     </property>
+     <property name="Mode">
+      <enum>CRadioButton::SetPattern</enum>
+     </property>
+     <property name="BitPos">
+      <number>3</number>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QWizardPage" name="WizardPage_0">
+   <property name="autoFillBackground">
+    <bool>true</bool>
+   </property>
+   <property name="title">
+    <string>Load data group</string>
+   </property>
+   <widget class="QLabel" name="pixmapLabel1_2">
+    <property name="geometry">
+     <rect>
+      <x>3</x>
+      <y>10</y>
+      <width>41</width>
+      <height>43</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="../../qresources/demo.qrc">:/demo/images/img_2.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+    <property name="wordWrap">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="CFixText" name="cFixText5_2_3_3">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>55</y>
+      <width>170</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="text">
+     <string>File name</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="CFixText" name="cFixText2">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>95</y>
+      <width>170</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="text">
+     <string>Data group</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="CFixText" name="cFixText1">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>15</y>
+      <width>170</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="text">
+     <string>Data Carrier</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="CActValue" name="cActValue1_3_1">
+    <property name="geometry">
+     <rect>
+      <x>235</x>
+      <y>53</y>
+      <width>200</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading</set>
+    </property>
+    <property name="VarRef">
+     <cstring>SetDescMachFileName</cstring>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QWizardPage" name="WizardPage_2">
+   <property name="autoFillBackground">
+    <bool>true</bool>
+   </property>
+   <property name="title">
+    <string/>
+   </property>
+   <widget class="QLabel" name="pixmapLabel1_2_2">
+    <property name="geometry">
+     <rect>
+      <x>3</x>
+      <y>10</y>
+      <width>41</width>
+      <height>43</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="../../qresources/demo.qrc">:/demo/images/img_2.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+    <property name="wordWrap">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="CFixText" name="DirectoryDescription">
+    <property name="geometry">
+     <rect>
+      <x>51</x>
+      <y>9</y>
+      <width>250</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>200</width>
+      <height>25</height>
+     </size>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="CReqValue" name="ClpDataUSBDirInput">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>35</y>
+      <width>400</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>280</width>
+      <height>25</height>
+     </size>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading</set>
+    </property>
+    <property name="Validation">
+     <enum>CReqValue::PathValidation</enum>
+    </property>
+    <property name="VarRef">
+     <cstring>SetCfgMachFileHandlingDir</cstring>
+    </property>
+    <property name="PlausFuncRef">
+     <cstring>PlausValidateDir(2,4)</cstring>
+    </property>
+   </widget>
+   <widget class="CPushButton" name="DataSetHandlingDirButton">
+    <property name="geometry">
+     <rect>
+      <x>462</x>
+      <y>33</y>
+      <width>80</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>60</width>
+      <height>30</height>
+     </size>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="text">
+     <string>...</string>
+    </property>
+    <property name="ButtonFuncRef">
+     <cstring>BtnDirDialog(\&quot;SetCfgMachFileHandlingDir\&quot;,-1,\&quot;DataSetHandlingDirButton\&quot;,3,2,4)</cstring>
+    </property>
+   </widget>
+   <widget class="CCheckBox" name="CheckBoxReplaceExistFiles">
+    <property name="geometry">
+     <rect>
+      <x>51</x>
+      <y>91</y>
+      <width>488</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>27</width>
+      <height>27</height>
+     </size>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="text">
+     <string>Replace existing files</string>
+    </property>
+    <property name="VarRef">
+     <cstring>SetCfgMachFileHandlingReplaceFiles</cstring>
+    </property>
+   </widget>
+   <widget class="CSimpleGraphic" name="csimplegraphic">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>139</y>
+      <width>451</width>
+      <height>201</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>CActValue</class>
+   <extends>QLabel</extends>
+   <header>cactvalue.h</header>
+  </customwidget>
+  <customwidget>
+   <class>CButtonGroup</class>
+   <extends>QLabel</extends>
+   <header>cbuttongroup.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>CCheckBox</class>
+   <extends>QCheckBox</extends>
+   <header>ccheckbox.h</header>
+  </customwidget>
+  <customwidget>
+   <class>CCoordSystem</class>
+   <extends>QFrame</extends>
+   <header>ccoordsystem.h</header>
+  </customwidget>
+  <customwidget>
+   <class>CFixText</class>
+   <extends>QLabel</extends>
+   <header>cfixtext.h</header>
+  </customwidget>
+  <customwidget>
+   <class>CPushButton</class>
+   <extends>QPushButton</extends>
+   <header>cpushbutton.h</header>
+  </customwidget>
+  <customwidget>
+   <class>CRadioButton</class>
+   <extends>QRadioButton</extends>
+   <header>cradiobutton.h</header>
+  </customwidget>
+  <customwidget>
+   <class>CReqValue</class>
+   <extends>QLineEdit</extends>
+   <header>creqvalue.h</header>
+  </customwidget>
+  <customwidget>
+   <class>CSimpleGraphic</class>
+   <extends>CCoordSystem</extends>
+   <header>csimplegraphic.h</header>
+  </customwidget>
+ </customwidgets>
+ <includes>
+  <include location="local">qt4port.h</include>
+  <include location="local">CActValue.h</include>
+  <include location="local">CButtonGroup.h</include>
+  <include location="local">CCheckBox.h</include>
+  <include location="local">CComboBox.h</include>
+  <include location="local">CFixText.h</include>
+  <include location="local">CPushButton.h</include>
+  <include location="local">CRadioButton.h</include>
+  <include location="local">CReqValue.h</include>
+ </includes>
+ <resources>
+  <include location="../../qresources/demo.qrc"/>
+  <include location="../../qresources/demo.qrc"/>
+ </resources>
+ <connections/>
+</ui>

@@ -1,0 +1,296 @@
+/* ------------------------------------------------------------------------ */
+/*                                                                          */
+/* [Shacira.abs]               Abstract Grammar                             */
+/*                                                                          */
+/* decorated version                                                        */
+/*                                                                          */
+/* ------------------------------------------------------------------------ */
+
+LANGUAGE Shacira
+
+TOKENS
+
+  Letter      = 'A'..'Z' | 'a'..'z' | '_'
+  LetterOrDigit = 'A'..'Z' | 'a'..'z' | '_' | '0'..'9' 
+  HexDigit    = '0'..'9' | 'a'..'f' | 'A' .. 'F'
+  Digit       = '0'..'9'
+  Normal      = Letter | Digit | Space
+  Quote       = '\'\"\`'
+  Delimiters  = ',;'           ; delimiters
+  Parenthesis = '()[]{}'       ; one character tokens
+  Special     = Printable - Normal - Parenthesis - Quote
+
+  Hex = '0' 'x' HexDigit+       ; Natural in hexadecimal presentation
+  Ide = Letter {LetterOrDigit}  ; Identifier
+  Real = {'-'} Digit+ ('.') Digit+    ; Real
+  Nat = {'-'} Digit+            ; Natural
+  Opr = '=<>-+:*&|!'            ; Operators
+  Seq = '\"' {LitChar} '\"'     ; CharacterSequence (String)
+  HexSeq = '\'' {HexDigit} '\'' ; BCD character sequence
+  Param = '#' Digit+            ; Parameter Name
+
+TYPES
+
+  Shacira              = Start_Definitions(Definitions)
+
+  Definitions          = non;
+                         defs(Definition*)
+
+  Symbol               = hex(Hex);
+                         ide(Ide);
+                         dec(Nat)
+
+  Definition           = proc(Procedure);						// Procedure
+                         vardef(VarDef);						// "def" VarDef
+                         funcdec(FuncDecl);						// FuncDecl ";"
+                         funcref(FuncRef);
+                         prog(Program);
+                         dbdef(DatabaseDef);					// DatabaseDef ";"
+                         varref(VarRef);
+                         cond(StartCondition);					// StartCondition ";"
+                         unitdef(UnitDef);						// "unit" UnitDef
+                         state(State)							// State ";"
+
+  DatabaseDef          = def(Ide, DeviceSpec, VarDef*)
+
+  DeviceSpec           = spec(Ide);
+                         nul
+
+  // ArgDecl* is separated by comma ","
+
+  FuncDecl             = plaus(Ide, ArgDecl*);					// "plaus" Ide"("ArgDecl*")"
+                         user(Ide, ArgDecl*);					// "user" BaseType Ide"("ArgDecl*")"
+                         btn(Ide, ArgDecl*);					// "button" Ide"("ArgDecl*")"
+                         sigflt(Ide, ArgDecl*);					// "sigflt" Ide"("ArgDecl*")"
+                         slot(Ide, ArgDecl*);					// "slot" Ide"("ArgDecl*")"
+                         dark(Ide, ArgDecl*);					// "dark" Ide"("ArgDecl*")"
+                         valf(Ide, ArgDecl*);					// "valf" Ide"("ArgDecl*")"
+                         unit(BaseType, Ide, ArgDecl*);			// "unit" BaseType Ide"("ArgDecl*")"
+                         lim1(BaseType, Ide, ArgDecl*);			// "limit" BaseType Ide"("ArgDecl*")"
+                         lim2(StringType, Ide, ArgDecl*);		// "limit" StringType Ide"("ArgDecl*")"
+                         conv1(BaseType, Ide, ArgDecl*);		// "conv" BaseType Ide"("ArgDecl*")"
+                         conv2(StringType, Ide, ArgDecl*);		// "conv" StringType Ide"("ArgDecl*")"
+                         filt2(StringType, Ide, ArgDecl*);		// "filter" StringType Ide"("ArgDecl*")"
+                         filt1(BaseType, Ide, ArgDecl*);		// "filter" BaseType Ide"("ArgDecl*")"
+                         view1(BaseType, Ide, ArgDecl*)			// "view" BaseType Ide"("ArgDecl*")"
+                         view2(StringType, Ide, ArgDecl*);		// "view" StringType Ide"("ArgDecl*")"
+                         emb1(BaseType, Ide, ArgDecl*);			// "embed" BaseType Ide"("ArgDecl*")"
+                         emb2(StringType, Ide, ArgDecl*);		// "embed" StringType Ide"("ArgDecl*")"
+                         free1(BaseType, Ide, ArgDecl*);		// BaseType Ide"("ArgDecl*")"
+                         free2(StringType, Ide, ArgDecl*);		// StringType Ide"("ArgDecl*")"
+
+
+  // Argument* is separated by comma ","
+
+  FuncRef              = ref(Ide, Argument*)
+
+  VarRef               = ref(Ide, IndexRef*)					// no separation character for IndexRef*
+
+  UnitRef              = nul;
+                         ref1(Ide);								// "unit" "=" Ide
+                         ref2(Seq)								// "unit" "=" Seq
+
+  UnitDef              = def(Ide, FuncRef, UnitSpec*, Nat, Nat)
+
+  UnitSpec             = spec(Nat, Seq)							// "{" Nat, Seq "}"
+
+  VarDef               = def(Ide, DimSpec*, DataTypeSpec, VarSpecSeq, MapDef)
+
+  DimSpec              = dimspec(Nat)							// "[" Nat "]"
+
+  VarSpecSeq           = specs(VarTypeSpec, UnitRef, Description, Text, Dim1, Dim2, Dim3, Dim4, Flags, Persistence, File, FilterFunc, MinSpec, MaxSpec, ValueSpec)
+
+  Description          = desc(Seq);								// "description" "=" Seq
+                         nul
+
+  Text                 = text(Seq);								// "text" "=" Seq	
+                         nul
+
+  Dim1                 = text(Seq);								// "dim1text" "=" Seq
+                         nul
+
+  Dim2                 = text(Seq);								// "dim2text" "=" Seq
+                         nul
+
+  Dim3                 = nul;
+                         text(Seq)								// "dim2text" "=" Seq
+
+  Dim4                 = nul;
+                         text(Seq)								// "dim3text" "=" Seq
+
+  Flags                = nul;
+                         value(FlagValue)						// "flags" "=" FlagValue
+
+  FlagValue            = chex(Hex);
+                         cnat(Nat)
+
+  VarTypeSpec          = nul;
+                         vartype(VarType)						// "vartype" "=" VarType
+
+  Persistence          = persist(PersistenceType);				// "persist" "=" PersistenceType
+                         nul
+
+  File                 = file(Ide);								// "file" "=" Ide
+                         nul
+
+  FilterFunc           = ref(FuncRef);							// "filter" "=" FuncRef
+                         nul
+
+  MinSpec              = spec(Argument);						// "min" "=" Argument
+                         nul
+
+  MaxSpec              = spec(Argument);						// "max" "=" Argument
+                         nul
+
+  ValueSpec            = nul;
+                         spec(Value*)							// "values" "=" Value* (spearated by ",")
+
+  Value                = hex(Hex);
+                         bcd(Bcd);
+                         ide(Ide);
+                         nat(Nat);
+                         real(Real);
+                         cmpr(Cmpr);
+                         str(Seq)
+
+  Bcd                  = bcd(HexSeq)							// "bcd('" HexSeq "')"
+
+  Cmpr                 = cmpr(Nat, Bcd)
+
+  PersistenceType      = bbram;
+                         filebased;
+                         ram
+
+  RefreshType          = cyclic(Nat);							// Nat
+                         event1(EventType);						// "event" EventType
+                         event2(Nat)							// "event" Nat
+
+  VarType              = set;
+                         volatile;
+                         act
+
+  EventType            = data;
+                         cycle;
+                         automatic
+
+  MapDef               = map2(Ide, MapTypeSpec, ItemSpec*, Refresh, ConvFunc);
+							// "map" Ide MapTypeSpec "{"  ItemSpecList "}" Refresh ConvFunc
+                         map1(Ide, MapTypeSpec, ItemSpec, Refresh, ConvFunc);
+							// "map" Ide MapTypeSpec ItemSpec Refresh ConvFunc
+                         nul
+
+  ItemSpec             = spec1(ItemSpecifier);					// ItemSpecifier
+                         spec3(ItemSpecifier, Nat, Nat);		// ItemSpecifier ":" Nat "-" Nat
+                         spec2(ItemSpecifier, Nat)				// ItemSpecifier ":" Nat
+
+  ItemSpecifier        = name(Seq);
+                         symbol(Symbol)
+
+  Refresh              = nul;
+                         refresh(RefreshType)					// "refresh" "=" RefreshType
+
+  ConvFunc             = conv(FuncRef);							// "conversion" "=" FuncRef
+                         nul
+
+  ArgDecl              = argdec2(StringType, Ide);
+                         argdec1(BaseType, Ide)
+
+  DataTypeSpec         = type1(BaseType);						// BaseType
+                         type2(BaseType, Nat);					// BaseType "(" Nat ")"
+                         type3(StringType, Nat)					// StringType "(" Nat ")"
+
+  MapTypeSpec          = type3(StringType, Nat);				// StringType "(" Nat ")"
+                         type1(BaseType);						// BaseType
+                         type2(BaseType, Nat)					// BaseType "(" Nat ")"
+
+  BaseType             = uchar;
+                         double;
+                         bit32;
+                         bit8;
+                         ulong;
+                         object;
+                         long;
+                         float;
+                         bit16;
+                         char;
+                         void;
+                         short;
+                         bool;
+                         ushort
+
+  StringType           = byte;
+                         wstring;
+                         string
+
+  IndexRef             = var(VarRef);		
+                         chex(Hex);
+                         cnat(Nat);
+                         func(FuncRef)
+
+  Argument             = func(FuncRef);
+                         creal(Real);
+                         var(VarRef);
+                         cstring(Seq);
+                         chex(Hex);
+                         cnat(Nat)
+
+  State                = state(Ide, Condition)
+
+  Procedure            = proc(Ide, StatementBlock)
+
+  Program              = prog(Ide, Step*)
+
+  StartCondition       = cond(Condition, Ide)
+
+  Statement            = assg2(VarRef, Param);
+                         func(FuncRef);
+                         ifels(Condition, StatementBlock, StatementBlock);
+                         ret;
+                         assg1(VarRef, Argument);
+                         if(Condition, StatementBlock);
+                         while(Condition, StatementBlock);
+                         proc(Ide)
+
+  StatementBlock       = stmts(Statement*)
+
+  Condition            = not(Condition);
+                         and(Condition, Condition);
+                         or(Condition, Condition);
+                         brack(Condition);
+                         name(Ide);
+                         atom(AtomicCondition)
+
+  AtomicCondition      = rel(Argument, RelOp, Argument)
+
+  RelOp                = lt;
+                         ne;
+                         gt;
+                         ge;
+                         eq;
+                         le
+
+  Step                 = step(Nat, StepCommands)
+
+  StepCommands         = cmds(ParamAssignment*, Initial, Cyclic, Final, Terminate, Next)
+
+  ParamAssignment      = assnat(Param, Nat);
+                         assreal(Param, Real);
+                         asshex(Param, Hex)
+
+  Initial              = non;
+                         init(Ide)
+
+  Cyclic               = non;
+                         cyclic(Ide)
+
+  Final                = non;
+                         final(Ide)
+
+  Terminate            = non;
+                         term(Condition)
+
+  Next                 = auto;
+                         non;
+                         program(Ide);
+                         manual
+

@@ -1,0 +1,94 @@
+# Microsoft Developer Studio erstellte Abhängigkeitsdatei, einbezogen von ecl_lib_store.mak
+
+..\..\..\src\store\es_base.cpp : \
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_object.hpp"\
+	"..\..\..\src\base\eb_res.hpp"\
+	"..\..\..\src\base\eb_str.hpp"\
+	"..\..\..\src\base\eb_time.hpp"\
+	"..\..\..\src\store\es_base.hpp"\
+	
+
+..\..\..\src\store\es_field.cpp : \
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_event.hpp"\
+	"..\..\..\src\base\eb_object.hpp"\
+	"..\..\..\src\base\eb_res.hpp"\
+	"..\..\..\src\base\eb_str.hpp"\
+	"..\..\..\src\base\eb_time.hpp"\
+	"..\..\..\src\store\es_base.hpp"\
+	"..\..\..\src\store\es_field.hpp"\
+	"..\..\..\src\store\es_filter.hpp"\
+	"..\..\..\src\store\es_query.hpp"\
+	"..\..\..\src\store\es_row.hpp"\
+	"..\..\..\src\store\es_store.hpp"\
+	"..\..\..\src\store\es_var.hpp"\
+	
+
+..\..\..\src\store\es_filter.cpp : \
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_event.hpp"\
+	"..\..\..\src\base\eb_object.hpp"\
+	"..\..\..\src\base\eb_res.hpp"\
+	"..\..\..\src\base\eb_str.hpp"\
+	"..\..\..\src\base\eb_time.hpp"\
+	"..\..\..\src\store\es_base.hpp"\
+	"..\..\..\src\store\es_filter.hpp"\
+	"..\..\..\src\store\es_query.hpp"\
+	"..\..\..\src\store\es_store.hpp"\
+	
+
+..\..\..\src\store\es_query.cpp : \
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_elo.hpp"\
+	"..\..\..\src\base\eb_event.hpp"\
+	"..\..\..\src\base\eb_object.hpp"\
+	"..\..\..\src\base\eb_res.hpp"\
+	"..\..\..\src\base\eb_str.hpp"\
+	"..\..\..\src\base\eb_time.hpp"\
+	"..\..\..\src\store\es_base.hpp"\
+	"..\..\..\src\store\es_filter.hpp"\
+	"..\..\..\src\store\es_query.hpp"\
+	"..\..\..\src\store\es_store.hpp"\
+	
+
+..\..\..\src\store\es_row.cpp : \
+	"..\..\..\src\base\eb_array.hpp"\
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_collect.hpp"\
+	"..\..\..\src\base\eb_event.hpp"\
+	"..\..\..\src\base\eb_object.hpp"\
+	"..\..\..\src\base\eb_res.hpp"\
+	"..\..\..\src\base\eb_str.hpp"\
+	"..\..\..\src\base\eb_time.hpp"\
+	"..\..\..\src\store\es_base.hpp"\
+	"..\..\..\src\store\es_field.hpp"\
+	"..\..\..\src\store\es_filter.hpp"\
+	"..\..\..\src\store\es_query.hpp"\
+	"..\..\..\src\store\es_row.hpp"\
+	"..\..\..\src\store\es_store.hpp"\
+	"..\..\..\src\store\es_var.hpp"\
+	
+
+..\..\..\src\store\es_store.cpp : \
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_event.hpp"\
+	"..\..\..\src\base\eb_object.hpp"\
+	"..\..\..\src\base\eb_res.hpp"\
+	"..\..\..\src\base\eb_str.hpp"\
+	"..\..\..\src\base\eb_time.hpp"\
+	"..\..\..\src\store\es_base.hpp"\
+	"..\..\..\src\store\es_store.hpp"\
+	
+
+..\..\..\src\store\es_var.cpp : \
+	"..\..\..\src\base\eb_base.hpp"\
+	"..\..\..\src\base\eb_event.hpp"\
+	"..\..\..\src\base\eb_object.hpp"\
+	"..\..\..\src\base\eb_res.hpp"\
+	"..\..\..\src\base\eb_str.hpp"\
+	"..\..\..\src\base\eb_time.hpp"\
+	"..\..\..\src\store\es_base.hpp"\
+	"..\..\..\src\store\es_store.hpp"\
+	"..\..\..\src\store\es_var.hpp"\
+	

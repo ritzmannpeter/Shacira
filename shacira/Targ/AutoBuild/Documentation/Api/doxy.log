@@ -1,0 +1,12 @@
+E:/usr/prj/Shacira/Targ/AutoBuild/graph/cangle.h(16): Warning: The following parameters of cAngle::cAngle(cGraph *graph, const char *name, cNode *source, cNode *target) are not documented:
+  parameter graph
+
+E:/usr/prj/Shacira/Targ/AutoBuild/graph/cangle.h(53): Warning: The following parameters of cAngle::Print(FILE *stream, int level) are not documented:
+  parameter level
+
+E:/usr/prj/Shacira/Targ/AutoBuild/graph/cgraph.h(79): Warning: The following parameters of cGraph::Print(FILE *stream, int level=0) are not documented:
+  parameter level
+
+E:/usr/prj/Shacira/Targ/AutoBuild/graph/cnode.h(43): Warning: The following parameters of cNode::Print(FILE *stream, int level) are not documented:
+  parameter level
+

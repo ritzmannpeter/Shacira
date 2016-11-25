@@ -1,0 +1,65 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+<meta name="robots" content="noindex">
+<title>Legend Context Free Grammar</title>
+</head>
+<H1>Legend Context Free Grammar</H1></center>
+<p>
+<font color="#000000">The syntax rules are described in
+<b><i>EBNF</i></b> ( Extended Backus-Naur-Form ). 
+A startsymbol must exist for each source file type. That means the syntax
+of each file must match the corresponding start rule.
+The other are internal helper rules. </font><font color="#000000"></font>
+<p><font color="#000000">Each <b><i><font size="+1">rule</font></i></b>
+is structured as follows: &lt;Rule Type: <b><i>start</i></b> or <b><i>let</i></b>>&nbsp;</font>
+&lt;<font color="#B22222">Rule Identifier</font>> :: &lt;EBNF-konform Expression>
+<br>An <b><i><font size="+1">EBNF-konform expression</font></i></b> defines a part
+of the language syntax. It consists of a set of alternative productions i.e.
+partial expressions, separated by the character '|'.
+<p>A production is specified with the help of the following elements and operators:
+<br>&nbsp;
+<ul>
+<li>
+<b><i><font size="+1">Expression1 Expression2 ... ExpressionN</font></i></b></li>
+
+<br>Concatenation of partial expressions
+<li>
+<b><i><font size="+1">Expression1 | Expression2 | ... | ExpressionN</font></i></b></li>
+
+<br>Union of partial expressions ( alternatives )
+<li>
+<b><i><font size="+1">[ Expression ]</font></i></b></li>
+
+<br>Optional partial expression
+<li>
+<b><i><font size="+1">{ Expression }</font></i></b></li>
+
+<br>Iteration of a partial expression ( 0 .. )
+<li>
+<b><i><font size="+1">Expression +</font></i></b></li>
+
+<br>Iteration of a partial expression ( 1 .. )
+<li>
+<b><i><font size="+1">( Expression )</font></i></b></li>
+
+<br>Combination of a partial expression ( subexpression )
+<li>
+<b><i><font color="#3366FF"><font size="+1">Token Identifier</font></font></i></b></li>
+
+<br><font color="#000000">... from the regular grammar</font>
+<li>
+<b><i><font color="#3366FF"><font size="+1">Rule Identifier<br>
+</font></font></i></b><font color="#000000">... from the context-free grammar</font></li>
+<li>
+<b><i><font color="#009900"><font size="+1">Keyword<br>
+</font></font></i></b><font color="#000000">Constant string / character sequence</font><br>
+</li>
+<li>
+<b><i><font color="#000000"><font size="+1">[other]<br>
+</font></font></i></b><font color="#000000">Special keyword denoting the
+character sequences from the set 'Sigma* \ Tokenset'</font><br>
+<BR></li>
+
+<br><font color="#000000"></font>&nbsp;</ul>
+<br>

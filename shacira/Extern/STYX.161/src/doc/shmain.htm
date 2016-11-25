@@ -1,0 +1,16 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[shmain.h] Standard Main Frame for Batch Programms</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[shmain.h] Standard Main Frame for Batch Programms</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="standard.htm">#include "standard.h"</a>
+<br>
+<pre></pre><pre>#if defined( _MSDOS ) || defined( _WIN32 )</pre><br>#include &lt;setjmp.h&gt;
+<br>
+<pre></pre><pre>static jmp_buf jb;</pre><pre></pre><pre>static void prg_abort()</pre><pre>{</pre><pre>  longjmp(jb,1);</pre><pre>}</pre><pre>#endif</pre><pre></pre><pre>main(int argc, string argv[])</pre><pre>{</pre><pre>#if defined( _MSDOS ) || defined( _WIN32 )</pre><pre>  setErrExitHdl(prg_abort);</pre><pre>  if(setjmp(jb)) return(1);</pre><pre>#ifdef QUICK_WINDOWS</pre><pre>  initStdFiles(stdout,stderr);</pre><pre>#endif</pre><pre>#endif</pre><pre>  program(argc,argv); /* external main function */</pre><pre>  return(0);</pre><pre>}</pre>
+</body>
+</html>

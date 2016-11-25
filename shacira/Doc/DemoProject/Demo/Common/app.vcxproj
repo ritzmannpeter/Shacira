@@ -1,0 +1,304 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <SccProjectName />
+    <SccLocalPath />
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(ProjectDir)$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(ProjectDir)$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+    <TargetName>$(ProjectName)d</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <Optimization>MaxSpeed</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <AdditionalIncludeDirectories>$(SHACIRADIR)\Extern\STYX\Src\MODSTD;Widgets;Widgets\Src;Widgets\Src\Generated;Widgets\Forms\Generated;.\;$(QTDIR)\include;$(SHACIRADIR)\Src;$(SHACIRADIR)\Src\Orb;$(SHACIRADIR)\Src\Include;$(SHACIRADIR)\Extern\ECL\src;$(SHACIRADIR)\Src\GUIFramework;$(SHACIRADIR)\Src\GUIFramework\Interface;Forms\Generated;Forms;Include;$(SHACIRADIR)\Src\GUIFramework\QT3Framework\CWidgets;$(SHACIRADIR)\Src\GUIFramework\QT3Framework\Generated;$(SHACIRADIR)\Src\GUIFramework\QT3Framework\Plugins;$(SHACIRADIR)\Src\GUIFramework\QT3Framework\Keypads;$(SHACIRADIR)\Src\GUIFramework\QT3Framework\Styles;$(SHACIRADIR)\Extern\STYX\src\libbase;$(SHACIRADIR)\Src\GUIFramework\QT3Framework;$(SHACIRADIR)\Extern\STYX\Src\INC;$(SHACIRADIR)\Src\GUIFramework\qt4port;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\Release\</AssemblerListingLocation>
+      <PrecompiledHeaderOutputFile>.\Release\app.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>.\Release\</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release\</ProgramDataBaseFileName>
+    </ClCompile>
+    <Midl>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TypeLibraryName>.\Release\app.tlb</TypeLibraryName>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <TargetEnvironment>Win32</TargetEnvironment>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0407</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Release\app.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>$(TargetPath)</OutputFile>
+      <AdditionalLibraryDirectories>$(SHACIRADIR)\Extern\ADDIDATA\lib;$(ORBDIR)\lib\x86_win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(QTDIR)\lib\qt-mt$(QTVERSION).lib;$(QTDIR)\lib\qtmain.lib;addidata.lib;omnithread$(ORBTHREADVERSION)_rt.lib;omniORB$(ORBVERSION)_rt.lib;omniDynamic$(ORBVERSION)_rt.lib;odbc32.lib;odbccp32.lib;wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <DelayLoadDLLs>addikern.dll;addidata.dll;addi_int.dll</DelayLoadDLLs>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <Optimization>Disabled</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <MinimalRebuild>true</MinimalRebuild>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <AdditionalIncludeDirectories>$(SHACIRADIR)\Extern\STYX\Src\MODSTD;Widgets;Widgets\Src;Widgets\Src\Generated;Widgets\Forms\Generated;.\;$(QTDIR)\include;$(SHACIRADIR)\Src;$(SHACIRADIR)\Src\Orb;$(SHACIRADIR)\Src\Include;$(SHACIRADIR)\Extern\ECL\src;$(SHACIRADIR)\Src\GUIFramework;$(SHACIRADIR)\Src\GUIFramework\Interface;Forms\Generated;Forms;Include;$(SHACIRADIR)\Src\GUIFramework\QT3Framework\CWidgets;$(SHACIRADIR)\Src\GUIFramework\QT3Framework\Generated;$(SHACIRADIR)\Src\GUIFramework\QT3Framework\Plugins;$(SHACIRADIR)\Src\GUIFramework\QT3Framework\Keypads;$(SHACIRADIR)\Src\GUIFramework\QT3Framework\Styles;$(SHACIRADIR)\Extern\STYX\src\libbase;$(SHACIRADIR)\Src\GUIFramework\QT3Framework;$(SHACIRADIR)\Extern\STYX\Src\INC;$(SHACIRADIR)\Src\GUIFramework\qt4port;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\Debug\</AssemblerListingLocation>
+      <BrowseInformation>true</BrowseInformation>
+      <PrecompiledHeaderOutputFile>.\Debug\app.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>.\Debug\</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug\</ProgramDataBaseFileName>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+    </ClCompile>
+    <Midl>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TypeLibraryName>.\Debug\app.tlb</TypeLibraryName>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <TargetEnvironment>Win32</TargetEnvironment>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0407</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Debug\app.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>$(TargetPath)</OutputFile>
+      <AdditionalLibraryDirectories>$(SHACIRADIR)\Extern\ADDIDATA\lib;$(ORBDIR)\lib\x86_win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(QTDIR)\lib\qt-mt$(QTVERSION).lib;$(QTDIR)\lib\qtmain.lib;addidata.lib;omnithread$(ORBTHREADVERSION)_rtd.lib;omniORB$(ORBVERSION)_rtd.lib;omniDynamic$(ORBVERSION)_rtd.lib;odbc32.lib;odbccp32.lib;wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <DelayLoadDLLs>addikern.dll;addidata.dll;addi_int.dll</DelayLoadDLLs>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="Forms\demoframe.ui">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\uic  %(FullPath) -o %(RootDir)%(Directory)Generated\%(Filename).h
+$(QTDIR)\bin\uic  %(FullPath) -i %(RootDir)%(Directory)Generated\%(Filename).h -o %(RootDir)%(Directory)Generated\%(Filename).cpp
+$(QTDIR)\bin\moc %(RootDir)%(Directory)Generated\%(Filename).h -o %(RootDir)%(Directory)Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RootDir)%(Directory)Generated\%(Filename).h;%(RootDir)%(Directory)Generated\%(Filename).cpp;%(RootDir)%(Directory)Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\uic  %(FullPath) -o %(RootDir)%(Directory)Generated\%(Filename).h
+$(QTDIR)\bin\uic  %(FullPath) -i %(RootDir)%(Directory)Generated\%(Filename).h -o %(RootDir)%(Directory)Generated\%(Filename).cpp
+$(QTDIR)\bin\moc %(RootDir)%(Directory)Generated\%(Filename).h -o %(RootDir)%(Directory)Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RootDir)%(Directory)Generated\%(Filename).h;%(RootDir)%(Directory)Generated\%(Filename).cpp;%(RootDir)%(Directory)Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="Forms\demostartup.ui">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\uic  %(FullPath) -o %(RootDir)%(Directory)Generated\%(Filename).h
+$(QTDIR)\bin\uic  %(FullPath) -i %(RootDir)%(Directory)Generated\%(Filename).h -o %(RootDir)%(Directory)Generated\%(Filename).cpp
+$(QTDIR)\bin\moc %(RootDir)%(Directory)Generated\%(Filename).h -o %(RootDir)%(Directory)Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RootDir)%(Directory)Generated\%(Filename).h;%(RootDir)%(Directory)Generated\%(Filename).cpp;%(RootDir)%(Directory)Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\uic  %(FullPath) -o %(RootDir)%(Directory)Generated\%(Filename).h
+$(QTDIR)\bin\uic  %(FullPath) -i %(RootDir)%(Directory)Generated\%(Filename).h -o %(RootDir)%(Directory)Generated\%(Filename).cpp
+$(QTDIR)\bin\moc %(RootDir)%(Directory)Generated\%(Filename).h -o %(RootDir)%(Directory)Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RootDir)%(Directory)Generated\%(Filename).h;%(RootDir)%(Directory)Generated\%(Filename).cpp;%(RootDir)%(Directory)Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="Forms\page1.ui">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\uic  %(FullPath) -o %(RootDir)%(Directory)Generated\%(Filename).h
+$(QTDIR)\bin\uic  %(FullPath) -i %(RootDir)%(Directory)Generated\%(Filename).h -o %(RootDir)%(Directory)Generated\%(Filename).cpp
+$(QTDIR)\bin\moc %(RootDir)%(Directory)Generated\%(Filename).h -o %(RootDir)%(Directory)Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RootDir)%(Directory)Generated\%(Filename).h;%(RootDir)%(Directory)Generated\%(Filename).cpp;%(RootDir)%(Directory)Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\uic  %(FullPath) -o %(RootDir)%(Directory)Generated\%(Filename).h
+$(QTDIR)\bin\uic  %(FullPath) -i %(RootDir)%(Directory)Generated\%(Filename).h -o %(RootDir)%(Directory)Generated\%(Filename).cpp
+$(QTDIR)\bin\moc %(RootDir)%(Directory)Generated\%(Filename).h -o %(RootDir)%(Directory)Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RootDir)%(Directory)Generated\%(Filename).h;%(RootDir)%(Directory)Generated\%(Filename).cpp;%(RootDir)%(Directory)Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="Forms\page2.ui">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\uic  %(FullPath) -o %(RootDir)%(Directory)Generated\%(Filename).h
+$(QTDIR)\bin\uic  %(FullPath) -i %(RootDir)%(Directory)Generated\%(Filename).h -o %(RootDir)%(Directory)Generated\%(Filename).cpp
+$(QTDIR)\bin\moc %(RootDir)%(Directory)Generated\%(Filename).h -o %(RootDir)%(Directory)Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RootDir)%(Directory)Generated\%(Filename).h;%(RootDir)%(Directory)Generated\%(Filename).cpp;%(RootDir)%(Directory)Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\uic  %(FullPath) -o %(RootDir)%(Directory)Generated\%(Filename).h
+$(QTDIR)\bin\uic  %(FullPath) -i %(RootDir)%(Directory)Generated\%(Filename).h -o %(RootDir)%(Directory)Generated\%(Filename).cpp
+$(QTDIR)\bin\moc %(RootDir)%(Directory)Generated\%(Filename).h -o %(RootDir)%(Directory)Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RootDir)%(Directory)Generated\%(Filename).h;%(RootDir)%(Directory)Generated\%(Filename).cpp;%(RootDir)%(Directory)Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="Forms\page3.ui">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\uic  %(FullPath) -o %(RootDir)%(Directory)Generated\%(Filename).h
+$(QTDIR)\bin\uic  %(FullPath) -i %(RootDir)%(Directory)Generated\%(Filename).h -o %(RootDir)%(Directory)Generated\%(Filename).cpp
+$(QTDIR)\bin\moc %(RootDir)%(Directory)Generated\%(Filename).h -o %(RootDir)%(Directory)Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RootDir)%(Directory)Generated\%(Filename).h;%(RootDir)%(Directory)Generated\%(Filename).cpp;%(RootDir)%(Directory)Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\uic  %(FullPath) -o %(RootDir)%(Directory)Generated\%(Filename).h
+$(QTDIR)\bin\uic  %(FullPath) -i %(RootDir)%(Directory)Generated\%(Filename).h -o %(RootDir)%(Directory)Generated\%(Filename).cpp
+$(QTDIR)\bin\moc %(RootDir)%(Directory)Generated\%(Filename).h -o %(RootDir)%(Directory)Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RootDir)%(Directory)Generated\%(Filename).h;%(RootDir)%(Directory)Generated\%(Filename).cpp;%(RootDir)%(Directory)Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="Forms\page4.ui">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\uic  %(FullPath) -o %(RootDir)%(Directory)Generated\%(Filename).h
+$(QTDIR)\bin\uic  %(FullPath) -i %(RootDir)%(Directory)Generated\%(Filename).h -o %(RootDir)%(Directory)Generated\%(Filename).cpp
+$(QTDIR)\bin\moc %(RootDir)%(Directory)Generated\%(Filename).h -o %(RootDir)%(Directory)Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RootDir)%(Directory)Generated\%(Filename).h;%(RootDir)%(Directory)Generated\%(Filename).cpp;%(RootDir)%(Directory)Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\uic  %(FullPath) -o %(RootDir)%(Directory)Generated\%(Filename).h
+$(QTDIR)\bin\uic  %(FullPath) -i %(RootDir)%(Directory)Generated\%(Filename).h -o %(RootDir)%(Directory)Generated\%(Filename).cpp
+$(QTDIR)\bin\moc %(RootDir)%(Directory)Generated\%(Filename).h -o %(RootDir)%(Directory)Generated\moc_%(Filename).cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RootDir)%(Directory)Generated\%(Filename).h;%(RootDir)%(Directory)Generated\%(Filename).cpp;%(RootDir)%(Directory)Generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="Funcs\demo.mdl">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SHACIRADIR)\bin\win32\mdlc verbose=true input=%(FullPath) class=model</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RootDir)%(Directory)%(Filename).h;%(RootDir)%(Directory)%(Filename).tab.cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SHACIRADIR)\bin\win32\mdlc verbose=true input=%(FullPath) class=model</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RootDir)%(Directory)%(Filename).h;%(RootDir)%(Directory)%(Filename).tab.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="Funcs\GUI.dec">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SHACIRADIR)\bin\win32\mdlc verbose=true input=%(FullPath) class=model</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RootDir)%(Directory)%(Filename).h;%(RootDir)%(Directory)%(Filename).tab.cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SHACIRADIR)\bin\win32\mdlc verbose=true input=%(FullPath) class=model</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RootDir)%(Directory)%(Filename).h;%(RootDir)%(Directory)%(Filename).tab.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Forms\demoframeimpl.cpp" />
+    <ClCompile Include="Forms\demostartupimpl.cpp" />
+    <ClCompile Include="Forms\Generated\demoframe.cpp" />
+    <ClCompile Include="Forms\Generated\demostartup.cpp" />
+    <ClCompile Include="Forms\Generated\moc_demoframe.cpp" />
+    <ClCompile Include="Forms\Generated\moc_demoframeimpl.cpp" />
+    <ClCompile Include="Forms\Generated\moc_demostartup.cpp" />
+    <ClCompile Include="Forms\Generated\moc_demostartupimpl.cpp" />
+    <ClCompile Include="Forms\Generated\moc_page1.cpp" />
+    <ClCompile Include="Forms\Generated\moc_page2.cpp" />
+    <ClCompile Include="Forms\Generated\moc_page3.cpp" />
+    <ClCompile Include="Forms\Generated\moc_page4.cpp" />
+    <ClCompile Include="Forms\Generated\page1.cpp" />
+    <ClCompile Include="Forms\Generated\page2.cpp" />
+    <ClCompile Include="Forms\Generated\page3.cpp" />
+    <ClCompile Include="Forms\Generated\page4.cpp" />
+    <ClCompile Include="Forms\pagelist.cpp" />
+    <ClCompile Include="Funcs\demo.tab.cpp" />
+    <ClCompile Include="Funcs\GUI.tab.cpp" />
+    <ClCompile Include="Widgets\Src\dactvalue.cpp" />
+    <ClCompile Include="Widgets\Src\dframe.cpp" />
+    <ClCompile Include="Widgets\Src\Generated\moc_dactvalue.cpp" />
+    <ClCompile Include="Widgets\Src\Generated\moc_dframe.cpp" />
+    <ClCompile Include="Programs\cDemoProgram.cpp" />
+    <ClCompile Include="Programs\CreateProgram.cpp" />
+    <ClCompile Include="..\CustomBase\cstpgm.cpp" />
+    <ClCompile Include="Programs\EM63Program.cpp" />
+    <ClCompile Include="Funcs\demo.cpp" />
+    <ClCompile Include="Funcs\Gui.cpp" />
+    <ClCompile Include="Devices\cDemoDevice.cpp" />
+    <ClCompile Include="Devices\CreateDevice.cpp" />
+    <ClCompile Include="..\CustomBase\cstdev.cpp" />
+    <ClCompile Include="Init\CustomInit.cpp" />
+    <ClCompile Include="Text\CustomText.cpp" />
+    <ClCompile Include="app.cpp" />
+    <ClCompile Include="..\CustomBase\configure_app.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="Forms\demoframeimpl.h">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc %(FullPath) -o %(RootDir)%(Directory)Generated\moc_%(Filename).cpp</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RootDir)%(Directory)Generated\moc_%(FileName).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc %(FullPath) -o %(RootDir)%(Directory)Generated\moc_%(Filename).cpp</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RootDir)%(Directory)Generated\moc_%(FileName).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="Forms\demostartupimpl.h">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc %(FullPath) -o %(RootDir)%(Directory)Generated\moc_%(Filename).cpp</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RootDir)%(Directory)Generated\moc_%(FileName).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc %(FullPath) -o %(RootDir)%(Directory)Generated\moc_%(Filename).cpp</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RootDir)%(Directory)Generated\moc_%(FileName).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="Forms\Generated\demoframe.h" />
+    <ClInclude Include="Forms\Generated\demostartup.h" />
+    <ClInclude Include="Forms\Generated\page1.h" />
+    <ClInclude Include="Forms\Generated\page2.h" />
+    <ClInclude Include="Forms\Generated\page3.h" />
+    <ClInclude Include="Forms\Generated\page4.h" />
+    <ClInclude Include="Programs\cDemoProgram.h" />
+    <ClInclude Include="Programs\EM63Program.h" />
+    <ClInclude Include="Funcs\demo.h" />
+    <ClInclude Include="Funcs\GUI.h" />
+    <ClInclude Include="Devices\cDemoDevice.h" />
+    <ClInclude Include="Text\CustomText.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Targ\vc10\q3_framework\q3_framework.vcxproj">
+      <Project>{487c275d-2f92-440d-9662-fdba35fadbbb}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Targ\vc10\shacira_lib\shacira_lib.vcxproj">
+      <Project>{4945da20-bfe4-4ba3-9ade-1e17fd9e925a}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

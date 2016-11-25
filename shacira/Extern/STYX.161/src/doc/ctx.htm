@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[ctx.h] Program Context</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[ctx.h] Program Context</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="ctx_app.htm">#include "ctx_app.h"</a>
+<br>
+<br>
+<br>
+<br>
+   <p>This module [ctx] provides functions for the definition of a program context and
+   the verification of the current commandline against the current program context.
+
+   <p>The definition interface will be used by the <a href="cmdlib.htm">CMD Compiler</a>
+   which parses and evaluates a command decription file [.cmd], constructs a program context
+   out of it and finally makes it persistent.
+
+   <p>The application interface will be used by the applications and the generated
+   program specific context modules.
+   <br>
+
+
+<br><hr width="100%" size=2><h2><b> Definition interface </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>CTX_T <b>CTX_new</b>(short cnt, c_string name)</pre>
+<td bgcolor="#FFF0F5" align=left> make new context for program 'name' and 'cnt' arguments <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>CTX_free</b>(CTX_T ctx)</pre>
+<td bgcolor="#FFF0F5" align=left>drop context 'ctx'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void  <b>CTX_set</b>
+      (
+        CTX_T ctx, short idx, c_string ide,
+        c_byte cat, c_byte typ, c_string dft
+      )</pre>
+<td bgcolor="#FFF0F5" align=left> assign argument 'ide' of category 'cat', with type 'typ' and<br>
+   default value 'dft' to context entry ctx[idx]<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void  <b>CTX_put</b>(c_string env, CTX_T ctx)</pre>
+<td bgcolor="#FFF0F5" align=left> put binary image of context 'ctx' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>CTX_T <b>CTX_get</b>(c_string env, c_string name)</pre>
+<td bgcolor="#FFF0F5" align=left> get context from binary image [$'env'/'name'.cim] <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>CTX_usage</b>(CTX_T ctx)</pre>
+<td bgcolor="#FFF0F5" align=left>print usage for context 'ctx'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>CTX_C_Modul</b>(c_string Environ, CTX_T Ctx, c_bool shortform)</pre>
+<td bgcolor="#FFF0F5" align=left> compiles context 'ctx' to [$'Environ'/'Name'_cim.c] <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>CTX_sh_list</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>print shell context
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>CTX_list</b>(CTX_T ctx)</pre>
+<td bgcolor="#FFF0F5" align=left>DEBUG; print context 'ctx'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>CTX_dirname</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>path of the current program
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>CTX_interprete</b>(int argc, c_string argv[])</pre>
+<td bgcolor="#FFF0F5" align=left> process current program context <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Application interface </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>CTX_init</b>(int argc, c_string argv[])</pre>
+<td bgcolor="#FFF0F5" align=left> initialize and process current program context <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>CTX_quit</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>drop current program context
+
+</table>
+
+</body>
+</html>

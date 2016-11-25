@@ -1,0 +1,208 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[hpat.h] Template / Pattern Evaluation</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[hpat.h] Template / Pattern Evaluation</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="standard.htm">#include "standard.h"</a>
+<br><a href="scn_base.htm">#include "scn_base.h"</a>
+<br><a href="symbols.htm">#include "symbols.h"</a>
+<br><a href="otab.htm">#include "otab.h"</a>
+<br><a href="gls.htm">#include "gls.h"</a>
+<br><a href="hpat_int.htm">#include "hpat_int.h"</a>
+<br>
+<br>
+<br>
+<br>
+  <p>The module [hpat] provides some functionality for the evaluation of
+  template files based on the context-free grammar [hpat.sty].
+  <p>It is used by the <a href="cmd_stydoc.htm">STYX reference generator</a>.
+  <br>
+
+
+<br><hr width="100%" size=2><h2><b> Types & Macros </b></h2>
+<br> <p><b>Pattern types</b> 
+
+<br><pre>#define HPAT_REF_LIST   0 // pattern list
+#define HPAT_REF_PAT    1 // pattern
+#define HPAT_REF_PAR    2 // pattern parameter
+
+</pre>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b>HPat_T</b>
+<td align=left> Abstract template type
+
+</table>
+<br> <p><b>Callback function types</b> 
+
+<br><pre>// pattern reference evaluation function
+typedef c_bool (*PFN_Pat)(HPat_T pHPat);
+
+</pre>
+<br><pre>// print function
+typedef void (*PFN_PatPrint)(HPat_T pHPat, c_string szTxt);
+
+</pre>
+<br><pre>// replacement specification pattern load function
+typedef StdCPtr (*PFN_PatLoad)(GLS_Lst(hpatContent) pLst);
+// replacement specification apply function
+typedef c_string (*PFN_PatOpr)(c_string szTxt, StdCPtr pData);
+// replacement specification free function
+typedef void (*PFN_PatFree)(StdCPtr pData);
+
+</pre>
+<br><hr width="100%" size=2><h2><b> Special Functions </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>HP_pat_to_txt</b>(GLS_Lst(hpatContent) pLst)</pre>
+<td bgcolor="#FFF0F5" align=left> template term list 'pLst' to string; allocs memory <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Init & Quit </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>HP_init</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>initializes template evaluation module
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>HP_quit</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>terminates template evaluation module
+
+</table>
+<br><hr width="100%" size=2><h2><b> Create & Dispose </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>HPat_T <b>HP_create</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>creates a template evaluation object
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>HP_drop</b>(HPat_T pHP)</pre>
+<td bgcolor="#FFF0F5" align=left>frees template evaluation object 'pHP'
+
+</table>
+<br><hr width="100%" size=2><h2><b> Get & Set </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>HP_setContext</b>(HPat_T pHP, Abs_T pDocCtx)</pre>
+<td bgcolor="#FFF0F5" align=left> sets evaluation context 'pDocCtx' in template object 'pHP' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Abs_T <b>HP_getContext</b>(HPat_T pHP)</pre>
+<td bgcolor="#FFF0F5" align=left> evaluation context of template object 'pHP' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>HP_setPrintFun</b>(HPat_T pHP, PFN_PatPrint pPrint)</pre>
+<td bgcolor="#FFF0F5" align=left> sets print function 'pPrint' in template object 'pHP' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PFN_PatPrint <b>HP_getPrintFun</b>(HPat_T pHP)</pre>
+<td bgcolor="#FFF0F5" align=left> print function of template object 'pHP' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>HP_setRefAlias</b>(HPat_T pHP, symbol pRefAlias)</pre>
+<td bgcolor="#FFF0F5" align=left> sets reference alias 'pRefAlias' in template object 'pHP'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>symbol <b>HP_getRefAlias</b>(HPat_T pHP)</pre>
+<td bgcolor="#FFF0F5" align=left> reference alias of template object 'pHP' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>HP_addPatSpec</b>
+     (
+       HPat_T pHP, symbol pPat, PFN_Pat pPatFun, long lPatTyp
+     )</pre>
+<td bgcolor="#FFF0F5" align=left> adds/overwrites evaluation function 'pPatFun'<br>
+   for pattern 'pPat' of type 'lPatTyp'<br>
+   to template object 'pHP'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PFN_Pat <b>HP_getPatFun</b>(HPat_T pHP, symbol pPat)</pre>
+<td bgcolor="#FFF0F5" align=left> evaluation function for pattern 'pPat'<br>
+   in template object 'pHP'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>ROW(symbol) <b>HP_getListPatRow</b>(HPat_T pHP, symbol pListPat)</pre>
+<td bgcolor="#FFF0F5" align=left> member patterns of pattern list 'pListPat'<br>
+   in template object 'pHP'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>HP_setScanner</b>(HPat_T pHP, Scn_T pScn)</pre>
+<td bgcolor="#FFF0F5" align=left> sets external scanner 'pScn' in template object 'pHP'<br>
+   ( will be removed by HP_drop )<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Scn_T <b>HP_getScanner</b>(HPat_T pHP)</pre>
+<td bgcolor="#FFF0F5" align=left> pattern scanner of template object 'pHP' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>symbol <b>HP_getPatRef</b>(GLS_Tok pPatRef)</pre>
+<td bgcolor="#FFF0F5" align=left> symbol of pattern refernce token 'pPatRef' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>HP_addSpecialFun</b>
+       (
+         symbol      pPatSym,
+         PFN_PatLoad pPatLoad,
+         PFN_PatOpr  pPatOpr,
+         PFN_PatFree pPatFree
+       )</pre>
+<td bgcolor="#FFF0F5" align=left> adds special evaluation functions for<br>
+   replacement specification pattern 'pPatSym'<br>
+   'pPatLoad': loads replacement specification<br>
+   'pPatOpr' : applies replacement specification<br>
+   'pPatFree': frees replacement specification<br>
+   ( RC = ok/error )<br>
+<br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Load & Check </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>HP_load</b>
+       (
+         HPat_T pHP, Scn_Stream pStream, symbol pSrcId,
+         symbol pRootPat, c_bool bRecursive
+       )</pre>
+<td bgcolor="#FFF0F5" align=left> loads template pattern from scan stream 'pStream'<br>
+   into template object 'pHP'<br>
+   'pSrcId'    : optional source identifier<br>
+   'pRootPat'  : root pattern for evaluation<br>
+   'bRecursive': recursive evaluation<br>
+   ( RC = ok/error )<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>HP_check</b>(HPat_T pHP)</pre>
+<td bgcolor="#FFF0F5" align=left> checks loaded template pattern in template object 'pHP'<br>
+   ( RC = ok/error )<br>
+<br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Output Generation </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>HP_gendoc_ref</b>(HPat_T pHP, GLS_Tok pPatRef)</pre>
+<td bgcolor="#FFF0F5" align=left> evaluates and prints reference token 'pPatRef'<br>
+   according template object 'pHP'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>HP_fun_defined</b>(HPat_T pHP, symbol pRefSym)</pre>
+<td bgcolor="#FFF0F5" align=left> whether template object 'pHP' contains a<br>
+   replacement specification for pattern 'pRefSym'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>HP_fun_apply</b>(HPat_T pHP, symbol pRefSym, c_string szTxt)</pre>
+<td bgcolor="#FFF0F5" align=left> applies the replacement specification for pattern 'pRefSym'<br>
+   in template object 'pHP' to text 'szText'<br>
+   RC = szTxt, if no functions defined, else result text<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>HP_gendoc_pat</b>(HPat_T pHP, symbol pPatSym)</pre>
+<td bgcolor="#FFF0F5" align=left> evaluates and prints pattern 'pPatSym'<br>
+   according template object 'pHP'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>HP_gendoc_src</b>(HPat_T pHP, symbol pSrcId)</pre>
+<td bgcolor="#FFF0F5" align=left> evaluates and prints template 'pSrcId'<br>
+   according template object 'pHP'<br>
+<br>
+
+</table>
+
+</body>
+</html>

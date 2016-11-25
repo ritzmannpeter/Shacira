@@ -1,0 +1,17 @@
+#! /bin/sh -e
+# [mx] make 'ipl.img'
+
+#destination directory for parser and scanner table image files
+BINSTYX=.
+#destination directory for parser and scanner table and term interface source files
+GENSTYX=.
+#source directory of language specification file
+SPESTYX=.
+
+export BINSTYX GENSTYX SPESTYX
+
+#create source files
+styx ipl -makeIMG -verbose
+
+#test example
+#pim_test ipl test.ipl

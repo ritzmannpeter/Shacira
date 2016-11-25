@@ -1,0 +1,561 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>The Styx Handbook: Further aspects</TITLE>
+ <LINK HREF="styx-9.html" REL=next>
+ <LINK HREF="styx-7.html" REL=previous>
+ <LINK HREF="styx.html#toc8" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="styx-9.html">Next</A>
+<A HREF="styx-7.html">Previous</A>
+<A HREF="styx.html#toc8">Contents</A>
+<HR>
+<H2><A NAME="s8">8. Further aspects</A></H2>
+
+<P>Within this chapter we'll give a short overwiew on further aspects and possibilities 
+offered by Styx like error recovery, persistence, unicode, preprocessing, early reduction and
+pretty printing. 
+<P>
+<H2><A NAME="ss8.1">8.1 The error recovery mechanism</A>
+</H2>
+
+<P>Normally, a parser will stop the parse process in the case of a syntax error. This is the default behaviour.
+There exists several error recovery methods which allow a parser to continue the parse process after a 
+syntax error and thus behave more user-friendly. The Styx error recovery mechanism differs from that one 
+provided by yacc-compatible parsers.
+<P>The yacc error recovery mechanism is based on special error productions of the form
+<EM>Nonterminal --> <CODE>error</CODE> (Token|Nonterminal) ...</EM>, which the user explicitely adds to the
+grammar specification. They will be treated like normal productions. In the case of an error
+the parser continues to pop elements from its stack until reaching a top state whose corresponding
+element set contains an error production. Next the parser shifts a fictitious error token onto the 
+stack. If the error production looks like <EM>Nonterminal --> <CODE>error</CODE></EM> the parser performs an 
+"error" reduction and ignores the next input symbols until the normal parse process could continue.
+Otherwise the parser consumes as much input symbols until the error production could be reduced and then 
+continues with the normal parse process.
+<P>The Styx parser uses a variant of the panic-mode error recovery mechanism. There is no need for special
+user-defined error productions. This method tries to isolate the part of the sentence which contains the 
+syntax error. The parser looks for a state in its stack for which a goto-action to a single nonterminal
+exists and removes the other states. The next input symbols will be skipped until the first one which can 
+follow the above mentioned nonterminal. Now the parser performs an "error" reduction, pushes the resulting 
+state of the goto-action onto its stack and continues with the normal parse process.
+<P>The Styx variant of this method uses only such nonterminals as resumption points which are declared as those
+in the corresponding 
+<A HREF="styx-3.html#error option">grammar definition</A>.
+<P>
+<P>
+<H2><A NAME="ss8.2">8.2 Using persistence</A>
+</H2>
+
+<P>Among others, persistence is a proper means to split a compilation process into two parts:
+<UL>
+<LI>The "compiler" does the parsing, static semantic and produces some kind of p-code or simply
+stores the derivation tree.</LI>
+<LI>The "runtime system" interpretes the result of the first part, i.e. reads and executes the p-code.</LI>
+</UL>
+<P>
+<H3>Binary image library</H3>
+
+<P>Styx features such a proceeding with the 
+<A HREF="binimg.htm">binary image library</A> which
+contains a set of functions to store data types in a machine-independant, compressed and encrypted form.
+<H3>Supported data types</H3>
+
+<P>
+<PRE>
+  Actually the following data types are supported.
+
+  | Type     | Bytes | C-Type                 |
+  +------------------+------------------------+----------------------------
+  | Byte     |     1 | unsigned char          |
+  | Word     |     2 | unsigned short int     |   Intrinsic C-data types
+  | Long     |     4 | signed long int        |
+  | ULong    |     4 | unsigned long int      |
+  | Int64    |     8 | signed long long int   | if supported
+  | UInt64   |     8 | unsigned long long int | if supported
+  +------------------+------------------------+----------------------------
+  | String   |       | (char *)               |   Strings
+  | Binary   |       | c_bstring              |   binary Strings
+  | Symbol   |       | symbol                 |   Symbols
+  | Function |       | (? (*)())              |   Functions
+  | Abstract |       | (?)                    |   "Objects"
+  | StdCPtr  |       | (?*)                   |   References
+</PRE>
+<P>For each data type the library provides a pair of <EM>put</EM>- and <EM>get</EM>-function.
+<P>
+<H3>Image representation format</H3>
+
+<P>
+<UL>
+<LI>Intrinsic C-data types
+<P>A <CODE>Byte</CODE> is treated as "atomic" data type and stored as is, whereas a <CODE>Word</CODE> in the
+order low-Byte and high-Byte. Analogous <CODE>Long</CODE> as well as <CODE>ULong</CODE> will be separated 
+into low-Word and high-Word, and so on.
+<P>
+</LI>
+<LI>Binary, strings &amp; symbols
+<P>The same representation applies to a <CODE>String</CODE>, <CODE>Binary</CODE> and <CODE>Symbol</CODE>. First
+the length i.e. number of bytes is stored and then the data bytes in their respective order.
+<P>
+</LI>
+<LI>Functions
+<P>For technical reasons the <CODE>Function</CODE> must be defined in a 
+<A HREF="glo_tab.htm">global table</A>
+and is represented by a symbolic name representing the key to the function table entry.
+<P>
+</LI>
+<LI>Abstract data types
+<P>In the case of a generic data type ( e.g. <CODE>List(Alpha)</CODE> ) a <EM>put</EM>-function typically 
+looks like:
+<PRE>
+  |  void putList(List(Alpha) v, void putAlpha(Alpha v))
+  |  {
+  |    putInt(List_length(v));
+  |    for (; !List_null(v); v = List_rest(v))
+  |      putAlpha(List_first(Alpha,v));
+  |  }
+</PRE>
+<P>In the case of a heterogen parameter type ( <CODE>"Object"</CODE> ) the user has to save the corresponding 
+<EM>get</EM>-function together with the value.
+<P>
+</LI>
+<LI>References
+<P>References to multiple or cyclic referenced structures ( except symbols and functions ) can't be simply 
+expanded if the representation should be unique. A <CODE>Reference</CODE> is treated in the following way.
+In the case of the first reference the structure value is stored, otherwise a reference number to this
+structure.
+</LI>
+</UL>
+<P>
+<H3>Header information</H3>
+
+<P>Each binary image starts with some header information which contains, for example, the version of the image.
+<P>
+<H3>Compression</H3>
+
+<P>The applied method is a variant of the Lempel-Ziv-Welch compression method.
+<P>
+<H3>Encryption</H3>
+
+<P>The applied encryption method is a variant of the so-called linear congruence methods.
+<P>
+<H3>Examples</H3>
+
+<P><EM>This is to become the section about Example03. For convenience,
+we first include the related README here, literally</EM>
+<P>
+<PRE>
+[README] Example 03
+
+This example is a quick variation of the interpreter in Example 02.
+
+It demonstrates persistence as a feature of Styx.
+All the modification wrt. Example 02 is to split
+the [pl0.c] program apart into two parts:
+
+1) A "compiler" [pl0c.c], which parses the source,
+   does the static semantics, stores the derivation
+   tree into a file.
+
+2) A "run time system" [pl0r.c] which reads and
+   executes the so-produced binary image.
+
+"compile" [testpl0.pl0] by 'pl0c testpl0' yielding [testpl0].
+
+If you browse the file, you find it starting with
+something like "#!/p/ping/pl0r". You may want to
+adjust this path issued in [pl0c.c] to the location
+of the pl0r binary and do a 'chmod +x testpl0' for
+a real executable.
+
+Otherwise run it using 'pl0r testpl0'.
+
+One may argue, that this is not a "real" compiler,
+which should create pseudo code, at least. This is
+true, but writing an intepreter for pseudo code that
+is significantly faster then this example is not so
+trivial as one might think.
+
+Perhaps we will continue later with an example of a 
+proper to-pseudo-code compiler and a nice little machine, 
+but this may never be necessary, since there is something 
+as strong as Styx itself on top of it, which may soon be 
+ready for prime time.
+</PRE>
+<P>
+<H2><A NAME="ss8.3">8.3 Unicode support</A>
+</H2>
+
+<P>The Styx scanner &amp; parser generator should be able to deal with
+unicode-based language definitions and scan streams. With version 1.5 
+each of the released programs support unicode. This capability was added 
+later and isn't yet tested very well.
+<P>First you have to design the proper grammar. Styx itself doesn't
+accept unicode specifications. You define 
+<A HREF="styx-3.html#unicode literals">unicode tokens and keywords</A>
+with the help of the long form of the hexadecimal literal notation.
+The generated scan tables are in any case based on wide characters.
+<P>Scan streams which correspond to such a language definition must be
+unicode-based, too. They can be created with the function 'Stream_Itr_new'
+of the 
+<A HREF="scn_base.htm">scan stream interface</A>.
+<P>The scanner converts the scanned unicode tokens and keywords into equivalent 
+multibyte character ( UTF-8 ) strings and then into symbols. This will be 
+the final token and keyword representation within the preprocessing facility 
+( see next section ), parser and derivation tree. 
+Note that in this case the diagnose functions like 'PT_error' 
+( see 
+<A HREF="ptm_gen.htm">parse term construction interface</A> )
+expects UTF-8 based message parameters.
+<P>
+<H2><A NAME="ss8.4">8.4 The preprocessing facility</A>
+</H2>
+
+<P>
+<H3>User-defined preprocessing</H3>
+
+<P>The 
+<A HREF="scn_base.htm">scan stream interface</A> provides a hook for user-defined i.e.
+language-specific preprocessing.
+One activates preprocessing by specifying a proper handler ( see function 'Stream_premac_set' ).
+<P>In this case each time after the scanner separates a token and before this will be passed to the
+parser, for example, the specified handler is called. Dependant on the preprocessing result the
+scanner behaves as follows:
+<UL>
+<LI>The token will be taken as is and passed to the calling (parser) function. This is the same behaviour 
+when no handler was specified.</LI>
+<LI>The token will be replaced by the result of the handler and passed to the calling (parser) function.</LI>
+<LI>The scanner ignores the token and instaed rescans the result character or string of the handler.</LI>
+<LI>The handler returns the name of a file. In this case the scanner ignores the token and rescans the file.</LI>
+<LI>The handler returns a character iterator. Again the scanner ignores the token and rescans the character
+iterator.</LI>
+<LI>In any other cases the scanner ignores the token and continues with the separation of the next token.</LI>
+</UL>
+<P>When the scanner rescans the preprocessing result of a token a new scan stream will be created and pushed
+onto an internal stack. On EOF at the main scan stream the scanner passes the EOF token to the calling 
+(parser) function. On EOF at the current scan stream on top of the internal stack the scanner pops the
+stream and continues with the next one on top of the stack.
+<P>The tracking of the token locations within substreams is performed relative to the rescanned token from 
+the upper stream. Its location is parts of the substream identifier.
+<P>
+<P>
+<H3>Standard (Styx-konform) preprocessing</H3>
+
+<P>The 
+<A HREF="scn_pre.htm">Styx preprocessor</A> provides modularisation, macro expansion and 
+conditional compilation - with the help of the above mentioned 
+<A HREF="styx-3.html#macros">macro tokens</A>.
+The evaluation of the preprocessing macros takes place at scan time, so the parser didn't get any note
+of it.
+<UL>
+<LI>A token like <EM>#include path</EM> forces the scanner to scan the declared file. The search path
+can be configured outside the grammar specification.</LI>
+<LI>The sequence <EM>#macro</EM> introduces a new macro definition with optional parameters. The name
+of the macro must belong to the identifier token class <EM>Ide</EM>. Whenever the preprocessor sees
+an identifier which equals the name of a previously defined macro the identifier along with the 
+optional list of actual parameters will be replaced by the rescan result of the expanded macro definition. </LI>
+<LI>The actual macro parameters must belong to one of the specified token classes. Each parameter must be
+folled by a specified delimiter character which is a <EM>space</EM> in the default case. In order
+to handle a token sequence as a single parameter one has to specify another delimiter character with
+a leading ' in front of it.</LI>
+<LI>The preprocessing token <EM>#ifdef</EM> and <EM>#ifndef</EM> provide means for conditional compilation. 
+Dependant on the existence ( non-existence ) of the declared macro the following source code until the
+corresponging <EM>#else</EM> or <EM>#end</EM> will be evaluated or not. Is is possible to define macros 
+outside the grammar specification.</LI>
+</UL>
+<P>Following the steps below you can use this preprocessing facility within your language.
+<UL>
+<LI>First add the preprocessing tokens to your grammar specification. If they doesn't fit you can change the
+names of the tokens and / or change the #-keywords. Your grammer must specify an identifier token which
+can have an alternate name.</LI>
+<LI>The Styx preprocessor must be initialized once with your changes. Next activate the it in the scan stream 
+by calling the above mentioned function 'Stream_premac_set' with the function 'SPP_premac' as parameter.
+After the scan and parse process release the Styx preprocessor resources.</LI>
+</UL>
+<P>
+<H2><A NAME="ss8.5">8.5 Using early reduction</A>
+</H2>
+
+<P>The Styx parser supports early reduction, a facility that allows you to parse parts of a source.
+<P>If you, for example, designes a schema language like the DDL part of SQL with multiple start symbols for
+the database and table definition section, you can apply early reduction to retrieve each table definition
+as a separate derivation tree, even if they are combined in one source file.
+<P>A second example refers to the calculator from Example 01 and demonstrates the partial parsing of the 
+following expression list in the file 'explist.calc'.
+<P>
+<PRE>
+1+2
+3-1
+6*6
+9/3
+</PRE>
+<P><EM>When applying the command 'pim_test calc -early explist.calc' you will receive this result.</EM>
+<P>
+<PRE>
+Derivation Tree from Source : explist.calc
+
+[calc.Start_Command (1,1)
+ [Command.exp (1,1)
+  [Exp.add (1,1)
+   [Exp.ign0 (1,1)
+    [Exp1.ign0 (1,1)
+     [Exp2.int (1,1)
+      [Int (1,1) "1"]]]]
+   [Keyword (1,2) "+"]
+   [Exp1.ign0 (1,3)
+    [Exp2.int (1,3)
+     [Int (1,3) "2"]]]]]]
+
+Derivation Tree from Source : explist.calc
+
+[calc.Start_Command (2,1)
+ [Command.exp (2,1)
+  [Exp.sub (2,1)
+   [Exp.ign0 (2,1)
+    [Exp1.ign0 (2,1)
+     [Exp2.int (2,1)
+      [Int (2,1) "3"]]]]
+   [Keyword (2,2) "-"]
+   [Exp1.ign0 (2,3)
+    [Exp2.int (2,3)
+     [Int (2,3) "1"]]]]]]
+
+Derivation Tree from Source : explist.calc
+
+[calc.Start_Command (3,1)
+ [Command.exp (3,1)
+  [Exp.ign0 (3,1)
+   [Exp1.mlt (3,1)
+    [Exp1.ign0 (3,1)
+     [Exp2.int (3,1)
+      [Int (3,1) "6"]]]
+    [Keyword (3,2) "*"]
+    [Exp2.int (3,3)
+     [Int (3,3) "6"]]]]]]
+
+Derivation Tree from Source : explist.calc
+
+[calc.Start_Command (4,1)
+ [Command.exp (4,1)
+  [Exp.ign0 (4,1)
+   [Exp1.div (4,1)
+    [Exp1.ign0 (4,1)
+     [Exp2.int (4,1)
+      [Int (4,1) "9"]]]
+    [Keyword (4,2) "/"]
+    [Exp2.int (4,3)
+     [Int (4,3) "3"]]]]]]
+</PRE>
+<P>
+<H2><A NAME="ss8.6">8.6 Parsing from strings and special files</A>
+</H2>
+
+<P>This ability enables, for example, a background service to parse client requests "on-the-fly".
+<P>The function 'Stream_string' of the 
+<A HREF="scn_base.htm">scan stream interface</A> 
+let you define strings as scan streams while the function 'Stream_line' is suitable for parsing
+from special files like pipes.
+<P>Look at Example 01 and 04 as examples for parsing from strings and special files.
+<P>
+<H2><A NAME="ss8.7">8.7 Using the scanner alone</A>
+</H2>
+
+<P>There isn't much to say here beside that it's possible. The following code fragment demonstrates
+how to do it.
+<P><EM>First load the scanner, either with the function 'Scn_get_&lt;language&gt;' from the generated 
+source file '&lt;language&gt;_lim.c' or from the corresponding binary image '&lt;language&gt;.lim' 
+with the function 'Scn_get' of the 
+<A HREF="scn_io.htm">scanner primitives interface</A>. 
+After that create a scan stream using, for example, the function 
+'Stream_file' of the 
+<A HREF="scn_base.htm">scan stream interface</A>.</EM>
+<P>
+<PRE>
+// ...
+#include "scn_base.h"
+#include "scn_io.h"
+// ...
+Scn_T      Scn;     // Scanner
+Scn_Stream cStream; // Scan stream
+int        i;
+// ...
+// scanner &amp; scan stream creation (see above)
+// ...
+// define EOF, error and token id's
+Stream_defEofId(cStream,-1);
+Stream_defErrId(cStream, 0);
+for (i = 1; i &lt; Scn_tokens(Scn); i++)
+{ string TokenName = Scn_tokid(Scn,i);
+  Stream_defTokId( cStream, TokenName, (short)i );
+  FreeMem(TokenName);
+}
+// ...
+// scan loop
+for ( Stream_next(cStream); Stream_ctid(cStream) >= 0; Stream_next(cStream) )
+{ string FileName   = symbolToString(Stream_cfil(cStream)),
+         TokenName  = Scn_tokid(Scn,Stream_ctid(cStream)),
+         TokenValue = symbolToString(Stream_csym(cStream));
+  long   Line       = Stream_clin(cStream),
+         Column     = Stream_ccol(cStream);
+// ...
+}
+// ...
+// scanner &amp; scan stream disposal
+Stream_close(cStream);
+Stream_free(cStream);
+Scn_free(Scn);
+</PRE>
+<P>Finally, look at the source file [lim_test.c] of the 
+<A HREF="cmd_lim_test.htm">scanner test program</A> 
+for an application.
+<P>
+<H2><A NAME="ss8.8">8.8 Integration of external scanner and parser</A>
+</H2>
+
+<P>
+<H3>Using the Styx parser with an external scanner</H3>
+
+<P>Basically, it's possible. The 
+<A HREF="prs.htm">(low-level) parser interface</A> is
+flexible configurable by appropriate user-defined handlers for the retrieval of the next token,
+the shift and reduce operations and the reporting of syntax errors.
+<P>The user-defined function 'get next token', which represents the interface between scanner and parser,
+must return -1 in the case of EOF, -2 or less in the case of an error or unknown token and in the case 
+of a token the correct index from the parse table.
+<P>
+<H3>Using the Styx parser and term generation with an external scanner</H3>
+
+<P>From version 1.5 on it's possible to combine an externally defined scanner not only with the Styx parser
+but also with the term generation facility. All what you have to do is to provide the corresponding
+<A HREF="scn_abs.htm">external scanner interface</A>. Use the function 'PT_init_extscn' of the
+<A HREF="ptm_gen.htm">term generation interface</A> to initialize parsing and term construction.
+<P>
+<H3>Using the Styx term generation with an external scanner and parser</H3>
+
+<P>If you plan to use the term generation facility with an external scanner and parser, which is possible
+from version 1.5 on, you must provide 
+both the 
+<A HREF="scn_abs.htm">external scanner interface</A> and the 
+<A HREF="prs_abs.htm">external parser interface</A> before calling the function 'PT_init_ext' of the 
+<A HREF="ptm_gen.htm">term generation interface</A> to initialize parsing and term construction.
+<P>
+<P>
+<H2><A NAME="ss8.9">8.9 Constructing and accessing a derivation tree</A>
+</H2>
+
+<P>As already described in the previous chapters the derivation tree with the complete source information 
+will be automatically constructed during the parse process - with the help of the
+<A HREF="ptm_gen.htm">term generation interface</A>. The Styx compiler produces a C interface 
+'&lt;language&gt;_int.c' to the abtract syntax tree, which will be in most cases the prefered access method,
+along with the 
+<A HREF="gls.htm">generic language support</A>. 
+<P>In order to perform meta-operations on arbitrary derivation trees corresponding to different languages 
+you'll need dynamic access to the concrete syntax tree. The Styx framework comes along with generic methods 
+for these purposes.
+The 
+<A HREF="ptm.htm">term interface</A> provides basic operations needed to construct and access
+a derivation tree. Beside functions for the retrieval of node informations it contains a 
+<EM>"depth first"</EM> and a <EM>"breast first"</EM> tree iterator - usefull for the iteration of concrete
+syntax trees. 
+<P>
+<H2><A NAME="ss8.10">8.10 Meta-operations</A>
+</H2>
+
+<P>Styx supports the implementation of generic, language independant services. Examples are the
+<A HREF="cmd_styx.htm">Styx compiler</A> itself as well as the 
+<A HREF="cmd_lim_test.htm">scanner</A> and 
+<A HREF="cmd_lim_test.htm">parser</A> 
+test programs.
+<P>
+<H3>Dynamic loading and execution of tables</H3>
+
+<P>The 
+<A HREF="scn_io.htm">scanner primitives interface</A> provides several functions to load
+a scan table from a binary image. Once loaded you could create scan streams on it and perform scan
+operations. Analogous a parse table is loaded from a binary image ( look at the
+<A HREF="prs_io.htm">parse table load &amp; unload interface</A> ) and then, for example, used 
+to initialize parsing and term construction.
+<P>
+<H3>Dynamic scanner and parser creation</H3>
+
+<P>The Styx compiler is an example for such an application. In version 1.5 a new interface, the
+<A HREF="styx_gen.htm">Styx translation library</A>, provides a "high level" access to this
+functionality.
+<P>
+<P>
+<H2><A NAME="ss8.11">8.11 Pretty printing</A>
+</H2>
+
+<P>When a grammar specification evolves there will be a need for the automatic conversion of the "older"
+source files. The 
+<A HREF="ptm_pp.htm">pretty printing facility</A> allows a user to translate 
+source code from one grammar specification to another and then to print the translated source code. 
+The print function could be even usefull without a previous transformation, for example, when a source 
+tree was dynamically constructed and consquently lacks any positional information.
+<P>This feature is "ready to apply" but especially the applied layout mechanism has some disadvantages and 
+will be revised in a later version. ( see also next chapter )
+<P>
+<H3>Tree transformation</H3>
+
+<P>The transformation facility was designed wrt. the above mentioned application. It doesn't (yet) support
+tree transformations in a general sense. A tree-to-tree transformation is performed according the 
+underlaying source and target grammar specifications which must satisfy the following restrictions. 
+Comments are handled, too, a must wrt. source-to-source transformations.
+<P>
+<PRE>
+  source tree based on CFG 1
+  specification of CFG 2
+  ------------------------------------------------->  target tree based on CFG 2
+  abstraction(CFG 1)   = abstraction(CFG 2)
+  regexp(token(CFG 1)) = regexp(token(CFG 2)) [*]
+</PRE>
+<P>[*] In version 1.5 user-defined hooks can be specified in order to handle different token representations. 
+This is usefull, for example, to cope with different comments.
+<P>
+<A NAME="pplayout"></A> <H3>Layout specification</H3>
+
+<P>The indendation of the symbols and productions in a grammar definition will be taken as layout hints.
+Take, for example, the start production of the Styx command line specification language, below. 
+Its format advises the layouter to start the arguments, options and environment section on a new line 
+and output the following definitions with an indent. The format of the list production, below, is suitable
+if each element of a list should start on a new line, too.
+<P>
+<PRE>
+  start [err] Source
+  :root: "Program" Fid1 Dol Doc
+         "Arguments"   
+            Dfns OptDoc
+         "Options"     
+            Dfns OptDoc
+         "Environment" 
+            Dfns OptDoc
+
+  let [err] Dfns   ; Definitions
+  :nil  : 
+  :cons : Dfn 
+          Dfns
+</PRE>
+<P>The 
+<A HREF="styx-3.html#layout option">layout option</A> in the Styx grammar allows the user to force an extra
+new line ( option "!" ) or to overrule the indendation-based layout ( option "?" ). Latter tells the
+layouter that the whole grammar phrase should be printed on one line if possible. This is usefull in the 
+case of expressions.
+<P>Another topic is the separation of the tokens. A <CODE>Space</CODE> will be taken as default separation character.
+If this doesn't seem suitable the user must explicitely specify which separation rule should be applied for
+two tokens. He can prevent a separation, force the tokens to be separated by a newline or according the 
+current indendation which would be the default rule in the case of comments. Obviously, these separation rules
+also influences the layout.
+<P>
+<H3>Printing</H3>
+
+<P>Printing is done in two steps. First the appropriate postions of the grammar phrases will be determined by
+applying the above mentioned layout rules. After that the actual printing can take place.
+<P>
+<P>
+<HR>
+<A HREF="styx-9.html">Next</A>
+<A HREF="styx-7.html">Previous</A>
+<A HREF="styx.html#toc8">Contents</A>
+</BODY>
+</HTML>

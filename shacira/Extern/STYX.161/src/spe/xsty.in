@@ -1,0 +1,7 @@
+#! /bin/sh -e
+
+patdir=$(datadir)/examples/pat
+spedir=$(datadir)/examples/spe
+dstdir=.
+
+stydoc -keepNTs=Dfn -OutFile=${dstdir}/styx_cfg.htm ${spedir}/styx.sty ${patdir}/tstydoc_us.htm 

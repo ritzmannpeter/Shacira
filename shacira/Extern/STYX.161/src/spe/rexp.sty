@@ -1,0 +1,47 @@
+; [rexp.sty] Lexical grammar for regular expressions
+
+
+Language rexp
+
+
+Regular Grammar
+
+; Character Set
+
+  let Byte        = '\00' .. '\ff' ; all extended ascii
+  let Control     = '\00' .. '\1f' ; control
+                  |          '\7f' ; DEL
+                  |          '\ff' ; space-like extended ascii
+
+
+; Basic elements of tokens
+
+  let Printable   = Byte - Control
+
+  ign Space       = " "            ; ASCII - Space
+  ign Line        = "\n" | "\r\n"  ; UNIX / CPM / DOS
+                  | "\r"           ; Mac
+  ign Page        = "\p"           ; weak separation convention
+
+  ign Etx         = "\1a" {Byte}   ; CPM / older DOS Versions
+
+  let Quote       = '\'\"\`\\'
+  let Digit       = '0'..'9' 
+  let HexDigit    = Digit | 'a'..'f'
+
+; single byte literals or literals, encoded in us-ascii, ISO 8859-1 Latin-1 or ucs4 hex values
+  let LitChar     = Printable - Quote
+                  | '\\' ( Quote | 'prnt' | 
+                           HexDigit HexDigit |
+                           'xX' HexDigit HexDigit HexDigit HexDigit HexDigit HexDigit HexDigit HexDigit )
+
+  let White       = Space | Line
+
+
+; final tokens
+
+  tok Opr   = '()[]{}' | '?*+|-.' | ".."          ; operator tokens
+  tok Set   = '\'' {LitChar} '\''                 ; CharacterSet
+  tok Seq   = '\"' {LitChar} '\"'                 ; CharacterSequence (String)
+  tok OprEx = Digit+ [ White+ ',' White+ Digit+ ] ; limited iteration
+

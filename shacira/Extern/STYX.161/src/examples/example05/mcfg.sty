@@ -1,0 +1,133 @@
+; [mcfg.sty] ( group ) scanner for the ( linux ) config language
+
+
+Language mcfg
+
+Regular Grammar
+
+ExGroup CHOICE0 
+ExGroup CHOICE1 
+ExGroup CHOICE2 
+
+
+; Character Set
+
+  let Byte        = '\00' .. '\ff' ; all extended ascii
+  let Control     = '\00' .. '\1f' ; control
+                  |          '\7f' ; DEL
+                  |          '\ff' ; space-like extended ascii
+
+; Basic elements of tokens
+
+  let Space       = '\t '          ; ASCII - Space / Tab
+  let Line        = '\n\r'         ; UNIX / CPM / DOS
+  let LineConcat  = "\\" Line
+
+  ign Etx         = "\1a" {Byte}   ; CPM / older DOS Versions
+
+  let Digit       = '0' .. '9'
+  let Letter      = 'a' .. 'z' | 'A' .. 'Z'
+
+  let VAR         = "CONFIG_" ( Letter | Digit | '_' )+
+  let WORDBASE    = ( ( Byte - ( '\'\"$\\;' | Space | Line ) )+ ) - Etx
+  let WORD        = WORDBASE -
+                    (
+                      KEYmenu | KEYtitle | KEYendmenu | KEYsource | KEYcomment |
+                      KEYif | KEYthen | KEYelse | KEYfi | KEYchoice |
+                      KEYint | KEYhex | KEYstring | KEYtristate | KEYbool |
+                      KEYdint | KEYdhex | KEYdstring | KEYdtristate | KEYdbool |
+                      KEYrtristate | KEYrbool | KEYrmbool | KEYpopen | KEYpclose |
+                      KEYunset | KEYeq | KEYne | KEYor | KEYand | KEYnot | VAR
+                    ) 
+
+; Initial tokens
+  
+  com CommentI       = "#" { Byte - Line } Line
+
+  ign LineConcatI    = LineConcat
+  ign SpaceI         = Space
+
+  tok LineBash       = Line | ';'
+
+  tok KEYmenu        = "mainmenu_option" Space+ "next_comment" 
+                       ( Line | Space )+ "comment"
+  tok KEYtitle       = "mainmenu_name"
+  tok KEYendmenu     = "endmenu"
+  tok KEYsource      = "source"
+  tok KEYcomment     = "comment"
+  tok KEYif          = "if"
+  tok KEYthen        = "then"
+  tok KEYelse        = "else"
+  tok KEYfi          = "fi"
+  tok KEYbool        = "bool"
+  tok KEYint         = "int"
+  tok KEYhex         = "hex"
+  tok KEYstring      = "string"
+  tok KEYtristate    = "tristate"
+  tok KEYdbool       = "define_bool"
+  tok KEYdint        = "define_int"
+  tok KEYdhex        = "define_hex"
+  tok KEYdstring     = "define_string"
+  tok KEYdtristate   = "define_tristate"
+  tok KEYunset       = "unset"
+  tok KEYrtristate   = "dep_tristate"
+  tok KEYrbool       = "dep_bool"
+  tok KEYrmbool      = "dep_mbool"
+  tok KEYeq          = "="
+  tok KEYne          = "!="
+  tok KEYor          = "-o"
+  tok KEYand         = "-a"
+  tok KEYnot         = "!"
+  tok KEYpopen       = "["
+  tok KEYpclose      = "]"
+
+  tok KEYchoice!CHOICE0 = "choice"
+
+  tok VARIABLE       = "\"$" ( "ARCH" | VAR ) "\""
+  tok UNQVAR         = "$" VAR
+  tok VARNAMEI       = VAR
+
+  ;tok QUOTVAL        = "\"" { Byte - ( '\'\"$\\\t' | Line ) } "\""
+                     ; Space --> PROMPTI else VALUE
+  ;tok VALUE          = WORD
+  ;tok PROMPTI        = "\'" { Byte - ( '\'$\\\t' | Line ) } "\'"
+
+  tok VALUE          = WORD
+                     | ( "\"" { Byte - ( ' \'\"$\\\t' | Line ) } "\"" )
+  tok PROMPTI        = "\'" { Byte - ( '\'$\\\t' | Line ) } "\'"
+                     | ( ("\"" { Byte - ( '\'\"$\\\t' | Line ) } "\"") - VALUE )
+
+
+; CHOICE0 tokens
+
+  com :CHOICE0:CommentC0        = "#" { Byte - Line } Line
+  
+  ign :CHOICE0:SpaceC0          = Space
+  ign :CHOICE0:LineConcatC0     = LineConcat
+
+  tok :CHOICE0:PROMPTC0!CHOICE1 = "\"" { Byte - ( '\"' | Line ) } "\""
+                                | "\'" { Byte - ( '\'' | Line ) } "\'"
+
+; CHOICE1 tokens
+  
+  com :CHOICE1:CommentC1        = "#" { Byte - Line } Line
+
+  ign :CHOICE1:SpaceC1          = Space
+  ign :CHOICE1:LineConcatC1     = LineConcat
+
+  ign :CHOICE1:STARTC!CHOICE2   = '\'\"'
+  
+
+; CHOICE2 tokens
+
+  com :CHOICE2:CommentC2        = "#" { Byte - Line } Line
+
+  ign :CHOICE2:SpaceC2          = Space
+  ign :CHOICE2:LineConcatC2     = LineConcat
+
+  ign :CHOICE2:ENDC!            = '\'\"'
+
+  tok :CHOICE2:VARNAMEC         = VAR
+  tok :CHOICE2:PROMPTC          = ( ( Byte - ( '\'\"' | Space | Line ) )+ ) - VAR
+
+

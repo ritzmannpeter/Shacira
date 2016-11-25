@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[scn_pre.h] STYX-konform preprocessing</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[scn_pre.h] STYX-konform preprocessing</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="standard.htm">#include "standard.h"</a>
+<br><a href="symbols.htm">#include "symbols.h"</a>
+<br><a href="hmap.htm">#include "hmap.h"</a>
+<br><a href="scn_base.htm">#include "scn_base.h"</a>
+<br>
+<br>
+<br>
+<br>
+  <p>The STYX system comes up with a macro preprocessing facility -
+  <br>based on the following macro definition syntax and evaluation process
+  during the lexical analysis:
+  <p><table cellspacing=10 noborder>
+  <tr>
+  <td><b>#include</b> Path</td>
+  <td>supports modular grammar design
+  <br>The macro will be replaced by the content of source file 'Path' and
+      then rescanned.
+  </td>
+  </tr>
+  <tr>
+  <td><b>#macro</b> Name ( FormalParameter , ... ) = Text <b>#end</b></td>
+  <td>supports text replacement
+  <br>Parameter and replacement text are optional.
+  <br>The macro will be collected by the preprocessing module and
+      skipped by the scanner.
+  <br>A macro expression ( Name ActualParameter Delimiter ... ) will be
+      replaced by the previous definition and then rescanned.
+  </td>
+  </tr>
+  <tr>
+  <td>' Delimiter</td>
+  <td>introduces another - the second - character as delimiter for the
+      actual macro parameter.
+  <br>Spaces will be used as default delimiter.
+      To reactive the default behaviour specify ' -.
+  <br>The scanner skips these token.
+  </td>
+  </tr>
+  <tr>
+  <td><b>#undefine</b> Name</td>
+  <td>revokes a previous definition
+  </td>
+  </tr>
+  <tr>
+  <td><b>#if[n]def</b> Name IfPart <b>#else</b> ElsePart <b>#end</b></td>
+  <td>supports conditional parsing
+  <br>Dependant on the existence of macro 'Name' the scanner skips the
+      'ElsePart' or 'IfPart'.
+  <br>Its possible to introduce environment variables as macros.
+  </td>
+  </tr>
+  </table>
+  <br>
+  <p>You can use this preprocessing facility if your regular grammar defines
+  the above kind of macros in the same way -
+  <br>apart from token names and keywords.
+  ( see below and <a href="styx_cfg.htm"><b>styx</b> reference</a> )
+  <br>
+  <p>Note:
+  <p>The reentrant version of the preprocessing module expects that the
+     preprocessor ( constructed by the function 'SPP_init_reentrant' )
+     will be added to the scan stream as value of the context variable 'SPP_premac'.
+  <br>
+
+
+<br><hr width="100%" size=2><h2><b> Types & Macros </b></h2>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b> SPP_T </b>
+<td align=left> Abstract preprocessing type 
+
+</table>
+<br>
+  <p><b>Identifier for the ( macro ) token names</b>
+
+
+<br><pre>#define SPP_TOK_IDE         0 // Identifier
+#define SPP_TOK_MACDFN      1 // Macro
+#define SPP_TOK_MACSEP      2 // Delimiter
+#define SPP_TOK_MACINC      3 // Include
+#define SPP_TOK_MACCOND     4 // Condition
+#define SPP_TOK_MACDEL      5 // Undefine
+
+</pre>
+<br>
+  <p><b>Identifier for macro token keywords</b>
+
+
+<br><pre>#define SPP_PAT_START       6  // #macro
+#define SPP_PAT_END         7  // #end
+#define SPP_PAT_IFDEF       8  // #ifdef
+#define SPP_PAT_IFNDEF      9  // #ifndef
+#define SPP_PAT_ELSE        10 // #else
+#define SPP_PAT_INC         11 // #include
+#define SPP_PAT_UNDEFINE    12 // #undefine
+
+</pre>
+<br>
+  <p><b>Identifier for include path and character set</b>
+
+
+<br><pre>#define SPP_INC_PATH        13
+#define SPP_INC_CHARSET     14
+
+</pre>
+<br><hr width="100%" size=2><h2><b> Macro Expansion </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>SPP_init</b>(MAP(long,symbol) pPreParMap)</pre>
+<td bgcolor="#FFF0F5" align=left> initializes STYX-konform macro preprocessing<br>
+   'pPreParMap': re-definitions for macro token names,<br>
+                 initial macro token keywords,<br>
+                 include path and characterset<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>SPP_T <b>SPP_init_reentrant</b>(MAP(long,symbol) pPreParMap)</pre>
+<td bgcolor="#FFF0F5" align=left> reentrant version of SPP_init <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>SPP_addCtxMacro</b>(symbol pMacNam)</pre>
+<td bgcolor="#FFF0F5" align=left> adds ( lower case symbol ) 'pMacNam' as pre-defined macro <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>SPP_addCtxMacro_reentrant</b>(SPP_T pPP, symbol pMacNam)</pre>
+<td bgcolor="#FFF0F5" align=left> reentrant version of SPP_addCtxMacro <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>SPP_quit</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>terminates STYX-konform macro preprocessing
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>SPP_quit_reentrant</b>(SPP_T pPP)</pre>
+<td bgcolor="#FFF0F5" align=left>reentrant version of SPP_quit
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>SPP_premac</b>
+    (
+      Scn_Stream pStream, c_string cTokNam, c_string cTokVal, symbol* cMacVal
+    )</pre>
+<td bgcolor="#FFF0F5" align=left> preprocesses current token of non-binary scan stream 'pStream'<br>
+   'cTokNam': name of separated token<br>
+   'cTokVal': value of separated token<br>
+   'cMacVal': preprocessing result ( see [scn_base] )<br>
+   ( cTokNam, cTokVal: single byte or utf-8 characterset )<br>
+<br>
+
+</table>
+
+</body>
+</html>

@@ -1,0 +1,257 @@
+
+linux_gcc_debug/base.o: \
+	../../../Extern/ECL/src/base/base.cpp \
+	../../../Extern/ECL/src/base/base.h \
+	../../../Extern/ECL/src/base/base_ex.h \
+	../../../Extern/ECL/src/base/collect.h \
+	../../../Extern/ECL/src/base/list.h \
+	../../../Extern/ECL/src/base/logfile.h \
+	../../../Extern/ECL/src/base/map.h \
+	../../../Extern/ECL/src/base/osbase.h \
+	../../../Extern/ECL/src/base/semaphore.h \
+	../../../Extern/ECL/src/base/string.h \
+	../../../Extern/ECL/src/base/string_ex.h
+
+linux_gcc_debug/bprintf.o: \
+	../../../Extern/ECL/src/base/bprintf.cpp \
+	../../../Extern/ECL/src/base/base.h \
+	../../../Extern/ECL/src/base/bprintf.h
+
+linux_gcc_debug/collect.o: \
+	../../../Extern/ECL/src/base/collect.cpp \
+	../../../Extern/ECL/src/base/base.h \
+	../../../Extern/ECL/src/base/collect.h
+
+linux_gcc_debug/enum_procs.o: \
+	../../../Extern/ECL/src/base/system/enum_procs.cpp \
+	../../../Extern/ECL/src/base/system/enum_procs.h
+
+linux_gcc_debug/error.o: \
+	../../../Extern/ECL/src/base/error.cpp \
+	../../../Extern/ECL/src/base/base.h \
+	../../../Extern/ECL/src/base/error.h \
+	../../../Extern/ECL/src/base/string.h
+
+linux_gcc_debug/event.o: \
+	../../../Extern/ECL/src/base/event.cpp \
+	../../../Extern/ECL/src/base/base.h \
+	../../../Extern/ECL/src/base/collect.h \
+	../../../Extern/ECL/src/base/event.h \
+	../../../Extern/ECL/src/base/list.h \
+	../../../Extern/ECL/src/base/map.h \
+	../../../Extern/ECL/src/base/object.h \
+	../../../Extern/ECL/src/base/string.h
+
+linux_gcc_debug/list.o: \
+	../../../Extern/ECL/src/base/list.cpp
+linux_gcc_debug/logfile.o: \
+	../../../Extern/ECL/src/base/logfile.cpp \
+	../../../Extern/ECL/src/base/base.h \
+	../../../Extern/ECL/src/base/base_ex.h \
+	../../../Extern/ECL/src/base/collect.h \
+	../../../Extern/ECL/src/base/list.h \
+	../../../Extern/ECL/src/base/logfile.h \
+	../../../Extern/ECL/src/base/map.h \
+	../../../Extern/ECL/src/base/osbase.h \
+	../../../Extern/ECL/src/base/semaphore.h \
+	../../../Extern/ECL/src/base/string.h \
+	../../../Extern/ECL/src/base/string_ex.h
+
+linux_gcc_debug/map.o: \
+	../../../Extern/ECL/src/base/map.cpp
+linux_gcc_debug/message.o: \
+	../../../Extern/ECL/src/base/message.cpp \
+	../../../Extern/ECL/src/base/base.h \
+	../../../Extern/ECL/src/base/base_ex.h \
+	../../../Extern/ECL/src/base/bprintf.h \
+	../../../Extern/ECL/src/base/collect.h \
+	../../../Extern/ECL/src/base/error.h \
+	../../../Extern/ECL/src/base/list.h \
+	../../../Extern/ECL/src/base/map.h \
+	../../../Extern/ECL/src/base/message.h \
+	../../../Extern/ECL/src/base/driver/mn.h \
+	../../../Extern/ECL/src/base/driver/mn_local.h \
+	../../../Extern/ECL/src/base/driver/mn_mslot.h \
+	../../../Extern/ECL/src/base/driver/mn_npipe.h \
+	../../../Extern/ECL/src/base/driver/mn_queue.h \
+	../../../Extern/ECL/src/base/osbase.h \
+	../../../Extern/ECL/src/base/queue.h \
+	../../../Extern/ECL/src/base/ring.h \
+	../../../Extern/ECL/src/base/semaphore.h \
+	../../../Extern/ECL/src/base/sharedmem.h \
+	../../../Extern/ECL/src/base/string.h \
+	../../../Extern/ECL/src/base/string_ex.h \
+	../../../Extern/ECL/src/base/thread.h
+
+linux_gcc_debug/mn.o: \
+	../../../Extern/ECL/src/base/driver/mn.cpp \
+	../../../Extern/ECL/src/base/base.h \
+	../../../Extern/ECL/src/base/error.h \
+	../../../Extern/ECL/src/base/message.h \
+	../../../Extern/ECL/src/base/driver/mn.h \
+	../../../Extern/ECL/src/base/string.h
+
+linux_gcc_debug/mn_local.o: \
+	../../../Extern/ECL/src/base/driver/mn_local.cpp \
+	../../../Extern/ECL/src/base/base.h \
+	../../../Extern/ECL/src/base/collect.h \
+	../../../Extern/ECL/src/base/error.h \
+	../../../Extern/ECL/src/base/list.h \
+	../../../Extern/ECL/src/base/message.h \
+	../../../Extern/ECL/src/base/driver/mn.h \
+	../../../Extern/ECL/src/base/driver/mn_local.h \
+	../../../Extern/ECL/src/base/osbase.h \
+	../../../Extern/ECL/src/base/queue.h \
+	../../../Extern/ECL/src/base/ring.h \
+	../../../Extern/ECL/src/base/semaphore.h \
+	../../../Extern/ECL/src/base/sharedmem.h \
+	../../../Extern/ECL/src/base/string.h
+
+linux_gcc_debug/mn_mslot.o: \
+	../../../Extern/ECL/src/base/driver/mn_mslot.cpp \
+	../../../Extern/ECL/src/base/base.h \
+	../../../Extern/ECL/src/base/error.h \
+	../../../Extern/ECL/src/base/message.h \
+	../../../Extern/ECL/src/base/driver/mn.h \
+	../../../Extern/ECL/src/base/driver/mn_mslot.h \
+	../../../Extern/ECL/src/base/string.h
+
+linux_gcc_debug/mn_npipe.o: \
+	../../../Extern/ECL/src/base/driver/mn_npipe.cpp \
+	../../../Extern/ECL/src/base/base.h \
+	../../../Extern/ECL/src/base/collect.h \
+	../../../Extern/ECL/src/base/error.h \
+	../../../Extern/ECL/src/base/list.h \
+	../../../Extern/ECL/src/base/message.h \
+	../../../Extern/ECL/src/base/driver/mn.h \
+	../../../Extern/ECL/src/base/driver/mn_npipe.h \
+	../../../Extern/ECL/src/base/namedpipe.h \
+	../../../Extern/ECL/src/base/osbase.h \
+	../../../Extern/ECL/src/base/queue.h \
+	../../../Extern/ECL/src/base/ring.h \
+	../../../Extern/ECL/src/base/semaphore.h \
+	../../../Extern/ECL/src/base/sharedmem.h \
+	../../../Extern/ECL/src/base/string.h
+
+linux_gcc_debug/mn_queue.o: \
+	../../../Extern/ECL/src/base/driver/mn_queue.cpp \
+	../../../Extern/ECL/src/base/base.h \
+	../../../Extern/ECL/src/base/error.h \
+	../../../Extern/ECL/src/base/message.h \
+	../../../Extern/ECL/src/base/driver/mn.h \
+	../../../Extern/ECL/src/base/driver/mn_queue.h \
+	../../../Extern/ECL/src/base/string.h
+
+linux_gcc_debug/namedpipe.o: \
+	../../../Extern/ECL/src/base/namedpipe.cpp \
+	../../../Extern/ECL/src/base/base.h \
+	../../../Extern/ECL/src/base/collect.h \
+	../../../Extern/ECL/src/base/error.h \
+	../../../Extern/ECL/src/base/list.h \
+	../../../Extern/ECL/src/base/namedpipe.h \
+	../../../Extern/ECL/src/base/osbase.h \
+	../../../Extern/ECL/src/base/queue.h \
+	../../../Extern/ECL/src/base/ring.h \
+	../../../Extern/ECL/src/base/semaphore.h \
+	../../../Extern/ECL/src/base/sharedmem.h \
+	../../../Extern/ECL/src/base/string.h \
+	../../../Extern/ECL/src/base/thread.h
+
+linux_gcc_debug/object.o: \
+	../../../Extern/ECL/src/base/object.cpp \
+	../../../Extern/ECL/src/base/base.h \
+	../../../Extern/ECL/src/base/object.h
+
+linux_gcc_debug/osbase.o: \
+	../../../Extern/ECL/src/base/osbase.cpp \
+	../../../Extern/ECL/src/base/base.h \
+	../../../Extern/ECL/src/base/osbase.h \
+	../../../Extern/ECL/src/base/string.h
+
+linux_gcc_debug/osversion.o: \
+	../../../Extern/ECL/src/base/osversion.cpp \
+	../../../Extern/ECL/src/base/base.h \
+	../../../Extern/ECL/src/base/osversion.h
+
+linux_gcc_debug/process.o: \
+	../../../Extern/ECL/src/base/process.cpp \
+	../../../Extern/ECL/src/base/base.h \
+	../../../Extern/ECL/src/base/collect.h \
+	../../../Extern/ECL/src/base/error.h \
+	../../../Extern/ECL/src/base/list.h \
+	../../../Extern/ECL/src/base/osbase.h \
+	../../../Extern/ECL/src/base/process.h \
+	../../../Extern/ECL/src/base/semaphore.h \
+	../../../Extern/ECL/src/base/string.h \
+	../../../Extern/ECL/src/base/thread.h
+
+linux_gcc_debug/profile.o: \
+	../../../Extern/ECL/src/base/profile.cpp \
+	../../../Extern/ECL/src/base/base.h \
+	../../../Extern/ECL/src/base/profile.h \
+	../../../Extern/ECL/src/base/string.h
+
+linux_gcc_debug/queue.o: \
+	../../../Extern/ECL/src/base/queue.cpp \
+	../../../Extern/ECL/src/base/base.h \
+	../../../Extern/ECL/src/base/collect.h \
+	../../../Extern/ECL/src/base/error.h \
+	../../../Extern/ECL/src/base/list.h \
+	../../../Extern/ECL/src/base/osbase.h \
+	../../../Extern/ECL/src/base/queue.h \
+	../../../Extern/ECL/src/base/ring.h \
+	../../../Extern/ECL/src/base/semaphore.h \
+	../../../Extern/ECL/src/base/sharedmem.h \
+	../../../Extern/ECL/src/base/string.h
+
+linux_gcc_debug/ring.o: \
+	../../../Extern/ECL/src/base/ring.cpp \
+	../../../Extern/ECL/src/base/base.h \
+	../../../Extern/ECL/src/base/collect.h \
+	../../../Extern/ECL/src/base/error.h \
+	../../../Extern/ECL/src/base/list.h \
+	../../../Extern/ECL/src/base/osbase.h \
+	../../../Extern/ECL/src/base/ring.h \
+	../../../Extern/ECL/src/base/semaphore.h \
+	../../../Extern/ECL/src/base/sharedmem.h \
+	../../../Extern/ECL/src/base/string.h
+
+linux_gcc_debug/semaphore.o: \
+	../../../Extern/ECL/src/base/semaphore.cpp \
+	../../../Extern/ECL/src/base/base.h \
+	../../../Extern/ECL/src/base/collect.h \
+	../../../Extern/ECL/src/base/list.h \
+	../../../Extern/ECL/src/base/osbase.h \
+	../../../Extern/ECL/src/base/semaphore.h \
+	../../../Extern/ECL/src/base/string.h
+
+linux_gcc_debug/sharedmem.o: \
+	../../../Extern/ECL/src/base/sharedmem.cpp \
+	../../../Extern/ECL/src/base/base.h \
+	../../../Extern/ECL/src/base/error.h \
+	../../../Extern/ECL/src/base/osbase.h \
+	../../../Extern/ECL/src/base/sharedmem.h \
+	../../../Extern/ECL/src/base/string.h
+
+linux_gcc_debug/string.o: \
+	../../../Extern/ECL/src/base/string.cpp \
+	../../../Extern/ECL/src/base/base.h \
+	../../../Extern/ECL/src/base/string.h
+
+linux_gcc_debug/string_ex.o: \
+	../../../Extern/ECL/src/base/string_ex.cpp \
+	../../../Extern/ECL/src/base/base.h \
+	../../../Extern/ECL/src/base/string.h \
+	../../../Extern/ECL/src/base/string_ex.h
+
+linux_gcc_debug/thread.o: \
+	../../../Extern/ECL/src/base/thread.cpp \
+	../../../Extern/ECL/src/base/base.h \
+	../../../Extern/ECL/src/base/collect.h \
+	../../../Extern/ECL/src/base/error.h \
+	../../../Extern/ECL/src/base/list.h \
+	../../../Extern/ECL/src/base/osbase.h \
+	../../../Extern/ECL/src/base/semaphore.h \
+	../../../Extern/ECL/src/base/string.h \
+	../../../Extern/ECL/src/base/thread.h
+

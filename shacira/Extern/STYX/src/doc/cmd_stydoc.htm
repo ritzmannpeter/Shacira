@@ -1,0 +1,107 @@
+
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+<meta name="robots" content="noindex">
+<title>stydoc Command description</title>
+</head>
+<body bgcolor=white text=black link=navy vlink=navy alink=purple>
+<b><font color=\"#008B8B\"><a href="styx.html">contents</a></font></b><br>
+&nbsp;
+<H1><font color=red>stydoc</font>  STYX Documentation Generator</H1>
+<BR>
+
+  <p>'stydoc' produces a HTML-like reference documentation for a STYX grammar [.sty].
+  <p>Comments not starting with ';;' will also be included.
+
+<BR>
+<BR>
+
+<H2>Arguments</H2>
+<BR>
+<table width=100% border=0 cellspacing=10>
+<COL WIDTH=2*>
+<COL WIDTH=1*>
+<COL WIDTH=6*>
+<thead>
+<TR valign=top bgcolor=#DDDDFF><TD align=left>Name<TD align=left>Type<TD align=left>Semantic
+<tbody>
+
+<TR valign=top><TD align=left><B>InFile</B><TD align=left><B><font color=navy> path</font></B><TD align=left> path of the STYX grammar [.sty]
+
+<TR valign=top><TD align=left><B>Template</B><TD align=left><B><font color=navy> path</font></B><TD align=left> path of the template file (eg. tstydoc_us.htm)
+
+</table>
+<BR>
+
+  <p>The target file 'OutFile' should contain the language name so that 
+     embedded languages can be referenced, too.
+
+<BR>
+
+<BR>
+
+<H2>Options</H2>
+An option will be specified as follows: <B>-&lt;Name&gt;=&lt;Value&gt;</B>
+<BR>A flag is toggled that way: <B>-&lt;Name&gt;</B>
+<BR>The default value will be applied when the option wasn't specified.
+<BR>
+<BR>
+<table width=100% border=0 cellspacing=10>
+<COL WIDTH=2*>
+<COL WIDTH=1*>
+<COL WIDTH=3*>
+<COL WIDTH=4*>
+<thead>
+<TR valign=top bgcolor=#DDDDFF><TD align=left>Name<TD align=left>Type<TD align=left>Default value<TD align=left>Semantic
+<tbody>
+
+<TR valign=top><TD align=left><B>OutFile</B><TD align=left><B><font color=navy> path</font></B><TD align=left>""<TD align=left> path of the target file (default: stdout)
+
+<TR valign=top><TD align=left><B>StyxPath</B><TD align=left><B><font color=navy> path</font></B><TD align=left>.<TD align=left> path of STYX grammar include files
+
+<TR valign=top><TD align=left><B>RefAlias</B><TD align=left><B><font color=navy> string</font></B><TD align=left>&amp;<TD align=left> alias for the first character of a pattern reference
+
+<TR valign=top><TD align=left><B>recursiv</B><TD align=left><B><font color=navy> flag</font></B><TD align=left>false<TD align=left> recursive pattern evaluation
+
+<TR valign=top><TD align=left><B>prodcom</B><TD align=left><B><font color=navy> flag</font></B><TD align=left>false<TD align=left> print production comments
+
+<TR valign=top><TD align=left><B>keepNTs</B><TD align=left><B><font color=navy> string</font></B><TD align=left>""<TD align=left> NTs which shouldn't be expanded ( NT ; ... )
+
+<TR valign=top><TD align=left><B>noClass</B><TD align=left><B><font color=navy> string</font></B><TD align=left>""<TD align=left> split NT Classes ( NT ; ... )
+
+<TR valign=top><TD align=left><B>exProds</B><TD align=left><B><font color=navy> string</font></B><TD align=left>""<TD align=left> hide NT Productions ( NT . Prod ; ... )
+
+<TR valign=top><TD align=left><B>ignRRef</B><TD align=left><B><font color=navy> string</font></B><TD align=left>""<TD align=left> ignore recursive references ( NT ; ... )
+
+</table>
+<BR>
+
+<BR>
+
+<BR>
+
+<H2>Environment</H2>
+An environment variable will be specified as follows: <B>-&lt;Name&gt;=&lt;Value&gt;</B>
+<BR>The default value will be applied when no environment variable was specified.
+<BR>
+<BR>
+<table width=100% border=0 cellspacing=10>
+<COL WIDTH=2*>
+<COL WIDTH=1*>
+<COL WIDTH=3*>
+<COL WIDTH=4*>
+<thead>
+<TR valign=top bgcolor=#DDDDFF><TD align=left>Name<TD align=left>Type<TD align=left>Default value<TD align=left>Semantic
+<tbody>
+
+<TR valign=top><TD align=left><B>BINSTYX</B><TD align=left><B><font color=navy> path</font></B><TD align=left>PATH<TD align=left> search environment for the parse table image [.pim]
+
+</table>
+<BR>
+
+<BR>
+
+<BR>
+</body>
+</html>

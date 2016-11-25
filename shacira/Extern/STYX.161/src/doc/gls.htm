@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[gls.h] Generic Language Support</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[gls.h] Generic Language Support</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="standard.htm">#include "standard.h"</a>
+<br><a href="ptm.htm">#include "ptm.h"</a>
+<br>
+<br>
+<br>
+<br><pre>
+   [gls] provides a generic interface for the token and nonterminal lists of
+   the abstract derivation trees in the generated grammar-specific interface
+   modules ( &lt;Language&gt;_int.c ).
+
+</pre>
+<br><hr width="100%" size=2><h2><b> Types </b></h2>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b> GLS_Lst(A) </b>
+<td align=left> Abstract term list type
+
+<TR valign=top>
+<td align=left><b> GLS_Tok </b>
+<td align=left> Abstract token type
+
+</table>
+<br><hr width="100%" size=2><h2><b> Init </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>GLS_init</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>module initialisation
+
+</table>
+<br><hr width="100%" size=2><h2><b> Normalizer </b></h2>
+<br>
+  <p> <b>... to skip comments, keywords and ignore-nodes </b>
+      <br>moved to <a href="ptm.htm">[ptm]</a>
+
+
+<br><pre>#define XGLS_keycom_Skip XPT_keycom_Skip
+#define GLS_keycom_Skip  PT_keycom_Skip
+#define GLS_ign_Skip     PT_ign_Skip
+
+</pre>
+<br><hr width="100%" size=2><h2><b> Token services </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PT_Term <b>GLS_Tok_cfg</b>(GLS_Tok x)</pre>
+<td bgcolor="#FFF0F5" align=left>the embedded lanuage of token 'x'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>symbol <b>GLS_Tok_symbol</b>(GLS_Tok x)</pre>
+<td bgcolor="#FFF0F5" align=left>the symbol of token 'x'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>GLS_Tok_string</b>(GLS_Tok x)</pre>
+<td bgcolor="#FFF0F5" align=left>the string value of token 'x'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>GLS_Term_Tok</b>(PT_Term x, GLS_Tok *t)</pre>
+<td bgcolor="#FFF0F5" align=left>Term to token selector
+
+</table>
+<br><hr width="100%" size=2><h2><b> List Construction </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PT_Term <b>GLS_Lst_nil_mk</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>nil production
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PT_Term <b>GLS_Lst_cons_mk</b>(PT_Term a, PT_Term b)</pre>
+<td bgcolor="#FFF0F5" align=left>cons production
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PT_Term <b>XGLS_Lst_nil_mk</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>nil production (xaron)
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PT_Term <b>XGLS_Lst_cons_mk</b>(PT_Term a, GLS_Lst(PT_Term) *b)</pre>
+<td bgcolor="#FFF0F5" align=left> cons production (xaron ALT? Speculate?) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PT_Term <b>X4GLS_Lst_cons_mk</b>(PT_Term a, GLS_Lst(PT_Term) *b)</pre>
+<td bgcolor="#FFF0F5" align=left> cons production (xaron) <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> List service </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>GLS_Term_Lst</b>(PT_Term x, GLS_Lst(PT_Term) *lst)</pre>
+<td bgcolor="#FFF0F5" align=left> Term to GLS_Lst selector <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>GLS_Lst_nil</b>(GLS_Lst(PT_Term) x)
+#define GLS_EMPTY(term) ( GLS_Lst_nil((PT_Term)(term)) )</pre>
+<td bgcolor="#FFF0F5" align=left> nil - selector <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>GLS_Lst_cons</b>(GLS_Lst(PT_Term) x, PT_Term* fst_t, GLS_Lst(PT_Term)* rst_t)</pre>
+<td bgcolor="#FFF0F5" align=left> cons - selector <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PT_Term <b>GLS_Lst_first</b>(GLS_Lst(PT_Term) x)
+#define GLS_FIRST(type,term) ( (type)GLS_Lst_first((GLS_Lst(PT_Term))(term)) )</pre>
+<td bgcolor="#FFF0F5" align=left> first element in list 'x' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PT_Term <b>GLS_Lst_rest</b>(GLS_Lst(PT_Term) x)
+#define GLS_REST(type,term) \
+        ( (GLS_Lst(type))GLS_Lst_rest((GLS_Lst(PT_Term))(term)) )</pre>
+<td bgcolor="#FFF0F5" align=left> remaining elements in list 'x' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>GLS_Lst_length</b>(GLS_Lst(PT_Term) x)
+#define GLS_LENGTH(term) ( GLS_Lst_length((GLS_Lst(PT_Term))(term)) )</pre>
+<td bgcolor="#FFF0F5" align=left> length of list 'x' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PT_Term <b>GLS_Lst_nth</b>(GLS_Lst(PT_Term) x, int nth)
+#define GLS_NTH(type,term,nth) ((type)GLS_Lst_nth((GLS_Lst(PT_Term))(term),nth))</pre>
+<td bgcolor="#FFF0F5" align=left> nth element in list 'x' ( nth &gt;= 1 ) <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Convenient iterator macros </b></h2>
+<br><pre>
+#define GLS_FORALL(it,li)      for( (it) = ((PT_Term)(li));  \
+                                   ! GLS_EMPTY(it);          \
+                                   it = GLS_REST(PT_Term,it) )
+
+#define GLS_FORALLI(it,li,c)   for( c=0, (it) = ((PT_Term)(li));  \
+                                   ! GLS_EMPTY(it);               \
+                                   ++c, it = GLS_REST(PT_Term,it) )
+
+</pre>
+
+</body>
+</html>

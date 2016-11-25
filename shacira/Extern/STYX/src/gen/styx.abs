@@ -1,0 +1,85 @@
+/* ------------------------------------------------------------------------ */
+/*                                                                          */
+/* [styx.abs]                  Abstract Grammar                             */
+/*                                                                          */
+/* ------------------------------------------------------------------------ */
+
+LANGUAGE styx
+
+TOKENS
+
+  Ide, Nat, Set, Seq
+
+TYPES
+
+  styx        = Start_Source(Source)
+
+  Source      = root(Ide, QlxDfn*, OptCfg)
+
+  OptCfg      = non;
+                cfg(Dfn*)
+
+  QlxDfn      = igrp(Ide);
+                defn(QlxCat, QlxOpt, QlxGrp, Ide, QlxGrp, Exp);
+                mgrp(Ide, Ide*);
+                xgrp(Ide)
+
+  QlxCat      = tokC;
+                indC;
+                ignC;
+                comC;
+                lanC;
+                letC
+
+  QlxGrp      = pgrp(Ide);
+                non;
+                pigrp;
+                grp(Ide);
+                igrp;
+                pop
+
+  QlxOpt      = ignca;
+                non
+
+  Exp         = opt(Exp);
+                plusn(Exp, Limit);
+                plus0(Exp);
+                star(Exp);
+                quot(Exp, Exp);
+                plus(Exp);
+                epat(Exp, Ide, Exp);
+                union(Exp, Exp);
+                sequ(Seq);
+                dyck(Exp, Exp, Exp);
+                non;
+                range(Exp, Exp);
+                ident(Ide);
+                diff(Exp, Exp);
+                set(Set);
+                spat(Exp, Set, Exp);
+                conc(Exp, Exp)
+
+  OptNat      = non;
+                nat(Nat)
+
+  Limit       = ntime(Nat);
+                range(Nat, OptNat)
+
+  Dfn         = defn(Cat, DfnOpt, Ide, Prd*)
+
+  Cat         = letC;
+                bgnC
+
+  DfnOpt      = errnt;
+                non
+
+  Lay         = dft;
+                rec;
+                grp
+
+  Prd         = prod(Lay, Ide, Mbr*)
+
+  Mbr         = else;
+                tkm(Seq);
+                ntm(Ide)
+

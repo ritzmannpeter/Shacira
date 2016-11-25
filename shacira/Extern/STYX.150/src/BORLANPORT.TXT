@@ -1,0 +1,11 @@
+
+   Allgemein macht die Definition von list massive Probleme.
+   Deswegen habe ich list.h in styxlist.h umbenannt, damit diese
+   Datei nicht mit dem stl-Pendant verwechselt werden kann.
+
+   Fuer die Portierung auf CBuilder4 wurden folgende
+   Aenderungen vorgenommen
+
+   - Alle Anpassungen im Sourcecode werden ueber die
+     Konstante __BORLANDC__ gesteuert.
+

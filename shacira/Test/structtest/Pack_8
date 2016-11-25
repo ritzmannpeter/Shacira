@@ -1,0 +1,16 @@
+
+#if defined(__MSCPP__)
+
+#pragma pack(8)
+
+#elif defined(__BLCPP__)
+
+#pragma pack(8)
+
+#else
+
+#pragma pack(8)
+//#error "unsupported compiler"
+
+#endif
+

@@ -1,0 +1,10 @@
+
+Declare Function CLIENT_Init Lib "shclient" (ByVal root_name As String) As Long
+Declare Function CLIENT_Exit Lib "shclient" ()
+Declare Function CLIENT_Connect Lib "shclient" (ByVal name As String) As Long
+Declare Function CLIENT_Release Lib "shclient" (ByVal hnd As Long) As Long
+Declare Function CLIENT_GetVariable Lib "shclient" (ByVal hnd As Long, ByVal var_name As String, ByVal i1 As Long, ByVal i2 As Long, ByVal i3 As Long, ByVal i4 As Long, buf As String, ByVal buf_size As Long) As Long
+Declare Function CLIENT_SetVariable Lib "shclient" (ByVal hnd As Long, ByVal var_name As String, ByVal i1 As Long, ByVal i2 As Long, ByVal i3 As Long, ByVal i4 As Long, ByVal buf As String, ByVal buf_size As Long) As Long
+Declare Function CLIENT_GetErrorString Lib "shclient" (ByVal hnd As Long, buf As String, ByVal buf_size As Long)
+
+

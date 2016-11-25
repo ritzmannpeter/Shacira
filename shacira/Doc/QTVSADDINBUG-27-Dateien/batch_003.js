@@ -1,0 +1,1 @@
+(function($){var featuresArray=['jira.frother.reporter.field','jira.user.darkfeature.admin','frother.assignee.field'];var features={};$.each(featuresArray,function(){features[this]=true});AJS.DarkFeatures={isEnabled:function(key){return !!features[key]}}})(AJS.$);

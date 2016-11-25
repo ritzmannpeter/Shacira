@@ -1,0 +1,507 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[binimg.h] Portable machine-independant binary format</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[binimg.h] Portable machine-independant binary format</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="standard.htm">#include "standard.h"</a>
+<br><a href="symbols.htm">#include "symbols.h"</a>
+<br>
+<br>
+<br>
+<br><pre>
+  Summary
+
+  [binimg] offers a set of functions to read and write binary files in a portable
+  machine-independant format. Within the STYX-system they are used to make data structures
+  persistent.
+
+  non-reentrant API:
+
+  For each supported data type exist a read and write function with the following signature.
+
+  |   void put&lt;TYPE&gt;(&lt;CTYPE&gt;  x);
+  |   void get&lt;TYPE&gt;(&lt;CTYPE&gt; &x);
+
+  Source and target are implicit in these operations. The functions 'getBgn' and 'getEnd'
+  open and close a source. To open and close a target one has to use the functions 'putBgn'
+  and 'putEnd'. So it is not possible to read or write more than one file at a time.
+
+  reentrant API:
+
+  For each supported data type exist a read and write function with the following signature.
+
+  |   void fput&lt;TYPE&gt;(BinImg_T img, &lt;CTYPE&gt;  x);
+  |   void fget&lt;TYPE&gt;(BinImg_T img, &lt;CTYPE&gt; &x);
+
+  The functions 'fgetBgn' and 'fgetEnd' open and close a source. To open and close a target
+  one has to use the functions 'fputBgn' and 'fputEnd'. So it is possible to read or write
+  more than one file at a time.
+
+  Each binary file within the STYX-system starts with a header block. Creation and reading
+  e.g. checking is done by the functions 'putHeader' and 'getHeader' respectively
+  'fputHeader' and 'fgetHeader'.
+
+  The binary files are protected against unauthorized reading and writing by an integrated
+  combined encryption and checking method. Further more they will be compressed.
+
+</pre>
+<br><pre>
+  Files and EOF
+
+  With the non-reentrant API it is not possible to read or write more than one file at a time.
+
+  This module doesn't support an explicit EOF-predicate. It is the responsibility of the user
+  to check for EOF. Reading behind EOF causes the program to abort with an error message.
+
+</pre>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b> BinImg_T </b>
+<td align=left> Abstract binary image type 
+
+</table>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>BinImg_T <b>BIN_getCurImage</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>get current image
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>BIN_setIncEvent</b>(void (*evt)(float lvl))</pre>
+<td bgcolor="#FFF0F5" align=left>set the get-inc event
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>fBIN_setIncEvent</b>(BinImg_T img,void (*evt)(float lvl))</pre>
+<td bgcolor="#FFF0F5" align=left> set the get-inc event for binary image 'img' <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Open & Close </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>putBgn</b>(c_string EnvVar, c_string FileName, c_string Ext)</pre>
+<td bgcolor="#FFF0F5" align=left> open [$'EnvVar'/'FileName''Ext'] to put binary image <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>BinImg_T <b>fputBgn</b>(c_string EnvVar, c_string FileName, c_string Ext)</pre>
+<td bgcolor="#FFF0F5" align=left> open [$'EnvVar'/'FileName''Ext'] to put binary image (reentrant) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>BinImg_T <b>TryfputBgn</b>(c_string EnvVar, c_string FileName, c_string Ext)</pre>
+<td bgcolor="#FFF0F5" align=left> tries to open [$'EnvVar'/'FileName''Ext'] to put binary image (reentrant);<br>
+   returns NULL in the case of an invalid path<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>getBgn</b>(c_string EnvVar, c_string FileName, c_string Ext)</pre>
+<td bgcolor="#FFF0F5" align=left> open [$'EnvVar'/'FileName''Ext'] to get binary image <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>BinImg_T <b>fgetBgn</b>(c_string EnvVar, c_string FileName, c_string Ext)</pre>
+<td bgcolor="#FFF0F5" align=left> open [$'EnvVar'/'FileName''Ext'] to get binary image (reentrant) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>BinImg_T <b>TryfgetBgn</b>(c_string EnvVar, c_string FileName, c_string Ext)</pre>
+<td bgcolor="#FFF0F5" align=left> tries to open [$'EnvVar'/'FileName''Ext'] to get binary image (reentrant);<br>
+   returns NULL in the case of an invalid path<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>putEnd</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>completes binary puting
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>fputEnd</b>(BinImg_T img)</pre>
+<td bgcolor="#FFF0F5" align=left> completes puting to binary image 'img';<br>
+   frees 'img' (reentrant) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>getEnd</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>completes binary geting
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>fgetEnd</b>(BinImg_T img)</pre>
+<td bgcolor="#FFF0F5" align=left> completes geting from binary image 'img';<br>
+   frees 'img' (reentrant) <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Header </b></h2>
+<br><pre>
+  There are a lot of reasons to save some informations at the beginning of such a file.
+
+  Beside a short text describing the content of the file, the user want to be sure that
+  the file has the expected format. Following an old tradition this will be done by a
+  'Magic'.
+
+  To handle format changes of binary files we introduce a version. The version consists
+  of two numbers ('Major', 'Minor'). Binary formats with different major-numbers are
+  treated as incompatible. Binary formats with different minor-numbers are treated as
+  upward compatible.
+
+  Furthermore this module has an internal version number to track changes of the internal
+  format.
+
+  Contrary to the external representation the title will be be saved as null-terminated
+  string.
+
+  'getHeader' respectively 'fgetHeader' checks these informations and aborts the operation
+  in the case of an error. During the read or write process the current minor-version is
+  accessable via the function 'MinorVersion' respectively 'fMinorVersion'.
+
+</pre>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>putHeader</b>(c_string Title, c_string Magic, c_byte Major, c_byte Minor)</pre>
+<td bgcolor="#FFF0F5" align=left> put header <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>fputHeader</b>
+     (
+       BinImg_T img, c_string Title, c_string Magic, c_byte Major, c_byte Minor
+     )</pre>
+<td bgcolor="#FFF0F5" align=left> put header to binary image 'img' (reentrant) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>getHeaderInfo</b>(c_string *Com, c_string *Mag, c_byte *Ma, c_byte *Mi, c_byte *Bv)</pre>
+<td bgcolor="#FFF0F5" align=left> get header information ( title,magic,major,minor,version ) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>fgetHeaderInfo</b>
+     (
+       BinImg_T img, c_string *Com, c_string *Mag,
+       c_byte *Ma, c_byte *Mi, c_byte *Bv
+     )</pre>
+<td bgcolor="#FFF0F5" align=left> get header information ( title,magic,major,minor,version )<br>
+   from binary image 'img' (reentrant) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>getHeader</b>(c_string Magic, c_byte Major, c_byte Minor)</pre>
+<td bgcolor="#FFF0F5" align=left> validates header <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>fgetHeader</b>(BinImg_T img, c_string Magic, c_byte Major, c_byte Minor)</pre>
+<td bgcolor="#FFF0F5" align=left> validates header of binary image 'img' (reentrant) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>getHeaderTitle</b>(c_string Magic, c_byte Major, c_byte Minor, c_string* Title)</pre>
+<td bgcolor="#FFF0F5" align=left> validates header, returns title <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>fgetHeaderTitle</b>
+     (
+       BinImg_T img, c_string Magic, c_byte Major, c_byte Minor, c_string* Title
+     )</pre>
+<td bgcolor="#FFF0F5" align=left> validates header, returns title of binary image 'img' (reentrant) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>short <b>MinorVersion</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>'Minor' of the file
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>short <b>fMinorVersion</b>(BinImg_T img)</pre>
+<td bgcolor="#FFF0F5" align=left>'Minor' of the file 'img' (reentrant)
+
+</table>
+<br><hr width="100%" size=4><h2><font color="#008B8B"><b> Data types </b></font></h2>
+<br><pre>
+  Actually the following data types are supported.
+
+  | TYPE      | CTYPE                  |
+  +-----------+------------------------+----------------------------
+  | Byte      | unsigned char          |
+  | Word      | unsigned short int     |   Intrinsic C-data types
+  | Long      | signed long int        |
+  | ULong     | unsigned long int      |
+  | Int64     | signed long long int   | if supported type
+  | UInt64    | unsigned long long int | if supported type
+  +-----------+------------------------+----------------------------
+  | String    | (char *)               |   Strings
+  | WC-String | (wchar_t *)            |   Unicode Strings
+  | Binary    | c_bstring              |   binary Strings
+  | Symbol    | symbol                 |   Symbols
+  | Function  | (? (*)())              |   Functions
+  | Abstract  | (?)                    |   "Objects"
+  | StdCPtr   | (?*)                   |   References
+
+</pre>
+<br><hr width="100%" size=2><h2><b> Plain values </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>putByte</b>(c_byte v)</pre>
+<td bgcolor="#FFF0F5" align=left>put 'v' to file
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>fputByte</b>(BinImg_T img, c_byte v)</pre>
+<td bgcolor="#FFF0F5" align=left>put 'v' to file 'img' (reentrant)
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>getByte</b>(c_byte *v)</pre>
+<td bgcolor="#FFF0F5" align=left>get 'v' from file
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>fgetByte</b>(BinImg_T img, c_byte *v)</pre>
+<td bgcolor="#FFF0F5" align=left> get 'v' from file 'img' (reentrant) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>getByte_or_EOF</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>get byte or EOF from file
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>fgetByte_or_EOF</b>(BinImg_T img)</pre>
+<td bgcolor="#FFF0F5" align=left> get byte or EOF from file 'img' (reentrant) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>putWord</b>(short v)</pre>
+<td bgcolor="#FFF0F5" align=left>put 'v' to file; msb first
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>fputWord</b>(BinImg_T img, short v)</pre>
+<td bgcolor="#FFF0F5" align=left> put 'v' to file 'img'; msb first (reentrant) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>getWord</b>(short *v)</pre>
+<td bgcolor="#FFF0F5" align=left>get 'v' from file; msb first
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>fgetWord</b>(BinImg_T img, short *v)</pre>
+<td bgcolor="#FFF0F5" align=left> get 'v' from file 'img'; msb first (reentrant) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>putLong</b>(long v)</pre>
+<td bgcolor="#FFF0F5" align=left>put 'v' ( &lt;= 32 Bit ) to file; msw first
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>fputLong</b>(BinImg_T img, long v)</pre>
+<td bgcolor="#FFF0F5" align=left> put 'v' ( &lt;= 32 Bit ) to file 'img'; msw first (reentrant) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>getLong</b>(long *v)</pre>
+<td bgcolor="#FFF0F5" align=left>get 'v' from file; msw first
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>fgetLong</b>(BinImg_T img, long *v)</pre>
+<td bgcolor="#FFF0F5" align=left> get 'v' from file 'img'; msw first (reentrant) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>putULong</b>(unsigned long v)</pre>
+<td bgcolor="#FFF0F5" align=left>put 'v' ( &lt;= 32 Bit ) to file; msw first
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>fputULong</b>(BinImg_T img, unsigned long v)</pre>
+<td bgcolor="#FFF0F5" align=left> put 'v' ( &lt;= 32 Bit ) to file 'img'; msw first (reentrant) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>getULong</b>(unsigned long *v)</pre>
+<td bgcolor="#FFF0F5" align=left>get 'v' from file; msw first
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>fgetULong</b>(BinImg_T img, unsigned long *v)</pre>
+<td bgcolor="#FFF0F5" align=left> get 'v' from file 'img'; msw first (reentrant) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>putInt</b>(int v)</pre>
+<td bgcolor="#FFF0F5" align=left>put 'v' ( &lt;= 16 Bit ) to file
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>fputInt</b>(BinImg_T img, int v)</pre>
+<td bgcolor="#FFF0F5" align=left> put 'v' ( &lt;= 16 Bit ) to file 'img' (reentrant) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>getInt</b>(int* v)</pre>
+<td bgcolor="#FFF0F5" align=left>get 'v' from file
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>fgetInt</b>(BinImg_T img, int* v)</pre>
+<td bgcolor="#FFF0F5" align=left>get 'v' from file 'img' (reentrant)
+
+</table>
+<br><pre>#ifdef STYX_CONFIG_TINT64
+
+</pre>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>putInt64</b>(c_int64 v)</pre>
+<td bgcolor="#FFF0F5" align=left>put 'v' ( &lt;= 64 Bit ) to file; msl first
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>fputInt64</b>(BinImg_T img, c_int64 v)</pre>
+<td bgcolor="#FFF0F5" align=left> put 'v' ( &lt;= 64 Bit ) to file 'img'; msl first (reentrant) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>getInt64</b>(c_int64 *v)</pre>
+<td bgcolor="#FFF0F5" align=left>get 'v' from file; msl first
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>fgetInt64</b>(BinImg_T img, c_int64 *v)</pre>
+<td bgcolor="#FFF0F5" align=left> get 'v' from file 'img'; msl first (reentrant) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>putUInt64</b>(c_uint64 v)</pre>
+<td bgcolor="#FFF0F5" align=left>put 'v' ( &lt;= 64 Bit ) to file; msl first
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>fputUInt64</b>(BinImg_T img, c_uint64 v)</pre>
+<td bgcolor="#FFF0F5" align=left> put 'v' ( &lt;= 64 Bit ) to file 'img'; msl first (reentrant) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>getUInt64</b>(c_uint64 *v)</pre>
+<td bgcolor="#FFF0F5" align=left>get 'v' from file; msl first
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>fgetUInt64</b>(BinImg_T img, c_uint64 *v)</pre>
+<td bgcolor="#FFF0F5" align=left> get 'v' from file 'img'; msl first (reentrant) <br>
+
+</table>
+<br><pre>#endif
+
+</pre>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>putString</b>(c_string v)</pre>
+<td bgcolor="#FFF0F5" align=left>put 'v' to file; length byte first
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>fputString</b>(BinImg_T img, c_string v)</pre>
+<td bgcolor="#FFF0F5" align=left> put 'v' to file 'img'; length byte first (reentrant) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>getString</b>(c_string *v)</pre>
+<td bgcolor="#FFF0F5" align=left> get 'v' from file; length first; allocs memory <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>fgetString</b>(BinImg_T img, c_string *v)</pre>
+<td bgcolor="#FFF0F5" align=left> get 'v' from file 'img'; length first; allocs memory (reentrant) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>putWCString</b>(wc_string v)</pre>
+<td bgcolor="#FFF0F5" align=left>put 'v' to file; length byte first
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>fputWCString</b>(BinImg_T img, wc_string v)</pre>
+<td bgcolor="#FFF0F5" align=left> put 'v' to file 'img'; length byte first (reentrant) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>getWCString</b>(wc_string *v)</pre>
+<td bgcolor="#FFF0F5" align=left> get 'v' from file; length first; allocs memory <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>fgetWCString</b>(BinImg_T img, wc_string *v)</pre>
+<td bgcolor="#FFF0F5" align=left> get 'v' from file 'img'; length first; allocs memory (reentrant) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>putBString</b>(c_bstring v)</pre>
+<td bgcolor="#FFF0F5" align=left>put 'v' to file
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>fputBString</b>(BinImg_T img, c_bstring v)</pre>
+<td bgcolor="#FFF0F5" align=left> put 'v' to file 'img' (reentrant) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>getBString</b>(c_bstring *v)</pre>
+<td bgcolor="#FFF0F5" align=left>get 'v' from file; allocs memory
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>fgetBString</b>(BinImg_T img, c_bstring *v)</pre>
+<td bgcolor="#FFF0F5" align=left> get 'v' from file 'img'; allocs memory (reentrant) <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Huge binaries </b></h2>
+<br>
+  To save and load large binary data blocks the following functions can be used.
+
+
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>putHuge</b>(HugeCPtr v, long len)</pre>
+<td bgcolor="#FFF0F5" align=left>put 'len' bytes to file
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>fputHuge</b>(BinImg_T img, HugeCPtr v, long len)</pre>
+<td bgcolor="#FFF0F5" align=left> put 'len' bytes to file 'img' (reentrant) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>getHuge</b>(HugeCPtr *v, long *len)</pre>
+<td bgcolor="#FFF0F5" align=left>get 'len' bytes from file
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>fgetHuge</b>(BinImg_T img, HugeCPtr *v, long *len)</pre>
+<td bgcolor="#FFF0F5" align=left> get 'len' bytes from file 'img' (reentrant) <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Symbols </b></h2>
+<br>
+  Symbols are externally represented as ( binary ) strings.
+  <br>The leading byte specifies the symbol type.
+
+
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>putSymbol</b>(symbol v)</pre>
+<td bgcolor="#FFF0F5" align=left>put a symbol to file
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>fputSymbol</b>(BinImg_T img, symbol v)</pre>
+<td bgcolor="#FFF0F5" align=left>put a symbol to file
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>getSymbol</b>(symbol *v)</pre>
+<td bgcolor="#FFF0F5" align=left>get a symbol from file
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>fgetSymbol</b>(BinImg_T img, symbol *v)</pre>
+<td bgcolor="#FFF0F5" align=left> get a symbol from file 'img' (reentrant) <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Functions </b></h2>
+<br>
+   For technical reasons the functions must be defined in a global table.<br>
+   They are externally represented by a symbolic name representing the key
+   to the function table entry. ( see also <a href="glo_tab.htm">[glo_tab]</a> )
+
+
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>putFunction</b>(StdCPtr v)</pre>
+<td bgcolor="#FFF0F5" align=left> put a function to file<br>
+   raises error if 'v' not 'Glo'bally defined<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>fputFunction</b>(BinImg_T img, StdCPtr v)</pre>
+<td bgcolor="#FFF0F5" align=left> put a function to file 'img' (reentrant)<br>
+   raises error if 'v' not 'Glo'bally defined<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>getFunction</b>(StdCPtr *v)</pre>
+<td bgcolor="#FFF0F5" align=left> get a function from file<br>
+   raises error if 's' not 'Glo'bally defined<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>fgetFunction</b>(BinImg_T img, StdCPtr *v)</pre>
+<td bgcolor="#FFF0F5" align=left> get a function from file 'img' (reentrant)<br>
+   raises error if 's' not 'Glo'bally defined<br>
+<br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Abstract types </b></h2>
+<br><pre>
+   In the case of a generic data type ( e.g. 'List(Alpha)') a 'put'-function
+   typically looks like:
+
+   non-reentrant API:
+   |  void putList(List(Alpha) v, void putAlpha(Alpha v))
+   |  {
+   |    putInt(List_length(v));
+   |    for (; !List_null(v); v = List_rest(v))
+   |      putAlpha(List_first(Alpha,v));
+   |  }
+
+   reentrant API:
+   |  void putList(BinImg_T img, List(Alpha) v, void putAlpha(BinImg_T img,Alpha v))
+   |  {
+   |    fputInt(img,List_length(v));
+   |    for (; !List_null(v); v = List_rest(v))
+   |      putAlpha(img,List_first(Alpha,v));
+   |  }
+
+   In the case of a heterogen parameter type ("Object") the user has to save
+   the corresponding 'get'-function together with the value.
+
+</pre>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>putAbstract</b>(Abs_T v, void putData(Abs_T v), void getData(Abs_T *v))</pre>
+<td bgcolor="#FFF0F5" align=left> put abstract data to file <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>fputAbstract</b>
+     (
+       BinImg_T img, Abs_T v,
+       void putData(BinImg_T img,Abs_T v),
+       void getData(BinImg_T img,Abs_T *v)
+     )</pre>
+<td bgcolor="#FFF0F5" align=left> put abstract data to file 'img' (reentrant) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>getAbstract</b>(Abs_T *v)</pre>
+<td bgcolor="#FFF0F5" align=left>get abstract data from file
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>fgetAbstract</b>(BinImg_T img, Abs_T *v)</pre>
+<td bgcolor="#FFF0F5" align=left> get abstract data from file 'img' (reentrant) <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Pointer </b></h2>
+<br><pre>
+   References to multiple or cyclic referenced structures ( except symbols and functions )
+   can't be simply expanded if the representation should be unique.
+   For cases like this we support the following function.
+
+   non-reentrant API:
+   |  void putReference(Abs_T  v, void putData(Abs_T v));
+
+   reentrant API:
+   |  void fputReference(BinImg_T img, Abs_T  v, void putData(BinImg_T img,Abs_T v));
+
+   This function outputs a reference number for this structure and only in the case of the
+   first reference the structure values.
+
+</pre>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>putReference</b>(Abs_T v, void putData(Abs_T v))</pre>
+<td bgcolor="#FFF0F5" align=left>put a pointer to file
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>fputReference</b>
+     (
+       BinImg_T img, Abs_T v, void putData(BinImg_T img,Abs_T v)
+     )</pre>
+<td bgcolor="#FFF0F5" align=left> put a pointer to file 'img' (reentrant) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>getReference</b>(Abs_T *v, void getData(Abs_T *v))</pre>
+<td bgcolor="#FFF0F5" align=left> get a pointer from file <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>fgetReference</b>
+     (
+       BinImg_T img, Abs_T *v, void getData(BinImg_T img,Abs_T *v)
+     )</pre>
+<td bgcolor="#FFF0F5" align=left> get a pointer from file 'img' <br>
+
+</table>
+
+</body>
+</html>

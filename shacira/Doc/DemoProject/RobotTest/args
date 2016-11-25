@@ -1,0 +1,8 @@
+RootName=RobotApp
+TouchScreen=false
+FullScreen=false
+CursorDisabled=false
+DefaultGroupID=2
+;EnableDelayedDataLoad=true
+EnableGUILog=true
+;StartupLanguage=fr

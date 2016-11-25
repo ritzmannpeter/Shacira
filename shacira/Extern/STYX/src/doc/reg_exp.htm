@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[reg_exp.h] Regular Expression Evaluation</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[reg_exp.h] Regular Expression Evaluation</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="standard.htm">#include "standard.h"</a>
+<br>
+<br>
+<br>
+<br>
+  <p>[reg_exp] implements a regular expression evaluator based on the
+  following regular expression syntax.
+
+  <p><b>Literal</b>
+  <ul>
+  <li>printable extended ascii character without quotes
+      ( quotes = { "'`\ } )
+  <li>\ quote
+  <li>\r, \n, \t
+  <li>\ hexdigit hexdigit
+      ( single byte character )
+  <li>\ (x|X) hexdigit hexdigit hexdigit hexdigit hexdigit hexdigit hexdigit hexdigit
+      ( ucs4 character )
+  </ul>
+  <p><b>Construction</b>
+
+  <table noborder cellspacing=10>
+  <tr><td><b>Character set</b></td><td>' Literal ... '</td></tr>
+  <tr><td><b>String</b></td><td>" Literal ... "</td></tr>
+  <tr><td><b>Any character</b></td><td>.</td></tr>
+  <tr><td><b>Character range</b></td>
+      <td>Expression .. Expression <br>( single character expressions )</td></tr>
+  <tr><td><b>Subexpression</b></td><td>( Expression )</td></tr>
+  <tr><td><b>Option</b></td><td>[ Expression ]</td></tr>
+  <tr><td>&nbsp;</td><td>Expression ?</td></tr>
+  <tr><td><b>Iteration ( 0.. )</b></td><td>{ Expression }</td></tr>
+  <tr><td>&nbsp;</td><td>Expression *</td></tr>
+  <tr><td><b>Iteration ( 1.. )</b></td><td>Expression +</td></tr>
+  <tr><td><b>Iteration ( n )</b></td><td>Expression Number</td></tr>
+  <tr><td><b>Iteration ( n..m )</b></td><td>Expression Number, Number</td></tr>
+  <tr><td><b>Union</b></td><td>Expression | Expression</td></tr>
+  <tr><td><b>Difference</b></td><td>Expression - Expression</td></tr>
+  <tr><td><b>Concatenation</b></td><td>Expression Expression</td></tr>
+  </table>
+
+
+<br><hr width="100%" size=2><h2><b> Types </b></h2>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b>Reg_T</b>
+<td align=left> Abstract regular expression evaluation type
+
+</table>
+<br><hr width="100%" size=2><h2><b> Creating & Disposing </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>REG_drop</b>(Reg_T pReg)</pre>
+<td bgcolor="#FFF0F5" align=left>removes regular expression evaluator 'pReg'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Reg_T <b>REG_create</b>
+      (
+        c_string szRegExp,  long   lLen,
+        c_string szCharSet, c_bool bIgnCase
+      )
+#define REG_CREATE(exp)  REG_create((exp),-1,(c_string)NULL,C_False)
+#define IREG_CREATE(exp) REG_create((exp),-1,(c_string)NULL,C_True)</pre>
+<td bgcolor="#FFF0F5" align=left> creates a regular expression evaluator from string 'szRegExp'<br>
+   'lLen'     : -1 or string size in bytes, incl. terminating bytes<br>
+   'szCharSet': NULL,"" or character set name<br>
+                ( UCS4, UTF-8, MS:CodePage / GNU:iconv-based )<br>
+   'szCharSet' = NULL,"" --&gt; single byte string<br>
+   'lLen' = -1 --&gt; null-terminated single byte or utf8 string<br>
+   RC: evaluator or NULL<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>REG_recreate</b>
+       (
+         Reg_T    pReg,      c_string szRegExp, long lLen,
+         c_string szCharSet, c_bool   bIgnCase
+       )
+#define REG_RECREATE(reg,exp)  REG_recreate((reg),(exp),-1,(c_string)NULL,C_False)
+#define IREG_RECREATE(reg,exp) REG_recreate((reg),(exp),-1,(c_string)NULL,C_True)</pre>
+<td bgcolor="#FFF0F5" align=left> updates regular expression evaluator 'pReg'<br>
+   from string 'szRegExp'<br>
+   ( 'lLen', 'szCharSet' --&gt; see function 'REG_create' )<br>
+   RC: true &lt;--&gt; OK<br>
+<br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Evaluation </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>REG_match</b>
+         (
+           Reg_T    pReg,
+           c_string szTxt,  long lTxtLen, c_string szCharSet,
+           long*    lPatLen
+         )
+#define REG_MATCH(reg,txt,len) REG_match((reg),(txt),-1,(c_string)NULL,(len))</pre>
+<td bgcolor="#FFF0F5" align=left> applies regular expression evaluator 'pReg' to string 'szTxt'<br>
+   ( 'lTxtLen', 'szCharSet' --&gt; see function 'REG_create' )<br>
+   RC: start postion of first matched value in 'szTxt' or NULL<br>
+   'lPatLen' != NULL --&gt; length of first matched value in bytes<br>
+<br>
+
+</table>
+
+</body>
+</html>

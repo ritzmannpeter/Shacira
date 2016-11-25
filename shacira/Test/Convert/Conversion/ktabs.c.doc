@@ -1,0 +1,881 @@
+/*.SM.***************************************************************
+*                                                                    
+*  SONDERMODUL FUER B&R, AENDERUNGEN MIT @B&R MARKIERT               
+*                                                                    
+*  MODUL-NAME: 
+*     KTABS                                                 
+*                                                                    
+*  BESCHREIBUNG:                                                     
+*     Dieses Modul enthaelt die Tabellen KIscosBitTab und            
+*     KIscosRegTab. Diese beiden Tabellen dienen dazu, das Kern-     
+*     programm noch unabhaengiger von der Datenstruktur zu machen.   
+*     Die Tabellen haben eine Doppelfunktion:                        
+*                                                                    
+*     1: Es werden die fuer das Kernprogramm definierten Register-   
+*     nummern den in den Iscosregister- und -bittabellen definierten 
+*     Registernummern zugeordnet. Hiermit wird eine zusaeztliche     
+*     Schicht zwischen Kernprogramm und den Iscosregister- und       
+*     -bittabellen eingezogen, die es erlaubt, in den Tabellen und   
+*     damit in der ganzen Applikation beliebige Registernummern zu   
+*     verwenden, unabhaengig vom Kernprogramm.                       
+*                                                                    
+*     2: Es werden die Reihenfolgensensitiven INJREG-Spritzwert-     
+*     tabellen in die hier definierten Tabellen uebernommen. Dies    
+*     erlaubt es, in den Registertabellen eine ganz beliebige Reihen-
+*     folge der Register und Bits einzuhalten.                       
+*                                                                    
+*     Die Dateien SYMREG.H, ISCOSREG.h, ISCOSREG.CP sowie SYMBIT.H,  
+*     ISCOSBIT.H und ISCOSREG.C koennen also in derselben Reihenfolge
+*     aufgebaut werden wie die zugrundeliegenden Iscossymboltabellen.
+*     Dies macht die Tabellen leichter aenderbar, vor allem aber hat 
+*     es wesentliche Vorteile, wenn die ganz neue Symboltabelle einer
+*     neuen Maschinenbaureihe in das IQT-System integriert werden    
+*     soll.                                                          
+*                                                                    
+*     Die Endekennung {0xffff} muss immer da sein.                   
+*
+*  UMGEBUNG:                                                         
+*     ZIELRECHNER:          Philips IQT-350                          
+*     PROGRAMMIERSPRACHE:   C                                        
+*                                                                    
+*  VERSION:                                                          
+*     VERSION:  1.0              AUTOR:       T.Schworer             
+*     DATUM:    09.08.90         TELEFON 2i:  0721/25785             
+*                                                                    
+*  HISTORY:                                                          
+*     17.03.93   -TSchw-   Von COMMON uebernommen fuer B&R           
+*                          Fuer B&R-Heizung folgendes geaendert:     
+*                          - In AGG_TEMPABSENKUNG INJHEAT_ABS_NORM   
+*                            und INJHEAT_ABS_NORM_2 ersetzt durch    
+*                            XTABSZYL1 und XTABSZYL2                 
+*                          - Heizungsfehlerregister entfernt, da     
+*                            nicht mehr benoetigt                    
+*                          - AGG_DUES_ANPRDR_MIN entfernt            
+*     29.04.93   -TSchw-   XTABSZYL2 eingefuegt (war bisher ver-     
+*                          sehentlich XTABSZYL1)                     
+*     08.02.94   -TSchw-   Nach Rueckportierung IQT 450 nach IQT 353:
+*                          KXMSTILL: Stillstands- und Produktionsbit 
+*                          eingefuegt, das vom Kernprogramm seit     
+*                          neuerem zur Stillstandserkennung benoetigt
+*                          wird.                                     
+*                          AGG_FILL_TIME eingefuegt.                 
+*     16.02.94   -TSchw-   KXBXWE4R entfernt, KXDINART,              
+*                          SWITCH_PRES_SOLL[Stufe6] und              
+*                          SWTICH_POINT_SOLL[Stufe6] in Muelleimer   
+*                          umgeleitet, da diese Register unter B&R   
+*                          nicht existieren.                         
+*     29.02.96   -HAns-    Folgende Register neu eingefuegt, um die  
+*                          Referenzistwert auf Datentr„ger speichern 
+*                          zu k”nnen (Forderung Gehring, Rietsche):  
+*                          AGG_PLASTZEIT_REF, AGG_WKZINN_REF         
+*     20.06.96   -HAns-    INJ_PRES_SOLL, INJ_SPEED_SOLL,            
+*                          SWITCH_POINT_SOLL, SWITCH_POINT_IST und   
+*                          INJ_TIME_IST nicht mehr fuer 10-St.-Mode  
+*                          mit unterschiedlichen Zahlen definiert, da
+*                          dies zu Fehlern gefuehrt hat und sowieso  
+*                          unnoetig und gefaehrlich war. Deshalb     
+*                          wurden diese Register hier verschoben.    
+*                          (ISCOS am 13.04.93 verbessert.)           
+*     04.12.96  -HAns-   SWITCH_VOL_IST herausgenommen, da nicht benutzt.
+*                        SWITCH_VOL_SOLL herausgenommen, da nicht benutzt.
+*     06.05.97   -GhG-     Nach Programmierkonvention Doku angepasst
+*     12.02.01 -TSchw-  Register KSPSKEYS1-4 neu erstellt (siehe CLB2001).
+*
+*  BEMERKUNGEN:                                                      
+*     Die Tabellen muessen nach KRegNr aufsteigend geordnet sein,    
+*     da mittels binaerer Suche darauf zugegriffen wird.             
+*                                                                    
+*
+* ---------------------------------------------------------------------------
+*
+*	EXPORTSCHNITTSTELLE:
+*
+*	FUNKTIONEN:
+*		<Funktionsname>		- Kurze Beschreibung
+*
+*
+*	DATENTYPEN:
+*		<Typname>				- Kurze Beschreibung
+*
+*
+*	VARIABLEN:
+*		<Variablenname>		- Kurze Beschreibung
+*
+*
+*
+**.EM.**********************************************************************/
+
+
+
+/*********************************************************************
+*  INCLUDE-DATEIEN
+*********************************************************************/
+
+#include <syntax.h>
+
+#define USE_ALL_REGISTER
+#define IMPORT_NOT_GLOBAL
+
+#include <iqtdstr.h>
+
+
+/*********************************************************************
+*  Zuordnung Kernprogramm <--> IscosBitTab
+*********************************************************************/
+
+/* Die folgende Tabelle ordnet den Kernprogrammspezifischen Registernummern  */
+/* (KRegNr) die in der IscosBitTab verwendeten Registenummern (RegNr) zu.    */
+
+const K_ISCOSBIT_TYPE KIscosBitTab [] =
+
+/* KRegNr                  RegNr       RegType */
+{
+{KXMIHEIE,                 XMIHEIE,    REG_INT},
+{KXMIMOTE,                 XMIMOTE,    REG_INT},
+{KXMIEXT1,                 XMIEXT1,    REG_INT},
+{KXMIEXT2,                 XMIEXT2,    REG_INT},
+{KXMIHEIA,                 XMIHEIA,    REG_INT},
+{KXMIMOTA,                 XMIMOTA,    REG_INT},
+{KXMIEX1A,                 XMIEX1A,    REG_INT},
+{KXMIEX2A,                 XMIEX2A,    REG_INT},
+{KXMPAUSD,                 XMPAUSD,    REG_INT},
+{KXMXSTDT,                 XMXSTDT,    REG_INT},
+{KXMEINR,                  XMEINR,     REG_INT},
+{KXMHAND,                  XMHAND,     REG_INT},
+{KXMHALB,                  XMHALB,     REG_INT},
+{KXMAUTO,                  XMAUTO,     REG_INT},
+{KXMI4B6,                  XMI4B6,     REG_INT},
+{KXMTOLUE,                 XMTOLUE,    REG_INT},
+{KXMSUZER,                 XMSUZER,    REG_INT},
+{KXMEXTSI,                 XMEXTSI,    REG_INT},
+{KXBXSOLL,                 XBXSOLL,    REG_INT},
+{KXDSUSEI,                 XDSUSEI,    REG_INT},
+{KXDRADS1,                 XDRADS1,    REG_INT},
+{KXDEXRS,                  XDEXRS,     REG_INT},
+{KXMSIGEX,                 XMSIGEX,    REG_INT},
+{KXMSSZSP,                 XMSSZSP,    REG_INT},
+{KXFMAUS,                  XFMAUS,     REG_INT},
+{KXEZHASC,                 XEZHASC,    REG_INT},
+{KXDINART,                 XNUL,       REG_INT}, /* Existiert nicht bei B&R */
+{KXMSTILL,                 XMSTILL,    REG_INT},
+
+{AGG_SNEENDLAGE,           XDLAGER,          REG_INJTAB},
+{AGG_SNEENDLAGE+1,         XDLAGR2,          REG_INJTAB},
+
+{AGG_HYDRVERSCHLDUESE,     XDDUESE,          REG_INJTAB},
+{AGG_HYDRVERSCHLDUESE+1,   XDDUES2,          REG_INJTAB},
+
+{AGG_WEGUMSCHALT_P1,       XMSUM11,          REG_INJTAB},
+{AGG_WEGUMSCHALT_P1+1,     XMSUM21,          REG_INJTAB},
+{AGG_WEGUMSCHALT_P2,       XMSUM12,          REG_INJTAB},
+{AGG_WEGUMSCHALT_P2+1,     XMSUM22,          REG_INJTAB},
+{AGG_WEGUMSCHALT_P3,       XMSUM13,          REG_INJTAB},
+{AGG_WEGUMSCHALT_P3+1,     XMSUM23,          REG_INJTAB},
+{AGG_WEGUMSCHALT_P4,       XMSUM14,          REG_INJTAB},
+{AGG_WEGUMSCHALT_P4+1,     XMSUM24,          REG_INJTAB},
+{AGG_WEGUMSCHALT_P5,       XMSUM15,          REG_INJTAB},
+{AGG_WEGUMSCHALT_P5+1,     XMSUM25,          REG_INJTAB},
+
+{AGG_ZEITUMSCHALT_P1,      XMTUM11,          REG_INJTAB},
+{AGG_ZEITUMSCHALT_P1+1,    XMTUM21,          REG_INJTAB},
+{AGG_ZEITUMSCHALT_P2,      XMTUM12,          REG_INJTAB},
+{AGG_ZEITUMSCHALT_P2+1,    XMTUM22,          REG_INJTAB},
+{AGG_ZEITUMSCHALT_P3,      XMTUM13,          REG_INJTAB},
+{AGG_ZEITUMSCHALT_P3+1,    XMTUM23,          REG_INJTAB},
+{AGG_ZEITUMSCHALT_P4,      XMTUM14,          REG_INJTAB},
+{AGG_ZEITUMSCHALT_P4+1,    XMTUM24,          REG_INJTAB},
+{AGG_ZEITUMSCHALT_P5,      XMTUM15,          REG_INJTAB},
+{AGG_ZEITUMSCHALT_P5+1,    XMTUM25,          REG_INJTAB},
+{AGG_ZEITUMSCHALT_P6,      XMTUM16,          REG_INJTAB},
+{AGG_ZEITUMSCHALT_P6+1,    XMTUM26,          REG_INJTAB},
+
+{AGG_DRUCKUMSCHALT_P1,     XMPUM11,          REG_INJTAB},
+{AGG_DRUCKUMSCHALT_P1+1,   XMPUM21,          REG_INJTAB},
+{AGG_DRUCKUMSCHALT_P2,     XMPUM12,          REG_INJTAB},
+{AGG_DRUCKUMSCHALT_P2+2,   XMPUM22,          REG_INJTAB},
+{AGG_DRUCKUMSCHALT_P3,     XMPUM13,          REG_INJTAB},
+{AGG_DRUCKUMSCHALT_P3+1,   XMPUM23,          REG_INJTAB},
+{AGG_DRUCKUMSCHALT_P4,     XMPUM14,          REG_INJTAB},
+{AGG_DRUCKUMSCHALT_P4+1,   XMPUM24,          REG_INJTAB},
+{AGG_DRUCKUMSCHALT_P5,     XMPUM15,          REG_INJTAB},
+{AGG_DRUCKUMSCHALT_P5+1,   XMPUM25,          REG_INJTAB},
+
+{0xffff}                         /* ENDEKENNUNG: muss IMMER da sein */
+};
+
+
+/*********************************************************************
+*  Zuordnung Kernprogramm <--> IscosRegTab
+*********************************************************************/
+
+/* Die folgende Tabelle ordnet den Kernprogrammspezifischen Registernummern  */
+/* (KRegNr) die in der IscosRegTab verwendeten Registenummern (RegNr) zu.    */
+
+const K_ISCOSREG_TYPE KIscosRegTab [] =
+
+/* KRegNr                  RegNr             RegType */
+{
+{KXXNWECO,                 XXNWECO,          REG_INT},
+{KXXNPASE,                 XXNPASE,          REG_INT},
+{KXZISSST,                 XZISSST,          REG_INT},
+{KXXNSTEP,                 XXNSTEP,          REG_INT},
+{KXSNPHMX,                 XSNPHMX,          REG_INT},
+{KXXTZYKL,                 XXTZYKL,          REG_INT},
+{KXSPEINR,                 XSPEINR,          REG_INT},
+{KPROM_ERROR_REG,          XXKPERR,          REG_INT},
+{KXKNUVER,                 XKNUVER,          REG_INT},
+{KXKNUTYP,                 XKNUTYP,          REG_INT},
+#ifdef MODE_10
+{KINJTIME,                 XXTEINS1,         REG_INT},
+#endif
+{KISSCMD,                  ISSCMD,           REG_INT},
+
+/*========== Tabellen mit Heizungs-Fehlerregistern, eindimendional ==========*/
+
+/*@B&R entfernt
+{KXTKENG   ,               XTK1ENG,          REG_INT},
+{KXTKENG+1 ,               XTK2ENG,          REG_INT},
+{KXTKENG+2 ,               XTK3ENG,          REG_INT},
+{KXTKENG+3 ,               XTK4ENG,          REG_INT},
+{KXTKENG+4 ,               XTK5ENG,          REG_INT},
+{KXTKENG+5 ,               XTK6ENG,          REG_INT},
+
+{KXTKWEIT   ,              XTK1WEIT,         REG_INT},
+{KXTKWEIT+1 ,              XTK2WEIT,         REG_INT},
+{KXTKWEIT+2 ,              XTK3WEIT,         REG_INT},
+{KXTKWEIT+3 ,              XTK4WEIT,         REG_INT},
+{KXTKWEIT+4 ,              XTK5WEIT,         REG_INT},
+{KXTKWEIT+5 ,              XTK6WEIT,         REG_INT},
+
+{KXTKTHB   ,               XTK1THB,          REG_INT},
+{KXTKTHB+1 ,               XTK2THB,          REG_INT},
+{KXTKTHB+2 ,               XTK3THB,          REG_INT},
+{KXTKTHB+3 ,               XTK4THB,          REG_INT},
+{KXTKTHB+4 ,               XTK5THB,          REG_INT},
+{KXTKTHB+5 ,               XTK6THB,          REG_INT},
+*/
+
+
+/*======================== Spritzwerttabellen ===============================*/
+/*=================== Reihenfolge ist von Bedeutung =========================*/
+
+/*BEGIN_MODE_10*/
+#ifndef MODE_10
+	{INJ_PRES_SOLL,         XSPPH11,          REG_INJTAB},
+	{INJ_PRES_SOLL+1,       XSPPH12,          REG_INJTAB},
+	{INJ_PRES_SOLL+2,       XSPPH13,          REG_INJTAB},
+	{INJ_PRES_SOLL+3,       XSPPH14,          REG_INJTAB},
+	{INJ_PRES_SOLL+4,       XSPPH15,          REG_INJTAB},
+	{INJ_PRES_SOLL+5,       XSPPH16,          REG_INJTAB},
+	{INJ_PRES_SOLL+6,       XSPPH21,          REG_INJTAB},
+	{INJ_PRES_SOLL+7,       XSPPH22,          REG_INJTAB},
+	{INJ_PRES_SOLL+8,       XSPPH23,          REG_INJTAB},
+	{INJ_PRES_SOLL+9,       XSPPH24,          REG_INJTAB},
+	{INJ_PRES_SOLL+10,      XSPPH25,          REG_INJTAB},
+	{INJ_PRES_SOLL+11,      XSPPH26,          REG_INJTAB},
+#else
+	{INJ_PRES_SOLL+0,       XSPSEG1,          REG_INJTAB},
+	{INJ_PRES_SOLL+1,       XSPSEG2,          REG_INJTAB},
+	{INJ_PRES_SOLL+2,       XSPSEG3,          REG_INJTAB},
+	{INJ_PRES_SOLL+3,       XSPSEG4,          REG_INJTAB},
+	{INJ_PRES_SOLL+4,       XSPSEG5,          REG_INJTAB},
+	{INJ_PRES_SOLL+5,       XSPSEG6,          REG_INJTAB},
+	{INJ_PRES_SOLL+6,       XSPSEG7,          REG_INJTAB},
+	{INJ_PRES_SOLL+7,       XSPSEG8,          REG_INJTAB},
+	{INJ_PRES_SOLL+8,       XSPSEG9,          REG_INJTAB},
+	{INJ_PRES_SOLL+9,       XSPSEG10,         REG_INJTAB},
+#endif
+
+#ifndef MODE_10
+	{INJ_SPEED_SOLL,        XSVPH11,          REG_INJTAB},
+	{INJ_SPEED_SOLL+1,      XSVPH12,          REG_INJTAB},
+	{INJ_SPEED_SOLL+2,      XSVPH13,          REG_INJTAB},
+	{INJ_SPEED_SOLL+3,      XSVPH14,          REG_INJTAB},
+	{INJ_SPEED_SOLL+4,      XSVPH15,          REG_INJTAB},
+	{INJ_SPEED_SOLL+5,      XSVPH16,          REG_INJTAB},
+	{INJ_SPEED_SOLL+6,      XSVPH21,          REG_INJTAB},
+	{INJ_SPEED_SOLL+7,      XSVPH22,          REG_INJTAB},
+	{INJ_SPEED_SOLL+8,      XSVPH23,          REG_INJTAB},
+	{INJ_SPEED_SOLL+9,      XSVPH24,          REG_INJTAB},
+	{INJ_SPEED_SOLL+10,     XSVPH25,          REG_INJTAB},
+	{INJ_SPEED_SOLL+11,     XSVPH26,          REG_INJTAB},
+#else
+	{INJ_SPEED_SOLL+0,      XSVSEG1,          REG_INJTAB},
+	{INJ_SPEED_SOLL+1,      XSVSEG2,          REG_INJTAB},
+	{INJ_SPEED_SOLL+2,      XSVSEG3,          REG_INJTAB},
+	{INJ_SPEED_SOLL+3,      XSVSEG4,          REG_INJTAB},
+	{INJ_SPEED_SOLL+4,      XSVSEG5,          REG_INJTAB},
+	{INJ_SPEED_SOLL+5,      XSVSEG6,          REG_INJTAB},
+	{INJ_SPEED_SOLL+6,      XSVSEG7,          REG_INJTAB},
+	{INJ_SPEED_SOLL+7,      XSVSEG8,          REG_INJTAB},
+	{INJ_SPEED_SOLL+8,      XSVSEG9,          REG_INJTAB},
+	{INJ_SPEED_SOLL+9,      XSVSEG10,         REG_INJTAB},
+#endif
+
+#ifndef MODE_10
+	{INJ_TIME_SOLL,         XSTPH11,          REG_INJTAB},
+	{INJ_TIME_SOLL+1,       XSTPH12,          REG_INJTAB},
+	{INJ_TIME_SOLL+2,       XSTPH13,          REG_INJTAB},
+	{INJ_TIME_SOLL+3,       XSTPH14,          REG_INJTAB},
+	{INJ_TIME_SOLL+4,       XSTPH15,          REG_INJTAB},
+	{INJ_TIME_SOLL+5,       XSTPH16,          REG_INJTAB},
+	{INJ_TIME_SOLL+6,       XSTPH21,          REG_INJTAB},
+	{INJ_TIME_SOLL+7,       XSTPH22,          REG_INJTAB},
+	{INJ_TIME_SOLL+8,       XSTPH23,          REG_INJTAB},
+	{INJ_TIME_SOLL+9,       XSTPH24,          REG_INJTAB},
+	{INJ_TIME_SOLL+10,      XSTPH25,          REG_INJTAB},
+	{INJ_TIME_SOLL+11,      XSTPH26,          REG_INJTAB},
+
+	{SWITCH_PRES_SOLL,      XSPUM11,          REG_INJTAB},
+	{SWITCH_PRES_SOLL+1,    XSPUM12,          REG_INJTAB},
+	{SWITCH_PRES_SOLL+2,    XSPUM13,          REG_INJTAB},
+	{SWITCH_PRES_SOLL+3,    XSPUM14,          REG_INJTAB},
+	{SWITCH_PRES_SOLL+4,    XSPUM15,          REG_INJTAB},
+	{SWITCH_PRES_SOLL+5,    XNUL,             REG_INJTAB}, /* Existiert nicht bei B&R */
+	{SWITCH_PRES_SOLL+6,    XSPUM21,          REG_INJTAB},
+	{SWITCH_PRES_SOLL+7,    XSPUM22,          REG_INJTAB},
+	{SWITCH_PRES_SOLL+8,    XSPUM23,          REG_INJTAB},
+	{SWITCH_PRES_SOLL+9,    XSPUM24,          REG_INJTAB},
+	{SWITCH_PRES_SOLL+10,   XSPUM25,          REG_INJTAB},
+	{SWITCH_PRES_SOLL+11,   XSPUM25,          REG_INJTAB},
+#endif
+
+#ifndef MODE_10
+	{SWITCH_POINT_SOLL,     XSSPH11,          REG_INJTAB},
+	{SWITCH_POINT_SOLL+1,   XSSPH12,          REG_INJTAB},
+	{SWITCH_POINT_SOLL+2,   XSSPH13,          REG_INJTAB},
+	{SWITCH_POINT_SOLL+3,   XSSPH14,          REG_INJTAB},
+	{SWITCH_POINT_SOLL+4,   XSSPH15,          REG_INJTAB},
+	{SWITCH_POINT_SOLL+5,   XNUL,             REG_INJTAB}, /* Existiert nicht bei B&R */
+	{SWITCH_POINT_SOLL+6,   XSSPH21,          REG_INJTAB},
+	{SWITCH_POINT_SOLL+7,   XSSPH22,          REG_INJTAB},
+	{SWITCH_POINT_SOLL+8,   XSSPH23,          REG_INJTAB},
+	{SWITCH_POINT_SOLL+9,   XSSPH24,          REG_INJTAB},
+	{SWITCH_POINT_SOLL+10,  XSSPH25,          REG_INJTAB},
+	{SWITCH_POINT_SOLL+11,  XSSPOL2,          REG_INJTAB},
+#else
+	{SWITCH_POINT_SOLL+0,   XSSSEG1,          REG_INJTAB},
+	{SWITCH_POINT_SOLL+1,   XSSSEG2,          REG_INJTAB},
+	{SWITCH_POINT_SOLL+2,   XSSSEG3,          REG_INJTAB},
+	{SWITCH_POINT_SOLL+3,   XSSSEG4,          REG_INJTAB},
+	{SWITCH_POINT_SOLL+4,   XSSSEG5,          REG_INJTAB},
+	{SWITCH_POINT_SOLL+5,   XSSSEG6,          REG_INJTAB},
+	{SWITCH_POINT_SOLL+6,   XSSSEG7,          REG_INJTAB},
+	{SWITCH_POINT_SOLL+7,   XSSSEG8,          REG_INJTAB},
+	{SWITCH_POINT_SOLL+8,   XSSSEG9,          REG_INJTAB},
+	{SWITCH_POINT_SOLL+9,   XSSSEG10,         REG_INJTAB},
+#endif
+
+#ifndef MODE_10
+	{PRES_IST,              XXPPH11,          REG_INJTAB},
+	{PRES_IST+1,            XXPPH12,          REG_INJTAB},
+	{PRES_IST+2,            XXPPH13,          REG_INJTAB},
+	{PRES_IST+3,            XXPPH14,          REG_INJTAB},
+	{PRES_IST+4,            XXPPH15,          REG_INJTAB},
+	{PRES_IST+5,            XXPPH16,          REG_INJTAB},
+	{PRES_IST+6,            XXPPH21,          REG_INJTAB},
+	{PRES_IST+7,            XXPPH22,          REG_INJTAB},
+	{PRES_IST+8,            XXPPH23,          REG_INJTAB},
+	{PRES_IST+9,            XXPPH24,          REG_INJTAB},
+	{PRES_IST+10,           XXPPH25,          REG_INJTAB},
+	{PRES_IST+11,           XXPPH26,          REG_INJTAB},
+#endif
+
+#ifndef MODE_10
+	{INJ_TIME_IST,          XXTPH11,          REG_INJTAB},
+	{INJ_TIME_IST+1,        XXTPH12,          REG_INJTAB},
+	{INJ_TIME_IST+2,        XXTPH13,          REG_INJTAB},
+	{INJ_TIME_IST+3,        XXTPH14,          REG_INJTAB},
+	{INJ_TIME_IST+4,        XXTPH15,          REG_INJTAB},
+	{INJ_TIME_IST+5,        XXTPH16,          REG_INJTAB},
+	{INJ_TIME_IST+6,        XXTPH21,          REG_INJTAB},
+	{INJ_TIME_IST+7,        XXTPH22,          REG_INJTAB},
+	{INJ_TIME_IST+8,        XXTPH23,          REG_INJTAB},
+	{INJ_TIME_IST+9,        XXTPH24,          REG_INJTAB},
+	{INJ_TIME_IST+10,       XXTPH25,          REG_INJTAB},
+	{INJ_TIME_IST+11,       XXTPH26,          REG_INJTAB},
+#else
+	{INJ_TIME_IST+0,        XXTSEG1,          REG_INJTAB},
+	{INJ_TIME_IST+1,        XXTSEG2,          REG_INJTAB},
+	{INJ_TIME_IST+2,        XXTSEG3,          REG_INJTAB},
+	{INJ_TIME_IST+3,        XXTSEG4,          REG_INJTAB},
+	{INJ_TIME_IST+4,        XXTSEG5,          REG_INJTAB},
+	{INJ_TIME_IST+5,        XXTSEG6,          REG_INJTAB},
+	{INJ_TIME_IST+6,        XXTSEG7,          REG_INJTAB},
+	{INJ_TIME_IST+7,        XXTSEG8,          REG_INJTAB},
+	{INJ_TIME_IST+8,        XXTSEG9,          REG_INJTAB},
+	{INJ_TIME_IST+9,        XXTSEG10,         REG_INJTAB},
+#endif
+
+#ifndef MODE_10
+	{SWITCH_POINT_IST,      XXSPH11,          REG_INJTAB},
+	{SWITCH_POINT_IST+1,    XXSPH12,          REG_INJTAB},
+	{SWITCH_POINT_IST+2,    XXSPH13,          REG_INJTAB},
+	{SWITCH_POINT_IST+3,    XXSPH14,          REG_INJTAB},
+	{SWITCH_POINT_IST+4,    XXSPH15,          REG_INJTAB},
+	{SWITCH_POINT_IST+5,    XXSPOL1,          REG_INJTAB},
+	{SWITCH_POINT_IST+6,    XXSPH21,          REG_INJTAB},
+	{SWITCH_POINT_IST+7,    XXSPH22,          REG_INJTAB},
+	{SWITCH_POINT_IST+8,    XXSPH23,          REG_INJTAB},
+	{SWITCH_POINT_IST+9,    XXSPH24,          REG_INJTAB},
+	{SWITCH_POINT_IST+10,   XXSPH25,          REG_INJTAB},
+	{SWITCH_POINT_IST+11,   XXSPOL2,          REG_INJTAB},
+#else
+	{SWITCH_POINT_IST,      XXSNAC1,          REG_INJTAB},
+	{SWITCH_POINT_IST+1,    XXSNAC1_2,        REG_INJTAB},
+#endif
+/*END_MODE_10*/
+
+{AGG_PLASTWEG_IST,         XSSDOS1,          REG_INJTAB},
+{AGG_PLASTWEG_IST+1,       XSSDOS2,          REG_INJTAB},
+
+{AGG_WEGPUNKT,             XSSUM11,          REG_INJTAB},
+{AGG_WEGPUNKT+1,           XSSUM21,          REG_INJTAB},
+
+{AGG_DREHZAHL,             XSWPL11,          REG_INJTAB},
+{AGG_DREHZAHL+1,           XSWPL21,          REG_INJTAB},
+
+{AGG_DREHZAHL_2,           XSWPL12,          REG_INJTAB},
+{AGG_DREHZAHL_2+1,         XSWPL22,          REG_INJTAB},
+
+{AGG_STAUDRUCK,            XSPST11,          REG_INJTAB},
+{AGG_STAUDRUCK+1,          XSPST21,          REG_INJTAB},
+
+{AGG_STAUDRUCK_2,          XSPST12,          REG_INJTAB},
+{AGG_STAUDRUCK_2+1,        XSPST22,          REG_INJTAB},
+
+{AGG_RUECKWEG,             XSSRUK1,          REG_INJTAB},
+{AGG_RUECKWEG+1,           XSSRUK2,          REG_INJTAB},
+
+{AGG_RUECKGESCHW,          XSVRUK1,          REG_INJTAB},
+{AGG_RUECKGESCHW+1,        XSVRUK2,          REG_INJTAB},
+
+{AGG_PLASTVERZ,            XSTVDOS,          REG_INJTAB},
+{AGG_PLASTVERZ+1,          XSTVDO2,          REG_INJTAB},
+
+{AGG_INTRUSION,            XSTINTR,          REG_INJTAB},
+{AGG_INTRUSION+1,          XSTINT2,          REG_INJTAB},
+
+{AGG_ANZ_PLAST_STUF,       XSNPHMX,          REG_INJTAB},
+{AGG_ANZ_PLAST_STUF+1,     XSNPHM2,          REG_INJTAB},
+
+{AGG_PLASTWEG,             XXSPH10,          REG_INJTAB},
+{AGG_PLASTWEG+1,           XXSPH20,          REG_INJTAB},
+
+{AGG_UMSCHALT,             XSNFIN,           REG_INJTAB},
+{AGG_UMSCHALT+1,           XSNFIN2,          REG_INJTAB},
+
+{AGG_FUEHL_EMPF,           XKXEMPF,          REG_INJTAB},
+{AGG_FUEHL_EMPF+1,         XKXEMP2,          REG_INJTAB},
+
+{AGG_DUESABH_NACH,         XSNAGGR,          REG_INJTAB},
+{AGG_DUESABH_NACH+1,       XSNAGG2,          REG_INJTAB},
+
+{AGG_DUESABH_VERZ,         XSTAGGR,          REG_INJTAB},
+{AGG_DUESABH_VERZ+1,       XSTAGG2,          REG_INJTAB},
+
+{AGG_DUESABH_ZEIT,         XSTDUES1,         REG_INJTAB},
+{AGG_DUESABH_ZEIT+1,       XSTDUES2,         REG_INJTAB},
+
+{AGG_DUES_ANPRDR,          XSFAGGR,          REG_INJTAB},
+{AGG_DUES_ANPRDR+1,        XSFAGG2,          REG_INJTAB},
+
+{AGG_PLASTZEITUEBERW,      XSTDOS1,          REG_INJTAB},
+{AGG_PLASTZEITUEBERW+1,    XSTDOS2,          REG_INJTAB},
+
+{AGG_SNERUECKZUG,          XSNRUEK,          REG_INJTAB},
+{AGG_SNERUECKZUG+1,        XSNRUK2,          REG_INJTAB},
+
+{AGG_DUESGEVOR,            XSVAG1V,          REG_INJTAB},
+{AGG_DUESGEVOR+1,          XSVAG2V,          REG_INJTAB},
+
+{AGG_DUESGEZUR,            XSVAG1Z,          REG_INJTAB},
+{AGG_DUESGEZUR+1,          XSVAG2Z,          REG_INJTAB},
+
+{AGG_DUESE_VOR,            XKNITV3,          REG_INJTAB},
+{AGG_DUESE_VOR+1,          XKNITV4,          REG_INJTAB},
+
+{AGG_EINSPRITZEN,          XKNITV1,          REG_INJTAB},
+{AGG_EINSPRITZEN+1,        XKNITV2,          REG_INJTAB},
+
+{AGG_DUESABH_80_ZEIT,      XSF80AG1,         REG_INJTAB},
+{AGG_DUESABH_80_ZEIT+1,    XSF80AG2,         REG_INJTAB},
+
+{AGG_PLASTZEIT_IST,        XXTDOS1,          REG_INJTAB},
+{AGG_PLASTZEIT_IST+1,      XXTDOS2,          REG_INJTAB},
+
+{AGG_DUESWEG,              XSTDUES1,         REG_INJTAB},
+{AGG_DUESWEG+1,            XSTDUES2,         REG_INJTAB},
+
+{REG_FORM_AUF,             XSSFAUF,          REG_INT},
+{REG_WKZ_POS,              XXSWEG2,          REG_INT},
+
+/*@B&R entfernt
+{AGG_DUES_ANPRDR_MIN,      XSAGPFO,          REG_INJTAB},
+{AGG_DUES_ANPRDR_MIN+1,    XSAG2PFO,         REG_INJTAB},
+*/
+
+{AGG_WKZINN_IST,           XXPFINM,          REG_INJTAB},
+{AGG_WKZINN_IST+1,         XXPFI2M,          REG_INJTAB},
+
+{AGG_STAUDRUCK_HAND,       XSPSTH1,          REG_INJTAB},
+{AGG_STAUDRUCK_HAND+1,     XSPSTH2,          REG_INJTAB},
+
+{AGG_POLSTER,              XXSPOL1,          REG_INJTAB},
+{AGG_POLSTER+1,            XXSPOL2,          REG_INJTAB},
+
+#ifdef MODE_10
+	{AGG_INJTIME,           XXTEINS1,         REG_INJTAB},
+	{AGG_INJTIME+1,         XXTEINS1,         REG_INJTAB},
+#endif
+
+{AGG_PUV,                  XSSWPUV,          REG_INJTAB},
+{AGG_PUV+1,    /*XSSWPV2*/ XSSWPUV,          REG_INJTAB},
+
+/*BEGIN_MODE_10*/
+#ifdef MODE_10
+	{INJ_PRES_IST+0,        XXPSEG1,          REG_INJTAB},
+	{INJ_PRES_IST+1,        XXPSEG2,          REG_INJTAB},
+	{INJ_PRES_IST+2,        XXPSEG3,          REG_INJTAB},
+	{INJ_PRES_IST+3,        XXPSEG4,          REG_INJTAB},
+	{INJ_PRES_IST+4,        XXPSEG5,          REG_INJTAB},
+	{INJ_PRES_IST+5,        XXPSEG6,          REG_INJTAB},
+	{INJ_PRES_IST+6,        XXPSEG7,          REG_INJTAB},
+	{INJ_PRES_IST+7,        XXPSEG8,          REG_INJTAB},
+	{INJ_PRES_IST+8,        XXPSEG9,          REG_INJTAB},
+	{INJ_PRES_IST+9,        XXPSEG10,         REG_INJTAB},
+
+	{POST_TIME_SOLL+0,      XSTNA1,           REG_INJTAB},
+	{POST_TIME_SOLL+1,      XSTNA2,           REG_INJTAB},
+	{POST_TIME_SOLL+2,      XSTNA3,           REG_INJTAB},
+	{POST_TIME_SOLL+3,      XSTNA4,           REG_INJTAB},
+	{POST_TIME_SOLL+4,      XSTNA5,           REG_INJTAB},
+	{POST_TIME_SOLL+5,      XSTNA6,           REG_INJTAB},
+	{POST_TIME_SOLL+6,      XSTNA7,           REG_INJTAB},
+	{POST_TIME_SOLL+7,      XSTNA8,           REG_INJTAB},
+	{POST_TIME_SOLL+8,      XSTNA9,           REG_INJTAB},
+	{POST_TIME_SOLL+9,      XSTNA10,          REG_INJTAB},
+
+	{POST_PRES_SOLL+0,      XSPNA1,           REG_INJTAB},
+	{POST_PRES_SOLL+1,      XSPNA2,           REG_INJTAB},
+	{POST_PRES_SOLL+2,      XSPNA3,           REG_INJTAB},
+	{POST_PRES_SOLL+3,      XSPNA4,           REG_INJTAB},
+	{POST_PRES_SOLL+4,      XSPNA5,           REG_INJTAB},
+	{POST_PRES_SOLL+5,      XSPNA6,           REG_INJTAB},
+	{POST_PRES_SOLL+6,      XSPNA7,           REG_INJTAB},
+	{POST_PRES_SOLL+7,      XSPNA8,           REG_INJTAB},
+	{POST_PRES_SOLL+8,      XSPNA9,           REG_INJTAB},
+	{POST_PRES_SOLL+9,      XSPNA10,          REG_INJTAB},
+
+	{POLSTER_IST,           XXSPOL1,          REG_INJTAB},
+	{DOS_TIME_IST,          XXTDOS1,          REG_INJTAB},
+	{DOS_WAY_IST,           XXSPH10,          REG_INJTAB},
+	{SWITCH_POINT_IST,      XXSNAC1,          REG_INJTAB},
+	{SWITCH_TIME_IST,       XXTEINS1,         REG_INJTAB},
+	{SWITCH_PRES_IST,       XXSNAC1,          REG_INJTAB},
+	{SWITCH_TOOL_PRES_IST,  XXPFINM,          REG_INJTAB},
+	{SWITCH_TOOL_PRES_MAX_IST, XXPFINM,       REG_INJTAB},
+	{CYCLE_TIME_IST,        XXTZYKL,          REG_INJTAB},
+#endif /*MODE_10*/
+/*END_MODE_10*/
+
+{0xffff}                         /* ENDEKENNUNG: muss IMMER da sein */
+};
+
+/*********************************************************************
+*  Zuordnung Kernprogramm <--> IqtRegTab
+*********************************************************************/
+
+/* Die folgende Tabelle ordnet den Kernprogrammspezifischen Registernummern  */
+/* (KRegNr) die in der IqtRegTab verwendeten Registenummern (RegNr) zu.      */
+
+const K_IQTREG_TYPE KIqtRegTab [] =
+
+/* KRegNr                  RegNr             RegType */
+{
+{AGG_REGZUSATZ,            XREG666,          REG_INJTAB},
+{AGG_REGZUSATZ+1,          XREG666_2,        REG_INJTAB},
+
+{AGG_FARBZUSATZ,           XREG664,          REG_INJTAB},
+{AGG_FARBZUSATZ+1,         XREG664_2,        REG_INJTAB},
+
+{AGG_TREIBZUSATZ,          XREG672,          REG_INJTAB},
+{AGG_TREIBZUSATZ+1,        XREG672_2,        REG_INJTAB},
+
+{AGG_MATVORWAERMUNG,       XREG673,          REG_INJTAB},
+{AGG_MATVORWAERMUNG+1,     XREG673_2,        REG_INJTAB},
+
+{AGG_MATVORWAERMZEIT,      XREG663,          REG_INJTAB},
+{AGG_MATVORWAERMZEIT+1,    XREG663_2,        REG_INJTAB},
+
+{AGG_FARBMISCHGER,         XREG658,          REG_INJTAB},
+{AGG_FARBMISCHGER+1,       XREG658_2,        REG_INJTAB},
+
+{AGG_MATFOERDERGER,        XREG657,          REG_INJTAB},
+{AGG_MATFOERDERGER+1,      XREG657_2,        REG_INJTAB},
+
+{AGG_SNEZYL,               XREG682,          REG_INJTAB},
+{AGG_SNEZYL+1,             XREG682_2,        REG_INJTAB},
+
+{AGG_DUESRADIUS,           XREG683,          REG_INJTAB},
+{AGG_DUESRADIUS+1,         XREG683_2,        REG_INJTAB},
+
+{AGG_DUESBOHR,             XREG691,          REG_INJTAB},
+{AGG_DUESBOHR+1,           XREG691_2,        REG_INJTAB},
+
+{AGG_TAUCHDUES,            XREG684,          REG_INJTAB},
+{AGG_TAUCHDUES+1,          XREG684_2,        REG_INJTAB},
+
+{AGG_WECHSELRAD,           XREG689,          REG_INJTAB},
+{AGG_WECHSELRAD+1,         XREG689_2,        REG_INJTAB},
+
+{AGG_DRUCK_HYDRMOT,        XREG690,          REG_INJTAB},
+{AGG_DRUCK_HYDRMOT+1,      XREG690_2,        REG_INJTAB},
+
+{AGG_SPRITZZYL,            AGGPOS,           REG_INJTAB},
+{AGG_SPRITZZYL+1,          AGGPOS_2,         REG_INJTAB},
+
+{AGG_SNEDREHZAHL,          XMP19,            REG_INJTAB},
+{AGG_SNEDREHZAHL+1,        XMP19_2,          REG_INJTAB},
+
+{AGG_GETRIEBE,             XMP20_22,         REG_INJTAB},
+{AGG_GETRIEBE+1,           XMP20_22_2,       REG_INJTAB},
+
+{AGG_SNEDURCHMESS,         XMP25,            REG_INJTAB},
+{AGG_SNEDURCHMESS+1,       XMP25_AGG2,       REG_INJTAB},
+
+{AGG_ANZHEIZZONE,          XMP28,            REG_INJTAB},
+{AGG_ANZHEIZZONE+1,        XMP28_2,          REG_INJTAB},
+
+{AGG_ZYLAUSF,              XMP27,            REG_INJTAB},
+{AGG_ZYLAUSF+1,            XMP27_2,          REG_INJTAB},
+
+{AGG_TEMPABSENKUNG,        XTABSZYL1,        REG_INJTAB},   /*@B&R*/
+{AGG_TEMPABSENKUNG+1,      XTABSZYL2,        REG_INJTAB},   /*@B&R*/
+
+{AGG_ANZPLASTSTUFE,        NR_PLAST,         REG_INJTAB},
+{AGG_ANZPLASTSTUFE+1,      NR_PLAST_2,       REG_INJTAB},
+
+{AGG_FUEHLERART,           XREG775,          REG_INJTAB},
+{AGG_FUEHLERART+1,         XREG775_2,        REG_INJTAB},
+
+{AGG_STIFTDURCHMESS,       XREG777,          REG_INJTAB},
+{AGG_STIFTDURCHMESS+1,     XREG777_2,        REG_INJTAB},
+
+{AGG_FUEHLEREMPF,          XREG776,          REG_INJTAB},
+{AGG_FUEHLEREMPF+1,        XREG776_2,        REG_INJTAB},
+
+{AGG_AGGTYP,               XMP23,            REG_INJTAB},
+{AGG_AGGTYP+1,             XMP23_2,          REG_INJTAB},
+
+{AGG_AGG_GROESSE,          XMP24,            REG_INJTAB},
+{AGG_AGG_GROESSE+1,        XMP24_2,          REG_INJTAB},
+
+{AGG_MAX_SNEDREHZ,         XMP19_KP,         REG_INJTAB},
+{AGG_MAX_SNEDREHZ+1,       XMP19_KP_2,       REG_INJTAB},
+
+{AGG_ZAHNZ_KLEIN,          XMP20,            REG_INJTAB},
+{AGG_ZAHNZ_KLEIN+1,        XMP20_2,          REG_INJTAB},
+
+{AGG_ZAHNZ_MITTEL,         XMP21,            REG_INJTAB},
+{AGG_ZAHNZ_MITTEL+1,       XMP21_2,          REG_INJTAB},
+
+{AGG_ZAHNZ_GROSS,          XMP22,            REG_INJTAB},
+{AGG_ZAHNZ_GROSS+1,        XMP22_2,          REG_INJTAB},
+
+{AGG_SNEDM_KLEIN,          XMP25_1,          REG_INJTAB},
+{AGG_SNEDM_KLEIN+1,        XMP25_1_2,        REG_INJTAB},
+
+{AGG_SNEDM_MITTEL,         XMP25_2,          REG_INJTAB},
+{AGG_SNEDM_MITTEL+1,       XMP25_2_2,        REG_INJTAB},
+
+{AGG_SNEDM_GROSS,          XMP25_3,          REG_INJTAB},
+{AGG_SNEDM_GROSS+1,        XMP25_3_2,        REG_INJTAB},
+
+{AGG_PLASTWEG_TOL,         XTSPH10,          REG_INJTAB},
+{AGG_PLASTWEG_TOL+1,       XTSPH20,          REG_INJTAB},
+
+{AGG_PLAST_TIME_TOL,       PLAST_TIME_TOL,   REG_INJTAB},
+{AGG_PLAST_TIME_TOL+1,     PLAST_TIME_TOL_2, REG_INJTAB},
+
+{AGG_MAX_SPRITZDRUCK,      XMP26,            REG_INJTAB},
+{AGG_MAX_SPRITZDRUCK+1,    XMP26_2,          REG_INJTAB},
+
+{AGG_HEIZPARAM,            XMP29,            REG_INJTAB},
+{AGG_HEIZPARAM+1,          XMP29_2,          REG_INJTAB},
+
+{AGG_WKZINN_TOL,           WKZINN_TOL,       REG_INJTAB},
+{AGG_WKZINN_TOL+1,         WKZINN_TOL_AGG2,  REG_INJTAB},
+
+{AGG_SWITCH_PRES_TOL,      SWITCH_PRES_TOL11,   REG_INJTAB},
+{AGG_SWITCH_PRES_TOL+1,    SWITCH_PRES_TOL12,   REG_INJTAB},
+{AGG_SWITCH_PRES_TOL+2,    SWITCH_PRES_TOL13,   REG_INJTAB},
+{AGG_SWITCH_PRES_TOL+3,    SWITCH_PRES_TOL14,   REG_INJTAB},
+{AGG_SWITCH_PRES_TOL+4,    SWITCH_PRES_TOL15,   REG_INJTAB},
+{AGG_SWITCH_PRES_TOL+5,    SWITCH_PRES_TOL16,   REG_INJTAB},
+{AGG_SWITCH_PRES_TOL+6,    SWITCH_PRES_TOL21,   REG_INJTAB},
+{AGG_SWITCH_PRES_TOL+7,    SWITCH_PRES_TOL22,   REG_INJTAB},
+{AGG_SWITCH_PRES_TOL+8,    SWITCH_PRES_TOL23,   REG_INJTAB},
+{AGG_SWITCH_PRES_TOL+9,    SWITCH_PRES_TOL24,   REG_INJTAB},
+{AGG_SWITCH_PRES_TOL+10,   SWITCH_PRES_TOL25,   REG_INJTAB},
+{AGG_SWITCH_PRES_TOL+11,   SWITCH_PRES_TOL26,   REG_INJTAB},
+
+{AGG_INJ_TIME_TOL,         INJ_TIME_TOL11,      REG_INJTAB},
+{AGG_INJ_TIME_TOL+1,       INJ_TIME_TOL12,      REG_INJTAB},
+{AGG_INJ_TIME_TOL+2,       INJ_TIME_TOL13,      REG_INJTAB},
+{AGG_INJ_TIME_TOL+3,       INJ_TIME_TOL14,      REG_INJTAB},
+{AGG_INJ_TIME_TOL+4,       INJ_TIME_TOL15,      REG_INJTAB},
+{AGG_INJ_TIME_TOL+5,       INJ_TIME_TOL16,      REG_INJTAB},
+{AGG_INJ_TIME_TOL+6,       INJ_TIME_TOL21,      REG_INJTAB},
+{AGG_INJ_TIME_TOL+7,       INJ_TIME_TOL22,      REG_INJTAB},
+{AGG_INJ_TIME_TOL+8,       INJ_TIME_TOL23,      REG_INJTAB},
+{AGG_INJ_TIME_TOL+9,       INJ_TIME_TOL24,      REG_INJTAB},
+{AGG_INJ_TIME_TOL+10,      INJ_TIME_TOL25,      REG_INJTAB},
+{AGG_INJ_TIME_TOL+11,      INJ_TIME_TOL26,      REG_INJTAB},
+
+{AGG_SWITCH_POINT_TOL,     SWITCH_POINT_TOL11,  REG_INJTAB},
+{AGG_SWITCH_POINT_TOL+1,   SWITCH_POINT_TOL12,  REG_INJTAB},
+{AGG_SWITCH_POINT_TOL+2,   SWITCH_POINT_TOL13,  REG_INJTAB},
+{AGG_SWITCH_POINT_TOL+3,   SWITCH_POINT_TOL14,  REG_INJTAB},
+{AGG_SWITCH_POINT_TOL+4,   SWITCH_POINT_TOL15,  REG_INJTAB},
+{AGG_SWITCH_POINT_TOL+5,   SWITCH_POINT_TOL16,  REG_INJTAB},
+{AGG_SWITCH_POINT_TOL+6,   SWITCH_POINT_TOL21,  REG_INJTAB},
+{AGG_SWITCH_POINT_TOL+7,   SWITCH_POINT_TOL22,  REG_INJTAB},
+{AGG_SWITCH_POINT_TOL+8,   SWITCH_POINT_TOL23,  REG_INJTAB},
+{AGG_SWITCH_POINT_TOL+9,   SWITCH_POINT_TOL24,  REG_INJTAB},
+{AGG_SWITCH_POINT_TOL+10,  SWITCH_POINT_TOL25,  REG_INJTAB},
+{AGG_SWITCH_POINT_TOL+11,  SWITCH_POINT_TOL26,  REG_INJTAB},
+
+{AGG_PLASTWEG_REF,         XTSPH10_REF,      REG_INJTAB},
+{AGG_PLASTWEG_REF+1,       XTSPH20_REF,      REG_INJTAB},
+
+{AGG_PLASTZEIT_REF,        XXTDOS1_REF,      REG_INJTAB},
+{AGG_PLASTZEIT_REF+1,      XXTDOS2_REF,      REG_INJTAB},
+
+{AGG_WKZINN_REF,           XXPFINM_REF,      REG_INJTAB},
+{AGG_WKZINN_REF+1,         XXPFI2M_REF,      REG_INJTAB},
+
+{AGG_SWITCH_PRES_REF,      SWITCH_PRES_REF11,   REG_INJTAB},
+{AGG_SWITCH_PRES_REF+1,    SWITCH_PRES_REF12,   REG_INJTAB},
+{AGG_SWITCH_PRES_REF+2,    SWITCH_PRES_REF13,   REG_INJTAB},
+{AGG_SWITCH_PRES_REF+3,    SWITCH_PRES_REF14,   REG_INJTAB},
+{AGG_SWITCH_PRES_REF+4,    SWITCH_PRES_REF15,   REG_INJTAB},
+{AGG_SWITCH_PRES_REF+5,    SWITCH_PRES_REF16,   REG_INJTAB},
+{AGG_SWITCH_PRES_REF+6,    SWITCH_PRES_REF21,   REG_INJTAB},
+{AGG_SWITCH_PRES_REF+7,    SWITCH_PRES_REF22,   REG_INJTAB},
+{AGG_SWITCH_PRES_REF+8,    SWITCH_PRES_REF23,   REG_INJTAB},
+{AGG_SWITCH_PRES_REF+9,    SWITCH_PRES_REF24,   REG_INJTAB},
+{AGG_SWITCH_PRES_REF+10,   SWITCH_PRES_REF25,   REG_INJTAB},
+{AGG_SWITCH_PRES_REF+11,   SWITCH_PRES_REF26,   REG_INJTAB},
+
+{AGG_INJ_TIME_REF,         INJ_TIME_REF11,      REG_INJTAB},
+{AGG_INJ_TIME_REF+1,       INJ_TIME_REF12,      REG_INJTAB},
+{AGG_INJ_TIME_REF+2,       INJ_TIME_REF13,      REG_INJTAB},
+{AGG_INJ_TIME_REF+3,       INJ_TIME_REF14,      REG_INJTAB},
+{AGG_INJ_TIME_REF+4,       INJ_TIME_REF15,      REG_INJTAB},
+{AGG_INJ_TIME_REF+5,       INJ_TIME_REF16,      REG_INJTAB},
+{AGG_INJ_TIME_REF+6,       INJ_TIME_REF21,      REG_INJTAB},
+{AGG_INJ_TIME_REF+7,       INJ_TIME_REF22,      REG_INJTAB},
+{AGG_INJ_TIME_REF+8,       INJ_TIME_REF23,      REG_INJTAB},
+{AGG_INJ_TIME_REF+9,       INJ_TIME_REF24,      REG_INJTAB},
+{AGG_INJ_TIME_REF+10,      INJ_TIME_REF25,      REG_INJTAB},
+{AGG_INJ_TIME_REF+11,      INJ_TIME_REF26,      REG_INJTAB},
+
+{AGG_SWITCH_POINT_REF,     SWITCH_POINT_REF11,  REG_INJTAB},
+{AGG_SWITCH_POINT_REF+1,   SWITCH_POINT_REF12,  REG_INJTAB},
+{AGG_SWITCH_POINT_REF+2,   SWITCH_POINT_REF13,  REG_INJTAB},
+{AGG_SWITCH_POINT_REF+3,   SWITCH_POINT_REF14,  REG_INJTAB},
+{AGG_SWITCH_POINT_REF+4,   SWITCH_POINT_REF15,  REG_INJTAB},
+{AGG_SWITCH_POINT_REF+5,   SWITCH_POINT_REF16,  REG_INJTAB},
+{AGG_SWITCH_POINT_REF+6,   SWITCH_POINT_REF21,  REG_INJTAB},
+{AGG_SWITCH_POINT_REF+7,   SWITCH_POINT_REF22,  REG_INJTAB},
+{AGG_SWITCH_POINT_REF+8,   SWITCH_POINT_REF23,  REG_INJTAB},
+{AGG_SWITCH_POINT_REF+9,   SWITCH_POINT_REF24,  REG_INJTAB},
+{AGG_SWITCH_POINT_REF+10,  SWITCH_POINT_REF25,  REG_INJTAB},
+{AGG_SWITCH_POINT_REF+11,  SWITCH_POINT_REF26,  REG_INJTAB},
+
+{AGG_TOL_SELECT,           TOL_SELECT,          REG_INJTAB},
+{AGG_TOL_SELECT+1,         TOL_SELECT_2,        REG_INJTAB},
+
+{AGG_MP_PLASTWEG,          XMP17,               REG_INJTAB},
+{AGG_MP_PLASTWEG+1,        XMP17_2,             REG_INJTAB},
+
+{AGG_INJ_SPEED_MAX,        INJ_SPEED_MAX1,      REG_INJTAB},
+{AGG_INJ_SPEED_MAX+1,      INJ_SPEED_MAX2,      REG_INJTAB},
+{AGG_INJ_SPEED_MAX+2,      INJ_SPEED_MAX3,      REG_INJTAB},
+
+{AGG_FILL_TIME,            FILL_TIME1,          REG_INJTAB},
+{AGG_FILL_TIME+1,          FILL_TIME2,          REG_INJTAB},
+
+{AGG_INJ_SPEED_CONV,       INJ_SPEED_CONV1,     REG_INJTAB},
+{AGG_INJ_SPEED_CONV+1,     INJ_SPEED_CONV2,     REG_INJTAB},
+{AGG_INJ_SPEED_CONV+2,     INJ_SPEED_CONV3,     REG_INJTAB},
+
+{AGG_DWELL_PRES,           DWELL_PRES1,         REG_INJTAB},
+{AGG_DWELL_PRES+1,         DWELL_PRES2,         REG_INJTAB},
+
+/*BEGIN_MODE_10*/
+{AGG_SPRKOLBFL,       XMP18,     REG_INJTAB},
+{AGG_SPRKOLBFL+1,     XMP18_2,   REG_INJTAB},
+{AGG_SPRKOLBFL+2,     XMP18,     REG_INJTAB},
+
+{AGG_SNEDURCHMESS_S,       XMP25_1_S,     REG_INJTAB},
+{AGG_SNEDURCHMESS_S+1,     XMP25_2_S,     REG_INJTAB},
+{AGG_SNEDURCHMESS_S+2,     XMP25_3_S,     REG_INJTAB},
+
+{AGG_SPRKOLBFL_S,       XMP18_1_S,     REG_INJTAB},
+{AGG_SPRKOLBFL_S+1,     XMP18_2_S,     REG_INJTAB},
+{AGG_SPRKOLBFL_S+2,     XMP18_3_S,     REG_INJTAB},
+
+{INJ_PRES_REF+0,             XSPREF11,          REG_INJTAB},
+{INJ_PRES_REF+1,             XSPREF12,          REG_INJTAB},
+{INJ_PRES_REF+2,             XSPREF13,          REG_INJTAB},
+{INJ_PRES_REF+3,             XSPREF14,          REG_INJTAB},
+{INJ_PRES_REF+4,             XSPREF15,          REG_INJTAB},
+{INJ_PRES_REF+5,             XSPREF16,          REG_INJTAB},
+{INJ_PRES_REF+6,             XSPREF17,          REG_INJTAB},
+{INJ_PRES_REF+7,             XSPREF18,          REG_INJTAB},
+{INJ_PRES_REF+8,             XSPREF19,          REG_INJTAB},
+{INJ_PRES_REF+9,             XSPREF1A,          REG_INJTAB},
+
+{INJ_PRES_TOL+0,             XSPTOL11,          REG_INJTAB},
+{INJ_PRES_TOL+1,             XSPTOL12,          REG_INJTAB},
+{INJ_PRES_TOL+2,             XSPTOL13,          REG_INJTAB},
+{INJ_PRES_TOL+3,             XSPTOL14,          REG_INJTAB},
+{INJ_PRES_TOL+4,             XSPTOL15,          REG_INJTAB},
+{INJ_PRES_TOL+5,             XSPTOL16,          REG_INJTAB},
+{INJ_PRES_TOL+6,             XSPTOL17,          REG_INJTAB},
+{INJ_PRES_TOL+7,             XSPTOL18,          REG_INJTAB},
+{INJ_PRES_TOL+8,             XSPTOL19,          REG_INJTAB},
+{INJ_PRES_TOL+9,             XSPTOL1A,          REG_INJTAB},
+
+{POLSTER_REF,                   XXTPOLSREF1,          REG_INJTAB},  
+{POLSTER_TOL,                   XXTPOLSTOL1,          REG_INJTAB},  
+{DOS_TIME_REF,                XXTPLASREF1,          REG_INJTAB},  
+{DOS_TIME_TOL,                XXTPLASTOL1,          REG_INJTAB},  
+{DOS_WAY_REF,                 XSSPLASREF1,          REG_INJTAB},  
+{DOS_WAY_TOL,                 XSSPLASTOL1,          REG_INJTAB},  
+{SWITCH_POINT_REF,              XSSINJREF1,          REG_INJTAB},  
+{SWITCH_POINT_TOL,              XSSINJTOL1,          REG_INJTAB},  
+{SWITCH_TIME_REF,               XSTINJREF1,          REG_INJTAB},  
+{SWITCH_TIME_TOL,               XSTINJTOL1,          REG_INJTAB},  
+{SWITCH_PRES_REF,               XSPINJREF1,          REG_INJTAB},  
+{SWITCH_PRES_TOL,               XSPINJTOL1,          REG_INJTAB},  
+{SWITCH_TOOL_PRES_REF,          XSPTINREF1,          REG_INJTAB},  
+{SWITCH_TOOL_PRES_TOL,          XSPTINTOL1,          REG_INJTAB},  
+{SWITCH_TOOL_PRES_MAX_REF,      XSPTINMAXREF1,       REG_INJTAB},  
+{SWITCH_TOOL_PRES_MAX_TOL,      XSPTINMAXTOL1,       REG_INJTAB},  
+{CYCLE_TIME_REF,                XSTCYCREF1,          REG_INJTAB},  
+{CYCLE_TIME_TOL,                XSTCYCTOL1,          REG_INJTAB},  
+
+/* ---------------- Register für Crashlogbuch (CLB2001) ------------------- */
+{KSPSKEYS1,                IKBA0INPUT,            REG_INT},
+{KSPSKEYS2,                IKBA1INPUT,            REG_INT},
+{KSPSKEYS3,                IKBA2INPUT,            REG_INT},
+{KSPSKEYS4,                IKBA3INPUT,            REG_INT},
+
+
+/*END_MODE_10*/
+
+{0xffff}                         /* ENDEKENNUNG: muss IMMER da sein */
+};

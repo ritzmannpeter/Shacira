@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[date.h] Type: Date</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[date.h] Type: Date</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="standard.htm">#include "standard.h"</a>
+<br><a href="sink.htm">#include "sink.h"</a>
+<br>
+<br>
+<br>
+<br><hr width="100%" size=2><h2><b> The Type </b></h2>
+<br><pre>
+   The data type DATE is implemented as number of days since 01.01.0000.
+   This origin date is represented by the number 0.
+
+   The rules for the conversion of a date
+     internal format &lt;--&gt;  external day/month/year-format
+   rely on the Gregorian calendar:
+
+   1) A normal year has 365 days, a leap year 366 days.
+   2) All years, divisible by 4, are leap years, except
+   3) the years, divisible by 100, this except
+   4) the years, divisible by 400.
+
+</pre>
+<br><pre>typedef long Date; /* range DMY(01,01,0000) .. DMY(31,12,9999) */
+
+</pre>
+<br><hr width="100%" size=2><h2><b> Init </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>date_init</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>init date module
+
+</table>
+<br><hr width="100%" size=2><h2><b> Date operations </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>LeapYear</b>(int Year)</pre>
+<td bgcolor="#FFF0F5" align=left>whether 'Year' is a leap year
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>validDMY</b>(int Day, int Month, int Year)</pre>
+<td bgcolor="#FFF0F5" align=left> whether 'Day'.'Month'.'Year' is a valid date <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Date <b>DMY</b>(int Day, int Month, int Year)</pre>
+<td bgcolor="#FFF0F5" align=left> converts 'Day'.'Month'.'Year' into the internal date format <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>Year</b>(Date days)</pre>
+<td bgcolor="#FFF0F5" align=left>year of 'days' ( result &gt;= 0 )
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>Month</b>(Date date)</pre>
+<td bgcolor="#FFF0F5" align=left>month of 'date' ( result &gt;= 1 )
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>Day</b>(Date date)</pre>
+<td bgcolor="#FFF0F5" align=left>day of 'date' ( result &gt;= 1 )
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>WeekDay</b>(Date date)</pre>
+<td bgcolor="#FFF0F5" align=left>weekday of 'date' ( sunday = 0, saturday = 6 )
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Date <b>Today</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>current date ( system clock )
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>CurTime</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>current time ( system clock ); allocs memory
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>MonthLength</b>(int Month, int Year)</pre>
+<td bgcolor="#FFF0F5" align=left>the number of days in month
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Date <b>Str_Date</b>(c_string date)</pre>
+<td bgcolor="#FFF0F5" align=left> converts 'date' [ "dd.mm.yy" | "dd.mm.yyyy" ]<br>
+   into the internal date format<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>Date_Str</b>(Date date)</pre>
+<td bgcolor="#FFF0F5" align=left> converts 'date' to string type [ "tt.mm.jjjj" ]; allocs memory <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Debug </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>pDate4</b>(Date date)</pre>
+<td bgcolor="#FFF0F5" align=left>print 'date' [ "tt.mm.jjjj" ]
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>pDate2</b>(Date date)</pre>
+<td bgcolor="#FFF0F5" align=left>print 'date' [ "tt.mm.jj" ]
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>pDateS</b>(Date date)</pre>
+<td bgcolor="#FFF0F5" align=left>print 'date' [ "...Anno..." ]
+
+</table>
+
+</body>
+</html>

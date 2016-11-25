@@ -1,0 +1,116 @@
+
+/// this is a demo model file
+
+// definition of a switchable unit
+unit float ConvertWayVol(ushort diameter);
+
+unit WayVol function=ConvertWayVol(30)
+  {precision=2 text="ccm"}
+  {precision=1 text="mm"}
+  {precision=1 text="in"}
+  {precision=3 text="mls"}
+  dataset=0 device=1;
+
+// declaration of the filter function filter1
+filter long  filter1(long arg1);
+// declaration of the max function MaxIndex
+limit long MaxIndex(long which);
+
+database demo device=SPS1 {
+
+//    matrix1[5][10] float(1)
+    matrix1[5][10] ushort(1)
+     vartype=set
+     description="variable definition for demonstration purpose"
+     text="matrix1"
+     dim1text="index 1"
+     dim2text="index 2"
+     persist=file
+     map logic ushort(1) {
+                             00, 01, 02, 03, 04, 05, 06, 07, 08, 09,
+                             10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+                             20, 21, 22, 23, 24, 25, 26, 27, 28, 29,
+                             30, 31, 32, 33, 34, 35, 36, 37, 38, 39,
+                             40, 41, 42, 43, 44, 45, 46, 47, 48, 49
+                            };
+
+    index1 long
+     description="index variable for first dimension of matrix1"
+     text="index1"
+     minimum=0
+     maximum=MaxIndex(0);
+
+    index2 long
+     description="index variable for second dimension of matrix1"
+     text="index1"
+     minimum=0
+     maximum=MaxIndex(1);
+
+    filtered_var long
+      description="this is a filtered variable"
+      filter=filter1(27);
+
+    act_value float(2)
+	  vartype=act
+	  description="demo act value"
+ 	  map register ushort(1) 50
+    refresh=100;
+
+    testvar long persist=file;
+};
+
+limit short LangMin();
+limit short LangMax();
+
+
+unit float MMInchConversion();
+
+unit MMInch function=MMInchConversion()
+  {precision=2 text="mm"}
+  {precision=3 text="in"}
+  dataset=0 device=0;
+
+database demo device=DemoDevice1 {
+
+    test_var float(2)
+    vartype=set
+    persist=file
+    map heinz float "xxx.yyy";
+
+    test_var2 ushort(2)
+    vartype=set
+    persist=file;
+
+	act_language string(50); 
+
+    inp_lang short
+	minimum=LangMin()
+	maximum=LangMax();
+
+
+	unit_test float
+	unit = MMInch;
+
+};
+
+/// this is a demo model file
+
+filter long  object_func(long obj);
+database test {
+
+    current_second uchar
+    vartype=act
+    ;
+
+    test_var_max short
+    vartype=volatile
+    persist=file
+    ;
+    EventTest[50] long
+    persist=file;
+	BinaryTest[1] object
+	  vartype=virtual
+      filter=object_func(27);
+
+};
+

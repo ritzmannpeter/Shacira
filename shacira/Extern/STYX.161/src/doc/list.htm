@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[list.h] Type: List</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[list.h] Type: List</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="standard.htm">#include "standard.h"</a>
+<br>
+<br>
+<br>
+<br><hr width="100%" size=2><h2><b> The Type </b></h2>
+<br><pre>
+   This module implements a functional,i.e. LISP-like list data type.
+
+</pre>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b>List(Abs_T)</b>
+<td align=left> Abstract list type 
+
+</table>
+<br><hr width="100%" size=2><h2><b> Operations and predicates </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>empty</b>(List(Abs_T) x)</pre>
+<td bgcolor="#FFF0F5" align=left>whether list 'x' is empty
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Abs_T <b>list_fst</b>(List(Abs_T) x)
+#define fst(TYPE, LIST) ((TYPE) list_fst(LIST))</pre>
+<td bgcolor="#FFF0F5" align=left> first member of list 'x' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre> List(Abs_T) <b>rst</b>(List(Abs_T) x)</pre>
+<td bgcolor="#FFF0F5" align=left>rest of list 'x'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre> List(Abs_T) <b>cons</b>(Abs_T fst, List(Abs_T) rst)</pre>
+<td bgcolor="#FFF0F5" align=left>list constructor
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre> List(Abs_T) *<b>rst_ref</b>(List(Abs_T) x)</pre>
+<td bgcolor="#FFF0F5" align=left>pointer to rest(x); use with care!
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Abs_T *<b>fst_ref</b>(List(Abs_T) x)</pre>
+<td bgcolor="#FFF0F5" align=left>pointer to first(x); use with care!
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>length</b>(List(Abs_T) x)</pre>
+<td bgcolor="#FFF0F5" align=left>length of list 'x'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>pList</b>(List(Abs_T) x, int Indent, void (*pMember)(Abs_T x))</pre>
+<td bgcolor="#FFF0F5" align=left> prints list 'x' to stdout <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>pListEx</b>
+     (
+       List(Abs_T) x, int Indent,
+       void (*pMember)(Abs_T x, StdCPtr any), StdCPtr any
+     )</pre>
+<td bgcolor="#FFF0F5" align=left> prints list 'x' to stdout;<br>
+   uses 'any' as member context<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>freeList</b>(List(Abs_T) x, void (*freeMember)(Abs_T x))</pre>
+<td bgcolor="#FFF0F5" align=left> frees list 'x' <br>
+
+</table>
+
+</body>
+</html>

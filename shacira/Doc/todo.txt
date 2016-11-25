@@ -1,0 +1,5 @@
+
+   1. Anpassung von frameShape und frameShadow speziell für QT4 (StyledPanel -> Panel)
+      setzt vorhandene QT4 - ui-Dateien um
+   2. Im Hintergrund wird am oberen Rand der Page-Area ein Widget sichtbar. (Nur bei synchronen user Funktionen)
+   3.      

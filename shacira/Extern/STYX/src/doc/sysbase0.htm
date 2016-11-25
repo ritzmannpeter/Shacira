@@ -1,0 +1,255 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[sysbase0.h] Standard Definitions ( Part 0 )</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[sysbase0.h] Standard Definitions ( Part 0 )</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="styconf0.htm">#include "styconf0.h"</a>
+<br><a href="syscbhdl.htm">#include "syscbhdl.h"</a>
+<br>
+<br>
+<br>
+<br><hr width="100%" size=2><h2><b> Global Types </b></h2>
+<br><pre>#ifdef _MSDOS
+typedef long     INT;
+typedef long     LONG_INT;
+#define __FAR    __far
+#define __HUGE   __huge
+typedef void     __HUGE *HugeCPtr;
+#else
+typedef int      INT;
+typedef long     int LONG_INT;
+#define __FAR
+#define __HUGE
+#define HugeCPtr StdCPtr
+#define NewHMem  NewMem
+#define FreeHMem FreeMem
+#endif
+
+</pre>
+<br><pre>typedef void *StdCPtr;
+
+</pre>
+<br><pre>#if !defined( __GNUC__ )
+typedef signed char      c_int8;
+typedef signed short     c_int16;
+typedef signed long      c_int32;
+typedef unsigned char    c_uint8;
+typedef unsigned short   c_uint16;
+typedef unsigned long    c_uint32;
+#if defined(STYX_CONFIG_OSMS) && defined(_INTEGRAL_MAX_BITS) && _INTEGRAL_MAX_BITS &gt;= 64
+#define STYX_CONFIG_TINT64
+typedef signed   __int64 c_int64;
+typedef unsigned __int64 c_uint64;
+#endif
+#else /*__GNUC__*/
+#define STYX_CONFIG_TINT64
+typedef int8_t           c_int8;
+typedef int16_t          c_int16;
+typedef int32_t          c_int32;
+typedef int64_t          c_int64;
+typedef u_int8_t         c_uint8;
+typedef u_int16_t        c_uint16;
+typedef u_int32_t        c_uint32;
+typedef u_int64_t        c_uint64;
+#endif
+
+</pre>
+<br><pre>#define AbstractType(TYPENAME) typedef StdCPtr TYPENAME
+
+</pre>
+<br><pre>#define AbstractHugeType( TYPENAME ) \
+typedef HugeCPtr TYPENAME
+
+</pre>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b> Abs_T </b>
+<td align=left>abstract type
+
+<TR valign=top>
+<td align=left><b> Any_T </b>
+<td align=left>abstract type
+
+</table>
+<br><pre>
+#define c_bool  int
+#define C_False 0
+#define C_True  1
+#ifndef __cplusplus
+#define bool  c_bool
+#define False C_False
+#define True  C_True
+#endif
+
+</pre>
+<br><pre>
+typedef c_byte           *c_bstring; /* sizeof(long) Bytes Len, Len Bytes */
+typedef char             *c_string;
+#ifndef __cplusplus
+typedef c_string          string;
+#endif
+#if defined(WEOF)
+typedef wint_t            wc_int;
+typedef wchar_t           wc_char;
+typedef wchar_t          *wc_string;
+#define WCHAR_LITERAL(c) L##c
+#else
+typedef unsigned long     wc_int;
+typedef unsigned long     wc_char;
+typedef unsigned long    *wc_string;
+#define WCHAR_LITERAL(c) ((unsigned long)c)
+#endif
+
+</pre>
+<br><hr width="100%" size=2><h2><b> CommandLine I/O & Exception </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>FILE* <b>StdOutFile</b>(void)
+#define STDOUT StdOutFile()</pre>
+<td bgcolor="#FFF0F5" align=left> stdout <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>FILE* <b>StdErrFile</b>(void)
+#define STDERR StdErrFile()</pre>
+<td bgcolor="#FFF0F5" align=left> stderr <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>fprint_raw</b>(FILE* fp, c_string s, size_t size)</pre>
+<td bgcolor="#FFF0F5" align=left> prints string 's' in a printable form to file 'fp'<br>
+   'size' &gt;= 0: number of characters to print<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>prMsg_stdout</b>(c_string s)</pre>
+<td bgcolor="#FFF0F5" align=left> prints string 's' in a printable form to stdout <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>prMsg_stderr</b>(c_string s)</pre>
+<td bgcolor="#FFF0F5" align=left> prints string 's' in a printable form to stderr <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>AbortApp</b>(c_string errmsg)
+#define STD_ERREXIT AbortApp("")</pre>
+<td bgcolor="#FFF0F5" align=left> aborts application with error message 'errmsg' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PHDL_TRAP <b>getTrapHdl</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>gets the trap handler
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>setTrapHdl</b>(PHDL_TRAP h_trap)</pre>
+<td bgcolor="#FFF0F5" align=left> sets a trap handler<br>
+   ( xaron error callback )<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PHDL_ABORT <b>getErrExitHdl</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>gets the abort handler
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>setErrExitHdl</b>(PHDL_ABORT h_abort)</pre>
+<td bgcolor="#FFF0F5" align=left>sets an abort handler
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PHDL_FREEMEM <b>getFreeMemHdl</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left> gets the handler to organize free memory from heap <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>setFreeMemHdl</b>(PHDL_FREEMEM h_freemem)</pre>
+<td bgcolor="#FFF0F5" align=left> sets a handler to organize free memory from heap <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>initStdFiles</b>(FILE* out, FILE* err)</pre>
+<td bgcolor="#FFF0F5" align=left>overwrites stdout, stderr
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>quitStdFiles</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>resets stdout, stderr
+
+</table>
+<br><hr width="100%" size=2><h2><b> Thread/Process Synchronisation </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>StdCPtr <b>initSem</b>(c_string id, int maxcnt, int initcnt)</pre>
+<td bgcolor="#FFF0F5" align=left> creates or opens semaphore 'id [NULL]' to synchronize<br>
+   a maximum of 'maxcnt' concurrent threads<br>
+   with an initial value of 'initcnt'<br>
+   RC: semaphore or NULL<br>
+   non-MS: 'id', 'maxcnt' not used<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>quitSem</b>(StdCPtr sem)</pre>
+<td bgcolor="#FFF0F5" align=left> closes and - on OK - destroys semaphore 'sem'<br>
+   RC: True=OK<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>waitSem</b>(StdCPtr sem)</pre>
+<td bgcolor="#FFF0F5" align=left><br>
+   waits and enters critical section 'sem' ( blocking )<br>
+   RC: 1=OK, 0=occupied, -1=error<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>trySem</b>(StdCPtr sem)</pre>
+<td bgcolor="#FFF0F5" align=left><br>
+   tries to enter critical section 'sem' ( non-blocking )<br>
+   RC: 1=OK, 0=occupied, -1=error<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>postSem</b>(StdCPtr sem, int cnt)</pre>
+<td bgcolor="#FFF0F5" align=left><br>
+   leaves critical section 'sem' and releases 'cnt' resources<br>
+   RC: True=OK<br>
+   non-MS: 'cnt' not used (=1)<br>
+<br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Error Handling </b></h2>
+<br><pre>typedef void (*PF_ERROR)(c_bool cond, c_string format, ...);
+
+</pre>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>ForceCore</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left> since we didn't find an appropriate function in the c-lib <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PF_ERROR <b>_AssCheck</b>(c_string kind, c_string file, int line)</pre>
+<td bgcolor="#FFF0F5" align=left> saves assertion type, source position and<br>
+   returns assert function<br>
+<br>
+
+</table>
+<br><pre>#define c_assert (*(_AssCheck("Restriction error",__FILE__,__LINE__)))
+#define c_bug    (*(_AssCheck("Internal error",   __FILE__,__LINE__)))
+#define C_BUG    c_bug(C_False,"")
+#ifndef __cplusplus
+#define assert   c_assert
+#define bug      c_bug
+#define BUG      C_BUG
+#endif
+
+</pre>
+<br><pre>
+   Usage of the macros 'assert', 'bug':
+   assert | bug ( condition, which has to be true,
+                  message format string ( see printf ),
+                  any further parameter, according to the above format string );
+
+</pre>
+<br><hr width="100%" size=2><h2><b> System-Init & Quit </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>sysbase_init</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>initializes module ( for thread-savety )
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>sysbase_quit</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>terminates module ( for thread-savety )
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>StdCPtr <b>sysbase_sem</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>system semaphore ( for thread-savety )
+
+</table>
+<br><hr width="100%" size=2><h2><b> Global Macros </b></h2>
+<br><pre>#define STR_EMPTY(s)      ( (s) == (c_string)NULL || *(s) == '\0' )
+#define INRANGE(a,x,b)    ( ( (a) &lt;= (x) ) && ( (x) &lt;= (b) ) )
+#define ABS(x)            ( (x) &lt; 0 ? - (x) : (x) )
+#define MAX(a,b)          ( (a) &lt; (b) ? (b) : (a) )
+#define MIN(a,b)          ( (a) &lt; (b) ? ( a ) : (b) )
+#define EQSIGN(a,b)       ( ( ( (a) &lt;= 0 ) && ( (b) &lt;= 0 ) ) || \
+                            ( ( (a) &gt;= 0 ) && ( (b) &gt;= 0 ) ) )
+
+</pre>
+
+</body>
+</html>

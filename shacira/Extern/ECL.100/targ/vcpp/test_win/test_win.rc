@@ -1,0 +1,358 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// German (Germany) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)
+#ifdef _WIN32
+LANGUAGE LANG_GERMAN, SUBLANG_GERMAN
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DLG_ENTRY DIALOG DISCARDABLE  0, 0, 305, 234
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "cwEntry"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_EF_INT,35,7,66,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EF_INT_MIRR1,134,7,66,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EF_DOUBLE,35,23,66,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EF_INT_MIRR2,134,23,66,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EF_STRING,35,39,66,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EF_STRING2,134,39,66,14,ES_MULTILINE | 
+                    ES_AUTOHSCROLL
+    EDITTEXT        IDC_EF_DATE,35,55,66,14,ES_AUTOHSCROLL | WS_GROUP
+    EDITTEXT        IDC_EF_DATE_MIRR1,134,55,66,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EF_TIME,35,71,66,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EF_DATE_MIRR2,134,71,66,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EB_ML1,35,91,66,28,ES_MULTILINE
+    EDITTEXT        IDC_EB_ML2,134,91,164,29,ES_MULTILINE | ES_AUTOVSCROLL | 
+                    WS_VSCROLL
+    LISTBOX         IDC_LIST1,7,149,291,77,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
+                    LBS_EXTENDEDSEL | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "KW",IDC_CB_KW,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,104,
+                    58,28,10
+    DEFPUSHBUTTON   "OK",IDOK,248,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,248,24,50,14
+    PUSHBUTTON      "Auswerten...",IDC_INTERPRET,248,48,50,14
+    CONTROL         "Integer",IDC_STATIC,"Static",SS_LEFTNOWORDWRAP | 
+                    WS_GROUP,7,10,23,8
+    CONTROL         "Double",IDC_STATIC,"Static",SS_LEFTNOWORDWRAP | 
+                    WS_GROUP,7,26,24,8
+    CONTROL         "String",IDC_STATIC,"Static",SS_LEFTNOWORDWRAP | 
+                    WS_GROUP,7,42,19,8
+    CONTROL         "Datum",IDC_STATIC,"Static",SS_LEFTNOWORDWRAP | WS_GROUP,
+                    7,58,22,8
+    CONTROL         "Uhrzeit",IDC_STATIC,"Static",SS_LEFTNOWORDWRAP | 
+                    WS_GROUP,7,74,23,8
+    LTEXT           "Messages:",IDC_STATIC,7,137,35,8
+    LTEXT           "Multi Line",IDC_STATIC,7,93,26,20
+    PUSHBUTTON      "Swap Storage",IDC_PB_SWAP,201,39,31,32,BS_MULTILINE
+END
+
+IDD_DLG_MENU DIALOG DISCARDABLE  0, 0, 211, 101
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Menu"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Close",IDOK,154,7,50,14
+    PUSHBUTTON      "cw&Entry",IDC_PB_ENTRY,7,22,89,14
+    PUSHBUTTON      "cw&ListCtl",IDC_PB_LIST,7,39,89,14
+    PUSHBUTTON      "cw&Notebook (modal)",IDC_PB_NB_MODAL,7,56,89,14
+    PUSHBUTTON      "cwNote&book (modeless)",IDC_PB_NB_MODELESS,7,74,89,14
+    LTEXT           "Choose a test dialog:",IDC_STATIC,7,7,72,8
+END
+
+IDD_DLG_LISTCTL DIALOG DISCARDABLE  0, 0, 321, 250
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "cwListCtl"
+FONT 8, "MS Sans Serif"
+BEGIN
+    COMBOBOX        IDC_CBX1,7,7,67,82,CBS_DROPDOWNLIST | CBS_SORT | 
+                    CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_CBX1_MIRR,80,7,67,82,CBS_DROPDOWN | CBS_SORT | 
+                    CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LISTBOX         IDC_LIST1,7,43,211,33,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
+                    LBS_EXTENDEDSEL | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "List2",IDC_CNR,"SysListView32",LVS_REPORT | 
+                    LVS_NOLABELWRAP | LVS_EDITLABELS | LVS_OWNERDATA | 
+                    WS_BORDER | WS_TABSTOP,7,81,211,94
+    LISTBOX         IDC_SET1,7,180,67,29,LBS_SORT | LBS_OWNERDRAWFIXED | 
+                    LBS_HASSTRINGS | LBS_NOINTEGRALHEIGHT | LBS_NOSEL | 
+                    WS_VSCROLL | WS_TABSTOP
+    LISTBOX         IDC_SET1_MIRR,80,181,66,28,LBS_SORT | LBS_OWNERDRAWFIXED | 
+                    LBS_HASSTRINGS | LBS_NOINTEGRALHEIGHT | LBS_NOSEL | 
+                    WS_VSCROLL | WS_TABSTOP
+    LISTBOX         IDC_SET2,7,212,67,30,LBS_SORT | LBS_MULTIPLESEL | 
+                    LBS_OWNERDRAWFIXED | LBS_HASSTRINGS | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LISTBOX         IDC_SET2_MIRR,80,212,66,30,LBS_SORT | LBS_MULTIPLESEL | 
+                    LBS_OWNERDRAWFIXED | LBS_HASSTRINGS | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "OK",IDOK,263,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,263,24,50,14
+    PUSHBUTTON      "Auswerten...",IDC_INTERPRET,263,49,50,14
+    PUSHBUTTON      "Refresh",IDC_CNR_REFRESH,222,160,32,14
+    COMBOBOX        IDC_CBX2,7,23,67,82,CBS_DROPDOWNLIST | 
+                    CBS_OWNERDRAWFIXED | CBS_SORT | CBS_HASSTRINGS | 
+                    CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_CBX3,80,23,67,82,CBS_DROPDOWN | CBS_OWNERDRAWFIXED | 
+                    CBS_SORT | CBS_HASSTRINGS | CBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Tree1",IDC_TREE,"SysTreeView32",TVS_HASBUTTONS | 
+                    TVS_HASLINES | TVS_LINESATROOT | WS_BORDER | WS_TABSTOP,
+                    153,181,160,61
+END
+
+IDD_DLG_BUTTON DIALOG DISCARDABLE  0, 0, 258, 234
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "cwButton"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_EF_INT,35,7,66,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EF_DOUBLE,35,23,66,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EF_STRING,35,39,66,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EF_DATE,35,55,66,14,ES_AUTOHSCROLL
+    CONTROL         "KW",IDC_CB_KW,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,118,
+                    58,28,10
+    EDITTEXT        IDC_EF_TIME,35,71,66,14,ES_AUTOHSCROLL
+    CONTROL         "Check1",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | BS_NOTIFY | 
+                    WS_TABSTOP,7,100,41,10
+    LISTBOX         IDC_LIST1,7,119,145,49,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
+                    LBS_EXTENDEDSEL | WS_VSCROLL | WS_TABSTOP
+    LISTBOX         IDC_SET1,7,176,67,50,LBS_SORT | LBS_MULTIPLESEL | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LISTBOX         IDC_SET2,84,176,67,50,LBS_SORT | LBS_MULTIPLESEL | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "OK",IDOK,201,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,201,24,50,14
+    PUSHBUTTON      "Auswerten...",IDC_INTERPRET,201,49,50,14
+    CONTROL         "Integer",IDC_STATIC,"Static",SS_LEFTNOWORDWRAP | 
+                    WS_GROUP,7,10,23,8
+    CONTROL         "Double",IDC_STATIC,"Static",SS_LEFTNOWORDWRAP | 
+                    WS_GROUP,7,26,24,8
+    CONTROL         "String",IDC_STATIC,"Static",SS_LEFTNOWORDWRAP | 
+                    WS_GROUP,7,42,19,8
+    CONTROL         "Datum",IDC_STATIC,"Static",SS_LEFTNOWORDWRAP | WS_GROUP,
+                    7,58,22,8
+    CONTROL         "Uhrzeit",IDC_STATIC,"Static",SS_LEFTNOWORDWRAP | 
+                    WS_GROUP,7,74,23,8
+    CONTROL         "DateTimePicker1",IDC_DATETIMEPICKER1,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | WS_TABSTOP,151,87,100,15
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_DLG_ENTRY, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 298
+        VERTGUIDE, 134
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 226
+        HORZGUIDE, 85
+    END
+
+    IDD_DLG_MENU, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 204
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 94
+    END
+
+    IDD_DLG_LISTCTL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 313
+        VERTGUIDE, 74
+        VERTGUIDE, 80
+        VERTGUIDE, 146
+        VERTGUIDE, 218
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 242
+    END
+
+    IDD_DLG_BUTTON, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 251
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 226
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.rc""\r\n"
+    "#include ""win/system/mfc/eclres.rc""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU DISCARDABLE 
+BEGIN
+    POPUP "&Datei"
+    BEGIN
+        MENUITEM "&Neu",                        ID_FILE_NEW
+        MENUITEM "&Öffnen",                     ID_FILE_OPEN
+        MENUITEM "Sch&liessen",                 ID_FILE_CLOSE
+        MENUITEM SEPARATOR
+        MENUITEM "&Beenden",                    ID_APP_EXIT
+    END
+    POPUP "&Ansicht"
+    BEGIN
+        MENUITEM "Zoom 10%",                    ID_VIEW_ZOOM10
+        MENUITEM "Zoom 100%",                   ID_VIEW_ZOOM100
+        MENUITEM "Zoom 1000%",                  ID_VIEW_ZOOM1000
+        MENUITEM "Zoom auf Fenster",            ID_VIEW_ZOOM_WINDOW
+    END
+    POPUP "&Fenster"
+    BEGIN
+        MENUITEM "&Anordnen",                   ID_WINDOW_CASCADE
+        MENUITEM "&Horizontal Teilen",          ID_WINDOW_TILE_HORZ
+        MENUITEM "&Vertikal Teilen",            ID_WINDOW_TILE_VERT
+    END
+    POPUP "&?"
+    BEGIN
+        MENUITEM "Über...",                     ID__BER
+    END
+END
+
+IDR_CHILDFRAME MENU DISCARDABLE 
+BEGIN
+    POPUP "&Datei"
+    BEGIN
+        MENUITEM "&Neu",                        ID_FILE_NEW
+        MENUITEM "&Öffnen",                     ID_FILE_OPEN
+        MENUITEM "Sch&liessen",                 ID_FILE_CLOSE
+        MENUITEM SEPARATOR
+        MENUITEM "&Beenden",                    ID_APP_EXIT
+    END
+    POPUP "&Fenster"
+    BEGIN
+        MENUITEM "Anordnen",                    ID_FENSTER_ANORDNEN
+    END
+    POPUP "&?"
+    BEGIN
+        MENUITEM "Über...",                     ID__BER
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_DLG_LISTCTL DLGINIT
+BEGIN
+    IDC_CBX1_MIRR, 0x403, 2, 0
+0x0031, 
+    IDC_CBX1_MIRR, 0x403, 2, 0
+0x0032, 
+    IDC_CBX1_MIRR, 0x403, 2, 0
+0x0033, 
+    IDC_CBX1_MIRR, 0x403, 2, 0
+0x0034, 
+    IDC_CBX1_MIRR, 0x403, 2, 0
+0x0035, 
+    IDC_CBX3, 0x403, 2, 0
+0x0031, 
+    IDC_CBX3, 0x403, 2, 0
+0x0032, 
+    IDC_CBX3, 0x403, 2, 0
+0x0033, 
+    IDC_CBX3, 0x403, 2, 0
+0x0034, 
+    IDC_CBX3, 0x403, 2, 0
+0x0035, 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BITMAP1             BITMAP  DISCARDABLE     "bitmap1.bmp"
+IDB_BITMAP2             BITMAP  DISCARDABLE     "bitmap2.bmp"
+IDB_BITMAP3             BITMAP  DISCARDABLE     "bitmap3.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDR_MAINFRAME           "ECLwin Testprogramm"
+END
+
+#endif    // German (Germany) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#include "afxres.rc"
+#include "win/system/mfc/eclres.rc"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

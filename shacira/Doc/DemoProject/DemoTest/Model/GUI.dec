@@ -1,0 +1,20 @@
+
+database local_variables device=local
+{
+};
+
+dark DarkConstState(long const_state);
+plaus IndexPlausFunction(long dimension);
+button Increment(long dimension);
+button Decrement(long dimension);
+button SetMatrix(string var_name);
+button ResetMatrix(string var_name);
+button ExecuteCommand(string pgm, long cmd);
+button ExecuteCommand2(string pgm, long cmd);
+user CopyIndex();
+button SetFrench();
+button SetLanguage(string language);
+user SetLang();
+plaus PlausLang();
+button SwitchUnit();
+

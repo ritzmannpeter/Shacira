@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[meta_exp.h] Meta-Expression Constructors/Destructors</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[meta_exp.h] Meta-Expression Constructors/Destructors</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="standard.htm">#include "standard.h"</a>
+<br><a href="otab.htm">#include "otab.h"</a>
+<br>
+<br>
+<br>
+<br><hr width="100%" size=2><h2><b> Types & Macros </b></h2>
+<br><pre>typedef Abs_T (*MF_Cpy_T)(Abs_T val); // type of copy function for external value
+typedef void  (*MF_Del_T)(Abs_T val); // type of free function for external value
+
+</pre>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b>Meta_T</b>
+<td align=left> type of meta element
+
+</table>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Meta_T <b>Meta_new</b>(c_string id, c_string typ)</pre>
+<td bgcolor="#FFF0F5" align=left> creates a new meta element with<br>
+   identifier 'id' and meta type 'typ'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Meta_delete</b>(Meta_T elm)</pre>
+<td bgcolor="#FFF0F5" align=left>frees meta element 'elm'
+
+</table>
+<br><hr width="100%" size=2><h2><b> Constructors </b></h2>
+<br><pre>
+   In the constructor and set functions 'id' and 'typ' will be copied.
+   Most of the values won't. Otherwise it's documented explicit.
+   For string and abstract values it can be specified by the user.
+
+</pre>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Meta_T <b>Meta_grp_mk</b>(c_string id, c_string typ, ROW(Meta_T) parts)</pre>
+<td bgcolor="#FFF0F5" align=left> constructs a meta element of type 'group' and<br>
+   child elements in 'parts' as value<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Meta_T <b>Meta_int_mk</b>(c_string id, c_string typ, long val)</pre>
+<td bgcolor="#FFF0F5" align=left> constructs a meta element of type 'int' and 'val' as value <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Meta_T <b>Meta_abs_mk</b>
+       (
+         c_string id, c_string typ, Abs_T val, MF_Cpy_T cpy, MF_Del_T del
+       )</pre>
+<td bgcolor="#FFF0F5" align=left> constructs a meta element of type 'abstract', 'val' as value,<br>
+   'cpy' as copy function and 'del' as free function<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Meta_T <b>Meta_str_mk</b>(c_string id, c_string typ, c_string val, c_bool valcopy)</pre>
+<td bgcolor="#FFF0F5" align=left> constructs a meta element of type 'string' and 'val' as value<br>
+   'valcopy' --&gt; copies value<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Meta_T <b>Meta_raw_mk</b>(c_string id, c_string typ, c_byte* val)</pre>
+<td bgcolor="#FFF0F5" align=left> constructs a meta element of type 'raw' and 'val' as value<br>
+   ( val = ( long ) len byte ... )<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Meta_T <b>Meta_bin_mk</b>(c_string id, c_string typ, long len, c_byte* val)</pre>
+<td bgcolor="#FFF0F5" align=left> constructs a meta element of type 'binary' and 'val' as value<br>
+   of length 'len' ( copies value )<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Meta_T <b>Meta_set_loc</b>(Meta_T elm, c_string loc, long row, long col)</pre>
+<td bgcolor="#FFF0F5" align=left> adds / updates location information 'loc', 'row' and 'col'<br>
+   in meta element 'elm' ( no copy of 'loc' )<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Meta_T <b>Meta_set_key</b>(Meta_T elm, c_string id, c_string typ)</pre>
+<td bgcolor="#FFF0F5" align=left> adds / updates key information 'id', 'typ' in meta element 'elm' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Meta_T <b>Meta_set_grp</b>(Meta_T elm, ROW(Meta_T) parts)</pre>
+<td bgcolor="#FFF0F5" align=left> adds / updates group value 'parts' in meta element 'elm' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Meta_T <b>Meta_set_int</b>(Meta_T elm, long val)</pre>
+<td bgcolor="#FFF0F5" align=left> adds / updates int value 'val' in meta element 'elm' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Meta_T <b>Meta_set_abs</b>(Meta_T elm, Abs_T val, MF_Cpy_T cpy, MF_Del_T del)</pre>
+<td bgcolor="#FFF0F5" align=left> adds / updates abstract value 'val', 'cpy', 'del'<br>
+   in meta element 'elm'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Meta_T <b>Meta_set_str</b>(Meta_T elm, c_string val, c_bool valcopy)</pre>
+<td bgcolor="#FFF0F5" align=left> adds / updates string value 'val' in meta element 'elm'<br>
+   'valcopy' --&gt; copies value<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Meta_T <b>Meta_set_raw</b>(Meta_T elm, c_byte* val)</pre>
+<td bgcolor="#FFF0F5" align=left> adds / updates raw value 'val' in meta element 'elm' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Meta_T <b>Meta_set_bin</b>(Meta_T elm, long len, c_byte* val)</pre>
+<td bgcolor="#FFF0F5" align=left> adds / updates binary value 'val' of length 'len'<br>
+   in meta element 'elm'<br>
+<br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Destructors </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>Meat_get_loc</b>(Meta_T elm, c_string* loc, long* row, long* col)</pre>
+<td bgcolor="#FFF0F5" align=left> get location information of meta element 'elm' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Meta_grp_de</b>(Meta_T elm, c_string* id, c_string* typ, ROW(Meta_T)* parts)</pre>
+<td bgcolor="#FFF0F5" align=left> destructs group meta element 'elm' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Meta_int_de</b>(Meta_T elm, c_string* id, c_string* typ, long* val)</pre>
+<td bgcolor="#FFF0F5" align=left> destructs int meta element 'elm' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Meta_abs_de</b>
+     (
+       Meta_T elm, c_string* id, c_string* typ,
+       Abs_T* val, MF_Cpy_T* cpy, MF_Del_T* del
+     )</pre>
+<td bgcolor="#FFF0F5" align=left> destructs abstract meta element 'elm' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Meta_str_de</b>(Meta_T elm, c_string* id, c_string* typ, c_string* val)</pre>
+<td bgcolor="#FFF0F5" align=left> destructs string meta element 'elm' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Meta_raw_de</b>(Meta_T elm, c_string* id, c_string* typ, c_byte** val)</pre>
+<td bgcolor="#FFF0F5" align=left> destructs raw meta element 'elm' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Meta_bin_de</b>(Meta_T elm, c_string* id, c_string* typ, long* len, c_byte** val)</pre>
+<td bgcolor="#FFF0F5" align=left> destructs binary meta element 'elm' <br>
+
+</table>
+
+</body>
+</html>

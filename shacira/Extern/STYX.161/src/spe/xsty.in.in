@@ -1,0 +1,7 @@
+#! @SHELL@ -e
+
+patdir=@sampledir@/pat
+spedir=@sampledir@/spe
+dstdir=.
+
+stydoc -keepNTs=Dfn -OutFile=${dstdir}/styx_cfg.htm ${spedir}/styx.sty ${patdir}/tstydoc_us.htm 

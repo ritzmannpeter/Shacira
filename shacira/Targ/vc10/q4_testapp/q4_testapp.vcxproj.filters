@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Dateien">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;cxx;c;def</Extensions>
+    </Filter>
+    <Filter Include="Header Dateien">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h</Extensions>
+    </Filter>
+    <Filter Include="Form Dateien">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+    </Filter>
+    <Filter Include="Resource Dateien">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Generierte Dateien">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>moc;h;cpp</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generierte Dateien\Debug">
+      <UniqueIdentifier>{cbbe7a5d-e4d1-445e-a34c-7422bf9c0dd4}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generierte Dateien\Release">
+      <UniqueIdentifier>{721a4933-243b-477d-9dc1-c1bb6315614a}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Source Dateien\qt4port">
+      <UniqueIdentifier>{592e9d88-a2fe-46c7-a125-364f447832ec}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
+    <ClCompile Include="q4_testapp.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_q4_testapp.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_q4_testapp.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_widget.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_widget.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="widget.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_mosaic.cpp">
+      <Filter>Generierte Dateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\qt4port\headerview.cpp">
+      <Filter>Source Dateien\qt4port</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\qt4port\listview.cpp">
+      <Filter>Source Dateien\qt4port</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\qt4port\listviewitem.cpp">
+      <Filter>Source Dateien\qt4port</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\qt4port\listviewitemiterator.cpp">
+      <Filter>Source Dateien\qt4port</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_listview.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_listview.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\qt4port\listviewitemdelegate.cpp">
+      <Filter>Source Dateien\qt4port</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="q4_testapp.ui">
+      <Filter>Form Dateien</Filter>
+    </CustomBuild>
+    <CustomBuild Include="widget.h">
+      <Filter>Source Dateien</Filter>
+    </CustomBuild>
+    <CustomBuild Include="q4_testapp.h">
+      <Filter>Source Dateien</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Resources\mosaic.qrc">
+      <Filter>Resource Dateien</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\qt4port\listview.h">
+      <Filter>Source Dateien\qt4port</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GeneratedFiles\ui_q4_testapp.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\GUIFramework\qt4port\headerview.h">
+      <Filter>Source Dateien\qt4port</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\GUIFramework\qt4port\listviewitem.h">
+      <Filter>Source Dateien\qt4port</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\GUIFramework\qt4port\listviewitemiterator.h">
+      <Filter>Source Dateien\qt4port</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\GUIFramework\qt4port\qheader.h">
+      <Filter>Source Dateien\qt4port</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\GUIFramework\qt4port\qobjectlist.h">
+      <Filter>Source Dateien\qt4port</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\GUIFramework\qt4port\qptrlist.h">
+      <Filter>Source Dateien\qt4port</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

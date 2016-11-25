@@ -1,0 +1,7 @@
+The file mcfg.sty contains a scanner definition for the configuration language
+used to configure, for example, the linux kernel.
+
+It demonstrates the ability of Styx to cope with scan groups.
+
+Use the shell script 'mx' to create the scanner image. 
+Then run the command 'lim_test ide.config.in' to see the scanner output.

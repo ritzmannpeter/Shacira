@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title></title>
+    <style type="text/css">
+        html, body {margin: 0; border: 0; padding: 0;}
+    </style>
+    <script type="text/javascript">
+        (function () {
+            var W = window, D = document, qs;
+
+            function decodeQP(p) { return decodeURIComponent(p.replace(/\+/g, ' ')); }
+            function encodeQP(p) { return encodeURIComponent(p); }
+
+            function getQP(k) {
+                if (!qs) {
+                    qs = {};
+                    var kvs = W.location.search.substr(1).split('&');
+                    for (var i = 0; i < kvs.length; i++) {
+                        var p = kvs[i].split('=');
+                        qs[decodeQP(p[0])] = decodeQP(p.length == 2 ? p[1] : p[0]);
+                    }
+                }
+                return qs[k];
+            }
+            
+            function postMsg(num) {
+                try {
+                    var loc = getQP('l');
+                    loc && W.top.postMessage(num.toString(), loc);
+                } catch (e) { }
+            }
+
+            function run(p) {
+                var url = '';
+                switch (p) {
+                    case 'ADM':
+                        admatter_account = '50296486-753f-419a-b8f3-ed9745d6ab1e';
+                        admatter_uid = '';
+                        admatter_adtype = 'banner';
+                        admatter_slot = 83;
+                        admatter_width = 728;
+                        admatter_height = 90;
+                        admatter_keyword = getQP('kw');
+                        url = '//wac.edgecastcdn.net/800952/static/js/showads_p.js';
+
+                        W.sendMsg = function (id) {
+                            postMsg(id == 1 ? 0 : 1);
+                            try {
+                                delete W.sendMsg;
+                            } catch (e) { }
+                        };
+
+                        break;
+                    case 'OXOS':
+                        m3_r = Math.floor(Math.random() * 99999999999);
+                        m3_u = 'http://openx.jeetyetmedia.com/www/delivery/ajs.php?zoneid=990&amp;cb=' + m3_r;
+                        m3_u += '&amp;category=' + encodeQP(getQP('cat'));
+                        m3_u += '&amp;loc=' + encodeQP(D.location.href);
+                        if (D.referrer) m3_u += '&amp;referer=' + encodeQP(D.referrer);
+                        if (D.context) m3_u += '&amp;context=' + encodeQP(D.context);
+                        if (D.charset || D.characterSet) m3_u += '&amp;charset=' + encodeQP(D.charset || D.characterSet);
+                        if (!D.MAX_used) D.MAX_used = ',';
+                        if (D.MAX_used != ',') m3_u += '&amp;exclude=' + D.MAX_used;
+                        if (D.mmm_fo) m3_u += '&amp;mmm_fo=1';
+                        url = m3_u;
+                        
+                        W.onload = function () {
+                            postMsg(Math.max(D.body.children.length - 2, 0));
+                        };
+
+                        break;
+                }
+                if (!!url) {
+                    D.write('<scr' + 'ipt type="text/javascript" src="' + url + '">');
+                    D.write('<\/scr' + 'ipt>');
+                }
+            }
+
+            W.run = function (p) {
+                run(p);
+                try {
+                    delete W.run;
+                } catch (e) { }
+            };
+        })()
+    </script>
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+    <!-- ID: 264 | GeoID: 1 | GroupID: 21 | ProductID: 14 | Template: BottomBar -->
+    <script type="text/javascript">
+(function () {
+    var providers = [
+        {
+            l: 'ADM',
+            p: 100
+        },
+        {
+            l: 'OXOS',
+            p: 0
+        }
+    ];
+
+    var r = Math.random() * 100;
+    for (var i = 0; i < providers.length; i++) {
+        var p = providers[i];
+        r -= p.p;
+        if (r < 0) return run(p.l);
+    }
+})()
+    </script><script type="text/javascript" src="ancbanner_general_728x90_264_data/showads_p.js"></script><script type="text/javascript" src="ancbanner_general_728x90_264_data/creative.txt"></script><!-- BEGIN STANDARD TAG - 728 x 90 - Fix Price per Channel: Lifestyle,Health,Education_DE_Tier1 - DO NOT MODIFY -->
+<script type="text/javascript" src="ancbanner_general_728x90_264_data/st.txt"></script><script type="text/javascript" src="ancbanner_general_728x90_264_data/imp.js"></script><a target="_blank" href="http://ad.xtendmedia.com/clk?3,eJytTkluwkAQfI1vYM1qj2XlMIBNImGTREYELmg2L8gLwYOA38cQlOQBKZWqW91V6oY4JFLngnkyMAphqFEIsTaCUACFPwJhGGIMKPZowMioJJdrvPrQr298Nb-SCb.heUUz.hebR2Wcv.FpVGdmff6e-J.biv8LZjy5qEf.wnkxcMb48hzH3h5Mfm1plcwitJ2.14t1dE73kU2yuE4qQJfz6LrI0n06j2jSrM6bfVylxU.yaTQqrT04mDsoHqh06.alOBottO4aUbWu6pphIVolRdua464wg4p65yN2CcAOecQtbePgWAnr4BmGyEFTn.nAQZ6qK9PaSg.zAGNfS8TGzCg4JjBXY6kDNCYkJ0AigyA1Q6IerPePEMViEJTfpbenPG872emr7WrdGCG7k3Vl3RX9obOuvmX72.2mlwxA-gXibpJg,"><img alt="" src="ancbanner_general_728x90_264_data/256787ca949ca5682ae881c056b2f264.gif" border="0" height="90" width="728"></a>
+<!-- END TAG --><script type="text/javascript" src="ancbanner_general_728x90_264_data/i.txt"></script>
+
+</body></html>

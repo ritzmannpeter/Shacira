@@ -1,0 +1,55 @@
+
+#ifndef _cSyncView_h_
+#define _cSyncView_h_
+
+#ifndef ULONG_T
+typedef unsigned long ULONG_T;
+typedef unsigned char UCHAR_T;
+typedef bool BOOL_T;
+#include <malloc.h>
+#include <string.h>
+#include "list"
+#define ALLOC(size) calloc(1, size);
+#define FREE(ptr) free(ptr);
+#endif
+
+#define NO_OP           0
+#define INSERT_OP       1
+#define DELETE_OP       2
+#define UPDATE_OP       3
+typedef struct _sync_entry {
+   ULONG_T id;
+   ULONG_T id2;
+   void * object;
+   void * related_object;
+   UCHAR_T op;
+}  SYNC_ENTRY_T;
+#define INVALID_POS     0xffffffff
+
+class cSyncView
+{
+public:
+   cSyncView(ULONG_T size);
+   ~cSyncView();
+   void ClearSrc();
+   void ClearDst();
+   void AddSrcObject(ULONG_T pos, ULONG_T id, void * object);
+   void Sync();
+   virtual int CompareKey(int src_pos, int dst_pos);
+   virtual void DeleteObject(void * object);
+   virtual void * RelatedObject(void * object);
+private:
+   ULONG_T _Size;
+#ifdef DYNAMIC_OBJECT
+   SYNC_ENTRY_T * _SrcEntries;
+   SYNC_ENTRY_T * _DstEntries;
+#else
+   SYNC_ENTRY_T _SrcEntries[50];
+   SYNC_ENTRY_T _DstEntries[50];
+#endif
+   ULONG_T _SrcCount;
+   ULONG_T _DstCount;
+};
+
+#endif
+

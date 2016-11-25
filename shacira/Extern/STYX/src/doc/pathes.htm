@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[pathes.h] Path Iterator / File Access & I/O Handling</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[pathes.h] Path Iterator / File Access & I/O Handling</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="standard.htm">#include "standard.h"</a>
+<br>
+<br>
+<br>
+<br><hr width="100%" size=2><h2><b> Types </b></h2>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b>PIT</b>
+<td align=left> Abstract tokenizer / path iterator type 
+
+</table>
+<br><hr width="100%" size=2><h2><b> Tokenizer / Path iterator </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PIT <b>PIT_make</b>(c_string PathList)</pre>
+<td bgcolor="#FFF0F5" align=left> creates a tokenizer / path iterator from 'PathList' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PIT_sep</b>(PIT Piter,c_string sep)</pre>
+<td bgcolor="#FFF0F5" align=left> defines 'sep' as token separator for iterator 'Piter' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>PIT_read</b>(PIT Piter)</pre>
+<td bgcolor="#FFF0F5" align=left>next token / path in iterator 'Piter'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PIT_drop</b>(PIT Piter)</pre>
+<td bgcolor="#FFF0F5" align=left>drops tokenizer / path iterator 'Piter'
+
+</table>
+<br><hr width="100%" size=2><h2><b> File access / information </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>DirSep</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>directory separator ( constant )
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>PathSep</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>path separator ( constant )
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>AbsolutePathSep</b>(c_string file)</pre>
+<td bgcolor="#FFF0F5" align=left> whether 'file' starts with a path separator <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>AbsolutPath</b>(c_string file)</pre>
+<td bgcolor="#FFF0F5" align=left>whether 'file' is an absolut path
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>PathIgnCase</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>whether pathes are case insensitive
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>FileLName</b>(c_string file)</pre>
+<td bgcolor="#FFF0F5" align=left> filename of path 'file'; allocs memory <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>FilePrefix</b>(c_string file)</pre>
+<td bgcolor="#FFF0F5" align=left> directory prefix of path 'file'; allocs memory <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>FileSuffix</b>(c_string file)</pre>
+<td bgcolor="#FFF0F5" align=left>suffix of path 'file'; allocs memory
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>BaseFile</b>(c_string file)</pre>
+<td bgcolor="#FFF0F5" align=left>basename of path 'file'; allocs memory
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>IsPath</b>(c_string path)</pre>
+<td bgcolor="#FFF0F5" align=left> whether 'path' is a regular file, directory, ... <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>IsDirEntry</b>(c_string file, c_string dir)</pre>
+<td bgcolor="#FFF0F5" align=left> whether 'file' is an entry of directory 'dir' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>GetEnvCtx</b>(c_string env)</pre>
+<td bgcolor="#FFF0F5" align=left> value of context or environment variable or NULL <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>MkPath</b>(c_string direnv, c_string basename, c_string ext, char opt)</pre>
+<td bgcolor="#FFF0F5" align=left> path = cons(env,dir_separation,basename,ext); allocs memory. Note:<br>
+                  opt = 'd'                     --&gt; env = direnv<br>
+   direnv  = "" & opt = 'c' & relative basename --&gt; env = dirname(cwd)<br>
+   direnv != "" & opt = '$'                     --&gt; env = $direnv<br>
+   direnv != "" & opt = 'e'                     --&gt; env = getenv(direnv)<br>
+   direnv != "" & opt = 'p'                     --&gt; env = findPath in<br>
+                                                          getenv(direnv)<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>long <b>PathMTime</b>(c_string path)</pre>
+<td bgcolor="#FFF0F5" align=left>file modification time of 'path'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>long <b>Path_FileSize</b>(c_string path)</pre>
+<td bgcolor="#FFF0F5" align=left>the file size of 'path'
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>IsDirPath</b>(c_string path)</pre>
+<td bgcolor="#FFF0F5" align=left>path = directory ?
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>IsRegPath</b>(c_string path)</pre>
+<td bgcolor="#FFF0F5" align=left>path = regular file ?
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>IsCDevPath</b>(c_string path)</pre>
+<td bgcolor="#FFF0F5" align=left>path = character device ?
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>IsBDevPath</b>(c_string path)</pre>
+<td bgcolor="#FFF0F5" align=left>path = block device ?
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>IsFifoPath</b>(c_string path)</pre>
+<td bgcolor="#FFF0F5" align=left>path = FIFO ?
+
+</table>
+<br><hr width="100%" size=2><h2><b> File I/O handling </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>FILE* <b>TryOpnFile</b>(c_string path, c_string access)</pre>
+<td bgcolor="#FFF0F5" align=left> tries to open 'path' in mode 'access' ( MSDOS convention 'w|r[+]t|b' ) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>FILE* <b>OpnFile</b>(c_string path, c_string access)</pre>
+<td bgcolor="#FFF0F5" align=left> opens 'path' in mode 'access' ( MSDOS convention 'w|r[+]t|b' );<br>
+   raises exception<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>FILE* <b>TryOpenPath</b>(c_string env, c_string file, c_string ext, c_string acc)</pre>
+<td bgcolor="#FFF0F5" align=left> tries to open Path(env,file,ext) in mode 'acc'<br>
+   ( MSDOS convention 'w|r[+]t|b' )<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>FILE* <b>OpenPath</b>(c_string env, c_string file, c_string ext, c_string acc)</pre>
+<td bgcolor="#FFF0F5" align=left> opens Path(env,file,ext) in mode 'acc'<br>
+   ( MSDOS convention 'w|r[+]t|b' ); raises exception<br>
+<br>
+
+</table>
+
+</body>
+</html>

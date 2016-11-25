@@ -1,0 +1,3 @@
+
+mmaked debug
+mmaked release

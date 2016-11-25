@@ -1,0 +1,7 @@
+diff /p/styx/gen/estyx.abs /p/styx/gen.sav/estyx.abs
+diff /p/styx/gen/esty_lim.c /p/styx/gen.sav/esty_lim.c
+diff /p/styx/gen/esty_pim.c /p/styx/gen.sav/esty_pim.c
+diff /p/styx/gen/esty_int.c /p/styx/gen.sav/esty_int.c
+diff /p/styx/gen/esty_ant.c /p/styx/gen.sav/esty_ant.c
+diff /p/bing/estyx.lim /p/bing.sav3/estyx.lim
+diff /p/bing/estyx.pim /p/bing.sav3/estyx.pim

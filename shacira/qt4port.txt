@@ -1,0 +1,29 @@
+
+
+   - Listviews sind noch nicht alle korrekt,
+     das betrifft Spaltenüberschriften usw.
+   - Wizards sind bestimmt nicht korrekt und so gut wie
+     gar nicht getestet ebenso Dialoge, wobei da eigentlich nicht viel zu erwarte ist
+   - Es sind noch optische Mängel vorhanden (insbesondere ListViews)
+     Diese Mängel müssen übder die Verwendung von StyleSheets behoben werden,
+     allerdings erst dann, wenn die Funktionen in Ordnung sind.
+   - Die Heizungswidgets werden nur in der release-Variante korrekt angezeigt.
+     Den Grund dafür habe ich noch nicht gesucht.
+   - Es gibt ein grundlegendes Problem mit dem Event showEvent(..), was zu
+     Initialisierungsproblemen in gewissen Widgets führt (zu beobachten im user list view oder
+     Fehlermeldungen im MCorStatusListView im Debug-Fenster).
+     Das Problem besteht darin, dass showEvent(..) schon aufgerufen wird, wenn eine Seite in den WidgetStack
+     eingetragen wird (Zu beobachten am Aktiviren aller GroupSelectButtons beim Aufstarten).
+     Danach kommt dieses Ereignis nur unzuverlässig.
+     Das ist aber kein generelles Problem von Qt 4 da ich es in einem anderen Projekt mit Qt4
+     absolut zuverlaääsig verwende. Möglicherweise hängt es mit dem Threading in Mosaic zusammen.
+     Das muss ich noch genauer analysieren.
+   - Einige der Funktionen in Gui.cpp sind noch nicht portiert.
+   - Die Sprachumschaltung funktioniert noch nicht.
+   - Es gibt noch ein unaufgelöstes Symbol beim Erzeugen von Mosaic.exe um das ich mich aber bisher
+     noch nicht gekümmert habe.
+   - Die Eingabe-Dialoge (keypad und keyboard) sind noch nicht in Ordnung.
+
+   
+
+     

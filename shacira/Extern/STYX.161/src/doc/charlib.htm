@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[charlib.h] Basic Character ( Set ) & String Library</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[charlib.h] Basic Character ( Set ) & String Library</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="standard.htm">#include "standard.h"</a>
+<br>
+<br>
+<br>
+<br><hr width="100%" size=2><h2><b> ( German ) Character types </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>ger_islower</b>(char c)</pre>
+<td bgcolor="#FFF0F5" align=left>german islower
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>char <b>ger_tolower</b>(char c)</pre>
+<td bgcolor="#FFF0F5" align=left>german tolower
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>ger_isupper</b>(char c)</pre>
+<td bgcolor="#FFF0F5" align=left>german isupper
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>char <b>ger_toupper</b>(char c)</pre>
+<td bgcolor="#FFF0F5" align=left>german toupper
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>ger_isprint</b>(char c)</pre>
+<td bgcolor="#FFF0F5" align=left>german isprint
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>ger_charcmp</b>(char l, char r)</pre>
+<td bgcolor="#FFF0F5" align=left>l - r ( german )
+
+</table>
+<br><hr width="100%" size=2><h2><b> Character conversion </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>char <b>umlaut_ascii_to_eascii</b>(char c)</pre>
+<td bgcolor="#FFF0F5" align=left>us ascii --&gt; extended/OEM ascii
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>char <b>umlaut_eascii_to_ascii</b>(char c)</pre>
+<td bgcolor="#FFF0F5" align=left>extended/OEM ascii --&gt; us ascii
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>char <b>umlaut_eascii_to_ansi</b>(char c)</pre>
+<td bgcolor="#FFF0F5" align=left>extended/OEM ascii --&gt; ansi
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>char <b>umlaut_ansi_to_eascii</b>(char c)</pre>
+<td bgcolor="#FFF0F5" align=left>ansi --&gt; extended/OEM ascii
+
+</table>
+<br><hr width="100%" size=2><h2><b> String match </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>Str_matches</b>(c_string str, c_string pat)</pre>
+<td bgcolor="#FFF0F5" align=left> whether 'str' matches 'pat'<br>
+   meta characters: '*', '?'<br>
+<br>
+
+</table>
+
+</body>
+</html>

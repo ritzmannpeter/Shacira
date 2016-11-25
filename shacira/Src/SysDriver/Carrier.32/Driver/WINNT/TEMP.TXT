@@ -1,0 +1,809 @@
+/***************************************************************************
+*
+*  MODULE-NAME:
+*     CARNT
+*
+*  BESCHREIBUNG:
+*     Driver to access the data carrier hardware of the DNC.
+*
+*     Multiple open is not possible for the carrier driver.
+*     
+*  UMGEBUNG:
+*     ZIELRECHNER:           PC-AT 386/486/Pentium  Window NT
+*     ENTWICKLUNGSRECHNER:   Window NT
+*     UEBERSETZER:           Microsoft Visual C++ / BUILD Utility
+*     OPTIONEN:              
+*
+*  VERSION:
+*     VERSION:    1.00                      DATUM:   13.02.2001
+*     AUTOR(EN):                            TELEFON: (0761) 45205
+*
+*  HISTORY:
+*
+*
+*  BEMERKUNGEN:
+*     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+*     Access to the driver, existing of a address set and a consecuting
+*     read or write, must be protected by a mutex at user level, if
+*     called from a multithreaded environment!
+*     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+*
+*  KNOWN BUG:
+*     After unloading the driver and loading it again, the iqt doesn't
+*     recognize the data in the sram. There is no problem during the first
+*     load of the driver, it seems the problem is in unloading. Bug not
+*     handled, because this is a situation, that normaly does not occur.
+*
+*---------------------------------------------------------------------------
+*
+*  EXPORTSCHNITTSTELLE: 
+*
+*  FUNKTIONEN:
+*
+*  DATENTYPEN:
+*
+*  VARIABLEN:
+*
+*  NAMEN:
+*
+*.EM.***********************************************************************/
+
+#include "carnt.h"
+
+static int Err = 0;
+static CCB * Ccb = {0};
+
+/***************************************************************************
+                       Externals for Carrier Module
+***************************************************************************/
+
+extern unsigned char Inport(unsigned short port)
+{
+   return READ_PORT_UCHAR((unsigned char *)port);
+}
+
+extern void Outport(unsigned short port, unsigned char value)
+{ 
+   WRITE_PORT_UCHAR((unsigned char *)port, value);
+}
+
+extern void Wait(int ms)
+{
+   PDEVICE_EXTENSION pdev_ext = Ccb->DriverContext;
+
+   KeSetTimer(&pdev_ext->WaitTimer,
+              RtlConvertLongToLargeInteger(ms * -10000),  // Time in 100 nsec
+              NULL );
+   
+   KeWaitForSingleObject (&pdev_ext->WaitTimer, Executive, KernelMode, FALSE, 0);
+}
+
+/****************************************************************************
+                          Forward declarations
+****************************************************************************/
+
+NTSTATUS DriverEntry (IN PDRIVER_OBJECT DriverObject, IN PUNICODE_STRING RegistryPath);
+
+static NTSTATUS Carrier_Create    (IN PDRIVER_OBJECT DriverObject, IN PUNICODE_STRING RegistryPath);
+static VOID Carrier_Release       (IN PDRIVER_OBJECT DriverObject);
+static VOID Carrier_Unload        (IN PDRIVER_OBJECT DriverObject);
+static VOID Carrier_DeviceIO      (IN PDEVICE_OBJECT DeviceObject, IN PIRP Irp);
+static NTSTATUS Carrier_IOControl (IN ULONG ctlCode, IN CARRIER_CTL_STRUCT * carCtl,
+                                   IN ULONG outLength, OUT PVOID outBuffer, OUT ULONG * backLength);
+
+NTSTATUS DispatchOpenClose     (IN PDEVICE_OBJECT DeviceObject, IN PIRP Irp);
+NTSTATUS DispatchWrite         (IN PDEVICE_OBJECT DeviceObject, IN PIRP Irp);
+NTSTATUS DispatchRead          (IN PDEVICE_OBJECT DeviceObject, IN PIRP Irp);
+NTSTATUS DispatchIoControl     (IN PDEVICE_OBJECT DeviceObject, IN PIRP Irp);
+
+// If the compiler can handle it, make all possible
+// routines discardable, so that they doesn't waste space
+#ifdef ALLOC_PRAGMA
+#pragma alloc_text( init, DriverEntry )
+#pragma alloc_text( init, Carrier_Create )
+#pragma alloc_text( page, Carrier_Unload )
+#pragma alloc_text( page, Carrier_Release )
+#pragma alloc_text( page, DispatchOpenClose )
+#pragma alloc_text( page, DispatchWrite )
+#pragma alloc_text( page, DispatchRead )
+#pragma alloc_text( page, DispatchIoControl )
+#endif // ALLOC_PRAGMA
+
+typedef struct _REG_PARAMS {
+   ULONG PortAddress;
+   ULONG Version;
+   ULONG CheckMode;
+   ULONG DelayTime;
+   ULONG Stability;
+   ULONG Retries;
+} REG_PARAMS;
+
+/****************************************************************************
+                         Local helper functions
+****************************************************************************/
+
+static NTSTATUS LoadSettings(PUNICODE_STRING RegistryPath, REG_PARAMS * RegistryParameters)
+{
+	UNICODE_STRING SubPath;
+	WCHAR PathNameBuffer[30];
+	NTSTATUS status = STATUS_SUCCESS;
+	RTL_QUERY_REGISTRY_TABLE Table[7];
+
+   RtlZeroMemory( Table, sizeof(Table));
+
+   SubPath.Buffer = PathNameBuffer;
+   SubPath.MaximumLength = sizeof( PathNameBuffer );
+   SubPath.Length = 0;
+
+   RtlAppendUnicodeToString(&SubPath, L"Settings");
+
+   Table[0].Name = SubPath.Buffer;
+   Table[0].Flags = RTL_QUERY_REGISTRY_SUBKEY;
+
+   Table[1].Name = L"PortAddress";
+   Table[1].Flags = RTL_QUERY_REGISTRY_DIRECT;
+   Table[1].EntryContext = &RegistryParameters->PortAddress;
+
+   Table[2].Name = L"Version";
+   Table[2].Flags = RTL_QUERY_REGISTRY_DIRECT;
+   Table[2].EntryContext = &RegistryParameters->Version;
+
+   Table[3].Name = L"CheckMode";
+   Table[3].Flags = RTL_QUERY_REGISTRY_DIRECT;
+   Table[3].EntryContext = &RegistryParameters->CheckMode;
+
+   Table[4].Name = L"DelayTime";
+   Table[4].Flags = RTL_QUERY_REGISTRY_DIRECT;
+   Table[4].EntryContext = &RegistryParameters->DelayTime;
+
+   Table[5].Name = L"Retries";
+   Table[5].Flags = RTL_QUERY_REGISTRY_DIRECT;
+   Table[5].EntryContext = &RegistryParameters->Retries;
+
+   Table[6].Name = L"Stability";
+   Table[6].Flags = RTL_QUERY_REGISTRY_DIRECT;
+   Table[6].EntryContext = &RegistryParameters->Stability;
+   
+   return RtlQueryRegistryValues(
+             RTL_REGISTRY_ABSOLUTE,
+             RegistryPath->Buffer,
+             Table, NULL, NULL);
+}
+
+/*.Sf.***********************************************************************
+*
+*  Function:
+*     TranslatePortBase
+*
+*  Description:
+*     The ports for the Carrier driver are translated, so that the driver
+*     can use it, and reserved for exclusive use by the driver.
+*
+*  Arguments:
+*     IN  PDEVICE_EXTENSION pdev_ext    - ptr to device extension
+*     IN  unsigned int  original_port   - untranslated port base
+*     OUT unsigned int *translated_port - ptr to translated port base
+*
+*  Return Value:
+*     FALSE                             - Error reserving ports
+*
+*.Ef.***********************************************************************/
+
+static BOOLEAN TranslatePortBase (PDEVICE_EXTENSION pdev_ext,
+                                  unsigned int original_port,
+                                  unsigned int *translated_port)
+{
+   ULONG                           sizeOfResourceList = 0;
+   PCM_RESOURCE_LIST               resourceList       = NULL;
+   PCM_PARTIAL_RESOURCE_DESCRIPTOR partial;
+   BOOLEAN                         conflictDetected = TRUE;
+   PHYSICAL_ADDRESS                translatedIoPort;
+   ULONG                           uAddressSpace = 1;
+   NTSTATUS status;
+
+   // Alloc enough memory to build a resource list & zero it out
+   sizeOfResourceList = sizeof(CM_RESOURCE_LIST) +
+                        (sizeof(CM_PARTIAL_RESOURCE_DESCRIPTOR));
+   resourceList = ExAllocatePool (PagedPool, sizeOfResourceList);
+   if (!resourceList) return FALSE;  // Cannot build resource list
+   RtlZeroMemory (resourceList, sizeOfResourceList);
+
+   // Fill in the reosurce list
+   // NOTE: Assume Isa, bus # 0
+   resourceList->Count = 1;
+   resourceList->List[0].InterfaceType = Isa;
+   resourceList->List[0].BusNumber     = 0;
+   resourceList->List[0].PartialResourceList.Count = 1;
+
+   partial = &resourceList->List[0].PartialResourceList.PartialDescriptors[0];
+
+  // Allocate Ports for the Carrier controler
+
+   partial->Type                    = CmResourceTypePort;
+   partial->ShareDisposition        = CmResourceShareDriverExclusive;
+   partial->Flags                   = CM_RESOURCE_PORT_IO;
+   partial->u.Port.Start.LowPart    = original_port;
+   partial->u.Port.Start.HighPart   = 0;
+   partial->u.Port.Length           = 6;
+
+   status = IoReportResourceUsage (
+               NULL,                 // Optional class name
+               pdev_ext->DeviceObject->DriverObject,
+               resourceList,         // resource for whole driver
+               sizeOfResourceList,
+               pdev_ext->DeviceObject,
+               NULL,                 // no resource for device
+               0,
+               FALSE,                // don't override if in use
+               &conflictDetected );
+
+   if (resourceList) {
+       ExFreePool (resourceList);
+       if (!NT_SUCCESS( status ) || conflictDetected) return FALSE;
+   }
+
+   if( !HalTranslateBusAddress(
+         Isa, 0,
+         partial->u.Port.Start,
+         &uAddressSpace,
+         &translatedIoPort  ))
+      return FALSE;
+
+   *translated_port = translatedIoPort.LowPart;
+
+   return TRUE;
+}
+
+/****************************************************************************
+                           Main Driver Fuction
+ ****************************************************************************/
+
+/*.Sf.***********************************************************************
+*
+*  Function:
+*     DriverEntry
+*
+*  Description:
+*     This function initializes the driver, locates and claims hardware 
+*     resources, and creates various NT objects needed to process I/O 
+*     requests.
+*     This function is called by the IO-Manager!
+*
+*  Arguments:
+*     IN PDRIVER_OBJECT DriverObject  - Pointer to the Driver object
+*     IN PUNICODE_STRING RegistryPath - Registry path string for driver 
+*                                       service key
+*
+*  Return Value:
+*     NTSTATUS signaling success or failure
+*
+*.Ef.***********************************************************************/
+
+NTSTATUS DriverEntry (IN PDRIVER_OBJECT DriverObject, 
+                      IN PUNICODE_STRING RegistryPath)
+{
+   NTSTATUS status = STATUS_SUCCESS;
+   int segment;
+
+   // Export other driver entry points...
+   DriverObject->DriverStartIo = Carrier_DeviceIO;
+   DriverObject->DriverUnload  = Carrier_Unload;
+   
+   DriverObject->MajorFunction[IRP_MJ_CREATE]         = DispatchOpenClose;
+   DriverObject->MajorFunction[IRP_MJ_CLOSE]          = DispatchOpenClose;
+   DriverObject->MajorFunction[IRP_MJ_WRITE]          = DispatchWrite;
+   DriverObject->MajorFunction[IRP_MJ_READ]           = DispatchRead;
+   DriverObject->MajorFunction[IRP_MJ_DEVICE_CONTROL] = DispatchIoControl;
+
+   // Initialize a device object (there is only one device for the driver)
+   status = Carrier_Create(DriverObject, RegistryPath);
+   if (NT_SUCCESS(status))
+      return STATUS_SUCCESS;
+   else
+      return status;
+}
+
+/****************************************************************************
+                          dispatcher functions
+ ****************************************************************************/
+
+/*.Sf.***********************************************************************
+*
+*  Function:
+*     DispatchOpen / DispatchClose 
+*
+*  Description:
+*     This function dispatches CreateFile and CloseHandle requests from Win32.
+*     The state variables of the device are initialized.
+*
+*  Arguments:
+*     IN PDEVICE_OBJECT DeviceObject   - Pointer to Device object
+*     IN PIRP Irp                      - Pointer to IRP for this request
+*
+*  Return Value:
+*     This function returns STATUS_XXX
+*
+*.Ef.***********************************************************************/
+
+NTSTATUS DispatchOpenClose(IN PDEVICE_OBJECT DeviceObject, IN PIRP Irp)
+{
+   // Initialize state variables of the device
+   PDEVICE_EXTENSION pdev_ext = DeviceObject->DeviceExtension;
+   pdev_ext->Position = 0L;
+   
+   Irp->IoStatus.Status = STATUS_SUCCESS;
+   Irp->IoStatus.Information = 0;
+   IoCompleteRequest( Irp, IO_NO_INCREMENT );
+   return STATUS_SUCCESS;
+}
+
+/*.Sf.***********************************************************************
+*
+*  Function:
+*     DispatchWrite
+*
+*  Description:
+*     This function dispatches WriteFile
+*     requests from Win32
+*
+*  Arguments:
+*     IN PDEVICE_OBJECT DeviceObject   - Pointer to Device object
+*     IN PIRP Irp                      - Pointer to IRP for this request
+*
+*  Return Value:
+*     This function returns STATUS_XXX
+*
+*.Ef.***********************************************************************/
+
+NTSTATUS DispatchWrite (IN PDEVICE_OBJECT DeviceObject, IN PIRP Irp)
+{
+   // Start device operation (sequentialize access)
+   IoMarkIrpPending( Irp );
+   IoStartPacket( DeviceObject, Irp, 0, NULL );
+   return STATUS_PENDING;
+}
+
+/*.Sf.***********************************************************************
+*
+*  Function:
+*     DispatchRead
+*
+*  Description:
+*     This function dispatches ReadFile
+*     requests from Win32
+*
+*  Arguments:
+*     IN PDEVICE_OBJECT DeviceObject   - Pointer to Device object
+*     IN PIRP Irp                      - Pointer to IRP for this request
+*
+*  Return Value:
+*     This function returns STATUS_XXX
+*
+*.Ef.***********************************************************************/
+
+NTSTATUS DispatchRead (IN PDEVICE_OBJECT DeviceObject, IN PIRP Irp)
+{
+   // Start device operation (sequentialize access)
+   IoMarkIrpPending( Irp );
+   IoStartPacket( DeviceObject, Irp, 0, NULL );
+   return STATUS_PENDING;
+}
+
+/*.Sf.***********************************************************************
+*
+*  Function:
+*     DispatchIoControl
+*
+*  Description:
+*     This function dispatches DeviceControl requests from Win32
+*
+*  Arguments:
+*     IN PDEVICE_OBJECT DeviceObject   - Pointer to Device object
+*     IN PIRP Irp                      - Pointer to IRP for this request
+*
+*  Return Value:
+*     This function returns STATUS_XXX
+*
+*.Ef.***********************************************************************/
+
+NTSTATUS DispatchIoControl (IN PDEVICE_OBJECT DeviceObject, IN PIRP Irp)
+{
+   // Start device operation (sequentialize access)
+   IoMarkIrpPending( Irp );
+   IoStartPacket( DeviceObject, Irp, 0, NULL );
+   return STATUS_PENDING;
+}
+
+/****************************************************************************
+                     ****************************
+ ****************************************************************************/
+
+/*.Sf.***********************************************************************
+*
+* Function:
+*     Carrier_DeviceIO
+*
+* Description:
+*     This function is responsible for doing the real work in the
+*     driver. This function is called from the IO-Manager,
+*     and doing all the work in this function makes sure, that all
+*     IO requests are processed in an orderly sequential manner.
+*
+* Arguments:
+*     IN PDEVICE_OBJECT DeviceObject   - Pointer to Device object
+*     IN PIRP Irp                      - Pointer to IRP for this request
+*
+* Return Value:
+*     (None)
+*
+*.Ef.***********************************************************************/
+
+static VOID Carrier_DeviceIO(IN PDEVICE_OBJECT DeviceObject, IN PIRP Irp)
+{
+   int len, back_len = 0;
+   NTSTATUS status = STATUS_SUCCESS;
+   char *buf = (char *)(Irp->AssociatedIrp.SystemBuffer);
+   PDEVICE_EXTENSION pdev_ext = DeviceObject->DeviceExtension;
+   PIO_STACK_LOCATION IrpStack = IoGetCurrentIrpStackLocation( Irp );
+      
+   switch( IrpStack->MajorFunction ) {
+                                                     
+   case IRP_MJ_CREATE:
+      break;
+
+   case IRP_MJ_CLOSE:
+      break;
+
+      
+   case IRP_MJ_WRITE:
+      if ((len = IrpStack->Parameters.Write.Length) != 0) {
+         Err = CARRIER_Write(Ccb, pdev_ext->Position, buf, len);
+         if (Err == CARRIER_OK) {
+            pdev_ext->Position += len;
+            back_len = len;
+         }
+      }
+      break;
+
+
+   case IRP_MJ_READ:
+      // !! bufsize will not be checked here !!
+      if ((len = IrpStack->Parameters.Read.Length) != 0) {
+         Err = CARRIER_Read(Ccb, pdev_ext->Position, buf, len);
+         if (Err == CARRIER_OK) {
+            pdev_ext->Position += len;
+            back_len = len;
+         }
+      }         
+      break;
+
+
+   case IRP_MJ_DEVICE_CONTROL:
+      {
+         ULONG carctl_size = IrpStack->Parameters.DeviceIoControl.InputBufferLength;
+         if (carctl_size != sizeof(CARRIER_CTL_STRUCT)) 
+            status = STATUS_INVALID_PARAMETER;
+         else {
+            CARRIER_CTL_STRUCT carctl;
+            memcpy(&carctl, (CARRIER_CTL_STRUCT *)buf, carctl_size);
+            status = Carrier_IOControl(
+                        IrpStack->Parameters.DeviceIoControl.IoControlCode,
+                        &carctl,
+                        IrpStack->Parameters.DeviceIoControl.OutputBufferLength,
+                        (void *)buf, &back_len);
+         }
+      }
+      break;
+
+
+   default:
+      back_len = 0;
+      status = STATUS_NOT_SUPPORTED;
+   
+   }
+
+   Irp->IoStatus.Status = status;
+   Irp->IoStatus.Information = back_len;
+   IoCompleteRequest(Irp, IO_SERIAL_INCREMENT);
+   IoStartNextPacket(DeviceObject, FALSE);
+}
+
+/*.Sf.***********************************************************************
+*
+* Function:
+*     Carrier_IOControl
+*
+* Description:
+*     This function processes all IO control requests.
+*
+* Arguments:
+*     IN  ULONG ctlCode               - id of function
+*     IN  CARRIER_CTL_STRUCT * carctl - pointer to CarrierControlStructure
+*     IN  ULONG outLength             - size of buffer
+*     OUT PVOID outBuffer             - pointer to output buffer
+*     OUT ULONG *backLenngth          - pointer to length of return
+*
+* Return Value:
+*     NTSTATUS
+*
+*.Ef.***********************************************************************/
+
+static NTSTATUS Carrier_IOControl(IN ULONG ctlCode, IN CARRIER_CTL_STRUCT * carCtl,
+                                  IN ULONG outLength, OUT PVOID outBuffer, OUT ULONG * backLength)
+{
+   long lval = 0;
+   *backLength = 0;
+   switch (ctlCode) {
+   
+   case IOCTL_CARRIER_SEEK:
+      if ((lval = CARRIER_Check(Ccb)) < 0)
+         Err = (int)lval;
+      else {
+         if (carCtl->Long1 > lval*1024lu)
+            return STATUS_END_OF_FILE;
+         else {
+            PDEVICE_EXTENSION pDevExt = Ccb->DriverContext;
+            pDevExt->Position = carCtl->Long1;
+            *(long *)outBuffer = pDevExt->Position;
+            *backLength = sizeof(long);
+         }
+      }
+      break;
+
+
+   case IOCTL_CARRIER_CHECK:
+      lval = CARRIER_Check(Ccb);
+      if (lval <= 0)
+         Err = (int)lval;
+      else {
+         *(int *)outBuffer = (int)lval;
+         *backLength = sizeof(int);
+      }
+      break;
+
+
+   case IOCTL_CARRIER_READ:
+      if (outLength < carCtl->Long2)
+         return STATUS_BUFFER_TOO_SMALL;
+      else {   
+         Err = CARRIER_Read(Ccb, carCtl->Long1, outBuffer, carCtl->Long2);
+         if (Err == CARRIER_OK)
+            *backLength = carCtl->Long2;
+      }
+      break;
+   
+
+   case IOCTL_CARRIER_WRITE:
+      Err = CARRIER_Write(Ccb, carCtl->Long1, carCtl->pByte, carCtl->Long2);
+      if (Err == CARRIER_OK)
+         *backLength = carCtl->Long2;
+      break;
+
+
+   case IOCTL_CARRIER_GET_PARAM:
+      Err = CARRIER_GetParameter(Ccb, carCtl->pByte, &lval);
+      if (Err == CARRIER_OK) {
+         *(long *)outBuffer = lval;
+         *backLength = sizeof(long);
+      }
+      break;
+
+
+   case IOCTL_CARRIER_SET_PARAM:
+      Err = CARRIER_SetParameter(Ccb, carCtl->pByte, carCtl->Long1);
+      if (Err == CARRIER_OK) {
+         *(long *)outBuffer = carCtl->Long1;
+         *backLength = sizeof(long);
+      }
+      break;
+
+
+   case IOCTL_CARRIER_LAST_ERROR:
+      *(int *)outBuffer = Err;
+      *backLength = sizeof(int);
+      break;
+
+
+   default:
+      return STATUS_INVALID_DEVICE_REQUEST;
+   }
+
+   return STATUS_SUCCESS;
+}
+
+/****************************************************************************
+                 Functions for startup and shutdown
+ ****************************************************************************/
+
+/*.Sf.***********************************************************************
+*
+*  Function:
+*     Carrier_Create
+*
+*  Description:
+*     This function creates and initializes a single Device object.
+*
+*  Arguments:
+*     IN PDRIVER_OBJECT DriverObject   - Pointer to the Driver object
+*     IN PUNICODE_STRING RegistryPath - Registry path string for driver 
+*                                       service key
+*
+*  Return Value:
+*     NTSTATUS signaling success or failure;
+*
+*.Ef.***********************************************************************/
+
+static NTSTATUS Carrier_Create(IN PDRIVER_OBJECT DriverObject, IN PUNICODE_STRING RegistryPath)
+{
+   NTSTATUS status;
+   PDEVICE_OBJECT pDevObj;
+   PDEVICE_EXTENSION pDevExt;
+   unsigned int mappedAddress;
+   REG_PARAMS RegistryParameters = {0x360, 1, 1, 15, 5, 50}; // default settings
+
+   UNICODE_STRING deviceName;
+   WCHAR deviceNameBuffer[ MAX_DEV_NAMELEN ];
+   
+   UNICODE_STRING linkName;
+   WCHAR linkNameBuffer[ MAX_DEV_NAMELEN ];
+   
+   // Form the base NT and Win32 device names ...
+   deviceName.Buffer = deviceNameBuffer;
+   deviceName.MaximumLength = MAX_DEV_NAMELEN;
+   deviceName.Length = 0;
+   RtlAppendUnicodeToString( &deviceName, CARRIER_NT_DEVICE_NAME);
+   
+   linkName.Buffer = linkNameBuffer;
+   linkName.MaximumLength = MAX_DEV_NAMELEN;
+   linkName.Length = 0;
+   RtlAppendUnicodeToString( &linkName, CARRIER_SYMBOLIC_NAME_STRING);
+   
+   // Create a Device object for this device...
+   status = IoCreateDevice(
+            DriverObject,
+            sizeof( DEVICE_EXTENSION ),
+            &deviceName,
+            FILE_DEVICE_UNKNOWN,
+            0,
+            TRUE,   // exclusive, cannot be shared!
+            &pDevObj );
+
+   if( !NT_SUCCESS( status )) return status;
+
+   pDevObj->Flags |= DO_BUFFERED_IO;
+
+    // Initialize the Device Extension
+   pDevExt = pDevObj->DeviceExtension;
+   pDevExt->DeviceObject = pDevObj;
+   pDevExt->Position = 0;
+
+   LoadSettings(RegistryPath, &RegistryParameters);
+
+   if (!TranslatePortBase(pDevExt, RegistryParameters.PortAddress, &mappedAddress)) return FALSE;
+   
+   // Initialize the timer, needed for driver waitstates
+   KeInitializeTimer( &pDevExt->WaitTimer );
+
+   Ccb = CARRIER_Init(pDevExt, mappedAddress);
+   if (Ccb == NULL) {
+      IoDeleteDevice( pDevObj );
+      return STATUS_INSUFFICIENT_RESOURCES;
+   } else {
+      CARRIER_SetParameter(Ccb, "Version", RegistryParameters.Version);
+      CARRIER_SetParameter(Ccb, "CheckMode", RegistryParameters.CheckMode);
+      CARRIER_SetParameter(Ccb, "DelayTime", RegistryParameters.DelayTime);
+      CARRIER_SetParameter(Ccb, "Stability", RegistryParameters.Stability);
+      CARRIER_SetParameter(Ccb, "Retries", RegistryParameters.Retries);
+   }
+
+
+   // Create a symbolic link so our device is visible to Win32...
+   status = IoCreateSymbolicLink( &linkName, &deviceName );
+    
+    // See if the symbolic link was created...
+   if( !NT_SUCCESS( status )) 
+   {
+      IoDeleteDevice( pDevObj );
+      return status;
+    }
+
+   return status;
+}
+
+/*.Sf.***********************************************************************
+*
+*  Function:
+*     Carrier_Unload
+*
+*  Description:
+*     This function releases any resources allocated during 
+*     driver initialization.
+*
+*  Arguments:
+*     IN PDRIVER_OBJECT DriverObject   - A pointer to the Driver object
+*
+*  Return Value:
+*     (None)
+*
+*.Ef.***********************************************************************/
+
+static VOID Carrier_Unload(IN PDRIVER_OBJECT DriverObject)
+{
+   CARRIER_Exit(Ccb);
+
+   // Stop interrupt processing and release hardware
+   Carrier_Release(DriverObject);
+}
+
+/*.Sf.***********************************************************************
+*
+*  Function:
+*     Carrier_Release
+*
+*  Description:
+*     This function releases any resources allocated during driver
+*     initialization.
+*
+*  Arguments:
+*     IN PDRIVER_OBJECT DriverObject   - A pointer to the Driver object
+*
+*  Return Value:
+*     (None)
+*
+*.Ef.***********************************************************************/
+
+static VOID Carrier_Release(IN PDRIVER_OBJECT DriverObject)
+{
+   PDEVICE_OBJECT pDevObj;
+   PDEVICE_EXTENSION pDevExt;
+   
+   UNICODE_STRING linkName;
+   WCHAR linkNameBuffer[ MAX_DEV_NAMELEN ];
+
+   CM_RESOURCE_LIST ResList;
+   BOOLEAN bConflict;
+
+   linkName.Buffer = linkNameBuffer;
+   linkName.MaximumLength = MAX_DEV_NAMELEN;
+   
+   pDevObj = DriverObject->DeviceObject;
+   pDevExt = pDevObj->DeviceExtension;
+
+   // Deallocate hardware resources owned by the Device object...
+   ResList.Count = 0;   // Build an empty list
+   IoReportResourceUsage(
+      NULL,             // Default class name
+      DriverObject,     // Pointer to Driver object
+      NULL,             // No Driver resources
+      0,
+      pDevObj,          // Pointer to Device object
+      &ResList,         // Device resources
+      sizeof( ResList ),
+      FALSE,            // Don't override conflicts
+      &bConflict );     // Junk, but required
+
+   // Form the Win32 symbolic link name.
+   linkName.Buffer = linkNameBuffer;
+   linkName.MaximumLength = MAX_DEV_NAMELEN;
+   linkName.Length = 0;
+   RtlAppendUnicodeToString( &linkName, CARRIER_SYMBOLIC_NAME_STRING);
+
+   // Remove symbolic link from Object namespace...
+   IoDeleteSymbolicLink( &linkName );
+
+   // Get rid of the device object
+   IoDeleteDevice( pDevObj );
+   
+   // Deallocate hardware resources owned by the Driver
+   ResList.Count = 0;   // Build an empty list
+   IoReportResourceUsage(
+      NULL,             // Default class name
+      DriverObject,     // Pointer to Driver object
+      &ResList,         // Drive resources
+      sizeof( ResList ),
+      NULL,             // Pointer to Device object
+      NULL,             // No Device resources
+      0,
+      FALSE,            // Don't override conflicts
+      &bConflict );     // Junk, but required
+}

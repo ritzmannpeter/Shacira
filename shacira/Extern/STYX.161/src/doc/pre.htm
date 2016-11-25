@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[pre.h] Preprocessing Facility</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[pre.h] Preprocessing Facility</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="standard.htm">#include "standard.h"</a>
+<br>
+<br>
+<br>
+<br><pre>
+   This module, [pre], realises a simple text processor. It supports the
+   usage of macros which will be expanded during processing - by the result
+   of the corresponding special replacement functions.
+
+   The following rules describes the source text format:
+
+   Text :: Literal
+        :: "&&"
+        :: "&" MacroName "&"
+        :: "&" "IF" FlagName "&" Text
+          ["&" "ELSE" "&" Text]
+           "&" "FI" "&"
+        :: Text Text
+
+   Literal   :: Each printable ASCII-character beside "&", additionally "\n" und "\f".
+   MacroName :: (Literal-"&"-" "-"\n"-"\f")+ .
+                Beside that the reserved words "IF","ELSE","FI" are not allowed.
+   FlagName  :: like MacroName; MacroName and FlagName must be disjunct sets.
+
+   Now the interpretation can be specified as follows:
+
+   A literal identifies itself, i.e. will be taken as is.
+
+   '&&' will be expanded to '&'.
+
+   '&MacroName&' forces the call of the corresponding evaluation function to output
+   the replacement text for the macro. The left border is the column with the first "&".
+
+   With the IF-THEN-ELSE-FI construction conditional generation becomes possible.
+   FlagName refers to the corresponding boolean evaluation function. On true the text
+   after '&IF FlagName& will be processed, otherwise the optional '&ELSE&'-part.
+
+   Internally the following generalisation of the grammar will be used:
+
+   Text :: Literal
+        :: "&&"
+        :: "&" MacroName "&"
+        :: "&" KeyWord [FlagName] "&"
+        :: Text Text
+
+
+</pre>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PRE_dfnMacro</b>(c_string MacroName, void (* Macro)())</pre>
+<td bgcolor="#FFF0F5" align=left> defines macro with name 'MacroName' and meaning 'Macro' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PRE_dfnFlag</b>(c_string FlagName, int (* Flag)())</pre>
+<td bgcolor="#FFF0F5" align=left> defines flag with name 'FlagName' and meaning 'Flag' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PRE_Process</b>(c_string environ, c_string file, c_string ext, FILE *fileout)</pre>
+<td bgcolor="#FFF0F5" align=left> preprocesses module [$'environ'/'file''ext'] to file 'fileout' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PRE_init</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>enter the preprocessor module
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PRE_quit</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>leave the preprocessor module
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>int <b>PRE_tColumnNo</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>column number of current token
+
+</table>
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+This directory contains grammar definitions for some well-known programming or modelling languages.
+
+1) st.sty   -  smalltalk80, not compatible with GNU smalltalk
+
+2) sp11.sty -  EXPRESS Language, ISO 10303 Part 11
+3) sp21.sty -  STEP exchange format, ISO 10303 Part 21
+
+4) php.sty  -  PHP 5
+               The grammar contains 4 shift/reduce conflicts regarding the elseif/else constructs.
+               All conflicts are solved by the default shift action.
+
+Use the shell script 'mx' to create the scanner and parser images. 

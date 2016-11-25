@@ -1,0 +1,4 @@
+The file ipl.sty serves as example for an indended language definition.
+
+Use the shell script 'mx' to create the scanner and parser image. 
+Then run the command 'pim_test test.ipl' to see the parse term output.

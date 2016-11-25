@@ -1,0 +1,6019 @@
+//*.SS.**********************************************************************
+//*
+//*  BESCHREIBUNG:
+//*
+//*  HISTORY:
+//*
+//*  VERSION:
+//*     VERSION:                   AUTOR:
+//*     DATUM:                     TELEFON:
+//*
+//*  BEMERKUNGEN:
+//* 
+//**.ES.**********************************************************************
+
+//*.SM.**********************************************************************
+//*
+//*  MODUL-NAME:
+//*     FM.MDL
+//*
+//*  BESCHREIBUNG:
+//*     Datenmodell für Mosaic-Terminal
+//*
+//*  HISTORY:
+//*     29.03.04 -HA-     Folgende Erweiterungen eingefuegt.
+//*                       database internal 
+//*                       Var-Ref SetCfgOptionTab sowie macro OptionTabSize=120
+//*     11.05.04 -HA-      Group Clamp erweitert.
+//*     23.08.04 -HA-      Bits with vartype act should used with refresh 300
+//*
+//*  VERSION:
+//*     VERSION:                   AUTOR:                
+//*     DATUM:                     TELEFON:       
+//*
+//*  UMGEBUNG:
+//*     ZIELRECHNER:          
+//*     PROGRAMMIERSPRACHE:  
+//*
+//*  BEMERKUNGEN:
+//*
+//****************************************************************************
+//*
+//*  FUNKTIONEN:
+//*
+//**.EM.**********************************************************************
+//*********************************************
+// Select either 1 or HYDRAULIC
+//*********************************************
+
+conv ushort Mult(long fact);
+conv ushort Csksoll();
+conv ushort Cskist();
+
+filter uchar Time();
+filter ushort Date();
+filter uchar MachModeOfOperation();
+filter ulong AltSecondFil();
+filter ulong AltMinuteFil();
+filter ulong AltHourFil();
+filter ulong AltDayFil();
+filter ulong AltMonthFil();
+filter ulong AltYearFil();	
+filter uchar WDChangedTime();
+      
+limit double MinStrPlstShotSize();
+limit double MaxStrPlstShotSize();
+limit double MaxStrDcmpPst();
+limit double MinStrInj();
+limit double MaxStrInj();
+limit double MinStrPlst();
+limit double MaxStrPlst();
+limit ushort MaxPrsInjSwOver();
+limit double MinStrEje();
+limit double MaxStrEje();
+limit double MaxStrEjeWizard();
+limit double MinStrClpMoldProtect();
+limit double MaxStrClpMoldProtect();
+limit double MinStrClpClose();
+limit double MaxStrClpClose();
+limit double MinStrClpOpen();
+limit double MaxStrClpOpen();
+limit short  MinTmpBrlAllZonesDevWide();
+limit short  MaxTmpBrlAllZonesDevNarrow();
+limit short  MaxMinuteHour();
+
+limit double MaxStrBrlNozzleBackWizard();
+limit double MaxStrBrlNozzleForwardWizard();
+limit double MaxStrBrlNozzleBack();
+limit double MaxStrBrlNozzleForward();
+
+// limit-Functions for dynamic variables
+limit short MinTmpZn(ulong group);
+limit short MaxTmpZn(ulong group);
+limit short MinTmpZnLdevNarrow(ulong group);
+limit short MaxTmpZnLdevNarrow(ulong group);
+limit short MinTmpZnHDevNarrow(ulong group);
+limit short MaxTmpZnHDevNarrow(ulong group);
+limit short MinTmpZnLdevWide(ulong group);
+limit short MaxTmpZnLdevWide(ulong group);
+limit short MinTmpZnHdevWide(ulong group);
+limit short MaxTmpZnHdevWide(ulong group);
+limit short ConstPlaus(ulong ret_value);
+limit short MaxConfDOPar();
+             
+database mosaic device=SPS1
+{
+SnParamTab[1][6][5]
+    ushort
+    vartype=set
+    description="Screw Parameter Table"
+    persist=file
+    file=Ignore
+;
+
+SnParamTabAdd[1][6][5]
+    ushort
+	vartype=set
+	description="Screw Parameter Table Additional"
+    text="son Text zum testen"
+    dim1text="%1"
+    dim2text="%2"
+    dim3text="%3"
+    dim4text="%4"
+	flags=0x00001
+	persist=file
+    file=Ignore
+;
+
+SetCfgMaxPlstSpd[6]	// 1/min
+	ushort
+	vartype=set
+	description="Max. speed for plasticizing"
+	persist=file
+	file=Ignore
+    minimum=0.0
+    maximum=AggParamTab[0][0][3]					//ToDo: replace second parameter [0] with [Aggregat]
+;
+
+ActStsMachPLCVersion
+   ushort
+   vartype=volatile
+   description="PLC-Version"
+   map register ushort knuver
+;
+
+SetCfgMachPLCVersion
+   ushort
+   vartype=set
+   description="Check Type for PLC-Version"
+;
+
+// --------------------------------------
+// General Variables
+// --------------------------------------
+ActStsMachPLCInfo
+   ushort
+   vartype=act 
+   description="PLC-Info Message"
+   map register ushort IqtSPSTxt 
+   refresh=300
+;
+
+ActPrsScrBack[6]  // bar
+   ushort
+   vartype=act 
+   description="Back pressure"
+   map register ushort {SPip1Aktue, -1, -1, -1, -1, -1}
+   refresh=300
+;
+
+
+ActStrScrPos[6]  // mm 
+   long(2)
+   vartype=act 
+   description="screw position"
+   map register long {xsweg1, -1, -1, -1, -1, -1}
+   refresh=300
+;
+
+
+
+ActStrScrPos[6]  // mm 
+   ushort(1)
+   vartype=act 
+   description="Schneckenposition"
+   map register ushort {xsweg1, -1, -1, -1, -1, -1}
+   refresh=300
+;
+
+
+
+ActStrClpPos  // mm 
+   long(2)
+   vartype=act 
+   description="Werkzeugposition"
+   map register long xsweg2 
+   refresh=300
+;
+
+
+
+ActStrClpPos  // mm 
+   ushort(1)
+   vartype=act 
+   description="Werkzeugposition"
+   map register ushort xsweg2 
+   refresh=300
+;
+
+
+
+ActTimMachCyc // Zeiten sec
+   long(2)
+   vartype=act 
+   description="Zykluszeit"
+   map register long xtzykl 
+   refresh=300
+;
+
+
+
+ActTimMachCyc // Zeiten sec
+   ushort(1)
+   vartype=act 
+   description="Zykluszeit"
+   map register ushort xtzykl 
+   refresh=300
+;
+
+
+ActCntMachStep
+   ushort
+   vartype=act 
+   description="Step counter"
+   map register ushort xnstep 
+   refresh=300
+;
+
+ActCntMachPhase
+   ushort
+   vartype=act 
+   description="Phase counter"
+   map register ushort xnpase
+   refresh=300
+;
+
+
+ActSpdScr[6]
+   ushort
+   vartype=act 
+   description="Screw speed"
+   map register ushort {xwdre1, -1, -1, -1, -1, -1} 
+   refresh=300
+;
+
+
+ActTimPlst[6]
+   long(2)
+   vartype=act 
+   description="Plasticising time"
+   map register long {xtdos1, -1, -1, -1, -1, -1} 
+   refresh=300
+;
+
+
+
+ActTimPlst[6]
+   ushort
+   vartype=act 
+   description="Plasticising time"
+   map register ushort {xtdos1, -1, -1, -1, -1, -1} 
+   refresh=300
+;
+
+
+SetStsInjUnit
+   ushort
+   description="Actual Injection Unit"
+//   map register ushort dhvwalr
+;
+
+ActCfgBrl[6] // Heizung
+   bool
+   description="Zylinder ein/aus"
+;
+   		
+SetStsMachSysCmd
+   ushort
+   vartype=volatile
+   description="Commando SS"
+   file=Ignore
+   minimum=0
+   maximum=5
+   map register ushort SSCmd
+;
+
+ActStsMachPLCKeyInput[5]
+   ushort
+   vartype=act 
+   description="PLC-Keyinput A0-A4"
+   map register ushort {KbA0Input, KbA1Input, KbA2Input, KbA3Input, ActStsMachKbA4} 
+   refresh=300
+;
+
+ActStsMachConfDigitalOut
+   ushort
+   vartype=act 
+   description="Configure Digital Output"
+   map register ushort IOinDOist
+   refresh=300
+;
+
+SetCfgMachOptPLC[16]
+   bool
+   vartype=set
+   description="Visu to PLC Options"
+   persist=file
+   file=Ignore
+   map bit bool {OBIQTPLC1,OBIQTPLC2,OBIQTPLC3,OBIQTPLC4,
+                 OBIQTPLC5,OBIQTPLC6,OBIQTPLC7,OBIQTPLC8,
+                 OBIQTPLC9,OBIQTPLC10,OBIQTPLC11,OBIQTPLC12,
+                 OBIQTPLC13,OBIQTPLC14,OBIQTPLC15,OBIQTPLC16}
+;
+
+SetCfgInjNewWiring
+   bool
+   vartype=set
+   description="New injection wiring"
+   persist=file
+   file=Ignore
+   map bit bool OPm_AgBirk
+;
+
+SetCfgClpForceSensor
+   bool
+   vartype=set
+   description="New Clamp force sensor"
+   persist=file
+   file=Ignore
+   map bit bool OPm_SlSens
+;
+
+SetCfgMachUseScrewDiameter[6]
+   ushort
+   vartype=set
+   description="Use screw diameter"
+   persist=file
+   file=Ignore
+   map register ushort {MSksSnDur1, -1, -1, -1, -1, -1}
+;
+
+ActStsMachPLCDownload
+   bool
+   vartype=volatile
+   description="Request PLC-Download"
+   map bit bool SPm_Down
+;
+
+ActStsMotorsOff
+   bool
+   vartype=act
+   description="Motoren nicht eingeschaltet"
+   map bit bool FK_MOe_Ein
+   refresh=300
+;
+
+// --------------------------------------
+// Group Overview
+// --------------------------------------
+// --------------------------------------
+// Weekday-Timer
+// --------------------------------------
+SetStsMachWDDeviceOn[4]
+   bool
+   vartype=volatile
+   description="Set Device on"
+   persist=file
+   file=Ignore
+   map bit bool {mimote, miheie, miext1, miext2}
+;
+
+SetStsMachWDDeviceOff[4]
+   bool
+   vartype=volatile
+   description="Set Device off"
+   persist=file
+   file=Ignore
+   map bit bool {mimota, miheia, miex1a, miex2a}
+;
+
+
+// --------------------------------------
+// Group Production
+// --------------------------------------
+ActStsMachMode[4]
+   bool
+   vartype=act 
+   description="Mode of operation"
+   map bit bool {meinr, mhand, mhalb, mauto}
+   refresh=300
+;
+
+SetStsMachCntExt
+	bool
+	vartype=set
+	description="signal send to the plc"
+   file=Ignore
+	map bit bool mextsi
+;
+
+SetStsInjTolMonitoring
+   bool
+   vartype=set
+   description="Tolerance monitoring"
+   file=Ignore
+   map bit bool mtolue
+;
+
+SetStsInjMaxTol
+   bool
+   vartype=set
+   description="Max. Tolerance faults exceed"
+   file=Ignore
+   map bit bool mtomax
+;
+
+SetStsProdEnd
+   bool
+   vartype=set
+   description="Production End"
+   file=Ignore
+   map bit bool msuzer
+;
+
+ActStsInjEnd
+   bool
+   vartype=volatile
+   description="Injection End"
+   map bit bool mpausd
+;
+
+ActStsProdIncShotCntHold
+   bool
+   vartype=act
+   description="Increment of Shotcounter holded"
+   map bit bool msszsp
+   refresh=300
+;
+
+ActStsProdIncExtCntHold
+   bool
+   vartype=act
+   description="Increment of ext. counter holded"
+   map bit bool msigex
+   refresh=300
+;
+
+SetTimCycMonitoring
+   ushort(1)
+   vartype=set
+   description="Cycle monitoring time"
+   persist=file
+   file=Tool
+   minimum=2.0
+   maximum=1000.0
+   map register ushort stzykl
+;
+
+SetCfgMachAutoShutOff
+   bool
+   vartype=set
+   description="Auto machine stop"
+   persist=file
+   file=Tool
+   map bit bool dmaus
+;
+
+SetTimMachMHDelayShutOff
+   ushort
+   vartype=set
+   description="Motor/Heating delay time for shut-off"
+   persist=file
+   file=Tool
+   minimum=0
+   maximum=9999
+   map register ushort stmota
+;
+
+SetTimMachCWDelayShutOff
+   ushort
+   vartype=set
+   description="Cool water delay time for shut-off"
+   persist=file
+   file=Tool
+   minimum=0
+   maximum=9999
+   map register ushort stwasa
+;
+
+SetCfgMachCWShutOff
+   ushort
+   vartype=set
+   description="Cool water shut-off"
+   persist=file
+   file=Tool
+   minimum=0
+   maximum=1
+   map register ushort ZHs_Wasser
+;
+
+SetCfgMachPhotoCellWeight
+   ushort
+   vartype=set
+   description="Config photo cell and weight scales"
+   persist=file
+   file=Tool
+   minimum=0
+   maximum=2
+;
+
+
+// --------------------------------------
+// Group Injection
+// --------------------------------------
+// --------------------------------------
+// Injection Monitoring
+// --------------------------------------
+SetTimPlstMonitoring[6]
+   ushort(1)
+   vartype=set
+   description="Plasticising time monitoring"
+   persist=file
+   file=Tool
+   minimum=0.0
+   maximum=1000.0
+   map register ushort {stdos1, -1, -1, -1, -1, -1}
+;
+
+// --------------------------------------
+// Special: Injection Monitoring
+// --------------------------------------
+SetCfgInjPrsMonitorOnOff[6]
+   bool
+   vartype=set 
+   description="Injection pressure monitoring on/off"
+   persist=file
+   file=Tool
+   map bit bool {SEs_pUEin, -1, -1, -1, -1, -1}
+;
+
+SetTimInjMonitoring[6]
+   ushort(2)
+   vartype=set
+   description="Pressure monitoring time"
+   persist=file
+   file=Tool
+   minimum=0.00
+   maximum=300.00
+   map register ushort {SEstUeber, -1, -1, -1, -1, -1}
+;
+
+ActPrsInjMaxMonitoring[6]
+   ushort
+   vartype=act
+   description="Max. injection pressure"
+   map register ushort {SEipUWMax, -1, -1, -1, -1, -1}
+   refresh=300
+;
+
+SetPrsInjMaxMonitoring[6]
+   ushort
+   vartype=set
+   description="Max. injection pressure"
+   persist=file
+   file=Tool
+   minimum=0
+   maximum=SnParamTab[0][0][1]
+   map register ushort {SEspUWMax, -1, -1, -1, -1, -1}
+;
+
+
+// --------------------------------------
+// Extruder
+// --------------------------------------
+SetCfgInjUnitOnOff[6]
+   bool
+   vartype=set 
+   description="Injection unit on/off"
+   persist=file
+   file=Tool
+   map bit bool {dwsp01, dwsp02, -1, -1, -1, -1}
+;
+
+// Spritzeinheit Seite 40ff
+ActStrPlst[6] // mm
+   ushort 
+   vartype=act 
+   description="Istwert Plastifizierweg"
+;
+
+SetStrPlstShotSize[6] // mm, Achtung maximum,Index 2 sollte Aggregat verwendet werden
+   ushort(1)
+   vartype=set 
+   description="Stroke palsticising"
+   persist=file
+   file=Tool
+   minimum=0
+   maximum=MaxStrPlstShotSize()
+   map register ushort {ssdos1, -1, -1, -1, -1, -1} 
+;
+
+ActStrPlstShotSize[6] // mm, Achtung maximum,Index 2 sollte Aggregat verwendet werden
+   ushort(1)
+   vartype=act 
+   description="Stroke palsticising"
+   map register ushort {xsph10, -1, -1, -1, -1, -1} 
+   refresh=event cycle
+;
+
+SetCfgPlstStages[6] 
+   ushort
+   vartype=set 
+   description="Plasticising stages"
+   persist=file
+   file=Tool
+   minimum=1
+   maximum=5
+   map register ushort {SetCfgPlstStages1, -1, -1, -1, -1, -1}
+;
+
+SetStrPlst[6][5]  // mm
+   ushort(1)
+   vartype=set 
+   description="Strokes for plasticising"
+   persist=file
+   file=Tool
+   minimum=MinStrPlst()
+   maximum=MaxStrPlst()
+   map register ushort {ssum11, SetStrPlst12, SetStrPlst13, SetStrPlst14, SetStrPlst15,
+                        -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1}
+;
+
+SetSpdPlst[6][5] // 1/min, Achtung maximum,Index 2 sollte Aggregat verwendet werden
+   ushort 
+   vartype=set 
+   description="Speed for plasticising"
+   persist=file
+   file=Tool
+   minimum=0.0
+   maximum=SetCfgMaxPlstSpd[0]
+   map register ushort {swpl11, swpl12, SetSpdPlst13, SetSpdPlst14, SetSpdPlst15,
+                        -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1}
+;
+
+SetPrsPlst[6][5] // bar, Achtung maximum,Index 2 sollte Aggregat verwendet werden
+   ushort(1)
+   vartype=set 
+   description="Pressure for plasticising"
+   persist=file
+   file=Tool
+   minimum=0
+   maximum=AggParamTabAdd[0][0][0]
+   map register ushort {spst11, spst12, SetPrsPlst13, SetPrsPlst14, SetPrsPlst15,
+                        -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1}
+;
+
+SetPrsPlstHandMode[6] // bar, Achtung maximum,Index 2 sollte Aggregat verwendet werden
+   ushort
+   vartype=set 
+   description="Staudruck im Handbetrieb"
+   persist=file
+   file=Tool
+   minimum=0
+   maximum=AggParamTabAdd[0][0][6]
+   map register ushort {spsth1, -1, -1, -1, -1, -1}
+;
+
+SetStrDcmpPre[6] // mm, Achtung maximum,Index sollte Aggregat verwendet werden
+   ushort(1) 
+   vartype=set 
+   description="Schneckenrückzugsweg vor Plastifizieren"
+   persist=file
+   file=Tool
+   minimum=0.0
+   maximum=SetStrPlstShotSize[0]
+   map register ushort {SRSsvor_1, -1, -1, -1, -1, -1}
+;
+
+SetVelDcmpPre[6] // mm/sec, Achtung maximum,Index 2 sollte Aggregat verwendet werden
+   ushort 
+   vartype=set 
+   description="Schneckenrückzugsgeschw. vor Plastifizieren"
+   persist=file
+   file=Tool
+   minimum=0
+   maximum=AggParamTabAdd[0][0][1]
+   map register ushort {SRSvvor_1, -1, -1, -1, -1, -1}
+;
+
+SetStrDcmpPst[6] // mm, Achtung maximum,Index sollte Aggregat verwendet werden
+   ushort(1)
+   vartype=set 
+   description="Schneckenrückzugsweg nach Plastifizieren"
+   persist=file
+   file=Tool
+   minimum=0.0
+   maximum=MaxStrDcmpPst()
+   map register ushort {SRSsnach_1, -1, -1, -1, -1, -1}
+;
+
+SetVelDcmpPst[6] // mm/sec, Achtung maximum,Index 2 sollte Aggregat verwendet werden
+   ushort 
+   vartype=set 
+   description="Schneckenrückzugsgeschw. nach Plastifizieren"
+   persist=file
+   file=Tool
+   minimum=0
+   maximum=AggParamTabAdd[0][0][1]
+   map register ushort {SRSvnach_1, -1, -1, -1, -1, -1}
+;
+
+SetStsPlstEndPosContr[6]
+   bool
+   vartype=set 
+   description="Schneckenendlageregelung"
+   persist=file
+   file=Tool
+   map bit bool {dlager, -1, -1, -1, -1, -1}
+;
+
+SetStrPlstShutOffNozzle[6] 
+   ushort(1)
+   vartype=set 
+   description="Verschlußdüse"
+   persist=file
+   file=Tool
+   minimum=0.0
+   maximum=ToolParamTab[3]
+   map register ushort {SEssVerD1, -1, -1, -1, -1, -1}
+;
+
+SetTimPlstDelay[6] // sec
+   ushort(1)
+   vartype=set 
+   description="Plastifizierverzögerung"
+   persist=file
+   file=Tool
+   minimum=0.0
+   maximum=99.9
+   map register ushort {stvdos, -1, -1, -1, -1, -1}
+;
+
+SetTimPlstIntrusion[6] // sec
+   ushort(1)
+   vartype=set 
+   description="Intrusion"
+   persist=file
+   file=Tool
+   minimum=0.0
+   maximum=999.9
+   map register ushort {stintr, -1, -1, -1, -1, -1}
+;
+
+SetTimPlstCool // sec
+   ushort(1)
+   vartype=set 
+   description="Kühlzeit"
+   persist=file
+   file=Tool
+   minimum=0.0
+   maximum=999.9
+   map register ushort stkuhl
+;
+
+ActTimPlstCool // sec
+   ushort(1)
+   vartype=act
+   description="Kühlzeit"
+   map register ushort xtkuhl
+   refresh=300
+;
+
+SetCnfPlstHighTorque 
+   bool
+   vartype=set 
+   description="Erhöhtes Drehmoment"
+   persist=file
+   file=Tool
+;
+
+SetCfgMldSensorRange[6]
+   ushort
+   vartype=set 
+   description="Mold sensor range"
+   persist=file
+   file=Tool
+   minimum=1
+   maximum=2
+   map register ushort {WFmpRange1, -1, -1, -1, -1, -1}
+;
+
+// --------------------------------------
+// Group Injection, Mold cavity pressure
+// --------------------------------------
+SetCfgInjMoldCavity[6]
+   ushort
+   vartype=set 
+   description="Stage for mold cavity pressure"
+   persist=file
+   file=Tool
+   minimum=0
+   maximum=10
+   map register ushort {snfin, -1, -1, -1, -1, -1}
+;
+
+// --------------------------------------
+// Group Injection, Velocity
+// --------------------------------------
+SetCfg10[6]
+   ushort
+   vartype=set 
+   description="Injection stages"
+   persist=file
+   file=Tool
+   minimum=1
+   maximum=10
+   map register ushort {snphmx, -1, -1, -1, -1, -1}
+;
+
+SetPrsInj[6][10] // bar Achtung maximum, Index 2 sollte Aggregat verwendet werden
+   ushort 
+   vartype=set 
+   description="Injection pressure"
+   persist=file
+   file=Tool
+   minimum=0
+   maximum=SnParamTab[0][0][1]
+   map register ushort {spph11, spph12, spph13, spph14, spph15, 
+                        spph16, SetPrsInj17, SetPrsInj18, SetPrsInj19, SetPrsInj1a,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 }
+;
+
+ActPrsInj[6][10] // bar
+   ushort 
+   vartype=act 
+   description="Istwert Einspritzdruck"
+   map register ushort {xpph11, xpph12, xpph13, xpph14, xpph15, 
+                        xpph16, ActPrsInj17, ActPrsInj18, ActPrsInj19, ActPrsInj1a,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 }
+   refresh=event cycle
+;
+
+SetVelInj[6][10] // mm/sec Achtung maximum, Index 2 sollte Aggregat verwendet werden
+   ushort 
+   vartype=set 
+   description="Injection velocity"
+   persist=file
+   file=Tool
+   minimum=0
+   maximum=AggParamTab[0][0][4]
+   map register ushort {svph11, svph12, svph13, svph14, svph15, 
+                        svph16, SetVelInj17, SetVelInj18, SetVelInj19, SetVelInj1a,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 }
+;
+
+SetTimInj[6][10] // sec
+   ushort(2) 
+   vartype=set 
+   description="Injection time"
+   persist=file
+   file=Tool
+   minimum=0
+   maximum=99.99
+   map register ushort {stph11, stph12, stph13, stph14, stph15, 
+                        stph16, SetTimInj17, SetTimInj18, SetTimInj19, SetTimInj1a,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 }
+;
+
+ActTimInj[6][10] // sec
+   ushort(2) 
+   vartype=act 
+   description="Istwert Einspritzzeit"
+   map register ushort {xtph11, xtph12, xtph13, xtph14, xtph15, 
+                        xtph16, ActTimInj17, ActTimInj18, ActTimInj19, ActTimInj1a,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 }
+   refresh=event cycle
+;
+
+SetPrsInjSwOver[6][10] // bar Achtung maximum, Index 2 sollte Aggregat verwendet werden
+   ushort 
+   vartype=set 
+   description="Switch over pressure"
+   persist=file
+   file=Tool
+   minimum=0
+   maximum=MaxPrsInjSwOver()
+   map register ushort {spum11, spum12, spum13, spum14, spum15, 
+                        SetPrsInjSwOver16, SetPrsInjSwOver17, SetPrsInjSwOver18, SetPrsInjSwOver19, SetPrsInjSwOver1a,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 }
+;
+
+SetStrInj[6][10] // mm, Achtung maximum, Index sollte Aggregat verwendet werden
+   ushort(1) 
+   vartype=set 
+   description="Injection stroke"
+   persist=file
+   file=Tool
+   minimum=MinStrInj()
+   maximum=MaxStrInj()
+   map register ushort {ssph11, ssph12, ssph13, ssph14, ssph15, 
+                        SetStrInj16, SetStrInj17, SetStrInj18, SetStrInj19, SetStrInj1a,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 }
+;
+
+ActStrInj[6][10] // mm
+   ushort(1) 
+   vartype=act 
+   description="Injection stroke"
+   map register ushort {xsph11, xsph12, xsph13, xsph14, xsph15, 
+                        ActStrInj16, ActStrInj17, ActStrInj18, ActStrInj19, ActStrInj1a,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 }
+   refresh=event cycle
+;
+
+SetCfgDwlStages[6]
+   ushort
+   vartype=set 
+   description="Dwell stages"
+   persist=file
+   file=Tool
+   minimum=1
+   maximum=10
+   map register ushort {SetCfgDwlStages1, -1, -1, -1, -1, -1}
+;
+
+SetPrsDwl[6][10] // bar Achtung maximum, Index 2 sollte Aggregat verwendet werden
+   ushort 
+   vartype=set 
+   description="Dwell pressure"
+   persist=file
+   file=Tool
+   minimum=0
+   maximum=SnParamTab[0][0][1]
+   map register ushort {SetPrsDwl11, SetPrsDwl12, SetPrsDwl13, SetPrsDwl14, SetPrsDwl15, 
+                        SetPrsDwl16, SetPrsDwl17, SetPrsDwl18, SetPrsDwl19, SetPrsDwl1a,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 }
+;
+
+SetVelDwl[6][10] // mm/sec Achtung maximum, Index 2 sollte Aggregat verwendet werden
+   ushort 
+   vartype=set 
+   description="Dwell velocity"
+   persist=file
+   file=Tool
+   minimum=0
+   maximum=AggParamTab[0][0][4]
+   map register ushort {SetVelDwl11, SetVelDwl12, SetVelDwl13, SetVelDwl14, SetVelDwl15, 
+                        SetVelDwl16, SetVelDwl17, SetVelDwl18, SetVelDwl19, SetVelDwl1a,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 }
+;
+
+SetTimDwl[6][10] // sec
+   ushort(2) 
+   vartype=set 
+   description="Dwell time"
+   persist=file
+   file=Tool
+   minimum=0
+   maximum=99.99
+   map register ushort {SetTimDwl11, SetTimDwl12, SetTimDwl13, SetTimDwl14, SetTimDwl15, 
+                        SetTimDwl16, SetTimDwl17, SetTimDwl18, SetTimDwl19, SetTimDwl1a,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 }
+;
+
+SetPrsDwlSwOver[6][10] // bar Achtung maximum, Index 2 sollte Aggregat verwendet werden
+   ushort 
+   vartype=set 
+   description="Dwell Switch over pressure"
+   persist=file
+   file=Tool
+   map register ushort {SetPrsDwlSwOver11, SetPrsDwlSwOver12, SetPrsDwlSwOver13, SetPrsDwlSwOver14, SetPrsDwlSwOver15, 
+                        SetPrsDwlSwOver16, SetPrsDwlSwOver17, SetPrsDwlSwOver18, SetPrsDwlSwOver19, SetPrsDwlSwOver1a,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 }
+;
+
+SetStrDwl[6][10] // mm
+   ushort 
+   vartype=set 
+   description="Dwell stroke"
+   persist=file
+   file=Tool
+   map register ushort {SetStrDwl11, SetStrDwl12, SetStrDwl13, SetStrDwl14, SetStrDwl15, 
+                        SetStrDwl16, SetStrDwl17, SetStrDwl18, SetStrDwl19, SetStrDwl1a,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 }
+;
+
+SetPrsInjMaxSwOver[6] // bar
+   ushort 
+   vartype=set 
+   description="Max. Switch over pressure"
+   persist=file
+   file=Tool
+   map register ushort {SEgpUSt, SEgpUSt2, -1, -1, -1, -1}
+;
+
+ActStsInjSwOverStr[6][10]
+   bool
+   vartype=act 
+   description="Injection switch over stroke"
+   map bit bool {msum11, msum12, msum13, msum14, msum15,
+                 ActStsInjSwOverStr16, ActStsInjSwOverStr17, ActStsInjSwOverStr18, ActStsInjSwOverStr19, ActStsInjSwOverStr1a,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 }
+   refresh=300
+;
+
+ActStsInjSwOverTim[6][10]
+   bool
+   vartype=act 
+   description="Injection switch over time"
+   map bit bool {mtum11, mtum12, mtum13, mtum14, mtum15, mtum16, 
+                 ActStsInjSwOverTim17, ActStsInjSwOverTim18, ActStsInjSwOverTim19, ActStsInjSwOverTim1a,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 }
+   refresh=300
+;
+
+ActStsInjSwOverPrs[6][10]
+   bool
+   vartype=act 
+   description="Injection switch over pressure"
+   map bit bool {mpum11, mpum12, mpum13, mpum14, mpum15,
+                 ActStsInjSwOverPrs16, ActStsInjSwOverPrs17, ActStsInjSwOverPrs18, ActStsInjSwOverPrs19, ActStsInjSwOverPrs1a,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 }
+   refresh=300
+;
+
+ActStrInjCushion[6] // mm
+   ushort(1)
+   vartype=act 
+   description="Cushion"
+   map register ushort {ActStrInjCushion1, -1, -1, -1, -1, -1}
+   refresh=event cycle
+;
+
+ActPrsCavMax // bar
+   ushort 
+   vartype=act 
+   description="Max. Forminnendruck"
+;
+
+
+// --------------------------------------
+// Group Injection, sled
+// --------------------------------------
+SetCfgBrlSprueBreak[6]
+   ushort
+   vartype=set 
+   description="Configuration Sprue Break"
+   persist=file
+   file=Tool
+   minimum=0
+   maximum=4
+   map register ushort {snaggr, -1, -1, -1, -1, -1}
+;
+
+SetTimBrlSprueBreakDelay[6] // sec
+   ushort(1) 
+   vartype=set 
+   description="Sled retract delay timer"
+   persist=file
+   file=Tool
+   minimum=0.0
+   maximum=99.9
+   map register ushort {staggr, -1, -1, -1, -1, -1}
+;
+
+SetTimBrlSprueBreak[6] // sec
+   ushort(1) 
+   vartype=set 
+   description="Sled retract timer"
+   persist=file
+   file=Tool
+   minimum=0.0
+   maximum=99.9
+   map register ushort {stdues1, -1, -1, -1, -1, -1}
+;
+
+SetCfgScrChange[6]
+   bool
+   vartype=set 
+   description="Screw change"
+   persist=file
+   file=Tool
+   minimum=0
+   maximum=1
+   map bit bool {dschwe, -1, -1, -1, -1, -1}
+;
+
+SetFceBrlNozzle[6]
+   ushort(1)
+   vartype=set 
+   description="Nozzle Force in kN"
+   persist=file
+   file=Tool
+   minimum=AggParamTabAdd[0][0][3]
+   maximum=AggParamTabAdd[0][0][5]
+   map register ushort {sfaggr, -1, -1, -1, -1, -1}
+;
+
+ActFceBrlNozzle[6]
+   ushort(1)
+   vartype=act 
+   description="Nozzle Force in kN"
+   map register ushort {SPif1Anpr, -1, -1, -1, -1, -1}
+   refresh=300
+;
+
+SetFceBrlNozzleReduced[6]
+   ushort(1)
+   vartype=set 
+   description="Nozzle Force in kN"
+   persist=file
+   file=Tool
+   minimum=0.0
+   maximum=SetFceBrlNozzle[0]
+   map register ushort {sagpfo, -1, -1, -1, -1, -1}
+;
+
+SetCfgBrlNozzleForwMldClose[6]
+   ushort
+   vartype=set 
+   description="Sled forward with mold close"
+   persist=file
+   file=Tool
+   minimum=0
+   maximum=1
+   map register ushort {sagpfo, -1, -1, -1, -1, -1}
+;
+
+SetVelBrlNozzleForward[6][2] // %
+   ushort 
+   vartype=set 
+   description="Velocity barrel nozzle forward"
+   persist=file
+   file=Tool
+   minimum=0
+   maximum=100
+   map register ushort {svag1v, SEsvVor21,
+                        -1, -1, 
+                        -1, -1, 
+                        -1, -1, 
+                        -1, -1, 
+                        -1, -1}
+;
+
+SetVelBrlNozzleBack[6] // %
+   ushort 
+   vartype=set 
+   description="Velocity barrel nozzle back"
+   persist=file
+   file=Tool
+   minimum=0
+   maximum=100
+   map register ushort {svag1z, -1, -1, -1, -1, -1}
+;
+
+SetStrBrlNozzleForward[6] // mm
+   ushort(1)
+   vartype=set 
+   description="Stroke barrel nozzle forward 1"
+   persist=file
+   file=Tool
+   minimum=0
+   map register ushort {SEssVor11, -1, -1, -1, -1, -1}
+;
+
+SetStrBrlNozzleBack[6] // mm
+   ushort(1)
+   vartype=set 
+   description="Stroke barrel nozzle back"
+   persist=file
+   file=Tool
+   minimum=0
+   maximum=MaxStrBrlNozzleBack()
+   map register ushort {SEssZur11, -1, -1, -1, -1, -1}
+;
+
+SetStrBrlNozzleForward[6] // mm
+   ushort(1)
+   vartype=set 
+   description="Stroke barrel nozzle forward"
+   persist=file
+   file=Tool
+   minimum=0
+   maximum=MaxStrBrlNozzleForward()
+   map register ushort {SEssVor11, -1, -1, -1, -1, -1}
+;
+
+ActStrBrlNozzle[6] // mm
+   ushort(1) 
+   vartype=act 
+   description="Injection unit stroke"
+   map register ushort {SEisNlpkt1, -1, -1, -1, -1, -1}
+   refresh=300
+;
+
+SetStrBrlNozzleZeroAdjust[6] // mm
+   ushort(1) 
+   vartype=volatile 
+   description="Nullpunktabgleich der Spritzeinheit"
+   persist=file
+   file=Ignore
+   map register ushort {SEssNlpkt1, -1, -1, -1, -1, -1}
+;
+
+ActStsBrlNozzleAdjustKey[6]
+   bool
+   vartype=act 
+   description="Key screw adjustment"
+   map bit bool {SEAbglTas1, -1, -1, -1, -1, -1}
+;
+
+SetStsBrlNozzleZeroAdjustStart[6]
+   bool
+   vartype=volatile
+   description="Barrel Nozzle zero adjustment start"
+   persist=file
+   file=Ignore
+   minimum=0
+   maximum=1
+   map bit bool {SEAbglST1, -1, -1, -1, -1, -1}
+;
+
+SetStsBrlNozzleZeroAdjustReset[6]
+   bool
+   vartype=volatile
+   description="Barrel Nozzle zero adjustment reset"
+   persist=file
+   file=Ignore
+   minimum=0
+   maximum=1
+   map bit bool {SEAbglRS1, -1, -1, -1, -1, -1}
+;
+
+SetStrBrlNozzleMax[6] // mm
+   ushort(1)
+   vartype=set 
+   description="Max stroke barrel nozzle"
+   persist=file
+   file=Ignore
+;
+
+
+// ----------------------------------------
+// Group Injection, sled / wizard variables
+// ----------------------------------------
+SetStrBrlNozzleZeroAdjustWizard[6] // mm
+   ushort(1) 
+   vartype=set 
+   description="Wizard help-variable for injection unit zero adjustment"
+   file=Ignore
+;
+
+SetStrBrlNozzleMaxWizard[6] // mm
+   ushort(1)
+   vartype=set 
+   description="Max stroke barrel nozzle"
+   file=Ignore
+;
+
+SetStrBrlNozzleBackWizard[6] // mm
+   ushort(1)
+   vartype=set 
+   description="Stroke barrel nozzle back for wizard"
+   file=Ignore
+   minimum=0
+   maximum=MaxStrBrlNozzleBackWizard()
+;
+
+SetStrBrlNozzleForwardWizard[6] // mm
+   ushort(1)
+   vartype=set 
+   description="Stroke barrel nozzle forward for wizard"
+   file=Ignore
+   minimum=0
+   maximum=MaxStrBrlNozzleForwardWizard()
+;
+
+
+// --------------------------------------
+// Group Injection: Graphic
+// --------------------------------------
+SetCfgInjGraphicSelectMode[6]
+   ushort
+   vartype=set 
+   description="Injection graphic selected mode"
+   persist=file
+;
+
+
+// --------------------------------------
+// Group Clamp
+// --------------------------------------
+SetStsMldHeight
+   bool
+   vartype=volatile
+   description="Set mold height"
+   file=Ignore
+   map bit bool WZm_HAnf
+;
+
+
+// --------------------------------------
+// Group Clamp, Setup
+// --------------------------------------
+SetPrsClpSetup // bar
+   ushort
+   vartype=set 
+   description="Einrichtdruck"
+   persist=file 
+   file=Ignore
+   map register ushort speinr
+;
+
+
+SetStsClpFceSetMode
+   bool
+   vartype=set 
+   description="Clamping Force in Setting mode"
+   file=Ignore
+   map bit bool WSs_pEinr
+;
+
+
+
+SetStsClpFceSetMode
+   bool
+   vartype=set 
+   description="Clamping Force in Setting mode"
+   file=Ignore
+   map bit bool SLdpSDREin
+;
+
+
+SetStsMldHeightActiv
+   bool
+   vartype=volatile
+   description="Set Mold Height"
+   file=Ignore
+   map bit bool mfohoe
+;
+
+SetStsMldProtectCurveRecord
+   ushort
+   vartype=volatile
+   description="Set Mold Height"
+   file=Ignore
+   map register ushort WZsnFSSRef
+;
+
+SetStrClpMinMold // mm
+   ushort(1)
+   vartype=set 
+   description="Min. Werkzeugeinbauhöhe"
+   file=Ignore
+   map register ushort formmin
+;
+
+ActStrClpAbsMoldSet // mm
+   ushort(1) 
+   vartype=act 
+   description="Absolutposition des Werkzeuges"
+;
+
+SetStrClpMoldSet // mm
+   ushort 
+   vartype=set 
+   description="Werkzeugeinbauhöhe"
+   persist=file
+   file=Tool
+   minimum=0
+   maximum=600
+;
+
+SetStrClpSpacer // mm
+   ushort 
+   vartype=set 
+   description="Druckbolzenlänge"
+   persist=file
+   file=Ignore
+;
+
+SetStsClpMoldSetOnOff 
+   bool
+   vartype=set 
+   description="Einbauhöhenveränderung ein/aus"
+   persist=file
+   file=Ignore
+;
+
+SetCntClpMoldSavetyRepeat 
+   ushort
+   vartype=set 
+   description="Wiederholung Werkzeugsicherung"
+   persist=file
+   file=Tool
+   minimum=0
+   maximum=4
+   map register ushort snnidr
+;
+
+ActCntClpMoldSavetyRepeat 
+   ushort
+   vartype=act 
+   description="Istwert Wiederholung Werkzeugsicherung"
+   map register ushort xnfss refresh=300
+;
+
+
+// --------------------------------------
+// Group Clamp, Clamp close
+// --------------------------------------
+SetCntClpCloseStages
+   ushort
+   vartype=set 
+   description="Anzahl der Stufen für Wkz schließen"
+   persist=file
+   file=Tool
+   minimum=1
+   maximum=3
+   map register ushort SetCntClpCloseStages
+;
+
+SetStrClpClose[3] 
+   ushort(1)
+   vartype=set 
+   description="Wegpunkte für Form schliessen"
+   persist=file
+   file=Tool
+   minimum=MinStrClpClose()
+   maximum=MaxStrClpClose()
+   map register ushort {ssfzu1, SEssFzu2, -1}
+;
+
+SetVelClpClose[3] 
+   ushort
+   vartype=set 
+   description="Geschwindigkeitsprofil für Form schließen"
+   persist=file
+   file=Tool
+   minimum=1
+   maximum=ToolParamTabAdd[1]
+   map register ushort {svzu1, svzu2, SEsvFzu3}
+;
+
+
+SetAccClpClose 
+   ushort
+   vartype=set 
+   description="Acceleration in %"
+   persist=file
+   file=Tool
+   minimum=10
+   maximum=100
+   map register ushort WSsbBeschl
+;
+
+
+// --------------------------------------
+// Group Clamp, Mold Protect
+// --------------------------------------
+SetCntClpMoldProtectStages
+   ushort
+   vartype=set 
+   description="Anzahl der Stufen für Werkzeugsicherung"
+   persist=file
+   file=Tool
+   minimum=1
+   maximum=3
+   map register ushort SetCntClpMoldProtectStages
+;
+
+SetStrClpMoldProtect[3] 
+   ushort(1)
+   vartype=set description="Start Werkzeugsicherung"
+   persist=file
+   file=Tool
+   minimum=MinStrClpMoldProtect()
+   maximum=MaxStrClpMoldProtect()
+   map register ushort {ssfzu2, SetStrClpMoldProtect2, SetStrClpMoldProtect3}
+;
+
+
+ActStrClpMoldProtect[3] 
+   ushort(1)
+   vartype=act 
+   description="Start Werkzeugsicherung"
+   map register ushort {WZisSich, ActStrClpMoldProtect2, ActStrClpMoldProtect3} 
+   refresh=300
+;
+
+
+SetFceClpMoldProtectTol[3] 
+   ushort(1)
+   vartype=set 
+   description="Wkz-Sicherungskraft Toleranz"
+   persist=file
+   file=Tool
+   minimum=0.0
+   maximum=100.0
+   map register ushort {spnidr, SetFceClpMoldProtectTol2, SetFceClpMoldProtectTol3}
+;
+
+
+ActFceClpMoldProtectTol[3]
+   ushort(1)
+   vartype=act 
+   description="Wkz-Sicherungskraft Toleranz"
+   map register ushort {WZifSichT, ActFceClpMoldProtectTol2, ActFceClpMoldProtectTol3} 
+   refresh=300
+;
+
+
+SetPrsClpMoldProtect[3] 
+   ushort
+   vartype=set 
+   description="Werkzeugsicherungsdruck"
+   persist=file
+   file=Tool
+;
+
+
+SetVelClpMoldProtect[3] 
+   ushort
+   vartype=set 
+   description="Werkzeugsicherungsgeschwindigkeit"
+   persist=file
+   file=Tool
+   minimum=1
+   maximum=ToolParamTabAdd[1]
+   map register ushort {stnidr, SetVelClpMoldProtect2, SetVelClpMoldProtect3}
+;
+
+
+
+SetTimClpMoldProtect[3] // sec
+   ushort(1) 
+   vartype=set 
+   description="Überwachungszeit Werkzeugsicherung"
+   persist=file
+   file=Tool
+;
+
+
+ActTimClpMoldProtect[3] // sec
+   ushort(2) 
+   vartype=act 
+   description="Überwachungszeit Werkzeugsicherung"
+   map register ushort {ActTimClpMoldProtect1, ActTimClpMoldProtect2, ActTimClpMoldProtect3} 
+   refresh=300
+;
+
+
+// --------------------------------------
+// Group Clamp, Mold Pressure
+// --------------------------------------
+SetStrClpStartTonnageBuild // mm
+   ushort(1) 
+   vartype=set 
+   description="Wegp. Start Schließkraftaufbau"
+   persist=file
+   file=Tool
+   map register ushort sfssed
+;
+
+
+SetFceClp // KN
+   ushort 
+   vartype=set 
+   description="Schließkraft"
+   persist=file
+   file=Tool
+   minimum=0
+   maximum=ToolParamTab[2]
+   map register ushort sfzuhk
+   conversion=Mult(10)
+;
+
+ActFceClp // KN
+   ushort
+   vartype=act 
+   description="Istwert Schließkraft"
+   map register ushort xfzuhk refresh=300
+;
+
+
+
+SetFceClp // KN
+   ushort 
+   vartype=set 
+   description="Schließkraft"
+   persist=file
+   file=Tool
+   minimum=0
+   maximum=ToolParamTab[2]
+   map register ushort sfzuhk
+   conversion=Csksoll()
+;
+
+ActFceClp // KN
+   ushort(2) 
+   vartype=act 
+   description="Istwert Schließkraft"
+   map register ushort xfzuhk refresh=300
+   conversion=Cskist()
+;
+
+
+SetFceClpStartInject // KN
+   ushort 
+   vartype=set 
+   description="Start Einspritzen bei Schliesskraft x"
+   persist=file
+   file=Tool
+   map register ushort spspr
+;
+
+
+// --------------------------------------
+// Group Clamp, Clamp open
+// --------------------------------------
+SetFceClpHighOpenForce // mm
+   ushort(1)
+   vartype=set 
+   description="Erhöhte Öffnungskraft bei Wegpunkt"
+   persist=file
+   file=Tool
+;
+
+SetCntClpOpenStages
+   uchar
+   vartype=set 
+   description="Anzahl der Stufen für Werkzeug öffnen"
+   persist=file
+   file=Tool
+   minimum=1
+   maximum=3
+   map register ushort SetCntClpOpenStages
+;
+
+SetStrClpOpen[3] // mm
+   ushort(1) 
+   vartype=set 
+   description="Wegpunkte für Werkzeug öffnen"
+   persist=file
+   file=Tool
+   minimum=MinStrClpOpen()
+   maximum=MaxStrClpOpen()
+   map register ushort {ssfau1, ssfau2, ssfauf}
+;
+
+
+ActStrClpOpen[3] // mm
+   ushort(1) 
+   vartype=act 
+   description="Wegpunkte für Werkzeug öffnen"
+   map register ushort {WOisaktuel, -1, -1} refresh=300
+;
+
+
+SetVelClpOpen[3] // mm/sec
+   ushort 
+   vartype=set 
+   description="Geschwindigkeitsprofil für Werkezeug öffnen"
+   persist=file
+   file=Tool
+   minimum=1
+   maximum=ToolParamTabAdd[2]
+   map register ushort {svauf1, svauf2, svauf3}
+;
+
+
+SetAccClpOpen // %
+   ushort 
+   vartype=set 
+   description="Beschleunigung für Werkezeug öffnen"
+   persist=file
+   file=Tool
+   minimum=10
+   maximum=100
+   map register ushort WOsbBeschl
+;
+
+
+SetStsClpParPlast
+   bool
+   vartype=set 
+   description="Wkz. Bewegung parallel Plastifizieren"
+   persist=file
+   file=Tool
+   map bit bool dplafo
+;
+
+SetTimClpDwell // sec
+   ushort(1) 
+   vartype=set 
+   description="Pausenzeit"
+   persist=file
+   file=Tool
+   minimum=0.0
+   maximum=999.9
+   map register ushort stpaus
+;
+
+
+SetStrClpHeight // mm
+   ushort(1) 
+   vartype=set 
+   description="Werkzeughöhenverstellung um"
+   persist=file
+   file=Ignore
+   map register ushort WKZss_Vers
+;
+
+
+
+ActStrClpHeight // mm
+   ushort(1) 
+   vartype=act 
+   description="Werkzeughöhenverstellung um"
+   map register ushort WKZis_Vers
+;
+
+
+
+ActStrClpHeigtActiv
+   bool
+   vartype=act
+   description="Werkzeughöhenverstellung aktiv"
+   map bit bool WZi_HAktiv
+   refresh=300
+;
+
+
+// --------------------------------------
+// Group Clamp, Ejector
+// --------------------------------------
+
+SetStrEje // mm
+   ushort(1) 
+   vartype=set 
+   description="Auswerferweg"
+   persist=file
+	file=Tool
+   minimum=MinStrEje()
+   maximum=MaxStrEje()
+   map register ushort ssaus2
+;
+
+
+SetStrEjeWizard // mm
+   ushort(1) 
+   vartype=set 
+   description="Wizard help-variable for ejector stroke"
+   file=Ignore
+   minimum=MinStrEje()
+   maximum=MaxStrEjeWizard()
+;
+
+
+SetStrEje // mm
+   ushort(1) 
+   vartype=set 
+   description="Auswerferweg"
+   persist=file
+	file=Tool
+   map register ushort AWssVor2
+;
+
+
+SetStrEjeStartForward // mm
+   ushort(1) 
+   vartype=set 
+   description="Start Auswerfer vor"
+   persist=file
+	file=Tool
+   minimum=0
+   maximum=SetStrClpOpen[2]
+   map register ushort ssfau4
+;
+
+SetStrEjeZeroAdjust // mm
+   ushort(1) 
+   vartype=set 
+   description="Nullpunktabgleich des Auswerfers"
+   persist=file
+	file=Ignore
+   map register ushort ssausr
+;
+
+SetStrEjeZeroAdjustWizard // mm
+   ushort(1) 
+   vartype=set 
+   description="Wizard help-variable for ejector zero adjustment"
+   file=Ignore
+   minimum=0
+;
+
+SetStsEjeZeroAdjustStart
+   bool
+   vartype=set 
+   description="start bit ejector zero adjustment"
+   persist=file
+   file=Ignore
+   map bit bool maswnp
+;
+
+SetStsEjeZeroAdjustOkay
+   bool
+   vartype=set 
+   description="Okay bit ejector zero adjustment"
+   persist=file
+   file=Ignore
+   map bit bool maswok
+;
+
+ActStrEje // mm
+   long(2)
+   vartype=act 
+   description="Istwert Auswerferweg"
+   map register long xsweg4 refresh=300
+;
+
+SetStsEjeLatched 
+   bool
+   vartype=set 
+   description="Auswerfer gerastet?"
+   persist=file
+	file=Tool
+   map bit bool dauswr
+;
+
+SetCntEjeMultiStroke 
+   ushort
+   vartype=set 
+   description="Anzahl Auswerferhübe"
+   persist=file
+	file=Tool
+   minimum=0
+   maximum=9
+   map register ushort snausw
+;
+
+ActCntEjeMultiStroke 
+   ushort
+   vartype=act 
+   description="Istwert Anzahl Auswerferhübe"
+   map register ushort xnahub refresh=300
+;
+
+
+SetStrEjeReturnMultiStroke // mm
+   ushort(1) 
+   vartype=set 
+   description="Return Stroke ejector"
+   persist=file
+	file=Tool
+   map register ushort AWssZur1
+;
+
+
+
+SetStrEjeReturnMultiStroke // mm
+   ushort(1) 
+   vartype=set 
+   description="Return Stroke ejector"
+   persist=file
+	file=Tool
+   minimum=0
+   maximum=SetStrEje
+   map register ushort ssaus3
+;
+
+
+SetCntEjeForwardStages
+   uchar
+   vartype=set 
+   description="Stages for Ejector Forward"
+   persist=file
+	file=Tool
+   minimum=1
+   maximum=2
+   map register ushort SetCntEjeForwardStages
+;
+
+SetCntEjeBackStages
+   uchar
+   vartype=set 
+   description="Stages for Ejector Back"
+   persist=file
+	file=Tool
+   minimum=1
+   maximum=2
+   map register ushort SetCntEjeBackStages
+;
+
+
+SetStrEjeForward // mm
+   ushort(1)
+   vartype=set 
+   description="Wegpunkte Auswerfer vor"
+   persist=file
+	file=Tool
+   minimum=0
+   maximum=SetStrEje
+   map register ushort ssaus1
+;
+
+
+
+SetStrEjeBack[2] // mm
+   ushort(1)
+   vartype=set 
+   description="Wegpunkt Auswerfer zurück"
+   persist=file
+	file=Tool
+   minimum=0
+   maximum=SetStrEje
+   map register ushort {SetStrEjeBack1, SetStrEjeBack2}
+;
+
+
+
+SetVelEjeForward[2]  // mm/sec
+   ushort
+   vartype=set 
+   description="Geschwindigkeitsprofil Auswerfer vor"
+   persist=file
+	file=Tool
+   minimum=2
+   maximum=ToolParamTabAdd[3]
+   map register ushort {svaus1, svaus2}
+;
+
+
+
+SetVelEjeBack[2]  // mm/sec
+   ushort
+   vartype=set 
+   description="Geschwindigkeit für Auswerfer zurück"
+   persist=file
+	file=Tool
+   minimum=2
+   maximum=ToolParamTab[9]
+   map register ushort {svazur, SetVelEjeBack2}
+;
+
+
+
+SetAccEjeForward  // %
+   ushort
+   vartype=set 
+   description="Beschleunigung für Auswerfer vor"
+   persist=file
+	file=Tool
+   minimum=10
+   maximum=100
+   map register ushort AWsbVor
+;
+
+
+
+SetAccEjeBack  // %
+   ushort
+   vartype=set 
+   description="Beschleunigung für Auswerfer zurück"
+   persist=file
+	file=Tool
+   minimum=10
+   maximum=100
+   map register ushort AWsbZur
+;
+
+
+
+SetCnfSyncEje  // ?
+   bool
+   vartype=set 
+   description="Synchronous ejection"
+   persist=file
+	file=Ignore
+   map bit bool AWs_SynAus
+;
+
+
+SetTimEjeSwitchover // sec
+   ushort(1)
+   vartype=set 
+   description="Wartezeit am Umschaltpunkt vor"
+   persist=file
+	file=Tool
+   minimum=0.0
+   maximum=9.9
+   map register ushort staus1
+;
+
+SetTimEjeForward // sec
+   ushort(1)
+   vartype=set 
+   description="Wartezeit vorne"
+   persist=file
+	file=Tool
+   minimum=0.0
+   maximum=9.9
+   map register ushort staus2
+;
+
+
+SetStsEjeSynch
+   bool
+   vartype=set 
+   description="Ruhelageüberwachung"
+   persist=file
+	file=Tool
+   map bit bool AWs_SynAus
+;
+
+
+
+SetStsEjeRestPosMonitor
+   bool
+   vartype=set 
+   description="Ruhelageüberwachung"
+   persist=file
+	file=Tool
+   map bit bool d4b5
+;
+
+
+
+SetStsEjeDynPlateSafety
+   bool
+   vartype=set 
+   description="Dyn. ejector plate safety"
+   persist=file
+	file=Tool
+   map bit bool AWs_DynPla
+;
+
+
+
+SetFceEje  // %
+   ushort
+   vartype=set 
+   description="Ejector force"
+   persist=file
+	file=Tool
+   minimum=20
+   maximum=100
+   map register ushort AWkraft
+;
+
+
+SetStsEjeFastCoupling
+   bool
+   vartype=set 
+   description="Fast coupling"
+   persist=file
+	file=Ignore
+   map bit bool ezhasc
+;
+
+
+// --------------------------------------
+// Group Clamp, Air Ejector
+// --------------------------------------
+SetStsAirEjeOnOff[8]
+   bool
+   vartype=set 
+   description="Air Ejector On/Off"
+   persist=file
+   file=Tool
+;
+
+SetStsAirProgram[8]
+   ushort
+   vartype=set 
+   description="Display value for air ejector program"
+   persist=file
+   file=Tool
+;
+
+SetCfgAirProgram[8]
+   ushort
+   vartype=set 
+   description="Air Ejector Program"
+   persist=file
+   file=Tool
+   map register ushort {LVsnEin0,LVsnEin1,LVsnEin2,LVsnEin3,LVsnEin4,LVsnEin5,LVsnEin6,LVsnEin7}
+;
+
+SetStrAir[8]
+   ushort(1)
+   vartype=set 
+   description="Air Ejector Stroke"
+   persist=file
+   file=Tool
+   minimum=0.0
+   maximum=SetStrClpOpen[2]
+   map register ushort {ssfau5,ssfau6,ssfau7,ssfau8,LVssWegP5,LVssWegP6,LVssWegP7,LVssWegP8}
+;
+
+SetTimAirDelay[8]
+   ushort(2)
+   vartype=set 
+   description="Air Ejector Delay Time"
+   persist=file
+   file=Tool
+   minimum=0.00
+   maximum=99.99
+   map register ushort {LVstVerz10,LVstVerz20,LVstVerz30,LVstVerz40,LVstVerz50,LVstVerz60,LVstVerz70,LVstVerz80}
+;
+
+SetTimAirBlast[8]
+   ushort(2)
+   vartype=set 
+   description="Air Ejector Blast Time"
+   persist=file
+   file=Tool
+   minimum=0.00
+   maximum=99.99
+   map register ushort {LVstBlas10,LVstBlas20,LVstBlas30,LVstBlas40,LVstBlas50,LVstBlas60,LVstBlas70,LVstBlas80}
+;
+
+// --------------------------------------
+// Group Temperature
+// --------------------------------------
+// --------------------------------------
+// Group Temperatuer, Barrel
+// --------------------------------------
+SetCfgTmpAutoTuneBlock[2]
+	ulong
+	vartype=volatile
+	description="Temperature auto tuning controllers"
+	persist=file
+   file=Ignore
+	map register ulong {HEs_BlOpt,HEs_BlOpt2}
+; 
+
+SetStsTmpAutoTuneRun
+	bool
+	vartype=volatile
+	description="Run the temperature auto tuning"
+   file=Ignore
+	map bit bool HEm_Start
+;
+
+SetStsTmpAutoTuneAbort
+	bool
+	vartype=volatile
+	description="Abort temperature auto tuning"
+   file=Ignore
+	map bit bool HEm_Abort
+;
+
+ActStsTmpAutoTuneFinished
+	bool
+	vartype=volatile
+	description="Temperature auto tunining has finished"
+	map bit bool HEm_Ready
+;
+
+SetTmpBrlZnStb[6]
+   short // °C 
+   vartype=set
+   description="Absenktemperatur Zylinderheizung"
+   persist=file
+   file=Tool
+   minimum=MinTmpZn(0)
+   maximum=MaxTmpZn(0)
+   map register short {tabszyl1, -1, -1, -1, -1, -1}
+;
+  
+SetStsBrlStbTmpOnOff
+   bool
+   vartype=set 
+   description="Absenkung Zylinderheizung aktivieren"
+   persist=file
+   file=Tool
+   map bit bool SetStsBrlStbTmpOnOff
+;
+
+
+   ActStsBrlTmpOff
+   bool
+   vartype=act
+   description="Heizung nicht eingeschaltet"
+   map bit bool FK_ZHa_Aus
+   refresh=300
+;
+
+
+
+   ActStsBrlTmpOff
+   bool
+   vartype=act
+   description="Heizung nicht eingeschaltet"
+   map bit bool fheiau
+   refresh=300
+;
+
+
+ActTimScrReleaseDelay[6]
+   ushort // min
+   vartype=act
+   description="Schneckenfreigabeverzögerung"
+   map register ushort {HZit_Verz1, -1, -1, -1, -1, -1}
+   refresh=600
+   ;  
+
+// HYDRAULIC
+
+SetTmpOil
+   short // °C
+   vartype=set
+   description="Sollwert der Öltemperatur"
+   persist=file
+   file=Ignore
+   map register short soelvw
+;
+
+
+
+SetStsOilPreheatOnOff 
+   bool
+   vartype=set 
+   description="Ölvorwärmung ein/aus"
+   persist=file
+   file=Tool
+   map bit bool doelhz
+;
+
+
+SetCfgBrlTmpLeadingZn[6]
+   ushort
+   vartype=set
+   description="Führungszone für Zylinderheizung-Anfahrschaltung"
+   persist=file
+   file=Tool
+   map register ushort {ZH_FueReg1, -1, -1, -1, -1, -1}
+;
+
+SetCfgBrlTmpLeadingFactor[6]
+   short(2)
+   vartype=set
+   description="Faktor für Zylinderheizung-Anfahrschaltung"
+   persist=file
+   file=Tool
+   map register short {ZH_Faktor1, -1, -1, -1, -1, -1}
+;
+
+SetCfgTmpIoControllerNum
+	ushort
+	vartype=volatile
+	description="Temperature I/O Controller Number Setpoint"
+   file=Ignore
+	map register ushort HZs_CfgReg
+;
+
+ActCfgTmpIoControllerNum
+	ushort
+	vartype=volatile
+	description="Temperature I/O Controller Number Actual"
+	map register ushort HZi_CfgReg
+;
+
+ActCfgTmpIoTc
+	ushort
+	vartype=volatile
+	description="Temperature I/O Thermocouple Input"
+	map register ushort HZmt_Conf
+;
+
+ActCfgTmpIoHeat
+	ushort
+	vartype=volatile
+	description="Temperature I/O Heating Output"
+	map register ushort HZmh_Conf
+;
+
+ActCfgTmpIoCool
+	ushort
+	vartype=volatile
+	description="Temperature I/O Cooling Output"
+	map register ushort HZmk_Conf
+;
+
+// --------------------------------------
+// Group Temperature, HotRunner
+// --------------------------------------
+SetStsHotRunSoftTmpOnOff
+   bool
+   vartype=set 
+   description="Soft start hotrummer on/off"
+   persist=file
+   file=Tool
+   map bit bool danf
+;
+
+SetTimHotRunSoftDuration
+   short
+   vartype=set
+   description="Soft start, start duration"
+   persist=file
+   file=Tool
+   minimum=0
+   maximum=250
+   map register short Ax0ec
+;
+
+SetTmpHotRunSoft
+   short
+   vartype=set
+   description="Soft start, temperature hotrunner"
+   persist=file
+   file=Tool
+   minimum=0
+   maximum=250
+   map register short Ax0ed
+;
+
+SetPwrHotRunSoftLmt
+   short
+   vartype=set
+   description="Soft start, power limit"
+   persist=file
+   file=Tool
+   minimum=0
+   maximum=100
+   map register short Ax0ee
+;
+
+SetTmpHotRunStb
+   short // °C 
+   vartype=set
+   description="Soft start, temperature drop to"
+   persist=file
+   file=Tool
+   minimum=0
+   maximum=450
+   map register short tabswkz
+;
+
+SetStsHotRunStbTmpOnOff
+   bool
+   vartype=set 
+   description="Soft start hotrummer on/off"
+   persist=file
+   file=Tool
+   map bit bool SetStsHotRunStbTmpOnOff
+;
+  
+
+ActStsHotRunTmpOff
+   bool
+   vartype=act
+   description="Werkzeugheizung nicht eingeschaltet"
+   map bit bool FK_WHa_Aus
+   refresh=300
+;
+
+
+// --------------------------------------
+// Group Temperature, Interface config
+// --------------------------------------
+ActStsTmpSerInterfaceOption
+   bool
+   vartype=act
+   description="Option for serial external temperature controllers"
+   map bit bool OPm_IQT399
+   refresh=300
+;
+
+SetCfgTmpSerInterface[2]
+   short 
+   vartype=set
+   description="Serial interface number for external temperature controllers"
+   persist=file
+   file=Tool
+   map register short {HXsnIF,HXsnIF_2}
+;
+
+SetCfgTmpSerProtocol[2]
+   short 
+   vartype=set
+   description="Protocol for serial external temperature controllers"
+   persist=file
+   file=Tool
+   map register short {HXsnProto,HXsnProto2}
+;
+
+SetCfgTmpSerBaudrate[2]
+   short 
+   vartype=set
+   description="Baudrate for serial external temperature controllers"
+   persist=file
+   file=Tool
+   map register short {HXsnBaud,HXsnBaud_2}
+;
+
+SetCfgTmpSerDataBits[2]
+   short 
+   vartype=set
+   description="DataBits for serial external temperature controllers"
+   persist=file
+   file=Tool
+   map register short {HXsnDatBit,HXsnDatBi2}
+;
+
+SetCfgTmpSerStopBits[2]
+   short 
+   vartype=set
+   description="StopBits for serial external temperature controllers"
+   persist=file
+   file=Tool
+   map register short {HXsnStpBit,HXsnStpBi2}
+;
+
+SetCfgTmpSerParity[2]
+   short 
+   vartype=set
+   description="Parity for serial external temperature controllers"
+   persist=file
+   file=Tool
+   map register short {HXsnParity,HXsnParit2}
+;
+
+SetCfgTmpSerEcho[2]
+   bool
+   vartype=set
+   description="Echo for serial external temperature controllers"
+   persist=file
+   file=Tool
+   map bit bool {HXsnEcho,HXsnEcho_2}
+;
+
+// -----------------------------------------
+// Group Temperature, controller measurement
+// -----------------------------------------
+ActStsTempContrMeasRelease
+   bool
+   vartype=act
+   description="Temperature controller measure release"
+   map bit bool OPm_IQT350
+   refresh=300
+;
+
+
+// --------------------------------------
+// Group xxx
+// --------------------------------------
+SetCntTempContrMeas[4]
+   short 
+   vartype=set
+   description="Temperature controller measure"
+   persist=file
+   file=Tool
+   map register short {HZsnRegNr1, HZsnRegNr2, HZsnRegNr3, HZsnRegNr4}
+;
+
+
+// --------------------------------------
+// Group Automation
+// --------------------------------------
+// --------------------------------------
+// General Functions
+// --------------------------------------
+SetCntClpAutoCentralLub
+   long
+   vartype=set 
+   description="Auto central lubrication"
+   persist=file
+   file=Tool
+   minimum=1000
+   maximum=10000
+   map register long SLsnSchm
+;
+
+ActCntClpAutoCentralLub
+   long
+   vartype=act
+   description="Auto central lubrication"
+   map register long ZSmnSchmier
+   refresh=600
+;
+
+SetCfgClpConstCentralLub
+   bool
+   vartype=set
+   description="Constant Central lubriction On/Off"
+   persist=file
+   file=Ignore
+   map bit bool ZSmDauerB
+;
+
+SetStrRobStartRemoval
+   ushort(1) 
+   vartype=set 
+   description="Stroke point start parts removal"
+   persist=file
+   file=Tool
+   minimum=0
+   maximum=SetStrClpOpen[2]
+   map register ushort ssentn
+;
+
+// --------------------------------------
+// General configuration IO
+// --------------------------------------
+// --------------------------------------
+// digital input
+// --------------------------------------
+SetCfgMachConfDIOnOff[4]
+   bool
+   vartype=set 
+   description="Configuration digital input On/Off"
+   persist=file
+   file=Tool
+;
+
+SetCfgMachConfDIFunc[4]
+    ushort
+    vartype=set
+    description="Function for configruation digital input"
+    persist=file
+    file=Tool
+    map register ushort {IOs_DIfkt1, IOs_DIfkt2, IOs_DIfkt3, IOs_DIfkt4}
+;
+
+SetStsMachConfDIFunc[4]
+    ushort
+    vartype=set
+    description="Function for configruation digital input"
+    persist=file
+    file=Tool
+;
+
+SetCfgMachConfDILogic[4]
+    ushort
+    vartype=set
+    description="Logic for configruation digital input (Hight/Low)"
+    persist=file
+    file=Tool
+    map register ushort {IOs_DIlgk1, IOs_DIlgk2, IOs_DIlgk3, IOs_DIlgk4}
+;
+
+SetCfgMachConfDISpecPar[4]
+    ushort
+    vartype=set
+    description="Special parameter of configruation digital input"
+    persist=file
+    file=Tool
+    map register ushort {IOsnDIpar1, IOsnDIpar2, IOsnDIpar3, IOsnDIpar4}
+;
+
+ActStsMachConfDI[4]
+    bool
+    vartype=act
+    description="Act value from configruation digital input"
+    map register ushort {IOinDIist:15, IOinDIist:14, IOinDIist:13, IOinDIist:12}
+    refresh=300
+;
+
+// --------------------------------------
+// digital output
+// --------------------------------------
+SetCfgMachConfDOOnOff[4]
+   bool
+   vartype=set 
+   description="Configuration digital input On/Off"
+   persist=file
+   file=Tool
+;
+
+SetCfgMachConfDOFunc[4]
+    ushort
+    vartype=set
+    description="Function for configruation digital output"
+    persist=file
+    file=Tool
+    map register ushort {IOs_DOfkt1, IOs_DOfkt2, IOs_DOfkt3, IOs_DOfkt4}
+;
+
+SetStsMachConfDOFunc[4]
+    ushort
+    vartype=set
+    description="Function for configruation digital output"
+    persist=file
+;
+
+SetTimMachConfDOAction[4]
+    ushort(1)
+    vartype=set
+    description="Action time for configruation digital output"
+    persist=file
+    file=Tool
+    minimum=0
+    maximum=999.9
+    map register ushort {IOstDOakt1, IOstDOakt2, IOstDOakt3, IOstDOakt4}
+;
+
+SetStsMachConfDOSpecPar1Str[4]
+    string(16)
+    vartype=set
+    description="Text string for configruation digital output parameter 1"
+    persist=file
+    file=Tool
+;
+
+SetCfgMachConfDOSpecPar1[4]
+    ushort
+    vartype=set
+    description="Special parameter 1 of configruation digital output"
+    persist=file
+    file=Tool
+    minimum=1
+    maximum=MaxConfDOPar()
+    map register ushort {IOsnDOpar1, IOsnDOpar2, IOsnDOpar3, IOsnDOpar4}
+;
+
+SetCfgMachConfDOSpecPar2[4]
+    ushort
+    vartype=set
+    description="Special parameter 2 of configruation digital output"
+    persist=file
+    file=Tool
+    map register ushort {IOsnDOpa21, IOsnDOpa22, IOsnDOpa23, IOsnDOpa24}
+;
+
+ActStsMachConfDO[4]
+    bool
+    vartype=act
+    description="Act value from configruation digital input"
+    map register short {IOinDOist:15, IOinDOist:14, IOinDOist:13, IOinDOist:12}
+    refresh=300
+;
+
+Test[16]
+    bool
+    vartype=act
+    description="Act value from configruation digital input"
+    map register short {IOinDOist:15, IOinDOist:14, IOinDOist:13, IOinDOist:12,
+                        IOinDOist:11, IOinDOist:10, IOinDOist:9,  IOinDOist:8,
+                        IOinDOist:7,  IOinDOist:6,  IOinDOist:5,  IOinDOist:4,
+                        IOinDOist:3,  IOinDOist:2,  IOinDOist:1,  IOinDOist:0
+                        }
+    refresh=300
+;
+
+// --------------------------------------
+// analog output
+// --------------------------------------
+SetCfgMachConfAOOnOff[4]
+   bool
+   vartype=set 
+   description="Configuration digital input On/Off"
+   persist=file
+   file=Tool
+;
+
+SetCfgMachConfAOFunc[4]
+    ushort
+    vartype=set
+    description="Function for configruation digital output"
+    persist=file
+    file=Tool
+    map register ushort {IOs_AOfkt1, IOs_AOfkt2, IOs_AOfkt3, IOs_AOfkt4}
+;
+
+SetStsMachConfAOFunc[4]
+    ushort
+    vartype=set
+    description="Function for configruation digital output"
+    persist=file
+;
+
+SetTimMachConfAOAction[4]
+    ushort(1)
+    vartype=set
+    description="Action time for configruation digital output"
+    persist=file
+    file=Tool
+    minimum=0
+    maximum=999.9
+    map register ushort {IOstDOakt1, IOstDOakt2, IOstDOakt3, IOstDOakt4}
+;
+
+SetStsMachConfAOSpecParStr[4]
+    string(20)
+    vartype=set
+    description="Text string for configruation digital output parameter 1"
+    persist=file
+    file=Tool
+;
+
+SetCfgMachConfAOSpecPar[4]
+    ushort
+    vartype=set
+    description="Special parameter 1 of configruation digital output"
+    persist=file
+    file=Tool
+    map register ushort {IOsnAOpar1, IOsnAOpar2, IOsnAOpar3, IOsnAOpar4}
+;
+
+ActStsMachConfAO[4]
+    ushort(2)
+    vartype=act
+    description="Act value from configruation digital input"
+    map register ushort {IOinAOist1, IOinAOist2, IOinAOist3, IOinAOist4}
+    refresh=300
+;
+
+ActCfgMachConfAOVisible
+    bool
+    vartype=act
+    description="Option bit to change configruation analog output visible"
+    map bit bool IOm_AOiqt
+    refresh=300
+;
+
+
+
+// --------------------------------------
+// Group Diagnostics
+// --------------------------------------
+ActStsUpdatePlcText
+   bool
+   vartype=volatile
+   description="PLC requests for updating text"
+   map bit bool UP_SPSText
+;
+
+ActDescDiagInfo1
+   string(52)
+   vartype=act
+   description="Ir1-Fw Version"
+   map register string(52) IText_1
+   refresh=100
+;
+
+ActDescDiagInfo2
+   string(52)
+   vartype=act
+   description="Ir1-Sw Version"
+   map register string(52) IText_2
+   refresh=100
+;
+
+ActDescDiagInfo3
+   string(52)
+   vartype=act
+   description="Cpu-Fw Version"
+   map register string(52) IText_3
+   refresh=100
+;
+
+ActDescDiagInfo4
+   string(52)
+   vartype=act
+   description="Cpu-Sw Version"
+   map register string(52) IText_4
+   refresh=100
+;
+
+ActDescDiagInfo5
+   string(52)
+   vartype=act
+   description="Parameter-Kennungen"
+   map register string(52) IText_5
+   refresh=100
+;
+
+ActDescDiagInfo6
+   string(52)
+   vartype=act
+   description="Drive-Kennungen 1"
+   map register string(52) IText_6
+   refresh=100
+;
+
+ActDescDiagInfo7
+   string(52)
+   vartype=act
+   description="Drive-Kennungen 2"
+   map register string(52) IText_7
+   refresh=100
+;
+
+ActStsClpCloseInh
+	ulong
+	vartype=act
+	description="Werkzeug schliessen FG"
+	map register ulong diagm1
+	refresh=600
+;
+
+ActStsClpCloseState
+	ushort
+	vartype=act
+	description="Werkzeug schliessen Status"
+	map register ushort diagm2
+	refresh=600
+;
+
+ActStsClpCloseTaskCnt
+	ushort
+	vartype=act
+	description="Werkzeug schliessen TC"
+	map register ushort diagm3
+	refresh=600
+;
+
+ActStsBuildClpFceInh
+	ulong
+	vartype=act
+	description="Druckaufbau FG"
+	map register ulong diagm4
+	refresh=600
+;
+
+ActStsBuildClpFceState
+	ushort
+	vartype=act
+	description="Druckaufbau Status"
+	map register ushort diagm5
+	refresh=600
+;
+
+ActStsBuildClpFceTaskCnt
+	ushort
+	vartype=act
+	description="Druckaufbau TC"
+	map register ushort diagm6
+	refresh=600
+;
+
+ActStsInjUnitFwdInh[6]
+	ulong
+	vartype=act
+	description="Spritzeinhei vor FG"
+	map register ulong {diagm7, -1, -1, -1, -1, -1} 
+	refresh=600
+;
+
+ActStsInjUnitFwdState[6]
+	ushort
+	vartype=act
+	description="Spritzeinheit vor Status"
+	map register ushort {diagm8, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActStsInjUnitFwdTaskCnt[6]
+	ushort
+	vartype=act
+	description="Spritzeinheit vor TC"
+	map register ushort {diagm9, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActStsInjInh[6]
+	ulong
+	vartype=act
+	description="Spritzen FG"
+	map register ulong {diagma, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActStsInjState[6]
+	ushort
+	vartype=act
+	description="Spritzen Status"
+	map register ushort {diagmb, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActStsInjTaskCnt[6]
+	ushort
+	vartype=act
+	description="Spritzen TC"
+	map register ushort {diagmc, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActStsIntrusionInh[6]
+	ulong
+	vartype=act
+	description="Intrusion FG"
+	map register ulong {diagmd, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActStsIntrusionState[6]
+	ushort
+	vartype=act
+	description="Intrusion Status"
+	map register ushort {diagme, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActStsIntrusionTaskCnt[6]
+	ushort
+	vartype=act
+	description="Intrusion TC"
+	map register ushort {diagmf, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActStsPlstInh[6]
+	ulong
+	vartype=act
+	description="Plastifizieren FG"
+	map register ulong {diagm10, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActStsPlstState[6]
+	ushort
+	vartype=act
+	description="Plastifizieren Status"
+	map register ushort {diagm11, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActStsPlstTaskCnt[6]
+	ushort
+	vartype=act
+	description="Plastifizieren TC"
+	map register ushort {diagm12, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActStsScrRetInh[6]
+	ulong
+	vartype=act
+	description="Schneckenrückzug FG"
+	map register ulong {diagm13, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActStsScrRetState[6]
+	ushort
+	vartype=act
+	description="Schneckenrückzug Status"
+	map register ushort {diagm14, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActStsScrRetTaskCnt[6]
+	ushort
+	vartype=act
+	description="Schneckenrückzug TC"
+	map register ushort {diagm15, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActStsScrPosControlInh[6]
+	ulong
+	vartype=act
+	description="Lageregelung FG"
+	map register ulong {diagm16, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActStsScrPosControlState[6]
+	ushort
+	vartype=act
+	description="Lageregelung Status"
+	map register ushort {diagm17, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActStsScrPosControlTaskCnt[6]
+	ushort
+	vartype=act
+	description="Lageregelung TC"
+	map register ushort {diagm18, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActStsInjUnitRetInh[6]
+	ulong
+	vartype=act
+	description="Spritzeinheit zurück FG"
+	map register ulong {diagm19, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActStsInjUnitRetState[6]
+	ushort
+	vartype=act
+	description="Spritzeinheit zurück Status"
+	map register ushort {diagm1a, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActStsInjUnitRetTaskCnt[6]
+	ushort
+	vartype=act
+	description="Spritzeinheit zurück TC"
+	map register ushort {diagm1b, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActStsDcmpClpFceInh
+	ulong
+	vartype=act
+	description="Druckabbau FG"
+	map register ulong diagm1c
+	refresh=600
+;
+
+ActStsDcmpClpFceState
+	ushort
+	vartype=act
+	description="Druckabbau Status"
+	map register ushort diagm1d
+	refresh=600
+;
+
+ActStsDcmpClpFceTaskCnt
+	ushort
+	vartype=act
+	description="Druckabbau TC"
+	map register ushort diagm1e
+	refresh=600
+;
+
+ActStsClpOpenInh
+	ulong
+	vartype=act
+	description="Werkzeug öffnen FG"
+	map register ulong diagm1f
+	refresh=600
+;
+
+ActStsClpOpenState
+	ushort
+	vartype=act
+	description="Werkzeug öffnen Status"
+	map register ushort diagm20
+	refresh=600
+;
+
+ActStsClpOpenTaskCnt
+	ushort
+	vartype=act
+	description="Werkzeug öffnen TC"
+	map register ushort diagm21
+	refresh=600
+;
+
+ActStsEjeOrganizationInh
+	ulong
+	vartype=act
+	description="Auswerferorganisation FG"
+	map register ulong diagm22
+	refresh=600
+;
+
+ActStsEjeOrganizationState
+	ushort
+	vartype=act
+	description="Auswerferorganisation Status"
+	map register ushort diagm23
+	refresh=600
+;
+
+ActStsEjeOrganizationTaskCnt
+	ushort
+	vartype=act
+	description="Auswerferorganisation TC"
+	map register ushort diagm24
+	refresh=600
+;
+
+ActStsEjeFwdInh
+	ulong
+	vartype=act
+	description="Auswerfer vor FG"
+	map register ulong diagm25
+	refresh=600
+;
+
+ActStsEjeFwdState
+	ushort
+	vartype=act
+	description="Auswerfer vor Status"
+	map register ushort diagm26
+	refresh=600
+;
+
+ActStsEjeFwdTaskCnt
+	ushort
+	vartype=act
+	description="Auswerfer vor TC"
+	map register ushort diagm27
+	refresh=600
+;
+
+ActStsEjeRetInh
+	ulong
+	vartype=act
+	description="Auswerfer zurück FG"
+	map register ulong diagm28
+	refresh=600
+;
+
+ActStsEjeRetState
+	ushort
+	vartype=act
+	description="Auswerfer zurück Status"
+	map register ushort diagm29
+	refresh=600
+;
+
+ActStsEjeRetTaskCnt
+	ushort
+	vartype=act
+	description="Auswerfer zurück TC"
+	map register ushort diagm2a
+	refresh=600
+;
+
+ActStsCoresInh
+	ulong
+	vartype=act
+	description="Kernzüge FG"
+	map register ulong diagm2b
+	refresh=600
+;
+
+ActStsCoresState
+	ushort
+	vartype=act
+	description="Kernzüge Status"
+	map register ushort diagm2c
+	refresh=600
+;
+
+ActStsCoresTaskCnt
+	ushort
+	vartype=act
+	description="Kernzüge TC"
+	map register ushort diagm2d
+	refresh=600
+;
+
+ActStsScanWord1Inh[6]
+	ulong
+	vartype=act
+	description="Scannerwort 1 FG"
+	map register ulong {diagm2e, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActStsScanWord1State[6]
+	ushort
+	vartype=act
+	description="Scannerwort 1 Status"
+	map register ushort {diagm2f, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActStsScanWord1TaskCnt[6]
+	ushort
+	vartype=act
+	description="Scannerwort 1 TC"
+	map register ushort {diagm30, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActStsScanWord2Inh[6]
+	ulong
+	vartype=act
+	description="Scannerwort 2 FG"
+	map register ulong {diagm31, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActStsScanWord2State[6]
+	ushort
+	vartype=act
+	description="Scannerwort 2 Status"
+	map register ushort {diagm32, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActStsScanWord2TaskCnt[6]
+	ushort
+	vartype=act
+	description="Scannerwort 2 TC"
+	map register ushort {diagm33, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActStsScanWordSpecialInh[6]
+	ulong
+	vartype=act
+	description="Sonderprogramme FG"
+	map register ulong {diagm34, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActStsScanWordSpecialState[6]
+	ushort
+	vartype=act
+	description="Sonderprogramme Status"
+	map register ushort {diagm35, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActStsScanWordSpecialTaskCnt[6]
+	ushort
+	vartype=act
+	description="Sonderprogramme TC"
+	map register ushort {diagm36, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActDescDriveModuleClpEje
+	string(36)
+	vartype=act
+	description="Drive Module info for clamp and ejector"
+	map register string(36) TDrvModul11
+   refresh=100
+;
+
+ActDescDriveMotorClpEje
+	string(36)
+	vartype=act
+	description="Drive Motor info for clamp and ejector"
+	map register string(36) TDrvMotor11
+   refresh=100
+;
+
+ActDescDriveSerialNumClpEje
+	string(36)
+	vartype=act
+	description="Drive Serial Number info for clamp and ejector"
+	map register string(36) TDrvSerNr11
+   refresh=100
+;
+
+ActDescDriveModuleInjPlst[6]
+	string(36)
+	vartype=act
+	description="Drive Module info for injection and extruder"
+	map register string(36) {TDrvModul12, -1, -1, -1, -1, -1}
+   refresh=100
+;
+
+ActDescDriveMotorInjPlst[6]
+	string(36)
+	vartype=act
+	description="Drive Motor info for injection and extruder"
+	map register string(36) {TDrvMotor12, -1, -1, -1, -1, -1}
+   refresh=100
+;
+
+ActDescDriveSerialNumInjPlst[6]
+	string(36)
+	vartype=act
+	description="Drive Serial Number info for injection and extruder"
+	map register string(36) {TDrvSerNr12, -1, -1, -1, -1, -1}
+   refresh=100
+;
+
+ActDiagMotorKt_Clp
+	short(3)
+	vartype=act
+	description="Motor Kt Faktor Achse SL"
+	map register short diagm150
+	refresh=600
+;
+
+ActDiagMotorKt_Eje
+	short(3)
+	vartype=act
+	description="Motor Kt Faktor Achse AW"
+	map register short diagm151
+	refresh=600
+;
+
+ActDiagMotorKt_Inj[6]
+	short(3)
+	vartype=act
+	description="Motor Kt Faktor Achse SP"
+	map register short {diagm152, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActDiagMotorKt_Plst[6]
+	short(3)
+	vartype=act
+	description="Motor Kt Faktor Achse PL"
+	map register short {diagm153, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActDiagMotorAirSplit_Clp
+	short(2)
+	vartype=act
+	description="Motor Luftspalt Achse SL"
+	map register short diagm154
+	refresh=600
+; 
+
+ActDiagMotorAirSplit_Eje
+	short(2)
+	vartype=act
+	description="Motor Luftspalt Achse AW"
+	map register short diagm155
+	refresh=600
+; 
+
+ActDiagMotorAirSplit_Inj[6]
+	short(2)
+	vartype=act
+	description="Motor Luftspalt Achse SP"
+	map register short {diagm156, -1, -1, -1, -1, -1}
+	refresh=600
+; 
+
+ActDiagMotorAirSplit_Plst[6]
+	short(2)
+	vartype=act
+	description="Motor Luftspalt Achse PL"
+	map register short {diagm157, -1, -1, -1, -1, -1}
+	refresh=600
+; 
+
+ActDiagMotorTmp_Clp
+	short(1)
+	vartype=act
+	description="Motor Fühlertemperatur Achse SL"
+	map register short diagm158
+	refresh=600
+;
+
+ActDiagMotorTmp_Eje
+	short(1)
+	vartype=act
+	description="Motor Fühlertemperatur Achse AW"
+	map register short diagm159
+	refresh=600
+;
+
+ActDiagMotorTmp_Inj[6]
+	short(1)
+	vartype=act
+	description="Motor Fühlertemperatur Achse SP"
+	map register short {diagm15a, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActDiagMotorTmp_Plst[6]
+	short(1)
+	vartype=act
+	description="Motor Fühlertemperatur Achse PL"
+	map register short {diagm15b, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActDiagMotorCalcTmp_Clp
+	short(1)
+	vartype=act
+	description="Motor berechnete Fühlertemperatur Achse SL"
+	map register short diagm15c
+	refresh=600
+;
+
+ActDiagMotorCalcTmp_Eje
+	short(1)
+	vartype=act
+	description="Motor berechnete Fühlertemperatur Achse AW"
+	map register short diagm15d
+	refresh=600
+;
+
+ActDiagMotorCalcTmp_Inj[6]
+	short(1)
+	vartype=act
+	description="Motor berechnete Fühlertemperatur Achse SP"
+	map register short {diagm15e, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActDiagMotorCalcTmp_Plst[6]
+	short(1)
+	vartype=act
+	description="Motor berechnete Fühlertemperatur Achse PL"
+	map register short {diagm15f, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActDiagMotorSpeedSet_Clp
+	short(2)
+	vartype=act
+	description="Motor Drehzahl-Sollwert Achse SL"
+	map register short diagm14d
+	refresh=600
+;
+
+ActDiagMotorSpeedSet_Eje
+	short(2)
+	vartype=act
+	description="Motor Drehzahl-Sollwert Achse AW"
+	map register short diagm14c
+	refresh=600
+;
+
+ActDiagMotorSpeedSet_Inj[6]
+	short(2)
+	vartype=act
+	description="Motor Drehzahl-Sollwert Achse SP"
+	map register short {diagm14e, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActDiagMotorSpeedSet_Plst[6]
+	short(2)
+	vartype=act
+	description="Motor Drehzahl-Sollwert Achse PL"
+	map register short {diagm14f, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActDiagMotorPos_Clp
+	short(1)
+	vartype=act
+	description="Motor Position Achse SL"
+	map register short diagm141
+	refresh=600
+;
+
+ActDiagMotorPos_Eje
+	short(1)
+	vartype=act
+	description="Motor Position Achse AW"
+	map register short diagm140
+	refresh=600
+;
+
+ActDiagMotorPos_Inj[6]
+	short(1)
+	vartype=act
+	description="Motor Position Achse SP"
+	map register short {diagm142, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActDiagMotorPos_Plst[6]
+	short(1)
+	vartype=act
+	description="Motor Position Achse PL"
+	map register short {diagm143, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActDiagMotorCurrent_Clp
+	short(1)
+	vartype=act
+	description="Motor Strom Achse SL"
+	map register short diagm160
+	refresh=600
+;
+
+ActDiagMotorCurrent_Eje
+	short(1)
+	vartype=act
+	description="Motor Strom Achse AW"
+	map register short diagm161
+	refresh=600
+;
+
+ActDiagMotorCurrent_Inj[6]
+	short(1)
+	vartype=act
+	description="Motor Strom Achse SP"
+	map register short {diagm162, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActDiagMotorCurrent_Plst[6]
+	short(1)
+	vartype=act
+	description="Motor Strom Achse PL"
+	map register short {diagm163, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActDiagMotorTorque_Clp
+	short(1)
+	vartype=act
+	description="Motor Drehmoment Achse SL"
+	map register short diagm164
+	refresh=600
+;
+
+ActDiagMotorTorque_Eje
+	short(1)
+	vartype=act
+	description="Motor Drehmoment Achse AW"
+	map register short diagm165
+	refresh=600
+;
+
+ActDiagMotorTorque_Inj[6]
+	short(1)
+	vartype=act
+	description="Motor Drehmoment Achse SP"
+	map register short {diagm166, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActDiagMotorTorque_Plst[6]
+	short(1)
+	vartype=act
+	description="Motor Drehmoment Achse PL"
+	map register short {diagm167, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActDiagMotorLoad_Clp
+	short
+	vartype=act
+	description="Motor Last Achse SL"
+	map register short diagm149
+	refresh=600
+;
+
+ActDiagMotorLoad_Eje
+	short
+	vartype=act
+	description="Motor Last Achse AW"
+	map register short diagm148
+	refresh=600
+;
+
+ActDiagMotorLoad_Inj[6]
+	short
+	vartype=act
+	description="Motor Last Achse SP"
+	map register short {diagm14a, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActDiagMotorLoad_Plst[6]
+	short
+	vartype=act
+	description="Motor Last Achse PL"
+	map register short {diagm14b, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActDiagDriveLoad_Clp
+	short
+	vartype=act
+	description="Drive Last Achse SL"
+	map register short diagm145
+	refresh=600
+;
+
+ActDiagDriveLoad_Eje
+	short
+	vartype=act
+	description="Drive Last Achse AW"
+	map register short diagm144
+	refresh=600
+;
+
+ActDiagDriveLoad_Inj[6]
+	short
+	vartype=act
+	description="Drive Last Achse SP"
+	map register short {diagm146, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActDiagDriveLoad_Plst[6]
+	short
+	vartype=act
+	description="Drive Last Achse PL"
+	map register short {diagm147, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActDiagDcBusVoltage_Clp
+	short(1)
+	vartype=act
+	description="DC-Bus-Spannung Achse SL"
+	map register short diagm168
+	refresh=600
+;
+
+ActDiagDcBusVoltage_Eje
+	short(1)
+	vartype=act
+	description="DC-Bus-Spannung Achse AW"
+	map register short diagm169
+	refresh=600
+;
+
+ActDiagDcBusVoltage_Inj[6]
+	short(1)
+	vartype=act
+	description="DC-Bus-Spannung Achse SP"
+	map register short {diagm16a, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActDiagDcBusVoltage_Plst[6]
+	short(1)
+	vartype=act
+	description="DC-Bus-Spannung Achse PL"
+	map register short {diagm16b, -1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActDiagInjFce[6]
+	short(2)
+	vartype=act
+	description="Aktuelle Spritzkraft"
+	map register short {SPikKraft,-1, -1, -1, -1, -1}
+	refresh=300
+;
+
+ActDiagBinaryLinkFriction
+	short
+	vartype=act
+	description="Gelenkkopfreibung"
+	map register short GKikProz
+	refresh=600
+;
+
+//------------------------------
+//Group Diagnostics - Adjustment
+//------------------------------
+SetStrClpOffs_Ref
+	short(1)
+	vartype=set
+	description="Werkzeugoffset Soll Ref"
+   file=Ignore
+	map register short MSssOff1
+;
+
+SetStrEjeOffs_Ref
+	short(1)
+	vartype=set
+	description="Auswerferoffset Soll Ref"
+   file=Ignore
+	map register short MSssOff2
+;
+
+SetStrPlstOffs_Ref[6]
+	short(1)
+	vartype=set
+	description="Schneckenoffset Soll Ref"
+   file=Ignore
+	map register short {MSssOff3,-1, -1, -1, -1, -1}
+;
+
+SetFceInjOffs_Ref[6]
+	short(1)
+	vartype=set
+	description="Einspritzkraftoffset Soll Ref"
+   file=Ignore
+	map register short {MSssOff4,-1, -1, -1, -1, -1}
+;
+
+ActStrClpOffs_Ref
+	short(1)
+	vartype=act
+	description="Werkzeugoffset Akt Ref"
+	map register short MSisOff1
+	refresh=600
+;
+
+ActStrEjeOffs_Ref
+	short(1)
+	vartype=act
+	description="Auswerferoffset Akt Ref"
+	map register short MSisOff2
+	refresh=600
+;
+
+ActStrPlstOffs_Ref[6]
+	short(1)
+	vartype=act
+	description="Schneckenoffset Akt Ref"
+	map register short {MSisOff3,-1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActFceInjOffs_Ref[6]
+	short(1)
+	vartype=act
+	description="Einspritzkraftoffset Akt Ref"
+	map register short {MSisOff4,-1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActCntClpOffs_Calc
+	short
+	vartype=act
+	description="Werkzeugoffset Akt Off"
+	map register short MSisOff11
+	refresh=600
+;
+
+ActCntEjeOffs_Calc
+	short
+	vartype=act
+	description="Auswerferoffset Akt Off"
+	map register short MSisOff21
+	refresh=600
+;
+
+ActCntPlstOffs_Calc[6]
+	short
+	vartype=act
+	description="Schneckenoffset Akt Off"
+	map register short {MSisOff31,-1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActCntClp_Motor
+	short
+	vartype=act
+	description="Werkzeugoffset Ist Motor"
+	map register short MSisOff12
+	refresh=600
+;
+
+ActCntEje_Motor
+	short
+	vartype=act
+	description="Auswerferoffset Ist Motor"
+	map register short MSisOff22
+	refresh=600
+;
+
+ActCntPlst_Motor[6]
+	short
+	vartype=act
+	description="Schneckenoffset Ist Motor"
+	map register short {MSisOff32,-1, -1, -1, -1, -1}
+	refresh=600
+;
+
+ActFceInj[6]
+	short(2)
+	vartype=act
+	description="Einspritzkraft"
+	map register short {SPikKraft,-1, -1, -1, -1, -1}
+	refresh=300
+;
+
+SetCntAdjustParamNum
+	short
+	vartype=set
+	description="Parameter-Nr."
+	map register short MSssnPNr
+;
+
+ActCntAdjustStateNum
+	short
+	vartype=act
+	description="Status (Nummer)"
+	map register short MSinSta
+	refresh=600
+;
+
+ActCntAdjustMsgNum
+	short
+	vartype=act
+	description="Meldung (Nummer)"
+	map register short MSinMld
+	refresh=600
+;
+
+SetStsPackHoldLmtOffOnOff
+    bool
+	vartype=set
+	description="Nachdruckbegrenzung (ein=0 aus=1)"
+    persist=file
+    file=Tool
+	map bit bool NDs_DrBegr
+;
+
+SetStsMediaConverterPrestressOnOff
+	bool
+	vartype=set
+	description="Medienwandler vorspannen (ja=0 / nein=1)"
+    persist=file
+    file=Tool
+	map bit bool AGm_NoBirk
+;
+
+SetCfgAdjustFuncNum
+	short
+	vartype=set
+	description="Abgleich-Funktions-Nummer"
+    file=Ignore
+	map register short MSGenMod
+;
+
+ActDiagDrvId
+	ushort
+	vartype=volatile
+	description="Drive Id (Drive Number)"
+	map register ushort Drv_Id
+;
+
+ActDiagDrvErrCode
+	ushort
+	vartype=act
+	description="Drive Error Code"
+	map register ushort DrvErrCode
+	refresh=event 102
+;
+
+ActDiagDrvErrInfo
+	ulong
+	vartype=act
+	description="Drive Error Info"
+	map register long DrvErrInfo
+	refresh=event 102
+;
+
+ActDiagDrvParId
+	ushort
+	vartype=act
+	description="Drive Parameter ID"
+	map register ushort DrvParId
+	refresh=event 102
+;
+
+ActDiagDrvYear
+	ushort
+	vartype=act
+	description="Year"
+	map register ushort DrvJahr
+	refresh=event 102
+;
+
+ActDiagDrvMonthDayHour
+	ushort
+	vartype=act
+	description="Month Day Hour"
+	map register ushort DrvM_T_S
+	refresh=event 102
+;
+
+ActDiagDrvMinuteSecond
+	ushort
+	vartype=act
+	description="Minute Second"
+	map register ushort DrvM_S
+	refresh=event 102
+;
+
+// --------------------------------------
+// Group Process: Cycle Analysis
+// --------------------------------------
+ActStsUpdateCycData
+	 bool
+	 vartype=volatile
+	 description="new data from PLC for cycle analyses"
+	 map bit bool ZYitAnalys
+	 refresh=300;
+
+ActTimMldClosePrc
+     ushort(2) 
+	 vartype=act 
+	 description="Werkzeug schließen"
+	 map register ushort Iwkzschl
+     refresh=event 102;
+
+ActTimClpForcePrc
+	 ushort(2) 
+	 vartype=act 
+	 description="Schiesskraftaufbau"
+	 map register ushort Ischldraufb
+     refresh=event 102;
+
+ActTimInjUnitForPrc[6]
+     ushort(2) 
+	 vartype=act 
+	 description="Aggregat vor"
+	 map register ushort {Iaggrvor, -1, -1, -1, -1, -1}
+     refresh=event 102;
+
+ActTimMldOpenPrc
+	 ushort(2) 
+	 vartype=act 
+	 description="Zeit Werkzeug oeffnen"
+	 map register ushort Iwkzoeffn
+     refresh=event 102;
+	
+ActTimEjeForPrc
+	 ushort(2) 
+	 vartype=act 
+	 description="Zeit Auswerfer vor"
+	 map register ushort Iauswvor
+     refresh=event 102;
+
+ActTimEjeBackPrc
+     ushort(2) 
+     vartype=act 
+     description="Zeit Auswerfer zurück"
+     map register ushort Iauswzur
+     refresh=event 102;
+
+ActTimMachRestPrc
+     long(2) 
+     vartype=act 
+     description="Pausenzeit"
+     map register ushort Iauswzur
+     refresh=event 102;
+};
+
+
+
+database internal device=INTERNAL
+{
+ActCntMachAlarms
+   ushort
+   vartype=volatile
+   description="Alarm Counter"
+;
+
+
+// --------------------------------------
+// Group Overview
+// --------------------------------------
+// --------------------------------------
+// Weekday-Timer
+// --------------------------------------
+SetStsMachWDChangedTime
+   bool
+   vartype=set
+	description="Week Day Time changed"
+   file=Ignore
+;
+
+
+SetCfgMachWDTimer
+   bool
+	vartype=set
+	description="Switch On/Off Week Day Timer"
+	persist=file
+   file=Tool
+;
+
+SetCfgMachWDStartDate[3]
+   ushort
+	vartype=set
+	description="Week Day Timer: Start Date"
+   persist=file
+   file=Tool
+;
+
+SetCfgMachWDSwitchDevice[4]
+   bool
+	vartype=set
+	description="Week Day Timer: Switch On/Off Motor"
+	persist=file
+   file=Tool
+;
+
+SetCfgMachWDHeat
+   bool
+	vartype=set
+	description="Week Day Timer: Switch On/Off Heating"
+	persist=file
+   file=Tool
+;
+
+SetCfgMachWDExtDev1
+   uchar
+	vartype=set
+	description="Week Day Timer: Switch On/Off Ext. Device 1"
+	persist=file
+   file=Tool
+;
+
+SetCfgMachWDExtDev2
+   uchar
+	vartype=set
+	description="Week Day Timer: Switch On/Off Ext. Device 2"
+	persist=file
+   file=Tool
+;
+
+SetTimMachWDStart[7][2]
+   uchar
+	vartype=set
+	description="Week Day Timer: Start Hour/Minute"
+   persist=file
+   file=Tool
+   filter=WDChangedTime()
+   minimum = 0
+   maximum = MaxMinuteHour()
+;
+
+SetTimMachWDStop[7][2]
+   uchar
+	vartype=set
+	description="Week Day Timer: Stop Hour/Minute"
+   persist=file
+   file=Tool
+   filter=WDChangedTime()
+   minimum = 0
+   maximum = MaxMinuteHour()
+;
+
+SetTimMachWDStartDelay[4][2]
+   ushort
+	vartype=set
+	description="Week Day Timer: Start Delay Hour/Minute"
+   persist=file
+   file=Tool
+   filter=WDChangedTime()
+   minimum=0
+   maximum=999
+;
+
+SetTimMachWDStopDelay[4][2]
+   uchar
+	vartype=set
+	description="Week Day Timer: Stop Delay Hour/Minute"
+   persist=file
+   file=Tool
+   filter=WDChangedTime()
+   minimum=0
+   maximum=999
+;
+
+
+// --------------------------------------
+// Group Injection
+// --------------------------------------
+SetStrZero[6]  // mm
+   ushort(1)
+   vartype=set 
+   description="Zero stroke variable"
+   persist=file
+   file=Ignore
+;
+
+SetSpdZero[6]  // mm
+   ushort 
+   vartype=set 
+   description="Zero speed variable"
+   persist=file
+   file=Ignore
+;
+
+SetPrsZero[6]  // mm
+   ushort(1)
+   vartype=set 
+   description="Zero pressure variable"
+   persist=file
+   file=Ignore
+;
+
+SetCfgExtdNozzle[6]
+	bool
+	vartype=set
+	description="Extended nozzle"
+	persist=file
+   file=Ignore
+;
+
+SetCfgExtdNozzleAtEnd[6]
+	bool
+	vartype=set
+	description="Extended nozzle at end"
+	persist=file
+   file=Ignore
+;
+
+
+// --------------------------------------
+// Group Injection, Mold cavity pressure
+// --------------------------------------
+SetCfgInjMoldSensorType[6]
+   ushort
+   vartype=set 
+   description="Mold cavity pressure sensor-type"
+   persist=file
+   file=Tool
+   minimum=0
+   maximum=1
+;
+
+SetCfgInjMoldSensorSens[6]
+   ushort(3)
+   vartype=set 
+   description="Mold cavity pressure sensor sensitivity"
+   persist=file
+   file=Tool
+   minimum=0.000
+   maximum=9.999
+;
+
+SetDiaInjMoldSensor[6]
+   ushort(1)
+   vartype=set 
+   description="Mold cavity pressure sensor diameter"
+   persist=file
+   file=Tool
+   minimum=0.0
+   maximum=6.0
+;
+
+// --------------------------------------
+// Group Injection, Graphic
+// --------------------------------------
+SetCfgModeGraphic
+   ushort
+   vartype=set 
+   description="Switch graphic on/off"
+   persist=file
+   file=Graphic
+   minimum=0
+   maximum=1
+;
+
+
+// --------------------------------------
+// Injection Monitoring
+// --------------------------------------
+SetCntCycMonitoring
+   ushort
+   vartype=set
+   description="Counter max fault cycle monitoring"
+   persist=file
+   file=Tool
+   minimum=0
+   maximum=9999
+;
+
+SetCfgCycMonitoring[6]
+   ushort
+   vartype=set
+   description="Config cycle monitoring"
+   persist=file
+   file=Tool
+   minimum=0
+   maximum=2
+;
+
+TolPrsInj[6][10] // bar Achtung maximum, Index 2 sollte Aggregat verwendet werden
+   ushort 
+   vartype=set 
+   description="Tolerance injection pressure"
+   persist=file
+   file=Tool
+   minimum=0
+   maximum=SnParamTab[0][0][1]
+;
+
+RefPrsInj[6][10]
+   ushort 
+   vartype=set
+   description="Reference value for injection pressure"
+   persist=file
+   file=Tool
+;
+
+TolTimInj[6][10]
+   ushort(2)
+   vartype=set 
+   description="Tolerance injection time"
+   persist=file
+   file=Tool
+   minimum=0
+   maximum=9.99
+;
+
+RefTimInj[6][10]
+   ushort(2)
+   vartype=set
+   description="Reference value for injection time"
+   persist=file
+   file=Tool
+;
+
+TolStrInj[6][10]
+   ushort(1) 
+   vartype=set 
+   description="Tolerance injection stroke"
+   persist=file
+   file=Tool
+   minimum=0
+   maximum=MaxStrInj()   
+;
+
+RefStrInj[6][10]
+   ushort(1) 
+   vartype=set 
+   description="Reference injection stroke"
+   persist=file
+   file=Tool
+;
+
+TolStrPlstShotSize[6] 
+   ushort(1)
+   vartype=set 
+   description="Tolerance stroke palsticising"
+   persist=file
+   file=Tool
+   minimum=0
+   maximum=MaxStrPlstShotSize()
+;
+
+RefStrPlstShotSize[6] 
+   ushort(1)
+   vartype=set 
+   description="Reference stroke palsticising"
+   persist=file
+   file=Tool
+   minimum=0
+   maximum=MaxStrPlstShotSize()
+;
+
+
+// --------------------------------------
+// Group Temperature
+// --------------------------------------
+SetCfgNumAdjustBarrelZones[6]
+	ushort
+	vartype=volatile
+	description="Number of adjust barrel zones (feeder + standard zones + nozzle + extended nozzle + 1)"
+;
+
+SetCfgNumStdZones[6]
+	ushort
+	vartype=volatile
+	description="Number of standard zones (w/o feeder, w/o nozzle, w/o extended nozzle)"
+;
+
+TolTmpBrlAllZonesDevWide[6]
+   short // °C
+   vartype=set
+   description="Weites Toleranzband für alle Zonen"
+   persist=file
+   file=Tool
+   minimum=MinTmpBrlAllZonesDevWide()
+   maximum=99
+;
+
+TolTmpBrlAllZonesDevNarrow[6]
+   short // °C
+   vartype=set
+   description="Enges Toleranzband für alle Zonen"
+   persist=file
+   file=Tool
+   minimum=0
+   maximum=MaxTmpBrlAllZonesDevNarrow()
+;
+
+SetCfgBrlTmpLeadingZnInput[6]
+   ushort
+   vartype=set
+   description="Eingabewert Führungszone für Zylinderheizung-Anfahrschaltung"
+   persist=file
+   file=Tool
+;
+
+SetCfgTmpSerBaudrateInput[2]
+   ushort
+   vartype=set
+   description="Input Baudrate for serial external temperature controllers"
+   persist=file
+   file=Tool
+;
+
+SetCfgBarrelDefinitionChanged[6]
+	bool
+	vartype=volatile
+	description="Barrel definition has changed"
+	persist=file
+    file=Ignore
+;
+
+// --------------------------------------
+// Group Production
+// --------------------------------------
+ActCntMachModeOfOperation
+   uchar
+   vartype=act
+   description="actual machine mode of operation"
+   filter=MachModeOfOperation()
+;
+
+SetDescMachModeOfOperation
+   string(15)
+   vartype=volatile
+   description="string, machine mode of operation"
+;
+
+ActCntMachExt // Ex. page 71.0
+   long
+   vartype=volatile
+   description="Act-Value of ext. Counter"
+;
+
+SetCntMachExtHlmt // Ex. page 71.0
+   long
+   vartype=set
+   description="Ext. Counter"
+   persist=file
+   file=Automation
+   minimum=0
+   maximum=99999999
+;
+
+SetCntProdQuantity
+   long
+   vartype=set
+   description="Production Quantity"
+   persist=file
+   file=Tool
+   minimum=0
+   maximum=99999999
+;
+
+ActCntProdQuantity
+   long
+   vartype=volatile
+   description="Actual Quantity"
+;
+
+SetCntProdCavities
+   ushort
+   vartype=set
+   description="Production Cavities"
+   persist=file
+   file=Tool
+   minimum=1
+   maximum=9999
+;
+
+SetTimMachCyc
+   ushort(2)
+   vartype=set
+   description="Estimated Cycle Time"
+   persist=file
+   file=Tool
+   minimum=1.00
+   maximum=320.00
+;
+
+SetCntProdCycPerHour
+   long(1)
+   vartype=set
+   description="Cycles per Hour"
+   persist=file
+   file=Ignore
+;
+
+SetCntProdPartsPerHour
+   long
+   vartype=set
+   description="Parts per Hour"
+   persist=file
+   file=Ignore
+;
+
+ActCntProdTotalGoodParts
+   long
+   vartype=volatile
+   description="Total good parts"
+   persist=file
+;
+
+ActCntProdTotalRejectParts
+   long
+   vartype=volatile
+   description="Total reject Parts"
+   persist=file
+;
+
+ActTimProdRemaining
+   string(10)
+   vartype=volatile
+   description="Time Remaining"
+   persist=file
+;
+
+ActTimProdLength
+   string(10)
+   vartype=volatile
+   description="Time Length of Production"
+   persist=file
+;
+
+ActCntMachAdd 
+   long 
+   vartype=volatile
+   description="Add. Shot counter"
+   persist=file
+;
+
+ActCntMachSub 
+   long 
+   vartype=volatile
+   description="Sub. Shot counter"
+   persist=file
+;
+
+SetTimProdShiftStart[3][2]
+   ushort
+   vartype=set
+   description="Production shift time start"
+   persist=file
+   file=Tool
+   minimum=0
+   maximum=MaxMinuteHour()
+;
+
+SetTimProdShiftEnd[3][2]
+   ushort
+   vartype=set
+   description="Production shift time end"
+   persist=file
+   file=Tool
+   minimum=0
+   maximum=MaxMinuteHour()
+;
+
+ActCntShiftGoodParts[4]
+   ulong
+   vartype=volatile
+   description="Production shift counter good parts"
+   persist=file
+;
+
+ActCntShiftBadParts[4]
+   ulong
+   vartype=volatile
+   description="Production shift counter bad parts"
+   persist=file
+;
+
+
+// --------------------------------------
+// Mosaic Version Info
+// --------------------------------------
+
+SetCfgMosaicVersion
+   string(40)
+   vartype=set
+   description="Mosaic Version"
+   persist=file
+   file=Ignore
+;
+
+SetCfgMosaicTestVersion
+   string(40)
+   vartype=set
+   description="MosaicTest Version"
+   persist=file
+   file=Ignore
+;
+
+SetCfgShaciraVersion
+   string(40)
+   vartype=set
+   description="Shacira Version"
+   persist=file
+   file=Ignore
+;
+
+SetCfgOmniORBVersion
+   string(40)
+   vartype=set
+   description="OmniORB Version"
+   persist=file
+   file=Ignore
+;
+
+SetCfgPPCSpsVersion
+   string(40)
+   vartype=set
+   description="PPCSps Version"
+   persist=file
+   file=Ignore
+;
+
+
+// --------------------------------------
+// Test
+// --------------------------------------
+MinToolHeight 
+   ushort
+   vartype=act 
+   description="Minimale Werkzeug-Einbauhoehe"
+;
+
+ToolHeight 
+   ushort
+   vartype=act 
+   description="Werkzeug-Einbauhoehe"
+   // conversion=Mult(10)
+;
+
+// --------------------------------------
+// Group Mold data
+// --------------------------------------
+SetCfgMachDataCarrier
+   ushort
+   vartype=set 
+   description="Interne Variable Mold Storage Data-Carrier"
+   persist=file
+   file=Ignore
+;
+
+SetCfgMachDataGroup 
+   ushort
+   vartype=set 
+   description="Interne Variable Mold Storage Data-Group"
+   persist=file
+   file=Ignore
+;
+
+SetCfgMachDataSet
+   ushort
+   vartype=set 
+   description="Interne Variable Mold Storage Data-Set"
+   persist=file
+   file=Ignore
+;
+
+SetCfgMachHostTransfer[2]
+   ushort
+   vartype=set 
+   description="Host transfer type"
+   persist=file
+   file=Ignore
+;
+
+SetCfgMachFGBGChange[2]
+   ushort
+   vartype=set 
+   description="Foreground/Background change type"
+   file=Ignore
+;
+
+SetCfgMachDataCompare[2]
+   ushort
+   vartype=set 
+   description="Machine data compare"
+   file=Ignore
+;
+
+SetDescMachNote
+   string(1024)
+	//object
+	vartype=volatile	// set - because of '\n'
+	description="Machine data notepad"
+	persist=file
+   file=MoldInfo
+;
+
+SetDescMachTxtOrderNr
+   string(15)
+   vartype=set 
+   description="Textvariable Order-Nr"
+   persist=file
+   file=MoldInfo
+;
+
+SetDescMachTxtMaterial[6] 
+   string(15)
+	vartype=set 
+   description="Textvariable Material"
+   persist=file
+   file=MoldInfo
+;
+
+// -----------------------------------------
+// Group General data: Setting information 1
+// -----------------------------------------
+SetDescMachMldName
+   string(15)
+   vartype=set 
+   description="Mold name"
+   persist=file
+   file=MoldInfo
+;
+
+SetTmpDescMatPreHeating[6]
+   ushort
+	vartype=set 
+   description="Setting information material pre heating temperature"
+   persist=file
+   file=MoldInfo
+   minimum=0
+   maximum=999
+;
+
+SetTimDescMatPreHeating[6]
+   ushort(2)
+	vartype=set 
+   description="Setting information material pre heating time"
+   persist=file
+   file=MoldInfo
+   minimum=0
+   maximum=24.99
+;
+
+SetDescMachRegrindContent[6]
+   ushort(1)
+	vartype=set 
+   description="Setting information regrind content"
+   persist=file
+   file=MoldInfo
+   minimum=0.0
+   maximum=100.0
+;
+
+SetDescMachColorType[6]
+   string(15)
+	vartype=set 
+   description="Setting information type of color"
+   persist=file
+   file=MoldInfo
+;
+
+SetDescMachColor[6]
+   string(15)
+	vartype=set 
+   description="Setting information color"
+   persist=file
+   file=MoldInfo
+;
+
+SetDescMachColorContent[6]
+   ushort(1)
+	vartype=set 
+   description="Setting information color content"
+   persist=file
+   file=MoldInfo
+   minimum=0.0
+   maximum=100.0
+;
+
+SetDescMachBlwAgentContent[6]
+   ushort(1)
+	vartype=set 
+   description="Setting information blowing agent content"
+   persist=file
+   file=MoldInfo
+   minimum=0.0
+   maximum=100.0
+;
+
+SetCfgMachColorMixUnit[6]
+   bool
+	vartype=set 
+   description="Setting information color mix unit"
+   persist=file
+   file=MoldInfo
+;
+
+SetCfgMachMatConveyingUnit
+   bool
+	vartype=set 
+   description="Setting information material conveying unit"
+   persist=file
+   file=MoldInfo
+;
+
+SetCntMachMldHeatingUnit
+   ushort
+	vartype=set 
+   description="Setting information mold heating unit"
+   persist=file
+   file=MoldInfo
+   minimum=0
+   maximum=50
+;
+
+SetTmpInjTempContrHeat
+   ushort
+	vartype=set 
+   description="Setting information temperature controller nozzle heating"
+   persist=file
+   file=MoldInfo
+   minimum=0
+   maximum=500
+;
+
+SetTmpEjeTempContrHeat
+   ushort
+	vartype=set 
+   description="Setting information temperature controller ejector heating"
+   persist=file
+   file=MoldInfo
+   minimum=0
+   maximum=500
+;
+
+SetTmpMachTempContrHeatMidle
+   ushort
+	vartype=set 
+   description="Setting information temperature controller midle side"
+   persist=file
+   file=MoldInfo
+   minimum=0
+   maximum=500
+;
+
+SetTmpInjCircContrHeat
+   ushort
+	vartype=set 
+   description="Setting information temperature controller nozzle heating"
+   persist=file
+   file=MoldInfo
+   minimum=0
+   maximum=500
+;
+
+SetTmpEjeCircContrHeat
+   ushort
+	vartype=set 
+   description="Setting information temperature controller ejector heating"
+   persist=file
+   file=MoldInfo
+   minimum=0
+   maximum=500
+;
+
+SetTmpMachCircContrHeatMidle
+   ushort
+	vartype=set 
+   description="Setting information temperature controller midle side"
+   persist=file
+   file=MoldInfo
+   minimum=0
+   maximum=500
+;
+
+SetCfgMachClpUpWith
+   ushort
+	vartype=set 
+   description="Setting information clamp up with"
+   persist=file
+   file=MoldInfo
+;
+
+SetCntMachClp
+   ushort
+	vartype=set 
+   description="Setting information clamp up with"
+   persist=file
+   file=MoldInfo
+   minimum=0
+   maximum=10
+;
+
+SetDiaMachNozzleScrew
+   ushort
+	vartype=set 
+   description="Setting information nozzle side screw diameter"
+   persist=file
+   file=MoldInfo
+   minimum=0
+   maximum=100
+;
+
+SetDiaMachNozzleScrew
+   ushort
+	vartype=set 
+   description="Setting information nozzle side screw diameter"
+   persist=file
+   file=MoldInfo
+   minimum=0
+   maximum=100
+;
+
+SetStrMachNozzleScrew
+   ushort
+	vartype=set 
+   description="Setting information nozzle side screw diameter"
+   persist=file
+   file=MoldInfo
+   minimum=0
+   maximum=500
+;
+
+SetCntMachNozzleScrew
+   ushort
+	vartype=set 
+   description="Setting information nozzle side screw number"
+   persist=file
+   file=MoldInfo
+   minimum=0
+   maximum=50
+;
+
+SetStrMachNozzleScrewHeight
+   ushort
+	vartype=set 
+   description="Setting information nozzle side screw diameter"
+   persist=file
+   file=MoldInfo
+   minimum=0
+   maximum=500
+;
+
+SetDiaMachEjeScrew
+   ushort
+	vartype=set 
+   description="Setting information ejector side screw diameter"
+   persist=file
+   file=MoldInfo
+   minimum=0
+   maximum=100
+;
+
+SetStrMachEjeScrew
+   ushort
+	vartype=set 
+   description="Setting information ejector side screw diameter"
+   persist=file
+   file=MoldInfo
+   minimum=0
+   maximum=500
+;
+
+SetCntMachEjeScrew
+   ushort
+	vartype=set 
+   description="Setting information ejector side screw number"
+   persist=file
+   file=MoldInfo
+   minimum=0
+   maximum=50
+;
+
+SetStrMachEjeScrewHeight
+   ushort
+	vartype=set 
+   description="Setting information ejector side screw diameter"
+   persist=file
+   file=MoldInfo
+   minimum=0
+   maximum=500
+;
+
+SetStrMachEjeBarThread
+   ushort
+	vartype=set 
+   description="Setting information ejector bar thread"
+   persist=file
+   file=MoldInfo
+   minimum=0
+   maximum=100
+;
+
+SetStrMachEjeBarLength
+   ushort
+	vartype=set 
+   description="Setting information ejector bar length"
+   persist=file
+   file=MoldInfo
+   minimum=0
+   maximum=100
+;
+
+SetWghtMachInjected
+   ushort
+	vartype=set 
+   description="Setting information injected weight"
+   persist=file
+   file=MoldInfo
+   minimum=0
+   maximum=32000
+;
+
+SetCntMachCavities
+   ushort
+	vartype=set 
+   description="Setting information number of cavities"
+   persist=file
+   file=MoldInfo
+   minimum=0
+   maximum=200
+;
+
+SetWghtMachComponent
+   ushort
+	vartype=set 
+   description="Setting information component weight"
+   persist=file
+   file=MoldInfo
+   minimum=0
+   maximum=32000
+;
+
+SetVolMachProjetedArea
+   ushort
+	vartype=set 
+   description="Setting information projected area volume"
+   persist=file
+   file=MoldInfo
+   minimum=0
+   maximum=9999
+;
+
+SetPrsMachMaxBuildUp
+   ushort
+	vartype=set 
+   description="Setting information Max pressure build up"
+   persist=file
+   file=MoldInfo
+   minimum=0
+   maximum=32000
+;
+
+SetFceMachReqLocking
+   ushort
+	vartype=set 
+   description="Setting information required locking force"
+   persist=file
+   file=MoldInfo
+   minimum=0
+   maximum=9999
+;
+
+SetTmpMachMelt[6]
+   ushort
+	vartype=set 
+   description="Setting information melt temperature"
+   persist=file
+   file=MoldInfo
+   minimum=0
+   maximum=AggParamTabAdd[0][0][4]
+;
+
+SetPrsMachMaxCavity[6]
+   ushort
+	vartype=set 
+   description="Setting information max cavity pressure"
+   persist=file
+   file=MoldInfo
+   minimum=0
+   maximum=SnParamTab[0][0][1]
+;
+
+SetCntMachAEje
+   ushort
+	vartype=set 
+   description="Setting information number of air ejector"
+   persist=file
+   file=MoldInfo
+   minimum=0
+   maximum=10
+;
+
+SetCntMachCorePulling
+   ushort
+	vartype=set 
+   description="Setting information number of core pulling"
+   persist=file
+   file=MoldInfo
+   minimum=0
+   maximum=10
+;
+
+SetCntMachHotRunner
+   ushort
+	vartype=set 
+   description="Setting information number of hot runner"
+   persist=file
+   file=MoldInfo
+   minimum=0
+   maximum=50
+;
+
+SetCfgMachHotRunner
+   ushort
+	vartype=set 
+   description="Setting information hot runner"
+   persist=file
+   file=MoldInfo
+;
+
+SetCfgMachScrewCyl[6]
+   ushort
+	vartype=set 
+   description="Setting information Screw cylinder"
+   persist=file
+   file=MoldInfo
+;
+
+SetStrMachNozzleRadius[6]
+   ushort
+	vartype=set 
+   description="Setting information Nozzle radius"
+   persist=file
+   file=MoldInfo
+   minimum=0
+   maximum=100
+;
+
+SetDiaMachNozzleBore[6]
+   ushort
+	vartype=set 
+   description="Setting information Nozzle bore"
+   persist=file
+   file=MoldInfo
+   minimum=0
+   maximum=20
+;
+
+SetCfgMachNozzleDipping[6]
+   bool
+	vartype=set 
+   description="Setting information dipping nozzle"
+   persist=file
+   file=MoldInfo
+;
+
+SetDescMachRobot
+   string(15)
+   vartype=set 
+   description="Setting information robot name"
+   persist=file
+   file=MoldInfo
+;
+
+SetDescMachAuto1
+   bool
+   vartype=set 
+   description="Setting information automatic"
+   persist=file
+   file=MoldInfo
+;
+
+SetDescMachAuto2
+   bool
+   vartype=set 
+   description="Setting information automatic"
+   persist=file
+   file=MoldInfo
+;
+
+// START TODO include subfile definition
+// --------------------------------------
+// Group General data
+// --------------------------------------
+SetNoteTxt
+	string(1024)
+	//object
+	vartype=volatile	// set - because of '\n'
+	description="Overview notepad data"
+	persist=file
+;
+
+SetPostitTxt
+	string(1024)
+	//object
+	vartype=volatile	// set - because of '\n'
+	description="Postit Data"
+	persist=file
+;
+// END TODO include subfile definition
+
+// --------------------------------------
+// INTERNAL-register for Adjustment
+// --------------------------------------
+SetDescAdjustState
+	string(80)
+	vartype=set
+	description="Status (Text)"
+   file=Ignore
+;
+
+SetDescAdjustMsg
+	string(80)
+	vartype=set
+	description="Meldung (Text)"
+   file=Ignore
+;
+
+// --------------------------------------
+// INTERNAL-register for Drive Error
+// --------------------------------------
+SetDescDrvErr
+	string(80)
+	vartype=set
+	description="Drive Error"
+   file=Ignore
+;
+
+
+// --------------------------------------
+// Process Data 
+// --------------------------------------
+ProcDataParamsSelected
+	string(2048)
+	vartype=volatile	// set - because of '\n'
+	description="jobspec - selected values for process setup"
+	persist = file
+;
+ProcDataParams 
+	string(2048)
+	vartype=volatile	// set - because of '\n'
+	description = "process setup all params"
+	persist = file
+;
+
+ProcVarShowChange
+    ushort
+	vartype=set
+	description = "process setup - force reinit of ProcSetup"
+    file=Ignore
+	minimum=0
+	maximum=1
+;
+
+ProcJobListChange
+	ushort
+	vartype=set
+	description = "process setup - new JobSpec"
+    file=Ignore
+	minimum=0
+	maximum=1
+;
+	
+ProcInjEndReached
+	ushort
+	vartype=set
+	description = "process setup - notify inj end"
+    file=Ignore
+	minimum=0
+	maximum=1
+;
+
+SetProcTrendAutoRecord
+	ushort
+	vartype=set
+	description = "process - switch on recording for trenddata"
+	persist=file
+    file=Tool
+	minimum=0
+	maximum=1
+;
+
+SetProcTrendGraphicRecord[2]
+	bool
+	vartype=set
+	description = "process - switch on recording for trenddatagraphic"
+	persist=file
+    file=Tool
+;
+
+SetProcTrendGraphicSelVar[2]
+	ushort
+	vartype=set
+	persist=file
+    file=Tool
+;
+
+SetProcMonRecord
+	ushort
+	vartype=set
+	description = "process - switch on recording for monitor"
+	persist=file
+	minimum=0
+	maximum=1
+;
+
+SetDefPartAlarm
+	ushort
+	vartype=set
+	description = "process - switch on defective part alarm"
+	persist=file
+	minimum=0
+	maximum=1
+;
+
+ProcTestStr[5]
+	string(100)
+	vartype=set
+;
+
+SetCfgProcCycleRecord
+    bool 
+    vartype=set 
+    description = "process - switch on/off recording for cycleanalysis"
+    persist=file
+    file=Tool
+  	minimum=0
+	maximum=1
+;
+
+SetCfgProcCycleCompareMode
+    ushort
+    vartype=set
+    description = "process - switch on/off recording for cycleanalysis"
+    persist=file
+    file=Tool
+    minimum=0
+    maximum=3
+;
+
+SetCfgProcCycleReferenz
+    bool
+    vartype=set
+    description = "process - switch on/off recording for cycleanalysis"
+    persist=file
+    file=Tool
+;
+
+SetProcCycleAvgStart[100] 
+   float(2)
+   description = "process variable average"
+;
+
+SetProcCycleAvgDuration[100] 
+   float(2)
+   description = "process variable average"
+;
+
+SetProcCycleRefStart[100] 
+   float(2)
+   description = "process variable referenz"
+;
+
+SetProcCycleRefDuration[100] 
+   float(2)
+   description = "process variable referenz"
+;
+
+//SetProcvarSelected[100] bool
+//description = "selected process variables"
+//persist = file;
+
+//SetProcvarActive[100] bool
+//description = "active process variables"
+//persist = file;
+
+//SetProcvarTolHigh[100] float
+//description = "process variable high tolerance"
+//persist = file;
+
+//SetProcvarTolLow[100] float
+//description = "process variable low tolerance"
+//persist = file;
+
+
+
+// --------------------------------------
+// System: User/Group
+// --------------------------------------
+SetCfgUserName
+   string(32)
+   vartype=set
+   description="user name for logon"
+   file=Ignore
+;
+
+SetCfgPassword
+   string(32)
+   vartype=set
+   description="password for logon"
+   file=Ignore
+;
+
+SetCfgOldPassword
+   string(32)
+   vartype=set
+   description="old password for logon"
+   file=Ignore
+;
+
+SetCfgNewPassword
+   string(32)
+   vartype=set
+   description="new password for logon"
+   file=Ignore
+;
+
+SetCfgPasswordConfirm
+   string(32)
+   vartype=set
+   description="password confirmation for logon"
+   file=Ignore
+;
+
+SetCfgLogoffAuto
+   bool
+   vartype=set
+   description="logoff automatically"
+   persist=file
+   file=Ignore
+;
+
+SetTimLogoffDelay
+   ushort
+   vartype=set
+   description="logoff delay time for logoff automatically"
+   persist=file
+   file=Ignore
+   minimum=0
+	maximum=1000
+;
+
+ActDescLogonStatus
+   string(320)
+   vartype=set
+   description="logon status text"
+   persist=file
+   file=Ignore
+;
+
+SetDescLogonStatusLine[5]
+   string(60)
+   vartype=set
+   description="logon status lines"
+   persist=file
+   file=Ignore
+;
+
+SetCfgSystemUserName[20]
+   string(32)
+   vartype=set
+   description="System user name"
+   persist=file
+   file=Ignore
+;
+
+SetCfgSystemUserPasswd[20]
+   string(32)
+   vartype=set
+   description="System user password"
+   persist=file
+   file=Ignore
+;
+
+SetCfgSystemUserID[20]
+   short
+   vartype=set
+   description="System user ID"
+   persist=file
+   file=Ignore
+;
+
+SetCfgSystemGroupID[20]
+   short
+   vartype=set
+   description="System user Group ID"
+   persist=file
+   file=Ignore
+;
+
+SetCfgSystemFullUserName[20]
+   string(64)
+   vartype=set
+   description="System full user name"
+   persist=file
+   file=Ignore
+;
+
+SetCfgSystemStartDate[20]
+   string(10)
+   vartype=set
+   description="System start date"
+   persist=file
+   file=Ignore
+;
+
+SetCfgSystemEndDate[20]
+   string(10)
+   vartype=set
+   description="System end date"
+   persist=file
+   file=Ignore
+;
+
+SetCfgSystemUserSize
+   short
+   vartype=set
+   description="System user size"
+   persist=file
+   file=Ignore
+;
+
+SetCfgSelectedUser
+   short
+   vartype=set
+   description="Selected user"
+   file=Ignore
+;
+
+SetStsSelectedGroupID
+   short
+   vartype=set
+   description="Selected user ID"
+   file=Ignore
+;
+
+SetCfgSelectScrewSize[6]
+	ushort
+	vartype=set
+	description="Select Screw Size"
+	persist=file
+   file=Ignore
+;
+
+// --------------------------------------
+// System: Directories
+// --------------------------------------
+SetCfgMachDataDir[3]
+	string(255)
+	vartype=volatile
+	description="directories for maschine data"
+	persist=file
+   file=Ignore
+;
+
+
+SetCfgPrintDataDir[2]
+	string(255)
+	vartype=volatile
+	description="directories for Print data"
+	persist=file
+   file=Ignore
+;
+
+SetCfgScreenExport
+   ushort
+   vartype=set 
+   description="Selected screen export type"
+   persist=file
+   file=Ignore
+;
+
+SetStsSelectedGroupID
+   short
+   vartype=set
+   description="Selected user ID"
+   file=Ignore
+;
+
+};
+
+// ----------------
+// Filterfunktionen
+// ----------------
+database filterfunktionen
+{
+ActTime[4]
+   uchar
+   description="aktuelle time with filterfunction"
+   filter=Time()
+;
+
+ActDate[5]
+   ushort
+   description="aktuelle date with filterfunction"
+   filter=Date()
+;
+
+
+SetDateTime
+   string(20)
+   vartype=volatile	
+   description="Date and time as string"
+;
+
+AltSecondFil
+	uchar
+	description="Set and get second of servertime"
+	filter=AltSecondFil()
+	minimum=0
+    maximum=60
+;
+
+AltMinuteFil 
+	uchar
+	description="Set and get minute of servertime"
+	filter=AltMinuteFil()
+	minimum=0
+    maximum=60
+;
+
+AltHourFil
+	uchar
+	description="Set and get hour of servertime"
+	filter=AltHourFil()
+	minimum=0
+    maximum=23
+;
+
+AltDayFil
+	uchar
+	description="Set and get day of servertime"
+	filter=AltDayFil()
+	minimum=0
+    maximum=31
+;
+
+AltMonthFil
+	uchar
+	description="Set and get month of servertime"
+	filter=AltMonthFil()
+	minimum=0
+    maximum=11
+;
+
+AltYearFil
+	ushort
+	description="Set and get year of servertime"
+	filter=AltYearFil()
+	minimum=1752
+	maximum=8000
+;
+};
+
+
+// 2i Test-und Demobereich
+filter uchar Second();
+filter uchar Minute();
+filter uchar Hour();
+filter uchar Day();
+filter uchar Month();
+filter ushort Year();
+
+database filterfunktionen2i
+{
+Second 
+   uchar
+   description="Sekunde auf dem Server"
+   filter=Second()
+;
+
+Minute
+   uchar
+   description="Minute auf dem Server"
+   filter=Minute()
+;
+
+Hour 
+   uchar
+   description="Stunde auf dem Server"
+   filter=Hour()
+;
+
+Day 
+   uchar
+   description="Tag auf dem Server"
+   filter=Day()
+;
+
+Month 
+   uchar
+   description="Monat auf dem Server"
+   filter=Month()
+;
+
+Year 
+   ushort
+   description="Jahr auf dem Server"
+   filter=Year()
+;
+};
+
+// START TODO include subfile definition
+
+database ring_buffer
+{
+AlarmHistorie 
+   byte(150000)
+   persist=file
+;
+
+ProcDataHistory 
+   byte(150000)
+   persist=file
+; 
+
+ProcDataMonitor 
+   byte(150000)
+   persist=file
+; 
+
+ProcChangeHistory 
+   byte(150000)
+   persist=file
+;
+
+PDCycleHistoryDuration
+   byte(150000)
+   persist=file
+; 
+
+PDCycleHistoryStart
+   byte(150000)
+   persist=file
+; 
+
+//ProcDataParams 
+//   byte(23000)
+//   persist=file
+//;
+
+//ProcDataParamsSelected 
+//   byte(2300)
+//   persist=file
+//;
+
+//ProcChangeLog 
+//   byte(100000)
+//   persist=file
+//;
+
+DrvErrHistory 
+   byte(23000)
+   persist=file
+; 
+
+// 2i 05.10.04
+JobSpec 
+   string(1000)
+   vartype=set
+   persist=file
+;
+
+// PR 14.10.04
+SetProcvarSelected[100] 
+   bool
+   vartype=set
+   description = "selected process variables"
+   persist=file
+;
+
+SetProcvarActive[100] 
+   bool
+   vartype=set
+   description = "active process variables"
+   persist=file
+;
+
+SetProcvarRef[100] 
+   float(2)
+   vartype=set
+   description = "process variable reference"
+   persist=file
+;
+
+SetProcvarTolHigh[100] 
+   float(2)
+   vartype=set
+   description = "process variable high tolerance"
+   persist = file
+;
+
+SetProcvarTolLow[100] 
+   float(2)
+   vartype=set
+   description = "process variable low tolerance"
+   persist = file
+;
+
+// statistic values
+ActProcvarValue[100] 
+   float(2)
+   description = "process variable minimum"
+;
+
+ActProcvarMin[100] 
+   float(2)
+   description = "process variable minimum"
+;
+
+ActProcvarMax[100] 
+   float(2)
+   description = "process variable maximum"
+;
+
+ActProcvarAverage[100] 
+   float(2)
+   description = "process variable average"
+;
+
+ActProcvarDeviation[100] 
+   float(2)
+   description = "process variable deviation"
+;
+};
+// END TODO include subfile definition
+
+database graphic device=SPS1_Graphic
+{
+// Messzeiten
+SetTimMeasInj[6] 
+   ushort
+   vartype=set
+   description = "Meßzeit Einspritzen"
+   persist=file
+   file=Graphic
+   minimum=0
+   maximum=9999
+   map params ushort {0x0001, 0x0101, 0x0201, 0x0301, 0x0401, 0x0501}
+;
+
+// Grafikmodus
+SetModeGraphic 
+   ushort
+   vartype=set
+   description = "Grafik Betriebsart"
+   persist=file
+   file=Graphic
+   minimum=0
+   maximum=3
+   map params ushort 0x0002
+;
+
+// Verzögerungszeiten
+SetTimDelayInj[6] 
+   ushort(1)
+   vartype=set
+   description = "Startverzögerung Einspritzen"
+   persist=file
+   file=Graphic
+   minimum=0.0
+   maximum=999.9
+   map params ushort {0x0003, 0x0103, 0x0203, 0x0303, 0x0403, 0x0503}
+;
+
+// Messinterval
+SetIntInj 
+   ushort
+   vartype=set
+   description = "Messintervall"
+   persist=file
+   file=Graphic
+   minimum=0
+   maximum=999
+   map params ushort 0x0004
+;
+
+// Start Einzelerfassung
+SetStartMeas 
+   uchar
+   description = "Start Einzelerfassung"
+   map params uchar 0x0005
+;
+
+// Erfassungszustand
+ActMeasState 
+   uchar
+   vartype=act
+   description = "Erfassungszustand"
+   map params uchar 0x0006
+   refresh = 50
+;
+
+// Grafikaggregat
+SetAggInj 
+   ushort
+   description = "Aktuelles Aggregat für Grafik"
+   map params ushort 0x0007
+;
+
+// Splitindex
+ActStsInjSplitIndex
+   ushort
+   vartype=act
+   description = "Split index for injection/pack hold curve"
+   map params ushort 0x0008
+;
+
+// Einspritzkurven über Zeit
+ActPrsInjCurve[6] 
+   byte(4128)
+   description = "Druck über Zeit"
+   map curve byte(4128) {0x0001, 0x0101, 0x0201,0x0301,0x0401,0x0501}
+;
+
+ActStrInjCurve[6] 
+   byte(4128)
+   description = "Weg über Zeit"
+   map curve byte(4128) {0x0002, 0x0102, 0x0202,0x0302,0x0402,0x0502}
+;
+
+ActVelInjCurve[6] 
+   byte(4128)
+   description = "Geschwindigkeit über Zeit"
+   map curve byte(4128) {0x0008, 0x0108, 0x0208,0x0308,0x0408,0x0508}
+;
+
+// Einspritzkurven über Zeit Skalierendwerte
+SetPrsInjScale[6] 
+   long
+   vartype=set
+   description = "Skalierung Druck über Zeit"
+   persist=file
+   file=Graphic
+   map scale long {0x0001, 0x0101, 0x0201,0x0301,0x0401,0x0501}
+;
+
+SetStrInjScale[6] 
+   long(1)
+   vartype=set
+   description = "Skalierung Weg über Zeit"
+   persist=file
+   file=Graphic
+   map scale long {0x0002, 0x0102, 0x0202,0x0302,0x0402,0x0502}
+;
+
+SetVelInjScale[6] 
+   long(1)
+   vartype=set
+   description = "Skalierung Geschwindigkeit über Zeit"
+   persist=file
+   file=Graphic
+   map scale long {0x0008, 0x0108, 0x0208,0x0308,0x0408,0x0508}
+;
+
+// Einspritzkurven über Weg
+ActPrsInjCurveStr[6] 
+   byte(4128)
+   description = "Druck über Zeit"
+   map curve byte(4128) {0x0005, 0x0105, 0x0205,0x0305,0x0405,0x0505}
+;
+
+ActVelInjCurveStr[6] 
+   byte(4128)
+   description = "Geschwindigkeit über Zeit"
+   map curve byte(4128) {0x0006, 0x0106, 0x0206,0x0306,0x0406,0x0506}
+;
+
+// Nachdruckkurven
+ActPrsPresCurve[6] 
+   byte(4128)
+   description = "Druck über Zeit Nachdruck"
+   map curve byte(4128) {0x0011, 0x0111, 0x0211,0x0311,0x0411,0x0511}
+;
+
+ActStrPresCurve[6] 
+   byte(4128)
+   description = "Weg über Zeit Nachdruck"
+   map curve byte(4128) {0x0010, 0x0110, 0x0210,0x0310,0x0410,0x0510}
+;
+
+ActVelPresCurve[6] 
+   byte(4128)
+   description = "Geschwindigkeit über Zeit Nachdruck"
+   map curve byte(4128) {0x0014, 0x0114, 0x0214,0x0314,0x0414,0x0514}
+;
+
+// Nachdruckkurven über Zeit Skalierendwerte
+SetPrsPresScale[6] 
+   long
+   vartype=set
+   description = "Skalierung Druck über Zeit"
+   persist=file
+   file=Graphic
+   map scale long {0x0011, 0x0111, 0x0211,0x0311,0x0411,0x0511}
+;
+
+SetStrPresScale[6] 
+   long(1)
+   vartype=set
+   description = "Skalierung Weg über Zeit"
+   persist=file
+   file=Graphic
+   map scale long {0x0010, 0x0110, 0x0210,0x0310,0x0410,0x0510}
+;
+
+SetVelPresScale[6] 
+   long(1)
+   vartype=set
+   description = "Skalierung Geschwindigkeit über Zeit"
+   persist=file
+   file=Graphic
+   map scale long {0x0014, 0x0114, 0x0214,0x0314,0x0414,0x0514}
+;
+
+// Plastifizierkurven
+ActPrsPlstCurve[6] 
+   byte(4128)
+   description = "Druck über Zeit Nachdruck"
+   map curve byte(4128) {0x0021, 0x0211, 0x0221,0x0321,0x0421,0x0521}
+;
+
+ActStrPlstCurve[6] 
+   byte(4128)
+   description = "Weg über Zeit Nachdruck"
+   map curve byte(4128) {0x0020, 0x0120, 0x0220,0x0320,0x0420,0x0520}
+;
+
+ActVelPlstCurve[6] 
+   byte(4128)
+   description = "Geschwindigkeit über Zeit Nachdruck"
+   map curve byte(4128) {0x0024, 0x0124, 0x0224,0x0324,0x0424,0x0524}
+;
+};
+
+database Heating device=SPS1_Heating
+{
+SetStsTmpAutoTuneUpdateParams
+	bool
+	description="Temperature auto tune update parameters"
+	map commands ushort "auto_tune_update_params"
+;
+
+SetCfgBrlAutoTuneEnable
+	bool
+	description="Enable auto tuning for barrel heating"
+   map commands ushort "auto_tune_brl_enable"
+;
+
+SetCfgToolAutoTuneEnable
+	bool
+	description="Enable auto tuning for tool (hot runner)"
+   map commands ushort "auto_tune_tool_enable"
+;
+
+SetCfgTempAutoTuneEnable
+	bool
+	description="Enable auto tuning for temp (mold cooling)"
+   map commands ushort "auto_tune_temp_enable"
+;
+};

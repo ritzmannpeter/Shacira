@@ -1,0 +1,202 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Lars Doelle">
+   <meta name="GENERATOR" content="Mozilla/4.5 [de] (WinNT; I) [Netscape]">
+   <title>lstydoc</title>
+</head>
+<body>
+
+<center><H2>Legend of the Regular Grammar</H2></center>
+<BR>
+The regular grammar defines the basic language elements i.e. tokens as 
+certain classes of character sequences like numbers, identifiers, operators
+and strings.
+<p>Each <b><i><font size="+1">rule</font></i></b> defining such a class of character
+sequences has the following structure: <br>
+&lt;Class Type&gt; 
+&lt;<font color="#B22222">
+[Member group :] Class Identifier [![+|-] Next group to activate]</font>&gt; 
+:: &lt;Regular Expression&gt;
+<p>We distinguish six <b><i><font size=+1>types of classes</font></i></b>:
+<br>&nbsp;
+<ul>
+<li>
+<b><i><font size="+1"><font color="#000000">let</font></font></i></b>
+<br>Helper class, used to define the more complex tokens
+<br>They didn't belong to the language definition.
+</li>
+<li>
+<b><i><font size="+1"><font color="#000000">com</font></font></i></b>
+<br>Comments
+<br>They didn't belong to the language definition.
+</li>
+<li>
+<b><i><font size="+1"><font color="#000000">tok</font></font></i></b>
+<br>Tokens
+<br>They represent the regular grammar of the language definition.
+</li>
+<li>
+<b><i><font color="#000000"><font size="+1">ign</font></font></i></b>
+<br>Character sequences which should be ignored i.e. skipped by the scanner
+<br>They didn't belong to the language definition.
+</li>
+<li>
+<b><i><font color="#000000"><font size="+1">ind</font></font></i></b>
+<br>(De)indent tokens
+<br>Indent and dedent events will be forwarded to the parser.
+<br>Otherwise these character sequences will be skipped by the scanner.
+</li>
+<li>
+<b><i><font color="#000000"><font size="+1">lan</font></font></i></b>
+<br>Embedded language tokens
+<br>These are special token classes which has been introduced in order to 
+    integrate embedded languages.
+</li>
+</ul>
+
+<p><br>A <b><i><font size=+1>regular expression</font></i></b> spezifies
+the character sequences belonging to the class. Such a description usually
+consists of the following elements and operators:
+<br>&nbsp;
+<ul>
+<li>
+<b><i><font size=+1>Expression1 Expression2 ... ExpressionN</font></i></b></li>
+
+<br>Concatenation of partial expressions
+<li>
+<b><i><font size=+1>Expression1 | Expression2 | ... | ExpressionN</font></i></b></li>
+
+<br>Union of partial expressions ( alternatives )
+<li>
+<b><i><font size=+1>Expression1 - Expression2 - ... - ExpressionN</font></i></b></li>
+
+<br>Difference of partial expressions 
+<li>
+<b><i><font size=+1>[ Expression ]</font></i></b></li>
+
+<br>Optional partial expression
+<li>
+<b><i><font size=+1>{ Expression } or Expression *</font></i></b></li>
+
+<br>Iteration of a partial expression ( 0 .. )
+<li>
+<b><i><font size=+1>Expression +</font></i></b></li>
+
+<br>Iteration of a partial expression ( 1 .. )
+<li>
+<b><i><font size="+1"> Expression N </font></i></b></li>
+
+<br>Limited iteration of a partial expression ( N-times )
+<li>
+<b><i><font size="+1"> Expression Minimum , Maximum</font></i></b></li>
+
+<br>Limited iteration of a partial expression ( min .. max )
+<li>
+<b><i><font size="+1"> Expression Minimum , </font></i></b></li>
+
+<br>Limited iteration of a partial expression ( min .. )
+<li>
+<b><i><font size=+1>( Expression )</font></i></b></li>
+
+<br>Combination of a partial expression ( subexpression )
+<li>
+<b><i><font size="+1">Expression / 'QuotientCharacterset' or "QuotientSequence"</font></i></b></li>
+
+<br>quotient expression
+<li>
+<b><i><font size="+1">&lt; LeftParanthesis &gt; InnerExpression &lt; RightParanthesis &gt;</font></i></b></li>
+
+<br>non-regular dyck expression
+<li>
+<b><i><font size="+1">&lt;= PatternPrefix &gt; 'PatternCharacterset' &lt; PatternSuffix &gt;</font></i></b></li>
+
+<br>start pattern expression
+<li>
+<b><i><font size="+1">&lt;? PatternPrefix &gt; Pattern token identifier &lt; PatternSuffix &gt;</font></i></b></li>
+
+<br>end pattern expression
+<li>
+<b><i><font color="#3366FF"><font size=+1>Class identifier</font></font></i></b></li>
+
+<br><font color="#000000">Abreviation for the corresponding regular expression</font>
+<li>
+<b><i><font color="#009900"><font size=+1>"String"</font></font></i></b></li>
+
+<br><font color="#000000">Literal: string / character sequence</font>
+<li>
+<b><i><font color="#009900"><font size=+1>'Characterset'</font></font></i></b></li>
+
+<br><font color="#000000">Literal: characterset ( 1 .. ) </font></ul>
+
+<h2>
+<font color="#000000"><font size=+0></font></font></h2>
+<font color="#000000"><font size=+0>Case ignore character classes
+can be spezified with an <b><i>[I]</i></b>
+behind the class identifier.</font></font>
+<br><font color="#000000"><font size=+0></font></font>&nbsp;
+<br><font color="#000000"><font size=+0></font></font>&nbsp;
+
+<center><H2>Legend of the Context-free Grammar</H2></center>
+<BR>
+<font color="#000000">The syntax rules are described in
+<b><i>EBNF</i></b> ( Extended Backus-Naur-Form ). 
+A startsymbol must exist for each source file type. That means the syntax
+within each file has to be conform to the corresponding start rule.
+The other are internal helper rules. </font><font color="#000000"></font>
+<p><font color="#000000">Each <b><i><font size=+1>rule</font></i></b>
+is structured as follows: &lt;Rule Type: <b><i>start</i></b> or <b><i>let</i></b>>&nbsp;</font>
+&lt;<font color="#FF0000">Rule Identifier</font>> :: &lt;EBNF-konform Expression>
+<br>An <b><i><font size=+1>EBNF-konform expression</font></i></b> defines a part
+of the language syntax. It consists of a set of alternative productions i.e.
+partial expressions, separated by the character '|'.
+<p>A production can be spezified with the help of the following elements and operators:
+<br>&nbsp;
+<ul>
+<li>
+<b><i><font size=+1>Expression1 Expression2 ... ExpressionN</font></i></b></li>
+
+<br>Concatenation of partial expressions
+<li>
+<b><i><font size=+1>Expression1 | Expression2 | ... | ExpressionN</font></i></b></li>
+
+<br>Union of partial expressions ( alternatives )
+<li>
+<b><i><font size=+1>[ Expression ]</font></i></b></li>
+
+<br>Optional partial expression
+<li>
+<b><i><font size=+1>{ Expression }</font></i></b></li>
+
+<br>Iteration of a partial expression ( 0 .. )
+<li>
+<b><i><font size=+1>Expression +</font></i></b></li>
+
+<br>Iteration of a partial expression ( 1 .. )
+<li>
+<b><i><font size=+1>( Expression )</font></i></b></li>
+
+<br>Combination of a partial expression ( subexpression )
+<li>
+<b><i><font color="#3366FF"><font size=+1>Token Identifier</font></font></i></b></li>
+
+<br><font color="#000000">... from the regular grammar</font>
+<li>
+<b><i><font color="#3366FF"><font size=+1>Rule Identifier<br>
+</font></font></i></b><font color="#000000">... from the context-free grammar</font></li>
+<li>
+<b><i><font color="#009900"><font size=+1>Keyword<br>
+</font></font></i></b><font color="#000000">Constant string / character sequence</font><br>
+</li>
+<li>
+<b><i><font color="#000000"><font size=+1>[other]<br>
+</font></font></i></b><font color="#000000">Special keyword denoting the
+character sequences from the set 'Sigma* \ Tokenset'</font><br>
+<BR></li>
+<br><font color="#000000"></font>&nbsp;</ul>
+
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

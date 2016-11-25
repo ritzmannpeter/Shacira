@@ -1,0 +1,561 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>RobotPage1</class>
+<widget class="CPage">
+    <property name="name">
+        <cstring>RobotPage1</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>866</width>
+            <height>640</height>
+        </rect>
+    </property>
+    <property name="minimumSize">
+        <size>
+            <width>0</width>
+            <height>0</height>
+        </size>
+    </property>
+    <property name="maximumSize">
+        <size>
+            <width>32000</width>
+            <height>32000</height>
+        </size>
+    </property>
+    <property name="font">
+        <font>
+            <family>Arial</family>
+            <pointsize>11</pointsize>
+        </font>
+    </property>
+    <property name="caption">
+        <string>Group1:Page1</string>
+    </property>
+    <property name="DarkFuncRef">
+        <cstring></cstring>
+    </property>
+    <property name="Group0">
+        <enum>WriteAccess</enum>
+    </property>
+    <property name="Group1">
+        <enum>WriteAccess</enum>
+    </property>
+    <property name="HelpId1">
+        <cstring>Ovw_Service</cstring>
+    </property>
+    <property name="PageGroup">
+        <cstring>group1</cstring>
+    </property>
+    <property name="PageHeadline">
+        <string>Group1:Page1</string>
+    </property>
+    <property name="LongPageHeadline">
+        <string>Group1:Page1</string>
+    </property>
+    <property name="PositionInGroup">
+        <number>0</number>
+    </property>
+    <property name="ScrollView">
+        <bool>true</bool>
+    </property>
+    <widget class="CActValue">
+        <property name="name">
+            <cstring>cActValue1</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>280</x>
+                <y>50</y>
+                <width>80</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="VarRef">
+            <cstring>front_led_act</cstring>
+        </property>
+    </widget>
+    <widget class="CReqValue">
+        <property name="name">
+            <cstring>cReqValue2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>190</x>
+                <y>100</y>
+                <width>80</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="VarRef">
+            <cstring>back_led_l_set</cstring>
+        </property>
+    </widget>
+    <widget class="CActValue">
+        <property name="name">
+            <cstring>cActValue2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>280</x>
+                <y>100</y>
+                <width>80</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="VarRef">
+            <cstring>back_led_l_act</cstring>
+        </property>
+    </widget>
+    <widget class="CActValue">
+        <property name="name">
+            <cstring>cActValue3</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>280</x>
+                <y>150</y>
+                <width>80</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="VarRef">
+            <cstring>back_led_r_act</cstring>
+        </property>
+    </widget>
+    <widget class="CReqValue">
+        <property name="name">
+            <cstring>cReqValue3</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>190</x>
+                <y>150</y>
+                <width>80</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="VarRef">
+            <cstring>back_led_r_set</cstring>
+        </property>
+    </widget>
+    <widget class="CFixText">
+        <property name="name">
+            <cstring>cFixText3</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>70</x>
+                <y>150</y>
+                <width>100</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Back-LED right</string>
+        </property>
+    </widget>
+    <widget class="CFixText">
+        <property name="name">
+            <cstring>cFixText2_2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>70</x>
+                <y>100</y>
+                <width>100</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Back LED left</string>
+        </property>
+    </widget>
+    <widget class="CFixText">
+        <property name="name">
+            <cstring>cFixText4</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>70</x>
+                <y>200</y>
+                <width>100</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>engine r speed</string>
+        </property>
+    </widget>
+    <widget class="CActValue">
+        <property name="name">
+            <cstring>cActValue4</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>280</x>
+                <y>200</y>
+                <width>80</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="VarRef">
+            <cstring>engine_r_speed_act</cstring>
+        </property>
+    </widget>
+    <widget class="CFixText">
+        <property name="name">
+            <cstring>cFixText2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>70</x>
+                <y>50</y>
+                <width>100</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Front-Led</string>
+        </property>
+    </widget>
+    <widget class="CFixText">
+        <property name="name">
+            <cstring>cFixText5</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>70</x>
+                <y>250</y>
+                <width>101</width>
+                <height>31</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>engine r dir</string>
+        </property>
+    </widget>
+    <widget class="CActValue">
+        <property name="name">
+            <cstring>cActValue5</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>280</x>
+                <y>250</y>
+                <width>81</width>
+                <height>31</height>
+            </rect>
+        </property>
+        <property name="VarRef">
+            <cstring>engine_r_dir_act</cstring>
+        </property>
+    </widget>
+    <widget class="CReqValue">
+        <property name="name">
+            <cstring>cReqValue6</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>190</x>
+                <y>300</y>
+                <width>81</width>
+                <height>31</height>
+            </rect>
+        </property>
+        <property name="VarRef">
+            <cstring>engine_l_speed_set</cstring>
+        </property>
+    </widget>
+    <widget class="CReqValue">
+        <property name="name">
+            <cstring>cReqValue5</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>190</x>
+                <y>250</y>
+                <width>81</width>
+                <height>31</height>
+            </rect>
+        </property>
+        <property name="VarRef">
+            <cstring>engine_r_dir_set</cstring>
+        </property>
+    </widget>
+    <widget class="CActValue">
+        <property name="name">
+            <cstring>cActValue6</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>280</x>
+                <y>300</y>
+                <width>81</width>
+                <height>31</height>
+            </rect>
+        </property>
+        <property name="VarRef">
+            <cstring>engine_l_speed_act</cstring>
+        </property>
+    </widget>
+    <widget class="CReqValue">
+        <property name="name">
+            <cstring>cReqValue7</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>190</x>
+                <y>350</y>
+                <width>81</width>
+                <height>31</height>
+            </rect>
+        </property>
+        <property name="VarRef">
+            <cstring>engine_l_dir_set</cstring>
+        </property>
+    </widget>
+    <widget class="CActValue">
+        <property name="name">
+            <cstring>cActValue7</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>280</x>
+                <y>350</y>
+                <width>81</width>
+                <height>31</height>
+            </rect>
+        </property>
+        <property name="VarRef">
+            <cstring>engine_l_dir_act</cstring>
+        </property>
+    </widget>
+    <widget class="CFixText">
+        <property name="name">
+            <cstring>cFixText6</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>70</x>
+                <y>300</y>
+                <width>101</width>
+                <height>31</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>engine l speed</string>
+        </property>
+    </widget>
+    <widget class="CFixText">
+        <property name="name">
+            <cstring>cFixText7</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>70</x>
+                <y>350</y>
+                <width>101</width>
+                <height>31</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>engine l dir</string>
+        </property>
+    </widget>
+    <widget class="CFixText">
+        <property name="name">
+            <cstring>cFixText7_2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>70</x>
+                <y>410</y>
+                <width>101</width>
+                <height>31</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Left LineData</string>
+        </property>
+    </widget>
+    <widget class="CFixText">
+        <property name="name">
+            <cstring>cFixText7_2_2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>70</x>
+                <y>450</y>
+                <width>101</width>
+                <height>31</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Right LineData</string>
+        </property>
+    </widget>
+    <widget class="CActValue">
+        <property name="name">
+            <cstring>cActValue7_2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>280</x>
+                <y>400</y>
+                <width>81</width>
+                <height>31</height>
+            </rect>
+        </property>
+        <property name="VarRef">
+            <cstring>linedata_l_act</cstring>
+        </property>
+    </widget>
+    <widget class="CActValue">
+        <property name="name">
+            <cstring>cActValue7_3</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>280</x>
+                <y>450</y>
+                <width>81</width>
+                <height>31</height>
+            </rect>
+        </property>
+        <property name="VarRef">
+            <cstring>linedata_r_act</cstring>
+        </property>
+    </widget>
+    <widget class="CReqValue">
+        <property name="name">
+            <cstring>cReqValue1</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>190</x>
+                <y>50</y>
+                <width>80</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="VarRef">
+            <cstring>front_led_set</cstring>
+        </property>
+    </widget>
+    <widget class="CCheckBox">
+        <property name="name">
+            <cstring>cCheckBox1</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>380</x>
+                <y>50</y>
+                <width>31</width>
+                <height>31</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string></string>
+        </property>
+        <property name="VarRef">
+            <cstring>front_led_set</cstring>
+        </property>
+    </widget>
+    <widget class="CReqValue">
+        <property name="name">
+            <cstring>cReqValue4</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>190</x>
+                <y>200</y>
+                <width>80</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="VarRef">
+            <cstring>engine_r_speed_set</cstring>
+        </property>
+    </widget>
+    <widget class="CSlider">
+        <property name="name">
+            <cstring>cSlider1</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>390</x>
+                <y>200</y>
+                <width>180</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="maxValue">
+            <number>255</number>
+        </property>
+        <property name="orientation">
+            <enum>Horizontal</enum>
+        </property>
+        <property name="VarRef">
+            <cstring>engine_r_speed_set</cstring>
+        </property>
+        <property name="ConstMax">
+            <number>255</number>
+        </property>
+    </widget>
+    <widget class="CProgressBar">
+        <property name="name">
+            <cstring>cProgressBar1</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>60</x>
+                <y>540</y>
+                <width>230</width>
+                <height>41</height>
+            </rect>
+        </property>
+        <property name="ValueRef">
+            <cstring>engine_r_speed_set</cstring>
+        </property>
+        <property name="MaximumRef">
+            <cstring></cstring>
+        </property>
+    </widget>
+</widget>
+<customwidgets>
+</customwidgets>
+<layoutdefaults spacing="6" margin="11"/>
+<includehints>
+    <includehint>CPage.h</includehint>
+    <includehint>CActValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CActValue.h</includehint>
+    <includehint>CActValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CFixText.h</includehint>
+    <includehint>CFixText.h</includehint>
+    <includehint>CFixText.h</includehint>
+    <includehint>CActValue.h</includehint>
+    <includehint>CFixText.h</includehint>
+    <includehint>CFixText.h</includehint>
+    <includehint>CActValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CActValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CActValue.h</includehint>
+    <includehint>CFixText.h</includehint>
+    <includehint>CFixText.h</includehint>
+    <includehint>CFixText.h</includehint>
+    <includehint>CFixText.h</includehint>
+    <includehint>CActValue.h</includehint>
+    <includehint>CActValue.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CCheckBox.h</includehint>
+    <includehint>CReqValue.h</includehint>
+    <includehint>CSlider.h</includehint>
+    <includehint>CProgressBar.h</includehint>
+</includehints>
+</UI>

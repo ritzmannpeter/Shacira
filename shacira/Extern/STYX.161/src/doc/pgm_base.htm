@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[pgm_base.h] Common function library for the (test) programms</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[pgm_base.h] Common function library for the (test) programms</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="standard.htm">#include "standard.h"</a>
+<br><a href="symbols.htm">#include "symbols.h"</a>
+<br><a href="hmap.htm">#include "hmap.h"</a>
+<br><a href="scn_pre.htm">#include "scn_pre.h"</a>
+<br><a href="scn_base.htm">#include "scn_base.h"</a>
+<br><a href="prs.htm">#include "prs.h"</a>
+<br><a href="prs_io.htm">#include "prs_io.h"</a>
+<br><a href="ptm.htm">#include "ptm.h"</a>
+<br><a href="ptm_gen.htm">#include "ptm_gen.h"</a>
+<br>
+<br>
+<br>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PGM_init</b>(int argc, char* argv[], void (*ctxinit)(int argc, char* argv[]))</pre>
+<td bgcolor="#FFF0F5" align=left> init program <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PGM_quit</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>quit program
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PGM_initPreprocessing</b>(c_string prepar, c_string premac, c_string cset)</pre>
+<td bgcolor="#FFF0F5" align=left> init STYX-like macro preprocessing<br>
+   according commandline parameters 'prepar', 'premac' and 'cset'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PGM_quitPreprocessing</b>(c_string prepar)</pre>
+<td bgcolor="#FFF0F5" align=left> quit STYX-like macro preprocessing; release resources <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Scn_Stream <b>PGM_initScanStream</b>
+           (
+             Scn_T Scn, c_string filename,
+             c_string prepar, c_string prefun,
+             c_bool binmode, c_string cset,
+             c_string skipset, c_bool stdTokIDs
+           )</pre>
+<td bgcolor="#FFF0F5" align=left> create and init scan stream according commandline parameters<br>
+   'filename', 'prepar', 'prefun', 'binmode' and 'cset'<br>
+   stdTokIDs --&gt; set default token IDs<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PGM_quitScanStream</b>(Scn_Stream cStream)</pre>
+<td bgcolor="#FFF0F5" align=left> close and release scan stream <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PGM_initTables</b>
+     (
+       c_string Environ, c_string language, PLR_Tab* PTab, Scn_T* Scn
+     )</pre>
+<td bgcolor="#FFF0F5" align=left> create scan and parse tables according commandline parameter<br>
+   'Environ' and 'language'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PT_Cfg <b>PGM_initParsing</b>(Scn_Stream cStream, PLR_Tab PTab)</pre>
+<td bgcolor="#FFF0F5" align=left> init parse term configuration for<br>
+   scan stream 'cStream' and parse table 'PTab'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PGM_quitTables</b>(PLR_Tab PTab, Scn_T Scn)</pre>
+<td bgcolor="#FFF0F5" align=left> release scan and parse tables <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PT_Term <b>PGM_parse</b>
+        (
+          PT_Cfg PCfg, c_string start,
+          c_string shiftfun, c_string reducefun,
+          c_bool early, c_bool xaron
+        )</pre>
+<td bgcolor="#FFF0F5" align=left> parse according commandline parameters<br>
+   'start', 'shiftfun', 'reducefun', 'early' and 'xaron'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PGM_printTree</b>(PT_Term PTree, c_string cset, c_bool wprint)</pre>
+<td bgcolor="#FFF0F5" align=left> print 'PTree' according commandline parameters 'cset' and 'wprint' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>PGM_scan</b>(Scn_Stream cStream, c_bool output, c_string cset, c_bool wprint)</pre>
+<td bgcolor="#FFF0F5" align=left> scan 'cStream'<br>
+   output --&gt; print according commandline parameters 'cset' and 'wprint'<br>
+<br>
+
+</table>
+
+</body>
+</html>

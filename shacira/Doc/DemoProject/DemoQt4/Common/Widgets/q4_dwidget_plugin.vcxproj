@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT4Framework\Plugins\pluginfactory.cpp" />
+    <ClCompile Include="..\..\..\..\..\Src\GUIFramework\QT4Framework\Plugins\plugin_log.cpp" />
+    <ClCompile Include="Generated\moc_pluginfactory.cpp" />
+    <ClCompile Include="Src\dactvalue.cpp" />
+    <ClCompile Include="Src\dframe.cpp" />
+    <ClCompile Include="Generated\moc_dactvalue.cpp" />
+    <ClCompile Include="Generated\moc_dframe.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="Src\dactvalue.pp">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SHACIRADIR)\bin\win32\pp.exe -o.\Generated\%(Filename).h %(FullPath)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\Generated\%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SHACIRADIR)\bin\win32\pp.exe -o.\Generated\%(Filename).h %(FullPath)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\Generated\%(Filename).h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="Src\dframe.pp">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SHACIRADIR)\bin\win32\pp.exe -o.\Generated\%(Filename).h %(FullPath)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\Generated\%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SHACIRADIR)\bin\win32\pp.exe -o.\Generated\%(Filename).h %(FullPath)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\Generated\%(Filename).h;%(Outputs)</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="Generated\dframe.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\Generated\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\Generated\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_PLUGIN -DQT_CORE_LIB -DQT_GUI_LIB -DQT4 -D_DWIDGET_PLUGIN_ -D_WINDLL  "-I$(QTDIR)\include" "-I$(QTDIR)\include\qtmain" "-I$(QTDIR)\include\QtDesigner" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I." "-I.\Generated" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Generated" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\CWidgets" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Plugins" "-I$(SHACIRADIR)\Src\Include" "-I.\Plugin" "-I$(SHACIRADIR)\Src\GUIFramework" "-I$(SHACIRADIR)\Src\GUIFramework\qt4port"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\Generated\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\Generated\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_PLUGIN -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT4 -D_DWIDGET_PLUGIN_ -D_WINDLL  "-I$(QTDIR)\include" "-I$(QTDIR)\include\qtmain" "-I$(QTDIR)\include\QtDesigner" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I." "-I.\Generated" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Generated" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\CWidgets" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Plugins" "-I$(SHACIRADIR)\Src\Include" "-I.\Plugin" "-I$(SHACIRADIR)\Src\GUIFramework" "-I$(SHACIRADIR)\Src\GUIFramework\qt4port"</Command>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="Generated\dactvalue.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\Generated\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\Generated\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_PLUGIN -DQT_CORE_LIB -DQT_GUI_LIB -DQT4 -D_DWIDGET_PLUGIN_ -D_WINDLL  "-I$(QTDIR)\include" "-I$(QTDIR)\include\qtmain" "-I$(QTDIR)\include\QtDesigner" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I." "-I.\Generated" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Generated" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\CWidgets" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Plugins" "-I$(SHACIRADIR)\Src\Include" "-I.\Plugin" "-I$(SHACIRADIR)\Src\GUIFramework" "-I$(SHACIRADIR)\Src\GUIFramework\qt4port"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\Generated\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\Generated\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_PLUGIN -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT4 -D_DWIDGET_PLUGIN_ -D_WINDLL  "-I$(QTDIR)\include" "-I$(QTDIR)\include\qtmain" "-I$(QTDIR)\include\QtDesigner" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I." "-I.\Generated" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Generated" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\CWidgets" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Plugins" "-I$(SHACIRADIR)\Src\Include" "-I.\Plugin" "-I$(SHACIRADIR)\Src\GUIFramework" "-I$(SHACIRADIR)\Src\GUIFramework\qt4port"</Command>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\..\..\..\Src\GUIFramework\QT4Framework\Plugins\pluginfactory.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing pluginfactory.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\Generated\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\Generated\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_PLUGIN -DQT_CORE_LIB -DQT_GUI_LIB -DQT4 -D_DWIDGET_PLUGIN_ -D_WINDLL  "-I$(QTDIR)\include" "-I$(QTDIR)\include\qtmain" "-I$(QTDIR)\include\QtDesigner" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I." "-I.\Generated" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Generated" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\CWidgets" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Plugins" "-I$(SHACIRADIR)\Src\Include" "-I.\Plugin" "-I$(SHACIRADIR)\Src\GUIFramework" "-I$(SHACIRADIR)\Src\GUIFramework\qt4port"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing pluginfactory.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\Generated\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\Generated\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_PLUGIN -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT4 -D_DWIDGET_PLUGIN_ -D_WINDLL  "-I$(QTDIR)\include" "-I$(QTDIR)\include\qtmain" "-I$(QTDIR)\include\QtDesigner" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I." "-I.\Generated" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Generated" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\CWidgets" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Plugins" "-I$(SHACIRADIR)\Src\Include" "-I.\Plugin" "-I$(SHACIRADIR)\Src\GUIFramework" "-I$(SHACIRADIR)\Src\GUIFramework\qt4port"</Command>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\Targ\vc10\q4_cwidget_plugin\q4_cwidget_plugin.vcxproj">
+      <Project>{1ec9f331-1c1d-4b26-a536-b4d9b5b00fcd}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{722A459B-7DFB-445F-A285-7E7264464C87}</ProjectGuid>
+    <Keyword>Qt4VSv1.0</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectName)d</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>UNICODE;WIN32;QT_LARGEFILE_SUPPORT;QT_PLUGIN;QT_CORE_LIB;QT_GUI_LIB;QT4;_DWIDGET_PLUGIN_;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(QTDIR)\include;$(QTDIR)\include\qtmain;$(QTDIR)\include\QtDesigner;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;.;.\Generated;$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Generated;$(SHACIRADIR)\Src\GUIFramework\QT4Framework\CWidgets;$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Plugins;$(SHACIRADIR)\Src\Include;.\Plugin;$(SHACIRADIR)\Src\GUIFramework;$(SHACIRADIR)\Src\GUIFramework\qt4port;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Disabled</Optimization>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>$(TargetPath)</OutputFile>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>qtmaind.lib;QtDesignerd4.lib;QtCored4.lib;QtGuid4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy $(TargetPath) $(QT4DIR)\plugins\designer</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>UNICODE;WIN32;QT_LARGEFILE_SUPPORT;QT_PLUGIN;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;QT4;_DWIDGET_PLUGIN_;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(QTDIR)\include;$(QTDIR)\include\qtmain;$(QTDIR)\include\QtDesigner;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;.;.\Generated;$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Generated;$(SHACIRADIR)\Src\GUIFramework\QT4Framework\CWidgets;$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Plugins;$(SHACIRADIR)\Src\Include;.\Plugin;$(SHACIRADIR)\Src\GUIFramework;$(SHACIRADIR)\Src\GUIFramework\qt4port;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>$(TargetPath)</OutputFile>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <AdditionalDependencies>qtmain.lib;QtDesigner4.lib;QtCore4.lib;QtGui4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy $(TargetPath) $(QT4DIR)\plugins\designer</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties UicDir=".\Generated" MocDir=".\Generated" MocOptions="" RccDir=".\Generated" lupdateOnBuild="0" lupdateOptions="" lreleaseOptions="" QtVersion_x0020_Win32="4.8.4" IsDesignerPlugin="True" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

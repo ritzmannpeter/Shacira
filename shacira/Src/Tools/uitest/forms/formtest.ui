@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>FormTest</class>
+ <widget class="QMainWindow" name="FormTest">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Qt4 Ui Form Test</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QStackedWidget" name="formTestStack">
+      <widget class="QWidget" name="page"/>
+      <widget class="QWidget" name="page_2"/>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuSelect_form">
+    <property name="title">
+     <string>forms</string>
+    </property>
+    <addaction name="forward"/>
+    <addaction name="back"/>
+   </widget>
+   <addaction name="menuSelect_form"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="forward">
+   <property name="text">
+    <string>forward</string>
+   </property>
+  </action>
+  <action name="back">
+   <property name="text">
+    <string>back</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

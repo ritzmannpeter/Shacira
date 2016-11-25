@@ -1,0 +1,351 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="LinuxDoc-Tools 0.9.65">
+ <TITLE>The Styx Handbook: A walk-through applying Styx</TITLE>
+ <LINK HREF="styx-3.html" REL=next>
+ <LINK HREF="styx-1.html" REL=previous>
+ <LINK HREF="styx.html#toc2" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="styx-3.html">Next</A>
+<A HREF="styx-1.html">Previous</A>
+<A HREF="styx.html#toc2">Contents</A>
+<HR>
+<H2><A NAME="s2">2.</A> <A HREF="styx.html#toc2">A walk-through applying Styx</A></H2>
+
+
+<H2><A NAME="ss2.1">2.1</A> <A HREF="styx.html#toc2.1">The language definition</A>
+</H2>
+
+<P>Both the regular as well as the context free grammar of the language is
+combined into one source. Keyword tokens need not be defined separately
+within the lexical grammar, but are instead extracted from the context
+free part of the definition. All grammatical information is contained into
+one file with the extension ".sty".</P>
+<P>To give a small example how this looks like, here see the calculator
+language below.</P>
+<P>
+<PRE>
+; [calc.sty] Grammar "Calculator"
+
+Language calc
+
+Regular Grammar
+
+  ign Ign         = ' \n\r'          ; "white" characters
+  tok Tok         = '()+-*/'         ; one character tokens
+  tok Int         = ('0'..'9')+      ; Integer
+  tok Wrd         = "end"
+
+Context Free Grammar
+
+start Cmd
+:exp: Exp
+:end: "end"
+
+let Exp  :ign0: Exp1
+:add : Exp  "+" Exp1
+:sub : Exp  "-" Exp1
+
+let Exp1 :ign0: Exp2
+:mlt : Exp1 "*" Exp2
+:div : Exp1 "/" Exp2
+
+let Exp2
+:neg : "-" Exp2
+:ign0: "(" Exp ")"
+:int : Int
+</PRE>
+</P>
+<P>Notes on the source above.</P>
+<P>
+<UL>
+<LI>Overall, the source consists of three parts. The first, naming the
+language, the second, proving the regular sets and the third, defining
+the context free grammar.</LI>
+<LI>In the regular grammar, the single quoted strings denote sets of
+characters, while the double quoted strings denote strings. It provides
+the terminals of the language.</LI>
+<LI>The context free grammar consists of a list of definitions of
+non-terminals each followed by their productions. The products are named
+by the word between the two colons. Double quoted strings within the
+production rules denote terminals (<EM>keywords</EM>), while names are used
+for both terminals and non-terminals.</LI>
+<LI>Although the language defined by the <EM>start</EM> productions is either
+an expression or the word "end", this example language was designed for
+a typical calculator tool, so one could enter an arbitrary list of
+expressions, and terminate the session by "end". This is not mentioned
+within the grammar. Instead, the Styx parser can be instructed to separate
+prefixes from a source stream, so one can read in one expression after the
+other. Of course, a start production will normally describe a whole file.</LI>
+</UL>
+</P>
+
+<H2><A NAME="ss2.2">2.2</A> <A HREF="styx.html#toc2.2">The derived depth grammar / term algebra</A>
+</H2>
+
+<P>Applying Styx, we derive the follow depth grammar (transformed to abstract
+types) from <EM>calc.sty</EM></P>
+<P>
+<PRE>
+; [calc.abs] Types of 'calc' Terms
+
+LANGUAGE calc
+
+TOKENS
+
+  Int
+
+TYPES
+
+  calc    = Start_Cmd(Cmd)
+
+  Cmd     = end;
+            exp(Exp)
+
+  Exp     = mlt(Exp, Exp);
+            int(Int);
+            neg(Exp);
+            sub(Exp, Exp);
+            div(Exp, Exp);
+            add(Exp, Exp)
+</PRE>
+</P>
+<P>Some notes apply to this:
+<UL>
+<LI>First of all, note that a transition from grammatical to algebraic notions
+have been done. While we talk in the .sty file about regular and context
+free productions, we have the signature of typed term algebras in the .abs
+file.</LI>
+<LI>Beside "Int", all regular grammar productions have been removed
+automatically. This is both possible and necessary, since they only
+contribute to the surface grammar.</LI>
+<LI>The surface grammar, which knows about three different non-terminals for
+expressions, necessary to express the binding strength of the
+operations, has been mapped onto one type (Exp). This congruence was hinted
+by the use of the ":ign0:" productions.</LI>
+</UL>
+</P>
+
+<H2><A NAME="ss2.3">2.3</A> <A HREF="styx.html#toc2.3">Testing the language definition</A>
+</H2>
+
+<P>Even without writing down a single line of C code, one can already test the
+language. With the following test string given in a file, we can test both the
+scanner and the parser separately, yielding the following results.</P>
+<P>
+<PRE>
+1+2*(3-4)/5
+</PRE>
+</P>
+<P>
+<PRE>
+calc-example:000001:001 Int     : 1
+calc-example:000001:002 Tok     : +
+calc-example:000001:003 Int     : 2
+calc-example:000001:004 Tok     : *
+calc-example:000001:005 Tok     : (
+calc-example:000001:006 Int     : 3
+calc-example:000001:007 Tok     : -
+calc-example:000001:008 Int     : 4
+calc-example:000001:009 Tok     : )
+calc-example:000001:010 Tok     : /
+calc-example:000001:011 Int     : 5
+</PRE>
+</P>
+<P>
+<A NAME="tree"></A> 
+<PRE>
+Derivation Tree from Source : calc-example
+
+[calc.Start_Cmd (1,1)
+ [Cmd.exp (1,1)
+  [Exp.add (1,1)
+   [Exp.ign0 (1,1)
+    [Exp1.ign0 (1,1)
+     [Exp2.int (1,1)
+      [Int (1,1) "1"]]]]
+   [Keyword (1,2) "+"]
+   [Exp1.div (1,3)
+    [Exp1.mlt (1,3)
+     [Exp1.ign0 (1,3)
+      [Exp2.int (1,3)
+       [Int (1,3) "2"]]]
+     [Keyword (1,4) "*"]
+     [Exp2.ign0 (1,5)
+      [Keyword (1,5) "("]
+      [Exp.sub (1,6)
+       [Exp.ign0 (1,6)
+        [Exp1.ign0 (1,6)
+         [Exp2.int (1,6)
+          [Int (1,6) "3"]]]]
+       [Keyword (1,7) "-"]
+       [Exp1.ign0 (1,8)
+        [Exp2.int (1,8)
+         [Int (1,8) "4"]]]]
+      [Keyword (1,9) ")"]]]
+    [Keyword (1,10) "/"]
+    [Exp2.int (1,11)
+     [Int (1,11) "5"]]]]]]
+</PRE>
+</P>
+<P>As one can see from the parser test result, full source information is
+maintained. Not only that the keywords are preserved, but also the starting
+positions of both the productions and the terminals are kept in the derivation
+tree for later reference to the source, may be for diagnostics, may be for
+other purposes.</P>
+<P>Note that the source tree shown by the parser test is the internal representation,
+which is bound to the concrete surface grammar as specified in the calc.sty
+file. One may have access to this representation, of course, but usually, the 
+compiler writer will give preference to the abstract (depth) grammar as given by
+the (generated) calc.abs above.</P>
+
+<H2><A NAME="ss2.4">2.4</A> <A HREF="styx.html#toc2.4">The C language interface</A>
+</H2>
+
+<P>Styx provides a proper C language interface for this abstract grammar, by
+means of a mapping convention. As soon one knows the mapping by heart, the
+C interface (header) file is of few use. One will typically prefer working with
+the .abs file for reference purposes. This becomes clear when having a look at
+the C interface file below, which is much longer then the (content-identical)
+.abs file:
+<PRE>
+/* ------------------------------------------------------------------------ */
+/*                                                                          */
+/* [calc_int.h]               Language Interface                            */
+/*                                                                          */
+/* ------------------------------------------------------------------------ */
+
+/* File generated by 'ctoh'. Don't change manually. */
+
+#ifndef calc_int_INCL
+#define calc_int_INCL
+
+
+#include "ptm.h"
+#include "gls.h"
+
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
+/* --------------------- symbol objects - init &amp; quit --------------------- */
+
+void calc_initSymbols();               /*                                   */
+void calc_quitSymbols();               /*                                   */
+
+/* -------------------------- Types &amp; Constants --------------------------- */
+
+AbstractType( calc );
+
+AbstractType( calcCmd  );
+AbstractType( calcExp  );
+
+/* --------------------------- Access to Tokens --------------------------- */
+
+c_bool Tcalc_Int(GLS_Tok x);           /*                                   */
+
+/* --------------------------- Access to Terms ---------------------------- */
+
+c_bool calc_calc(PT_Term x, calc* x1);   /*                                 */
+c_bool calc_Cmd(PT_Term x, calcCmd* x1); /*                                 */
+c_bool calc_Exp(PT_Term x, calcExp* x1); /*                                 */
+
+/* --------------------------------- calc --------------------------------- */
+
+c_bool calc_Start_Cmd(calc x, calcCmd* x1)
+#define calc_Start_0   calc_Start_Cmd
+;
+
+
+/* --------------------------------- Cmd ---------------------------------- */
+
+c_bool calcCmd_end(calcCmd x);              /*                              */
+c_bool calcCmd_exp(calcCmd x, calcExp* x1); /*                              */
+
+/* --------------------------------- Exp ---------------------------------- */
+
+c_bool calcExp_mlt(calcExp x, calcExp* x1, calcExp* x2); /*                 */
+c_bool calcExp_int(calcExp x, GLS_Tok* x1);              /*                 */
+c_bool calcExp_neg(calcExp x, calcExp* x1);              /*                 */
+c_bool calcExp_sub(calcExp x, calcExp* x1, calcExp* x2); /*                 */
+c_bool calcExp_div(calcExp x, calcExp* x1, calcExp* x2); /*                 */
+c_bool calcExp_add(calcExp x, calcExp* x1, calcExp* x2); /*                 */
+
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif
+</PRE>
+</P>
+<P>The interface will not be explained in full length in this walk-through,
+instead only two relevant sections will be highlighted:
+<UL>
+<LI>The "AbstractType"s introduce the types of parse, mainly Cmd and
+Exp. <CODE>AbstractType</CODE> simply expands to <CODE>void*</CODE>,
+and is introduced to hide the implementation.</LI>
+<LI>The most interesting part is the section in the end with the "Exp"
+header above it. This section gives access to the expressions in
+the derivation tree.</LI>
+</UL>
+</P>
+<P>To each variant within the discriminated union of the Exp terms, one
+destructor (in notions of algebra, not of C++) is provided. The naming
+convention of them is "LanguageType_Variant". Their first argument is
+the term to rip apart. The remaining arguments are variables for the parts
+of the decomposition. The result of the functions is a boolean value that
+becomes true if the destructor applies to the considered term, i.e. if we
+have used it on the right variant.</P>
+
+<H2><A NAME="ss2.5">2.5</A> <A HREF="styx.html#toc2.5">Using the interface</A>
+</H2>
+
+<P>With this preparation we can look at the source of the evaluator.
+This is pretty straight forward. Speaking in notions of abstract algebra,
+the following C function is the canonical evaluation homomorphism on Exps. 
+It maps the type of Exps to C integers by assigning a corresponding C function
+of the C integer algebra to every function of the term algebra of Exps.
+Additionally, since an integer literal is also provided in the language,
+the integer denotation is mapped onto it's meaning.</P>
+<P>
+<PRE>
+int evalExp(calcExp ex)
+{ calcExp x1; calcExp x2; GLS_Tok x3;
+  if (calcExp_mlt(ex, &amp;x1, &amp;x2)) return evalExp(x1) * evalExp(x2);
+  if (calcExp_div(ex, &amp;x1, &amp;x2)) return evalExp(x1) / evalExp(x2);
+  if (calcExp_add(ex, &amp;x1, &amp;x2)) return evalExp(x1) + evalExp(x2);
+  if (calcExp_sub(ex, &amp;x1, &amp;x2)) return evalExp(x1) - evalExp(x2);
+  if (calcExp_neg(ex, &amp;x2))      return             - evalExp(x2);
+  if (calcExp_int(ex, &amp;x3))      return atoi(GLS_Tok_string(x3));
+  BUG;
+}
+</PRE>
+</P>
+<P>Together with a few lines to initiate and apply the Styx parser, the
+above function forms the desired calculator.</P>
+<P>Please note that the full advantage of Styx over yacc is not expressed
+by this walk-trough. One can do this trivial example likely efficient
+with yacc's semantic actions. Note especially that the above evaluator is
+in contrary to yacc not hooked into the parser, but instead applied on the
+result of the parsing process. When the term was evaluated by evalExp the 
+parser has already been gone, having done it's purpose by leaving a term 
+derived from the source.</P>
+<P>The advantage of Styx's design immediately becomes apparent as soon as one
+adds functions to the example grammar and defines an interpreter on top of it. 
+Using Styx one would then find everything prepared as needed, while lex/yacc 
+would require to do all the things that Styx offers implicitly. 
+<EM>Perhaps we will extend the example appropriately in the next version of the 
+document. Meanwhile we leave it as an exercise to the reader. 
+(Hint: Use the symbols and finite maps described below to move along easily.)</EM></P>
+
+<HR>
+<A HREF="styx-3.html">Next</A>
+<A HREF="styx-1.html">Previous</A>
+<A HREF="styx.html#toc2">Contents</A>
+</BODY>
+</HTML>

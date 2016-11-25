@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html class="mozilla"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1">
+
+<title>[#QTVSADDINBUG-27] The Visual Studio Add-in should have a button 
+to convert a "regular" vcproj to a Qt-enabled vcproj - Qt Bug Tracker</title>
+
+<meta name="ajs-issue-key" content="QTVSADDINBUG-27">
+        
+<meta name="ajs-default-avatar-url" content="/secure/useravatar?size=small&amp;avatarId=10293">
+        
+<meta name="ajs-context-path" content="">
+        
+<meta name="ajs-version-number" content="5.0.7">
+        
+<meta name="ajs-build-number" content="734">
+        
+<meta name="ajs-remote-user" content="">
+        
+<meta name="ajs-remote-user-fullname" content="">
+        
+<meta name="ajs-user-locale" content="en_US">
+        
+<meta name="ajs-app-title" content="Qt Bug Tracker">
+        
+<meta name="ajs-keyboard-shortcuts-enabled" content="true">
+        
+        <meta name="ajs-whats-new-iframe-src-override" content=""> <meta name="ajs-whatsnew-full-link" content="https://docs.atlassian.com/jira/docs-050/whatsnew/iframe">
+    
+
+
+
+
+    
+<meta id="atlassian-token" name="atlassian-token" content="APQ4-KXYT-R7PL-QM80|a78a79a871fb2428471ea4f452a2d005abc142ee|lout">
+
+
+
+<link rel="shortcut icon" href="https://bugreports.qt-project.org/s/en_USnszq1q/734/9/_/favicon.ico">
+<link rel="search" type="application/opensearchdescription+xml" href="https://bugreports.qt-project.org/osd.jsp" title="Qt Bug Tracker">
+
+    
+
+
+
+
+
+
+
+
+
+
+<!--[if IE]><![endif]-->
+<script type="text/javascript">var contextPath = '';</script>
+<link type="text/css" rel="stylesheet" href="QTVSADDINBUG-27-Dateien/batch_002.css" media="all">
+<!--[if lt IE 9]>
+<link type="text/css" rel="stylesheet" href="/s/en_USnszq1q/734/9/1/_/download/superbatch/css/batch.css?conditionalComment=lt+IE+9" media="all">
+<![endif]-->
+<!--[if IE 9]>
+<link type="text/css" rel="stylesheet" href="/s/en_USnszq1q/734/9/1/_/download/superbatch/css/batch.css?conditionalComment=IE+9" media="all">
+<![endif]-->
+<!--[if lte IE 9]>
+<link type="text/css" rel="stylesheet" href="/s/en_USnszq1q/734/9/1/_/download/superbatch/css/batch.css?conditionalComment=lte+IE+9" media="all">
+<![endif]-->
+<link type="text/css" rel="stylesheet" href="QTVSADDINBUG-27-Dateien/batch.css" media="all">
+<link type="text/css" rel="stylesheet" href="QTVSADDINBUG-27-Dateien/jira.css" media="all">
+<link type="text/css" rel="stylesheet" href="QTVSADDINBUG-27-Dateien/jira_002.css" media="all">
+<script type="text/javascript" src="QTVSADDINBUG-27-Dateien/batch_002.js"></script>
+<!--[if lte IE 8]>
+<script type="text/javascript" src="/s/en_USnszq1q/734/9/1/_/download/superbatch/js/batch.js?conditionalComment=lte+IE+8" ></script>
+<![endif]-->
+<script type="text/javascript" src="QTVSADDINBUG-27-Dateien/batch_003.js"></script>
+<script type="text/javascript" src="QTVSADDINBUG-27-Dateien/batch.js"></script>
+<script type="text/javascript" src="QTVSADDINBUG-27-Dateien/jira_002.js"></script>
+<script type="text/javascript" src="QTVSADDINBUG-27-Dateien/jira.js"></script>
+<script type="text/javascript" src="QTVSADDINBUG-27-Dateien/jira_004.js"></script>
+<script type="text/javascript" src="QTVSADDINBUG-27-Dateien/jira_003.js"></script>
+<script type="text/javascript" src="QTVSADDINBUG-27-Dateien/jira_005.js"></script>
+
+    <script type="text/javascript" src="QTVSADDINBUG-27-Dateien/shortcuts.js"></script>
+
+
+    
+    <link title=" ( Type 'u' )" rel="index" href="https://bugreports.qt-project.org/secure/IssueNavigator.jspa">
+    
+    
+    
+
+</head>
+<body id="jira" class="aui-layout aui-theme-default page-type-viewissue">
+<div id="page">
+    <header style="opacity: 0;" id="header" role="banner">
+        
+
+
+
+    
+        
+            
+        
+    
+
+
+
+
+
+        
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="global" role="navigation">
+    <div class="primary">
+        <h1 id="logo"><a href="https://bugreports.qt-project.org/secure/MyJiraHome.jspa"><img src="QTVSADDINBUG-27-Dateien/jira-logo-scaled.png" alt="Qt Bug Tracker" height="46" width="39"></a></h1>
+    </div>
+    <div class="secondary">
+        <ul>
+                                    
+            
+
+
+
+<li id="header-details-user" class="aui-dd-parent">
+            <a class="lnk" rel="nofollow" href="https://bugreports.qt-project.org/login.jsp?os_destination=%2Fbrowse%2FQTVSADDINBUG-27">Log In</a>
+        <span class="drop-wrap">
+        <a class="drop aui-dd-link" href="#"><span>Access more options</span>
+        </a>
+    </span>
+    <div id="user-options-list" class="aui-list hidden">
+                                                                                        <ul id="jira-help" class="aui-list-section  aui-first     aui-last  ">
+                                            <li class="aui-list-item"><a id="view_help" class="aui-list-item-link " title="Goto the online documentation for JIRA" href="https://docs.atlassian.com/jira/docs-050/JIRA+Documentation">Online Help</a></li>
+                                            <li class="aui-list-item"><a id="gh_view_help" class="aui-list-item-link " title="Get help online for GreenHopper" href="http://docs.atlassian.com/greenhopper/docs-0600/GreenHopper+Documentation">GreenHopper Help</a></li>
+                                            <li class="aui-list-item"><a id="gh_view_agile_answers" class="aui-list-item-link " title="Get answers about Agile" href="http://answers.atlassian.com/tags/agile/">Agile Answers</a></li>
+                                            <li class="aui-list-item"><a id="greenhopper-my-jira-home-enablement" class="aui-list-item-link " title="Set my JIRA Home to Agile." href="https://bugreports.qt-project.org/secure/MakeGreenHopperMyHome.jspa">Use Agile By Default</a></li>
+                                            <li class="aui-list-item"><a id="keyshortscuthelp" class="aui-list-item-link " title="Get more information about JIRA's Keyboard Shortcuts ( Type '?' )" href="https://bugreports.qt-project.org/secure/ViewKeyboardShortcuts%21default.jspa">Keyboard Shortcuts</a></li>
+                                            <li class="aui-list-item"><a id="view_about" class="aui-list-item-link " title="Get more information about JIRA" href="http://www.atlassian.com/software/jira">About JIRA</a></li>
+                                            <li class="aui-list-item"><a id="view_credits" class="aui-list-item-link " title="See who did what" href="https://bugreports.qt-project.org/secure/JiraCreditsPage%21default.jspa">JIRA Credits</a></li>
+                                            <li class="aui-list-item"><a id="whats-new-menu-link" class="aui-list-item-link " href="https://docs.atlassian.com/jira/docs-050/whatsnew/iframe">What’s New</a></li>
+                                    </ul>
+                        </div>
+
+</li>
+
+            
+        </ul>
+    </div>
+</nav>
+<nav class="local" role="navigation">
+    <div class="primary">
+                    
+            
+<ul id="main-nav" class="standard-menu-bar">
+                                            <li class="aui-dd-parent lazy">
+            <a class="lnk" href="https://bugreports.qt-project.org/secure/Dashboard.jspa" id="home_link" accesskey="h" title="View your current Dashboard ( Type 'g' then 'd' )">Dashboards</a>
+
+                    <span class="drop-wrap">
+            <a class="drop aui-dd-link" id="home_link_drop" rel="home_link" accesskey="d" title="Access more options (Alt+Shift+d)" href="#"><span>Access more options (Alt+Shift+d)</span></a></span>
+                </li>
+                                            <li class="aui-dd-parent lazy">
+            <a class="lnk" href="https://bugreports.qt-project.org/browse/QTVSADDINBUG" id="browse_link" accesskey="b" title="Browse currently active project 'Qt Visual Studio Add-in' ( Type 'g' then 'p' )">Projects</a>
+
+                    <span class="drop-wrap">
+            <a class="drop aui-dd-link" id="browse_link_drop" rel="browse_link" accesskey="p" title="Access more options (Alt+Shift+p)" href="#"><span>Access more options (Alt+Shift+p)</span></a></span>
+                </li>
+                                            <li class="aui-dd-parent lazy selected">
+            <a class="lnk" href="https://bugreports.qt-project.org/secure/IssueNavigator.jspa" id="find_link" accesskey="f" title="View your current filter ( Type 'g' then 'i' )">Issues</a>
+
+                    <span class="drop-wrap">
+            <a class="drop aui-dd-link" id="find_link_drop" rel="find_link" accesskey="i" title="Access more options (Alt+Shift+i)" href="#"><span>Access more options (Alt+Shift+i)</span></a></span>
+                </li>
+                                            <li class="aui-dd-parent lazy">
+            <a class="lnk" href="https://bugreports.qt-project.org/secure/GreenHopper.jspa" id="greenhopper_menu" title="Manage your project with GreenHopper">Agile</a>
+
+                    <span class="drop-wrap">
+            <a class="drop aui-dd-link" id="greenhopper_menu_drop" rel="greenhopper_menu" accesskey="g" title="Access more options (Alt+Shift+g)" href="#"><span>Access more options (Alt+Shift+g)</span></a></span>
+                </li>
+    </ul>
+
+            
+            </div>
+    <div class="secondary">
+        <ul>
+                            <li>
+                    <form id="quicksearch" action="/secure/QuickSearch.jspa" method="post" class="dont-default-focus">
+                        <div>
+                            <input id="quickSearchInput" class="text" title="Quick Search ( Type '/' )" name="searchString" accesskey="q" type="text">
+                            <label style="width: 184px;" for="quickSearchInput" class="overlabel-apply">Quick Search</label>
+                            <input class="hidden" value="Search" type="submit">
+                        </div>
+                    </form>
+                </li>
+                                </ul>
+    </div>
+</nav>
+
+    </header>
+    
+
+
+    <section id="content" role="main">
+        
+
+
+                <div style="visibility: hidden; height: 170px;" class="stalker-placeholder"></div><header style="position: fixed; top: 0px;" id="stalker" class="issue-header js-stalker detached">
+                    <div class="issue-header-content">
+                        
+                            
+
+
+
+
+
+
+
+
+
+
+    
+        <div id="heading-avatar">
+            <img id="project-avatar" alt="" class="project-avatar-48" src="QTVSADDINBUG-27-Dateien/projectavatar.png" height="48" width="48">
+        </div>
+    
+
+<ul class="breadcrumbs">
+    <li><a id="project-name-val" href="https://bugreports.qt-project.org/browse/QTVSADDINBUG">Qt Visual Studio Add-in</a></li>
+    
+    <li><a id="key-val" rel="157567" href="https://bugreports.qt-project.org/browse/QTVSADDINBUG-27">QTVSADDINBUG-27</a></li>
+</ul>
+<h1 id="summary-val">
+    
+    <a href="https://bugreports.qt-project.org/browse/QTVSADDINBUG-27">The Visual Studio Add-in should have a button to convert a "regular" vcproj to a Qt-enabled vcproj</a>
+</h1>
+                        
+                        
+
+
+
+    <div class="command-bar">
+        <div class="ops-cont">
+            <div class="ops-menus aui-toolbar">
+                <div class="toolbar-split toolbar-split-left">
+                    
+                        
+                    
+                    
+                        
+                            
+                                <ul id="opsbar-opsbar-operations" class="toolbar-group ">
+                                    
+                                        <li class="toolbar-item">
+                                            <a id="greenhopper-rapidboard-operation" title="View this issue on an Agile board" class="toolbar-trigger issueaction-greenhopper-rapidboard-operation js-rapidboard-operation-issue" href="https://bugreports.qt-project.org/secure/GHGoToBoard.jspa?issueId=157567">Agile Board</a>
+                                        </li>
+                                    
+                                    
+                                        
+                                        
+                                            
+                                                <li class="toolbar-item toolbar-dropdown disabled">
+                                                    <span id="opsbar-operations_more" class="toolbar-trigger">
+                                                        <span class="dropdown-text">More Actions</span>
+                                                        <span class="icon drop-menu"></span>
+                                                    </span>
+                                                </li>
+                                            
+                                        
+                                    
+                                </ul>
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                </div>
+                <div class="toolbar-split toolbar-split-right">
+                    <ul class="toolbar-group pluggable-ops">
+                    
+                        
+                    
+                    
+                        
+                            <li class="toolbar-item toolbar-dropdown">
+                                <a href="#" title="View this issue in another format" class="toolbar-trigger js-default-dropdown"><span class="dropdown-text"><span class="icon icon-view"></span>Views</span><span class="icon drop-menu"></span></a>
+
+                                <div class="aui-list hidden">
+                                    <ul class="aui-first aui-last aui-list-section">
+                                        
+                                            <li class="aui-list-item">
+                                                <a class="aui-list-item-link" rel="nofollow" href="https://bugreports.qt-project.org/si/jira.issueviews:issue-xml/QTVSADDINBUG-27/QTVSADDINBUG-27.xml">XML</a>
+                                            </li>
+                                        
+                                            <li class="aui-list-item">
+                                                <a class="aui-list-item-link" rel="nofollow" href="https://bugreports.qt-project.org/si/jira.issueviews:issue-word/QTVSADDINBUG-27/QTVSADDINBUG-27.doc">Word</a>
+                                            </li>
+                                        
+                                            <li class="aui-list-item">
+                                                <a class="aui-list-item-link" rel="nofollow" href="https://bugreports.qt-project.org/si/jira.issueviews:issue-html/QTVSADDINBUG-27/QTVSADDINBUG-27.html">Printable</a>
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            </li>
+                        
+                    
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+                    </div>
+                </header>
+                <div class="content-container issue-body-content navigator-collapsed">
+                    <div class="content-body aui-panel">
+                        <div class="aui-group">
+                            <div class="aui-item issue-main-column">
+                                
+                                    <div class="module toggle-wrap" id="details-module"><div id="details-module_heading" class="mod-header"><h3 class="toggle-title">Details</h3></div><div class="mod-content">
+
+<ul id="issuedetails" class="property-list two-cols">
+    <li class="item">
+        <div class="wrap">
+            <strong class="name">Type:</strong>
+            <span id="type-val" class="value">
+                                <img alt="Suggestion" src="QTVSADDINBUG-27-Dateien/genericissue.gif" title="Suggestion - Public suggestions" height="16" width="16"> Suggestion
+            </span>
+        </div>
+    </li>
+    <li class="item item-right">
+        <div class="wrap">
+            <strong class="name">Status:</strong>
+            <span id="status-val" class="value">
+                                <img alt="Open" src="QTVSADDINBUG-27-Dateien/status_open.gif" title="Open - The issue is open and ready for the assignee to start work on it." height="16" width="16"> Open
+            </span>
+                    </div>
+    </li>
+            <li class="item">
+            <div class="wrap">
+                <strong class="name">Priority:</strong>
+                <span id="priority-val" class="value">
+                                        <img alt="P3: Somewhat important" src="QTVSADDINBUG-27-Dateien/priority_minor.gif" title="P3: Somewhat important - Can be fixed, but doesn't affect the release in any way." height="16" width="16"> P3: Somewhat important
+                </span>
+            </div>
+        </li>
+                                <li class="item item-right">
+            <div class="wrap">
+                <strong class="name">Resolution:</strong>
+                <span id="resolution-val" class="value unresolved">
+                                    Unresolved
+                                </span>
+            </div>
+        </li>
+                <li class="item">
+            <div class="wrap">
+                <strong class="name">Affects Version/s:</strong>
+                <span id="versions-val" class="value">
+                                            <span style="padding: 0px; display: block;" class="shorten" id="versions-field">
+                                                            <span title="1.1.6 ">1.1.6</span>                                                    </span>
+                                    </span>
+            </div>
+        </li>
+                <li class="item item-right">
+            <div class="wrap">
+                <strong class="name">Fix Version/s:</strong>
+                <span id="fixfor-val" class="value">
+                                            <span style="padding: 0px; display: block;" class="shorten" id="fixVersions-field">
+                                                            <a href="https://bugreports.qt-project.org/browse/QTVSADDINBUG/fixforversion/11714" title="some future release ">some future release</a>                                                    </span>
+                                    </span>
+            </div>
+        </li>
+                <li class="item">
+            <div class="wrap">
+                <strong class="name">Component/s:</strong>
+                <span id="components-val" class="value">
+                                            <span style="padding: 0px; display: block;" class="shorten" id="components-field">
+                                                            <a href="https://bugreports.qt-project.org/browse/QTVSADDINBUG/component/19360" title="General ">General</a>                                                    </span>
+                                    </span>
+            </div>
+        </li>
+                    <li class="item full-width">
+            <div class="wrap" id="wrap-labels">
+                <strong class="name">Labels:</strong>
+                    <div class="labels-wrap value">
+            <span class="labels" id="labels-157567-value">None</span>
+                </div>
+            </div>
+        </li>
+        </ul>
+
+</div></div><div class="module toggle-wrap" id="descriptionmodule"><div id="descriptionmodule_heading" class="mod-header"><h3 class="toggle-title">Description</h3></div><div class="mod-content"><div id="description-val">
+    <p>Currently, there is no easy way to convert non-Qt vcproj files 
+into a Qt-enabled vcproj files. By Qt-Enabled the following is meant:</p>
+
+<p>On a non-Qt-enabled vcproj, when right clicking on the project name 
+under Solution Explorer, all options related to Qt are grayed-out. It 
+would be really useful if a way of converting .vcproj files to 
+Qt-Enabled ones was added to the Add-in.</p>
+</div>
+</div></div><div class="module toggle-wrap" id="linkingmodule"><div id="linkingmodule_heading" class="mod-header"><h3 class="toggle-title">Issue Links</h3></div><div class="mod-content">
+
+
+
+
+
+
+        <dl class="links-list ">
+        <dt title="replaces">replaces</dt>
+                    <dd id="internal-183815_10031">
+            <div class="link-content">
+                                    
+
+
+
+<p>
+            <img src="QTVSADDINBUG-27-Dateien/bug.gif" title="Bug - A problem which impairs or prevents the functions of the product." alt="Bug - A problem which impairs or prevents the functions of the product." height="16" width="16">
+        <span title="QTVSADDINBUG-102: Convert to QtVsAddin project does not work">
+        <a href="https://bugreports.qt-project.org/browse/QTVSADDINBUG-102" class="link-title resolution">QTVSADDINBUG-102</a>
+        <span class="link-summary">Convert to QtVsAddin project does not work</span>
+    </span>
+</p>
+<ul class="link-snapshot">
+        <li class="priority">        <img src="QTVSADDINBUG-27-Dateien/help_16.gif" title="Not Evaluated - Not yet evaluated/prioritized" alt="Not Evaluated - Not yet evaluated/prioritized" height="16" width="16">
+    </li>
+                        <li class="status">        <img src="QTVSADDINBUG-27-Dateien/status_trash.gif" title="Closed - The issue is considered finished, the resolution is correct. Issues which are closed can be reopened." alt="Closed - The issue is considered finished, the resolution is correct. Issues which are closed can be reopened." height="16" width="16">
+    </li>
+            </ul>
+                            </div>
+                    </dd>
+            </dl>
+        
+    <script type="text/javascript">
+        function updateRemoteLink(id, htmlElementId) {
+            JIRA.SmartAjax.makeRequest({
+                error: function(jqXHR, textStatus, errorThrown) {
+                    AJS.$("#" + htmlElementId + " div.link-content .link-loading").
+                            removeClass("link-loading").
+                            addClass("link-loading-failed").
+                            html("Failed to load");
+                    AJS.$("#" + htmlElementId + " div.link-content .link-throbber").html("<img src='/images/icons/generic_link_16.png' width='16' height='16' title='' alt='' />")
+                },
+                success: function(data) {
+                    AJS.$("#" + htmlElementId + " div.link-content").html(data);
+                },
+                url: "/rest/viewIssue/1/remoteIssueLink/render/" + id
+            });
+        }
+
+                                                                
+            </script>
+
+</div></div><div class="module toggle-wrap" id="activitymodule"><div id="activitymodule_heading" class="mod-header"><h3 class="toggle-title">Activity</h3></div><div class="mod-content">
+
+
+
+
+
+
+
+
+
+
+    <div class="tabwrap tabs2">
+                    <div class="sortwrap">
+                                    <a class="icon icon-sort-down ajax-activity-content" rel="nofollow" href="https://bugreports.qt-project.org/browse/QTVSADDINBUG-27?actionOrder=desc" title="Ascending order - Click to sort in descending order"><span>Ascending order - Click to sort in descending order</span></a>
+                            </div>
+                <ul id="issue-tabs" class="tabs horizontal">
+                                
+            <li data-id="all-tabpanel" data-key="com.atlassian.jira.plugin.system.issuetabpanels:all-tabpanel" data-label="All" data-href="/browse/QTVSADDINBUG-27?page=com.atlassian.jira.plugin.system.issuetabpanels:all-tabpanel">
+                            <a class="ajax-activity-content" id="all-tabpanel" href="https://bugreports.qt-project.org/browse/QTVSADDINBUG-27?page=com.atlassian.jira.plugin.system.issuetabpanels:all-tabpanel"><strong>All</strong></a>
+                        </li>
+                                
+            <li class="active" id="comment-tabpanel" data-id="comment-tabpanel" data-key="com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel" data-label="Comments" data-href="/browse/QTVSADDINBUG-27?page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel">
+                            <strong>Comments</strong>
+                        </li>
+                                
+            <li data-id="worklog-tabpanel" data-key="com.atlassian.jira.plugin.system.issuetabpanels:worklog-tabpanel" data-label="Work Log" data-href="/browse/QTVSADDINBUG-27?page=com.atlassian.jira.plugin.system.issuetabpanels:worklog-tabpanel">
+                            <a class="ajax-activity-content" id="worklog-tabpanel" href="https://bugreports.qt-project.org/browse/QTVSADDINBUG-27?page=com.atlassian.jira.plugin.system.issuetabpanels:worklog-tabpanel"><strong>Work Log</strong></a>
+                        </li>
+                                
+            <li data-id="changehistory-tabpanel" data-key="com.atlassian.jira.plugin.system.issuetabpanels:changehistory-tabpanel" data-label="History" data-href="/browse/QTVSADDINBUG-27?page=com.atlassian.jira.plugin.system.issuetabpanels:changehistory-tabpanel">
+                            <a class="ajax-activity-content" id="changehistory-tabpanel" href="https://bugreports.qt-project.org/browse/QTVSADDINBUG-27?page=com.atlassian.jira.plugin.system.issuetabpanels:changehistory-tabpanel"><strong>History</strong></a>
+                        </li>
+                                
+            <li data-id="activity-stream-issue-tab" data-key="com.atlassian.streams.streams-jira-plugin:activity-stream-issue-tab" data-label="Activity" data-href="/browse/QTVSADDINBUG-27?page=com.atlassian.streams.streams-jira-plugin:activity-stream-issue-tab">
+                            <a class="ajax-activity-content" id="activity-stream-issue-tab" href="https://bugreports.qt-project.org/browse/QTVSADDINBUG-27?page=com.atlassian.streams.streams-jira-plugin:activity-stream-issue-tab"><strong>Activity</strong></a>
+                        </li>
+                    
+            <li data-id="transitions-summary-tabpanel" data-key="com.googlecode.jira-suite-utilities:transitions-summary-tabpanel" data-label="Transitions" data-href="/browse/QTVSADDINBUG-27?page=com.googlecode.jira-suite-utilities:transitions-summary-tabpanel">
+                            <a class="" id="transitions-summary-tabpanel" href="https://bugreports.qt-project.org/browse/QTVSADDINBUG-27?page=com.googlecode.jira-suite-utilities:transitions-summary-tabpanel"><strong>Transitions</strong></a>
+                        </li>
+                </ul>
+    </div>
+    <div class="issuePanelProgress"></div>
+    <div class="issuePanelContainer" id="issue_actions_container">
+                        <div id="comment-154479" class="issue-data-block activity-comment twixi-block expanded">
+    <div class="twixi-wrap verbose actionContainer">
+        <a href="#" class="twixi"><span class="icon twixi-opened"><span>Hide</span></span></a>
+        <div class="action-links">
+            <a href="https://bugreports.qt-project.org/browse/QTVSADDINBUG-27?focusedCommentId=154479&amp;page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-154479" title="A permanent link to this comment." class="icon icon-perma activitymodule-link"><span>Permalink</span></a>
+                                </div>
+        <div class="action-details">
+    
+    
+    
+                
+
+    <a class="user-hover user-avatar" rel="banxian" style="background-image:url(/secure/useravatar?size=small&amp;avatarId=10292);" id="commentauthor_154479_verbose" href="https://bugreports.qt-project.org/secure/ViewProfile.jspa?name=banxian">banxianzeng</a>
+ added a comment  - <span class="commentdate_154479_verbose subText"><span class="date user-tz" title="23/May/11 12:48 AM"><time datetime="2011-05-23T00:48+0200">23/May/11 12:48 AM</time></span></span>  </div>
+        <div class="action-body flooded"><p>There is a workaroud for this issue.<br>
+use any kind of texteditors to open yourproject.vcproj files.<br>
+after line <br>
+	RootNamespace="yourproject"<br>
+add a new attrib like this:<br>
+	Keyword="Qt4VSv1.0"<br>
+then your project will treat as a Qt-enabled project.<br>
+you may need re-open it in visual studio to take effect.</p> </div>
+    </div>
+    <div class="twixi-wrap concise actionContainer">
+        <a href="#" class="twixi"><span class="icon twixi-closed"><span>Show</span></span></a>
+        <div class="action-details flooded">
+            
+    
+    
+    
+                
+
+    <a class="user-hover user-avatar" rel="banxian" style="background-image:url(/secure/useravatar?size=small&amp;avatarId=10292);" id="commentauthor_154479_concise" href="https://bugreports.qt-project.org/secure/ViewProfile.jspa?name=banxian">banxianzeng</a>
+ added a comment  - <span class="commentdate_154479_concise subText"><span class="date user-tz" title="23/May/11 12:48 AM"><time datetime="2011-05-23T00:48+0200">23/May/11 12:48 AM</time></span></span>               There is a workaroud for this issue.
+use any kind of texteditors to open yourproject.vcproj files.
+after line 
+	RootNamespace="yourproject"
+add a new attrib like this:
+	Keyword="Qt4VSv1.0"
+then your project will treat as a Qt-enabled project.
+you may need re-open it in visual studio to take effect.         </div>
+    </div>
+</div>
+                     <div id="comment-165769" class="issue-data-block activity-comment twixi-block expanded">
+    <div class="twixi-wrap verbose actionContainer">
+        <a href="#" class="twixi"><span class="icon twixi-opened"><span>Hide</span></span></a>
+        <div class="action-links">
+            <a href="https://bugreports.qt-project.org/browse/QTVSADDINBUG-27?focusedCommentId=165769&amp;page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-165769" title="A permanent link to this comment." class="icon icon-perma activitymodule-link"><span>Permalink</span></a>
+                                </div>
+        <div class="action-details">
+    
+    
+    
+                
+
+    <a class="user-hover user-avatar" rel="esavard" style="background-image:url(/secure/useravatar?size=small&amp;avatarId=10292);" id="commentauthor_165769_verbose" href="https://bugreports.qt-project.org/secure/ViewProfile.jspa?name=esavard">Etienne Savard</a>
+ added a comment  - <span class="commentdate_165769_verbose subText"><span class="date user-tz" title="14/Oct/11 8:35 PM"><time datetime="2011-10-14T20:35+0200">14/Oct/11 8:35 PM</time></span></span>  </div>
+        <div class="action-body flooded"><p>With VS2010, the workaround is slighly different.</p>
+
+<p>1) Open yourproject.vcxproj with a text editor<br>
+2) Locate the tag : &lt;PropertyGroup Label="Globals"&gt;<br>
+3) Between &lt;PropertyGroup Label="Globals"&gt; and &lt;/PropertyGroup&gt; add the following line :<br>
+&lt;Keyword&gt;Qt4VSv1.0&lt;/Keyword&gt;<br>
+4) Reload your project in VS2010<br>
+5) In solution explorer, righ-click on your project<br>
+6) In the menu, select "Convert project to Qt Add-in project"</p>
+
+<p>Revise your Qt Project Settings to include the modules you need and then you are ready to go.</p> </div>
+    </div>
+    <div class="twixi-wrap concise actionContainer">
+        <a href="#" class="twixi"><span class="icon twixi-closed"><span>Show</span></span></a>
+        <div class="action-details flooded">
+            
+    
+    
+    
+                
+
+    <a class="user-hover user-avatar" rel="esavard" style="background-image:url(/secure/useravatar?size=small&amp;avatarId=10292);" id="commentauthor_165769_concise" href="https://bugreports.qt-project.org/secure/ViewProfile.jspa?name=esavard">Etienne Savard</a>
+ added a comment  - <span class="commentdate_165769_concise subText"><span class="date user-tz" title="14/Oct/11 8:35 PM"><time datetime="2011-10-14T20:35+0200">14/Oct/11 8:35 PM</time></span></span>               With VS2010, the workaround is slighly different.
+
+1) Open yourproject.vcxproj with a text editor
+2) Locate the tag : &lt;PropertyGroup Label="Globals"&gt;
+3) Between &lt;PropertyGroup Label="Globals"&gt; and &lt;/PropertyGroup&gt; add the following line :
+&lt;Keyword&gt;Qt4VSv1.0&lt;/Keyword&gt;
+4) Reload your project in VS2010
+5) In solution explorer, righ-click on your project
+6) In the menu, select "Convert project to Qt Add-in project"
+
+Revise your Qt Project Settings to include the modules you need and then you are ready to go.         </div>
+    </div>
+</div>
+                     <div id="comment-165798" class="issue-data-block activity-comment twixi-block expanded">
+    <div class="twixi-wrap verbose actionContainer">
+        <a href="#" class="twixi"><span class="icon twixi-opened"><span>Hide</span></span></a>
+        <div class="action-links">
+            <a href="https://bugreports.qt-project.org/browse/QTVSADDINBUG-27?focusedCommentId=165798&amp;page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-165798" title="A permanent link to this comment." class="icon icon-perma activitymodule-link"><span>Permalink</span></a>
+                                </div>
+        <div class="action-details">
+    
+    
+    
+                
+
+    <a class="user-hover user-avatar" rel="peterbienert@azegmbh.de" style="background-image:url(/secure/useravatar?size=small&amp;avatarId=10292);" id="commentauthor_165798_verbose" href="https://bugreports.qt-project.org/secure/ViewProfile.jspa?name=peterbienert%40azegmbh.de">Peter Bienert</a>
+ added a comment  - <span class="commentdate_165798_verbose subText"><span class="date user-tz" title="16/Oct/11 10:33 AM"><time datetime="2011-10-16T10:33+0200">16/Oct/11 10:33 AM</time></span></span>  </div>
+        <div class="action-body flooded"><p>I also agree to have a 
+switchable project setting, switching from QtVsAddin to vcproj and from 
+vcproj to QtVsAddin project. I had to go back to standard vcproj with 
+msbuild user rules (Vs2010) because of permanent moccing and some other 
+problems, this was lot of handwork. Creating a vcproj from a qt addin 
+project would help, because only the qt addin stuff must be removed. 
+This function would have helped me a lot....</p> </div>
+    </div>
+    <div class="twixi-wrap concise actionContainer">
+        <a href="#" class="twixi"><span class="icon twixi-closed"><span>Show</span></span></a>
+        <div class="action-details flooded">
+            
+    
+    
+    
+                
+
+    <a class="user-hover user-avatar" rel="peterbienert@azegmbh.de" style="background-image:url(/secure/useravatar?size=small&amp;avatarId=10292);" id="commentauthor_165798_concise" href="https://bugreports.qt-project.org/secure/ViewProfile.jspa?name=peterbienert%40azegmbh.de">Peter Bienert</a>
+ added a comment  - <span class="commentdate_165798_concise subText"><span class="date user-tz" title="16/Oct/11 10:33 AM"><time datetime="2011-10-16T10:33+0200">16/Oct/11 10:33 AM</time></span></span>
+               I also agree to have a switchable project setting, 
+switching from QtVsAddin to vcproj and from vcproj to QtVsAddin project.
+ I had to go back to standard vcproj with msbuild user rules (Vs2010) 
+because of permanent moccing and some other problems, this was lot of 
+handwork. Creating a vcproj from a qt addin project would help, because 
+only the qt addin stuff must be removed. This function would have helped
+ me a lot....         </div>
+    </div>
+</div>
+                     <div id="comment-169353" class="issue-data-block activity-comment twixi-block expanded">
+    <div class="twixi-wrap verbose actionContainer">
+        <a href="#" class="twixi"><span class="icon twixi-opened"><span>Hide</span></span></a>
+        <div class="action-links">
+            <a href="https://bugreports.qt-project.org/browse/QTVSADDINBUG-27?focusedCommentId=169353&amp;page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-169353" title="A permanent link to this comment." class="icon icon-perma activitymodule-link"><span>Permalink</span></a>
+                                </div>
+        <div class="action-details">
+    
+    
+    
+                
+
+    <a class="user-hover user-avatar" rel="peterbienert@azegmbh.de" style="background-image:url(/secure/useravatar?size=small&amp;avatarId=10292);" id="commentauthor_169353_verbose" href="https://bugreports.qt-project.org/secure/ViewProfile.jspa?name=peterbienert%40azegmbh.de">Peter Bienert</a>
+ added a comment  - <span class="commentdate_169353_verbose subText"><span class="date user-tz" title="05/Dec/11 9:16 AM"><time datetime="2011-12-05T09:16+0100">05/Dec/11 9:16 AM</time></span></span>  </div>
+        <div class="action-body flooded"><p>As Jörg declared the Bug 102 as duplicate of this one, some remarks:<br>
+I used only the solution with RootNamespace in 2010, but this is for 
+2008. QT VS Addin does detect the project as QT Project in VS2010 ! The 
+other solution "Globals" for 2010 has absolute same behaviour. In menu 
+QT, you can now select "convert to vsaddin project". Only thing happens,
+ is that this is included at the end of the vsxproj file:<br>
+  &lt;ProjectExtensions&gt;<br>
+    &lt;VisualStudio&gt;<br>
+      &lt;UserProperties QtVersion_x0020_x64="qt474_64" /&gt;<br>
+    &lt;/VisualStudio&gt;<br>
+// I worked with 64 bit<br>
+Nothing more ! And VSAddIn forgot to change the xxx.vcxproject.filters, without these, nothing works.<br>
+My workaraound is this:<br>
+Create a regular qt project, i.e. Gui-Project and name it "dummy". Now you get a full working .vcxproj + vcxproj.filters.<br>
+Now edit your existing project and add the &lt;Keyword&gt; to the 
+propertygroup Label="globals". Load the project, and select in menu qt 
+"convert to vsaddin project". <br>
+Next step is to close project, use editor and load the existing project 
+filters file, and as second file load the dummy filters file. Now select
+ the filters block<br>
+  &lt;ItemGroup&gt;<br>
+    &lt;Filter Include="Source Dateien"&gt;<br>
+      &lt;UniqueIdentifier&gt;{4FC737F1-C7A5-4376-A066-2A32D752A2FF}&lt;/UniqueIdentifier&gt;<br>
+      &lt;Extensions&gt;cpp;cxx;c;def&lt;/Extensions&gt;<br>
+    &lt;/Filter&gt;<br>
+...<br>
+&lt;/ItemGroup&gt; and replace the existing filters block. <br>
+Save and reload the project. Now it is annoying, because the addin does 
+not work correctly, when you had still things in your "header files", 
+these are not converted. You have to delete from project and than 
+reassign to the same "header files" again, to get the mocs...<br>
+This normally should be done by the vsaddin and not by hand....<br>
+Regards,<br>
+Peter</p> </div>
+    </div>
+    <div class="twixi-wrap concise actionContainer">
+        <a href="#" class="twixi"><span class="icon twixi-closed"><span>Show</span></span></a>
+        <div class="action-details flooded">
+            
+    
+    
+    
+                
+
+    <a class="user-hover user-avatar" rel="peterbienert@azegmbh.de" style="background-image:url(/secure/useravatar?size=small&amp;avatarId=10292);" id="commentauthor_169353_concise" href="https://bugreports.qt-project.org/secure/ViewProfile.jspa?name=peterbienert%40azegmbh.de">Peter Bienert</a>
+ added a comment  - <span class="commentdate_169353_concise subText"><span class="date user-tz" title="05/Dec/11 9:16 AM"><time datetime="2011-12-05T09:16+0100">05/Dec/11 9:16 AM</time></span></span>
+               As Jörg declared the Bug 102 as duplicate of this one, 
+some remarks:
+I used only the solution with RootNamespace in 2010, but this is for 
+2008. QT VS Addin does detect the project as QT Project in VS2010 ! The 
+other solution "Globals" for 2010 has absolute same behaviour. In menu 
+QT, you can now select "convert to vsaddin project". Only thing happens,
+ is that this is included at the end of the vsxproj file:
+  &lt;ProjectExtensions&gt;
+    &lt;VisualStudio&gt;
+      &lt;UserProperties QtVersion_x0020_x64="qt474_64" /&gt;
+    &lt;/VisualStudio&gt;
+// I worked with 64 bit
+Nothing more ! And VSAddIn forgot to change the xxx.vcxproject.filters, 
+without these, nothing works.
+My workaraound is this:
+Create a regular qt project, i.e. Gui-Project and name it "dummy". Now 
+you get a full working .vcxproj + vcxproj.filters.
+Now edit your existing project and add the &lt;Keyword&gt; to the 
+propertygroup Label="globals". Load the project, and select in menu qt 
+"convert to vsaddin project". 
+Next step is to close project, use editor and load the existing project 
+filters file, and as second file load the dummy filters file. Now select
+ the filters block
+  &lt;ItemGroup&gt;
+    &lt;Filter Include="Source Dateien"&gt;
+      
+&lt;UniqueIdentifier&gt;{4FC737F1-C7A5-4376-A066-2A32D752A2FF}&lt;/UniqueIdentifier&gt;
+
+      &lt;Extensions&gt;cpp;cxx;c;def&lt;/Extensions&gt;
+    &lt;/Filter&gt;
+...
+&lt;/ItemGroup&gt; and replace the existing filters block. 
+Save and reload the project. Now it is annoying, because the addin does 
+not work correctly, when you had still things in your "header files", 
+these are not converted. You have to delete from project and than 
+reassign to the same "header files" again, to get the mocs...
+This normally should be done by the vsaddin and not by hand....
+Regards,
+Peter         </div>
+    </div>
+</div>
+                 </div>
+</div></div>
+                                
+                            </div>
+                            <div id="viewissuesidebar" class="aui-item issue-side-column">
+                                
+                                    <div class="module toggle-wrap" id="peoplemodule"><div id="peoplemodule_heading" class="mod-header"><h3 class="toggle-title">People</h3></div><div class="mod-content"><ul class="item-details" id="peopledetails">
+    <li class="people-details">
+                <dl>
+            <dt>Assignee:</dt>
+            <dd>
+                <span id="assignee-val">        <span class="user-hover" rel="aksalova" id="issue_summary_assignee_aksalova">Akseli Salovaara</span></span>
+            </dd>
+        </dl>
+                        <dl>
+            <dt>Reporter:</dt>
+            <dd>
+                <span id="reporter-val">        <span class="user-hover" rel="sanonymous" id="issue_summary_reporter_sanonymous">Qt Support</span></span>
+            </dd>
+        </dl>
+                    </li>
+</ul>
+<div id="votes-val">
+                <span id="vote-label" title="You have to be logged in to vote for an issue."><span class="icon icon-vote-disabled"></span><span class="action-text">Vote</span></span>
+    
+                (<span id="vote-data">19</span>)
+    </div>
+<div id="watchers-val">
+            <span id="watch-label" title="You have to be logged in to watch an issue."><span class="icon icon-watch-disabled"></span>Watch</span>
+    
+        
+            (<span id="watcher-data">10</span>)
+    </div>
+</div></div><div class="module toggle-wrap" id="datesmodule"><div id="datesmodule_heading" class="mod-header"><h3 class="toggle-title">Dates</h3></div><div class="mod-content"><ul class="item-details">
+    <li>
+            <dl class="dates">
+            <dt>Created:</dt>
+            <dd class="date user-tz" title="12/Feb/10 3:44 PM">
+
+                <span data-name="Created" id="create-date">
+                                            <time datetime="2010-02-12T15:44+0100">12/Feb/10 3:44 PM</time></span></dd>                                     
+            
+        </dl>
+            <dl class="dates">
+            <dt>Updated:</dt>
+            <dd class="date user-tz" title="23/Dec/11 2:02 PM">
+
+                <span data-name="Updated" id="updated-date">
+                                            <time datetime="2011-12-23T14:02+0100">23/Dec/11 2:02 PM</time></span></dd>                                     
+            
+        </dl>
+        </li>
+</ul>
+</div></div><div class="module toggle-wrap ghx-issue-web-panel" id="greenhopper-agile-issue-web-panel"><div id="greenhopper-agile-issue-web-panel_heading" class="mod-header"><h3 class="toggle-title">Agile</h3></div><div class="mod-content">
+
+<ul class="item-details ghx-separated">
+    <li>
+        <a class="issueaction-greenhopper-rapidboard-operation js-rapidboard-operation-issue" href="https://bugreports.qt-project.org/secure/GHGoToBoard.jspa?issueId=157567" title=" View this issue on an Agile board ">
+             View on Board         </a>
+    </li>
+</ul>
+</div></div>
+                                
+                            </div>
+                        </div>
+                        <div class="issue-body">
+                            
+                                
+                                    
+                                
+                            
+                        </div>
+                    </div>
+                </div>
+                <fieldset class="hidden parameters">
+                    <input id="viewMoreMsg" value="Click to view {0} more" type="hidden">
+                    <input id="hideMsg" value="Hide" type="hidden">
+                    <input id="error-401" value="Cannot perform this operation. You are not logged in." type="hidden">
+                    <input id="issueOpTitleUnvote" value="Remove vote for this issue" type="hidden">
+                    <input id="issueOpTitleVote" value="Vote for this issue" type="hidden">
+                    <input id="issueOpTitleWatch" value="Start watching this issue" type="hidden">
+                    <input id="issueOpTitleUnwatch" value="Stop watching this issue" type="hidden">
+                    <input id="issueOpUnvote" value="Remove Vote" type="hidden">
+                    <input id="issueOpVote" value="Add Vote" type="hidden">
+                    <input id="issueOpWatch" value="Watch Issue" type="hidden">
+                    <input id="issueOpUnwatch" value="Stop Watching" type="hidden">
+                    <input id="i18nVote" value="Vote" type="hidden">
+                    <input id="i18nVoted" value="Voted" type="hidden">
+                    <input id="i18nWatch" value="Watch" type="hidden">
+                    <input id="i18nWatching" value="Watching" type="hidden">
+                </fieldset>
+
+
+
+
+    </section>
+    <footer id="footer" role="contentinfo">
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="footer-body">
+    <ul>
+        <li>
+                        <a href="http://www.atlassian.com/software/jira">Atlassian JIRA</a>
+
+                                                    
+                        
+            <span id="footer-build-information">(v5.0.7#734-<span title="8ad78a62c71cf08b03545eb446cc3b9bb5ce37ad" data-commit-id="8ad78a62c71cf08b03545eb446cc3b9bb5ce37ad}">sha1:8ad78a6</span>)</span>
+        </li>
+        <li>
+                                    <a id="footer-report-problem-link" href="https://bugreports.qt-project.org/secure/ContactAdministrators%21default.jspa">Report a problem</a>
+        </li>
+    </ul>
+            <ul>
+            <li class="licensemessage">
+                                    Powered by a free Atlassian <a href="http://www.atlassian.com/software/jira">JIRA</a> open source license for Qt Project. Try JIRA - <a href="http://www.atlassian.com/software/jira">bug tracking software</a> for <i>your</i> team.
+
+                            </li>
+        </ul>
+    </div>
+
+
+<form id="jira_request_timing_info" class="dont-default-focus">
+	<fieldset class="parameters hidden">
+		<input title="jira.request.start.millis" value="1351625738664" type="hidden">
+		<input title="jira.request.server.time" value="101" type="hidden">
+		<input title="jira.request.id" value="1235x4769865x1" type="hidden">
+		<input title="jira.session.expiry.time" value="-" type="hidden">
+		<input title="jira.session.expiry.in.mins" value="-" type="hidden">
+		<input id="jiraConcurrentRequests" name="jira.request.concurrent.requests" value="1" type="hidden">
+	</fieldset>
+</form>
+<!--
+	                 REQUEST ID : 1235x4769865x1
+	          REQUEST TIMESTAMP : [30/Oct/2012:20:35:38 +0100]
+	               REQUEST TIME : 0.1010
+	                 ASESSIONID : -
+	        CONCURRENT REQUESTS : 1
+
+	                      db.reads : name=db.reads; inv=31; ms=13; cpu=0; rss=0;
+	                      db.conns : name=db.conns; inv=32; ms=22; cpu=0; rss=0;
+-->
+
+
+
+
+
+
+
+
+
+
+<fieldset class="hidden parameters">
+    <input title="loggedInUser" value="" type="hidden">
+    <input title="ajaxTimeout" value="The call to the JIRA server did not complete within the timeout period.  We are unsure of the result of this operation." type="hidden">
+    <input title="JiraVersion" value="5.0.7" type="hidden">
+    <input title="ajaxUnauthorised" value="You are not authorized to perform this operation.  Please try to &lt;a href='/login.jsp?os_destination=%2Fbrowse%2FQTVSADDINBUG-27'&gt;log in&lt;/a&gt; or &lt;a href='/secure/Signup!default.jspa'&gt;sign up&lt;/a&gt; for an account." type="hidden">
+    <input title="baseURL" value="https://bugreports.qt-project.org:443" type="hidden">
+    <input title="ajaxCommsError" value="The JIRA server could not be contacted.  This may be a temporary glitch or the server may be down." type="hidden">
+    <input title="ajaxServerError" value="The JIRA server was contacted but has returned an error response. We are unsure of the result of this operation." type="hidden">
+    <input title="ajaxErrorCloseDialog" value="Close this dialog and press refresh in your browser" type="hidden">
+    <input title="ajaxErrorDialogHeading" value="Communications Breakdown" type="hidden">
+
+    <input title="dirtyMessage" value="You have entered new data on this page. If you navigate away from this page without first saving your data, the changes will be lost." type="hidden">
+    <input title="dirtyDialogMessage" value="You have entered new data in this dialog. If you navigate away from this dialog without first saving your data, the changes will be lost. Click cancel to return to the dialog." type="hidden">
+    <input title="keyType" value="Type" type="hidden">
+    <input title="keyThen" value="then" type="hidden">
+    <input title="dblClickToExpand" value="Double click to expand" type="hidden">
+    <input title="actions" value="Actions" type="hidden">
+    <input title="removeItem" value="Remove" type="hidden">
+    <input title="workflow" value="Workflow" type="hidden">
+    <input title="labelNew" value="New Label" type="hidden">
+    <input title="issueActionsHint" value="Begin typing for available operations or press down to see all" type="hidden">
+    <input title="closelink" value="Close" type="hidden">
+    <input title="dotOperations" value="Operations" type="hidden">
+    <input title="dotLoading" value="Loading..." type="hidden">
+    <input title="frotherSuggestions" value="Suggestions" type="hidden">
+    <input title="frotherNomatches" value="No Matches" type="hidden">
+    <input title="multiselectVersionsError" value="{0} is not a valid version." type="hidden">
+    <input title="multiselectComponentsError" value="{0} is not a valid component." type="hidden">
+    <input title="multiselectGenericError" value="The value {0} is invalid." type="hidden">
+</fieldset>
+
+    </footer>
+</div>
+
+
+<div id="fancybox-tmp"></div><div id="fancybox-loading"><div></div></div><div id="fancybox-overlay"></div><div id="fancybox-wrap"><div id="fancybox-outer"><div class="fancy-bg" id="fancy-bg-n"></div><div class="fancy-bg" id="fancy-bg-ne"></div><div class="fancy-bg" id="fancy-bg-e"></div><div class="fancy-bg" id="fancy-bg-se"></div><div class="fancy-bg" id="fancy-bg-s"></div><div class="fancy-bg" id="fancy-bg-sw"></div><div class="fancy-bg" id="fancy-bg-w"></div><div class="fancy-bg" id="fancy-bg-nw"></div><div id="fancybox-inner"></div><a id="fancybox-close"></a><a href="javascript:;" id="fancybox-left"><span class="fancy-ico" id="fancybox-left-ico"></span></a><a href="javascript:;" id="fancybox-right"><span class="fancy-ico" id="fancybox-right-ico"></span></a></div></div></body></html>

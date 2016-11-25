@@ -1,0 +1,211 @@
+<html>
+<head>
+<title>Versionsdokumentation PC-S7-LINK </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+<div align="left"> 
+  <p><font face="Arial, Helvetica, sans-serif"><b>Versionsdokumentation PC-S7-LINK 
+    </b></font></p>
+  <p><b><font face="Arial, Helvetica, sans-serif">Version 1.35 12.4.05<br>
+    </font></b><font face="Arial, Helvetica, sans-serif">* Betrieb mit CPU 412-2 
+    ging nicht<br>
+    </font></p>
+  <hr>
+  <b><font face="Arial, Helvetica, sans-serif">Version 1.34 12.10.04<br>
+  </font></b><font face="Arial, Helvetica, sans-serif">* MPI-LAN -Direktverbindung 
+  &uuml;ber TCP/IP eingef&uuml;gt<br>
+  Funktion: </font><font face="Arial, Helvetica, sans-serif">long WINAPI<br>
+  ES7OpenMPILan (LPCSTR IPAdr, DWORD RxTimeout, DWORD TxTimeout, DWORD ConnectTimeout,<br>
+  DWORD SPSMPIAdr, DWORD LocalMPIAdr, DWORD SPSTyp, DWORD MPIBaud)</font> 
+  <hr>
+  <p><b><font face="Arial, Helvetica, sans-serif">Version 1.33 15.9.04<br>
+    </font></b><font face="Arial, Helvetica, sans-serif">* Kommunikation durch 
+    Blockversandt beschleunigt (f&uuml;r VCOM)<br>
+    * bei ComClose ComClr entfernt. U.u wurden bei Schliessen (Close, Exit) des 
+    Treibers nicht alle Zeichen gesendet</font><br>
+  </p>
+  <hr>
+  <p><b><font face="Arial, Helvetica, sans-serif">Version 1.32 5.3.04<br>
+    </font></b><font face="Arial, Helvetica, sans-serif">* VisualBasic FoxPro 
+    mit Windows 2000 Servicepack 4<br>
+    Windows gibt f&uuml;r Threads, welche mit der DLL nichts zu tun haben die 
+    DLL frei.Wir reagieren nur noch auf Processe.</font><font face="Arial, Helvetica, sans-serif"><br>
+    </font> </p>
+  <hr>
+  <p><b><font face="Arial, Helvetica, sans-serif">Version 1.31 26.08.03<br>
+    </font></b><font face="Arial, Helvetica, sans-serif">*COM10 bis COM16 wurden 
+    nicht unterst&uuml;tzt, ab sofort m&ouml;glich<br>
+    </font> <b><font face="Arial, Helvetica, sans-serif"></font></b> </p>
+  <hr>
+  <b><font face="Arial, Helvetica, sans-serif">Version 1.30 23.06.03<br>
+  </font></b><font face="Arial, Helvetica, sans-serif">*bei Kommunikation mit 
+  S7 200 kam es zu Timeout bei Verbindungsaufbau (Insbesondere bei NT mit langsamen 
+  PC) <br>
+  </font> <b><font face="Arial, Helvetica, sans-serif"></font></b> 
+  <hr>
+  <b><font face="Arial, Helvetica, sans-serif">Version 1.29 26.5.03</font></b> 
+  <br>
+  <font face="Arial, Helvetica, sans-serif">* Lesen und Schreiber der Z&auml;hler 
+  und Timer bei S7200 ging nicht, nun OK<br>
+  </font>
+<hr>
+  <b><font face="Arial, Helvetica, sans-serif">Version 1.28 8.7.02<br>
+  </font></b><font face="Arial, Helvetica, sans-serif">* Dynamische Speicherverwaltung 
+  ins EASY-Modul eingef&uuml;gt<br>
+  * DOS-Demo f&uuml;r MSC und BCC erzeugt zu finden in DOS\MSC bzw DOS\/BCC<br>
+  </font>
+<hr>
+  <b><font face="Arial, Helvetica, sans-serif">Version 1.27 25.4.02<br>
+  </font></b><font face="Arial, Helvetica, sans-serif">*bei Kommunikation mit 
+  S7 200 kam es zu Timeoutmeldungen, Problem behoben<br>
+  </font> 
+  <hr>
+  <b><font face="Arial, Helvetica, sans-serif">Version 1.26 22.12.01<br>
+  </font></b><font face="Arial, Helvetica, sans-serif">* in PCS7EASY.H #ifdef 
+  __cplusplus erg&auml;nzt<br>
+  * in der Doku fehlte die Beschreibung f&uuml;r den Parameter LocalMPIAdr</font>
+<hr>
+  <b><font face="Arial, Helvetica, sans-serif">Version 1.25 19.12.01<br>
+  </font></b><font face="Arial, Helvetica, sans-serif">* ES7OpenEx eingef&uuml;gt. 
+  Damit kann die Baudrate auf dem MPI-Bus eingegeben werden. (187,5 kBis/s, 19,.2 
+  kBit/s oder 1,5 MBit/s)<br>
+  Beispiel in Visual Basic Demo</font>
+<hr>
+  <b><font face="Arial, Helvetica, sans-serif">Version 1.24 13.12.01<br>
+  </font></b><font face="Arial, Helvetica, sans-serif">* Problem ab V 1.21 bei 
+  Zugriff auf REAL, Bit, Timer oder Z&auml;hler war der Lese / Schreibzugriff 
+  auf andere Daten nicht<br>
+  mehr m&ouml;glich:<br>
+  z.B: ES7SetBit -&gt; ES7WrB Fehler 02<br>
+  z.B: ES7RdtBit -&gt; ES7RdB Fehler 02<br>
+  Problem behoben</font><br>
+  <hr>
+  <b><font face="Arial, Helvetica, sans-serif">Version 1.23 8.11.01<br>
+  </font></b><font face="Arial, Helvetica, sans-serif">* Bit-Funktionen, Doppelwort- 
+  und Realfunktionen eingef&uuml;gt</font>
+<hr>
+  <b><font face="Arial, Helvetica, sans-serif">Version 1.22 19.10.01<br>
+  </font></b><font face="Arial, Helvetica, sans-serif">* Schullizenz eingef&uuml;gt: 
+  Einschr&auml;nkung: Es kann nur auf DB10 und Merker zugegriffen werden</font>
+<hr>
+  <b><font face="Arial, Helvetica, sans-serif">Version 1.21 14.09.01<br>
+  </font></b><font face="Arial, Helvetica, sans-serif">*</font><font face="Arial, Helvetica, sans-serif"> 
+  Timer und Z&auml;hler Funktionen eingef&uuml;gt siehe Dokumentation</font> 
+  <hr>
+  <b><font face="Arial, Helvetica, sans-serif">Version 1.20 21.06.01<br>
+  </font></b><font face="Arial, Helvetica, sans-serif">* englische Version eingef&uuml;gt 
+  </font> 
+  <hr>
+  <b><font face="Arial, Helvetica, sans-serif">Version 1.19 17.05.01<br>
+  </font></b><font face="Arial, Helvetica, sans-serif">* Beim Lesen von Bl&ouml;cken, 
+  die durch 222 teilbar sind <br>
+  z.B. 444 Byte oder 222 Worte<br>
+  z.B. 666 Byte oder 333 Worte ..<br>
+  wurde der letzten 222 Byte nicht gelesen, es erfolgte keine Fehlermeldung</font>
+<p><font face="Arial, Helvetica, sans-serif"> * Beim Schreiben von Bl&ouml;cken, 
+    die durch 212 teilbar sind <br>
+    z.B. 424 Byte oder 212 Worte<br>
+    z.B. 636 Byte oder 318 Worte ..<br>
+    wurde der letzten 212 Byte nicht geschrieben, es erfolgte keine Fehlermeldung</font></p>
+  <p><font face="Arial, Helvetica, sans-serif">* Die Anzahl der Wiederholungen 
+    beim Versenden eines Blocks an das MPI-Kabel wurde auf 3 gesetzt,<br>
+    wenn MPI-Kabel mit NAK antwortet</font><font face="Arial, Helvetica, sans-serif"><br>
+    </font><font face="Arial, Helvetica, sans-serif"> </font></p>
+  <hr>
+  <font face="Arial, Helvetica, sans-serif"><b>Version 1.18 29.1.01</b><br>
+  * Immer noch Fehler in 1.17 vorhanden bei Eingangs sowie Merkerbereich nun behoben<br>
+  <br>
+  </font>
+<hr>
+  <font face="Arial, Helvetica, sans-serif"><b>Version 1.17 4.12.00</b><br>
+  * Lesen und Schreiben DB mehr als 111 Worte am St&uuml;ck<br>
+  Obwohl DB gro&szlig; genug war kam Meldung DB existiert nicht <br>
+  nun OK<br>
+  <br>
+  </font>
+<hr>
+  <font face="Arial, Helvetica, sans-serif"><b>Version 1.16 16.11.00</b><br>
+  * Easy Version und PCS7-LINK<br>
+  ES7GetMPIMembers eingef&uuml;gt.<br>
+  Timeoutverhalten verbessert</font>
+<hr>
+  <font face="Arial, Helvetica, sans-serif"><b>Version 1.15 10.10.00</b><br>
+  *Easy-Version Referenz wurde nicht freigegeben.<br>
+  </font>
+<hr>
+  <font face="Arial, Helvetica, sans-serif"><b>Version 1.14 13.7.00</b><br>
+  * S7Exit hatte am Ende langen TimeOut, nun behoben<br>
+  * RS232 MPI-Kabel 5.1 lief mit der 3.11-DLL unter WIN 95/98 nicht<br>
+  </font> 
+  <hr>
+  <font face="Arial, Helvetica, sans-serif"><b>Version 1.13 10.3.00</b><br>
+  * Bei Lesen (S7RdDW, S7RdMW ...)<br>
+  kam es beim Lesen von genau 111 Worten zur Meldung, Datenbereich existiert nicht<br>
+  nun OK</font>
+  <p><font face="Arial, Helvetica, sans-serif"> * Bei Lesen (S7RdMB, S5RdAB .. 
+    )<br>
+    kam es beim Lesen von genau 222 Byte zur Meldung, Datenbereich existiert nicht<br>
+    nun OK</font></p>
+  <hr>
+  <font face="Arial, Helvetica, sans-serif"><b>Version 1.12 25.10.99</b><br>
+  * S7SetTimeout eingef&uuml;gt:</font>
+<hr>
+  <font face="Arial, Helvetica, sans-serif"><b>Version 1.11 5.8.99</b><br>
+  * Eventhandling in RS232 entfernt, und ueber non overlapped<br>
+  geloest ! Fuehrte zu Abstuerzen mit Visualbasic<br>
+  </font>
+<hr>
+  <font face="Arial, Helvetica, sans-serif"><b>Version 1.10 7.6.99</b><br>
+  * Betrieb mit mehreren COM gleichzeitig gab Probleme <br>
+  * Bei Kommunikationsfehler kam es zu einer Endlosschleife nun behoben</font>
+<hr>
+  <font face="Arial, Helvetica, sans-serif"><b>Version 1.09 5.5.99</b><br>
+  * MaxMPIAdr war auf 127 gesetzt, Siemens Kabel Version 5.0 zeigt damit <br>
+  Probleme nun auf 126 gesetzt alles OK.<br>
+  </font>
+<hr>
+  <font face="Arial, Helvetica, sans-serif"><b>Version 1.08</b><br>
+  * Lesen von Bytes hat immer 1 geliefert nun OK, es werden auch Fehler <br>
+  gemeldet<br>
+  </font>
+<hr>
+  <font face="Arial, Helvetica, sans-serif"><b>Version 1.07 22.3.99</b><br>
+  * Die lokale MPI-Adresse wurde nicht verarbeitet und immer mit 0 gearbeitet 
+  <br>
+  nun behoben<br>
+  </font>
+<hr>
+  <font face="Arial, Helvetica, sans-serif"><b>Version 1.06 9.3.99</b><br>
+  * Bei lesen oder Schreiben von Datenwortadressen &gt; 32767 kam es intern zum 
+  <br>
+  ueberlauf nun O</font>
+<hr>
+  <font face="Arial, Helvetica, sans-serif"><b>Version 1.05 2.3.99</b><br>
+  * LockCom und UnlockCom fuer WIN95 un NT eingefuehrt, so kann auf die gleiche<br>
+  Schnittstelle quasi gleichzeitig zugegriffen werden<br>
+  </font>
+<hr>
+  <font face="Arial, Helvetica, sans-serif"><b>Version 1.04 2.2.99</b><br>
+  * TS-Adapeter geht nun auch<br>
+  * Mehrere SPS k&ouml;nnen mit Init auf gleiche Com mit andere SPSMPIAdr angesprochen 
+  <br>
+  werden</font>
+<hr>
+  <font face="Arial, Helvetica, sans-serif"><b>Version 1.03 </b><br>
+  * Lesen und Schreiben von groesseren Datenbloecken am Stueck <br>
+  nun koennen bis zu 256 Datenworte am Stueck oder geschrieben werden<br>
+  * Optimierung der RS232-Kommunikation bezueglich der Prozessorzeit</font>
+<hr>
+  <font face="Arial, Helvetica, sans-serif"><b>Version 1.02 15.7.98</b><br>
+  * S7_E_NOCOM war mit -2 besetzt nun -4, <br>
+  </font> 
+  <hr>
+  <font face="Arial, Helvetica, sans-serif"><b>Version 1.01 3.6.98</b><br>
+  * Fehler bei S7RdDB ind S7WrDB, die Adressierung war nicht korrekt<br>
+  </font>
+<p>&nbsp; </p>
+</div>
+</body>
+</html>

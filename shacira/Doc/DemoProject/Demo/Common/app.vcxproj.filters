@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Forms_ui">
+      <UniqueIdentifier>{f67a8840-9314-45e5-b61b-c069b47c47ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Forms_cpp">
+      <UniqueIdentifier>{8ff2c1b3-99a2-490d-bfd3-3087fded2041}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Forms_generated">
+      <UniqueIdentifier>{03c1a57d-9e02-4170-8ea2-b4858abc436f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Widgets">
+      <UniqueIdentifier>{ef111941-51c3-4f77-84e3-a6e16bf6250b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Programs">
+      <UniqueIdentifier>{d95aec22-d34d-4e70-a3ef-bc5db8606561}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Functions">
+      <UniqueIdentifier>{33031104-7a69-4322-aaea-1e9de49bd00c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Devices">
+      <UniqueIdentifier>{760d669f-065a-4752-b3b1-5775c91a8078}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Init">
+      <UniqueIdentifier>{23a6a87d-0bfe-453b-b511-603edfd2e7c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Text">
+      <UniqueIdentifier>{5489e68c-005a-43f4-b669-97e57079c941}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dialog_ui">
+      <UniqueIdentifier>{d0bee6c5-a161-46c1-955b-f0f7b37a9c39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dialog_cpp">
+      <UniqueIdentifier>{1e03c9fd-de92-4d18-bb77-4bc3dd311d26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dialog_generated">
+      <UniqueIdentifier>{267b52b9-236e-4aeb-bee4-4a25e6186783}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Forms\demoframeimpl.cpp">
+      <Filter>Forms_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Forms\demostartupimpl.cpp">
+      <Filter>Forms_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Forms\pagelist.cpp">
+      <Filter>Forms_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Widgets\Src\dactvalue.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="Widgets\Src\dframe.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="Widgets\Src\Generated\moc_dactvalue.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="Widgets\Src\Generated\moc_dframe.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="Programs\cDemoProgram.cpp">
+      <Filter>Programs</Filter>
+    </ClCompile>
+    <ClCompile Include="Programs\CreateProgram.cpp">
+      <Filter>Programs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CustomBase\cstpgm.cpp">
+      <Filter>Programs</Filter>
+    </ClCompile>
+    <ClCompile Include="Programs\EM63Program.cpp">
+      <Filter>Programs</Filter>
+    </ClCompile>
+    <ClCompile Include="Funcs\demo.cpp">
+      <Filter>Functions</Filter>
+    </ClCompile>
+    <ClCompile Include="Funcs\Gui.cpp">
+      <Filter>Functions</Filter>
+    </ClCompile>
+    <ClCompile Include="Devices\cDemoDevice.cpp">
+      <Filter>Devices</Filter>
+    </ClCompile>
+    <ClCompile Include="Devices\CreateDevice.cpp">
+      <Filter>Devices</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CustomBase\cstdev.cpp">
+      <Filter>Devices</Filter>
+    </ClCompile>
+    <ClCompile Include="Init\CustomInit.cpp">
+      <Filter>Init</Filter>
+    </ClCompile>
+    <ClCompile Include="Text\CustomText.cpp">
+      <Filter>Text</Filter>
+    </ClCompile>
+    <ClCompile Include="app.cpp" />
+    <ClCompile Include="..\CustomBase\configure_app.cpp" />
+    <ClCompile Include="Funcs\demo.tab.cpp">
+      <Filter>Functions</Filter>
+    </ClCompile>
+    <ClCompile Include="Funcs\GUI.tab.cpp">
+      <Filter>Functions</Filter>
+    </ClCompile>
+    <ClCompile Include="Forms\Generated\demoframe.cpp">
+      <Filter>Forms_generated</Filter>
+    </ClCompile>
+    <ClCompile Include="Forms\Generated\moc_demoframe.cpp">
+      <Filter>Forms_generated</Filter>
+    </ClCompile>
+    <ClCompile Include="Forms\Generated\moc_demoframeimpl.cpp">
+      <Filter>Forms_generated</Filter>
+    </ClCompile>
+    <ClCompile Include="Forms\Generated\moc_demostartupimpl.cpp">
+      <Filter>Forms_generated</Filter>
+    </ClCompile>
+    <ClCompile Include="Forms\Generated\moc_page4.cpp">
+      <Filter>Forms_generated</Filter>
+    </ClCompile>
+    <ClCompile Include="Forms\Generated\moc_page1.cpp">
+      <Filter>Forms_generated</Filter>
+    </ClCompile>
+    <ClCompile Include="Forms\Generated\moc_page2.cpp">
+      <Filter>Forms_generated</Filter>
+    </ClCompile>
+    <ClCompile Include="Forms\Generated\moc_page3.cpp">
+      <Filter>Forms_generated</Filter>
+    </ClCompile>
+    <ClCompile Include="Forms\Generated\moc_demostartup.cpp">
+      <Filter>Forms_generated</Filter>
+    </ClCompile>
+    <ClCompile Include="Forms\Generated\page4.cpp">
+      <Filter>Forms_generated</Filter>
+    </ClCompile>
+    <ClCompile Include="Forms\Generated\page1.cpp">
+      <Filter>Forms_generated</Filter>
+    </ClCompile>
+    <ClCompile Include="Forms\Generated\page2.cpp">
+      <Filter>Forms_generated</Filter>
+    </ClCompile>
+    <ClCompile Include="Forms\Generated\page3.cpp">
+      <Filter>Forms_generated</Filter>
+    </ClCompile>
+    <ClCompile Include="Forms\Generated\demostartup.cpp">
+      <Filter>Forms_generated</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Programs\cDemoProgram.h">
+      <Filter>Programs</Filter>
+    </ClInclude>
+    <ClInclude Include="Programs\EM63Program.h">
+      <Filter>Programs</Filter>
+    </ClInclude>
+    <ClInclude Include="Funcs\demo.h">
+      <Filter>Functions</Filter>
+    </ClInclude>
+    <ClInclude Include="Funcs\GUI.h">
+      <Filter>Functions</Filter>
+    </ClInclude>
+    <ClInclude Include="Devices\cDemoDevice.h">
+      <Filter>Devices</Filter>
+    </ClInclude>
+    <ClInclude Include="Text\CustomText.h">
+      <Filter>Text</Filter>
+    </ClInclude>
+    <ClInclude Include="Forms\Generated\page4.h">
+      <Filter>Forms_generated</Filter>
+    </ClInclude>
+    <ClInclude Include="Forms\Generated\demoframe.h">
+      <Filter>Forms_generated</Filter>
+    </ClInclude>
+    <ClInclude Include="Forms\Generated\demostartup.h">
+      <Filter>Forms_generated</Filter>
+    </ClInclude>
+    <ClInclude Include="Forms\Generated\page1.h">
+      <Filter>Forms_generated</Filter>
+    </ClInclude>
+    <ClInclude Include="Forms\Generated\page2.h">
+      <Filter>Forms_generated</Filter>
+    </ClInclude>
+    <ClInclude Include="Forms\Generated\page3.h">
+      <Filter>Forms_generated</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="Forms\demoframe.ui">
+      <Filter>Forms_ui</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Forms\demostartup.ui">
+      <Filter>Forms_ui</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Forms\page1.ui">
+      <Filter>Forms_ui</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Forms\page2.ui">
+      <Filter>Forms_ui</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Forms\page3.ui">
+      <Filter>Forms_ui</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Forms\page4.ui">
+      <Filter>Forms_ui</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Forms\demoframeimpl.h">
+      <Filter>Forms_cpp</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Forms\demostartupimpl.h">
+      <Filter>Forms_cpp</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Funcs\demo.mdl">
+      <Filter>Functions</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Funcs\GUI.dec">
+      <Filter>Functions</Filter>
+    </CustomBuild>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,115 @@
+; [ipl.sty]  indended programming language
+
+
+Language ipl
+
+Regular Grammar
+
+; Character Set
+
+  let Byte        = '\00' .. '\ff' ; all extended ascii
+  let Control     = '\00' .. '\1f' ; control
+                  |          '\7f' ; DEL
+                  |          '\ff' ; space-like extended ascii
+
+; Basic elements of tokens
+
+  ign Space       = '\t '          ; ASCII - Space / Tab
+  let Line        = '\n\r'         ; UNIX / CPM / DOS
+
+  ign Etx         = "\1a" {Byte}   ; CPM / older DOS Versions
+
+  let Digit       = '0' .. '9'
+  let Letter      = 'a' .. 'z' | 'A' .. 'Z'
+
+; comments & tokens
+  
+  com Comment     = "#" { Byte - Line } Line
+
+  tok Ide         = Letter ( Letter | Digit | '_' )+
+
+  tok Lit         = "\"" { ( Byte - '\"' ) | "\\\"" } "\""
+
+  tok Nat         = Digit +
+
+  tok Opr         = '+-*/,[]()=<>!$' | "||" | "&&" | "<=" | ">=" | "==" | "!="
+
+  ind Blk         = Line { Space }
+
+Context Free Grammar
+
+start Pgm
+:dfn : Funs
+
+let Funs
+:nil :
+:cons: Stmt1 Funs
+
+let Ids
+:nil :
+:cons: Ide Ids
+
+let Vals
+:nil :
+:cons: Val Vals
+
+let Stmts
+:nil :
+:cons: Stmt Stmts
+
+let Val
+:nat : Nat
+:lit : Lit
+:ide : Ide
+:fun : Ide "(" Vals ")"
+
+let Stmts1
+:nil :
+:ign0: "else" "\n " Stmts "\n"
+
+let Stmt1
+:fun : "fun" Ide "(" Ids ")" "\n " Stmts "\n"
+
+let Stmt
+:ign0: Stmt1
+:retv: "return" Exp4
+:letv: "let" Ide "=" Exp4
+:cond: "if" Exp "\n " Stmts "\n" Stmts1
+:loop: "while" Exp "\n " Stmts "\n"
+
+let Exp
+:and : Exp "or" Exp1
+:ign0: Exp1
+
+let Exp1
+:and : Exp1 "and" Exp2
+:not : "!" Exp2
+:ign0: Exp2
+
+let Exp2
+:eq  : Exp2 "==" Exp3
+:ne  : Exp2 "!=" Exp3
+:lt  : Exp2 "<" Exp3
+:gt  : Exp2 ">" Exp3
+:le  : Exp2 "<=" Exp3
+:ge  : Exp2 ">=" Exp3
+:ign0: Exp3
+
+let Exp3
+:ign0: Val
+:ign1: "(" Exp ")"
+
+let Exp4
+:add : Exp4 "+" Exp5
+:sub : Exp4 "-" Exp5
+:ign0: Exp5
+
+let Exp5
+:mul : Exp5 "*" Exp6
+:div : Exp5 "/" Exp6
+:ign0: Exp6
+
+let Exp6
+:ign0: Val
+:ign1: "(" Exp4 ")"
+

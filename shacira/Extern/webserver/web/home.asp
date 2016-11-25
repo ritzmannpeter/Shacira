@@ -1,0 +1,19 @@
+<!DOCTYPE HTML PUBLIC"-//W3C//DTD HTML 4.0 Frameset//EN>
+<HTML>
+<HEAD>
+<TITLE>Mosaic</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html">
+</HEAD>
+
+<FRAMESET ROWS="85px, *" COLS="*" border="0" frameborder="0" framespacing="0"> 
+  <FRAME SRC="title.html" NAME="title" scrolling="NO" MARGINWIDTH="0" MARGINHEIGHT="0"/>
+  <FRAMESET COLS="150px, *" border="0" frameborder="0" framespacing="0"> 
+    <FRAME SRC="tree.html" NAME="menu"/>
+    <FRAME SRC="shacira/overview.html" NAME="main"/>
+  </FRAMESET>
+</FRAMESET>
+<body>
+Your Browser can not show frames.
+</body>
+
+</HTML>

@@ -1,0 +1,32 @@
+File Control\Cell\cGatewayServer.cpp:
+         SafeStrCpy((char*)out_msg.MsgBuf(), value.c_str(), value.size()+1);
+         SafeStrCpy((char*)out_msg.MsgBuf(), msg.c_str(), msg.size()+1);
+         SafeStrCpy((char*)out_msg.MsgBuf(), msg.c_str(), msg.size()+1);
+         SafeStrCpy((char*)out_msg.MsgBuf(), value.c_str(), value.size()+1);
+         SafeStrCpy((char*)out_msg.MsgBuf(), msg.c_str(), msg.size()+1);
+         SafeStrCpy((char*)out_msg.MsgBuf(), msg.c_str(), msg.size()+1);
+         SafeStrCpy((char*)out_msg.MsgBuf(), response.c_str(), response.size()+1);
+         SafeStrCpy((char*)out_msg.MsgBuf(), msg.c_str(), msg.size()+1);
+         SafeStrCpy((char*)out_msg.MsgBuf(), msg.c_str(), msg.size()+1);
+      SafeStrCpy((char*)out_msg.MsgBuf(), msg.c_str(), msg.size()+1);
+   SafeStrCpy((char*)out_msg.MsgBuf(), (char*)in_msg.MsgBuf(), 20);
+File Control\Device\EM63\cEM63Session.cpp:
+   SafeStrCpy(file_spec, cFileSystemUtils::FileName(_RequestFile.c_str()).c_str(), sizeof(file_spec));
+File GUIFramework\QT3Framework\Keypads\cQtKeyboardInput.cpp:
+            SafeStrCpy(str, value, dest_size);
+File System\cLiteString.cpp:
+      SafeStrCpy(_String, string, len+1);
+   SafeStrCpy(_String, string, len+1);
+      SafeStrCpy(new_buf, string, size+1);
+      SafeStrCpy(new_buf, string, size+1);
+File System\Sys\cSystemUtils.cpp:
+         SafeStrCpy(host_name, host_entry->h_name, sizeof(host_name));
+         SafeStrCpy(ip_addr, inet_ntoa(tmp_addr.sin_addr), sizeof(ip_addr));
+         SafeStrCpy(host_name, host_entry->h_name, sizeof(host_name));
+         SafeStrCpy(ip_addr, host_entry->h_addr, sizeof(ip_addr));
+File Tools\utilities\utilities.cpp:
+      SafeStrCpy(buf, path, buf_size);
+      SafeStrCpy(&buf[path_len], path, buf_size - path_len);
+      SafeStrCpy(&buf[path_len+1], path, buf_size -path_len - 1);
+         SafeStrCpy(search_path, token, sizeof(search_path));
+            SafeStrCpy(buf, search_path, buf_size);

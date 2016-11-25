@@ -1,0 +1,14 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[scn_imp.h] Scanner Implementation</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[scn_imp.h] Scanner Implementation</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<pre></pre><br><a href="standard.htm">#include "standard.h"</a>
+<br>
+<pre></pre><pre>/* all extended ascii */</pre><pre>//#define SCN_CHAR_SET_SIZE (256)</pre><pre>/* all UCS4 character */</pre><pre>#define SCN_CHAR_SET_SIZE   (0xFFFFFFFFu)</pre><pre>//#define SCN_CHAR_SET_SIZE   (~((wc_char)0))</pre><pre></pre><pre>/* token IDs within a dyck scanner */</pre><pre>#define SCN_DYCKTOKEN_PREFIX  1</pre><pre>#define SCN_DYCKTOKEN_SUFFIX  2</pre><pre>#define SCN_DYCKTOKEN_PATTERN 3</pre><pre></pre><pre>#define Scn_IMP(X) ((scn_t)(X))</pre><pre>#define Scn_ADT(X) ((Scn_T)(X))</pre><pre></pre><pre>#define SCN_Edges(X) (Scn_IMP(X)-&gt;StaEdg[Scn_IMP(X)-&gt;States])</pre><pre></pre><pre>ConcreteType(scn_t)</pre><pre>{</pre><pre>  c_string   Name;     /* lexical language ( or group ) name  */</pre><pre>  /* single scanner */</pre><pre>  short      States;   /* number of states or 0               */</pre><pre>  short      Tokens;   /* number of tokens or 0               */</pre><pre>  long      *StaEdg;   /* [States] -&gt; first edge              */</pre><pre>  short     *StaFin;   /* [States] -&gt; (-1 or token)           */</pre><pre>  wc_char   *EdgeC ;   /* [Edges]  -&gt; lower character         */</pre><pre>  long      *EdgeS ;   /* [Edges]  -&gt; State                   */</pre><pre>  c_string  *TokId ;   /* [Tokens] -&gt; string                  */</pre><pre>  c_byte    *Flags ;   /* [Tokens] -&gt; properties, e.g. ignore */</pre><pre>  /* group scanner  */</pre><pre>  short      Groups;   /* number of groups or 0               */</pre><pre>  scn_t     *GrpScn;   /* group scanners                      */</pre><pre>  short     *Switch;   /* [Tokens] -&gt; Group                   */</pre><pre>  /* dyck token specification */</pre><pre>  short      dyckcnt;  /* number of dyck tokens               */</pre><pre>  short     *dyckidx;  /* [dyckcnt] -&gt; token index            */</pre><pre>  scn_t     *dyckpat;  /* [dyckcnt] -&gt; dyck scanner           */</pre><pre>};</pre><pre></pre><pre>#endif</pre>
+</body>
+</html>

@@ -1,0 +1,245 @@
+/********************************************************************************
+** Form generated from reading UI file 'sys_filehandlingwizard.ui'
+**
+** Created: Thu 6. Dec 09:30:01 2012
+**      by: Qt User Interface Compiler version 4.8.3
+**
+** WARNING! All changes made in this file will be lost when recompiling UI file!
+********************************************************************************/
+
+#ifndef UI_SYS_FILEHANDLINGWIZARD_H
+#define UI_SYS_FILEHANDLINGWIZARD_H
+
+#include <QtCore/QVariant>
+#include <QtGui/QAction>
+#include <QtGui/QApplication>
+#include <QtGui/QButtonGroup>
+#include <QtGui/QHeaderView>
+#include <QtGui/QLabel>
+#include <QtGui/QWizard>
+#include <QtGui/QWizardPage>
+#include <qlayout.h>
+#include "CGroupBox.h"
+#include "CActValue.h"
+#include "CButtonGroup.h"
+#include "CCheckBox.h"
+#include "CComboBox.h"
+#include "CFixText.h"
+#include "CPushButton.h"
+#include "CRadioButton.h"
+#include "CReqValue.h"
+#include "cactvalue.h"
+#include "cbuttongroup.h"
+#include "ccheckbox.h"
+#include "ccoordsystem.h"
+#include "cfixtext.h"
+#include "cpushbutton.h"
+#include "cradiobutton.h"
+#include "creqvalue.h"
+#include "csimplegraphic.h"
+#include "qt4port.h"
+
+QT_BEGIN_NAMESPACE
+
+class Ui_Sys_FileHandlingWizard
+{
+public:
+    QWizardPage *WizardPage;
+    QLabel *pixmapLabel1;
+    CGroupBox *cButtonGroup4;
+    CRadioButton *RadioButtonSave_2;
+    CRadioButton *RadioButtonSaveAs;
+    CRadioButton *RadioButtonSaveAs_2;
+    CRadioButton *RadioButton_DeleteAll;
+    QWizardPage *WizardPage_0;
+    QLabel *pixmapLabel1_2;
+    CFixText *cFixText5_2_3_3;
+    CFixText *cFixText2;
+    CFixText *cFixText1;
+    CActValue *cActValue1_3_1;
+    QWizardPage *WizardPage_2;
+    QLabel *pixmapLabel1_2_2;
+    CFixText *DirectoryDescription;
+    CReqValue *ClpDataUSBDirInput;
+    CPushButton *DataSetHandlingDirButton;
+    CCheckBox *CheckBoxReplaceExistFiles;
+    CSimpleGraphic *csimplegraphic;
+
+    void setupUi(QWizard *Sys_FileHandlingWizard)
+    {
+        if (Sys_FileHandlingWizard->objectName().isEmpty())
+            Sys_FileHandlingWizard->setObjectName(QString::fromUtf8("Sys_FileHandlingWizard"));
+        Sys_FileHandlingWizard->resize(572, 393);
+        QFont font;
+        font.setFamily(QString::fromUtf8("Arial"));
+        font.setPointSize(12);
+        Sys_FileHandlingWizard->setFont(font);
+        Sys_FileHandlingWizard->setAutoFillBackground(true);
+        Sys_FileHandlingWizard->setModal(true);
+        Sys_FileHandlingWizard->setWizardStyle(QWizard::ClassicStyle);
+        WizardPage = new QWizardPage();
+QFrame * pixmapFrame = new QFrame;
+QHBoxLayout *hlayout = new QHBoxLayout;
+WizardPage->setLayout(hlayout);
+        WizardPage->setObjectName(QString::fromUtf8("WizardPage"));
+        WizardPage->setAutoFillBackground(true);
+        pixmapLabel1 = new QLabel(pixmapFrame);
+        pixmapLabel1->setObjectName(QString::fromUtf8("pixmapLabel1"));
+        pixmapLabel1->setGeometry(QRect(3, 10, 41, 43));
+        pixmapLabel1->setAutoFillBackground(true);
+        pixmapLabel1->setPixmap(QPixmap(QString::fromUtf8(":/demo/images/img_2.png")));
+        pixmapLabel1->setScaledContents(true);
+        pixmapLabel1->setWordWrap(false);
+hlayout->addWidget(pixmapFrame);
+        cButtonGroup4 = new CGroupBox;
+cButtonGroup4->setTitle("selection");
+        cButtonGroup4->setObjectName(QString::fromUtf8("cButtonGroup4"));
+        cButtonGroup4->setGeometry(QRect(50, 10, 495, 280));
+        cButtonGroup4->setAutoFillBackground(true);
+QVBoxLayout *vlayout = new QVBoxLayout(cButtonGroup4);
+hlayout->addWidget(cButtonGroup4);
+        RadioButtonSave_2 = new CRadioButton;
+vlayout->addWidget(RadioButtonSave_2);
+        RadioButtonSave_2->setObjectName(QString::fromUtf8("RadioButtonSave_2"));
+        RadioButtonSave_2->setGeometry(QRect(10, 25, 475, 55));
+        RadioButtonSave_2->setAutoFillBackground(true);
+        RadioButtonSave_2->setChecked(true);
+        RadioButtonSave_2->setVarRef("SetCfgMachFileHandling");
+        RadioButtonSave_2->setMode(CRadioButton::SetPattern);
+        RadioButtonSaveAs = new CRadioButton;
+vlayout->addWidget(RadioButtonSaveAs);
+        RadioButtonSaveAs->setObjectName(QString::fromUtf8("RadioButtonSaveAs"));
+        RadioButtonSaveAs->setGeometry(QRect(10, 95, 475, 45));
+        RadioButtonSaveAs->setAutoFillBackground(true);
+        RadioButtonSaveAs->setVarRef("SetCfgMachFileHandling");
+        RadioButtonSaveAs->setMode(CRadioButton::SetPattern);
+        RadioButtonSaveAs->setBitPos(1);
+        RadioButtonSaveAs_2 = new CRadioButton;
+vlayout->addWidget(RadioButtonSaveAs_2);
+        RadioButtonSaveAs_2->setObjectName(QString::fromUtf8("RadioButtonSaveAs_2"));
+        RadioButtonSaveAs_2->setGeometry(QRect(10, 155, 475, 45));
+        RadioButtonSaveAs_2->setAutoFillBackground(true);
+        RadioButtonSaveAs_2->setVarRef("SetCfgMachFileHandling");
+        RadioButtonSaveAs_2->setMode(CRadioButton::SetPattern);
+        RadioButtonSaveAs_2->setBitPos(2);
+        RadioButton_DeleteAll = new CRadioButton;
+vlayout->addWidget(RadioButton_DeleteAll);
+        RadioButton_DeleteAll->setObjectName(QString::fromUtf8("RadioButton_DeleteAll"));
+        RadioButton_DeleteAll->setGeometry(QRect(10, 215, 475, 45));
+        RadioButton_DeleteAll->setAutoFillBackground(true);
+        RadioButton_DeleteAll->setVarRef("SetCfgMachFileHandling");
+        RadioButton_DeleteAll->setMode(CRadioButton::SetPattern);
+        RadioButton_DeleteAll->setBitPos(3);
+        Sys_FileHandlingWizard->addPage(WizardPage);
+        WizardPage_0 = new QWizardPage();
+        WizardPage_0->setObjectName(QString::fromUtf8("WizardPage_0"));
+        WizardPage_0->setAutoFillBackground(true);
+        pixmapLabel1_2 = new QLabel(WizardPage_0);
+        pixmapLabel1_2->setObjectName(QString::fromUtf8("pixmapLabel1_2"));
+        pixmapLabel1_2->setGeometry(QRect(3, 10, 41, 43));
+        pixmapLabel1_2->setAutoFillBackground(true);
+        pixmapLabel1_2->setPixmap(QPixmap(QString::fromUtf8(":/demo/images/img_2.png")));
+        pixmapLabel1_2->setScaledContents(true);
+        pixmapLabel1_2->setWordWrap(false);
+        cFixText5_2_3_3 = new CFixText(WizardPage_0);
+        cFixText5_2_3_3->setObjectName(QString::fromUtf8("cFixText5_2_3_3"));
+        cFixText5_2_3_3->setGeometry(QRect(60, 55, 170, 25));
+        cFixText5_2_3_3->setAutoFillBackground(true);
+        cFixText5_2_3_3->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        cFixText2 = new CFixText(WizardPage_0);
+        cFixText2->setObjectName(QString::fromUtf8("cFixText2"));
+        cFixText2->setGeometry(QRect(60, 95, 170, 25));
+        cFixText2->setAutoFillBackground(true);
+        cFixText2->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        cFixText1 = new CFixText(WizardPage_0);
+        cFixText1->setObjectName(QString::fromUtf8("cFixText1"));
+        cFixText1->setGeometry(QRect(60, 15, 170, 25));
+        cFixText1->setAutoFillBackground(true);
+        cFixText1->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        cActValue1_3_1 = new CActValue(WizardPage_0);
+        cActValue1_3_1->setObjectName(QString::fromUtf8("cActValue1_3_1"));
+        cActValue1_3_1->setGeometry(QRect(235, 53, 200, 26));
+        cActValue1_3_1->setAutoFillBackground(true);
+        cActValue1_3_1->setAlignment(Qt::AlignLeading);
+        cActValue1_3_1->setVarRef("SetDescMachFileName");
+        Sys_FileHandlingWizard->addPage(WizardPage_0);
+        WizardPage_2 = new QWizardPage();
+        WizardPage_2->setObjectName(QString::fromUtf8("WizardPage_2"));
+        WizardPage_2->setAutoFillBackground(true);
+        pixmapLabel1_2_2 = new QLabel(WizardPage_2);
+        pixmapLabel1_2_2->setObjectName(QString::fromUtf8("pixmapLabel1_2_2"));
+        pixmapLabel1_2_2->setGeometry(QRect(3, 10, 41, 43));
+        pixmapLabel1_2_2->setAutoFillBackground(true);
+        pixmapLabel1_2_2->setPixmap(QPixmap(QString::fromUtf8(":/demo/images/img_2.png")));
+        pixmapLabel1_2_2->setScaledContents(true);
+        pixmapLabel1_2_2->setWordWrap(false);
+        DirectoryDescription = new CFixText(WizardPage_2);
+        DirectoryDescription->setObjectName(QString::fromUtf8("DirectoryDescription"));
+        DirectoryDescription->setGeometry(QRect(51, 9, 250, 25));
+        DirectoryDescription->setMinimumSize(QSize(200, 25));
+        DirectoryDescription->setAutoFillBackground(true);
+        DirectoryDescription->setAlignment(Qt::AlignVCenter);
+        ClpDataUSBDirInput = new CReqValue(WizardPage_2);
+        ClpDataUSBDirInput->setObjectName(QString::fromUtf8("ClpDataUSBDirInput"));
+        ClpDataUSBDirInput->setGeometry(QRect(50, 35, 400, 26));
+        ClpDataUSBDirInput->setMinimumSize(QSize(280, 25));
+        ClpDataUSBDirInput->setAutoFillBackground(true);
+        ClpDataUSBDirInput->setAlignment(Qt::AlignLeading);
+        ClpDataUSBDirInput->setValidation(CReqValue::PathValidation);
+        ClpDataUSBDirInput->setVarRef("SetCfgMachFileHandlingDir");
+        ClpDataUSBDirInput->setPlausFuncRef("PlausValidateDir(2,4)");
+        DataSetHandlingDirButton = new CPushButton(WizardPage_2);
+        DataSetHandlingDirButton->setObjectName(QString::fromUtf8("DataSetHandlingDirButton"));
+        DataSetHandlingDirButton->setGeometry(QRect(462, 33, 80, 30));
+        DataSetHandlingDirButton->setMinimumSize(QSize(60, 30));
+        QFont font1;
+        font1.setFamily(QString::fromUtf8("Arial"));
+        font1.setPointSize(20);
+        DataSetHandlingDirButton->setFont(font1);
+        DataSetHandlingDirButton->setAutoFillBackground(true);
+        DataSetHandlingDirButton->setButtonFuncRef("BtnDirDialog(\\\"SetCfgMachFileHandlingDir\\\",-1,\\\"DataSetHandlingDirButton\\\",3,2,4)");
+        CheckBoxReplaceExistFiles = new CCheckBox(WizardPage_2);
+        CheckBoxReplaceExistFiles->setObjectName(QString::fromUtf8("CheckBoxReplaceExistFiles"));
+        CheckBoxReplaceExistFiles->setGeometry(QRect(51, 91, 488, 27));
+        CheckBoxReplaceExistFiles->setMinimumSize(QSize(27, 27));
+        CheckBoxReplaceExistFiles->setAutoFillBackground(true);
+        CheckBoxReplaceExistFiles->setVarRef("SetCfgMachFileHandlingReplaceFiles");
+        csimplegraphic = new CSimpleGraphic(WizardPage_2);
+        csimplegraphic->setObjectName(QString::fromUtf8("csimplegraphic"));
+        csimplegraphic->setGeometry(QRect(60, 139, 451, 201));
+        Sys_FileHandlingWizard->addPage(WizardPage_2);
+
+        retranslateUi(Sys_FileHandlingWizard);
+
+        QMetaObject::connectSlotsByName(Sys_FileHandlingWizard);
+    } // setupUi
+
+    void retranslateUi(QWizard *Sys_FileHandlingWizard)
+    {
+        Sys_FileHandlingWizard->setWindowTitle(QApplication::translate("Sys_FileHandlingWizard", "File handling", 0, QApplication::UnicodeUTF8));
+        WizardPage->setTitle(QApplication::translate("Sys_FileHandlingWizard", "Working with mold data", 0, QApplication::UnicodeUTF8));
+        RadioButtonSave_2->setText(QApplication::translate("Sys_FileHandlingWizard", "Load data group\n"
+"(e.g. core pulling data)", 0, QApplication::UnicodeUTF8));
+        RadioButtonSaveAs->setText(QApplication::translate("Sys_FileHandlingWizard", "Import multiple mold data files\n"
+"to internal data carrier", 0, QApplication::UnicodeUTF8));
+        RadioButtonSaveAs_2->setText(QApplication::translate("Sys_FileHandlingWizard", "Export multiple mold data files\n"
+"from internal data carrier", 0, QApplication::UnicodeUTF8));
+        RadioButton_DeleteAll->setText(QApplication::translate("Sys_FileHandlingWizard", "Delete all data files in the internal data carrier", 0, QApplication::UnicodeUTF8));
+        WizardPage_0->setTitle(QApplication::translate("Sys_FileHandlingWizard", "Load data group", 0, QApplication::UnicodeUTF8));
+        cFixText5_2_3_3->setText(QApplication::translate("Sys_FileHandlingWizard", "File name", 0, QApplication::UnicodeUTF8));
+        cFixText2->setText(QApplication::translate("Sys_FileHandlingWizard", "Data group", 0, QApplication::UnicodeUTF8));
+        cFixText1->setText(QApplication::translate("Sys_FileHandlingWizard", "Data Carrier", 0, QApplication::UnicodeUTF8));
+        WizardPage_2->setTitle(QString());
+        DataSetHandlingDirButton->setText(QApplication::translate("Sys_FileHandlingWizard", "...", 0, QApplication::UnicodeUTF8));
+        CheckBoxReplaceExistFiles->setText(QApplication::translate("Sys_FileHandlingWizard", "Replace existing files", 0, QApplication::UnicodeUTF8));
+    } // retranslateUi
+
+};
+
+namespace Ui {
+    class Sys_FileHandlingWizard: public Ui_Sys_FileHandlingWizard {};
+} // namespace Ui
+
+QT_END_NAMESPACE
+
+#endif // UI_SYS_FILEHANDLINGWIZARD_H

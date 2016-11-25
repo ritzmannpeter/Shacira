@@ -1,0 +1,25 @@
+
+// Carrier I/O driver settings
+
+[DefaultSettings]
+PortBase=0x360
+ForceDirectAccess=0
+Version=1
+CheckMode=0
+Retries=20
+Stability=10
+DelayTime=15
+
+[Settings]
+PortBase=0x360
+Version=1
+CheckMode=0
+Retries=20
+Stability=10
+DelayTime=15
+ForceDirectAccess=1
+SimulateHardware=1
+SimulatedSize=8
+
+
+

@@ -1,0 +1,1686 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Dateien">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;cxx;c;def</Extensions>
+    </Filter>
+    <Filter Include="Header Dateien">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h</Extensions>
+    </Filter>
+    <Filter Include="Form Dateien">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+    </Filter>
+    <Filter Include="Resource Dateien">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Generierte Dateien">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>moc;h;cpp</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generierte Dateien\Debug">
+      <UniqueIdentifier>{18897488-70c3-4fb3-ae3c-139441070368}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generierte Dateien\Release">
+      <UniqueIdentifier>{9ef76660-f6e0-481c-81c4-f91ad575c2e3}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Form Dateien\Dialogs">
+      <UniqueIdentifier>{990f2aff-5d64-4f60-bdb1-1e0d76fa1fec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Form Dateien\_Hydr">
+      <UniqueIdentifier>{d8bdedc0-4443-4f4a-ae39-42e6251f5a4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Form Dateien\_Hydr\Forms">
+      <UniqueIdentifier>{e9abe09c-de19-43b5-974a-3ec19ded3df3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Form Dateien\_Hydr\Dialogs">
+      <UniqueIdentifier>{0bebef86-ae85-40e3-bfa3-210a61956965}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Form Dateien\Forms">
+      <UniqueIdentifier>{30b4c558-4894-49d1-a7a2-b32bae059dc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Dateien\formtest">
+      <UniqueIdentifier>{817a419b-1460-45be-b972-32a4a6265872}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\Src\Tools\uitest\uitest.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Tools\uitest\forms\formtest.cpp">
+      <Filter>Source Dateien\formtest</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_formtest.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_formtest.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_mosaic.cpp">
+      <Filter>Generierte Dateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Tools\uitest\formfactory.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\Src\Tools\uitest\formfactory.h">
+      <Filter>Source Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_Alr_changelog.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_alr_monitoring.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_alr_overview.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_alr_statistic.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_aut_configaoscrollview.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_aut_configdiscrollview.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_aut_configdoscrollview.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_aut_configio.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_aut_customized.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_aut_general.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_aut_handling.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_aut_qualcontr_selswitch.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_aut_remoterobot.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_clp_airejector.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_clp_compression.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_clp_ejector.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_clp_openclose.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_clp_productejector.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_clp_setup.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_cor_customized.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_cor_overview.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_cor_program.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_cor_status.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_cor_test.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_cor_test3.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_cor_turntable.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_cor_turntableadjust.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_diag_host.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_diag_io.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_diag_statestep.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_diag_valveadjustment.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_diag_version.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_hlp_viewer.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_inj_airpress.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_inj_cascade.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_inj_cascadescrollview.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_inj_extruder.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_inj_graphic.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_inj_pressure.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_inj_prodstart.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_inj_ramp.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_inj_set.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_inj_sled.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_inj_sledwithstroketrans.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_inj_velocity.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_mdat_fgbgdata.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_mdat_notepad.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_mdat_setinfo1.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_mdat_setinfo2.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_mdat_storage.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_mosaicframe.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_mosaicstartupform.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_ovw_general.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_ovw_notepad.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_ovw_password.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_ovw_posting.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_ovw_postit_tearoff.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_ovw_service.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_ovw_setpoints.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_ovw_weektimer.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_proc_cycleanalysis.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_proc_monitor.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_proc_power.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_proc_proddata.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_proc_production.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_proc_trenddata.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_proc_trendgraph.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_sys_datetime.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_sys_directory.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_sys_infomation.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_sys_language.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_sys_network.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_sys_reports.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_sys_security.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_tmp_autotune.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_tmp_barrel.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_tmp_hotrunner.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_tmp_interfaceconfig.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_tmp_moldcooling.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_tmp_moldtcpl.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_tmp_options.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_tmp_overview.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_tmp_temperatures.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_clp_ejectorwizard.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_clp_minmoldheightwizard.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_cor_prgwizard.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_cor_usermanualdialog.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_diag_lockingforcesensorwizard.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_inj_sequencerdialog.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_inj_setunitmodewizard.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_inj_sledwithstroketranswizard.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_inj_velocitymoldcavitywizard.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_mdat_changefgbgdialog.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_mdat_checklimit_dialog.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_mdat_complistviewdialog.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_mdat_copyfgtobgdialog.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_mdat_readdatadialog.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_ovw_configbarrelwizard.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_proc_powernotedialog.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_sys_cardinfodialog.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_sys_cardmasterdialog.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_sys_cardwizard.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_sys_dirdialog.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_sys_filehandlingdialog.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_sys_filehandlingfaultdialog.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_sys_filehandlingwizard.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_sys_filesavedialog.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_sys_filesavereadwizard.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_sys_reportsinfodialog.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_sys_startupdialog.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_tmp_ctlparamdialog.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_tmp_interfacewizard.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_clp_sprueejector.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_clp_stackturning.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_diag_adjustment.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_diag_adjustment2.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_diag_adjustmentcan.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_diag_adjustmenteplscrollview.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_diag_adjustmentpowerlink.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_diag_clamplock.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_diag_sensoractoradjustment.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_diag_sensorsactors.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_clp_stackturnfeedzeroadjustwizard.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_clp_stackturnparamwizard.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_diag_adjustmentpowerlinkinfodialog.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_ovw_lubcartridgewizard.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_proc_powersavedialog.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_proc_powersavewizard.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_formtest.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\Alr_changelog.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\alr_monitoring.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\alr_overview.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\alr_statistic.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\aut_configaoscrollview.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\aut_configdiscrollview.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\aut_configdoscrollview.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\aut_configio.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\aut_customized.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\aut_general.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\aut_handling.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\aut_qualcontr_selswitch.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\aut_remoterobot.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\clp_airejector.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\clp_compression.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\clp_ejector.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\clp_openclose.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\clp_productejector.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\clp_setup.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\cor_customized.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\cor_overview.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\cor_program.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\cor_status.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\cor_test.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\cor_test3.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\cor_turntable.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\cor_turntableadjust.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\diag_host.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\diag_io.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\diag_statestep.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\diag_valveadjustment.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\diag_version.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\hlp_viewer.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\inj_airpress.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\inj_cascade.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\inj_cascadescrollview.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\inj_extruder.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\inj_graphic.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\inj_pressure.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\inj_prodstart.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\inj_ramp.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\inj_set.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\inj_sled.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\inj_sledwithstroketrans.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\inj_velocity.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\mdat_fgbgdata.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\mdat_notepad.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\mdat_setinfo1.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\mdat_setinfo2.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\mdat_storage.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\mosaicframe.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\mosaicstartupform.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\ovw_general.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\ovw_notepad.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\ovw_password.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\ovw_posting.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\ovw_postit_tearoff.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\ovw_service.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\ovw_setpoints.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\ovw_weektimer.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\proc_cycleanalysis.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\proc_monitor.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\proc_power.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\proc_proddata.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\proc_production.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\proc_trenddata.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\proc_trendgraph.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\sys_datetime.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\sys_directory.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\sys_infomation.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\sys_language.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\sys_network.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\sys_reports.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\sys_security.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\tmp_autotune.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\tmp_barrel.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\tmp_hotrunner.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\tmp_interfaceconfig.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\tmp_moldcooling.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\tmp_moldtcpl.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\tmp_options.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\tmp_overview.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Forms\tmp_temperatures.ui">
+      <Filter>Form Dateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Dialogs\clp_ejectorwizard.ui">
+      <Filter>Form Dateien\Dialogs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Dialogs\clp_minmoldheightwizard.ui">
+      <Filter>Form Dateien\Dialogs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Dialogs\cor_prgwizard.ui">
+      <Filter>Form Dateien\Dialogs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Dialogs\cor_usermanualdialog.ui">
+      <Filter>Form Dateien\Dialogs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Dialogs\diag_lockingforcesensorwizard.ui">
+      <Filter>Form Dateien\Dialogs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Dialogs\inj_sequencerdialog.ui">
+      <Filter>Form Dateien\Dialogs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Dialogs\inj_setunitmodewizard.ui">
+      <Filter>Form Dateien\Dialogs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Dialogs\inj_sledwithstroketranswizard.ui">
+      <Filter>Form Dateien\Dialogs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Dialogs\inj_velocitymoldcavitywizard.ui">
+      <Filter>Form Dateien\Dialogs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Dialogs\mdat_changefgbgdialog.ui">
+      <Filter>Form Dateien\Dialogs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Dialogs\mdat_checklimit_dialog.ui">
+      <Filter>Form Dateien\Dialogs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Dialogs\mdat_complistviewdialog.ui">
+      <Filter>Form Dateien\Dialogs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Dialogs\mdat_copyfgtobgdialog.ui">
+      <Filter>Form Dateien\Dialogs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Dialogs\mdat_readdatadialog.ui">
+      <Filter>Form Dateien\Dialogs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Dialogs\ovw_configbarrelwizard.ui">
+      <Filter>Form Dateien\Dialogs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Dialogs\proc_powernotedialog.ui">
+      <Filter>Form Dateien\Dialogs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Dialogs\sys_cardinfodialog.ui">
+      <Filter>Form Dateien\Dialogs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Dialogs\sys_cardmasterdialog.ui">
+      <Filter>Form Dateien\Dialogs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Dialogs\sys_cardwizard.ui">
+      <Filter>Form Dateien\Dialogs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Dialogs\sys_dirdialog.ui">
+      <Filter>Form Dateien\Dialogs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Dialogs\sys_filehandlingdialog.ui">
+      <Filter>Form Dateien\Dialogs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Dialogs\sys_filehandlingfaultdialog.ui">
+      <Filter>Form Dateien\Dialogs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Dialogs\sys_filehandlingwizard.ui">
+      <Filter>Form Dateien\Dialogs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Dialogs\sys_filesavedialog.ui">
+      <Filter>Form Dateien\Dialogs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Dialogs\sys_filesavereadwizard.ui">
+      <Filter>Form Dateien\Dialogs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Dialogs\sys_reportsinfodialog.ui">
+      <Filter>Form Dateien\Dialogs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Dialogs\sys_startupdialog.ui">
+      <Filter>Form Dateien\Dialogs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Dialogs\tmp_ctlparamdialog.ui">
+      <Filter>Form Dateien\Dialogs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\Dialogs\tmp_interfacewizard.ui">
+      <Filter>Form Dateien\Dialogs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\_Hydr\Forms\clp_sprueejector.ui">
+      <Filter>Form Dateien\_Hydr\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\_Hydr\Forms\clp_stackturning.ui">
+      <Filter>Form Dateien\_Hydr\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\_Hydr\Forms\diag_adjustment.ui">
+      <Filter>Form Dateien\_Hydr\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\_Hydr\Forms\diag_adjustment2.ui">
+      <Filter>Form Dateien\_Hydr\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\_Hydr\Forms\diag_adjustmentcan.ui">
+      <Filter>Form Dateien\_Hydr\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\_Hydr\Forms\diag_adjustmenteplscrollview.ui">
+      <Filter>Form Dateien\_Hydr\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\_Hydr\Forms\diag_adjustmentpowerlink.ui">
+      <Filter>Form Dateien\_Hydr\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\_Hydr\Forms\diag_clamplock.ui">
+      <Filter>Form Dateien\_Hydr\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\_Hydr\Forms\diag_sensoractoradjustment.ui">
+      <Filter>Form Dateien\_Hydr\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\_Hydr\Forms\diag_sensorsactors.ui">
+      <Filter>Form Dateien\_Hydr\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\_Hydr\Dialogs\clp_stackturnfeedzeroadjustwizard.ui">
+      <Filter>Form Dateien\_Hydr\Dialogs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\_Hydr\Dialogs\clp_stackturnparamwizard.ui">
+      <Filter>Form Dateien\_Hydr\Dialogs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\_Hydr\Dialogs\diag_adjustmentpowerlinkinfodialog.ui">
+      <Filter>Form Dateien\_Hydr\Dialogs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\_Hydr\Dialogs\ovw_lubcartridgewizard.ui">
+      <Filter>Form Dateien\_Hydr\Dialogs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\_Hydr\Dialogs\proc_powersavedialog.ui">
+      <Filter>Form Dateien\_Hydr\Dialogs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\Common\_Hydr\Dialogs\proc_powersavewizard.ui">
+      <Filter>Form Dateien\_Hydr\Dialogs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uitest\forms\formtest.h">
+      <Filter>Source Dateien\formtest</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uitest\forms\formtest.ui">
+      <Filter>Source Dateien\formtest</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\mosaic.qrc">
+      <Filter>Resource Dateien</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_1.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_10.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_100.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_101.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_102.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_103.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_104.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_105.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_106.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_107.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_108.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_109.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_11.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_110.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_111.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_112.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_113.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_114.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_115.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_116.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_117.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_118.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_119.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_12.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_120.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_121.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_122.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_123.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_124.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_125.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_126.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_127.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_128.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_129.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_13.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_130.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_131.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_132.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_133.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_134.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_135.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_136.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_137.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_138.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_139.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_14.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_140.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_141.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_142.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_143.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_144.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_145.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_146.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_147.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_148.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_149.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_15.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_150.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_151.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_152.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_153.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_154.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_155.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_156.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_157.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_158.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_159.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_16.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_160.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_161.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_162.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_163.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_164.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_165.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_166.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_167.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_168.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_169.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_17.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_170.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_171.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_172.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_173.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_174.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_175.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_176.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_177.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_178.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_179.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_18.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_180.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_181.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_182.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_183.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_184.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_185.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_186.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_187.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_188.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_189.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_19.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_190.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_191.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_192.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_193.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_194.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_195.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_196.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_197.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_198.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_199.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_2.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_20.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_200.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_201.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_202.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_203.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_204.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_205.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_206.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_207.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_208.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_209.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_21.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_210.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_211.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_212.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_213.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_214.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_215.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_216.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_217.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_218.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_219.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_22.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_220.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_221.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_222.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_223.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_224.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_225.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_226.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_227.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_228.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_229.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_23.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_230.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_231.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_232.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_233.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_234.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_235.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_236.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_237.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_238.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_239.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_24.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_240.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_241.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_242.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_243.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_244.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_245.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_246.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_247.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_248.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_249.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_25.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_250.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_251.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_252.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_253.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_254.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_255.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_256.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_257.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_258.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_259.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_26.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_260.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_261.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_262.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_263.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_264.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_265.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_266.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_267.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_268.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_269.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_27.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_270.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_271.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_272.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_273.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_274.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_28.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_29.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_3.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_30.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_31.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_32.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_33.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_34.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_35.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_36.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_37.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_38.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_39.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_4.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_40.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_41.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_42.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_43.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_44.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_45.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_46.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_47.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_48.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_49.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_5.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_50.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_51.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_52.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_53.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_54.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_55.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_56.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_57.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_58.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_59.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_6.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_60.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_61.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_62.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_63.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_64.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_65.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_66.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_67.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_68.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_69.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_7.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_70.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_71.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_72.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_73.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_74.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_75.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_76.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_77.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_78.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_79.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_8.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_80.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_81.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_82.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_83.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_84.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_85.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_86.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_87.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_88.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_89.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_9.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_90.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_91.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_92.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_93.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_94.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_95.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_96.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_97.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_98.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+    <None Include="..\..\..\Src\Tools\uiport\test\mosaic\Qt4\qresources\images\img_99.png">
+      <Filter>Resource Dateien</Filter>
+    </None>
+  </ItemGroup>
+</Project>

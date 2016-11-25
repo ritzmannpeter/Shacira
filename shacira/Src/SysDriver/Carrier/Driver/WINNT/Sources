@@ -1,0 +1,9 @@
+TARGETNAME=CARRIER
+TARGETPATH=.
+TARGETTYPE=DRIVER
+INCLUDES=$(BASEDIR)\inc;..\..\Include;..
+
+SOURCES=..\Carrier.c\
+	..\CarSim.c\
+	CarDrvNT.c
+

@@ -1,0 +1,30 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[xmem_imp.h] data structures used by [xmem]</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[xmem_imp.h] data structures used by [xmem]</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<pre>#ifndef True</pre><br><a href="standard.htm">#include "standard.h"</a>
+<br>
+<pre>#endif</pre><pre></pre><br><hr width="100%" size=2><h2><b> Types </b></h2>
+<pre></pre><br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b> MEM_Type </b>
+<td align=left>abstract type
+
+</table>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b> MEM_Name </b>
+<td align=left>abstract type
+
+</table>
+<pre>#define MEM(Alpha) MEM_Name</pre><pre></pre><pre>ConcreteType( Type )</pre><pre>{</pre><pre>  Type     next;</pre><pre>  c_string ident;  /* the identifer of this type              */</pre><pre>  c_bool   isnode; /* tags a union; change later              */</pre><pre>  long     tag;    /* the TAG value of MEM_Names of this type */</pre><pre>  long     mask;   /* the mask for tags of this type          */</pre><pre>  void     (*dumpInfo)(/* FILE* f, MEM_Name x */);</pre><pre>  void     (*allNames)(/* MEM_Name x, MEM_Name act(MEM_Name x) */);</pre><pre>  void     (*freeInfo)(/* MEM_Name x */);</pre><pre>  void     (* putInfo)(/* MEM_Name x */);</pre><pre>  void     (* getInfo)(/* MEM_Name x */);</pre><pre>};</pre><pre></pre><pre>ConcreteType( Node )</pre><pre>{</pre><pre>  Type     type;</pre><pre>  Node     q1;</pre><pre>  Node     q2;</pre><pre>  c_byte   mark;</pre><pre>  c_byte   root;</pre><pre>  /* client data structure follow here */</pre><pre>};</pre><pre></pre><pre>#define XMEM_ROOTVAL_FREE (False)</pre><pre>#define XMEM_ROOTVAL_ROOT (True)</pre><pre>#define XMEM_ROOTVAL_EXTR (0xff)</pre><pre></pre><pre>ConcreteType( ExtCptr )</pre><pre>/* "external" C-Pointers */</pre><pre>{</pre><pre>  StdCPtr ref;</pre><pre>};</pre><pre></pre><br><hr width="100%" size=2><h2><b> Macros </b></h2>
+<pre></pre><pre>#define MEM_Name_to_Node(X)       ((Node)(((c_byte*)(X))-SizeOf(Node)))</pre><pre>#define MEM_Name_to_Cptr(T,X)     ((T)(X))</pre><pre>#define MEM_Node_to_Cptr(T,X)     ((T)(((c_byte*)(X))+SizeOf(Node)))</pre><pre>#define MEM_Node_to_Name(X)       ((MEM_Name)(((c_byte*)(X))+SizeOf(Node)))</pre><pre>#define MEM_Cptr_to_old_Name(X)   ((MEM_Name)(X))</pre><pre>#define MEM_Cptr_to_new_Name(T,X) (MEM_toNode(T,X))</pre><pre>#define MEM_Cptr_to_Node(X)       ((Node)(((c_byte*)(X))-SizeOf(Node)))</pre><pre></pre><pre>#define MEM_Name_is_Node(X)   ((((long)(X))&1)==0 && (X) != NULL)</pre><pre>#define MEM_Name_in_Type(T,X) (MEM_Name_is_Node(X) && MEM_Name_to_Node(X)-&gt;type == (T))</pre><pre></pre><pre>/* the type of 'MEM_Name' is defined by [xmem] */</pre><pre></pre><pre>#define XTY_toC_MEM_Name(X) ((MEM_Name)(X))</pre><pre>#define XTY_toX_MEM_Name(X) ((MEM_Name)(X))</pre><pre>#define XTY_isX_MEM_Name(X) (C_True)</pre><pre>#define XTY_noR_MEM_Name(X) (MEM_Root_set((X),C_False))</pre><pre></pre>
+</body>
+</html>

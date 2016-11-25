@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{0806f7b0-8b16-4c0c-b47c-87e9c49de9c8}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Forms_c">
+      <UniqueIdentifier>{1f25a257-f4eb-4cd1-a47c-3beb5667304a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Forms">
+      <UniqueIdentifier>{47351afc-e001-4bc0-8fe2-cd996a0917d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Forms\Generated_c">
+      <UniqueIdentifier>{4813bf01-1d68-43c4-9f12-51d96e5e3b62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{3decc251-2237-4771-8fa5-7cfec4fca969}</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="qt3synctestimpl.cpp">
+      <Filter>Source Files\Forms_c</Filter>
+    </ClCompile>
+    <ClCompile Include="Generated\qt3synctest.cpp">
+      <Filter>Source Files\Forms\Generated_c</Filter>
+    </ClCompile>
+    <ClCompile Include="Generated\moc_qt3synctest.cpp">
+      <Filter>Source Files\Forms\Generated_c</Filter>
+    </ClCompile>
+    <ClCompile Include="Generated\moc_qt3synctestimpl.cpp">
+      <Filter>Source Files\Forms\Generated_c</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Generated\qt3synctest.h">
+      <Filter>Source Files\Forms\Generated_c</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="qt3synctestimpl.h">
+      <Filter>Source Files\Forms_c</Filter>
+    </CustomBuild>
+    <CustomBuild Include="qt3synctest.ui">
+      <Filter>Source Files\Forms</Filter>
+    </CustomBuild>
+  </ItemGroup>
+</Project>

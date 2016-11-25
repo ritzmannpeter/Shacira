@@ -1,0 +1,11 @@
+#! /bin/sh -ex
+
+case $1 in
+  -v|--verbose) verbose=--verbose ;;
+esac
+
+aclocal-1.4 ${verbose}
+libtoolize --force --copy
+autoheader ${verbose}
+automake-1.4 --foreign --add-missing --copy ${verbose}
+autoconf ${verbose}

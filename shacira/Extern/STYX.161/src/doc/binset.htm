@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[binset.h] Type: Binary Set</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[binset.h] Type: Binary Set</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="standard.htm">#include "standard.h"</a>
+<br>
+<br>
+<br>
+<br><hr width="100%" size=2><h2><b> Types and macros </b></h2>
+<br>
+   The elements in a binary set M with card(M) = N are represented by the numbers 0 .. N-1.
+
+
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b>BS_Set</b>
+<td align=left> Abstract binary set type 
+
+</table>
+<br> <b>Element, row and column index</b> 
+
+<br><pre>#define BS_RELEL(l,r,maxC)      ( ( ( ( l ) - 1 ) * ( maxC ) ) + ( r ) )
+                                /* r = SetElement 1 .. maxC */
+                                /* l = SetElement 1 ..      */
+#define BS_RIDX(v,maxC)         ( ( ( v ) - 1 ) / ( maxC ) + 1 )
+#define BS_CIDX(v,maxC)         ( ( ( v ) - 1 ) % ( maxC ) + 1 )
+
+</pre>
+<br><hr width="100%" size=2><h2><b> Basics </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>BS_Set <b>BS_init</b>(BS_Set set)</pre>
+<td bgcolor="#FFF0F5" align=left>initializes set
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>BS_Set <b>BS_create</b>(INT card)</pre>
+<td bgcolor="#FFF0F5" align=left>creates a binary set
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>INT <b>BS_card</b>(BS_Set set)</pre>
+<td bgcolor="#FFF0F5" align=left>cardinality of set
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>BS_delS</b>(BS_Set set)</pre>
+<td bgcolor="#FFF0F5" align=left>deletes set
+
+</table>
+<br><hr width="100%" size=2><h2><b> Operations and predicates on one set </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>INT <b>BS_setE</b>(INT element, BS_Set set)</pre>
+<td bgcolor="#FFF0F5" align=left>adds element to set
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>BS_delE</b>(INT element, BS_Set set)</pre>
+<td bgcolor="#FFF0F5" align=left>deletes element from set
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>BS_member</b>(INT element, BS_Set set)</pre>
+<td bgcolor="#FFF0F5" align=left>element in set ?
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>BS_empty</b>(BS_Set set)</pre>
+<td bgcolor="#FFF0F5" align=left>empty set ?
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>INT <b>BS_cnt</b>(BS_Set set)</pre>
+<td bgcolor="#FFF0F5" align=left>number of elements in set
+
+</table>
+<br><hr width="100%" size=2><h2><b> Operations and predicates on two sets </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>BS_equal</b>(BS_Set left, BS_Set right)</pre>
+<td bgcolor="#FFF0F5" align=left>left = right ?
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>BS_subset</b>(BS_Set left, BS_Set right)</pre>
+<td bgcolor="#FFF0F5" align=left>left &lt;= right ?
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>BS_Set <b>BS_copy</b>(BS_Set dst, BS_Set src)</pre>
+<td bgcolor="#FFF0F5" align=left>copies src to dst
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>BS_Set <b>BS_union</b>(BS_Set dst, BS_Set left, BS_Set right)</pre>
+<td bgcolor="#FFF0F5" align=left> dst = left U right <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>BS_Set <b>BS_minus</b>(BS_Set dst, BS_Set left, BS_Set right)</pre>
+<td bgcolor="#FFF0F5" align=left> dst = left - right <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>BS_Set <b>BS_inter</b>(BS_Set dst, BS_Set left, BS_Set right)</pre>
+<td bgcolor="#FFF0F5" align=left> dst = left & right <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Binary graph </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>INT <b>BS_setGE</b>(BS_Set rel, INT SetCard, INT from, INT to)</pre>
+<td bgcolor="#FFF0F5" align=left> adds a vertice, requires initialized rel <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>BS_Set <b>BS_setG</b>(BS_Set rel, INT SetCard, c_bool (*isRel)(INT from, INT to))</pre>
+<td bgcolor="#FFF0F5" align=left> adds vertices, requires initialized rel <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>BS_Set <b>BS_copyR</b>(BS_Set rel, BS_Set set, INT row, c_bool toGraph)</pre>
+<td bgcolor="#FFF0F5" align=left> copies set to rel[row] (toGraph = True), rel[row] to set (toGraph = False) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>INT <b>BS_findR</b>(BS_Set rel, BS_Set set)</pre>
+<td bgcolor="#FFF0F5" align=left> searches row with rel[row] = set, returns<br>
+   row = 1 .. ( BS__CARD(rel) / BS__CARD(set) ) oder 0<br>
+<br>
+
+</table>
+<br> <br><b>The following functions require binary relations over a single domain.</b><br> 
+
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>BS_Set <b>BS_trans</b>(BS_Set rel, INT SetCard)</pre>
+<td bgcolor="#FFF0F5" align=left> reverse relation / transponent matrix rel' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>BS_Set <b>BS_rclosure</b>(BS_Set dst, BS_Set rel, INT SetCard)</pre>
+<td bgcolor="#FFF0F5" align=left> reflexive closure dst = rel U id <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>BS_Set <b>BS_sclosure</b>(BS_Set dst, BS_Set rel, INT SetCard)</pre>
+<td bgcolor="#FFF0F5" align=left> symmetric closure dst = rel U rel' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>BS_Set <b>BS_iclosure</b>(BS_Set dst, BS_Set rel, INT SetCard)</pre>
+<td bgcolor="#FFF0F5" align=left> (Warshall in N*N-Platz, vgl. Mehlhorn) transitive closure dst = rel+ <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>BS_Set <b>BS_closure</b>(BS_Set dst, BS_Set rel, INT SetCard)</pre>
+<td bgcolor="#FFF0F5" align=left> (Warshall) transitive, reflexive closure dst = rel* <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>BS_Set <b>BS_eclosure</b>(BS_Set dst, BS_Set rel, INT SetCard)</pre>
+<td bgcolor="#FFF0F5" align=left> equivalence relation dst = (rel U rel')* <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>BS_Set <b>BS_kern</b>(BS_Set dst, BS_Set rel, INT SetCard)</pre>
+<td bgcolor="#FFF0F5" align=left> kernel dst = rel\square(rel), requires rel = strict order <br>
+
+</table>
+
+</body>
+</html>

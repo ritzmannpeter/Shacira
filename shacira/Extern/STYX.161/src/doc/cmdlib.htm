@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[cmdlib.h] CMD Compiler Library</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[cmdlib.h] CMD Compiler Library</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="standard.htm">#include "standard.h"</a>
+<br><a href="cmd_int.htm">#include "cmd_int.h"</a>
+<br>
+<br>
+<br>
+<br><hr width="100%" size=2><h2><b> Command description parsing and evaluation </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>cmdSource <b>CMD_init</b>(c_string ctx, c_string cmdid, c_bool envflg)</pre>
+<td bgcolor="#FFF0F5" align=left> get command description from file ['ctx'/'cmdid'.cmd]<br>
+   'envflg' --&gt; 'ctx' is treated as environment variable<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>CMD_done</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>throughout with command description
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>CMD_FidString</b>(GLS_Lst(GLS_Tok) f)</pre>
+<td bgcolor="#FFF0F5" align=left> translates file specification 'f' into a string; allocs memory <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_string <b>CMD_Val_to_String</b>(cmdVal val)</pre>
+<td bgcolor="#FFF0F5" align=left> translates argument specification 'val' into a string; allocs memory <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>long <b>CMD_NumberOfValues</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>number of context variables
+
+</table>
+
+</body>
+</html>

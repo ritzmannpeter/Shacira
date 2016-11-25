@@ -1,0 +1,239 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[scn_abs.h] Abstract Scanner Interface</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[scn_abs.h] Abstract Scanner Interface</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="symbols.htm">#include "symbols.h"</a>
+<br>
+<br>
+<br>
+<br>
+   <p>This module [scn_abs] provides an abstract scanner interface for the
+   term generation module <a href="ptm_gen.htm">[ptm_gen]</a>.
+   <p>It can be used to integrate an externally defined scanner with the STYX term
+   generation facility.
+
+
+<br><hr width="100%" size=2><h2><b> The Types </b></h2>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b>AbsScn_T</b>
+<td align=left> Abstract scanner interface type 
+
+</table>
+<br><pre>
+  Types of the scanner (interface) functions
+
+</pre>
+<br><pre>typedef void     (*SF_scan      )(Abs_T scanner);
+typedef short    (*SF_tok       )(Abs_T scanner);
+typedef symbol   (*SF_symbol    )(Abs_T scanner);
+typedef long     (*SF_pos       )(Abs_T scanner);
+typedef c_bool   (*SF_flag      )(Abs_T scanner);
+typedef void     (*SF_defID     )(Abs_T scanner, short id);
+typedef void     (*SF_defTxtID  )(Abs_T scanner, c_string text, short id);
+typedef void     (*SF_defWCTxtID)(Abs_T scanner, wc_string text, short id);
+typedef Any_T    (*SIF_eTerm    )
+                 (
+                   Abs_T CurPTCfg, c_string language, c_string StartSymbol
+                 );
+typedef c_bool   (*SIF_eAccept  )(Abs_T CurPTCfg);
+
+</pre>
+<br><hr width="100%" size=2><h2><b> Init & Quit </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>AbsScn_T <b>AS_init</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>creates an abstract scanner interface
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>AS_quit</b>(AbsScn_T sconfig)</pre>
+<td bgcolor="#FFF0F5" align=left> removes abstract scanner interface 'sconfig' <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Specification of the external scanner interface </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>AS_setScanner</b>(AbsScn_T sconfig, Abs_T scanner)</pre>
+<td bgcolor="#FFF0F5" align=left> specifies the external 'scanner' of the abstract interface 'sconfig'<br>
+   ( see Scn_Stream )<br>
+<br>
+
+</table>
+<br>
+  <p>An external defined scanner must provide the following interface
+     functions. They have to be assigned to the abstract scanner interface
+     before initializing the term generation. That module calls them
+     during the construction of the derivation tree.
+
+
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>AS_setFunNextTok</b>(AbsScn_T sconfig, SF_scan nextTok)</pre>
+<td bgcolor="#FFF0F5" align=left> specifies 'nextTok' as corresponding function for Stream_next<br>
+   in the abstract interface 'sconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>AS_setFunTokID</b>(AbsScn_T sconfig, SF_tok tokID)</pre>
+<td bgcolor="#FFF0F5" align=left> specifies 'tokID' as corresponding function for Stream_ctid<br>
+   in the abstract interface 'sconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>AS_setFunTokSym</b>(AbsScn_T sconfig, SF_symbol tokSym)</pre>
+<td bgcolor="#FFF0F5" align=left> specifies 'tokSym' as corresponding function for Stream_csym<br>
+   in the abstract interface 'sconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>AS_setFunStreamSym</b>(AbsScn_T sconfig, SF_symbol streamSym)</pre>
+<td bgcolor="#FFF0F5" align=left> specifies 'streamSym' as corresponding function for Stream_cfil<br>
+   in the abstract interface 'sconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>AS_setFunTokRow</b>(AbsScn_T sconfig, SF_pos tokRow)</pre>
+<td bgcolor="#FFF0F5" align=left> specifies 'tokRow' as corresponding function for Stream_clin<br>
+   in the abstract interface 'sconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>AS_setFunTokCol</b>(AbsScn_T sconfig, SF_pos tokCol)</pre>
+<td bgcolor="#FFF0F5" align=left> specifies 'tokCol' as corresponding function for Stream_ccol<br>
+   in the abstract interface 'sconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>AS_setFunUnicode</b>(AbsScn_T sconfig, SF_flag unicode)</pre>
+<td bgcolor="#FFF0F5" align=left> specifies 'tokCol' as corresponding function for Stream_ccol<br>
+   in the abstract interface 'sconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>AS_setFunDefEofID</b>(AbsScn_T sconfig, SF_defID defEofID)</pre>
+<td bgcolor="#FFF0F5" align=left> specifies 'defEofID' as corresponding function for Stream_defEofId<br>
+   in the abstract interface 'sconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>AS_setFunDefErrID</b>(AbsScn_T sconfig, SF_defID defErrID)</pre>
+<td bgcolor="#FFF0F5" align=left> specifies 'defErrID' as corresponding function for Stream_defErrId<br>
+   in the abstract interface 'sconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>AS_setFunDefTokID</b>(AbsScn_T sconfig, SF_defTxtID defTokID)</pre>
+<td bgcolor="#FFF0F5" align=left> specifies 'defTokID' as corresponding function for Stream_defTokId<br>
+   in the abstract interface 'sconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>AS_setFunDefKeyID</b>(AbsScn_T sconfig, SF_defTxtID defKeyID)</pre>
+<td bgcolor="#FFF0F5" align=left> specifies 'defKeyID' as corresponding function for Stream_defKeyId<br>
+   in the abstract interface 'sconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>AS_setFunDefWCKeyID</b>(AbsScn_T sconfig, SF_defWCTxtID defWCKeyID)</pre>
+<td bgcolor="#FFF0F5" align=left> specifies 'defWCKeyID' as corresponding function for Stream_defWCKeyId<br>
+   in the abstract interface 'sconfig'<br>
+<br>
+
+</table>
+<br>
+  <p>An external defined scanner must call the following handler
+     to construct an embedded language token.
+     This handler will be set by the term construction module.
+
+
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>AS_setETermInfo</b>
+     (
+       AbsScn_T sconfig, Abs_T CurPTCfg, SIF_eTerm eTerm, SIF_eAccept eAccept
+     )</pre>
+<td bgcolor="#FFF0F5" align=left> specifies 'eTerm' as embedded language token constructor and<br>
+   'eAccept' as embedded language accept token recognizer<br>
+   in the abstract interface 'sconfig'<br>
+<br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Accessing the external scanner interface </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Abs_T <b>AS_getScanner</b>(AbsScn_T sconfig)</pre>
+<td bgcolor="#FFF0F5" align=left> get the external scanner of the abstract interface 'sconfig' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>SF_scan <b>AS_getFunNextTok</b>(AbsScn_T sconfig)</pre>
+<td bgcolor="#FFF0F5" align=left> get the corresponding function for Stream_next<br>
+   in the abstract interface 'sconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>SF_tok <b>AS_getFunTokID</b>(AbsScn_T sconfig)</pre>
+<td bgcolor="#FFF0F5" align=left> get the corresponding function for Stream_ctid<br>
+   in the abstract interface 'sconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>SF_symbol <b>AS_getFunTokSym</b>(AbsScn_T sconfig)</pre>
+<td bgcolor="#FFF0F5" align=left> get the corresponding function for Stream_csym<br>
+   in the abstract interface 'sconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>SF_symbol <b>AS_getFunStreamSym</b>(AbsScn_T sconfig)</pre>
+<td bgcolor="#FFF0F5" align=left> get the corresponding function for Stream_cfil<br>
+   in the abstract interface 'sconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>SF_pos <b>AS_getFunTokRow</b>(AbsScn_T sconfig)</pre>
+<td bgcolor="#FFF0F5" align=left> get the corresponding function for Stream_clin<br>
+   in the abstract interface 'sconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>SF_pos <b>AS_getFunTokCol</b>(AbsScn_T sconfig)</pre>
+<td bgcolor="#FFF0F5" align=left> get the corresponding function for Stream_ccol<br>
+   in the abstract interface 'sconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>SF_flag <b>AS_getFunUnicode</b>(AbsScn_T sconfig)</pre>
+<td bgcolor="#FFF0F5" align=left> get the corresponding function for Stream_ccol<br>
+   in the abstract interface 'sconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>SF_defID <b>AS_getFunDefEofID</b>(AbsScn_T sconfig)</pre>
+<td bgcolor="#FFF0F5" align=left> get the corresponding function for Stream_defEofId<br>
+   in the abstract interface 'sconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>SF_defID <b>AS_getFunDefErrID</b>(AbsScn_T sconfig)</pre>
+<td bgcolor="#FFF0F5" align=left> get the corresponding function for Stream_defErrId<br>
+   in the abstract interface 'sconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>SF_defTxtID <b>AS_getFunDefTokID</b>(AbsScn_T sconfig)</pre>
+<td bgcolor="#FFF0F5" align=left> get the corresponding function for Stream_defTokId<br>
+   in the abstract interface 'sconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>SF_defTxtID <b>AS_getFunDefKeyID</b>(AbsScn_T sconfig)</pre>
+<td bgcolor="#FFF0F5" align=left> get the corresponding function for Stream_defKeyId<br>
+   in the abstract interface 'sconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>SF_defWCTxtID <b>AS_getFunDefWCKeyID</b>(AbsScn_T sconfig)</pre>
+<td bgcolor="#FFF0F5" align=left> get the corresponding function for Stream_defWCKeyId<br>
+   in the abstract interface 'sconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>SIF_eTerm <b>AS_getFunETerm</b>(AbsScn_T sconfig)</pre>
+<td bgcolor="#FFF0F5" align=left> get the embedded language token constructor<br>
+   from the abstract interface 'sconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>SIF_eAccept <b>AS_getEofETerm</b>(AbsScn_T sconfig)</pre>
+<td bgcolor="#FFF0F5" align=left> get the embedded language accept token recognizer<br>
+   from the abstract interface 'sconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Abs_T <b>AS_getCurPTCfg</b>(AbsScn_T sconfig)</pre>
+<td bgcolor="#FFF0F5" align=left> get the current parse term configuration<br>
+   from the abstract interface 'sconfig'<br>
+<br>
+
+</table>
+
+</body>
+</html>

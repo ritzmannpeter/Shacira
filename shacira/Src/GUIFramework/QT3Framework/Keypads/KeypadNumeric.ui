@@ -1,0 +1,1091 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>cQtKeypadNumericBase</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>cQtKeypadNumericBase</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>260</width>
+            <height>429</height>
+        </rect>
+    </property>
+    <property name="sizePolicy">
+        <sizepolicy>
+            <hsizetype>0</hsizetype>
+            <vsizetype>0</vsizetype>
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+        </sizepolicy>
+    </property>
+    <property name="minimumSize">
+        <size>
+            <width>260</width>
+            <height>429</height>
+        </size>
+    </property>
+    <property name="maximumSize">
+        <size>
+            <width>260</width>
+            <height>429</height>
+        </size>
+    </property>
+    <property name="font">
+        <font>
+            <family>Arial</family>
+            <pointsize>11</pointsize>
+        </font>
+    </property>
+    <property name="caption">
+        <string>cQtKeypadNumericBase</string>
+    </property>
+    <vbox>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <property name="margin">
+            <number>0</number>
+        </property>
+        <property name="spacing">
+            <number>0</number>
+        </property>
+        <widget class="QFrame">
+            <property name="name">
+                <cstring>frame4</cstring>
+            </property>
+            <property name="frameShape">
+                <enum>StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+                <enum>Raised</enum>
+            </property>
+            <vbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <property name="margin">
+                    <number>6</number>
+                </property>
+                <widget class="QLayoutWidget">
+                    <property name="name">
+                        <cstring>layout3</cstring>
+                    </property>
+                    <grid>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <widget class="QLineEdit" row="1" column="1">
+                            <property name="name">
+                                <cstring>_new</cstring>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>7</hsizetype>
+                                    <vsizetype>0</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <pointsize>14</pointsize>
+                                </font>
+                            </property>
+                            <property name="frameShape">
+                                <enum>LineEditPanel</enum>
+                            </property>
+                            <property name="frameShadow">
+                                <enum>Sunken</enum>
+                            </property>
+                            <property name="alignment">
+                                <set>AlignRight</set>
+                            </property>
+                        </widget>
+                        <widget class="QWidgetStack" row="0" column="0">
+                            <property name="name">
+                                <cstring>wStackLabelActual</cstring>
+                            </property>
+                            <property name="minimumSize">
+                                <size>
+                                    <width>119</width>
+                                    <height>28</height>
+                                </size>
+                            </property>
+                            <property name="maximumSize">
+                                <size>
+                                    <width>119</width>
+                                    <height>28</height>
+                                </size>
+                            </property>
+                            <widget class="QWidget">
+                                <property name="name">
+                                    <cstring>WStackPage</cstring>
+                                </property>
+                                <attribute name="id">
+                                    <number>0</number>
+                                </attribute>
+                                <widget class="QLabel">
+                                    <property name="name">
+                                        <cstring>label_current</cstring>
+                                    </property>
+                                    <property name="geometry">
+                                        <rect>
+                                            <x>3</x>
+                                            <y>2</y>
+                                            <width>114</width>
+                                            <height>23</height>
+                                        </rect>
+                                    </property>
+                                    <property name="font">
+                                        <font>
+                                            <pointsize>14</pointsize>
+                                        </font>
+                                    </property>
+                                    <property name="text">
+                                        <string>Aktuell</string>
+                                    </property>
+                                </widget>
+                            </widget>
+                            <widget class="QWidget">
+                                <property name="name">
+                                    <cstring>WStackPage</cstring>
+                                </property>
+                                <attribute name="id">
+                                    <number>1</number>
+                                </attribute>
+                                <widget class="QLabel">
+                                    <property name="name">
+                                        <cstring>label_current_2</cstring>
+                                    </property>
+                                    <property name="geometry">
+                                        <rect>
+                                            <x>3</x>
+                                            <y>2</y>
+                                            <width>114</width>
+                                            <height>23</height>
+                                        </rect>
+                                    </property>
+                                    <property name="font">
+                                        <font>
+                                            <pointsize>14</pointsize>
+                                        </font>
+                                    </property>
+                                    <property name="text">
+                                        <string>Actual</string>
+                                    </property>
+                                </widget>
+                            </widget>
+                        </widget>
+                        <widget class="QLineEdit" row="1" column="0">
+                            <property name="name">
+                                <cstring>_current</cstring>
+                            </property>
+                            <property name="enabled">
+                                <bool>false</bool>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>7</hsizetype>
+                                    <vsizetype>0</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <pointsize>14</pointsize>
+                                </font>
+                            </property>
+                            <property name="frameShape">
+                                <enum>LineEditPanel</enum>
+                            </property>
+                            <property name="frameShadow">
+                                <enum>Sunken</enum>
+                            </property>
+                            <property name="alignment">
+                                <set>AlignRight</set>
+                            </property>
+                            <property name="readOnly">
+                                <bool>true</bool>
+                            </property>
+                        </widget>
+                        <widget class="QWidgetStack" row="0" column="1">
+                            <property name="name">
+                                <cstring>wStackLabelNew</cstring>
+                            </property>
+                            <property name="minimumSize">
+                                <size>
+                                    <width>119</width>
+                                    <height>28</height>
+                                </size>
+                            </property>
+                            <property name="maximumSize">
+                                <size>
+                                    <width>119</width>
+                                    <height>28</height>
+                                </size>
+                            </property>
+                            <widget class="QWidget">
+                                <property name="name">
+                                    <cstring>WStackPage</cstring>
+                                </property>
+                                <attribute name="id">
+                                    <number>0</number>
+                                </attribute>
+                                <widget class="QLabel">
+                                    <property name="name">
+                                        <cstring>label_new</cstring>
+                                    </property>
+                                    <property name="geometry">
+                                        <rect>
+                                            <x>3</x>
+                                            <y>2</y>
+                                            <width>114</width>
+                                            <height>23</height>
+                                        </rect>
+                                    </property>
+                                    <property name="font">
+                                        <font>
+                                            <pointsize>14</pointsize>
+                                        </font>
+                                    </property>
+                                    <property name="text">
+                                        <string>Neu</string>
+                                    </property>
+                                </widget>
+                            </widget>
+                            <widget class="QWidget">
+                                <property name="name">
+                                    <cstring>WStackPage</cstring>
+                                </property>
+                                <attribute name="id">
+                                    <number>1</number>
+                                </attribute>
+                                <widget class="QLabel">
+                                    <property name="name">
+                                        <cstring>label_new_2</cstring>
+                                    </property>
+                                    <property name="geometry">
+                                        <rect>
+                                            <x>3</x>
+                                            <y>2</y>
+                                            <width>114</width>
+                                            <height>23</height>
+                                        </rect>
+                                    </property>
+                                    <property name="font">
+                                        <font>
+                                            <pointsize>14</pointsize>
+                                        </font>
+                                    </property>
+                                    <property name="text">
+                                        <string>New</string>
+                                    </property>
+                                </widget>
+                            </widget>
+                        </widget>
+                    </grid>
+                </widget>
+                <widget class="QFrame">
+                    <property name="name">
+                        <cstring>frame3</cstring>
+                    </property>
+                    <property name="font">
+                        <font>
+                        </font>
+                    </property>
+                    <property name="frameShape">
+                        <enum>NoFrame</enum>
+                    </property>
+                    <property name="frameShadow">
+                        <enum>Raised</enum>
+                    </property>
+                    <hbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <property name="margin">
+                            <number>3</number>
+                        </property>
+                        <property name="spacing">
+                            <number>8</number>
+                        </property>
+                        <widget class="QWidgetStack">
+                            <property name="name">
+                                <cstring>wStackMinLabel</cstring>
+                            </property>
+                            <property name="minimumSize">
+                                <size>
+                                    <width>57</width>
+                                    <height>23</height>
+                                </size>
+                            </property>
+                            <property name="maximumSize">
+                                <size>
+                                    <width>57</width>
+                                    <height>23</height>
+                                </size>
+                            </property>
+                            <property name="font">
+                                <font>
+                                </font>
+                            </property>
+                            <widget class="QWidget">
+                                <property name="name">
+                                    <cstring>WStackPage</cstring>
+                                </property>
+                                <attribute name="id">
+                                    <number>0</number>
+                                </attribute>
+                                <widget class="QLabel">
+                                    <property name="name">
+                                        <cstring>textLabel1_3</cstring>
+                                    </property>
+                                    <property name="geometry">
+                                        <rect>
+                                            <x>3</x>
+                                            <y>3</y>
+                                            <width>52</width>
+                                            <height>18</height>
+                                        </rect>
+                                    </property>
+                                    <property name="text">
+                                        <string>Von</string>
+                                    </property>
+                                </widget>
+                            </widget>
+                            <widget class="QWidget">
+                                <property name="name">
+                                    <cstring>WStackPage</cstring>
+                                </property>
+                                <attribute name="id">
+                                    <number>1</number>
+                                </attribute>
+                                <widget class="QLabel">
+                                    <property name="name">
+                                        <cstring>textLabel1_3_2</cstring>
+                                    </property>
+                                    <property name="geometry">
+                                        <rect>
+                                            <x>3</x>
+                                            <y>3</y>
+                                            <width>52</width>
+                                            <height>18</height>
+                                        </rect>
+                                    </property>
+                                    <property name="text">
+                                        <string>Min</string>
+                                    </property>
+                                </widget>
+                            </widget>
+                        </widget>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>_lower_limit</cstring>
+                            </property>
+                            <property name="alignment">
+                                <set>AlignVCenter|AlignRight</set>
+                            </property>
+                        </widget>
+                        <widget class="QWidgetStack">
+                            <property name="name">
+                                <cstring>wStackMaxLabel</cstring>
+                            </property>
+                            <property name="minimumSize">
+                                <size>
+                                    <width>57</width>
+                                    <height>23</height>
+                                </size>
+                            </property>
+                            <property name="maximumSize">
+                                <size>
+                                    <width>57</width>
+                                    <height>23</height>
+                                </size>
+                            </property>
+                            <property name="font">
+                                <font>
+                                </font>
+                            </property>
+                            <widget class="QWidget">
+                                <property name="name">
+                                    <cstring>WStackPage</cstring>
+                                </property>
+                                <attribute name="id">
+                                    <number>0</number>
+                                </attribute>
+                                <widget class="QLabel">
+                                    <property name="name">
+                                        <cstring>textLabel1_3_3</cstring>
+                                    </property>
+                                    <property name="geometry">
+                                        <rect>
+                                            <x>3</x>
+                                            <y>3</y>
+                                            <width>52</width>
+                                            <height>18</height>
+                                        </rect>
+                                    </property>
+                                    <property name="text">
+                                        <string>Bis</string>
+                                    </property>
+                                </widget>
+                            </widget>
+                            <widget class="QWidget">
+                                <property name="name">
+                                    <cstring>WStackPage</cstring>
+                                </property>
+                                <attribute name="id">
+                                    <number>1</number>
+                                </attribute>
+                                <widget class="QLabel">
+                                    <property name="name">
+                                        <cstring>textLabel1_3_2_2</cstring>
+                                    </property>
+                                    <property name="geometry">
+                                        <rect>
+                                            <x>3</x>
+                                            <y>3</y>
+                                            <width>52</width>
+                                            <height>18</height>
+                                        </rect>
+                                    </property>
+                                    <property name="text">
+                                        <string>Max</string>
+                                    </property>
+                                </widget>
+                            </widget>
+                        </widget>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>_upper_limit</cstring>
+                            </property>
+                            <property name="alignment">
+                                <set>AlignVCenter|AlignRight</set>
+                            </property>
+                        </widget>
+                    </hbox>
+                </widget>
+                <widget class="cQtKeyboardLayout">
+                    <property name="name">
+                        <cstring>_keyboard_layout</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>7</hsizetype>
+                            <vsizetype>7</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                        <size>
+                            <width>241</width>
+                            <height>172</height>
+                        </size>
+                    </property>
+                    <property name="keyHeight">
+                        <number>40</number>
+                    </property>
+                    <property name="keyWidth">
+                        <number>45</number>
+                    </property>
+                    <vbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <property name="margin">
+                            <number>0</number>
+                        </property>
+                        <property name="spacing">
+                            <number>0</number>
+                        </property>
+                        <widget class="QLayoutWidget">
+                            <property name="name">
+                                <cstring>grid_layout</cstring>
+                            </property>
+                            <grid>
+                                <property name="name">
+                                    <cstring>unnamed</cstring>
+                                </property>
+                                <property name="margin">
+                                    <number>0</number>
+                                </property>
+                                <property name="spacing">
+                                    <number>4</number>
+                                </property>
+                                <widget class="cQtKeyboardButton" row="2" column="0">
+                                    <property name="name">
+                                        <cstring>_button_1</cstring>
+                                    </property>
+                                    <property name="sizePolicy">
+                                        <sizepolicy>
+                                            <hsizetype>7</hsizetype>
+                                            <vsizetype>7</vsizetype>
+                                            <horstretch>0</horstretch>
+                                            <verstretch>0</verstretch>
+                                        </sizepolicy>
+                                    </property>
+                                    <property name="focusPolicy">
+                                        <enum>NoFocus</enum>
+                                    </property>
+                                    <property name="text">
+                                        <string>1</string>
+                                    </property>
+                                    <property name="keyFont">
+                                        <enum>fontBigFont</enum>
+                                    </property>
+                                    <property name="keyValue">
+                                        <string>1</string>
+                                    </property>
+                                </widget>
+                                <widget class="cQtKeyboardButton" row="0" column="3">
+                                    <property name="name">
+                                        <cstring>_button_left</cstring>
+                                    </property>
+                                    <property name="sizePolicy">
+                                        <sizepolicy>
+                                            <hsizetype>7</hsizetype>
+                                            <vsizetype>7</vsizetype>
+                                            <horstretch>0</horstretch>
+                                            <verstretch>0</verstretch>
+                                        </sizepolicy>
+                                    </property>
+                                    <property name="focusPolicy">
+                                        <enum>NoFocus</enum>
+                                    </property>
+                                    <property name="text">
+                                        <string></string>
+                                    </property>
+                                    <property name="pixmap">
+                                        <pixmap>image0</pixmap>
+                                    </property>
+                                    <property name="keyType">
+                                        <enum>typeLeft</enum>
+                                    </property>
+                                </widget>
+                                <widget class="cQtKeyboardButton" row="2" column="3" rowspan="1" colspan="2">
+                                    <property name="name">
+                                        <cstring>_button_esc</cstring>
+                                    </property>
+                                    <property name="sizePolicy">
+                                        <sizepolicy>
+                                            <hsizetype>7</hsizetype>
+                                            <vsizetype>7</vsizetype>
+                                            <horstretch>0</horstretch>
+                                            <verstretch>0</verstretch>
+                                        </sizepolicy>
+                                    </property>
+                                    <property name="focusPolicy">
+                                        <enum>NoFocus</enum>
+                                    </property>
+                                    <property name="text">
+                                        <string></string>
+                                    </property>
+                                    <property name="pixmap">
+                                        <pixmap>image1</pixmap>
+                                    </property>
+                                    <property name="keyFont">
+                                        <enum>fontBigFont</enum>
+                                    </property>
+                                    <property name="keyType">
+                                        <enum>typeCancel</enum>
+                                    </property>
+                                    <property name="keyWidthX10">
+                                        <number>20</number>
+                                    </property>
+                                </widget>
+                                <widget class="cQtKeyboardButton" row="1" column="1">
+                                    <property name="name">
+                                        <cstring>_button_5</cstring>
+                                    </property>
+                                    <property name="sizePolicy">
+                                        <sizepolicy>
+                                            <hsizetype>7</hsizetype>
+                                            <vsizetype>7</vsizetype>
+                                            <horstretch>0</horstretch>
+                                            <verstretch>0</verstretch>
+                                        </sizepolicy>
+                                    </property>
+                                    <property name="focusPolicy">
+                                        <enum>NoFocus</enum>
+                                    </property>
+                                    <property name="text">
+                                        <string>5</string>
+                                    </property>
+                                    <property name="keyFont">
+                                        <enum>fontBigFont</enum>
+                                    </property>
+                                    <property name="keyValue">
+                                        <string>5</string>
+                                    </property>
+                                </widget>
+                                <widget class="cQtKeyboardButton" row="3" column="2">
+                                    <property name="name">
+                                        <cstring>_button_decimal</cstring>
+                                    </property>
+                                    <property name="sizePolicy">
+                                        <sizepolicy>
+                                            <hsizetype>7</hsizetype>
+                                            <vsizetype>7</vsizetype>
+                                            <horstretch>0</horstretch>
+                                            <verstretch>0</verstretch>
+                                        </sizepolicy>
+                                    </property>
+                                    <property name="focusPolicy">
+                                        <enum>NoFocus</enum>
+                                    </property>
+                                    <property name="text">
+                                        <string>.</string>
+                                    </property>
+                                    <property name="keyFont">
+                                        <enum>fontBigFont</enum>
+                                    </property>
+                                    <property name="keyValue">
+                                        <string>.</string>
+                                    </property>
+                                </widget>
+                                <widget class="cQtKeyboardButton" row="1" column="4">
+                                    <property name="name">
+                                        <cstring>_button_clear</cstring>
+                                    </property>
+                                    <property name="sizePolicy">
+                                        <sizepolicy>
+                                            <hsizetype>7</hsizetype>
+                                            <vsizetype>7</vsizetype>
+                                            <horstretch>0</horstretch>
+                                            <verstretch>0</verstretch>
+                                        </sizepolicy>
+                                    </property>
+                                    <property name="focusPolicy">
+                                        <enum>NoFocus</enum>
+                                    </property>
+                                    <property name="text">
+                                        <string></string>
+                                    </property>
+                                    <property name="pixmap">
+                                        <pixmap>image2</pixmap>
+                                    </property>
+                                    <property name="keyFont">
+                                        <enum>fontBigFont</enum>
+                                    </property>
+                                    <property name="keyType">
+                                        <enum>typeClear</enum>
+                                    </property>
+                                    <property name="keyValue">
+                                        <string>Clear</string>
+                                    </property>
+                                </widget>
+                                <widget class="cQtKeyboardButton" row="0" column="2">
+                                    <property name="name">
+                                        <cstring>_button_9</cstring>
+                                    </property>
+                                    <property name="sizePolicy">
+                                        <sizepolicy>
+                                            <hsizetype>7</hsizetype>
+                                            <vsizetype>7</vsizetype>
+                                            <horstretch>0</horstretch>
+                                            <verstretch>0</verstretch>
+                                        </sizepolicy>
+                                    </property>
+                                    <property name="focusPolicy">
+                                        <enum>NoFocus</enum>
+                                    </property>
+                                    <property name="text">
+                                        <string>9</string>
+                                    </property>
+                                    <property name="keyFont">
+                                        <enum>fontBigFont</enum>
+                                    </property>
+                                    <property name="keyValue">
+                                        <string>9</string>
+                                    </property>
+                                </widget>
+                                <widget class="cQtKeyboardButton" row="2" column="2">
+                                    <property name="name">
+                                        <cstring>_button_3</cstring>
+                                    </property>
+                                    <property name="sizePolicy">
+                                        <sizepolicy>
+                                            <hsizetype>7</hsizetype>
+                                            <vsizetype>7</vsizetype>
+                                            <horstretch>0</horstretch>
+                                            <verstretch>0</verstretch>
+                                        </sizepolicy>
+                                    </property>
+                                    <property name="focusPolicy">
+                                        <enum>NoFocus</enum>
+                                    </property>
+                                    <property name="text">
+                                        <string>3</string>
+                                    </property>
+                                    <property name="keyFont">
+                                        <enum>fontBigFont</enum>
+                                    </property>
+                                    <property name="keyValue">
+                                        <string>3</string>
+                                    </property>
+                                </widget>
+                                <widget class="cQtKeyboardButton" row="1" column="0">
+                                    <property name="name">
+                                        <cstring>_button_4</cstring>
+                                    </property>
+                                    <property name="sizePolicy">
+                                        <sizepolicy>
+                                            <hsizetype>7</hsizetype>
+                                            <vsizetype>7</vsizetype>
+                                            <horstretch>0</horstretch>
+                                            <verstretch>0</verstretch>
+                                        </sizepolicy>
+                                    </property>
+                                    <property name="focusPolicy">
+                                        <enum>NoFocus</enum>
+                                    </property>
+                                    <property name="text">
+                                        <string>4</string>
+                                    </property>
+                                    <property name="keyFont">
+                                        <enum>fontBigFont</enum>
+                                    </property>
+                                    <property name="keyValue">
+                                        <string>4</string>
+                                    </property>
+                                </widget>
+                                <widget class="cQtKeyboardButton" row="3" column="1">
+                                    <property name="name">
+                                        <cstring>_button_0</cstring>
+                                    </property>
+                                    <property name="sizePolicy">
+                                        <sizepolicy>
+                                            <hsizetype>7</hsizetype>
+                                            <vsizetype>7</vsizetype>
+                                            <horstretch>0</horstretch>
+                                            <verstretch>0</verstretch>
+                                        </sizepolicy>
+                                    </property>
+                                    <property name="focusPolicy">
+                                        <enum>NoFocus</enum>
+                                    </property>
+                                    <property name="text">
+                                        <string>0</string>
+                                    </property>
+                                    <property name="keyFont">
+                                        <enum>fontBigFont</enum>
+                                    </property>
+                                    <property name="keyValue">
+                                        <string>0</string>
+                                    </property>
+                                    <property name="keyWidthX10">
+                                        <number>10</number>
+                                    </property>
+                                </widget>
+                                <widget class="cQtKeyboardButton" row="1" column="3">
+                                    <property name="name">
+                                        <cstring>_button_back</cstring>
+                                    </property>
+                                    <property name="sizePolicy">
+                                        <sizepolicy>
+                                            <hsizetype>7</hsizetype>
+                                            <vsizetype>7</vsizetype>
+                                            <horstretch>0</horstretch>
+                                            <verstretch>0</verstretch>
+                                        </sizepolicy>
+                                    </property>
+                                    <property name="focusPolicy">
+                                        <enum>NoFocus</enum>
+                                    </property>
+                                    <property name="text">
+                                        <string></string>
+                                    </property>
+                                    <property name="pixmap">
+                                        <pixmap>image3</pixmap>
+                                    </property>
+                                    <property name="keyType">
+                                        <enum>typeBackspace</enum>
+                                    </property>
+                                </widget>
+                                <widget class="cQtKeyboardButton" row="0" column="1">
+                                    <property name="name">
+                                        <cstring>_button_8</cstring>
+                                    </property>
+                                    <property name="sizePolicy">
+                                        <sizepolicy>
+                                            <hsizetype>7</hsizetype>
+                                            <vsizetype>7</vsizetype>
+                                            <horstretch>0</horstretch>
+                                            <verstretch>0</verstretch>
+                                        </sizepolicy>
+                                    </property>
+                                    <property name="focusPolicy">
+                                        <enum>NoFocus</enum>
+                                    </property>
+                                    <property name="text">
+                                        <string>8</string>
+                                    </property>
+                                    <property name="keyFont">
+                                        <enum>fontBigFont</enum>
+                                    </property>
+                                    <property name="keyValue">
+                                        <string>8</string>
+                                    </property>
+                                </widget>
+                                <widget class="cQtKeyboardButton" row="2" column="1">
+                                    <property name="name">
+                                        <cstring>_button_2</cstring>
+                                    </property>
+                                    <property name="sizePolicy">
+                                        <sizepolicy>
+                                            <hsizetype>7</hsizetype>
+                                            <vsizetype>7</vsizetype>
+                                            <horstretch>0</horstretch>
+                                            <verstretch>0</verstretch>
+                                        </sizepolicy>
+                                    </property>
+                                    <property name="focusPolicy">
+                                        <enum>NoFocus</enum>
+                                    </property>
+                                    <property name="text">
+                                        <string>2</string>
+                                    </property>
+                                    <property name="keyFont">
+                                        <enum>fontBigFont</enum>
+                                    </property>
+                                    <property name="keyValue">
+                                        <string>2</string>
+                                    </property>
+                                </widget>
+                                <widget class="cQtKeyboardButton" row="0" column="4">
+                                    <property name="name">
+                                        <cstring>_button_right</cstring>
+                                    </property>
+                                    <property name="sizePolicy">
+                                        <sizepolicy>
+                                            <hsizetype>7</hsizetype>
+                                            <vsizetype>7</vsizetype>
+                                            <horstretch>0</horstretch>
+                                            <verstretch>0</verstretch>
+                                        </sizepolicy>
+                                    </property>
+                                    <property name="focusPolicy">
+                                        <enum>NoFocus</enum>
+                                    </property>
+                                    <property name="text">
+                                        <string></string>
+                                    </property>
+                                    <property name="pixmap">
+                                        <pixmap>image4</pixmap>
+                                    </property>
+                                    <property name="keyType">
+                                        <enum>typeRight</enum>
+                                    </property>
+                                </widget>
+                                <widget class="cQtKeyboardButton" row="3" column="0">
+                                    <property name="name">
+                                        <cstring>_button_sign</cstring>
+                                    </property>
+                                    <property name="sizePolicy">
+                                        <sizepolicy>
+                                            <hsizetype>7</hsizetype>
+                                            <vsizetype>7</vsizetype>
+                                            <horstretch>0</horstretch>
+                                            <verstretch>0</verstretch>
+                                        </sizepolicy>
+                                    </property>
+                                    <property name="focusPolicy">
+                                        <enum>NoFocus</enum>
+                                    </property>
+                                    <property name="text">
+                                        <string>+/-</string>
+                                    </property>
+                                    <property name="keyFont">
+                                        <enum>fontBigFont</enum>
+                                    </property>
+                                    <property name="keyType">
+                                        <enum>typeSign</enum>
+                                    </property>
+                                </widget>
+                                <widget class="cQtKeyboardButton" row="1" column="2">
+                                    <property name="name">
+                                        <cstring>_button_6</cstring>
+                                    </property>
+                                    <property name="sizePolicy">
+                                        <sizepolicy>
+                                            <hsizetype>7</hsizetype>
+                                            <vsizetype>7</vsizetype>
+                                            <horstretch>0</horstretch>
+                                            <verstretch>0</verstretch>
+                                        </sizepolicy>
+                                    </property>
+                                    <property name="focusPolicy">
+                                        <enum>NoFocus</enum>
+                                    </property>
+                                    <property name="text">
+                                        <string>6</string>
+                                    </property>
+                                    <property name="keyFont">
+                                        <enum>fontBigFont</enum>
+                                    </property>
+                                    <property name="keyValue">
+                                        <string>6</string>
+                                    </property>
+                                </widget>
+                                <widget class="cQtKeyboardButton" row="0" column="0">
+                                    <property name="name">
+                                        <cstring>_button_7</cstring>
+                                    </property>
+                                    <property name="sizePolicy">
+                                        <sizepolicy>
+                                            <hsizetype>7</hsizetype>
+                                            <vsizetype>7</vsizetype>
+                                            <horstretch>0</horstretch>
+                                            <verstretch>0</verstretch>
+                                        </sizepolicy>
+                                    </property>
+                                    <property name="focusPolicy">
+                                        <enum>NoFocus</enum>
+                                    </property>
+                                    <property name="text">
+                                        <string>7</string>
+                                    </property>
+                                    <property name="keyFont">
+                                        <enum>fontBigFont</enum>
+                                    </property>
+                                    <property name="keyValue">
+                                        <string>7</string>
+                                    </property>
+                                </widget>
+                                <widget class="cQtKeyboardButton" row="3" column="3" rowspan="1" colspan="2">
+                                    <property name="name">
+                                        <cstring>_button_ok</cstring>
+                                    </property>
+                                    <property name="sizePolicy">
+                                        <sizepolicy>
+                                            <hsizetype>7</hsizetype>
+                                            <vsizetype>7</vsizetype>
+                                            <horstretch>0</horstretch>
+                                            <verstretch>0</verstretch>
+                                        </sizepolicy>
+                                    </property>
+                                    <property name="focusPolicy">
+                                        <enum>NoFocus</enum>
+                                    </property>
+                                    <property name="text">
+                                        <string></string>
+                                    </property>
+                                    <property name="pixmap">
+                                        <pixmap>image5</pixmap>
+                                    </property>
+                                    <property name="default">
+                                        <bool>true</bool>
+                                    </property>
+                                    <property name="keyFont">
+                                        <enum>fontBigFont</enum>
+                                    </property>
+                                    <property name="keyType">
+                                        <enum>typeOk</enum>
+                                    </property>
+                                    <property name="keyWidthX10">
+                                        <number>20</number>
+                                    </property>
+                                </widget>
+                            </grid>
+                        </widget>
+                    </vbox>
+                </widget>
+                <widget class="QTextEdit">
+                    <property name="name">
+                        <cstring>_error</cstring>
+                    </property>
+                    <property name="minimumSize">
+                        <size>
+                            <width>0</width>
+                            <height>50</height>
+                        </size>
+                    </property>
+                    <property name="maximumSize">
+                        <size>
+                            <width>32767</width>
+                            <height>79</height>
+                        </size>
+                    </property>
+                    <property name="paletteBackgroundColor">
+                        <color>
+                            <red>255</red>
+                            <green>255</green>
+                            <blue>127</blue>
+                        </color>
+                    </property>
+                    <property name="font">
+                        <font>
+                        </font>
+                    </property>
+                    <property name="focusPolicy">
+                        <enum>NoFocus</enum>
+                    </property>
+                    <property name="wordWrap">
+                        <enum>WidgetWidth</enum>
+                    </property>
+                </widget>
+            </vbox>
+        </widget>
+    </vbox>
+</widget>
+<images>
+    <image name="image0">
+        <data format="PNG" length="1393">89504e470d0a1a0a0000000d494844520000002c0000002708060000007443aac20000053849444154789ced985d4c935718c77f473e06a814a9ba4294553a561010e6501c9a6d89e1c6c4c565999959b22c1817dd62962d5e9b79b70bccb2c42c8bdbc5969899dd6c18333fd22d604c1d897ca8a8805241d096526cdf42ed07a5efd9455ba4a505aae247c23f7972f29e9e9efcdeff79dee79cf715524a5e262d79de00a96a1178a1b508bcd05a045e683d13609bcd262b2a2a963d8db99e99c3dbb6bddbadd71b1a8410d94f34919472c1c36ab5ca8b17cdf2f8f15fa4c1f04623b01c487b9cb9527138f7c891236b1ed718555531188a6968f8ec9bc2c23587807c21447aaaf3cc1738efaeabe794d96c1e12422c89844815585555aaababc5be7dfb0eebf5eb1a81154288b4a70dac1b7d686dfda7fbf7f722d7ab011d90522eaa6a680abaaa6a03070e7cf9695959e5498d4653948ad37301eb9c0f875bfeed3969547c8e68df9b4005a0490d588d89a2a2b5ecdffff9f6e2e292bff3f256550821329f1458e7f28db45cb8fda751f13af0f895687f1961875f491538145263dabc3c0d7bf736945556ae3fafd5befa8e10227bae544b06ac73f91c2d972ca78d8a6f8471bf8bf18042d1ce200ec576d4a1d87e7328b6fe51f7b08c8f5d8736253c60abaa8a94ea0ca7333333d9bd7bf7eadadadad33a5de1c740ce6cd089724737e67fd07279e0bc51f13a22b02efc412f992b27397ce6c3a4771ff44abcd7562084d0037e409152faa3c05167c3119aba06a8afdf9ea5aaa19f3b3b65badd6efb4308e19152aa7301e77902ae968ea166a3db37ca7840990a559d4c0a1a5546ce9431ef01c3c095483bc3d9e9d1d767a1b5b575c462b97d6174d4390194001621c4583c740cf0a87bd875cedcc4f235849d8d4420e89d13364efa489b15ed88cfdf68dbd6d64e5353d35f4ea7e31aa002f94001e0003c91bec4c01fedda9391919111dcf1c54684c6c778c08577628ca7f1de97cc5d83c1404646663e3001b809af880d78180f0b710f5d7373f3647b7bfbda333f7670efae154f406132149c3754d09bfcc62c963b34359d1a3976ecd8c0c4c404a150885028447676165bb66ca9cdcacac906fa814ee016e1fc9f3387713a9da366b3b906b6b615ee1c2767e5a37b1abaec5703d7b5b3d6ee9c0d2e30cdec6f6c6cdc63b75bb38c4663b5c150fc556fefad2997376faec9eaeabab6e3ce9ddb178131c023932ceb0c6029a55f0871d36c366fdacad6cb053bc758ba32bc7b06ae6b97984ca66fa70d9f597e12c016141408bbddaa07ea7a7b7b7b0b0b0bbabbbb7bcaa2c04208aaaaaaaa6db67be53e9f6f08180702898013ba25a5f479bdde1b2d2d2d1b6da773b9dfe18f5f1a3fe15c1b98258623e3a6ff6710e85014e507bdfeb5985c2e2d2d5da2d5aefa0028027293d5e2a47bb894d22784e831994ce5f5d4dfb88f53c2d2e8240a703502954cfec8b8a814e02630515757d7d6dfdfff7577778f315a31d2d3d3282faf7cdb6eb71982c1e010e1d498e1f2acf928a5f401fd269369bdef6abec8d9e08afe140086a59403b3c47074d388cce597523aa5941e296548a3d17cafd3e9625c2e29793d5dab5df53e50082c4be4f29ca7b569d065a78e767e42ec323fb64e9c38f16b4dcd5b8e28acd56ae3d2a5ff5c3e5fe001e13aac254106cceb58177910072004e08d403f11f8c18307036eb7fba8c7e3f9eeecd97303838383ad6eb7b39770ed5d4af8349809c4d4d5799f431f414fe5a532cbf079a9afafefa7be3e8ba5abeb4a1ab00e908473d746b852cca8c3e2797fbd1442688052c2db7900b84ff86176013e29652866fc0b009c0ee401b9848115c01f0f3a35fe79030344deeb04a026da8e63c6be08c0a968f153d5426b1178a1f5d201ff0f53ff940e975232da0000000049454e44ae426082</data>
+    </image>
+    <image name="image1">
+        <data format="PNG" length="2200">89504e470d0a1a0a0000000d4948445200000064000000270806000000f92eed960000085f49444154789ced9a5b6c14d719c77fb357639bb5d75e1b179bcb828d4dcc1d43220c2e014c0ba5aa0a3c90a66ad3a6692801a512ad4209170395899a844829a195aaf621521fa206d12a054a31179b24c850a00104069b8bed35b183bd367b9b999ddd993eccee62b380a12178dcf2978e76f73bf7fde9fbce397346d0348d27328e4c033d8027eaab27400c26cb400fe0cbc8ed7667424a26405a9ab9f3fcf9f381811ed397953098d610b7db9d0796156ef7e86f4e98503a3d2f2fcf959e9e4e38acd0d1d1415b5b5b7b6363e389aeaeee8f342dfce1b56bd77a067acc0fab4101a4b0b0b0303b3b77c3f2e5cb9e5fbc78912537371759969065194992114511511463bf25ae5dbbce891327e493274ffd311090b7b7b535b5698361a2181cc8d8b1e3274e9a54baf1c5177fb4b4b2728159100424494696e5fb0289db7d3e1f9f7d7656aeafafffb0b3b37b8bc773b5c9e8600cbb868c1953fc93d75e5bfbbb975ffe69628ce170f8a1dab0dbed4c9a34d13e6e5cd1f3478e1cfd2e445f1204613710362a184302292c2c29dfb469fd1f5e78e1878fa43d4110282f9f95aa69dafb8aa2d0d171e3ef822004344d531f49078f5086dcf65656cefbcddd6008828020f45fdf6c36e372b9b05aad7dec336694998b8b4b7e9f92925e0638044130dcfc0d37a031638abebf7af52bb37adba23db7f07ffc29fe434759b66c19cdcdcdf7ac9f95954d79b68be2033558dfff3375bbf7a0284a227fe6cc194373725caf006e2055101e04f1e393a180b8ddee94850b17be595a5a9ab0698a42cfc143880d97093736b16bee02d6afff152d2d2d49f5333333291145dad76da4e7d011c6357b78aef11a3535ff4c94b158cc1416163e0b1401c33058d8361410b0ac7cf5d53579bd2de1b61b447d7e544942952452a22abf9d3a93aaaa2a5a5b5b13e532323218ebf3d3b6691b6a308826c9a892c470514cea65d4a891cecc4c5725900fa47ed5b37a18190ac89c39b3568e1f5fd2c76671662660a8b2fe27db2311de718fa3baba1a8fc7c390214318d1d98527064315f5f29a2421c972523f1919196467677f1dc803320541303f9e19f62fc30071bb8b4b962c59527ca7bd5b51f8c1df76a34a722ce97fb65d89f0a673186fbffd16d93e3f9ecdbfd661f42aa3c832db9e9942797945527fa3478f1a6bb55abf06e400298f618a0f24c300016d6e79f9ac24abcbe5a2ba7a3b3fae3b8416f7949807d8c361b60b76badf782b19862453f5f4642a2ae6e2700c4d6ad7e9749a5253d326a27b49fa573fbf079361806464644cc8cfcfbf6b5e59d974aaabb7f3d2d95368928c160b47aa246197c3846f7c7e876784a97a7a129595df202b2bebae6d3a1c43b1d9520a802c20dd2861cb30400a0af247df2fbfac6c3a5bb76ee367ad57125e125fb8b598c7c4c354d5cc892c5efc6db2b3b3efd99ec562c166b339d1177507607ba413fa2f6518200ec7d07ec3c6b46953d9b1e31dd604bc444321a2c1206a28443414420d0689864254cd98c8a245df2227c7d56f9f56abcd8e0e220db0f653fcb1c8304042a190d45f1993c984cb1f608762420d855043622ce9df355162dde1e3ecdfbf979b373bfbed33125122e8e790140c721e310c90d6d6b6ebfd95e93c798aced7abfa2ee0a2a87f9765d44804bbaab2eef071f6edfb88aeaeae7bb6158d469124b907100073ec73c06518205e6f57437b7bc73df3db8fd7d3b9614b0c46df3523180ea3462289b27128070f1ec0ebf5deb53dbf3f40341aee0434201afb1c70190688d9acd57cf2c9a777cd6b3f5e4fd7862da881400c849c80b179da53bc317b7a529d3894babaa30402c937bb5eaf57f5fb7dd7810820a34319701906485353d3f97dfbfe71f54ebbd2f1055d1bb7261e8768bd614c1dcfdab5bf60f5ea356c59509ed4a65d55f9e5e1e31c3b569b94d7daea698e442222a00041e0e12e5bbe22190608406d6ded9f9a9bfb3e34141b2ef50d53a2484492d83ca584f5ebd7535050c0f0e1c359b1e2b9bb42495593af3c0281001d1deda701151d861f1dcc80cb50401445dcb573e72e5f6f5beac4524262df30b5694a095555558c18312251aea8a888a54b972741e9b6249ff75a5a3c419faffb027aa8ea067c3c0959c96a6e6eeefee083bf54353636256c3daacac65c07e764894b11854d938ba9aedecec8912393ea17168e65c992efb06541392d361bff4e4de1ddb9cf306fde82441955556968b8785a55d52810003a80a051ae740df792832008d655abd69c7befbd77130f1a65394c7d7d3dc1609069d3a6623299effb9283d7db4d43c325ac562b39392e144589bd18215357f771f8d8b1da9d8a22770157817aa045d3b4271e720f45f6eeddfbfafefd071206bbdd4645c51ce6cf9fc79021fd5f5fa4a5a5525afa14a3468dc464ba3dc50b172eaa67cefc6b8fa2c83ef4b5a31de8310a0c3020104dd3b4e6e6ab7f5db56af5d6ddbbf73cb2764f9f3ea31e3c78607777b7f722fa8eea0ba00d1d8c6164b89015972008693939c356cc9e3dfbe76bd6ac9e505131277eba7ee0f7b242a11067cf9ed36a6b8f5ebc72a5b136140a75a0efa63e07ce019701bf51d60f30361013e0048a1d8ecc45a5a5a5df5bb972e598f9f3e761b3d9ee0ba4b3b38b13274e52535373c9e369a911c5d04df42d6e087d11bf0c3401b78c14aec0c040000441b00019e877df23d3d31d659999ced993274f2e9d3265726e7e7ebec9e9742249121e4f1b2d2d2d91f3e72f745cbdda74b9a7a7fbac2c8b3de8db5911f0a27b460b7aa8f21b0d06181c08243c25051d4c1e5000e49a4c26a7dd6ecfb3586c59a009e1b0724b51645f6c3baba2872611fd8cd10e78d0bdc307c8460a53bd65782071f502e3005cb194857efd6a437f620bb79f4d05d0bde226d085c141c4356880c4157bb1cd060c89a594588a5f3085012996c458528c0e22ae4107e44ec53cc7cced2d7c14880e1600776ad003f95f93e10e86ffeffa0fb7ad97d8239a7a610000000049454e44ae426082</data>
+    </image>
+    <image name="image2">
+        <data format="PNG" length="703">89504e470d0a1a0a0000000d494844520000002c0000002708060000007443aac20000028649444154789ced99bf4f145110c73f4fee94682391c6c4f0eb825440238d9524426281b1b59168a8a5907fc01e63102b433468a19d09d7dd5290182b2c0c5686cbdd692808c1e414eede26073b16dc9ebb80b7bf6e2398fd249bdd7d33fbe69bc9ecdbcc5b25229c26cefc6b0141397582535127e8ed1db8d3dfdffdfe6ff6f5f5e268b1b8be12358e8d8a52c399ccc04d11de28c50bcbda4b8b706e7f9fb6c6e44ada52a9d4bd4ae5e7adadadad35a02a225614c191329cc9741bf97cf175a1907f0a7403978176a74f5757dfe8f0f0f047c3300681ef4aa91d8990a5c82501b4015d1c88b580b2d328c25efdf20a204011a8860de65912f3f3cf259b5d0a3bbf2785c2b7bbf9fcd7777efd3d339ccd2e313bfb84a1a1c12336cbb2d0dac43435d5aac634355a9beceeee52a954d0da446b8dd6bae1e31cdbd8d8a0af8fb74aa90fc02f0e6a7cbf991e5fcbda71625b4167e725fbf23a701538eff54c2b6ab815f4d7cf9bc04e33c793f2e1380b5c00d25e8ebe04afad7d892ae858b6b77f047ec6b32426266e3333f32894203f74747406f2f7f5a5534af50037c6c6c65ee5723997ad56abd5df7a13adab8e55a2dab8b75705fb585ece6118c6e343614ac08a88949a69f15bc326072f848bf1f171d26977d94d4f3f6464e49a6b6c71f11553530f9acd5baa9f4d2f217e578932f0d9a76f10ec796db1e5e6ee3e332c22a6881cc9700b30814d112989c8a6887866f8a42c6bbe4904c74d22386e12c17193088e9b4470dc2482e3e6ff17ececef72b91cb55acd659f9b7bc6eaea27d7d8e4e47d16165e8694e826509bdfaafe2e681fe724f0eea5dddf013da1a3fea1848f3ece49988d9463fbbb90f8eae39c84c9703b709143dbaa213181b29fd6a8113ff9291333bf01fcab1f146dee08120000000049454e44ae426082</data>
+    </image>
+    <image name="image3">
+        <data format="PNG" length="1308">89504e470d0a1a0a0000000d494844520000002c0000002708060000007443aac2000004e349444154789cd5995d4c536718c77f073b11614ea389c44dd31a51874ad42b6666d439ce12bd6468e612b2c41893cd64ec665e6ccbc6d574ee83258c1bb3982d19b878ab9bf6ec030713d0ec03dc285fa3058a9c221fb5f468296ddf5d9cb696b6f48b0afabf79f3bee79ca7bf3e7dceff7dcea92484e04952ce6203a42b43aa27cab22cfafa6cd7a3d7376d32ee339bcd5276b1e696944a49c8b22c001445c90356a07fd100405959d948f0d85ac02584f03c325ad2288920ac11280136028540a1a228bb82a7940046499296651b3252b3327cfefcd7e2d2a5efb316bca2e228274e1ccf6ab9cc02966559d4d4d4505c5c3ceba4402080cbe5e2de3d179ae6c6edd670bbf53172ae69fa3835e5c6ebf53230d08fa22826c00338b3512e3125110d9b8924492237373734dd0fec0456ce3b3069b8c43c640c8e59a9ed980c777676ce3b682010607a7a7ade71e26956862b2a8e52555595b5e0ab56adc95aac90627c58922423b0bfacacec82d96c0eaf6b9a86cbe50240551de19b0ec0e15071bb3554d5c1cd9b2d288a521df53936a05108619b2f703c1ff6006ae4822ccbe4e7e787e7a74fbfcbdebd2f86e7f5f5df71ead49b73c5b105c7ac6c28f16e3a27f077166287e284609da95e58dd78c030e6e0238361498137e07fffab8a5fdda163311916427884106af47a06f200aa10c226845053f5e0930d7bb6ae967637551dfcf2bd52e3a1b7856fe68fd73edf7d5092a4a760616c2d659d6cd8b3f5e52d476ebdb0f170c1d57fbfa5c3de0488cdcb572ead050e4b92e4786cdacbeac603861debf65c8884f505660018e972f6a36f3e1b1e0be0eac6038607ce828b87b655965e8b821dea986cfdf15c771bb0017876d18143b06fed3b57de6e6fa63d0af6f219cb35f456f601a02d2a7024ac75dc42abf58778b03e6002e8056c8b76d33d84fdb4dc3adec94f967aa63c93000c764cb65c39633147c076035dc0d8a2643806b6ab9e31f79d44b016e0ae106266c181e3c24ee9b013c3f77b12c1c2023f35c7c2368461673c7ef7cf75bd97013ffaaed8130dbba0c091b0b6714b1076380c7bf58bee6fc6ac9a0bd0d0fb8fee68d8a4c0a1ded86c36a3695a78fdecd94f686a6a0ecf8f1d7b9ddada3a1c0e474ab04a577d0cacfdb6f32eba75d9d1b33b1a0d0b09b6e64c7be3e81e3836b3096107814e6018f0c68b9ff0bd44a837e6e1634e3ab2ad58b1da52f9e14b35ef547e50da31dc4c4bff95b0758d0f693dbfd4f55d1e1bd05c11b0ffa0978326e6004be6c331bd711a528b8bb7541e7afe78e967756758b275189f5fff8523accb8f5eb376f4cc26844d0538d4d3a6fd00999797e72b2f7ff57c49c9766edfde45d3efddac2fcd8df6596710b207bd0cee27824d0a1cec6133cab0c9b4f98d1d3bb63dd7dada86cfe763aafd19da47875a6f5cec8df4d91e74371805bcc9609302672a93c9b46ccd9ac28f4746546edc68a1adad75607070e037e7f5c97e126c0aa9e89100e7e418aad6bf3253585b573b691fbc53e7700c3bd05fa4788171e03fe6f0d9644ae9ed653a32994c2b972ecfb5e618f8531d9ca8763aef1602ebd19d400506802160325dd884c026d3e69d4545c6bf3281eeebb3c9566bef2d603b50849e592bba1b4ca0df5c814c6227f3e11c20f44e3877ce13e35c1abc666d706e07ee005342087f26a02125ab6109c807d6014fa719db8f5e02a3e8f6359d8a0b24d3a3ca30e865e0621e3f7f5ca627ed5fa4ff01508cf60155c743e70000000049454e44ae426082</data>
+    </image>
+    <image name="image4">
+        <data format="PNG" length="1388">89504e470d0a1a0a0000000d494844520000002c0000002708060000007443aac20000053349444154789ced985b6c14551cc67f875ed296cb96d606dad0b2ed5229b6d035d60a84a809d9171f8cbe48d4c40804031a626278c6102fe1a1c6f8606280441349a43e685fb434eb83b1014d2db72e1416dab594b8db7b7769d99d9d9d99e3c3ec6eb7cbde5aa888e997fc33b3c99e737ef3cd77ce9c1921a5e471d28a470db0502d032fb59681975acbc04badb4c03e9f4f363535adfa37617251468777ed7ae1bad56adb2784287ed8031f3b766c03b066c10da59429cbebf5caeeee73f2c48953d2667bb20d580de4a5fbff426bdcef939f1cfff817a00a58916bbb8c0e1b8681cd56c7be7d6f7f5055b5e108502684c85f84a12955b943eeae7eaae237609310a2480821b2b5c90a6c180676bb5d1c3870e0a8d55adb06ac1542e43d0c605168f0dad1569bc3e17003d54056e82cc07a1cbab9791b870ebdf7d6962d5bbfb3582c350fc3e988ae22f323589e1fc3e170dc043602450f006cccab9a9a6a0e1e7c67775d5dfd4fa5a5154d4288c207010eaa01544da1c2b692158d7770381cd7818d4288b4d022ddf6d2e7f34997eb2a91884624a2a2aa11344d43d322ccccccd2dede3ed6df7fe3cdc9c9d1738022133a9a088c64ddb3f6dcf959e9eaffb6483322c49a7a7aa630ae55e3743ab70043524a6541c057aef4a1691aaa3a1f3812d10887c374767629172ff6be3b32e2fd1e08c6a0270223f2d6d4053ce32e142d881209128e1f43f1df113d4cf2f8d9a0b34642d71363a1c77f03381cbb8becf6a74fae5b57f906b05a0811efef5ef82e614d414d2c5d41d542a87ac8cc6f0ab3ea5acb12e3614d8ec782329c580303839c39d33ed6dbdbf3c3e8e8980ad4036b62d0113d1c0554e68ed173d35923edb8b52d6b63a7f664e88c333de666f2b1b7f7021d1d1d3f4e4d8df7010650065402e3c02c80a6aba85a887014367ed4c2f13b944ad3de10935d4fe0743a4f02564001fcc04856e074eeda6c360a0a0acb001508443bf301f7a217001075d58c40cc61c3d07281fd1af00202c8232109198107073d5cba7469cce3190ceeddbbd76abaac535c5cc4f6eddb9febeaeaec5694e065e006a6bb4129a5f1ca916709f6ad4dd16361b4a064db34a5364149694132ec97c004108e420f464dc90edcd6d6f6fae8a8b768f3e6cd769badee7db7fb66dce5d6d6962297abef258fe756377017988dad121d6d7f0a2184157811f3b6de27078e0f29f151525a80df1787fd08f30e8581bf81abc05f4028d62eeda4abacac14a3a3de3f00d5ed76bbabaa2aaf27c64208417373b3bdb8b8b811a8885b372705332a43690a309d9d383b0f56016e03578001604626ccd06c1b780518062efafdfe2facd68df3b2dcd0d0b0a2bcbce255a006738548dc07f881cbc0af690a69c8c418c46087a2edee83cd05d80ff403d776eedc79aaa9a9d1adeb7a7cc5c8cfcfa3b171eb8e8282021b492e4b291529e5889472285501847aaa703a9d9f3297d961a00ff04829efc9140b7546e0e8a05352ca5929a56eb1583e5fbf7efd3c97ebeb37e5979757bc8cb9af5d95cb161160cf9e3d389dce5ae0167399bd06dc4ef548ce093859a74f9ffea6a5e599f118acd7ebe3fcf9dfa743a1f024e63a5c4e96891cd3fefdfb6317168b9d0b73820533b55bd016f1f0e1c3e14020f0d9ecececf1ceceb343c3c3c37f0402536eccfcad042c98b188e4d8652cb377a3d0c15431583430c0c0c0c057030383832ed7e53ca01690d1017dc00c090f8e1ce4c75cc3954c314854dadd5ac64642588006cc353696bf11601a084929f505779aebd88b04ce074a31df7ac3984e294b091a1f7bb1df87a3ef75023092d7caa5d4a2811f95fe3f9faafeab5a065e6a3d76c0ff0077d1cbe1a54398950000000049454e44ae426082</data>
+    </image>
+    <image name="image5">
+        <data format="PNG" length="1926">89504e470d0a1a0a0000000d4948445200000064000000270806000000f92eed960000074d49444154789ced9a7f4c94f71dc75fcf1d3feeb83b400e5440403a4eb8d6656e6ab1f5c706e9d6444d8c6659b2d8f963b39b31266b567ff48fa5a9cbfe6813d72dab69ac2ea16b75b4262d4b344d446c55b413770c9a4921050b279c20bf0eef8ebb7beec7f3ec8fe73845c022e0fcb2f14ec8c3f7fbfdf0f97e9fe7c5e7fbf93edfef23a9aaca9cc491ee710f604ea335074430253cee014c478585f6c53a9d9aa9aaaa4eaf576eb5b6b6763dee314d57d26cca218585f6c592147d61e9d2a79eb3dbeda53939d9869414238aa272fbf66dbababa7c6d6d5fffaba3a3a346af572b6623a05901a4a8a868a9d5bae0f73b776edff4fcf33fc26c3623cb32b21c449665fcfe0081400059960906657a7b7bb976ed9f912b573eaff67addfb9c4e678b3a1b6e14c18194959525f4f4f4bfbe77ef9e5fefdaf5f3044992e20ffd41406439483028e3f70f73e1426df4ca957ffcd1ef1f3ad4d7d7372c3a18617348717171666e6efedf3ffef8d46abbdd0e4028147a281f7a7d026bd63cab2f28c8db77faf4e935d168f427922475abaa1a7914639e0909b9cab2d96ca9f9f985974f9daa8cc3988eb2b2b2d8b265cbaadcdcfc4f2c164b912449c93330cc472221816464cc3f585979a238333373c67c1a8d46d6af5fbf342727bf12c89724c93063ce6750c201b1d96c8b76effee54bd385b1787101c5cf2ca4aef93cdddddd00188d06cacabebf2c2b6bc12f801c11234528202b56ac48b4db9ffa60ebd69fa64cc74f7676365fe9ce71a2f177189fe9c2d159136f4b4f9fc79225253f034a00ab2449fa690e7b46251490c141efafde78e3f5d549494953f661302413b67673ade36cbc4e7fdf33b7db8b73acd6ac1f03b98071ca9d3d02090564d5aaa777d9ed25d3f291ff442e679afe122f0f392314a42c1b65633299983f3fbb1cc80332448a126180141515156ddcb8e13bd3f19196964683fb137cf21000aa02039fa6f3e49363576a7979b90549494936602102458930401445ff83952b974fcb47eac2446adbaae26597234869e9b3489234c6d66acdc064b27c1bc8062cd278468f41c20031189296da6cb629ff7d76763667be3a4a54890210f6abc84d99e4e4648f6b6f3299484c4cca03e601164088694b18209999590bbfc946a71b7fb83a9d8e5e5a68ebfd225e77f3430b1b376e7aa0af9414531a9002a402535f49cca08401b26851ee84402eb67ec4de0fd7f2e6677b08e1e7fec9256d9e85334dc7e365cfad084b969460369b26d3751260660ec868793cdee078f57575d7f85bed9f892a51dafbaf73e4d24ba889e15179a1d37f1db7bf375eee3b9b4e6969e964bbd6a3c1989bb2ee555f5f6fcf78f509097ada3fb8fb42dde371f2f6e5df9090a220491266b399fa9eea78bbcb21535efedc84d3dbbd0a87e51020a13d87b9a47eaffafbfb5abc5eef98fae5cb97b3f585addca830c7eb7a3c4e8e7ebe1f436a0281c401da7a1b0188045582ffb662b3157d637fb1adfa41408dfd082161b6df1585ab0d0d8dac5bb7764cdbf66ddb01385971926fedf4011a94e3750747d9392b2d6cdbb66352fdddb973876030d005284024767dec122642acd6b42befbd77e2e644eddbb76de7c08183dca830a344b47fe81e8f931e8f1380bee6306565e5a4a7a74faabff6f68efe4060d88506230884a77b0f33216180381c8ef0f9f39ffea9b9b965429b75ebd672ecd831dadfb7100ddd9d65224115cfd579ac5cb972527df97c3e3a3b3b6b1545890201c0033cdce9d723923040004221ff3b870fbfd9fd201babd5ca5b6f1da1e3e45d28ce4a0b2fbfbc6fd2fddcbcd9353c3434701d0dc220e0662e42c6cae572f96b6a6a0e3636363ed02e232383c387ff40c7490b372acc94ffb09c9494c9edd82b8a424b4b4b632c3abcc02de08eaaaa42e410e13e7290242961c78e5d751515c7bf777f5b28147aa88f1c341b99603018fffdd2a5cba1dada8b47c2617900f81aa8036eaaaa1afdafdfec38122a420054558d9c3b776effbbeffe75c67d5fbffea5d2d0e0a80a87650f300cdc068644810102020170b99c175f7df5d0fea347df99b107e5703894f3e7ab3f72bb079bd172472fe04203238c8404a2aa6ab4b3b3fdedd75e3bb4e7c517777bdd6ef7947df97c3eaaaaaa3cd5d567df77bb079bd092770fd01abb0a91cc47245c0e199124493a20dd64323d9d9b5bf0db575e39b07af3e64de8f5fa49e590a1210fb5b5b5ca850b9f7de1727556472291002003dd4033d08696cc8599ae40602000b1a3d534a0d062b1942f5890b379c386f5df5dbb768da1a4a40483217914908181019a9abec4e1a8f7d7d7d737f5f7dfbe1a0804068028e0435b51b5021d8047341820381088478a09eda8b510c8339bd397190cc94fa4a65ae61b8dc6445505bf7f38e4f5fa0683c1405720307c2bb6ac8d007eb4f78c2e34103d805f9465eefd121e0840ec7835112d5a16a01dbb66a29df425c7da46766b47f6a664b437f03eb469aa37560e8bfc7defac0032a2189864b488b1a09df459d03e521839cf18d99bf2027762d7612024328811cd2a20f72a369525a2014ae0ee8a51415b3985d0a241c8a96922cd5a20ffab12f23de4ff59ff0189d7472e1711b6450000000049454e44ae426082</data>
+    </image>
+</images>
+<connections>
+    <connection>
+        <sender>_keyboard_layout</sender>
+        <signal>acceptInput()</signal>
+        <receiver>cQtKeypadNumericBase</receiver>
+        <slot>accept()</slot>
+    </connection>
+    <connection>
+        <sender>_keyboard_layout</sender>
+        <signal>rejectInput()</signal>
+        <receiver>cQtKeypadNumericBase</receiver>
+        <slot>reject()</slot>
+    </connection>
+</connections>
+<layoutdefaults spacing="6" margin="11"/>
+<includehints>
+    <includehint>cQtKeyboardLayout.h</includehint>
+    <includehint>cQtKeyboardButton.h</includehint>
+    <includehint>cQtKeyboardButton.h</includehint>
+    <includehint>cQtKeyboardButton.h</includehint>
+    <includehint>cQtKeyboardButton.h</includehint>
+    <includehint>cQtKeyboardButton.h</includehint>
+    <includehint>cQtKeyboardButton.h</includehint>
+    <includehint>cQtKeyboardButton.h</includehint>
+    <includehint>cQtKeyboardButton.h</includehint>
+    <includehint>cQtKeyboardButton.h</includehint>
+    <includehint>cQtKeyboardButton.h</includehint>
+    <includehint>cQtKeyboardButton.h</includehint>
+    <includehint>cQtKeyboardButton.h</includehint>
+    <includehint>cQtKeyboardButton.h</includehint>
+    <includehint>cQtKeyboardButton.h</includehint>
+    <includehint>cQtKeyboardButton.h</includehint>
+    <includehint>cQtKeyboardButton.h</includehint>
+    <includehint>cQtKeyboardButton.h</includehint>
+    <includehint>cQtKeyboardButton.h</includehint>
+</includehints>
+</UI>

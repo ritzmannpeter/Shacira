@@ -1,0 +1,10 @@
+NAME           REMCON WINDOWCOMPAT
+
+DESCRIPTION   'Remote Console (c) 1991-2000 by Markus WÅrtz & 2i Industrial Informatics GmbH'
+PROTMODE
+DATA           MULTIPLE
+HEAPSIZE       16384
+STACKSIZE      65536
+
+EXPORTS
+

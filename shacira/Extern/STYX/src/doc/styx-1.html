@@ -1,0 +1,193 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="LinuxDoc-Tools 0.9.65">
+ <TITLE>The Styx Handbook: Introduction and Overview</TITLE>
+ <LINK HREF="styx-2.html" REL=next>
+
+ <LINK HREF="styx.html#toc1" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="styx-2.html">Next</A>
+Previous
+<A HREF="styx.html#toc1">Contents</A>
+<HR>
+<H2><A NAME="s1">1.</A> <A HREF="styx.html#toc1">Introduction and Overview</A></H2>
+
+<P>This section contains an overview on the Styx framework and a comparison with
+lex/yacc combination.</P>
+
+<H2><A NAME="ss1.1">1.1</A> <A HREF="styx.html#toc1.1">The supported translation framework</A>
+</H2>
+
+<P>To give an idea what Styx is about, we first look on the overall compilation
+process (see diagram 1) as supported by this tool:</P>
+<P>
+<PRE>
+  Source     - - - - - - - - - &gt;    Object
+   Code         Translate            Code
+     |                                ^
+     |                                |
+     |                                |
+   Parse              =            Unparse
+     |                                |
+     |                                |
+     V                                |
+  Source          Rewrite           Object
+Derivation   ------------------&gt;  Derivation
+   Tree                              Tree
+</PRE>
+</P>
+<P>The diagram commutes, i.e. the following equation holds:</P>
+<P>Translate(Source) = Unparse(Rewrite(Parse(Source)))</P>
+<P>By this equation, the translation falls apart into a combination of three steps,
+<UL>
+<LI>Parsing the source to a term</LI>
+<LI>Rewriting the source term to an object term</LI>
+<LI>Unparsing the object term</LI>
+</UL>
+</P>
+<P>While both source and object are (textual or binary) strings, intermediate forms 
+within the compilation are trees, i.e. hierarchical representations of their respective 
+linear counterparts.</P>
+<P>The first and the last step of a translation are string-to-tree
+and tree-to-string transformations, while the inner step is a tree-to-tree
+transformation, the heart-piece of the translation.</P>
+<P>To simplify the inner translation, we are interested to have a simple
+structure, if possible, thereby not only omitting keywords but also
+other language features often referred to as "syntactic sugar".</P>
+<P>Not only the internal representation of both the source and the object
+distinguishes itself from the external one. Referring to their grammars,
+we call the grammars of the string representations the <EM>surface grammar</EM>
+of the languages, while the simpler, internal grammar is called the 
+<EM>depth grammar</EM>.</P>
+<P>Also, while syntactical notions may apply well to the external strings,
+the rewriting can be further simplified if the trees are treated as
+<EM>terms</EM>, thereby allowing algebraic means and notions to be applied.
+By this, the depth grammar becomes a recursive system of the types of the terms.</P>
+<P>In practice, having done the step from and to the linear forms is a
+substantial gain. By having abstracted from the surface properties of
+a concrete code to be translated, and having arranged things to be
+manageable as separate parts, we achieved a reduction of the translation 
+processes complexity.</P>
+
+<H2><A NAME="ss1.2">1.2</A> <A HREF="styx.html#toc1.2">Reasons for this framework</A>
+</H2>
+
+<P>The advantage of this construction may not be apparent to someone with
+few experience in compiler writing. Especially, having a derivation tree
+may not appear as a gain with regard to the "semantic actions" of yacc.
+Yacc's semantic actions have been designed to support one pass compilation,
+meaning the code generation intentionally happens during parsing and is
+in fact controlled by the parser.</P>
+<P>While this approach was necessary in times when memory was extremely short,
+it has consequences on the language design. As soon as definitions become
+recursive, which is the case for every non-trivial language, a one pass
+compilation is not longer possible. This has lead to work-around constructions
+like forward-declarations and header-files.</P>
+<P>Additionally, many constructions can not be compiled into code immediately
+or need to produce entries in so-called symbol tables. Typical examples
+are all sorts of definitions. The texts that constitutes these definitions
+has to be translated to some internal form anyway.</P>
+<P>As soon as a derivation tree of the source becomes available, these
+complications and hand-crafted representations are not longer necessary.
+Because representations of the definitions are already present, one could
+simply refer to the definition's derivation tree. Dealing with recursive
+constructions, any number of passes can both easily and efficiently been
+done over the tree, i.e. collecting the recursive definitions in a first
+go only considering the headers and using them in the second, diving into
+to bodies.</P>
+<P>The more complicated the compilation process would be with yacc the more
+substantial becomes the gain from using this framework. Practically, a
+compiler writer will therefore construct a derivation tree within yacc's
+semantic actions anyway. Generating this from the grammar, is the most
+substantial advantage of Styx over the lex/yacc combination.</P>
+<P>The advantage of this framework becomes even more clear, if one thinks of
+an interpreted language. Because Styx also provides means to make the
+derivation tree persistent, the <EM>complete</EM> "compilation" of such
+languages may eventually been done by it. After writing down the grammar,
+the language designer can immediately concentrate on writing the interpreter,
+instead of being bothered with making an internal representation of the
+source, which is already provided by the Styx framework. Even in making such
+an interpreter, Styx gives some support by offering an appropriate interface
+to the source tree.</P>
+
+<H2><A NAME="ss1.3">1.3</A> <A HREF="styx.html#toc1.3">The role of Styx within this framework</A>
+</H2>
+
+<P>Styx is designed to handle the first and the last step of the translation,
+that is, both the parsing and unparsing, or the string-to-tree and 
+tree-to-string transformations, where source and object can be represented 
+textually or binary.</P>
+<P>Given a surface grammar, it does not only produce a scanner and a parser,
+but also automatically derives the depth grammar, creates the derivation
+tree (term) and provides a versatile interface oriented on the abstract
+language.</P>
+<P>The unparsing is done by means of a pretty printer, or, if a binary format
+is of interest, it supports making the tree persistent. This is especially
+useful for interpreted languages when not instruction code is produced, but
+the derivation tree is evaluated directly.</P>
+<P>Additionally, the result of the parsing process still maintains all source
+information including keywords and comments. By this, source-source
+translations are easily implemented with this tool, too.</P>
+
+<H2><A NAME="ss1.4">1.4</A> <A HREF="styx.html#toc1.4">The supported language model</A>
+</H2>
+
+<P>While lex and yacc were designed to cope with the many abnormalities used in
+(surface) language design, Styx is somewhat more restrictive. It preferably
+supports languages designed by a canonical, two level model.</P>
+<P>By this, the tokens separated by the scanner have to be in regular or ( since version 1.6 ) 
+dyck grammars, and the context-free language has to be deterministic (LALR(1)).</P>
+<P>This excludes versatile support of some constructions that we considered to
+be weird. Examples are languages that have no context-free grammar (like C, 
+which comes with the context-dependent "typedef" construction).</P>
+<P>This decision was be made because Styx has been used for internal language
+design, therefore it did not have to cope with all the oddities out. Now that
+we have released Styx to public use, this design decision may cause troubles
+to other people, although one can work around these restrictions.</P>
+
+<H2><A NAME="ss1.5">1.5</A> <A HREF="styx.html#toc1.5">Comparison to the lex/yacc combination</A>
+</H2>
+
+<P>lex and yacc follow a different concept. Basically, they do not even provide
+the first step of this framework. Instead of providing the generation of
+a derivation tree, the allow to add "semantic actions", which means in
+most cases, that the tree has to be hand-crafted and constructed manually
+within the action slots.</P>
+<P>The central disadvantage of lex/yacc's approach is, that the burden of designing
+and making this structures is placed on the shoulders of the developers. Not
+only, that this costs quite a lot of time, it also typically leads to
+unsystematically constructed internal structures and a non-comformant interface
+to them, if any. Often, the raw implementation of the tree structure is used
+instead, making changes in it's representation a subtle task.</P>
+<P>Styx's restriction mentioned in the previous section are not substantial.
+Styx provides means to cope with abnormalities, but the slots where one can
+handle them are as weird as these language features are themselves.
+Since Styx is available in source form, one may additionally adjust it to
+strange needs. So, comparing to lex/yacc, the restrictions are minor.
+It only means that when one does weird things, the implementation may
+become weird in these places and the support less handy.</P>
+<P>More substantial restrictions are both in the parser and scanner. The parser
+is LALR(1), which means that a look-ahead of only one token is supported.
+Likely the scanner, in versions prior to 1.7, does a look-ahead of only one character. 
+This later restriction has been introduced to guarantee an effective scanner, which is
+linear by the length of the string, while lex provides an arbitrary look
+ahead, meaning that lex complexity can become quadratic for abnormal token
+designs. With version 1.7 it is possible to force the scanner to do a look-ahead of more 
+than the default case of one character.</P>
+<P>Additionally, lex allows to switch between different sets of tokens (languages) 
+to be able to do even more weird things. Since version 1.6 the Styx scanner is able 
+to handle different token sets, too. Like the lex/yacc combination, the scanner and 
+parser are separated within Styx (also much more integrated), so one can plug-in any 
+other, even a hand-crafted scanner, if nothing else helps.
+The disadvantage of doing so is again, that the many supports that Styx offers for 
+the canonical design do not apply anymore. One has to write additional code, about 
+to the amount that people applying the lex/yacc combination are already used to.</P>
+
+<HR>
+<A HREF="styx-2.html">Next</A>
+Previous
+<A HREF="styx.html#toc1">Contents</A>
+</BODY>
+</HTML>

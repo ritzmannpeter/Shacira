@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui version="4.0" stdsetdef="1">
+ <author/>
+ <comment/>
+ <exportmacro/>
+ <class>Qt3SyncTest</class>
+ <widget class="QWidget" name="Qt3SyncTest">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>815</width>
+    <height>503</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Qt3 Sync Test Program</string>
+  </property>
+  <layout class="QVBoxLayout">
+   <item>
+    <widget class="QFrame" name="frame4">
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QFrame" name="frame4_2">
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+    </widget>
+   </item>
+  </layout>
+  <property name="autoFillBackground">
+   <bool>true</bool>
+  </property>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets/>
+ <includes>
+  <include location="local">qt4port.h</include>
+ </includes>
+ <resources>
+  <include location="sources/test.qrc"/>
+ </resources>
+</ui>

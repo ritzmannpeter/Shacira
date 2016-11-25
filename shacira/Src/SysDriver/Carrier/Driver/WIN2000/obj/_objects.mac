@@ -1,0 +1,32 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\cardrvw2k.res \
+    $(_OBJ_DIR)\alpha\carrier.obj \
+    $(_OBJ_DIR)\alpha\carsim.obj \
+    $(_OBJ_DIR)\alpha\cardrvw2k.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\cardrvw2k.res \
+    $(_OBJ_DIR)\axp64\carrier.obj \
+    $(_OBJ_DIR)\axp64\carsim.obj \
+    $(_OBJ_DIR)\axp64\cardrvw2k.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\cardrvw2k.res \
+    $(_OBJ_DIR)\i386\carrier.obj \
+    $(_OBJ_DIR)\i386\carsim.obj \
+    $(_OBJ_DIR)\i386\cardrvw2k.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\cardrvw2k.res \
+    $(_OBJ_DIR)\ia64\carrier.obj \
+    $(_OBJ_DIR)\ia64\carsim.obj \
+    $(_OBJ_DIR)\ia64\cardrvw2k.obj
+
+PASS0_IA64_OBJECTS=
+

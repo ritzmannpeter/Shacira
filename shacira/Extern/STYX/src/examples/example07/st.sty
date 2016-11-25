@@ -1,0 +1,234 @@
+;; [st.sty] Contextfree Grammar for [*.st]-Files, Smalltalk-80
+;; apt-get install gnu-smalltalk
+
+Language st
+
+Regular Grammar
+
+; Character Set
+
+  let Byte        = '\00' .. '\ff' ; all extended ascii
+  let Control     = '\00' .. '\1f' ; control
+                  |          '\7f' ; DEL
+                  |          '\ff' ; space-like extended ascii
+
+; Basic elements of tokens
+
+  let Printable   = Byte - Control
+
+  ign Space       = " "          ; ASCII - Space
+  ign Tab         = "\t"
+  ign Line        = "\n" | "\r\n"  ; UNIX / CPM / DOS
+  ign Page        = "\p"           ; weak separation convention
+
+  ign Etx         = "\1a" {Byte}   ; CPM / older DOS Versions
+
+; Definitions and simple tokens
+
+  let Letter      = 'A'..'Z' | 'a'..'z'
+  let HexDigit    = '0'..'9' | 'a'..'f'
+  let Digit       = '0'..'9'
+  let Normal      = Letter | Digit | Space
+
+  let Quote       = '\'\"\`\\'
+  tok Parenthesis = '()[]{}'       ; one character tokens
+
+  let Special     = Printable - Normal - Parenthesis - Quote - '$#!^' | '\\'
+
+  let Nat         = Digit+
+
+; tokens
+
+  tok ASGOP  = "_" | ":="
+  tok BINOP  = "-" | (Special [Special]) - ASGOP
+  tok CHRLIT = "$" Printable
+  tok IDENT  = Letter { Letter | Digit }
+  tok INTLIT = [Nat "r"] ["-"] Nat
+  tok FLTLIT = (INTLIT ["." Nat] ["e" ["-"] Nat]) - INTLIT
+  tok KEYWRD = IDENT ":"
+  tok SYMKEY = KEYWRD KEYWRD+
+  tok STRLIT = "\'" { Byte - '\'' | "\'\'" } "\'"
+  com Comment= "\"" { Byte - '\"' | "\"\"" } "\""
+  tok delim  = '!#^'
+
+Context Free Grammar
+
+start file
+:ign0: classes
+;; :: method ; FIXME: grammatical hack (internal method, see Parser.st(63))
+
+let classes ; class definition list
+:nil :
+:cons: class classes
+
+let class ; class definition
+:dfn: "!" simexp "!" methods "!" ;FIXME: this is not a class definition
+:imm: temps stats1 "!"           ;FIXME: "parse last as return"
+
+let methods ; method list
+:nil :
+:cons: method "!" methods
+
+; Method Definition
+
+let method ; method
+:mth: msgpat temps stats
+:pri: msgpat temps prim stats
+
+let prim ; primitive
+:prim: "<" "primitive:" INTLIT ">"
+
+; Message Pattern (Formal Parameter List)
+
+let msgpat ; message pattern
+:usel: unasel
+:bsel: binsel var
+:ksel: keyvars
+
+let unasel ; unary selector
+:a: IDENT
+
+let binsel ; binary selector
+:a: BINOP ;FIXME: bad production?
+:b: "|"
+:c: "<"
+:d: ">"
+
+let var ; variable name
+:a: IDENT
+
+let keyvars ; keyword variable list
+:a: keyword var
+:b: keyvars keyword var
+
+let keyword ; keyword
+:a: KEYWRD
+
+; Temporaries -----------------
+
+let temps ; temporaries
+:nil :
+:ign0: "|" vars "|"
+
+let vars ; variable names
+:nil :
+:cons: var vars
+
+; Statements -----------------
+
+let stats ; statements
+:a: ;Empty
+:b: stats1
+
+let stats1 ; non empty statements
+:exp: stat
+:seq: stat "." stats
+
+let stat
+:exp: exp
+:rtn: "^" exp
+
+let exp ; expression
+:ign0: simexp
+:asg: var ASGOP simexp
+
+
+; Expressions --------------------------------------
+
+let simexp ; simple expression
+:a: exp0
+:b: msgexp
+:c: casexp
+
+let exp0 ; primary
+:a: var
+:b: lit
+:c: block
+:d: "(" exp ")"
+
+let msgexp ; message expression
+:a: unaexp
+:b: binexp
+:c: keyexp
+
+let unaexp ; unary expression
+:a: unanoj unasel
+
+let unanoj ; unary object description
+:b: exp0
+:c: unaexp
+
+let binexp ; binary expression
+:a: binobj binsel unanoj
+
+let binobj ; binary object description
+:a: unanoj
+:b: binexp
+
+let keyexp ; keyword expression
+:a: binobj keylst
+
+let keylst ; keyword binary object description list
+:a: keyword binobj
+:b: keylst keyword binobj
+
+let casexp ; cascaded message expression
+:a: msgexp msglst
+
+let msglst ; semi message list
+:a: ";" msgelt
+:b: msglst ";" msgelt
+
+let msgelt ; message elt
+:a: unasel
+:b: binsel unanoj
+:c: keylst
+
+; Block ---------------------------------------
+
+let block ; block
+:blk : "[" blkvars stats "]"
+
+let blkvars ; opt block variables
+:nil :
+:cons: ":" var blkvars1 "|"
+
+let blkvars1 ; block variable list
+:nil :
+:cons: ":" var blkvars1
+
+; Literals --------------------------------
+
+let lit ; literal
+:ign0: number
+:ign1: symcon
+:chr : CHRLIT
+:str : STRLIT
+:ary : "#" array
+
+let number ; number
+:int : INTLIT
+:flt : FLTLIT
+
+let symcon ; symbol constant
+:sym : "#" symbol
+
+let symbol ; symbol
+:a: IDENT
+:b: binsel
+:c: SYMKEY
+:d: KEYWRD
+
+let array ; array
+:ign0: "(" aryelts ")"
+
+let aryelts ; array constant list
+:nil :
+:cons: aryelt aryelts
+
+let aryelt ; array constant elt
+:ign0: number
+:ign1: symbol
+:str : STRLIT
+:chr : CHRLIT
+:ary : array

@@ -1,0 +1,116 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+
+Project: "CarDll32"=.\Bin\CarDll32\CarDll32.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name caritf
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "Carcheck"=.\Bin\Carcheck\Carcheck.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name CarDll32
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "Carrier"=.\Bin\Carrier\Carrier.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name CarDll32
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "Cartest"=.\Bin\Cartest\Cartest.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name caritf
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "DrvInst_qt"=.\DrvInst_Qt\DrvInst_qt.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "WMT"=.\Bin\WMT\WMT.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name CarDll32
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "caritf"=.\Lib\caritf\caritf.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+

@@ -1,0 +1,143 @@
+
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+<meta name="robots" content="noindex">
+<title>pim_test Command description</title>
+</head>
+<body bgcolor=white text=black link=navy vlink=navy alink=purple>
+<b><font color=\"#008B8B\"><a href="styx.html">contents</a></font></b><br>
+&nbsp;
+<H1><font color=red>pim_test</font>  Parser test program</H1>
+<BR>
+
+  <p>'pim_test' parses the given source file and lists the derivation tree on stdout.
+  The source file must be conform with the language parameter. It uses the image files
+  of the parser and scanner tables, [Language.lim] and [Language.pim].
+  </p>
+  <p>In case you specify a start symbol the parsing process starts from this nonterminal,
+  provided it is defined in [Language.sty].
+  By default the parser takes the first start nonterminal.
+
+<BR>
+<BR>
+
+<H2>Arguments</H2>
+<BR>
+<table width=100% border=0 cellspacing=10>
+<COL WIDTH=2*>
+<COL WIDTH=1*>
+<COL WIDTH=6*>
+<thead>
+<TR valign=top bgcolor=#DDDDFF><TD align=left>Name<TD align=left>Type<TD align=left>Semantic
+<tbody>
+
+<TR valign=top><TD align=left><B>Language</B><TD align=left><B><font color=navy> name</font></B><TD align=left> language name
+
+<TR valign=top><TD align=left><B>FileName</B><TD align=left><B><font color=navy> path</font></B><TD align=left> path of source file to scan
+
+</table>
+<BR>
+
+<BR>
+
+<BR>
+
+<H2>Options</H2>
+An option will be specified as follows: <B>-&lt;Name&gt;=&lt;Value&gt;</B>
+<BR>A flag is toggled that way: <B>-&lt;Name&gt;</B>
+<BR>The default value will be applied when the option wasn't specified.
+<BR>
+<BR>
+<table width=100% border=0 cellspacing=10>
+<COL WIDTH=2*>
+<COL WIDTH=1*>
+<COL WIDTH=3*>
+<COL WIDTH=4*>
+<thead>
+<TR valign=top bgcolor=#DDDDFF><TD align=left>Name<TD align=left>Type<TD align=left>Default value<TD align=left>Semantic
+<tbody>
+
+<TR valign=top><TD align=left><B>charset</B><TD align=left><B><font color=navy> string</font></B><TD align=left>""<TD align=left> source file character set ( UTF-8, UCS4, ... )
+
+<TR valign=top><TD align=left><B>skipset</B><TD align=left><B><font color=navy> string</font></B><TD align=left>""<TD align=left> ( ascii ) characters to be skipped
+
+<TR valign=top><TD align=left><B>binmode</B><TD align=left><B><font color=navy> flag</font></B><TD align=left>false<TD align=left> scan source file in binary mode ( not with charset-option )
+
+<TR valign=top><TD align=left><B>wprint</B><TD align=left><B><font color=navy> flag</font></B><TD align=left>false<TD align=left> unicode output ( on non-default character set )
+
+<TR valign=top><TD align=left><B>prepar</B><TD align=left><B><font color=navy> string</font></B><TD align=left>""<TD align=left> standard preprocessing: yes or list index~value , ...
+
+<TR valign=top><TD align=left><B>premac</B><TD align=left><B><font color=navy> string</font></B><TD align=left>""<TD align=left> standard preprocessing:  pre-defined macro , ...
+
+<TR valign=top><TD align=left><B>prefun</B><TD align=left><B><font color=navy> string</font></B><TD align=left>""<TD align=left> user-defined preprocessing: Function@Library ( not with prepar-option )
+
+<TR valign=top><TD align=left><B>Start</B><TD align=left><B><font color=navy> string</font></B><TD align=left>""<TD align=left> start symbol
+
+<TR valign=top><TD align=left><B>xaron</B><TD align=left><B><font color=navy> flag</font></B><TD align=left>false<TD align=left> create a derivation tree ( lisp like representation )
+
+<TR valign=top><TD align=left><B>early</B><TD align=left><B><font color=navy> flag</font></B><TD align=left>false<TD align=left> use early reduction
+
+<TR valign=top><TD align=left><B>shiftfun</B><TD align=left><B><font color=navy> string</font></B><TD align=left>""<TD align=left> user-defined token conversion: Function@Library ( see [ptm_gen] )
+
+<TR valign=top><TD align=left><B>reducefun</B><TD align=left><B><font color=navy> string</font></B><TD align=left>""<TD align=left> user-defined nonterminal conversion: Function@Library ( see [ptm_gen] )
+
+<TR valign=top><TD align=left><B>tree</B><TD align=left><B><font color=navy> flag</font></B><TD align=left>true<TD align=left> create a derivation tree 
+
+</table>
+<BR>
+
+  <p>The options 'prepar' and 'premac' are only useful with styx-like preprocessing. 
+  <p>If your language uses the same preprocessing directives as specified in [styx.sty], 
+  but differnt macro token identifiers and keywords, the option 'prepar' can be used to 
+  enable preprocessing and specify the differences as a comma separated list:
+  </p>
+  <ol>
+  <li><b>0~name of identifier token</b>
+  <li><b>1~name of macro definition token</b>
+  <li><b>2~name of argument separator token</b>
+  <li><b>3~name of include token</b>
+  <li><b>4~name of conditional token</b>
+  <li><b>5~name of undefine token</b>
+  <li><b>6~#macro keyword</b>
+  <li><b>7~#end keyword</b>
+  <li><b>8~#ifdef keyword</b>
+  <li><b>9~#ifndef keyword</b>
+  <li><b>10~#else keyword</b>
+  <li><b>11~#include keyword</b>
+  <li><b>12~#undefine keyword</b>
+  <li><b>13~environment variable or path list as search path for include files</b>
+  <li><b>14~include file character set ( default: charset-option )</b>
+  </ol>
+  <p>The option 'premac' supports pre-defined macros in connection with 
+  styx-like preprocessing.
+  <p>Dynamic library support is a prerequisite for the user-defined callback handler.
+
+<BR>
+
+<BR>
+
+<H2>Environment</H2>
+An environment variable will be specified as followed: <B>-&lt;Name&gt;=&lt;Value&gt;</B>
+<BR>The default value will be applied when no environment variable was specified.
+<BR>
+<BR>
+<table width=100% border=0 cellspacing=10>
+<COL WIDTH=2*>
+<COL WIDTH=1*>
+<COL WIDTH=3*>
+<COL WIDTH=4*>
+<thead>
+<TR valign=top bgcolor=#DDDDFF><TD align=left>Name<TD align=left>Type<TD align=left>Default value<TD align=left>Semantic
+<tbody>
+
+<TR valign=top><TD align=left><B>BINSTYX</B><TD align=left><B><font color=navy> path</font></B><TD align=left>PATH<TD align=left> search environment for [Language.pim] and [Language.lim]
+
+</table>
+<BR>
+
+<BR>
+
+<BR>
+</body>
+</html>

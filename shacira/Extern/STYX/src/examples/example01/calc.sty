@@ -1,0 +1,29 @@
+; [calc.sty] Grammar "Calculator"
+
+Language calc
+
+Regular Grammar
+
+  ign Ign         = ' \n\r'          ; "white" characters
+  tok Tok         = '()+-*/'         ; one character tokens
+  tok Int         = ('0'..'9')+      ; Integer
+  tok Wrd         = "end"
+
+Context Free Grammar
+
+start Command
+:exp: Exp
+:non: ; empty line
+
+let Exp  :ign0: Exp1
+:add : Exp  "+" Exp1
+:sub : Exp  "-" Exp1
+
+let Exp1 :ign0: Exp2
+:mlt : Exp1 "*" Exp2
+:div : Exp1 "/" Exp2
+
+let Exp2
+:neg : "-" Exp2
+:ign0: "(" Exp ")"
+:int : Int

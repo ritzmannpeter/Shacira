@@ -1,0 +1,253 @@
+;; [styx.sty] Context-free grammar for [.sty] files
+
+
+Language styx ;; BNF
+
+Regular Grammar
+
+; Character Set
+
+  let Byte        = '\00' .. '\ff' ; all extended ascii
+  let Control     = '\00' .. '\1f' ; control
+                  |          '\7f' ; DEL
+                  |          '\ff' ; space-like extended ascii
+
+; Basic elements of tokens
+
+  let Printable   = Byte - Control
+
+  ign Space       = " "            ; ASCII - Space
+  ign Line        = "\n" | "\r\n"  ; UNIX / CPM / DOS
+                  | "\r"           ; Mac
+  ign Page        = "\p"           ; weak separation convention
+
+  ign Etx         = "\1a" {Byte}   ; CPM / older DOS Versions
+
+;; Layouting
+
+;; spc 1 = Printable
+;; spc 2 = Line
+;; spc 3 = Page
+
+; Definitions and simple tokens
+
+  let Letter      = 'A'..'Z' | 'a'..'z'
+  let HexDigit    = '0'..'9' | Letter
+  let Digit       = '0'..'9'
+  let Normal      = Letter | Digit | Space
+
+  let Quote       = '\'\"\`\\'
+  tok Parenthesis = '()[]{}'       ; one character tokens
+
+  let Special     = Printable - Normal - Parenthesis - Quote
+
+; single byte literals or literals, encoded in us-ascii, ISO 8859-1 Latin-1 or ucs4 hex values
+  let LitChar     = Printable - Quote
+                  | '\\' ( Quote | 'prnt' | 
+                           HexDigit HexDigit |
+                           'xX' HexDigit HexDigit HexDigit HexDigit HexDigit HexDigit HexDigit HexDigit )
+
+; Comments et al
+
+  com Comment     = ';' {Printable}
+
+; Complex tokens
+
+  tok Ide = Letter {Letter} {Digit}     ; Identifier
+  tok Nat = Digit+                      ; Natural
+  tok Opr = (Special - ';=<>')+ | '=<>' ; Operator
+  tok Set = '\'' {LitChar} '\''         ; CharacterSet
+  tok Seq = '\"' {LitChar} '\"'         ; CharacterSequence (String)
+
+; Macro tokens
+
+  let White   = Space | Line | Page
+  let Name    = (Letter | "_") { Letter | Digit | "_" } 
+  let MPar    = ( Printable - ( White | ',' | ')' | '=' ) )
+                { Printable - ( White | ',' | ')' | '=' ) }
+
+  tok MacInc  = "#include" White {White} (Printable-White) {Printable-White} ; Include
+  tok MacDel  = "#undefine" White {White} Name                               ; undefine Macro
+  tok MacDfn  = "#macro" White {White} Name                                  ; Macro definition
+                  {White} [ "(" {White} MPar 
+                  { {White} "," {White} MPar } {White} ")" {White} ]
+                  [ "=" 
+                    ({Byte} - ({Byte} ("#macro"|"#end") {Byte})) 
+                    "#end" ]
+
+  tok MacSep  = '\'' (Byte-'\'') [ '-' ]                                     ; End of parameter
+
+  tok MacCond = ( ( "#ifdef" | "#ifndef" ) White {White} Name )              ; Conditionals
+              | "#else" | "#end"
+
+
+
+Context Free Grammar
+
+  start Source
+  :root : "Language" Ide 
+          QlxDfns0
+          OptCfg
+ 
+  let OptCfg
+  :non  :
+  :cfg  : "Context" "Free" "Grammar" 
+            Dfns
+
+  let QlxDfns0
+  :nil  :
+  :ign0 : "Regular" "Grammar"
+            QlxDfns
+
+; REG-Section
+
+  let QlxDfns ; Qlx-Definitions
+  :nil  :
+  :cons : QlxDfn 
+          QlxDfns
+
+  let QlxDfn  ; Qlx-Definition
+  !defn : QlxCat QlxOpt QlxGrp0 Ide QlxGrp1 "=" ExpQuot
+  !igrp : "InGroup" Ide
+  !xgrp : "ExGroup" Ide
+  !mgrp : "Group"   Ide "=" Ids ; group list
+
+  let Ids0
+  :nil  :
+  :cons : Ide Ids0
+
+  let Ids
+  :cons : Ide Ids0
+
+  let QlxCat  ; QlxCategory
+  :letC : "let"
+  :tokC : "tok"
+  :ignC : "ign"
+  :comC : "com"
+  :lanC : "lan" 
+  ; Embedded language: 
+  ; lan :Ide_Language: Ide_Startsymbol ! Ide_EofOrFollowTokenLanguage = Ide_EofOrFollowToken+
+  ; Language(TokenIds) = main languge --> follow token, 
+  ;                                       shared in initial group of embedded language and in
+  ;                                       the "switch-to-that-language" group of main language 
+  ;                              else --> eof token
+  ; Prefix embedded language group = embedded language token group = post embedded language group
+  ; TargetGroup/NT-Reference = Ide_LanguageIde_Startsymbol
+  :indC : "ind"
+  ; (de)indent token, referenced by minimal indent and dedent keyword
+
+  let QlxGrp
+  :non  : 
+
+  let QlxGrp0  ; belongs to QlxGroup
+  :grp  : ":" Ide ":" ; group or group list
+  :ign0 : QlxGrp
+
+  let QlxGrp1  ; switch to QlxGroup
+  :grp  : "!"  Ide ; group
+  :igrp : "!" 
+  :pgrp : "!+" Ide ; group
+  :pigrp: "!+"
+  :pop  : "!-"
+  :ign0 : QlxGrp
+
+  let QlxOpt  ; QlxOption
+  :non  :
+  :ignca: "[" "ica" "]"
+
+  let ExpQuot ; quotient 
+  :quot : ExpDyck "/" Exp4 ; Exp4 = Set or Seq
+  :ign0 : ExpDyck
+
+  let ExpDyck ; dyck ( Exp ) or pattern 
+  :dyck : "<" Exp ">" Exp0 "<" Exp ">"
+  :spat : "<" "=" Exp0 ">" Set "<" Exp0 ">"
+  :epat : "<" "?" Exp0 ">" Ide "<" Exp0 ">" ; Ide = start token ID
+  :ign0 : Exp
+
+  let Exp0
+  :non  :
+  :ign0 : Exp
+
+  let Exp     ; Expression prio 0
+  :union: Exp "|" Exp1 
+  :diff : Exp "-" Exp1
+  :ign1 : Exp1
+
+  let Exp1     ; Expression prio 1
+  :conc : Exp1 Exp2
+  :ign1 : Exp2
+
+  let OptNat
+  :non :
+  :nat : Nat
+
+  let Limit              ; occurance limit
+  :ntime: Nat            ; exact ntimes
+  :range: Nat "," OptNat ; minimum and optional maximum
+
+  let Exp2     ; Expression prio 2
+  :opt  : "[" Exp "]"
+  :star : "{" Exp "}"
+  :plus0: Exp3 "*"
+  :plus : Exp3 "+"
+  :plusn: Exp3 Limit
+  :ign1 : Exp3
+
+  let Exp3     ; Expression prio 3
+  :ign1 : Exp4
+  :range: Exp4 ".." Exp4
+  :ign2 : "(" Exp ")"
+
+  let Exp4     ; Expression prio 4
+  :sequ : Seq
+  :set  : Set
+  :ident: Ide
+
+; CFG-Section
+
+  let Dfns    ; Definitions
+  :nil  : 
+  :cons : Dfn 
+          Dfns
+
+  let Dfn     ; Definition
+  !defn : Cat DfnOpt Ide 
+          Prds
+
+  let Cat0    ; Category ( syntactic sugar )
+  :bgnC : "xtop"
+
+  let Cat     ; Category
+  :letC : "let"
+  :bgnC : "start"
+  :ign0 : Cat0
+
+  let DfnOpt  ; DfnOption
+  :non  :
+  :errnt: "[" "err" "]"
+
+  let Prds    ; Productions
+  :nil  : 
+  :cons : Prd 
+          Prds
+
+  let Lay     ; Layouting: PrettyPrinter Hint
+  :dft : ":"
+  :rec : "?"
+  :grp : "!"
+
+  let Prd     ; Production
+  ?prod : Lay Ide ":" 
+            Mbrs
+
+  let Mbrs    ; Members
+  :nil  : 
+  ?cons : Mbr 
+          Mbrs
+
+  let Mbr     ; Member
+  :ntm  : Ide
+  ; single byte literals or literals, encoded in us-ascii
+  :tkm  : Seq
+  :else : "[" "other" "]"

@@ -1,0 +1,27 @@
+; [cdps.sty] C/C++-Filter for dependency analysis
+
+Language cdps
+
+Regular Grammar
+
+  let Byte        = '\00' .. '\ff' ; extended ASCII
+  let Control     = '\00' .. '\1f' ; control
+                  |          '\7f' ; DEL
+
+  let Printable   = Byte - Control
+  let Space       = '\t '
+  let Line        = "\n" | "\r" | "\r\n"  ; UNIX / Mac / CPM / DOS
+
+  let Empty    = { Space | Line }
+
+  tok Include  = "#include" Space+ "\"" {Printable-Space-"\""} "\""
+  tok Library  = "/*!LIB:" ({Printable-Space}-({Byte}"*/"{Byte})) "*/"
+  tok Resource = "/*!RES:" ({Printable-Space}-({Byte}"*/"{Byte})) "*/"
+  tok Program  = ( "/*" Empty "main" Empty "*/" )
+               | ( Line {Empty} ["int"|"void"] {Space} "main" {Space} "(" )
+
+  ; comment out ignore comments if you get a scanner buffer overflow
+  ign Comment  = ( "/*" ({Byte}-({Byte}"*/"{Byte})) "*/" ) - Library - Resource - Program
+               | "//" ({Byte}-({Byte} Line {Byte})) Line
+
+  ign Other    = Byte

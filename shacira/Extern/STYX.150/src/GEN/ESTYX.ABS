@@ -1,0 +1,53 @@
+/* ------------------------------------------------------------------------ */
+/*                                                                          */
+/* [estyx.abs]                 Abstract Grammar                             */
+/*                                                                          */
+/* ------------------------------------------------------------------------ */
+
+LANGUAGE estyx
+
+TOKENS
+
+  Ide, Set, Seq
+
+TYPES
+
+  estyx       = Start_Source(Source)
+
+  Source      = root(Ide, QlxDfn*, Dfn*)
+
+  QlxDfn      = defn(QlxCat, QlxOpt, Ide, Exp)
+
+  QlxCat      = letC;
+                comC;
+                ignC;
+                tokC
+
+  QlxOpt      = non;
+                ignca
+
+  Exp         = range(Exp, Exp);
+                opt(Exp);
+                union(Exp, Exp);
+                conc(Exp, Exp);
+                plus(Exp);
+                ident(Ide);
+                diff(Exp, Exp);
+                sequ(Seq);
+                set(Set);
+                star(Exp)
+
+  Dfn         = defn(Cat, Ide, Prd*)
+
+  Cat         = letC;
+                bgnC
+
+  Prd         = prod(Ide, Mbr*)
+
+  Mbr         = tkm(Seq);
+                ntm(Form)
+
+  Form        = one(Form, Seq*);
+                ide(Ide);
+                nul(Seq*, Form, Seq*, Seq*)
+

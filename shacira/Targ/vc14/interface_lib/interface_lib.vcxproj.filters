@@ -1,0 +1,1370 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="System">
+      <UniqueIdentifier>{ae2b31cb-d3ba-4957-b945-c5a68d47aa8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Channel">
+      <UniqueIdentifier>{0be927db-a2d1-4c7e-be05-6983828b91ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\ClientServer">
+      <UniqueIdentifier>{1c1ec487-e4bc-4b34-8e89-a23056e67e1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\PLC">
+      <UniqueIdentifier>{3a41059e-5a9d-4c5e-a7dd-56c2a5cc9cef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Comm">
+      <UniqueIdentifier>{2c3c07b0-eccf-4136-907f-f4da7bf7e296}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Config">
+      <UniqueIdentifier>{b25af0b7-f68c-4646-b0fc-142777d8cc10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Console">
+      <UniqueIdentifier>{0e163ab6-92a9-46c7-b788-3563705f7fe8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Database">
+      <UniqueIdentifier>{efa6871d-bd09-4fab-95e6-a0d0478709c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Memory">
+      <UniqueIdentifier>{abfefa9c-e2cc-41ce-977d-268520f601ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Namespace">
+      <UniqueIdentifier>{90363548-845d-442f-9ef6-e7a88dd2d83f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Objects">
+      <UniqueIdentifier>{42b448fe-879c-42cc-8631-3d9ea28c2dfc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Process">
+      <UniqueIdentifier>{e9283c8f-168d-47cb-addb-7bbba88a2b52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Structs">
+      <UniqueIdentifier>{cf4b91f2-6b01-4e8e-a3b5-d4ddc8f8c4d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Sys">
+      <UniqueIdentifier>{d4df97c1-342e-4bfc-b06d-5ec10c12bbf0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Text">
+      <UniqueIdentifier>{be190e70-d7f9-4538-a7af-17d5b4a07ae1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Threads">
+      <UniqueIdentifier>{8c188b17-89d8-48bf-9b84-80e4f347dd94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Client">
+      <UniqueIdentifier>{9ac5df93-630b-4659-a2e3-aaf295f4fed9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Client\Adapters">
+      <UniqueIdentifier>{fdf3535e-372a-4f77-b94c-0335567fd2ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Client\RemoteDatabase">
+      <UniqueIdentifier>{18dd5811-624a-4ff1-aeb6-1d2c0dadd17a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Client\GatewayInterface">
+      <UniqueIdentifier>{86b15681-b9db-48a6-b444-7a1102dd6bf3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Language">
+      <UniqueIdentifier>{51ccef5a-1b41-463f-825f-90dbceaa04f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Orb">
+      <UniqueIdentifier>{3d73c11c-7d03-4d4f-981f-06b6257ada68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Styx">
+      <UniqueIdentifier>{6153295d-f5d9-4bd7-b5bd-d31ed95fbb95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Styx\Libbase">
+      <UniqueIdentifier>{084cc417-00cf-4986-a138-61977db25f2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Styx\Libutil">
+      <UniqueIdentifier>{1e187fad-b69f-4b9d-a2d3-b392a7a7acc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Styx\Libstyx">
+      <UniqueIdentifier>{79427013-113a-4c88-b956-bd675ad756dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Styx\Modstd">
+      <UniqueIdentifier>{93c983bd-0878-4af3-b5d7-b6fb63b688bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Styx\Gen">
+      <UniqueIdentifier>{7fe801d7-0a2d-4a15-a5ef-3f654ba5f4df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ecl">
+      <UniqueIdentifier>{8a88922d-557d-4473-963b-7d906ad929e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ecl\driver">
+      <UniqueIdentifier>{91c5d5c7-3915-4aa5-bd7a-1d44dcfa455f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ecl\driver\snprintf">
+      <UniqueIdentifier>{70ee7d7b-605c-4445-983d-ad560dc5bbe5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ecl\ecl_system">
+      <UniqueIdentifier>{5765896c-10f7-4dba-98d8-f3576ca370e0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\Src\System\Channel\cAdapter.cpp">
+      <Filter>System\Channel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Channel\cAdapterFactory.cpp">
+      <Filter>System\Channel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Channel\cChannel.cpp">
+      <Filter>System\Channel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Channel\cChannelFactory.cpp">
+      <Filter>System\Channel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Channel\cChannelProxy.cpp">
+      <Filter>System\Channel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Channel\cConnector.cpp">
+      <Filter>System\Channel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Channel\cCOSChannel.cpp">
+      <Filter>System\Channel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Channel\cLocalChannel.cpp">
+      <Filter>System\Channel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Channel\cRemoteBridge.cpp">
+      <Filter>System\Channel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Channel\cRemoteChannel.cpp">
+      <Filter>System\Channel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\ClientServer\cBlockQueue.cpp">
+      <Filter>System\ClientServer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\ClientServer\cClient.cpp">
+      <Filter>System\ClientServer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\ClientServer\cCSAddress.cpp">
+      <Filter>System\ClientServer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\ClientServer\cCSComm.cpp">
+      <Filter>System\ClientServer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\ClientServer\cCSMsg.cpp">
+      <Filter>System\ClientServer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\ClientServer\cInetAddress.cpp">
+      <Filter>System\ClientServer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\ClientServer\cServer.cpp">
+      <Filter>System\ClientServer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\ClientServer\cServerThread.cpp">
+      <Filter>System\ClientServer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\ClientServer\cTCPComm.cpp">
+      <Filter>System\ClientServer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\ClientServer\cUDPClient.cpp">
+      <Filter>System\ClientServer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\ClientServer\cUDPComm.cpp">
+      <Filter>System\ClientServer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\ClientServer\cUDPServer.cpp">
+      <Filter>System\ClientServer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\PLC\cActLine.cpp">
+      <Filter>System\PLC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\PLC\cActProcedure.cpp">
+      <Filter>System\PLC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\PLC\cActProgram.cpp">
+      <Filter>System\PLC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\PLC\cAtomicCondition.cpp">
+      <Filter>System\PLC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\PLC\cControlCondition.cpp">
+      <Filter>System\PLC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\PLC\cControlProcedure.cpp">
+      <Filter>System\PLC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\PLC\cControlProgram.cpp">
+      <Filter>System\PLC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\PLC\cControlStartCondition.cpp">
+      <Filter>System\PLC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\PLC\cControlState.cpp">
+      <Filter>System\PLC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\PLC\cProcedureLine.cpp">
+      <Filter>System\PLC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\PLC\cStateVariable.cpp">
+      <Filter>System\PLC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Comm\cProxyReceiver.cpp">
+      <Filter>System\Comm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Comm\cProxySender.cpp">
+      <Filter>System\Comm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Comm\cProxyTable.cpp">
+      <Filter>System\Comm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Config\cConfiguration.cpp">
+      <Filter>System\Config</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Config\cConfigurationObject.cpp">
+      <Filter>System\Config</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Config\cProperty.cpp">
+      <Filter>System\Config</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Config\cPropertyDef.cpp">
+      <Filter>System\Config</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Config\cTypeDef.cpp">
+      <Filter>System\Config</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Config\cTypeFactory.cpp">
+      <Filter>System\Config</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Console\cConsole.cpp">
+      <Filter>System\Console</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Console\cFileConsole.cpp">
+      <Filter>System\Console</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Console\cMemoryConsole.cpp">
+      <Filter>System\Console</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Console\cSocketConsole.cpp">
+      <Filter>System\Console</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Console\cStandardConsole.cpp">
+      <Filter>System\Console</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Database\cArgument.cpp">
+      <Filter>System\Database</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Database\cBlob.cpp">
+      <Filter>System\Database</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Database\cConstInt.cpp">
+      <Filter>System\Database</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Database\cConstReal.cpp">
+      <Filter>System\Database</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Database\cConstString.cpp">
+      <Filter>System\Database</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Database\cContext.cpp">
+      <Filter>System\Database</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Database\cCurve.cpp">
+      <Filter>System\Database</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Database\cFileContext.cpp">
+      <Filter>System\Database</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Database\cFileVariable.cpp">
+      <Filter>System\Database</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Database\cFuncDecl.cpp">
+      <Filter>System\Database</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Database\cFuncRef.cpp">
+      <Filter>System\Database</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Database\cFuncRefArg.cpp">
+      <Filter>System\Database</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Database\cImage.cpp">
+      <Filter>System\Database</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Database\cMapping.cpp">
+      <Filter>System\Database</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Database\cRefCache.cpp">
+      <Filter>System\Database</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Database\cSHVariant.cpp">
+      <Filter>System\Database</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Database\cUnitDef.cpp">
+      <Filter>System\Database</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Database\cVarDef.cpp">
+      <Filter>System\Database</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Database\cVariable.cpp">
+      <Filter>System\Database</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Database\cVariableValues.cpp">
+      <Filter>System\Database</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Database\cVarRef.cpp">
+      <Filter>System\Database</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Database\cVarRefArg.cpp">
+      <Filter>System\Database</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Memory\cBlockBuffer.cpp">
+      <Filter>System\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Memory\cCharRingBuffer.cpp">
+      <Filter>System\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Memory\cMemoryPtr.cpp">
+      <Filter>System\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Memory\cPtrList.cpp">
+      <Filter>System\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Namespace\cNameSpace.cpp">
+      <Filter>System\Namespace</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Namespace\cNameSpaceIterator.cpp">
+      <Filter>System\Namespace</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Namespace\cNameSpaceNode.cpp">
+      <Filter>System\Namespace</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Namespace\cNodeContext.cpp">
+      <Filter>System\Namespace</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Namespace\cNodeObject.cpp">
+      <Filter>System\Namespace</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Namespace\cTree.cpp">
+      <Filter>System\Namespace</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Objects\cAlarm.cpp">
+      <Filter>System\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Objects\cCorbaProxy.cpp">
+      <Filter>System\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Objects\cDataChange.cpp">
+      <Filter>System\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Objects\cEvent.cpp">
+      <Filter>System\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Objects\cInfo.cpp">
+      <Filter>System\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Objects\cJobEntry.cpp">
+      <Filter>System\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Objects\cJobSpec.cpp">
+      <Filter>System\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Objects\cObjectBuffer.cpp">
+      <Filter>System\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Objects\cObjectLock.cpp">
+      <Filter>System\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Objects\cObjectQueue.cpp">
+      <Filter>System\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Objects\cProxy.cpp">
+      <Filter>System\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Objects\cRequest.cpp">
+      <Filter>System\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Objects\cState.cpp">
+      <Filter>System\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Objects\cStaticObject.cpp">
+      <Filter>System\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Objects\cTransferObject.cpp">
+      <Filter>System\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Objects\cTransientObject.cpp">
+      <Filter>System\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Objects\cUserInfo.cpp">
+      <Filter>System\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Process\cCellProxy.cpp">
+      <Filter>System\Process</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Process\cOptions.cpp">
+      <Filter>System\Process</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Process\cResources.cpp">
+      <Filter>System\Process</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Process\cSHProcess.cpp">
+      <Filter>System\Process</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Process\cShutDownControl.cpp">
+      <Filter>System\Process</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Process\debug_log.cpp">
+      <Filter>System\Process</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Structs\cDataFile.cpp">
+      <Filter>System\Structs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Structs\cDataset.cpp">
+      <Filter>System\Structs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Structs\cDatasetDirectory.cpp">
+      <Filter>System\Structs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Structs\cExtendedObjectRing.cpp">
+      <Filter>System\Structs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Structs\cFlatObject.cpp">
+      <Filter>System\Structs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Structs\cFloatCurve.cpp">
+      <Filter>System\Structs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Structs\cGraphicCurve.cpp">
+      <Filter>System\Structs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Structs\cShortCurve.cpp">
+      <Filter>System\Structs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Sys\cConvUtils.cpp">
+      <Filter>System\Sys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Sys\cexceptionhnd.cpp">
+      <Filter>System\Sys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Sys\cFileSystemUtils.cpp">
+      <Filter>System\Sys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Sys\cSharedLibrary.cpp">
+      <Filter>System\Sys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Sys\cSHFile.cpp">
+      <Filter>System\Sys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Sys\cSockets.cpp">
+      <Filter>System\Sys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Sys\cSysProcess.cpp">
+      <Filter>System\Sys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Sys\cSystemUtils.cpp">
+      <Filter>System\Sys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Text\cText.cpp">
+      <Filter>System\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Text\cTextTable.cpp">
+      <Filter>System\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Text\SystemText.cpp">
+      <Filter>System\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Threads\cAsyncChannel.cpp">
+      <Filter>System\Threads</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Threads\cControlThread.cpp">
+      <Filter>System\Threads</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\cCustomFunctions.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\cError.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\cIniFile.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\cLogFile.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\cStringUtils.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\cTimeObject.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\cTokenizer.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\cVariant.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Client\Adapters\cDataChangeAdapter.cpp">
+      <Filter>Client\Adapters</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Client\Adapters\cDataControl.cpp">
+      <Filter>Client\Adapters</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Client\Adapters\cEventAdapter.cpp">
+      <Filter>Client\Adapters</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Client\Adapters\cEventControl.cpp">
+      <Filter>Client\Adapters</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Client\RemoteDatabase\cRemoteContext.cpp">
+      <Filter>Client\RemoteDatabase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Client\RemoteDatabase\cRemoteVar.cpp">
+      <Filter>Client\RemoteDatabase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Client\GatewayInterface\cGatewayClient.cpp">
+      <Filter>Client\GatewayInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Client\GatewayInterface\cGatewayInterface.cpp">
+      <Filter>Client\GatewayInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Language\cSDDLParser.cpp">
+      <Filter>Language</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Language\cStyxParser.cpp">
+      <Filter>Language</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Language\Shacira_int.c">
+      <Filter>Language</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Language\Shacira_lim.c">
+      <Filter>Language</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Language\Shacira_pim.c">
+      <Filter>Language</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Orb\cBroker.cpp">
+      <Filter>Orb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Orb\cCorbaCellProxy.cpp">
+      <Filter>Orb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Orb\cCosEventChannelProxy.cpp">
+      <Filter>Orb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Orb\ControlDynSK.cpp">
+      <Filter>Orb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Orb\ControlSK.cpp">
+      <Filter>Orb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Orb\CorbaDefinitions.cpp">
+      <Filter>Orb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Orb\CosEventChannelAdminDynSK.cpp">
+      <Filter>Orb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Orb\CosEventChannelAdminSK.cpp">
+      <Filter>Orb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Orb\CosEventCommDynSK.cpp">
+      <Filter>Orb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Orb\CosEventCommSK.cpp">
+      <Filter>Orb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Orb\iCellObject.cpp">
+      <Filter>Orb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\binimg.c">
+      <Filter>Styx\Libbase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\binset.c">
+      <Filter>Styx\Libbase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\cfg_abs.c">
+      <Filter>Styx\Libbase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\cfg_dfn.c">
+      <Filter>Styx\Libbase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\ctx_app.c">
+      <Filter>Styx\Libbase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\glo_tab.c">
+      <Filter>Styx\Libbase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\gstream.c">
+      <Filter>Styx\Libbase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\hmap.c">
+      <Filter>Styx\Libbase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\hset.c">
+      <Filter>Styx\Libbase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\line_scn.c">
+      <Filter>Styx\Libbase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\list.c">
+      <Filter>Styx\Libbase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\literal.c">
+      <Filter>Styx\Libbase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\otab.c">
+      <Filter>Styx\Libbase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\pathes.c">
+      <Filter>Styx\Libbase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\prim.c">
+      <Filter>Styx\Libbase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\prs.c">
+      <Filter>Styx\Libbase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\prs_abs.c">
+      <Filter>Styx\Libbase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\prs_io.c">
+      <Filter>Styx\Libbase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\ptm.c">
+      <Filter>Styx\Libbase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\ptm_gen.c">
+      <Filter>Styx\Libbase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\ptm_pp.c">
+      <Filter>Styx\Libbase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\scn_abs.c">
+      <Filter>Styx\Libbase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\scn_base.c">
+      <Filter>Styx\Libbase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\scn_io.c">
+      <Filter>Styx\Libbase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\scn_pre.c">
+      <Filter>Styx\Libbase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\sink.c">
+      <Filter>Styx\Libbase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\symbols.c">
+      <Filter>Styx\Libbase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\sysbase0.c">
+      <Filter>Styx\Libbase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\libbase\sysbase1.c">
+      <Filter>Styx\Libbase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\libutil\charlib.c">
+      <Filter>Styx\Libutil</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\libutil\com_get.c">
+      <Filter>Styx\Libutil</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\libutil\ctx.c">
+      <Filter>Styx\Libutil</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\libutil\dict.c">
+      <Filter>Styx\Libutil</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\libutil\dicts.c">
+      <Filter>Styx\Libutil</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\libutil\hpat.c">
+      <Filter>Styx\Libutil</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\libutil\olist.c">
+      <Filter>Styx\Libutil</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\libutil\pgm_base.c">
+      <Filter>Styx\Libutil</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\libstyx\prs_gen.c">
+      <Filter>Styx\Libstyx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\libstyx\reg_exp.c">
+      <Filter>Styx\Libstyx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\libstyx\scn_gen.c">
+      <Filter>Styx\Libstyx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\libstyx\styx_gen.c">
+      <Filter>Styx\Libstyx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\modstd\gls.c">
+      <Filter>Styx\Modstd</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\modstd\memosx.c">
+      <Filter>Styx\Modstd</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\gen\ccnv_lim.c">
+      <Filter>Styx\Gen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\gen\cmd_int.c">
+      <Filter>Styx\Gen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\gen\cmd_lim.c">
+      <Filter>Styx\Gen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\gen\cmd_pim.c">
+      <Filter>Styx\Gen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\gen\ctoh_cim.c">
+      <Filter>Styx\Gen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\gen\hpat_int.c">
+      <Filter>Styx\Gen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\gen\hpat_lim.c">
+      <Filter>Styx\Gen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\gen\hpat_pim.c">
+      <Filter>Styx\Gen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\gen\lim__cim.c">
+      <Filter>Styx\Gen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\gen\pim__cim.c">
+      <Filter>Styx\Gen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\gen\ptm__cim.c">
+      <Filter>Styx\Gen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\gen\rexp_lim.c">
+      <Filter>Styx\Gen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\gen\styd_cim.c">
+      <Filter>Styx\Gen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\gen\styp_cim.c">
+      <Filter>Styx\Gen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\gen\styx_cim.c">
+      <Filter>Styx\Gen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\gen\styx_int.c">
+      <Filter>Styx\Gen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\gen\styx_lim.c">
+      <Filter>Styx\Gen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\STYX\src\gen\styx_pim.c">
+      <Filter>Styx\Gen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\driver\snprintf\snprintf.c">
+      <Filter>ecl\driver\snprintf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\driver\mn.cpp">
+      <Filter>ecl\driver</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\driver\mn_local.cpp">
+      <Filter>ecl\driver</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\driver\mn_mslot.cpp">
+      <Filter>ecl\driver</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\driver\mn_npipe.cpp">
+      <Filter>ecl\driver</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\driver\mn_queue.cpp">
+      <Filter>ecl\driver</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\system\enum_procs.cpp">
+      <Filter>ecl\ecl_system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\base.cpp">
+      <Filter>ecl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\bprintf.cpp">
+      <Filter>ecl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\collect.cpp">
+      <Filter>ecl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\error.cpp">
+      <Filter>ecl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\event.cpp">
+      <Filter>ecl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\logfile.cpp">
+      <Filter>ecl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\map.cpp">
+      <Filter>ecl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\message.cpp">
+      <Filter>ecl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\namedpipe.cpp">
+      <Filter>ecl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\object.cpp">
+      <Filter>ecl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\osbase.cpp">
+      <Filter>ecl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\osversion.cpp">
+      <Filter>ecl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\process.cpp">
+      <Filter>ecl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\profile.cpp">
+      <Filter>ecl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\queue.cpp">
+      <Filter>ecl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\ring.cpp">
+      <Filter>ecl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\semaphore.cpp">
+      <Filter>ecl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\sharedmem.cpp">
+      <Filter>ecl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\string.cpp">
+      <Filter>ecl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\string_ex.cpp">
+      <Filter>ecl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Extern\ECL\src\base\thread.cpp">
+      <Filter>ecl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\cLiteString.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\cLiteWString.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\cValue.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Objects\cProtocol.cpp">
+      <Filter>System\Objects</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\Src\System\Channel\cAdapter.h">
+      <Filter>System\Channel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Channel\cAdapterFactory.h">
+      <Filter>System\Channel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Channel\cChannel.h">
+      <Filter>System\Channel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Channel\cChannelFactory.h">
+      <Filter>System\Channel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Channel\cChannelProxy.h">
+      <Filter>System\Channel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Channel\cConnector.h">
+      <Filter>System\Channel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Channel\cCOSChannel.h">
+      <Filter>System\Channel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Channel\cLocalChannel.h">
+      <Filter>System\Channel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Channel\cRemoteBridge.h">
+      <Filter>System\Channel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Channel\cRemoteChannel.h">
+      <Filter>System\Channel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\ClientServer\cBlockQueue.h">
+      <Filter>System\ClientServer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\ClientServer\cClient.h">
+      <Filter>System\ClientServer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\ClientServer\cCSAddress.h">
+      <Filter>System\ClientServer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\ClientServer\cCSComm.h">
+      <Filter>System\ClientServer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\ClientServer\cCSMsg.h">
+      <Filter>System\ClientServer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\ClientServer\cInetAddress.h">
+      <Filter>System\ClientServer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\ClientServer\cs.h">
+      <Filter>System\ClientServer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\ClientServer\cServer.h">
+      <Filter>System\ClientServer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\ClientServer\cServerThread.h">
+      <Filter>System\ClientServer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\ClientServer\cTCPComm.h">
+      <Filter>System\ClientServer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\ClientServer\cUDPClient.h">
+      <Filter>System\ClientServer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\ClientServer\cUDPComm.h">
+      <Filter>System\ClientServer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\ClientServer\cUDPServer.h">
+      <Filter>System\ClientServer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\PLC\cActLine.h">
+      <Filter>System\PLC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\PLC\cActProcedure.h">
+      <Filter>System\PLC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\PLC\cActProgram.h">
+      <Filter>System\PLC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\PLC\cAtomicCondition.h">
+      <Filter>System\PLC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\PLC\cControlCondition.h">
+      <Filter>System\PLC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\PLC\cControlProcedure.h">
+      <Filter>System\PLC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\PLC\cControlProgram.h">
+      <Filter>System\PLC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\PLC\cControlStartCondition.h">
+      <Filter>System\PLC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\PLC\cControlState.h">
+      <Filter>System\PLC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\PLC\cProcedureLine.h">
+      <Filter>System\PLC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\PLC\cStateVariable.h">
+      <Filter>System\PLC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Comm\cProxyReceiver.h">
+      <Filter>System\Comm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Comm\cProxySender.h">
+      <Filter>System\Comm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Comm\cProxyTable.h">
+      <Filter>System\Comm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Config\cConfiguration.h">
+      <Filter>System\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Config\cConfigurationObject.h">
+      <Filter>System\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Config\cProperty.h">
+      <Filter>System\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Config\cPropertyDef.h">
+      <Filter>System\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Config\cTypeDef.h">
+      <Filter>System\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Config\cTypeFactory.h">
+      <Filter>System\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Console\cConsole.h">
+      <Filter>System\Console</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Console\cFileConsole.h">
+      <Filter>System\Console</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Console\cMemoryConsole.h">
+      <Filter>System\Console</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Console\cSocketConsole.h">
+      <Filter>System\Console</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Console\cStandardConsole.h">
+      <Filter>System\Console</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Database\cArgument.h">
+      <Filter>System\Database</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Database\cBlob.h">
+      <Filter>System\Database</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Database\cConstInt.h">
+      <Filter>System\Database</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Database\cConstReal.h">
+      <Filter>System\Database</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Database\cConstString.h">
+      <Filter>System\Database</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Database\cContext.h">
+      <Filter>System\Database</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Database\cCurve.h">
+      <Filter>System\Database</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Database\cFileContext.h">
+      <Filter>System\Database</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Database\cFileVariable.h">
+      <Filter>System\Database</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Database\cFuncDecl.h">
+      <Filter>System\Database</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Database\cFuncRef.h">
+      <Filter>System\Database</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Database\cFuncRefArg.h">
+      <Filter>System\Database</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Database\cImage.h">
+      <Filter>System\Database</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Database\cMapping.h">
+      <Filter>System\Database</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Database\cRefCache.h">
+      <Filter>System\Database</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Database\cSHVariant.h">
+      <Filter>System\Database</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Database\cUnitDef.h">
+      <Filter>System\Database</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Database\cVarDef.h">
+      <Filter>System\Database</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Database\cVariable.h">
+      <Filter>System\Database</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Database\cVariableValues.h">
+      <Filter>System\Database</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Database\cVarRef.h">
+      <Filter>System\Database</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Database\cVarRefArg.h">
+      <Filter>System\Database</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Database\FuncSpecs.h">
+      <Filter>System\Database</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Memory\cBlockBuffer.h">
+      <Filter>System\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Memory\cCharRingBuffer.h">
+      <Filter>System\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Memory\cMemoryPtr.h">
+      <Filter>System\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Memory\cPtrList.h">
+      <Filter>System\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Namespace\cNameSpace.h">
+      <Filter>System\Namespace</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Namespace\cNameSpaceIterator.h">
+      <Filter>System\Namespace</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Namespace\cNameSpaceNode.h">
+      <Filter>System\Namespace</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Namespace\cNodeContext.h">
+      <Filter>System\Namespace</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Namespace\cNodeObject.h">
+      <Filter>System\Namespace</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Namespace\cTree.h">
+      <Filter>System\Namespace</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Objects\cAlarm.h">
+      <Filter>System\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Objects\cCorbaProxy.h">
+      <Filter>System\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Objects\cDataChange.h">
+      <Filter>System\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Objects\cEvent.h">
+      <Filter>System\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Objects\cInfo.h">
+      <Filter>System\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Objects\cJobEntry.h">
+      <Filter>System\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Objects\cJobSpec.h">
+      <Filter>System\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Objects\cObjectBuffer.h">
+      <Filter>System\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Objects\cObjectLock.h">
+      <Filter>System\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Objects\cObjectQueue.h">
+      <Filter>System\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Objects\cProxy.h">
+      <Filter>System\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Objects\cRequest.h">
+      <Filter>System\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Objects\cState.h">
+      <Filter>System\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Objects\cStaticObject.h">
+      <Filter>System\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Objects\cTransferObject.h">
+      <Filter>System\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Objects\cTransientObject.h">
+      <Filter>System\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Objects\cUserInfo.h">
+      <Filter>System\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Process\cCellProxy.h">
+      <Filter>System\Process</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Process\cOptions.h">
+      <Filter>System\Process</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Process\cResources.h">
+      <Filter>System\Process</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Process\cSHProcess.h">
+      <Filter>System\Process</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Process\cShutDownControl.h">
+      <Filter>System\Process</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Process\debug_log.h">
+      <Filter>System\Process</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Structs\cDataFile.h">
+      <Filter>System\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Structs\cDataset.h">
+      <Filter>System\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Structs\cDatasetDirectory.h">
+      <Filter>System\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Structs\cExtendedObjectRing.h">
+      <Filter>System\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Structs\cFlatObject.h">
+      <Filter>System\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Structs\cFloatCurve.h">
+      <Filter>System\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Structs\cGraphicCurve.h">
+      <Filter>System\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Structs\cShortCurve.h">
+      <Filter>System\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Sys\cConvUtils.h">
+      <Filter>System\Sys</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Sys\cFileSystemUtils.h">
+      <Filter>System\Sys</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Sys\cSHFile.h">
+      <Filter>System\Sys</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Sys\cSockets.h">
+      <Filter>System\Sys</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Sys\cSysProcess.h">
+      <Filter>System\Sys</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Sys\cSystemUtils.h">
+      <Filter>System\Sys</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Text\cTextTable.h">
+      <Filter>System\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Text\SystemText.h">
+      <Filter>System\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Threads\cAsyncChannel.h">
+      <Filter>System\Threads</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Threads\cControlThread.h">
+      <Filter>System\Threads</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\cCustomFunctions.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\cError.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\cIniFile.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\cLogFile.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\cStringUtils.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\cTimeObject.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\cTokenizer.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\cVariant.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\Client\Adapters\cDataChangeAdapter.h">
+      <Filter>Client\Adapters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\Client\Adapters\cDataControl.h">
+      <Filter>Client\Adapters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\Client\Adapters\cEventAdapter.h">
+      <Filter>Client\Adapters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\Client\Adapters\cEventControl.h">
+      <Filter>Client\Adapters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\Client\RemoteDatabase\cRemoteContext.h">
+      <Filter>Client\RemoteDatabase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\Client\RemoteDatabase\cRemoteVar.h">
+      <Filter>Client\RemoteDatabase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\Client\GatewayInterface\cGatewayClient.h">
+      <Filter>Client\GatewayInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\Client\GatewayInterface\cGatewayInterface.h">
+      <Filter>Client\GatewayInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\Language\cSDDLParser.h">
+      <Filter>Language</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\Language\cStyxParser.h">
+      <Filter>Language</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\Orb\cBroker.h">
+      <Filter>Orb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\Orb\cCorbaCellProxy.h">
+      <Filter>Orb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\Orb\cCosEventChannelProxy.h">
+      <Filter>Orb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\Orb\CorbaDefinitions.h">
+      <Filter>Orb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\Orb\iCellObject.h">
+      <Filter>Orb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Extern\STYX\src\MODSTD\STDOSX.H">
+      <Filter>Styx\Modstd</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Extern\ECL\src\base\driver\snprintf\snprintf.h">
+      <Filter>ecl\driver\snprintf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Extern\ECL\src\base\driver\mn.h">
+      <Filter>ecl\driver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Extern\ECL\src\base\driver\mn_local.h">
+      <Filter>ecl\driver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Extern\ECL\src\base\driver\mn_mslot.h">
+      <Filter>ecl\driver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Extern\ECL\src\base\driver\mn_npipe.h">
+      <Filter>ecl\driver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Extern\ECL\src\base\driver\mn_queue.h">
+      <Filter>ecl\driver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Extern\ECL\src\base\system\enum_procs.h">
+      <Filter>ecl\ecl_system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Extern\ECL\src\base\bprintf.h">
+      <Filter>ecl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Extern\ECL\src\base\error.h">
+      <Filter>ecl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Extern\ECL\src\base\event.h">
+      <Filter>ecl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Extern\ECL\src\base\namedpipe.h">
+      <Filter>ecl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Extern\ECL\src\base\object.h">
+      <Filter>ecl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Extern\ECL\src\base\osversion.h">
+      <Filter>ecl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Extern\ECL\src\base\process.h">
+      <Filter>ecl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Extern\ECL\src\base\profile.h">
+      <Filter>ecl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Extern\ECL\src\base\queue.h">
+      <Filter>ecl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Extern\ECL\src\base\string.h">
+      <Filter>ecl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\cLiteWString.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\cLiteString.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\cValue.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Sys\cexceptionhnd.h">
+      <Filter>System\Sys</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Objects\cProtocol.h">
+      <Filter>System\Objects</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\..\Src\Language\Shacira.sty">
+      <Filter>Language</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Orb\Control.hh">
+      <Filter>Orb</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Orb\Control.idl">
+      <Filter>Orb</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Orb\CosEventChannelAdmin.hh">
+      <Filter>Orb</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Orb\CosEventComm.hh">
+      <Filter>Orb</Filter>
+    </CustomBuild>
+  </ItemGroup>
+</Project>

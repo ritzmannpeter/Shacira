@@ -1,0 +1,53 @@
+/* ------------------------------------------------------------------------ */
+/*                                                                          */
+/* [cmd.abs]                   Abstract Grammar                             */
+/*                                                                          */
+/* ------------------------------------------------------------------------ */
+
+LANGUAGE cmd
+
+TOKENS
+
+  Ide, Int, Flo, Seq, Doc, Dol
+
+TYPES
+
+  cmd       = Start_Source(Source)
+
+  Source    = root(Ide*, Dol, Doc, Dfn*, OptDoc, Dfn*, OptDoc, Dfn*, OptDoc)
+
+  Dfn       = defn(Ide, Typ, OptVal, Dol)
+
+  OptVal    = non;
+              val(Val)
+
+  OptDoc    = non;
+              doc(Doc)
+
+  Val       = false;
+              str(Seq);
+              int(Int);
+              true;
+              name(Ide);
+              real(Flo);
+              path(Path*)
+
+  Path      = rel(Pid*);
+              env(Ide, Pid*);
+              abs(OptDrv, Pid*)
+
+  OptDrv    = non;
+              drive(Ide)
+
+  Pid       = curr;
+              ext(Ide*, Ide);
+              prev;
+              name(Ide*)
+
+  Typ       = real;
+              int;
+              path;
+              name;
+              flag;
+              str
+

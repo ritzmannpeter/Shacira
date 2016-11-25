@@ -1,0 +1,311 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="generated files">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>moc;h;cpp</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="generated files\Debug">
+      <UniqueIdentifier>{8c126118-d566-4344-a6c1-46566e1833e0}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="generated files\Release">
+      <UniqueIdentifier>{8e39a5b7-83b4-4200-9317-34a64df22b1f}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Devices">
+      <UniqueIdentifier>{0b0ed487-a919-48fb-a9bb-3aae53e688b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dialog_cpp">
+      <UniqueIdentifier>{9bc2e244-24fc-4a9d-9993-4fea190d6012}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dialog_ui">
+      <UniqueIdentifier>{5594ab95-c6b8-4809-9a0b-106f893cbae8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Forms_cpp">
+      <UniqueIdentifier>{2b2f4fdd-5d7c-42da-9f89-1d42d58f57cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Forms_ui">
+      <UniqueIdentifier>{57de5881-45c8-4dec-9b77-36df527e5065}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Functions">
+      <UniqueIdentifier>{1790af3a-bee6-4e87-849f-f0144674abaf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Init">
+      <UniqueIdentifier>{a76d5784-39d3-40c3-b27a-a1cf4c787568}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Programs">
+      <UniqueIdentifier>{4b5cba82-7c79-4a3a-8e8a-dec70feaaf19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Text">
+      <UniqueIdentifier>{c200ec77-16bf-47e0-b986-007cfcbee158}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Widgets">
+      <UniqueIdentifier>{9963a9a2-1593-4933-b2c5-5cd6a3859419}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test">
+      <UniqueIdentifier>{6ba49ce3-bf9f-45e9-be22-8fa19f0654f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="qresources">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Devices\cDemoDevice.cpp">
+      <Filter>Devices</Filter>
+    </ClCompile>
+    <ClCompile Include="Devices\CreateDevice.cpp">
+      <Filter>Devices</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CustomBase\cstdev.cpp">
+      <Filter>Devices</Filter>
+    </ClCompile>
+    <ClCompile Include="Forms\demoframeimpl.cpp">
+      <Filter>Forms_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Forms\demostartupimpl.cpp">
+      <Filter>Forms_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Forms\pagelist.cpp">
+      <Filter>Forms_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_demoframeimpl.cpp">
+      <Filter>generated files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_demoframeimpl.cpp">
+      <Filter>generated files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_demostartupimpl.cpp">
+      <Filter>generated files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_demostartupimpl.cpp">
+      <Filter>generated files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Funcs\demo.tab.cpp">
+      <Filter>Functions</Filter>
+    </ClCompile>
+    <ClCompile Include="Funcs\GUI.tab.cpp">
+      <Filter>Functions</Filter>
+    </ClCompile>
+    <ClCompile Include="Funcs\demo.cpp">
+      <Filter>Functions</Filter>
+    </ClCompile>
+    <ClCompile Include="Funcs\Gui.cpp">
+      <Filter>Functions</Filter>
+    </ClCompile>
+    <ClCompile Include="Init\CustomInit.cpp">
+      <Filter>Init</Filter>
+    </ClCompile>
+    <ClCompile Include="Programs\cDemoProgram.cpp">
+      <Filter>Programs</Filter>
+    </ClCompile>
+    <ClCompile Include="Programs\CreateProgram.cpp">
+      <Filter>Programs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CustomBase\cstpgm.cpp">
+      <Filter>Programs</Filter>
+    </ClCompile>
+    <ClCompile Include="Programs\EM63Program.cpp">
+      <Filter>Programs</Filter>
+    </ClCompile>
+    <ClCompile Include="Text\CustomText.cpp">
+      <Filter>Text</Filter>
+    </ClCompile>
+    <ClCompile Include="Widgets\Generated\moc_dframe.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="Widgets\Src\dactvalue.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="Widgets\Src\dframe.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="appqt4.cpp" />
+    <ClCompile Include="..\CustomBase\configure_app.cpp" />
+    <ClCompile Include="Widgets\Generated\moc_dactvalue.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="Test\clp_stackturnfeedzeroadjustwizard_sub.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_clp_stackturnfeedzeroadjustwizard_sub.cpp">
+      <Filter>generated files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_clp_stackturnfeedzeroadjustwizard_sub.cpp">
+      <Filter>generated files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Test\sys_filehandlingwizard_sub.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_sys_filehandlingwizard_sub.cpp">
+      <Filter>generated files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_sys_filehandlingwizard_sub.cpp">
+      <Filter>generated files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_demo.cpp">
+      <Filter>generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_shacira.cpp">
+      <Filter>generated files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Devices\cDemoDevice.h">
+      <Filter>Devices</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_demoframe.h">
+      <Filter>generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_demostartup.h">
+      <Filter>generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_page1.h">
+      <Filter>generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_page2.h">
+      <Filter>generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_page3.h">
+      <Filter>generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_page4.h">
+      <Filter>generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="Funcs\demo.h">
+      <Filter>Functions</Filter>
+    </ClInclude>
+    <ClInclude Include="Funcs\GUI.h">
+      <Filter>Functions</Filter>
+    </ClInclude>
+    <ClInclude Include="Programs\cDemoProgram.h">
+      <Filter>Programs</Filter>
+    </ClInclude>
+    <ClInclude Include="Programs\EM63Program.h">
+      <Filter>Programs</Filter>
+    </ClInclude>
+    <ClInclude Include="Text\CustomText.h">
+      <Filter>Text</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_clp_stackturnfeedzeroadjustwizard.h">
+      <Filter>generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_sys_filehandlingwizard.h">
+      <Filter>generated files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="Forms\demoframeimpl.h">
+      <Filter>Forms_cpp</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Forms\demostartupimpl.h">
+      <Filter>Forms_cpp</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Forms\demoframe.ui">
+      <Filter>Forms_ui</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Forms\demostartup.ui">
+      <Filter>Forms_ui</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Forms\page1.ui">
+      <Filter>Forms_ui</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Forms\page2.ui">
+      <Filter>Forms_ui</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Forms\page3.ui">
+      <Filter>Forms_ui</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Forms\page4.ui">
+      <Filter>Forms_ui</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Funcs\demo.mdl">
+      <Filter>Functions</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Funcs\GUI.dec">
+      <Filter>Functions</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Test\clp_stackturnfeedzeroadjustwizard.ui">
+      <Filter>Test</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Test\clp_stackturnfeedzeroadjustwizard_sub.h">
+      <Filter>Test</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Test\sys_filehandlingwizard.ui">
+      <Filter>Test</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Test\sys_filehandlingwizard_sub.h">
+      <Filter>Test</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\qresources\demo.qrc">
+      <Filter>qresources</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\..\Src\GUIFramework\QT4Framework\qresources\shacira.qrc">
+      <Filter>qresources</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\qresources\images\img_1.png">
+      <Filter>qresources</Filter>
+    </None>
+    <None Include="..\qresources\images\img_2.png">
+      <Filter>qresources</Filter>
+    </None>
+    <None Include="..\qresources\images\img_3.png">
+      <Filter>qresources</Filter>
+    </None>
+    <None Include="..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_1.png">
+      <Filter>qresources</Filter>
+    </None>
+    <None Include="..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_10.png">
+      <Filter>qresources</Filter>
+    </None>
+    <None Include="..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_11.png">
+      <Filter>qresources</Filter>
+    </None>
+    <None Include="..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_12.png">
+      <Filter>qresources</Filter>
+    </None>
+    <None Include="..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_13.png">
+      <Filter>qresources</Filter>
+    </None>
+    <None Include="..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_14.png">
+      <Filter>qresources</Filter>
+    </None>
+    <None Include="..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_15.png">
+      <Filter>qresources</Filter>
+    </None>
+    <None Include="..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_16.png">
+      <Filter>qresources</Filter>
+    </None>
+    <None Include="..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_2.png">
+      <Filter>qresources</Filter>
+    </None>
+    <None Include="..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_3.png">
+      <Filter>qresources</Filter>
+    </None>
+    <None Include="..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_4.png">
+      <Filter>qresources</Filter>
+    </None>
+    <None Include="..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_5.png">
+      <Filter>qresources</Filter>
+    </None>
+    <None Include="..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_6.png">
+      <Filter>qresources</Filter>
+    </None>
+    <None Include="..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_7.png">
+      <Filter>qresources</Filter>
+    </None>
+    <None Include="..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_8.png">
+      <Filter>qresources</Filter>
+    </None>
+    <None Include="..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_9.png">
+      <Filter>qresources</Filter>
+    </None>
+  </ItemGroup>
+</Project>

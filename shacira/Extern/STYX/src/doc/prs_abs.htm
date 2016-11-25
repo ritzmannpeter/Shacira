@@ -1,0 +1,289 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[prs_abs.h] Abstract LR Parser Interface</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[prs_abs.h] Abstract LR Parser Interface</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="prs_dfn.htm">#include "prs_dfn.h"</a>
+<br>
+<br>
+<br>
+<br>
+   <p>This module [prs_abs] provides an abstract LR parser interface for the
+   term generation module <a href="ptm_gen.htm">[ptm_gen]</a>.
+   <p>It can be used to integrate an externally defined parser with the STYX term
+   generation facility.
+
+
+<br><hr width="100%" size=2><h2><b> The Types </b></h2>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b>AbsPlr_T</b>
+<td align=left> Abstract parser interface type 
+
+</table>
+<br><pre>
+  Types of the parser (interface and configuration) functions
+
+</pre>
+<br><pre>typedef int      (*PF_cfgsize )(Abs_T parser);
+typedef int      (*PF_symType )(Abs_T parser, int symID);
+typedef c_string (*PF_symName )(Abs_T parser, int symID);
+typedef int      (*PF_startSym)(Abs_T parser, int startID);
+typedef int      (*PF_prodNT  )(Abs_T parser, int prodID);
+typedef c_string (*PF_prodName)(Abs_T parser, int prodID);
+typedef int      (*PIF_nextTok)(AbsPlr_T pconfig);
+typedef c_string (*PIF_curTok )(AbsPlr_T pconfig);
+typedef Any_T    (*PIF_topVal )(AbsPlr_T pconfig);
+typedef Any_T    (*PIF_shift  )(AbsPlr_T pconfig, int symID);
+typedef Any_T    (*PIF_reduce )
+                 (
+                   AbsPlr_T pconfig, int symcnt, int prodID, c_bool accept
+                 );
+typedef c_bool   (*PIF_parse  )
+                 (
+                   AbsPlr_T pconfig, c_string symStart, c_bool early
+                 );
+typedef c_bool   (*PIF_accept )(AbsPlr_T pconfig);
+typedef void     (*PIF_error  )(AbsPlr_T pconfig);
+typedef void     (*PIF_debug  )(AbsPlr_T pconfig, Any_T value);
+
+</pre>
+<br><hr width="100%" size=2><h2><b> Init & Quit </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>AbsPlr_T <b>AP_init</b>(void)</pre>
+<td bgcolor="#FFF0F5" align=left>creates an abstract parser interface
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>AP_quit</b>(AbsPlr_T pconfig)</pre>
+<td bgcolor="#FFF0F5" align=left> removes abstract parser interface 'pconfig' <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Specification of the external parser interface </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>AP_setParser</b>(AbsPlr_T pconfig, Abs_T parser)</pre>
+<td bgcolor="#FFF0F5" align=left> specifies the external 'parser' of the abstract interface 'pconfig' <br>
+
+</table>
+<br>
+  <p>An external defined parser must provide the following interface
+     functions. They have to be assigned to the abstract parser interface
+     before initializing the term generation. That module calls them
+     during the construction of the derivation tree.
+
+
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>AP_setFunSymCnt</b>(AbsPlr_T pconfig, PF_cfgsize symCnt)</pre>
+<td bgcolor="#FFF0F5" align=left> specifies 'symCnt' as corresponding function for PLR_symbolCnt<br>
+   in the abstract interface 'pconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>AP_setFunTokCnt</b>(AbsPlr_T pconfig, PF_cfgsize tokCnt)</pre>
+<td bgcolor="#FFF0F5" align=left> specifies 'tokCnt' as corresponding function for PLR_tokenCnt<br>
+   in the abstract interface 'pconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>AP_setFunProdCnt</b>(AbsPlr_T pconfig, PF_cfgsize prodCnt)</pre>
+<td bgcolor="#FFF0F5" align=left> specifies 'prodCnt' as corresponding function for PLR_prodCnt<br>
+   in the abstract interface 'pconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>AP_setFunSymType</b>(AbsPlr_T pconfig, PF_symType symType)</pre>
+<td bgcolor="#FFF0F5" align=left> specifies 'symType' as corresponding function for PLR_symType<br>
+   in the abstract interface 'pconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>AP_setFunSymName</b>(AbsPlr_T pconfig, PF_symName symName)</pre>
+<td bgcolor="#FFF0F5" align=left> specifies 'symName' as corresponding function for PLR_symName<br>
+   in the abstract interface 'pconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>AP_setFunStartSym</b>(AbsPlr_T pconfig, PF_startSym startSym)</pre>
+<td bgcolor="#FFF0F5" align=left> specifies 'startSym' as corresponding function for PLR_startSymbol<br>
+   in the abstract interface 'pconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>AP_setFunProdNT</b>(AbsPlr_T pconfig, PF_prodNT prodNT)</pre>
+<td bgcolor="#FFF0F5" align=left> specifies 'prodNT' as corresponding function for PLR_prodNonTerm<br>
+   in the abstract interface 'pconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>AP_setFunProdName</b>(AbsPlr_T pconfig, PF_prodName prodName)</pre>
+<td bgcolor="#FFF0F5" align=left> specifies 'prodName' as corresponding function for PLR_prodName<br>
+   in the abstract interface 'pconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>AP_setFunTopVal</b>(AbsPlr_T pconfig, PIF_topVal topVal)</pre>
+<td bgcolor="#FFF0F5" align=left> specifies 'topVal' as corresponding function for PLR_topVal<br>
+   in the abstract interface 'pconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>AP_setFunParse</b>(AbsPlr_T pconfig, PIF_parse parse)</pre>
+<td bgcolor="#FFF0F5" align=left> specifies 'parse' as corresponding function for PLR_parse<br>
+   in the abstract interface 'pconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>AP_setFunAccept</b>(AbsPlr_T pconfig, PIF_accept accept)</pre>
+<td bgcolor="#FFF0F5" align=left> specifies 'accept' as corresponding function for PLR_accept<br>
+   in the abstract interface 'pconfig'<br>
+<br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Specification of the external parser configuration </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>AP_setExtCfg</b>(AbsPlr_T pconfig, Abs_T extcfg)</pre>
+<td bgcolor="#FFF0F5" align=left> specifies the external configuration 'extcfg'<br>
+   of the abstract interface 'pconfig'<br>
+<br>
+
+</table>
+<br>
+  <p>An external defined parser must be configurable by the following callback
+     functions. These handlers will be defined and assigned by the term
+     generation module and must be called by the parser during processing.
+
+
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>AP_setFunNextTok</b>(AbsPlr_T pconfig, PIF_nextTok nextTok)</pre>
+<td bgcolor="#FFF0F5" align=left> specifies 'nextTok' as "get next token" handler<br>
+   in the abstract interface 'pconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>AP_setFunCurTok</b>(AbsPlr_T pconfig, PIF_curTok curTok)</pre>
+<td bgcolor="#FFF0F5" align=left> specifies 'curTok' as "get current token name" handler<br>
+   in the abstract interface 'pconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>AP_setFunShift</b>(AbsPlr_T pconfig, PIF_shift shift)</pre>
+<td bgcolor="#FFF0F5" align=left> specifies 'shift' as "shift operation" handler<br>
+   in the abstract interface 'pconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>AP_setFunReduce</b>(AbsPlr_T pconfig, PIF_reduce reduce)</pre>
+<td bgcolor="#FFF0F5" align=left> specifies 'reduce' as "reduce operation" handler<br>
+   in the abstract interface 'pconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>AP_setFunError</b>(AbsPlr_T pconfig, PIF_error error)</pre>
+<td bgcolor="#FFF0F5" align=left> specifies 'error' as "error reporting" handler<br>
+   in the abstract interface 'pconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>AP_setFunDebug</b>(AbsPlr_T pconfig, PIF_debug debug)</pre>
+<td bgcolor="#FFF0F5" align=left> specifies 'debug' as "debugging" handler<br>
+   in the abstract interface 'pconfig'<br>
+<br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Accessing the external parser interface </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Abs_T <b>AP_getParser</b>(AbsPlr_T pconfig)</pre>
+<td bgcolor="#FFF0F5" align=left> get the external parser of the abstract interface 'pconfig' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PF_cfgsize <b>AP_getFunSymCnt</b>(AbsPlr_T pconfig)</pre>
+<td bgcolor="#FFF0F5" align=left> get the corresponding function for PLR_symbolCnt<br>
+   in the abstract interface 'pconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PF_cfgsize <b>AP_getFunTokCnt</b>(AbsPlr_T pconfig)</pre>
+<td bgcolor="#FFF0F5" align=left> get the corresponding function for PLR_tokenCnt<br>
+   in the abstract interface 'pconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PF_cfgsize <b>AP_getFunProdCnt</b>(AbsPlr_T pconfig)</pre>
+<td bgcolor="#FFF0F5" align=left> get the corresponding function for PLR_prodCnt<br>
+   in the abstract interface 'pconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PF_symType <b>AP_getFunSymType</b>(AbsPlr_T pconfig)</pre>
+<td bgcolor="#FFF0F5" align=left> get the corresponding function for PLR_symType<br>
+   in the abstract interface 'pconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PF_symName <b>AP_getFunSymName</b>(AbsPlr_T pconfig)</pre>
+<td bgcolor="#FFF0F5" align=left> get the corresponding function for PLR_symName<br>
+   in the abstract interface 'pconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PF_startSym <b>AP_getFunStartSym</b>(AbsPlr_T pconfig)</pre>
+<td bgcolor="#FFF0F5" align=left> get the corresponding function for PLR_startSymbol<br>
+   in the abstract interface 'pconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PF_prodNT <b>AP_getFunProdNT</b>(AbsPlr_T pconfig)</pre>
+<td bgcolor="#FFF0F5" align=left> get the corresponding function for PLR_prodNonTerm<br>
+   in the abstract interface 'pconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PF_prodName <b>AP_getFunProdName</b>(AbsPlr_T pconfig)</pre>
+<td bgcolor="#FFF0F5" align=left> get the corresponding function for PLR_prodName<br>
+   in the abstract interface 'pconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PIF_topVal <b>AP_getFunTopVal</b>(AbsPlr_T pconfig)</pre>
+<td bgcolor="#FFF0F5" align=left> get the corresponding function for PLR_topVal<br>
+   in the abstract interface 'pconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PIF_parse <b>AP_getFunParse</b>(AbsPlr_T pconfig)</pre>
+<td bgcolor="#FFF0F5" align=left> get the corresponding function for PLR_parse<br>
+   in the abstract interface 'pconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PIF_accept <b>AP_getFunAccept</b>(AbsPlr_T pconfig)</pre>
+<td bgcolor="#FFF0F5" align=left> get the corresponding function for PLR_accept<br>
+   in the abstract interface 'pconfig'<br>
+<br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Accessing the external parser configuration </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>Abs_T <b>AP_getExtCfg</b>(AbsPlr_T pconfig)</pre>
+<td bgcolor="#FFF0F5" align=left> get the external configuration<br>
+   of the abstract interface 'pconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PIF_nextTok <b>AP_getFunNextTok</b>(AbsPlr_T pconfig)</pre>
+<td bgcolor="#FFF0F5" align=left> get the "get next token" handler<br>
+   in the abstract interface 'pconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PIF_curTok <b>AP_getFunCurTok</b>(AbsPlr_T pconfig)</pre>
+<td bgcolor="#FFF0F5" align=left> get the "get current token name" handler<br>
+   in the abstract interface 'pconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PIF_shift <b>AP_getFunShift</b>(AbsPlr_T pconfig)</pre>
+<td bgcolor="#FFF0F5" align=left> get the "shift operation" handler<br>
+   in the abstract interface 'pconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PIF_reduce <b>AP_getFunReduce</b>(AbsPlr_T pconfig)</pre>
+<td bgcolor="#FFF0F5" align=left> get the "reduce operation" handler<br>
+   in the abstract interface 'pconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PIF_error <b>AP_getFunError</b>(AbsPlr_T pconfig)</pre>
+<td bgcolor="#FFF0F5" align=left> get the "error reporting" handler<br>
+   in the abstract interface 'pconfig'<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>PIF_debug <b>AP_getFunDebug</b>(AbsPlr_T pconfig)</pre>
+<td bgcolor="#FFF0F5" align=left> get the "debugging" handler<br>
+   in the abstract interface 'pconfig'<br>
+<br>
+
+</table>
+
+</body>
+</html>

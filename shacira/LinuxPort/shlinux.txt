@@ -1,0 +1,415 @@
+
+
+1. Creating a basic development system
+	the basic development system is built on a the gentoo snapshot
+	2006.1
+	to setup this snapshot for a software production environment,
+	2 CDs are supplied:
+		- a bootable gentoo install CD
+		- a resource CD including all necessary resources for the system build
+		  including a portage snapshot (14. july 2006), the stage3 snapshot
+		  for the 2006.1 system and all the distfiles that are used to
+		  enable Shacira development-
+
+	Prerequisites for the installation are an x86 based PC with
+	with at least 512 MB of Ram and free hard disk space of at least
+	10 GB and a bios that is capable to boot from CD.
+
+1.1. Booting the gentoo install CD on the development host
+	first boot the gentoo install CD on the development host
+	!!!!!! for networkless installations the kernel parameter docache must be supplied
+	
+boot: gentoo docache
+	
+	this offers the possiblity to unmount the gentoo install CD and mount a second CD, in this case
+	the resource CD. If docache is not supplied, it will be not possible to unmount
+	the install CD.
+
+
+1.2. Prepare the hard disk for installation
+	start fdisk assuming /dev/hda is the hard disk device where
+	the development system should be installed
+
+>fdisk /dev/hda
+
+	create necessary partitions
+
+	sample partition table on a system with 512 MB Ram and 40 GB hard disk:
+
+/dev/hdb1               1        2000     1007968+  83  Linux				boot partition /boot 	ap. 100 MB
+/dev/hdb2            2001        4000     1008000   82  Linux swap / Solaris		swap partition		ap. 1000 MB
+/dev/hdb3            4001       39770    18028080    5  Extended
+/dev/hdb5            4001       35000    15623968+  83  Linux				root partition /	ap. 10 GB
+/dev/hdb6           35001       38000     1511968+  83  Linux				additional partition 1	ap. 2 GB
+/dev/hdb7           38001       39770      892048+  83  Linux				additional partition 2	ap. 1 GB
+
+	the two additional partitions are used to downstrip a target system from the
+	development system later on in the development process.
+
+	create file systems
+
+	create boot file system ext2:
+>mke2fs /dev/hdb1
+
+	create root file system ext3:
+>mke2fs -j -O dir_index /dev/hdb5
+
+	create swap file system:
+>mkswap /dev/hdb2 && swapon /dev/hdb2
+
+	create additional file systems ext2:
+>mke2fs /dev/hdb6
+>mke2fs /dev/hdb7
+
+1.3. Get and install necessary software (portage, stage3 snapshot, distfiles)
+	there are two possibilties to setup the development system
+	1. if a working internet connection is available:
+		all needed software cam be downloaded from the servers
+		using wget. This will be done automatically by the portage tool when needed.
+	
+	2. if no working connection to the internet exists:
+		copy the needed software from the supplied resource CD
+
+	the following instructions refer to a networkless install.
+
+	mount the needed file systems:
+
+	mount the new root partition to /mnt/gentoo
+>mount /dev/hdb5 /mnt/gentoo
+	mount the boot partition to /mnt/gentoo/boot
+>mount /dev/hdb1 /mnt/gentoo/boot
+
+	unmount install CD (only possible, when docache was supplied when booting the CD)
+>umount /mnt/cdrom
+
+	now plug in the resource CD and mount it (we assume /dev/hdc as the cdrom device)
+>mount /dev/hdc /mnt/cdrom
+	copy the stage3 archive to the hard disk
+	change into gentoo directory (this is the root / of the root file system)
+
+>cd /mnt/gentoo
+>cp -v /mnt/cdrom/stage3-i686-2006.0.tar.bz2 .
+	
+	extract the stage3 archive on the hard disk
+
+>tar -vxjpf stage3*
+
+	after this step, a basic gentoo root file system exists
+	on the hard disk
+	change into gentoo usr directory
+
+>cd /mnt/gentoo/usr
+
+	copy portage snapshot to current directory
+
+>cp -v /mnt/cdrom/portage-latest.tar.bz2 .
+
+	extract the portage snapshot
+
+>tar -vxjf portage*
+
+	/mnt/gentoo/usr/portage now contains a working snapshot of the copied
+	portage system
+	copy and extract all distfiles to the distfiles directory of portage
+
+>cd /mnt/gentoo/usr/portage
+>cp /mnt/cdrom/distfiles.tar .
+>tar -xvf distfiles.tar
+
+	copy and extract all project specific additional source packages
+	
+>mkdir /mnt/gentoo/prj
+>cp -v /mnt/cdrom/sources.tar /mnt/gentoo/prj
+>cd /mnt/gentoo/prj
+>tar -xvf sources.tar
+
+	unmount the resource CD
+
+>umount /mnt/cdrom
+
+1.4. Enter the chroot environment
+	
+	change the root to the new gentoo root file system
+
+>cd /
+>mount -t proc proc /mnt/gentoo/proc
+>cp -L /etc/resolv.conf /mnt/gentoo/etc/
+>chroot /mnt/gentoo /bin/bash
+>env-update && source /etc/profile
+<>>> Regenerating /etc/ld.so.cache...
+
+	from now on all instructions of the "Gentoo Linux x86 Quick Install Guide" will
+	apply without restrictions.
+
+	enter a root password for login after reboot
+>passwd
+
+	copy the appropriate zone info
+>cp -v /usr/share/zoneinfo/Europe/Brussels /etc/localtime
+
+	set host and domain information
+>cd /etc
+>echo "127.0.0.1 shdevelop.soft2i.com shdevelop localhost" > hosts
+>sed -i -e 's/HOSTNAME.*/HOSTNAME="shdevelop"/' conf.d/hostname
+>hostname shdevelop
+>hostname -f
+<shdevelop.soft2i.com
+
+1.5. Build a kernel and make the new installation bootable
+
+	emerge gentoo kernel sources
+
+>emerge gentoo-sources
+
+	build the kernel
+
+>cd /usr/src/linux
+>make menuconfig
+(Configure your kernel)
+>make -j2
+>make modules_install
+	copy the new built kernel to the boot partition
+>cp -v arch/i386/boot/bzImage /boot/kernel
+
+
+1.6. Install and configure the bootloader
+
+	emerge grub
+>emerge grub
+
+	edit grubs config file
+>cd /boot/grub
+>nano grub.conf
+
+	in our example the grub.conf would look like this:
+
+default 0
+timeout 10
+
+title=Shacira Development Machine
+kernel (hd0,0)/boot/kernel root=/dev/hdb5
+
+
+	install grub
+
+>grub
+grub>root (hd0,0)		set root to boot partition
+grub>setup (hd0)		install boot loader on hard disk 0
+grub>quit
+>
+	
+	adjust fstab: edit fstab and replace BOOT,ROOT and SWAP
+	with the apropriate partition identifiers
+	(here /dev/hdb1, /dev/hdb5 and /dev/hdb2)
+
+>cd /etc
+>nano fstab
+
+	exit the chroot environment
+>exit
+>umount /mnt/gentoo/proc /mnt/gentoo/boot /mnt/gentoo
+
+
+	now boot into the new development system
+>reboot
+
+1.7. Install packages
+
+	From now on the system is configured for booting
+	and supports basic capablities. Portage can be used to
+	install additional software packages either from the
+	/usr/portage/distfiles directory or from the mirrors of
+	the world wide web.
+
+	The system has actually no connection to the outside world.
+
+	
+
+1.7.1. Install the dhcpd package
+
+>emerge dhcpd
+
+1.7.2. Configure dhcpcd
+
+	Nothing to configure. To startup the service place dhcpcd
+	in the boot configuration file /etc/conf.d/local.start.
+
+
+1.7.3. Install the samba 3 package
+
+>emerge samba
+
+1.7.4. Configure samba
+
+	create copy or adjust /etc/samba/smb.conf
+	create samba users
+>smbpasswd -a root
+
+1.7.5. Install the proftpd package
+
+>emerge -av proftpd
+
+1.7.6. Configure proftpd
+
+
+1.7.7. Install the xorg Server version 7 package
+
+>emerge xorg-x11
+
+1.7.8. Configure X11
+
+	create copy or adjust /etc/X11/xorg.conf
+
+1.8. Install project specific additional Source packages
+
+	change into the project directory /prj
+
+>cd /prj
+
+	extract source archives
+
+	omniORB Object Request Broker
+>gunzip omniORB-4.0.7.tar.gz
+>tar -xvf omniORB-4.0.7.tar
+
+	Styx parser generator
+>gunzip styx-1.7.1.tar.gz
+>tar -xvf styx-1.7.1.tar
+
+	Qt free X11 based GUI toolkit
+>gunzip qt-x11-free-3.3.6.tar.gz
+>tar -xvf qt-x11-free-3.3.6.tar
+
+	ICE Window Manager
+>gunzip icewm-1.2.26.tar.gz
+>tar -xvf icewm-1.2.26.tar
+
+	GoAhead web server
+>gunzip webs218.tar.gz
+>tar -xvf webs218.tar
+
+1.8.1. Building and installing omniORB-4.0.7
+
+	make shure that the directory /usr/include/python2.4 including the file
+	Python.h exists in your distribution
+	SUSE 10.1 for example needs to install the package python-devel
+
+>cd /prj/omniORB-4.0.7
+>./configure
+>make
+>make install
+
+1.8.2. Building and installing styx-1.6.1
+
+>cd /prj/styx-1.6.1
+>./configure
+>make
+>make install
+
+1.8.3. Building and installing qt-x11-free-3.3.6
+
+	xorg-x11 must be installed
+
+>cd /prj/qt-x11-free-3.3.6
+>./configure -thread
+>make
+>mkdir /prj/qt3
+>cd /prj/qt3
+>ln -s /prj/qt-x11-free-3.3.6/bin bin
+>ln -s /prj/qt-x11-free-3.3.6/lib lib
+>ln -s /prj/qt-x11-free-3.3.6/include include
+>ln -s /prj/qt-x11-free-3.3.6/plugins plugins
+.profile:
+export QTDIR=/prj/qt3
+export PATH=/prj/qt3/bin:$PATH
+export LD_LIBRARY_PATH=/prj/qt3/lib:$LD_LIBRARY_PATH
+
+1.8.4. Building and installing icewm-1.2.26
+
+>cd /prj/qt-x11-free-3.3.6
+>./configure --without-imlib
+>make
+>make install
+
+1.8.5. Building and installing webs218
+
+>cd /prj/ws031202/LINUX
+>make
+
+
+
+2. Cloning a stripped version of the system
+
+creating strip ref and target versions of the delopment system
+
+mkdir /mnt/target1/boot
+mkdir /mnt/target1/boot/grub
+cp -ruv /mnt/boot/grub /mnt/target1/boot/grub
+cd /mnt/target1/boot
+ln -s ../boot boot
+
+
+cp -ruv /root /mnt/target1/root
+cp -ruv /bin /mnt/target1/bin
+cp -ruv /lib /mnt/target1/lib
+cp -ruv /etc /mnt/target1/etc
+cp -ruv /sbin /mnt/target1/sbin
+cp -ruv /opt /mnt/target1/opt
+cp -ruv /sys /mnt/target1/sys
+cp -auv /var /mnt/target1/var
+
+mkdir /mnt/target1/usr
+cp -ruv /usr /mnt/target1/usr
+mkdir /mnt/target1/usr/bin
+cp -ruv /usr/bin /mnt/target1/usr/bin
+cp -ruv /usr/lib /mnt/target1/usr/lib
+cp -ruv /usr/i386-pc-linux-gnu /mnt/target1/usr/i386-pc-linux-gnu
+cp -ruv /usr/i686-pc-linux-gnu /mnt/target1/usr/i686-pc-linux-gnu
+cp -ruv /usr/include /mnt/target1/usr/include
+cp -ruv /usr/libexec /mnt/target1/usr/libexec
+cp -ruv /usr/sbin /mnt/target1/usr/sbin
+cp -ruv /usr/local /mnt/target1/usr/local
+cp -ruv /usr/share /mnt/target1/usr/share
+
+cp -auv /dev /mnt/target1/dev
+
+mkdir /mnt/target1/mnt
+mkdir /mnt/target1/proc
+mkdir /mnt/target1/home
+mkdir /mnt/target1/home/samba
+mkdir /mnt/target1/home/samba/public
+
+cd /mnt/target1/usr
+ln -s ../usr X11R6
+
+/usr/lib/qt3 vorbereiten
+/tmp/ecl vorbereiten
+mkdir /mnt/target1/tmp
+mkdir /mnt/target1/tmp/ecl
+/shapps/* vorbereiten
+
+
+
+target::
+
+cp -auv /mnt/target1/* /mnt/target/*
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

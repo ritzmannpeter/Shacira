@@ -1,0 +1,68 @@
+; [PL0.sty] Grammar "PL0" - a toy language
+
+Language PL0
+
+Regular Grammar
+
+  ign Ign         = ' \n\r'               ; "white" characters
+  tok Tok         = ',<=()+-*/'           ; one character tokens
+  tok Int         = ('0'..'9')+           ; Integer
+  tok Ide         = ('a' .. 'z')+         ; Identifier and Keywords
+  com Com         = "#" {"\20" .. "\7e"}  ; Comments
+
+Context Free Grammar
+
+start Program
+:pgm: Dfns Runs
+
+let Dfn
+:fun: "fun" Ide "(" Args ")" "=" Exp
+
+let Run
+:run: "run" Exp
+
+let Exp  :ign0: Exp1
+:if  : "if" Exp1 "then" Exp "else" Exp
+
+let Exp1 :ign0: Exp2
+:les : Exp2 "<" Exp2
+:equ : Exp2 "=" Exp2
+
+let Exp2 :ign0: Exp3
+:add : Exp2 "+" Exp3
+:sub : Exp2 "-" Exp3
+
+let Exp3 :ign0: Exp4
+:mlt : Exp3 "*" Exp4
+:div : Exp3 "/" Exp4
+
+let Exp4
+:neg : "-" Exp4          ; Unary minus
+:ign0: "(" Exp ")"
+:int : Int               ; Literal
+:var : Ide               ; Variable
+:app : Ide "(" Exps ")"  ; Application
+
+; Lists
+
+let Args
+:nil :
+:cons: Ide Args0
+let Args0
+:nil :
+:cons: "," Ide Args0
+
+let Exps
+:nil :
+:cons: Exp Exps0
+let Exps0
+:nil :
+:cons: "," Exp Exps0
+
+let Dfns
+:nil :
+:cons: Dfn Dfns
+
+let Runs
+:nil :
+:cons: Run Runs

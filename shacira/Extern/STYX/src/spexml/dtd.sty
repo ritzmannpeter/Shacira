@@ -1,0 +1,228 @@
+;; [dtd.sty] Grammar for [.xml]- or [.dtd]-Dateien
+
+; Document Type Definition
+
+Language dtd
+
+Regular Grammar
+
+#include xml2.lex
+
+; dtd-relevant tokens
+
+tok [ica] Keyset = Keyword
+
+tok Name         = Ide - Keyword
+
+tok Literal      = "\"" {Char-'\"'} "\"" | "\'" {Char-'\''} "\'"
+
+tok DTDStart     = "<!" KDOCTYPE
+
+tok IgnSect      = < "<![" Space+ KIGNORE > < "]]>" >
+
+ign Empty        = Space+
+
+com Comment      = "<!--" ({Char} - ({Char} "--" {Char})) "-->"
+
+
+Context Free Grammar
+
+start Root
+:tdoc: DTDStart Embed
+:text: Extern
+
+start Embed
+:dfn : XName ExtID0 Decls ">"
+
+let Extern
+:dfn : XDecl Decls1
+
+let XDecl
+:nul :
+:dfn : XMLDecl
+
+let ExtID0
+:nul :
+:ign0: ExtID
+
+let ExtID3
+:pref: PERef
+
+let ExtID1
+:sys : "SYSTEM" XLiteral
+
+let ExtID
+:pub : "PUBLIC" XLiteral XLiteral0
+:ign0: ExtID1
+:ign1: ExtID3
+
+let ExtID2
+:pub : "PUBLIC" XLiteral XLiteral
+:ign0: ExtID1
+
+let XLiteral0
+:nul :
+:ign0: XLiteral
+
+let XLiteral
+:pref: PERef
+:lit : Literal
+
+let Decls
+:nil :
+:ign0: "[" Decls0 "]"
+
+let Decls0
+:nil :
+:cons: Decl Decls0
+
+let Decls1
+:nil :
+:cons: Decl1 Decls1
+
+let Decl
+:pref: PERef
+:pi  : PI
+:elm : "<!" "ELEMENT" XName Content ">"
+:ent : "<!" "ENTITY" Entity ">"
+:attr: "<!" "ATTLIST" XName Attributes ">"
+:note: "<!" "NOTATION" XName ExtID ">"
+
+let Decl1
+:cond: Cond
+:ign0: Decl
+
+let Cond
+:cign: IgnSect
+:cinc: "<![" "INCLUDE" "[" Extern "]]>"
+:ccnd: "<![" PERef "[" Extern "]]>"
+
+let Attributes
+:nil :
+:cons: Attribute Attributes
+
+let Attribute
+;check triples
+;:dfn : XName1 AType ADefault
+:nam : XName1
+:typ : AType
+:dft : ADefault
+
+let AType0
+:str : "CDATA"
+:id  : "ID"
+:ref : "IDREF"
+:refs: "IDREFS"
+:ent : "ENTITY"
+:ents: "ENTITIES"
+:nmt : "NMTOKEN"
+:nmts: "NMTOKENS"
+:ntyp: "NOTATION" ; followed by AType.etyp
+
+let AType
+:etyp: "(" XNames2 ")"
+:ign0: AType0
+
+let ADefault
+:req : "#" "REQUIRED"
+:imp : "#" "IMPLIED"
+:fix : Fixed Literal
+
+let Fixed
+:nul :
+:fix : "#" "FIXED"
+
+let Entity
+:pent: "%" XName EntityVal
+:gent: XName EntityVal
+
+let EntityVal
+:ient: XLiteral
+:eent: ExtID2 NData
+
+let NData
+:nul :
+:dfn : XName4 XName
+
+let Content
+:pref: PERef
+:none: "EMPTY"
+:any : "ANY"
+:mix : Mixed
+:ign0: RExp
+
+let Mixed
+:ign0: "(" XNames1 ")"
+:cons: "(" XName0 XNames ")*"
+
+let XNames0
+:nil :
+
+let XNames2
+:cons: XName XNames
+
+let XNames1
+:cons: XName0 XNames0
+
+let XNames
+:nil :
+:cons: "|" XName XNames
+
+let XName0
+:pdat: "#" "PCDATA"
+
+let RExp
+:rexp: "(" RExp0 ROpr1
+
+let RExp0
+:alt : RExp1 "|" RExp0
+:seq : RExp1 "," RExp0
+:ign0: RExp1 
+
+let RExp1
+:nam : XName ROpr0
+:ign0: RExp
+
+let ROpr1
+:star: ")*"
+:ign0: ")" ROpr0
+
+let ROpr0
+:nul :
+:ign0: ROpr
+
+let ROpr
+:qry : "?"
+:star: "*"
+:plus: "+"
+
+let XName2
+:alst: "ATTLIST"
+:elm : "ELEMENT"
+:inc : "INCLUDE"
+:req : "REQUIRED"
+:fix : "FIXED"
+:impl: "IMPLIED"
+:pub : "PUBLIC"
+:sys : "SYSTEM"
+:none: "EMPTY"
+:any : "ANY"
+:pdat: "PCDATA"
+
+let XName
+:ktyp: AType0
+:ign0: XName1
+
+let XName1
+:ide : Name
+:nmtk: Nmtoken
+:key : Keyset
+:ign0: XName2
+:ign1: XName4
+
+let XName3
+:pref: PERef
+
+let XName4
+:ign0: XName3
+:ndat: "NDATA"

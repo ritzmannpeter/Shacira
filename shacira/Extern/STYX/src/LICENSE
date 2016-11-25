@@ -1,0 +1,10 @@
+Styx comes with two licenses, GPL and LGPL.  Overall,
+the GPL v2 applies to the whole project. To enable the
+use of the basic runtime library for commercial purposes,
+libdstyx.so fall under LGPL.
+
+See COPYING and COPYING.LIB for details.
+
+More explicitly, the sources of both the parser and the 
+scanner generators ( in the source directory 'libstyx' )
+fall under GPL and are not released under LGPL.

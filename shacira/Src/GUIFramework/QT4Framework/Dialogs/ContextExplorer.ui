@@ -1,0 +1,214 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui version="4.0" stdsetdef="1">
+ <author/>
+ <comment/>
+ <exportmacro/>
+ <class>ContextExplorer</class>
+ <widget class="QDialog" name="ContextExplorer">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>546</width>
+    <height>507</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>Arial</family>
+    <pointsize>12</pointsize>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>context explorer</string>
+  </property>
+  <layout class="QHBoxLayout">
+   <property name="margin">
+    <number>0</number>
+   </property>
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <item>
+    <widget class="CGroupBox" name="groupBox1">
+     <property name="title">
+      <string>Kontext</string>
+     </property>
+     <layout class="QVBoxLayout">
+      <item>
+       <layout class="QVBoxLayout">
+        <item>
+         <widget class="CFrame" name="frame4">
+          <property name="sizePolicy">
+           <sizepolicy>
+            <hsizetype>5</hsizetype>
+            <vsizetype>0</vsizetype>
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>100</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>32767</width>
+            <height>100</height>
+           </size>
+          </property>
+          <widget class="QPushButton" name="RefreshBtn">
+           <property name="geometry">
+            <rect>
+             <x>255</x>
+             <y>20</y>
+             <width>110</width>
+             <height>26</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Aktualisieren</string>
+           </property>
+           <property name="autoFillBackground">
+            <bool>true</bool>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="CancelBtn">
+           <property name="geometry">
+            <rect>
+             <x>385</x>
+             <y>20</y>
+             <width>110</width>
+             <height>26</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Abbrechen</string>
+           </property>
+           <property name="autoFillBackground">
+            <bool>true</bool>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="ChoiceBtn">
+           <property name="geometry">
+            <rect>
+             <x>385</x>
+             <y>60</y>
+             <width>105</width>
+             <height>26</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Verbinden</string>
+           </property>
+           <property name="autoFillBackground">
+            <bool>true</bool>
+           </property>
+          </widget>
+          <property name="autoFillBackground">
+           <bool>true</bool>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="CListView" name="listView1">
+          <column>
+           <property name="text">
+            <string>Kontext</string>
+           </property>
+           <property name="clickable">
+            <bool>true</bool>
+           </property>
+           <property name="resizable">
+            <bool>true</bool>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Host</string>
+           </property>
+           <property name="clickable">
+            <bool>true</bool>
+           </property>
+           <property name="resizable">
+            <bool>true</bool>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>IP Adr.</string>
+           </property>
+           <property name="clickable">
+            <bool>true</bool>
+           </property>
+           <property name="resizable">
+            <bool>true</bool>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Port</string>
+           </property>
+           <property name="clickable">
+            <bool>true</bool>
+           </property>
+           <property name="resizable">
+            <bool>true</bool>
+           </property>
+          </column>
+          <property name="autoFillBackground">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
+  <property name="autoFillBackground">
+   <bool>true</bool>
+  </property>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>CFrame</class>
+   <extends>QFrame</extends>
+   <header>CFrame.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>CGroupBox</class>
+   <extends>QGroupBox</extends>
+   <header>CGroupBox.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>CListView</class>
+   <extends>QTreeWidget</extends>
+   <header>CListView.h</header>
+  </customwidget>
+ </customwidgets>
+ <includes>
+  <include location="local">qt4port.h</include>
+  <include location="local">CFrame.h</include>
+  <include location="local">CGroupBox.h</include>
+  <include location="local">CListView.h</include>
+ </includes>
+ <resources>
+  <include location="../qresources/shacira.qrc"/>
+ </resources>
+</ui>

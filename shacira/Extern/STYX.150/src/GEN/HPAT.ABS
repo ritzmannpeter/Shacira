@@ -1,0 +1,22 @@
+/* ------------------------------------------------------------------------ */
+/*                                                                          */
+/* [hpat.abs]                  Abstract Grammar                             */
+/*                                                                          */
+/* ------------------------------------------------------------------------ */
+
+LANGUAGE hpat
+
+TOKENS
+
+  PatBgn, PatEnd, PatRef, _other_
+
+TYPES
+
+  hpat         = Start_HPatDoc(HPatDoc)
+
+  HPatDoc      = dfn(Content*)
+
+  Content      = pat(PatBgn, Content*, PatEnd);
+                 else(_other_);
+                 ref(PatRef)
+

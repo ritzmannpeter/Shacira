@@ -1,0 +1,187 @@
+SPC Excel Add-In
+================
+
+Das SPC Add-In für Excel ermöglicht es, die Daten auf einem beliebigen 
+Excel Sheet statistisch auszuwerten, wobei verschiedene Graphiken erstellt 
+werden können.
+
+
+Installation des Add-In
+-----------------------
+
+Das Add-In besteht aus der Datei spc.xla. Diese Datei kann in irgendein 
+Verzeichnis auf dem Computer kopiert werden. Danach startet man Excel 
+(Excel 97 oder neuer), öffnet den Add-In-Manager in Extras/Add-In-Manager 
+(bzw. Tools/Add-Ins), klickt den Button Durchsuchen an und öffnet die 
+Datei spc.xla. Dadurch wird das Add-In im System installiert und auch 
+gleich aktiviert.
+
+Einmal installiert, kann das Add-In in der Listbox im Add-In-Manager 
+aktiviert und deaktiviert werden.
+
+
+Menus und Buttons
+-----------------
+
+Das SPC Add-In installiert in der Excel Menüleiste das zusätzliche Menü 
+"SPC-Menu" mit den Untermenüs "SPC konfigurieren", "Xq/R-Karte", "Xq/S-Karte",
+"Fähigkeitsanalyse" und "Wahrscheinlichkeitsgerade. Außerdem wird in der 
+Toolbar eine zusätzliche Buttonleiste installiert mit den Buttons "SPC", 
+"Xq/R", "Xq/S", "cm/cp" und "Gauss". Über Menü und Buttonleiste sind jeweils 
+dieselben Funktionen zu erreichen.
+
+Das Untermenü "SPC konfigurieren" und der Button "SPC" rufen ein Fenster 
+auf, in dem man die SPC konfigurieren kann.
+
+Die Untermenüs "Xq/R-Karte" und "Xq/S-Karte" und die entsprechenden 
+Buttons zeigen jeweils ein Excel-Sheet mit SPC-Graphiken an. Das Untermenü
+"Fähigkeitsanalys" und der Button "cm/cp" rufen eine Seite mit dem Maschinen-
+und Prozessfähigkeitsindex auf. Das Untermenü "Wahrscheinlichkeitsgerade" und
+der Button "Gauss" rufen ein Excel-Sheet mit einer Gaußgraphik auf. Diese 
+Menüs und Buttons sind nur dann aktiv, wenn im Konfigurationsmenü eine 
+SPC-Graphik erstellt worden ist.
+
+
+Voraussetzungen für die SPC
+---------------------------
+
+Das SPC Add-In erzeugt aus den Daten auf dem aktuellen Excel-Sheet eine 
+SPC-Graphik. Damit das möglich ist, müßen die Daten das aktiven Sheets 
+einige Voraussetzungen erfüllen. Sind diese Voraussetzungen nicht erfüllt, 
+so kann das Konfigurationsfenster nicht aufgerufen werden.
+
+Folgende Voraussetzungen müssen erfüllt sein:
+
+ - Die erste Zeile enthält die Überschriften für die jeweilige Spalte.
+ - Die erste Spalte enthält gültige Datum/Zeit Werte
+ - Die Datum/Zeitwerte der ersten Spalte sind aufsteigen sortiert, d.h. 
+   die ältesten Werte stehen oben.
+ - Die Werte in den anderen Spalten sind numerisch
+
+
+Konfigurationsfenster
+---------------------
+
+Im Konfigurationsfenster wird eine Graphik aus den Daten des aktiven 
+Excelsheets erstellt. Enthält das aktive Sheet keine passenden Daten, so 
+wird eine Fehlermeldung ausgegeben und das Konfigurationsfenster wird 
+nicht angezeigt.
+
+Im Konfigurationsfenster kann man einen Zeitraum auswählen, d.h. einen 
+Bereich von Zeilen, die bearbeitet werden sollen. Man kann außerdem ein 
+Merkmal auswählen, d.h eine der Spaltenüberschriften, und damit die Spalte 
+festlegen, deren Daten für die SPC verarbeitet werden sollen. Schließlich 
+kann man noch den Stichprobenumfang festlegen, also die Anzahl der Werte, 
+die für eine Stichprobe verwendet werden sollen, sowie die Größe des 
+Pausenzyklus, d.h. die Anzahl der Werte, die zwichen zwei Stichproben 
+ignoriert werden sollen.
+
+Die Werte werden sinnvoll vorbelegt. Als Zeitraum wird normalerweise der 
+erste und der letzte Zeitpunkt aus dem aktiven Sheet genommen. Wenn der 
+Cursor auf irgendeiner Zelle des Sheets steht, wird die Überschrift dieser 
+Zelle als Attribut voreingestellt. 
+
+Es besteht außerdem die Möglichkeit, auf dem aktiven Sheet einen Bereich 
+zu markieren, um die Daten des Konfigurationsfensters vorzubelegen. Damit 
+kann man gleichzeitig den Zeitraum und die Spalte bestimmen, die im 
+Konfigurationsfenster voreingestellt werden. Werden mehrere Spalten 
+markiert, so wird die rechteste benutzt.
+
+Sind alle Werte im Fenster korrekt eingestellt, so hat man zwei 
+Möglichkeiten: Man kann entweder eine Graphik oder eine Vorprobe 
+erstellen.
+
+Klickt man den Button "Graphik erstellen" an, so werden aus den 
+ausgewählten Daten des aktiven Sheets mehrere SPC-Kurven berechnet. Es 
+wird keine Kurve angezeigt, sondern es werden die Untermenüs und Buttons 
+zum Anzeigen der Kurven freigeschaltet. Durch einen Klick auf diese 
+Buttons oder Menüeinträge wird ein Excelsheet mit einer der berechneten 
+Kurven angezeigt. Will man eine Kurve ändern, so muß das SPC 
+Konfigurationsfenster neu aufgerufen werden.
+
+
+Vorprobe
+--------
+
+Im Konfigurationsfenster besteht als zweites die Möglichkeit, aus den 
+ausgewählten Daten eine Vorprobe zu berechnen. Aus den Vorproben werden 
+für jede Kurve drei Hilfslinien berechnet, UEG, OEG und ein Mittelwert.
+
+Die Vorprobe ist völlig unabhängig von der Graphik. Man kann die 
+SPC-Graphik eines Merkmals erstellen und anzeigen, ohne eine Vorprobe für 
+dieses Merkmal gemacht zu haben. In der Graphik fehlen dann halt die drei 
+Hilfslinien. Man kann die Vorprobe nachträglich erstellen, vorher oder gar 
+nicht.
+
+Die Daten der Vorprobe werden in einer Ini-Datei namens spc.ini 
+gespeichert. Für jedes Attribut, für das irgendwann eine Vorprobe erstellt 
+wurde, befinden sich die Vorprobendaten in dieser Datei. Jedesmal wenn 
+eine Graphik erstellt wird, für die irgenwann in der Vergangenheit eine 
+Vorprobe durchgeführt wurde, werden die Hilfslinien automatisch aus der 
+Datei gelesen und eingezeichnet.
+
+Die Datei spc.ini wird (momentan) im Windows Verzeichnis gespeichert, d.h. 
+die Vorprobendaten werden zentral gespeichert. Es wird immer auf dieselben 
+Daten zugegriffen, egal welche Exceldatei gerade bearbeitet wird.
+
+
+Graphik-Sheets
+--------------
+
+Durch Anklicken der entsprechenden Buttons oder Untermenüs wird ein 
+SPC-Graphiksheet aufgebaut, das eine vorher berechnete Graphik anzeigt. Es 
+existieren gegenwärtig folgende Graphiken:
+ 
+ - Xq/R Karte:                Dieses Sheet zeigt die Mittelwert- und die 
+                              Spannweitenkurve
+ - Xq/S Karte:                Dieses Sheet zeigt die Mittelwert- und die 
+                              Standardabweichungskurve
+ - Fähigkeitsanalyse:         Dieses Sheet zeigt den Maschinen- und Prozess-
+                              fähigkeitsindex
+ - Wahrscheinlichkeitsgerade: Dieses Sheet zeigt eine linearisierte Gaußkurve
+                              
+
+In den Graphiksheets werden neben der Kurve der Zeitraum der Daten, der 
+Stichprobenumfang und die Größe des Pausenzyklus angezeigt. Falls für das 
+angezeigte Attribut eine Vorprobe durchgeführt wurde, werden neben den 
+Hilflinien auch die Daten der Vorprobe angezeigt.
+
+Außer den berechneten Vorprobendaten ist es auch möglich, OEG und UEG für 
+jede Kurve manuell einzugeben. Beim Anzeigen der Hilfslinien haben die 
+manuellen Werte Vorrang vor den berechneten, d.h. wenn manuelle 
+Vorprobenwerte vorhanden sind, werden diese als Hilfslinien angezeigt und 
+nicht die berechneten. Natürlich können manuelle Vorprobenwerte auch 
+verwendet werden, wenn keine berechneten Werte existieren.
+
+Auch die manuellen Vorprobenwerte werden in der Inidatei spc.ini 
+gespeichert.
+
+An der rechten oberen und unteren Ecke jeder Kurve befindet sich ein 
+Spinbutton, mit dem man den oberen bzw. unteren Rand des Graphikbereichs 
+verschieben kann. Man kann damit also die Kurve in der Höhe zoomen. Bei 
+jedem Klick auf einen Button verändert sich der obere oder untere Rand des 
+Graphikbereichs um den Wert einer der angezeigten Hilfslinen. Der Zoomwert 
+wird nicht gespeichert, jedesmal wenn das Graphiksheet neu aufgebaut wird, 
+sind die Defaultwerte wieder eingestellt.
+
+Das SPC-Sheet ist nur solange vorhanden, wie es angezeigt wird. Sobald 
+man es verläßt, einen SPC-Button oder -Menü anklickt oder das Worksheet 
+schließt, wird es gelöscht. Das SPC Add-In erzeugt also nichts bleibendes, 
+es wird nichts gespeichert und der Benutzer wird auch nicht mit mit 
+irgendwelchen Speicheraufforderungen belästigt.
+
+Der Benutzer hat jedoch die Möglichkeit, den Namen eines Graphiksheets zu
+ändern. Wenn er das tut, existiert das Sheet nicht mehr für die SPC und wird
+auch nicht gelöscht. Auf diese Weise kann man Graphiksheets permanent machen.
+Der Benutzer muß sie dann bei Bedarf explizit löschen. Man muß auch darauf
+achten, die Exceldatei explizit zu speichern, da Excel von selbst keine
+Änderung erkennt.
+
+
+Add-In Sourcecode bearbeiten
+----------------------------
+
+Der Sourcecode des Add-Ins kann im VBA-Fenster von Excel bearbeitet 
+werden. Das Passwort, um den Sourcecode anzuzeigen, lautet "2i".
+
+

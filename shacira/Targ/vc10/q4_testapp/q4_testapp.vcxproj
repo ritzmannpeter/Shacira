@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{6400F19A-9A53-48CA-A7A3-677DC630F310}</ProjectGuid>
+    <Keyword>Qt4VSv1.0</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="..\q4_app_debug.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="..\q4_app_release.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>QT_CORE_LIB;QT_GUI_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\GeneratedFiles;.;.\GeneratedFiles\$(ConfigurationName);$(SHACIRADIR)\Src\GUIFramework\qt4port;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Disabled</Optimization>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
+      <UndefinePreprocessorDefinitions>QT4;%(UndefinePreprocessorDefinitions)</UndefinePreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>QtCored4.lib;QtGuid4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>QT_CORE_LIB;QT_GUI_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\GeneratedFiles;.;.\GeneratedFiles\$(ConfigurationName);$(SHACIRADIR)\Src\GUIFramework\qt4port;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
+      <UndefinePreprocessorDefinitions>QT4;%(UndefinePreprocessorDefinitions)</UndefinePreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <AdditionalDependencies>QtCore4.lib;QtGui4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\Src\GUIFramework\qt4port\headerview.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\qt4port\listview.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\qt4port\listviewitem.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\qt4port\listviewitemdelegate.cpp" />
+    <ClCompile Include="..\..\..\Src\GUIFramework\qt4port\listviewitemiterator.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_listview.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_q4_testapp.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_widget.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_mosaic.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_listview.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_q4_testapp.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_widget.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="q4_testapp.cpp" />
+    <ClCompile Include="widget.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="q4_testapp.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing q4_testapp.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DQT_CORE_LIB -DQT_GUI_LIB -DQT_DLL -DQT4 -DQT_XML_LIB -D_MBCS  "-I.\GeneratedFiles" "-I." "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(SHACIRADIR)\Src\GUIFramework\qt4port" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtDesigner" "-I$(QTDIR)\include\QtXml"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing q4_testapp.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_DLL -DQT_XML_LIB -DQT4 -D_MBCS  "-I.\GeneratedFiles" "-I." "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(SHACIRADIR)\Src\GUIFramework\qt4port" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtDesigner" "-I$(QTDIR)\include\QtXml"</Command>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="q4_testapp.ui">
+      <FileType>Document</FileType>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\Src\GUIFramework\qt4port\headerview.h" />
+    <CustomBuild Include="..\..\..\Src\GUIFramework\qt4port\listview.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing listview.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DQT_CORE_LIB -DQT_GUI_LIB -DQT_DLL -DQT4 -DQT_XML_LIB -D_MBCS  "-I.\GeneratedFiles" "-I." "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(SHACIRADIR)\Src\GUIFramework\qt4port" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtDesigner" "-I$(QTDIR)\include\QtXml"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing listview.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_DLL -DQT_XML_LIB -DQT4 -D_MBCS  "-I.\GeneratedFiles" "-I." "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(SHACIRADIR)\Src\GUIFramework\qt4port" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtDesigner" "-I$(QTDIR)\include\QtXml"</Command>
+    </CustomBuild>
+    <ClInclude Include="..\..\..\Src\GUIFramework\qt4port\listviewitem.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\qt4port\listviewitemiterator.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\qt4port\qheader.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\qt4port\qobjectlist.h" />
+    <ClInclude Include="..\..\..\Src\GUIFramework\qt4port\qptrlist.h" />
+    <ClInclude Include="GeneratedFiles\ui_q4_testapp.h" />
+    <CustomBuild Include="widget.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing widget.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DQT_CORE_LIB -DQT_GUI_LIB -DQT_DLL -DQT4 -DQT_XML_LIB -D_MBCS  "-I.\GeneratedFiles" "-I." "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(SHACIRADIR)\Src\GUIFramework\qt4port" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtDesigner" "-I$(QTDIR)\include\QtXml"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing widget.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_DLL -DQT_XML_LIB -DQT4 -D_MBCS  "-I.\GeneratedFiles" "-I." "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(SHACIRADIR)\Src\GUIFramework\qt4port" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtDesigner" "-I$(QTDIR)\include\QtXml"</Command>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="Resources\mosaic.qrc">
+      <FileType>Document</FileType>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(FullPath);.\Resources\images\img_1.png;.\Resources\images\img_10.png;.\Resources\images\img_100.png;.\Resources\images\img_101.png;.\Resources\images\img_102.png;.\Resources\images\img_103.png;.\Resources\images\img_104.png;.\Resources\images\img_105.png;.\Resources\images\img_106.png;.\Resources\images\img_107.png;.\Resources\images\img_108.png;.\Resources\images\img_109.png;.\Resources\images\img_11.png;.\Resources\images\img_110.png;.\Resources\images\img_111.png;.\Resources\images\img_112.png;.\Resources\images\img_113.png;.\Resources\images\img_114.png;.\Resources\images\img_115.png;.\Resources\images\img_116.png;.\Resources\images\img_117.png;.\Resources\images\img_118.png;.\Resources\images\img_119.png;.\Resources\images\img_12.png;.\Resources\images\img_120.png;.\Resources\images\img_121.png;.\Resources\images\img_122.png;.\Resources\images\img_123.png;.\Resources\images\img_124.png;.\Resources\images\img_125.png;.\Resources\images\img_126.png;.\Resources\images\img_127.png;.\Resources\images\img_128.png;.\Resources\images\img_129.png;.\Resources\images\img_13.png;.\Resources\images\img_130.png;.\Resources\images\img_131.png;.\Resources\images\img_132.png;.\Resources\images\img_133.png;.\Resources\images\img_134.png;.\Resources\images\img_135.png;.\Resources\images\img_136.png;.\Resources\images\img_137.png;.\Resources\images\img_138.png;.\Resources\images\img_139.png;.\Resources\images\img_14.png;.\Resources\images\img_140.png;.\Resources\images\img_141.png;.\Resources\images\img_142.png;.\Resources\images\img_143.png;.\Resources\images\img_144.png;.\Resources\images\img_145.png;.\Resources\images\img_146.png;.\Resources\images\img_147.png;.\Resources\images\img_148.png;.\Resources\images\img_149.png;.\Resources\images\img_15.png;.\Resources\images\img_150.png;.\Resources\images\img_151.png;.\Resources\images\img_152.png;.\Resources\images\img_153.png;.\Resources\images\img_154.png;.\Resources\images\img_155.png;.\Resources\images\img_156.png;.\Resources\images\img_157.png;.\Resources\images\img_158.png;.\Resources\images\img_159.png;.\Resources\images\img_16.png;.\Resources\images\img_160.png;.\Resources\images\img_161.png;.\Resources\images\img_162.png;.\Resources\images\img_163.png;.\Resources\images\img_164.png;.\Resources\images\img_165.png;.\Resources\images\img_166.png;.\Resources\images\img_167.png;.\Resources\images\img_168.png;.\Resources\images\img_169.png;.\Resources\images\img_17.png;.\Resources\images\img_170.png;.\Resources\images\img_171.png;.\Resources\images\img_172.png;.\Resources\images\img_173.png;.\Resources\images\img_174.png;.\Resources\images\img_175.png;.\Resources\images\img_176.png;.\Resources\images\img_177.png;.\Resources\images\img_178.png;.\Resources\images\img_179.png;.\Resources\images\img_18.png;.\Resources\images\img_180.png;.\Resources\images\img_181.png;.\Resources\images\img_182.png;.\Resources\images\img_183.png;.\Resources\images\img_184.png;.\Resources\images\img_185.png;.\Resources\images\img_186.png;.\Resources\images\img_187.png;.\Resources\images\img_188.png;.\Resources\images\img_189.png;.\Resources\images\img_19.png;.\Resources\images\img_190.png;.\Resources\images\img_191.png;.\Resources\images\img_192.png;.\Resources\images\img_193.png;.\Resources\images\img_194.png;.\Resources\images\img_195.png;.\Resources\images\img_196.png;.\Resources\images\img_197.png;.\Resources\images\img_198.png;.\Resources\images\img_199.png;.\Resources\images\img_2.png;.\Resources\images\img_20.png;.\Resources\images\img_200.png;.\Resources\images\img_201.png;.\Resources\images\img_202.png;.\Resources\images\img_203.png;.\Resources\images\img_204.png;.\Resources\images\img_205.png;.\Resources\images\img_206.png;.\Resources\images\img_207.png;.\Resources\images\img_208.png;.\Resources\images\img_209.png;.\Resources\images\img_21.png;.\Resources\images\img_210.png;.\Resources\images\img_211.png;.\Resources\images\img_212.png;.\Resources\images\img_213.png;.\Resources\images\img_214.png;.\Resources\images\img_215.png;.\Resources\images\img_216.png;.\Resources\images\img_217.png;.\Resources\images\img_218.png;.\Resources\images\img_219.png;.\Resources\images\img_22.png;.\Resources\images\img_220.png;.\Resources\images\img_221.png;.\Resources\images\img_222.png;.\Resources\images\img_223.png;.\Resources\images\img_224.png;.\Resources\images\img_225.png;.\Resources\images\img_226.png;.\Resources\images\img_227.png;.\Resources\images\img_228.png;.\Resources\images\img_229.png;.\Resources\images\img_23.png;.\Resources\images\img_230.png;.\Resources\images\img_231.png;.\Resources\images\img_232.png;.\Resources\images\img_233.png;.\Resources\images\img_234.png;.\Resources\images\img_235.png;.\Resources\images\img_236.png;.\Resources\images\img_237.png;.\Resources\images\img_238.png;.\Resources\images\img_239.png;.\Resources\images\img_24.png;.\Resources\images\img_240.png;.\Resources\images\img_241.png;.\Resources\images\img_242.png;.\Resources\images\img_243.png;.\Resources\images\img_244.png;.\Resources\images\img_245.png;.\Resources\images\img_246.png;.\Resources\images\img_247.png;.\Resources\images\img_248.png;.\Resources\images\img_249.png;.\Resources\images\img_25.png;.\Resources\images\img_250.png;.\Resources\images\img_251.png;.\Resources\images\img_252.png;.\Resources\images\img_253.png;.\Resources\images\img_254.png;.\Resources\images\img_255.png;.\Resources\images\img_256.png;.\Resources\images\img_257.png;.\Resources\images\img_258.png;.\Resources\images\img_259.png;.\Resources\images\img_26.png;.\Resources\images\img_260.png;.\Resources\images\img_261.png;.\Resources\images\img_262.png;.\Resources\images\img_263.png;.\Resources\images\img_264.png;.\Resources\images\img_265.png;.\Resources\images\img_266.png;.\Resources\images\img_267.png;.\Resources\images\img_268.png;.\Resources\images\img_269.png;.\Resources\images\img_27.png;.\Resources\images\img_270.png;.\Resources\images\img_271.png;.\Resources\images\img_272.png;.\Resources\images\img_273.png;.\Resources\images\img_274.png;.\Resources\images\img_28.png;.\Resources\images\img_29.png;.\Resources\images\img_3.png;.\Resources\images\img_30.png;.\Resources\images\img_31.png;.\Resources\images\img_32.png;.\Resources\images\img_33.png;.\Resources\images\img_34.png;.\Resources\images\img_35.png;.\Resources\images\img_36.png;.\Resources\images\img_37.png;.\Resources\images\img_38.png;.\Resources\images\img_39.png;.\Resources\images\img_4.png;.\Resources\images\img_40.png;.\Resources\images\img_41.png;.\Resources\images\img_42.png;.\Resources\images\img_43.png;.\Resources\images\img_44.png;.\Resources\images\img_45.png;.\Resources\images\img_46.png;.\Resources\images\img_47.png;.\Resources\images\img_48.png;.\Resources\images\img_49.png;.\Resources\images\img_5.png;.\Resources\images\img_50.png;.\Resources\images\img_51.png;.\Resources\images\img_52.png;.\Resources\images\img_53.png;.\Resources\images\img_54.png;.\Resources\images\img_55.png;.\Resources\images\img_56.png;.\Resources\images\img_57.png;.\Resources\images\img_58.png;.\Resources\images\img_59.png;.\Resources\images\img_6.png;.\Resources\images\img_60.png;.\Resources\images\img_61.png;.\Resources\images\img_62.png;.\Resources\images\img_63.png;.\Resources\images\img_64.png;.\Resources\images\img_65.png;.\Resources\images\img_66.png;.\Resources\images\img_67.png;.\Resources\images\img_68.png;.\Resources\images\img_69.png;.\Resources\images\img_7.png;.\Resources\images\img_70.png;.\Resources\images\img_71.png;.\Resources\images\img_72.png;.\Resources\images\img_73.png;.\Resources\images\img_74.png;.\Resources\images\img_75.png;.\Resources\images\img_76.png;.\Resources\images\img_77.png;.\Resources\images\img_78.png;.\Resources\images\img_79.png;.\Resources\images\img_8.png;.\Resources\images\img_80.png;.\Resources\images\img_81.png;.\Resources\images\img_82.png;.\Resources\images\img_83.png;.\Resources\images\img_84.png;.\Resources\images\img_85.png;.\Resources\images\img_86.png;.\Resources\images\img_87.png;.\Resources\images\img_88.png;.\Resources\images\img_89.png;.\Resources\images\img_9.png;.\Resources\images\img_90.png;.\Resources\images\img_91.png;.\Resources\images\img_92.png;.\Resources\images\img_93.png;.\Resources\images\img_94.png;.\Resources\images\img_95.png;.\Resources\images\img_96.png;.\Resources\images\img_97.png;.\Resources\images\img_98.png;.\Resources\images\img_99.png;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Rcc%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\qrc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\rcc.exe" -name "%(Filename)" -no-compress "%(FullPath)" -o .\GeneratedFiles\qrc_%(Filename).cpp</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(FullPath);.\Resources\images\img_1.png;.\Resources\images\img_10.png;.\Resources\images\img_100.png;.\Resources\images\img_101.png;.\Resources\images\img_102.png;.\Resources\images\img_103.png;.\Resources\images\img_104.png;.\Resources\images\img_105.png;.\Resources\images\img_106.png;.\Resources\images\img_107.png;.\Resources\images\img_108.png;.\Resources\images\img_109.png;.\Resources\images\img_11.png;.\Resources\images\img_110.png;.\Resources\images\img_111.png;.\Resources\images\img_112.png;.\Resources\images\img_113.png;.\Resources\images\img_114.png;.\Resources\images\img_115.png;.\Resources\images\img_116.png;.\Resources\images\img_117.png;.\Resources\images\img_118.png;.\Resources\images\img_119.png;.\Resources\images\img_12.png;.\Resources\images\img_120.png;.\Resources\images\img_121.png;.\Resources\images\img_122.png;.\Resources\images\img_123.png;.\Resources\images\img_124.png;.\Resources\images\img_125.png;.\Resources\images\img_126.png;.\Resources\images\img_127.png;.\Resources\images\img_128.png;.\Resources\images\img_129.png;.\Resources\images\img_13.png;.\Resources\images\img_130.png;.\Resources\images\img_131.png;.\Resources\images\img_132.png;.\Resources\images\img_133.png;.\Resources\images\img_134.png;.\Resources\images\img_135.png;.\Resources\images\img_136.png;.\Resources\images\img_137.png;.\Resources\images\img_138.png;.\Resources\images\img_139.png;.\Resources\images\img_14.png;.\Resources\images\img_140.png;.\Resources\images\img_141.png;.\Resources\images\img_142.png;.\Resources\images\img_143.png;.\Resources\images\img_144.png;.\Resources\images\img_145.png;.\Resources\images\img_146.png;.\Resources\images\img_147.png;.\Resources\images\img_148.png;.\Resources\images\img_149.png;.\Resources\images\img_15.png;.\Resources\images\img_150.png;.\Resources\images\img_151.png;.\Resources\images\img_152.png;.\Resources\images\img_153.png;.\Resources\images\img_154.png;.\Resources\images\img_155.png;.\Resources\images\img_156.png;.\Resources\images\img_157.png;.\Resources\images\img_158.png;.\Resources\images\img_159.png;.\Resources\images\img_16.png;.\Resources\images\img_160.png;.\Resources\images\img_161.png;.\Resources\images\img_162.png;.\Resources\images\img_163.png;.\Resources\images\img_164.png;.\Resources\images\img_165.png;.\Resources\images\img_166.png;.\Resources\images\img_167.png;.\Resources\images\img_168.png;.\Resources\images\img_169.png;.\Resources\images\img_17.png;.\Resources\images\img_170.png;.\Resources\images\img_171.png;.\Resources\images\img_172.png;.\Resources\images\img_173.png;.\Resources\images\img_174.png;.\Resources\images\img_175.png;.\Resources\images\img_176.png;.\Resources\images\img_177.png;.\Resources\images\img_178.png;.\Resources\images\img_179.png;.\Resources\images\img_18.png;.\Resources\images\img_180.png;.\Resources\images\img_181.png;.\Resources\images\img_182.png;.\Resources\images\img_183.png;.\Resources\images\img_184.png;.\Resources\images\img_185.png;.\Resources\images\img_186.png;.\Resources\images\img_187.png;.\Resources\images\img_188.png;.\Resources\images\img_189.png;.\Resources\images\img_19.png;.\Resources\images\img_190.png;.\Resources\images\img_191.png;.\Resources\images\img_192.png;.\Resources\images\img_193.png;.\Resources\images\img_194.png;.\Resources\images\img_195.png;.\Resources\images\img_196.png;.\Resources\images\img_197.png;.\Resources\images\img_198.png;.\Resources\images\img_199.png;.\Resources\images\img_2.png;.\Resources\images\img_20.png;.\Resources\images\img_200.png;.\Resources\images\img_201.png;.\Resources\images\img_202.png;.\Resources\images\img_203.png;.\Resources\images\img_204.png;.\Resources\images\img_205.png;.\Resources\images\img_206.png;.\Resources\images\img_207.png;.\Resources\images\img_208.png;.\Resources\images\img_209.png;.\Resources\images\img_21.png;.\Resources\images\img_210.png;.\Resources\images\img_211.png;.\Resources\images\img_212.png;.\Resources\images\img_213.png;.\Resources\images\img_214.png;.\Resources\images\img_215.png;.\Resources\images\img_216.png;.\Resources\images\img_217.png;.\Resources\images\img_218.png;.\Resources\images\img_219.png;.\Resources\images\img_22.png;.\Resources\images\img_220.png;.\Resources\images\img_221.png;.\Resources\images\img_222.png;.\Resources\images\img_223.png;.\Resources\images\img_224.png;.\Resources\images\img_225.png;.\Resources\images\img_226.png;.\Resources\images\img_227.png;.\Resources\images\img_228.png;.\Resources\images\img_229.png;.\Resources\images\img_23.png;.\Resources\images\img_230.png;.\Resources\images\img_231.png;.\Resources\images\img_232.png;.\Resources\images\img_233.png;.\Resources\images\img_234.png;.\Resources\images\img_235.png;.\Resources\images\img_236.png;.\Resources\images\img_237.png;.\Resources\images\img_238.png;.\Resources\images\img_239.png;.\Resources\images\img_24.png;.\Resources\images\img_240.png;.\Resources\images\img_241.png;.\Resources\images\img_242.png;.\Resources\images\img_243.png;.\Resources\images\img_244.png;.\Resources\images\img_245.png;.\Resources\images\img_246.png;.\Resources\images\img_247.png;.\Resources\images\img_248.png;.\Resources\images\img_249.png;.\Resources\images\img_25.png;.\Resources\images\img_250.png;.\Resources\images\img_251.png;.\Resources\images\img_252.png;.\Resources\images\img_253.png;.\Resources\images\img_254.png;.\Resources\images\img_255.png;.\Resources\images\img_256.png;.\Resources\images\img_257.png;.\Resources\images\img_258.png;.\Resources\images\img_259.png;.\Resources\images\img_26.png;.\Resources\images\img_260.png;.\Resources\images\img_261.png;.\Resources\images\img_262.png;.\Resources\images\img_263.png;.\Resources\images\img_264.png;.\Resources\images\img_265.png;.\Resources\images\img_266.png;.\Resources\images\img_267.png;.\Resources\images\img_268.png;.\Resources\images\img_269.png;.\Resources\images\img_27.png;.\Resources\images\img_270.png;.\Resources\images\img_271.png;.\Resources\images\img_272.png;.\Resources\images\img_273.png;.\Resources\images\img_274.png;.\Resources\images\img_28.png;.\Resources\images\img_29.png;.\Resources\images\img_3.png;.\Resources\images\img_30.png;.\Resources\images\img_31.png;.\Resources\images\img_32.png;.\Resources\images\img_33.png;.\Resources\images\img_34.png;.\Resources\images\img_35.png;.\Resources\images\img_36.png;.\Resources\images\img_37.png;.\Resources\images\img_38.png;.\Resources\images\img_39.png;.\Resources\images\img_4.png;.\Resources\images\img_40.png;.\Resources\images\img_41.png;.\Resources\images\img_42.png;.\Resources\images\img_43.png;.\Resources\images\img_44.png;.\Resources\images\img_45.png;.\Resources\images\img_46.png;.\Resources\images\img_47.png;.\Resources\images\img_48.png;.\Resources\images\img_49.png;.\Resources\images\img_5.png;.\Resources\images\img_50.png;.\Resources\images\img_51.png;.\Resources\images\img_52.png;.\Resources\images\img_53.png;.\Resources\images\img_54.png;.\Resources\images\img_55.png;.\Resources\images\img_56.png;.\Resources\images\img_57.png;.\Resources\images\img_58.png;.\Resources\images\img_59.png;.\Resources\images\img_6.png;.\Resources\images\img_60.png;.\Resources\images\img_61.png;.\Resources\images\img_62.png;.\Resources\images\img_63.png;.\Resources\images\img_64.png;.\Resources\images\img_65.png;.\Resources\images\img_66.png;.\Resources\images\img_67.png;.\Resources\images\img_68.png;.\Resources\images\img_69.png;.\Resources\images\img_7.png;.\Resources\images\img_70.png;.\Resources\images\img_71.png;.\Resources\images\img_72.png;.\Resources\images\img_73.png;.\Resources\images\img_74.png;.\Resources\images\img_75.png;.\Resources\images\img_76.png;.\Resources\images\img_77.png;.\Resources\images\img_78.png;.\Resources\images\img_79.png;.\Resources\images\img_8.png;.\Resources\images\img_80.png;.\Resources\images\img_81.png;.\Resources\images\img_82.png;.\Resources\images\img_83.png;.\Resources\images\img_84.png;.\Resources\images\img_85.png;.\Resources\images\img_86.png;.\Resources\images\img_87.png;.\Resources\images\img_88.png;.\Resources\images\img_89.png;.\Resources\images\img_9.png;.\Resources\images\img_90.png;.\Resources\images\img_91.png;.\Resources\images\img_92.png;.\Resources\images\img_93.png;.\Resources\images\img_94.png;.\Resources\images\img_95.png;.\Resources\images\img_96.png;.\Resources\images\img_97.png;.\Resources\images\img_98.png;.\Resources\images\img_99.png;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Rcc%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\qrc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\rcc.exe" -name "%(Filename)" -no-compress "%(FullPath)" -o .\GeneratedFiles\qrc_%(Filename).cpp</Command>
+    </CustomBuild>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties UicDir=".\GeneratedFiles" MocDir=".\GeneratedFiles\$(ConfigurationName)" MocOptions="" RccDir=".\GeneratedFiles" lupdateOnBuild="0" lupdateOptions="" lreleaseOptions="" QtVersion_x0020_Win32="4.8.7" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

@@ -1,0 +1,443 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\CustomBase\configure_app.cpp" />
+    <ClCompile Include="..\CustomBase\cstdev.cpp" />
+    <ClCompile Include="..\CustomBase\cstpgm.cpp" />
+    <ClCompile Include="appqt4.cpp" />
+    <ClCompile Include="Devices\cDemoDevice.cpp" />
+    <ClCompile Include="Devices\CreateDevice.cpp" />
+    <ClCompile Include="Forms\demoframeimpl.cpp" />
+    <ClCompile Include="Forms\demostartupimpl.cpp" />
+    <ClCompile Include="Forms\pagelist.cpp" />
+    <ClCompile Include="Funcs\demo.cpp" />
+    <ClCompile Include="Funcs\demo.tab.cpp" />
+    <ClCompile Include="Funcs\Gui.cpp" />
+    <ClCompile Include="Funcs\GUI.tab.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_clp_stackturnfeedzeroadjustwizard_sub.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_demoframeimpl.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_demostartupimpl.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_sys_filehandlingwizard_sub.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_demo.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_shacira.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_clp_stackturnfeedzeroadjustwizard_sub.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_demoframeimpl.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_demostartupimpl.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_sys_filehandlingwizard_sub.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Init\CustomInit.cpp" />
+    <ClCompile Include="Programs\cDemoProgram.cpp" />
+    <ClCompile Include="Programs\CreateProgram.cpp" />
+    <ClCompile Include="Programs\EM63Program.cpp" />
+    <ClCompile Include="Test\clp_stackturnfeedzeroadjustwizard_sub.cpp" />
+    <ClCompile Include="Test\sys_filehandlingwizard_sub.cpp" />
+    <ClCompile Include="Text\CustomText.cpp" />
+    <ClCompile Include="Widgets\Generated\moc_dactvalue.cpp" />
+    <ClCompile Include="Widgets\Generated\moc_dframe.cpp" />
+    <ClCompile Include="Widgets\Src\dactvalue.cpp" />
+    <ClCompile Include="Widgets\Src\dframe.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Devices\cDemoDevice.h" />
+    <ClInclude Include="Funcs\demo.h" />
+    <ClInclude Include="Funcs\GUI.h" />
+    <ClInclude Include="GeneratedFiles\ui_clp_stackturnfeedzeroadjustwizard.h" />
+    <ClInclude Include="GeneratedFiles\ui_demoframe.h" />
+    <ClInclude Include="GeneratedFiles\ui_demostartup.h" />
+    <ClInclude Include="GeneratedFiles\ui_page1.h" />
+    <ClInclude Include="GeneratedFiles\ui_page2.h" />
+    <ClInclude Include="GeneratedFiles\ui_page3.h" />
+    <ClInclude Include="GeneratedFiles\ui_page4.h" />
+    <ClInclude Include="GeneratedFiles\ui_sys_filehandlingwizard.h" />
+    <ClInclude Include="Programs\cDemoProgram.h" />
+    <ClInclude Include="Programs\EM63Program.h" />
+    <CustomBuild Include="Test\clp_stackturnfeedzeroadjustwizard_sub.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing clp_stackturnfeedzeroadjustwizard_sub.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_XML_LIB -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT4 "-I$(SHACIRADIR)\Extern\STYX\Src\MODSTD" "-I.\Widgets" "-I.\Widgets\Src" "-I.\Widgets\Generated" "-I." "-I$(SHACIRADIR)\Src" "-I$(SHACIRADIR)\Src\Orb" "-I$(SHACIRADIR)\Src\Include" "-I$(SHACIRADIR)\Extern\ECL\src" "-I$(SHACIRADIR)\Src\GUIFramework" "-I$(SHACIRADIR)\Src\GUIFramework\Interface" "-I.\Forms\Generated" "-I.\Forms" "-I.\Include" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\CWidgets" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Generated" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Plugins" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Keypads" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Styles" "-I$(SHACIRADIR)\Extern\STYX\src\libbase" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework" "-I$(SHACIRADIR)\Extern\STYX\Src\INC" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtCore" "-I.\Widgets\Plugin" "-I$(QTDIR)\include" "-I.\GeneratedFiles" "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\qtmain" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I.\..\..\..\src" "-I.\..\..\..\src\vcwidgets\widgets" "-I.\..\..\..\src\vcwidgets\lib" "-I.\..\..\..\src\vcwidgets\plugin" "-I.\..\..\..\src\vcwidgets\application" "-I.\..\..\..\src\include" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\Qt3Support" "-I$(BOOSTDIR)\include\boost-$(BOOSTVER)\." "-I$(QTDIR)\include\QtXml" "-I.\..\..\..\src\vcwidgets\widgets\screeneditor" "-I.\..\..\..\src\vcwidgets\widgets\slider" "-I.\..\..\..\src\vcwidgets\widgets\graphic" "-I.\..\..\..\src\legacy\visioncheck\unix" "-I.\..\..\..\src\vcwidgets\widgets\scripteditor" "-I.\..\..\..\src\vcwidgets\widgets\configuration" "-I.\..\..\..\src\vcwidgets\widgets\experteditor" "-I$(QTDIR)\include\QtSql" "-I$(QTDIR)\include\QtOpenGL" "-I$(SHACIRADIR)\Src\GUIFramework\qt4port" "-I$(NOINHERIT)\."</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing clp_stackturnfeedzeroadjustwizard_sub.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_XML_LIB -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT4 "-I$(SHACIRADIR)\Extern\STYX\Src\MODSTD" "-I.\Widgets" "-I.\Widgets\Src" "-I.\Widgets\Generated" "-I." "-I$(SHACIRADIR)\Src" "-I$(SHACIRADIR)\Src\Orb" "-I$(SHACIRADIR)\Src\Include" "-I$(SHACIRADIR)\Extern\ECL\src" "-I$(SHACIRADIR)\Src\GUIFramework" "-I$(SHACIRADIR)\Src\GUIFramework\Interface" "-I.\Forms\Generated" "-I.\Forms" "-I.\Include" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\CWidgets" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Generated" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Plugins" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Keypads" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Styles" "-I$(SHACIRADIR)\Extern\STYX\src\libbase" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework" "-I$(SHACIRADIR)\Extern\STYX\Src\INC" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtCore" "-I.\Widgets\Plugin" "-I$(QTDIR)\include" "-I.\GeneratedFiles" "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\qtmain" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I.\..\..\..\src" "-I.\..\..\..\src\vcwidgets\widgets" "-I.\..\..\..\src\vcwidgets\lib" "-I.\..\..\..\src\vcwidgets\plugin" "-I.\..\..\..\src\vcwidgets\application" "-I.\..\..\..\src\include" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\Qt3Support" "-I$(BOOSTDIR)\include\boost-$(BOOSTVER)\." "-I$(QTDIR)\include\QtXml" "-I.\..\..\..\src\vcwidgets\widgets\screeneditor" "-I.\..\..\..\src\vcwidgets\widgets\slider" "-I.\..\..\..\src\vcwidgets\widgets\graphic" "-I.\..\..\..\src\legacy\visioncheck\unix" "-I.\..\..\..\src\vcwidgets\widgets\scripteditor" "-I.\..\..\..\src\vcwidgets\widgets\configuration" "-I.\..\..\..\src\vcwidgets\widgets\experteditor" "-I$(QTDIR)\include\QtSql" "-I$(QTDIR)\include\QtOpenGL" "-I$(SHACIRADIR)\Src\GUIFramework\qt4port" "-I$(NOINHERIT)\."</Command>
+    </CustomBuild>
+    <CustomBuild Include="Test\sys_filehandlingwizard_sub.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing sys_filehandlingwizard_sub.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_XML_LIB -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT4 "-I$(SHACIRADIR)\Extern\STYX\Src\MODSTD" "-I.\Widgets" "-I.\Widgets\Src" "-I.\Widgets\Generated" "-I." "-I$(SHACIRADIR)\Src" "-I$(SHACIRADIR)\Src\Orb" "-I$(SHACIRADIR)\Src\Include" "-I$(SHACIRADIR)\Extern\ECL\src" "-I$(SHACIRADIR)\Src\GUIFramework" "-I$(SHACIRADIR)\Src\GUIFramework\Interface" "-I.\Forms\Generated" "-I.\Forms" "-I.\Include" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\CWidgets" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Generated" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Plugins" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Keypads" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Styles" "-I$(SHACIRADIR)\Extern\STYX\src\libbase" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework" "-I$(SHACIRADIR)\Extern\STYX\Src\INC" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtCore" "-I.\Widgets\Plugin" "-I$(QTDIR)\include" "-I.\GeneratedFiles" "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\qtmain" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I.\..\..\..\src" "-I.\..\..\..\src\vcwidgets\widgets" "-I.\..\..\..\src\vcwidgets\lib" "-I.\..\..\..\src\vcwidgets\plugin" "-I.\..\..\..\src\vcwidgets\application" "-I.\..\..\..\src\include" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\Qt3Support" "-I$(BOOSTDIR)\include\boost-$(BOOSTVER)\." "-I$(QTDIR)\include\QtXml" "-I.\..\..\..\src\vcwidgets\widgets\screeneditor" "-I.\..\..\..\src\vcwidgets\widgets\slider" "-I.\..\..\..\src\vcwidgets\widgets\graphic" "-I.\..\..\..\src\legacy\visioncheck\unix" "-I.\..\..\..\src\vcwidgets\widgets\scripteditor" "-I.\..\..\..\src\vcwidgets\widgets\configuration" "-I.\..\..\..\src\vcwidgets\widgets\experteditor" "-I$(QTDIR)\include\QtSql" "-I$(QTDIR)\include\QtOpenGL" "-I$(SHACIRADIR)\Src\GUIFramework\qt4port" "-I$(NOINHERIT)\."</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing sys_filehandlingwizard_sub.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_XML_LIB -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT4 "-I$(SHACIRADIR)\Extern\STYX\Src\MODSTD" "-I.\Widgets" "-I.\Widgets\Src" "-I.\Widgets\Generated" "-I." "-I$(SHACIRADIR)\Src" "-I$(SHACIRADIR)\Src\Orb" "-I$(SHACIRADIR)\Src\Include" "-I$(SHACIRADIR)\Extern\ECL\src" "-I$(SHACIRADIR)\Src\GUIFramework" "-I$(SHACIRADIR)\Src\GUIFramework\Interface" "-I.\Forms\Generated" "-I.\Forms" "-I.\Include" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\CWidgets" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Generated" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Plugins" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Keypads" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Styles" "-I$(SHACIRADIR)\Extern\STYX\src\libbase" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework" "-I$(SHACIRADIR)\Extern\STYX\Src\INC" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtCore" "-I.\Widgets\Plugin" "-I$(QTDIR)\include" "-I.\GeneratedFiles" "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\qtmain" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I.\..\..\..\src" "-I.\..\..\..\src\vcwidgets\widgets" "-I.\..\..\..\src\vcwidgets\lib" "-I.\..\..\..\src\vcwidgets\plugin" "-I.\..\..\..\src\vcwidgets\application" "-I.\..\..\..\src\include" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\Qt3Support" "-I$(BOOSTDIR)\include\boost-$(BOOSTVER)\." "-I$(QTDIR)\include\QtXml" "-I.\..\..\..\src\vcwidgets\widgets\screeneditor" "-I.\..\..\..\src\vcwidgets\widgets\slider" "-I.\..\..\..\src\vcwidgets\widgets\graphic" "-I.\..\..\..\src\legacy\visioncheck\unix" "-I.\..\..\..\src\vcwidgets\widgets\scripteditor" "-I.\..\..\..\src\vcwidgets\widgets\configuration" "-I.\..\..\..\src\vcwidgets\widgets\experteditor" "-I$(QTDIR)\include\QtSql" "-I$(QTDIR)\include\QtOpenGL" "-I$(SHACIRADIR)\Src\GUIFramework\qt4port" "-I$(NOINHERIT)\."</Command>
+    </CustomBuild>
+    <ClInclude Include="Text\CustomText.h" />
+    <CustomBuild Include="Forms\demostartupimpl.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing demostartupimpl.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_XML_LIB -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT4  "-I$(SHACIRADIR)\Extern\STYX\Src\MODSTD" "-I.\Widgets" "-I.\Widgets\Src" "-I.\Widgets\Generated" "-I." "-I$(SHACIRADIR)\Src" "-I$(SHACIRADIR)\Src\Orb" "-I$(SHACIRADIR)\Src\Include" "-I$(SHACIRADIR)\Extern\ECL\src" "-I$(SHACIRADIR)\Src\GUIFramework" "-I$(SHACIRADIR)\Src\GUIFramework\Interface" "-I.\Forms\Generated" "-I.\Forms" "-I.\Include" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\CWidgets" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Generated" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Plugins" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Keypads" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Styles" "-I$(SHACIRADIR)\Extern\STYX\src\libbase" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework" "-I$(SHACIRADIR)\Extern\STYX\Src\INC" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtCore" "-I.\Widgets\Plugin" "-I$(QTDIR)\include" "-I.\GeneratedFiles" "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\qtmain" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I.\..\..\..\src" "-I.\..\..\..\src\vcwidgets\widgets" "-I.\..\..\..\src\vcwidgets\lib" "-I.\..\..\..\src\vcwidgets\plugin" "-I.\..\..\..\src\vcwidgets\application" "-I.\..\..\..\src\include" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\Qt3Support" "-I$(BOOSTDIR)\include\boost-$(BOOSTVER)\." "-I$(QTDIR)\include\QtXml" "-I.\..\..\..\src\vcwidgets\widgets\screeneditor" "-I.\..\..\..\src\vcwidgets\widgets\slider" "-I.\..\..\..\src\vcwidgets\widgets\graphic" "-I.\..\..\..\src\legacy\visioncheck\unix" "-I.\..\..\..\src\vcwidgets\widgets\scripteditor" "-I.\..\..\..\src\vcwidgets\widgets\configuration" "-I.\..\..\..\src\vcwidgets\widgets\experteditor" "-I$(QTDIR)\include\QtSql" "-I$(QTDIR)\include\QtOpenGL" "-I$(SHACIRADIR)\Src\GUIFramework\qt4port" "-I$(NOINHERIT)\."</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing demostartupimpl.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_XML_LIB -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT4  "-I$(SHACIRADIR)\Extern\STYX\Src\MODSTD" "-I.\Widgets" "-I.\Widgets\Src" "-I.\Widgets\Generated" "-I." "-I$(SHACIRADIR)\Src" "-I$(SHACIRADIR)\Src\Orb" "-I$(SHACIRADIR)\Src\Include" "-I$(SHACIRADIR)\Extern\ECL\src" "-I$(SHACIRADIR)\Src\GUIFramework" "-I$(SHACIRADIR)\Src\GUIFramework\Interface" "-I.\Forms\Generated" "-I.\Forms" "-I.\Include" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\CWidgets" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Generated" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Plugins" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Keypads" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Styles" "-I$(SHACIRADIR)\Extern\STYX\src\libbase" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework" "-I$(SHACIRADIR)\Extern\STYX\Src\INC" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtCore" "-I.\Widgets\Plugin" "-I$(QTDIR)\include" "-I.\GeneratedFiles" "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\qtmain" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I.\..\..\..\src" "-I.\..\..\..\src\vcwidgets\widgets" "-I.\..\..\..\src\vcwidgets\lib" "-I.\..\..\..\src\vcwidgets\plugin" "-I.\..\..\..\src\vcwidgets\application" "-I.\..\..\..\src\include" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\Qt3Support" "-I$(BOOSTDIR)\include\boost-$(BOOSTVER)\." "-I$(QTDIR)\include\QtXml" "-I.\..\..\..\src\vcwidgets\widgets\screeneditor" "-I.\..\..\..\src\vcwidgets\widgets\slider" "-I.\..\..\..\src\vcwidgets\widgets\graphic" "-I.\..\..\..\src\legacy\visioncheck\unix" "-I.\..\..\..\src\vcwidgets\widgets\scripteditor" "-I.\..\..\..\src\vcwidgets\widgets\configuration" "-I.\..\..\..\src\vcwidgets\widgets\experteditor" "-I$(QTDIR)\include\QtSql" "-I$(QTDIR)\include\QtOpenGL" "-I$(SHACIRADIR)\Src\GUIFramework\qt4port" "-I$(NOINHERIT)\."</Command>
+    </CustomBuild>
+    <CustomBuild Include="Forms\demoframeimpl.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing demoframeimpl.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_XML_LIB -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT4  "-I$(SHACIRADIR)\Extern\STYX\Src\MODSTD" "-I.\Widgets" "-I.\Widgets\Src" "-I.\Widgets\Generated" "-I." "-I$(SHACIRADIR)\Src" "-I$(SHACIRADIR)\Src\Orb" "-I$(SHACIRADIR)\Src\Include" "-I$(SHACIRADIR)\Extern\ECL\src" "-I$(SHACIRADIR)\Src\GUIFramework" "-I$(SHACIRADIR)\Src\GUIFramework\Interface" "-I.\Forms\Generated" "-I.\Forms" "-I.\Include" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\CWidgets" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Generated" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Plugins" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Keypads" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Styles" "-I$(SHACIRADIR)\Extern\STYX\src\libbase" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework" "-I$(SHACIRADIR)\Extern\STYX\Src\INC" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtCore" "-I.\Widgets\Plugin" "-I$(QTDIR)\include" "-I.\GeneratedFiles" "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\qtmain" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I.\..\..\..\src" "-I.\..\..\..\src\vcwidgets\widgets" "-I.\..\..\..\src\vcwidgets\lib" "-I.\..\..\..\src\vcwidgets\plugin" "-I.\..\..\..\src\vcwidgets\application" "-I.\..\..\..\src\include" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\Qt3Support" "-I$(BOOSTDIR)\include\boost-$(BOOSTVER)\." "-I$(QTDIR)\include\QtXml" "-I.\..\..\..\src\vcwidgets\widgets\screeneditor" "-I.\..\..\..\src\vcwidgets\widgets\slider" "-I.\..\..\..\src\vcwidgets\widgets\graphic" "-I.\..\..\..\src\legacy\visioncheck\unix" "-I.\..\..\..\src\vcwidgets\widgets\scripteditor" "-I.\..\..\..\src\vcwidgets\widgets\configuration" "-I.\..\..\..\src\vcwidgets\widgets\experteditor" "-I$(QTDIR)\include\QtSql" "-I$(QTDIR)\include\QtOpenGL" "-I$(SHACIRADIR)\Src\GUIFramework\qt4port" "-I$(NOINHERIT)\."</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing demoframeimpl.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_XML_LIB -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT4  "-I$(SHACIRADIR)\Extern\STYX\Src\MODSTD" "-I.\Widgets" "-I.\Widgets\Src" "-I.\Widgets\Generated" "-I." "-I$(SHACIRADIR)\Src" "-I$(SHACIRADIR)\Src\Orb" "-I$(SHACIRADIR)\Src\Include" "-I$(SHACIRADIR)\Extern\ECL\src" "-I$(SHACIRADIR)\Src\GUIFramework" "-I$(SHACIRADIR)\Src\GUIFramework\Interface" "-I.\Forms\Generated" "-I.\Forms" "-I.\Include" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\CWidgets" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Generated" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Plugins" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Keypads" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Styles" "-I$(SHACIRADIR)\Extern\STYX\src\libbase" "-I$(SHACIRADIR)\Src\GUIFramework\QT4Framework" "-I$(SHACIRADIR)\Extern\STYX\Src\INC" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtCore" "-I.\Widgets\Plugin" "-I$(QTDIR)\include" "-I.\GeneratedFiles" "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\qtmain" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I.\..\..\..\src" "-I.\..\..\..\src\vcwidgets\widgets" "-I.\..\..\..\src\vcwidgets\lib" "-I.\..\..\..\src\vcwidgets\plugin" "-I.\..\..\..\src\vcwidgets\application" "-I.\..\..\..\src\include" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\Qt3Support" "-I$(BOOSTDIR)\include\boost-$(BOOSTVER)\." "-I$(QTDIR)\include\QtXml" "-I.\..\..\..\src\vcwidgets\widgets\screeneditor" "-I.\..\..\..\src\vcwidgets\widgets\slider" "-I.\..\..\..\src\vcwidgets\widgets\graphic" "-I.\..\..\..\src\legacy\visioncheck\unix" "-I.\..\..\..\src\vcwidgets\widgets\scripteditor" "-I.\..\..\..\src\vcwidgets\widgets\configuration" "-I.\..\..\..\src\vcwidgets\widgets\experteditor" "-I$(QTDIR)\include\QtSql" "-I$(QTDIR)\include\QtOpenGL" "-I$(SHACIRADIR)\Src\GUIFramework\qt4port" "-I$(NOINHERIT)\."</Command>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="Forms\demoframe.ui">
+      <FileType>Document</FileType>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="Forms\demostartup.ui">
+      <FileType>Document</FileType>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="Forms\page1.ui">
+      <FileType>Document</FileType>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="Forms\page2.ui">
+      <FileType>Document</FileType>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="Forms\page3.ui">
+      <FileType>Document</FileType>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="Forms\page4.ui">
+      <FileType>Document</FileType>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="Funcs\demo.mdl">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SHACIRADIR)\bin\win32\mdlc verbose=true input=%(FullPath) class=model</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RootDir)%(Directory)%(Filename).h;%(RootDir)%(Directory)%(Filename).tab.cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SHACIRADIR)\bin\win32\mdlc verbose=true input=%(FullPath) class=model</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RootDir)%(Directory)%(Filename).h;%(RootDir)%(Directory)%(Filename).tab.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="Funcs\GUI.dec">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SHACIRADIR)\bin\win32\mdlc verbose=true input=%(FullPath) class=model</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RootDir)%(Directory)%(Filename).h;%(RootDir)%(Directory)%(Filename).tab.cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SHACIRADIR)\bin\win32\mdlc verbose=true input=%(FullPath) class=model</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RootDir)%(Directory)%(Filename).h;%(RootDir)%(Directory)%(Filename).tab.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="Test\clp_stackturnfeedzeroadjustwizard.ui">
+      <FileType>Document</FileType>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+    </CustomBuild>
+    <CustomBuild Include="Test\sys_filehandlingwizard.ui">
+      <FileType>Document</FileType>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\qresources\demo.qrc">
+      <FileType>Document</FileType>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(FullPath);..\qresources\images\img_1.png;..\qresources\images\img_2.png;..\qresources\images\img_3.png;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Rcc%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\qrc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\rcc.exe" -name "%(Filename)" -no-compress "%(FullPath)" -o .\GeneratedFiles\qrc_%(Filename).cpp</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(FullPath);..\qresources\images\img_1.png;..\qresources\images\img_2.png;..\qresources\images\img_3.png;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Rcc%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\qrc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\rcc.exe" -name "%(Filename)" -no-compress "%(FullPath)" -o .\GeneratedFiles\qrc_%(Filename).cpp</Command>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\..\..\Src\GUIFramework\QT4Framework\qresources\shacira.qrc">
+      <FileType>Document</FileType>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(FullPath);..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_1.png;..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_10.png;..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_11.png;..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_12.png;..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_13.png;..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_14.png;..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_15.png;..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_16.png;..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_2.png;..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_3.png;..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_4.png;..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_5.png;..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_6.png;..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_7.png;..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_8.png;..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_9.png;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Rcc%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\qrc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\rcc.exe" -name "%(Filename)" -no-compress "%(FullPath)" -o .\GeneratedFiles\qrc_%(Filename).cpp</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(FullPath);..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_1.png;..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_10.png;..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_11.png;..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_12.png;..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_13.png;..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_14.png;..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_15.png;..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_16.png;..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_2.png;..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_3.png;..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_4.png;..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_5.png;..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_6.png;..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_7.png;..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_8.png;..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_9.png;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Rcc%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\qrc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\rcc.exe" -name "%(Filename)" -no-compress "%(FullPath)" -o .\GeneratedFiles\qrc_%(Filename).cpp</Command>
+    </CustomBuild>
+    <None Include="..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_1.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_10.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_11.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_12.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_13.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_14.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_15.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_16.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_2.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_3.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_4.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_5.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_6.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_7.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_8.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\..\..\..\Src\GUIFramework\QT4Framework\qresources\images\img_9.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\qresources\images\img_1.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\qresources\images\img_2.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="..\qresources\images\img_3.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Targ\vc10\q4_framework\q4_framework.vcxproj">
+      <Project>{ebf485f9-8925-4886-851c-93d3be5dbb47}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Targ\vc10\shacira_lib\shacira_lib.vcxproj">
+      <Project>{4945da20-bfe4-4ba3-9ade-1e17fd9e925a}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{2161598B-3FFC-F08E-A893-C73025C34626}</ProjectGuid>
+    <Keyword>Qt4VSv1.0</Keyword>
+    <ProjectName>appqt4</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectName)d</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>UNICODE;QT_LARGEFILE_SUPPORT;QT_CORE_LIB;QT_GUI_LIB;QT_NETWORK_LIB;QT_XML_LIB;QT_SQL_LIB;QT_OPENGL_LIB;QT4;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SHACIRADIR)\Extern\STYX\Src\MODSTD;Widgets;Widgets\Src;Widgets\Generated;.\;$(SHACIRADIR)\Src;$(SHACIRADIR)\Src\Orb;$(SHACIRADIR)\Src\Include;$(SHACIRADIR)\Extern\ECL\src;$(SHACIRADIR)\Src\GUIFramework;$(SHACIRADIR)\Src\GUIFramework\Interface;Forms\Generated;Forms;Include;$(SHACIRADIR)\Src\GUIFramework\QT4Framework\CWidgets;$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Generated;$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Plugins;$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Keypads;$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Styles;$(SHACIRADIR)\Extern\STYX\src\libbase;$(SHACIRADIR)\Src\GUIFramework\QT4Framework;$(SHACIRADIR)\Extern\STYX\Src\INC;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtCore;Widgets\Plugin;$(QTDIR)\include;.\GeneratedFiles;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\qtmain;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;..\..\..\src;..\..\..\src\vcwidgets\widgets;..\..\..\src\vcwidgets\lib;..\..\..\src\vcwidgets\plugin;..\..\..\src\vcwidgets\application;..\..\..\src\include;$(QTDIR)\include\QtNetwork;$(QTDIR)\include\Qt3Support;$(BOOSTDIR)\include\boost-$(BOOSTVER);$(QTDIR)\include\QtXml;..\..\..\src\vcwidgets\widgets\screeneditor;..\..\..\src\vcwidgets\widgets\slider;..\..\..\src\vcwidgets\widgets\graphic;..\..\..\src\legacy\visioncheck\unix;..\..\..\src\vcwidgets\widgets\scripteditor;..\..\..\src\vcwidgets\widgets\configuration;..\..\..\src\vcwidgets\widgets\experteditor;$(QTDIR)\include\QtSql;$(QTDIR)\include\QtOpenGL;$(SHACIRADIR)\Src\GUIFramework\qt4port</AdditionalIncludeDirectories>
+      <Optimization>Disabled</Optimization>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <WarningLevel>Level3</WarningLevel>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>$(TargetPath)</OutputFile>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;$(ORBDIR)\lib\x86_win32;$(SHACIRADIR)\Extern\ADDIDATA\lib</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>addidata.lib;omnithread$(ORBTHREADVERSION)_rtd.lib;omniORB$(ORBVERSION)_rtd.lib;omniDynamic$(ORBVERSION)_rtd.lib;wsock32.lib;odbc32.lib;odbccp32.lib;qtmaind.lib;QtCored4.lib;QtGuid4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <DelayLoadDLLs>addikern.dll;addidata.dll;addi_int.dll</DelayLoadDLLs>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>UNICODE;QT_LARGEFILE_SUPPORT;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;QT_NETWORK_LIB;QT_XML_LIB;QT_SQL_LIB;QT_OPENGL_LIB;QT4;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SHACIRADIR)\Extern\STYX\Src\MODSTD;Widgets;Widgets\Src;Widgets\Generated;.\;$(SHACIRADIR)\Src;$(SHACIRADIR)\Src\Orb;$(SHACIRADIR)\Src\Include;$(SHACIRADIR)\Extern\ECL\src;$(SHACIRADIR)\Src\GUIFramework;$(SHACIRADIR)\Src\GUIFramework\Interface;Forms\Generated;Forms;Include;$(SHACIRADIR)\Src\GUIFramework\QT4Framework\CWidgets;$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Generated;$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Plugins;$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Keypads;$(SHACIRADIR)\Src\GUIFramework\QT4Framework\Styles;$(SHACIRADIR)\Extern\STYX\src\libbase;$(SHACIRADIR)\Src\GUIFramework\QT4Framework;$(SHACIRADIR)\Extern\STYX\Src\INC;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtCore;Widgets\Plugin;$(QTDIR)\include;.\GeneratedFiles;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\qtmain;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;..\..\..\src;..\..\..\src\vcwidgets\widgets;..\..\..\src\vcwidgets\lib;..\..\..\src\vcwidgets\plugin;..\..\..\src\vcwidgets\application;..\..\..\src\include;$(QTDIR)\include\QtNetwork;$(QTDIR)\include\Qt3Support;$(BOOSTDIR)\include\boost-$(BOOSTVER);$(QTDIR)\include\QtXml;..\..\..\src\vcwidgets\widgets\screeneditor;..\..\..\src\vcwidgets\widgets\slider;..\..\..\src\vcwidgets\widgets\graphic;..\..\..\src\legacy\visioncheck\unix;..\..\..\src\vcwidgets\widgets\scripteditor;..\..\..\src\vcwidgets\widgets\configuration;..\..\..\src\vcwidgets\widgets\experteditor;$(QTDIR)\include\QtSql;$(QTDIR)\include\QtOpenGL;$(SHACIRADIR)\Src\GUIFramework\qt4port</AdditionalIncludeDirectories>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <WarningLevel>Level3</WarningLevel>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>$(TargetPath)</OutputFile>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;$(ORBDIR)\lib\x86_win32;$(SHACIRADIR)\Extern\ADDIDATA\lib</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <AdditionalDependencies>addidata.lib;omnithread$(ORBTHREADVERSION)_rt.lib;omniORB$(ORBVERSION)_rt.lib;omniDynamic$(ORBVERSION)_rt.lib;wsock32.lib;odbc32.lib;odbccp32.lib;qtmain.lib;QtCore4.lib;QtGui4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <DelayLoadDLLs>addikern.dll;addidata.dll;addi_int.dll</DelayLoadDLLs>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties UicDir=".\GeneratedFiles" MocDir=".\GeneratedFiles\$(ConfigurationName)" MocOptions="" RccDir=".\GeneratedFiles" lupdateOnBuild="0" lupdateOptions="" lreleaseOptions="" QtVersion_x0020_Win32="4.8.4" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

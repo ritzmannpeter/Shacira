@@ -1,0 +1,83 @@
+
+
+
+
+;/*++
+;
+;Copyright (c) 2003 2i Industrial Informatics GmbH All rights Reserved
+;
+;Module Name:
+;
+;    Carrier.INF
+;
+;Abstract:
+;    INF file for installing Carrier IO driver
+;
+;--*/
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=Industrial
+ClassGuid={78A1C341-4539-11d3-B88D-00C04FAD5171}
+Provider=%IIII%
+DriverVer=02/17/2003,1.00.0001
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+
+; ================= Class section =====================
+
+[ClassInstall32]
+Addreg=CarrierClassReg     
+
+[CarrierClassReg]
+HKR,,,0,%ClassName%
+HKR,,Icon,,-5
+
+; ================= Device Install section =====================
+
+[Manufacturer]
+%IIII%=IIII
+
+[SourceDiskFiles]
+carrier.sys=1
+
+[SourceDiskNames]
+1="Install disk",
+
+[IIII]
+; DisplayName            Section           DeviceId
+; -----------       	 -------           --------
+%CarrierIO.DRVDESC%=CarrierIO_Inst,root\CarrierIO
+
+[CarrierIO_Inst.NT]
+CopyFiles=CarrierIO.CopyFiles
+LogConfig=CarrierIO.LC0, CarrierIO.LC1
+
+[CarrierIO.CopyFiles]
+carrier.sys
+
+[CarrierIO_Inst.NT.Services]
+AddService=CarrierIO,0x00000002,CarrierIO_Service 
+
+[CarrierIO.LC0]
+ConfigPriority=DESIRED 
+IOConfig=360-365(3ff::)
+
+[CarrierIO.LC1]
+ConfigPriority=NORMAL
+IOConfig=380-385(3ff::)
+
+[CarrierIO_Service]
+DisplayName    = %CarrierIO.SVCDESC%                            
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\carrier.sys                            
+
+[Strings]
+IIII = "2i Industrial Informatics"
+ClassName = "Industrial Drivers"
+CarrierIO.SVCDESC = "Carrier IO Service"
+CarrierIO.DRVDESC = "Carrier IO Driver"

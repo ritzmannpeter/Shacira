@@ -1,0 +1,326 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"         "http://www.w3.org/TR/REC-html40/Transitional.dtd">
+<html>
+<head>
+<title>[otab.h] Type: Operational Table</title>
+<meta name="robots" content="noindex">
+</head>
+<body bgcolor=white>
+<h1><font color="#008B8B">[otab.h] Type: Operational Table</font></h1>
+<h2><font color="#008B8B"><a href="styx.html">contents</a></font></h2><br>
+<br><a href="standard.htm">#include "standard.h"</a>
+<br><a href="prim.htm">#include "prim.h"</a>
+<br>
+<br>
+<br>
+<br><hr width="100%" size=2><h2><b> Types </b></h2>
+<br><pre>
+   This module implements a dynamic array as operational table data type.
+   The internal element vector will be automatically resized on element
+   insertion and disposal.
+
+</pre>
+<br>
+<table border=0 cellspacing=10>
+<TR valign=top>
+<td align=left><b>OT_Tab</b>
+<td align=left> Abstract operational table type 
+
+<TR valign=top>
+<td align=left><b>OT_Obj</b>
+<td align=left> Abstract table element type     
+
+<TR valign=top>
+<td align=left><b>OT_Objs</b>
+<td align=left> Abstract element vector type    
+
+</table>
+<br><pre>#define ROW(type)      OT_Tab
+
+</pre>
+<br><hr width="100%" size=2><h2><b> Creation and basic access </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>OT_Tab <b>OT_create</b>
+       (                                         
+         OT_Obj (*copy)(OT_Obj obj),             
+         void (*del)(OT_Obj obj),                
+         c_bool (*equal)(OT_Obj lobj, OT_Obj robj) 
+       )
+#define OT_CREATE(type,cpy,del,equ)                 \
+        OT_create                                   \
+        (                                           \
+          (OT_Obj (*)(OT_Obj obj))             cpy, \
+          (void (*)(OT_Obj obj))               del, \
+          (c_bool (*)(OT_Obj lobj, OT_Obj robj)) equ  \
+        )
+#define OT_CREATE_ADT(type) OT_CREATE(type,primCopy,primFree,primEqual)</pre>
+<td bgcolor="#FFF0F5" align=left> creates an operational table <br>
+ function parameter:  <br>
+ copies an element    <br>
+ frees an element     <br>
+ equality on elements <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>OT_Tab <b>OT_cfill</b>
+       (                                          
+         OT_Obj (*copy)(OT_Obj obj),              
+         void (*del)(OT_Obj obj),                 
+         c_bool (*equal)(OT_Obj lobj, OT_Obj robj), 
+         OT_Obj dftval,                           
+         INT ntimes                               
+       )
+#define OT_CFILL(type,cpy,del,equ,dft,n)            \
+        OT_cfill                                    \
+        (                                           \
+          (OT_Obj (*)(OT_Obj obj))             cpy, \
+          (void (*)(OT_Obj obj))               del, \
+          (c_bool (*)(OT_Obj lobj, OT_Obj robj)) equ, \
+          (OT_Obj)dft,                              \
+          (n)                                       \
+        )
+#define OT_CFILL_ADT(type,d,n) OT_CFILL(type,primCopy,primFree,primEqual,d,n)
+#define OT_INJECT_ADT(type,d) OT_CFILL(type,primCopy,primFree,primEqual,d,1)</pre>
+<td bgcolor="#FFF0F5" align=left> creates and fills an operational table ntimes with the value 'dftval' <br>
+ function parameter:    <br>
+ copies an element      <br>
+ frees an element       <br>
+ equality on elements   <br>
+ default value          <br>
+ initial element number <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>OT_init</b>(OT_Tab tab)
+#define OT_INIT OT_init</pre>
+<td bgcolor="#FFF0F5" align=left> resets / initializes table 'tab' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>INT <b>OT_cnt</b>(OT_Tab tab)
+#define OT_CNT OT_cnt</pre>
+<td bgcolor="#FFF0F5" align=left> number of elements in table 'tab' <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Insert & Update </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>INT <b>OT_t_ins</b>(OT_Tab tab, OT_Obj obj)
+#define OT_T_INS(tab,obj) OT_t_ins(tab,ABS_CAST(OT_Obj,obj))</pre>
+<td bgcolor="#FFF0F5" align=left> inserts 'obj' as last element of table 'tab'<br>
+   result = element index<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>INT <b>OT_p_ins</b>(OT_Tab tab, OT_Obj obj, INT nth)
+#define OT_P_INS(tab,obj,nth) OT_p_ins(tab,ABS_CAST(OT_Obj,obj),nth)</pre>
+<td bgcolor="#FFF0F5" align=left> inserts 'obj' as nth element of table 'tab' ( nth &gt;= 1 )<br>
+   result = element index<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>INT <b>OT_s_ins</b>
+    (
+      OT_Tab tab,OT_Obj obj,int (*cmp3)(OT_Obj lobj, OT_Obj robj),c_bool unique
+    )
+#define OT_S_INS(tab,obj,cmp3)                      \
+        OT_s_ins                                    \
+        (                                           \
+          tab,                                      \
+          ABS_CAST(OT_Obj,obj),                     \
+          (int (*)(OT_Obj lobj, OT_Obj robj)) cmp3, \
+          C_False                                     \
+        )
+#define OT_S_INS_U(tab,obj,cmp3)                    \
+        OT_s_ins                                    \
+        (                                           \
+          tab,                                      \
+          ABS_CAST(OT_Obj,obj),                     \
+          (int (*)(OT_Obj lobj, OT_Obj robj)) cmp3, \
+          C_True                                      \
+        )</pre>
+<td bgcolor="#FFF0F5" align=left> inserts element 'obj' in table 'tab' ( sorted )<br>
+   unique --&gt; no insert if the element exists<br>
+   result = element index<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>OT_Obj <b>OT_upd</b>(OT_Tab tab, INT idx, OT_Obj obj)
+#define OT_UPD(type,tab,idx,obj) \
+        ( ABS_CAST(type,OT_upd(tab,(idx),ABS_CAST(OT_Obj,obj))) )</pre>
+<td bgcolor="#FFF0F5" align=left> updates table element tab[idx] with 'obj' <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Copy & Append </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>OT_Objs <b>OT_copyV</b>(OT_Tab tab, INT size, StdCPtr (*cfun)(OT_Obj obj))
+#define OT_COPY_V(type,tab,sz,fun) \
+        ( ABS_CAST(type,OT_copyV(tab,(sz),(StdCPtr (*)(OT_Obj obj)) fun)) )</pre>
+<td bgcolor="#FFF0F5" align=left> copies elements of table 'tab' to an array<br>
+   assertion: elements of constant size<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>OT_Tab <b>OT_reverse</b>(OT_Tab tab)
+#define OT_REVERSE OT_reverse</pre>
+<td bgcolor="#FFF0F5" align=left> reverses elements in table 'tab' ( not copied ) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>OT_Tab <b>OT_copy</b>(OT_Tab tab)
+#define OT_COPY OT_copy</pre>
+<td bgcolor="#FFF0F5" align=left> copies table 'tab' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>OT_Tab <b>OT_append</b>(OT_Tab dst, OT_Tab src)
+#define OT_APPEND OT_append</pre>
+<td bgcolor="#FFF0F5" align=left> appends table 'src' to table 'dst'; 'src' won't be removed <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Get / Sort & Search </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>OT_Obj __HUGE* <b>OT_TRICKY_objects</b>(OT_Tab tab)</pre>
+<td bgcolor="#FFF0F5" align=left> internal element array of table 'tab' ( use with care ! ) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>OT_Obj <b>OT_get</b>(OT_Tab tab, INT idx)
+#define OT_GET(type,tab,idx)       ( ABS_CAST(type,OT_get(tab,(idx))) )
+#define OT_GET_I(type,t,it,idx)    OT_GET(type,t,OT_GET(INT,it,(idx)))
+#define OT_GET_small(type,tab,idx) ( (type)((long)OT_get(tab,(idx))) )
+#define OT_GET_short(tab,idx)      ( (short)((long)OT_get(tab,(idx))) )</pre>
+<td bgcolor="#FFF0F5" align=left> table element tab[idx] <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>INT <b>OT_l_find</b>(OT_Tab tab, OT_Obj obj, c_bool (*cmp)(OT_Obj tobj, OT_Obj obj))
+#define OT_L_FIND_EQ(tab,obj)  \
+        OT_l_find(tab,ABS_CAST(OT_Obj,obj),(c_bool (*)(OT_Obj tobj, OT_Obj Obj))NULL)
+#define OT_L_FIND(tab,obj,cmp) \
+        OT_l_find(tab,ABS_CAST(OT_Obj,obj),(c_bool (*)(OT_Obj tobj, OT_Obj Obj)) cmp)</pre>
+<td bgcolor="#FFF0F5" align=left> position of key element 'obj' in table 'tab' or 0 ( linear search ) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>OT_Tab <b>OT_sort</b>(OT_Tab tab, int (*cmp3)(OT_Obj lobj, OT_Obj robj))
+#define OT_SORT(tab,cmp3) \
+        OT_sort(tab,(int (*)(OT_Obj lobj, OT_Obj robj)) cmp3)</pre>
+<td bgcolor="#FFF0F5" align=left> sorts table 'tab' ( quicksort method )<br>
+   result = index table<br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>INT <b>OT_b_find</b>
+    (
+      OT_Tab tab,OT_Tab idxtab,OT_Obj obj,int (*cmp3)(OT_Obj lobj, OT_Obj robj)
+    )
+#define OT_B_FIND_NI(tab,obj,cmp3)                 \
+        OT_b_find                                  \
+        (                                          \
+          tab,(OT_Tab)NULL,ABS_CAST(OT_Obj,obj),   \
+          (int (*)(OT_Obj lobj, OT_Obj robj)) cmp3 \
+        )
+#define OT_B_FIND(tab,itab,obj,cmp3)               \
+        OT_b_find                                  \
+        (                                          \
+          tab,itab,ABS_CAST(OT_Obj,obj),           \
+          (int (*)(OT_Obj lobj, OT_Obj robj)) cmp3 \
+        )</pre>
+<td bgcolor="#FFF0F5" align=left> position of key element 'obj' in table 'tab' or 0 ( binary search )<br>
+   Optional the index table 'idxtab' specifies the sort order.<br>
+<br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Delete </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>OT_delH</b>(OT_Tab tab)
+#define OT_DEL_H OT_delH</pre>
+<td bgcolor="#FFF0F5" align=left> removes header of table 'tab' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>OT_delT</b>(OT_Tab tab)
+#define OT_DEL_T OT_delT</pre>
+<td bgcolor="#FFF0F5" align=left> removes table 'tab' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>OT_delE</b>(OT_Tab tab, INT idx)
+#define OT_DEL_E OT_delE</pre>
+<td bgcolor="#FFF0F5" align=left> removes table element tab[idx] <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>OT_delES</b>(OT_Tab tab, INT idx, INT cnt)
+#define OT_DEL_ES OT_delES</pre>
+<td bgcolor="#FFF0F5" align=left> removes 'cnt' elements from table 'tab' beginning at index 'idx' <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>OT_clear</b>(OT_Tab tab)
+#define OT_CLEAR OT_clear</pre>
+<td bgcolor="#FFF0F5" align=left> clears table 'tab'; removes all elements <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Printing </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>OT_print</b>(OT_Tab tab, void (*pMbr)(OT_Obj obj), int cols, int indent)
+#define OT_PRINT(tab,pMbr,cols,ind) \
+        OT_print(tab,(void (*)(OT_Obj obj)) pMbr,(cols),(ind))</pre>
+<td bgcolor="#FFF0F5" align=left> prints table 'tab' to stdout ( unsorted ) <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>void <b>OT_s_print</b>
+     (
+       OT_Tab tab, OT_Tab idxtab, void (*pMbr)(OT_Obj obj), int cols, int indent
+     )
+#define OT_S_PRINT(tab,itab,pMbr,cols,ind) \
+        OT_s_print(tab,itab,(void (*)(OT_Obj obj)) pMbr,(cols),(ind))</pre>
+<td bgcolor="#FFF0F5" align=left> prints table 'tab' to stdout ( sorted ) <br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Predicates on tables & Mapping </b></h2>
+<table border=0 cellspacing=20>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>OT_equal</b>(OT_Tab left, OT_Tab right)
+#define OT_EQUAL OT_equal</pre>
+<td bgcolor="#FFF0F5" align=left> left = right ? <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>StdCPtr <b>OT_map</b>
+        (                                         
+          int argcnt,                             
+          void (*fun)(OT_Obj* objs, StdCPtr any), 
+          StdCPtr any,                            
+          OT_Tab tab, ...                         
+        )
+#define OT_MAP_F OT_map</pre>
+<td bgcolor="#FFF0F5" align=left> executes 'fun' on each element in all tables <br>
+ function parameter:    <br>
+ number of arguments    <br>
+ element map function   <br>
+ any additional context <br>
+ operational tables     <br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>OT_forall</b>
+     (                                         
+       int argcnt,                             
+       c_bool (*fun)(OT_Obj* objs, StdCPtr any), 
+       StdCPtr any,                            
+       OT_Tab tab, ...                         
+     )
+#define OT_FORALL_P OT_forall</pre>
+<td bgcolor="#FFF0F5" align=left> executes 'fun' on each element in all tables;<br>
+  on false execution stops<br>
+ function parameter:    <br>
+ number of arguments    <br>
+ element map function   <br>
+ any additional context <br>
+ operational tables     <br>
+<br>
+<tr valign=top>
+<td bgcolor="#FFF8DC" align=left><pre>c_bool <b>OT_exists</b>
+     (                                         
+       int argcnt,                             
+       c_bool (*fun)(OT_Obj* objs, StdCPtr any), 
+       StdCPtr any,                            
+       OT_Tab tab, ...                         
+     )
+#define OT_EXISTS_P OT_exists</pre>
+<td bgcolor="#FFF0F5" align=left> executes 'fun' on each element in all tables;<br>
+  on true execution stops<br>
+ function parameter:    <br>
+ number of arguments    <br>
+ element map function   <br>
+ any additional context <br>
+ operational tables     <br>
+<br>
+
+</table>
+<br><hr width="100%" size=2><h2><b> Simulation of a pointer stack </b></h2>
+<br><pre>#define OT_NEWSTK(stk)                  stk = OT_CREATE_ADT(StdCPtr)
+#define OT_EMPTYSTK(stk)                ( OT_CNT(stk) ? C_False : C_True )
+#define OT_CNTSTK(stk)                  OT_CNT(stk)
+#define OT_PUSH(ptr,stk)                OT_T_INS(stk,ABS_CAST(OT_Obj,ptr))
+#define OT_POP(stk)                     OT_DEL_E(stk,OT_cnt(stk)-1)
+#define OT_TOP(type,stk)                OT_GET(type,stk,OT_cnt(stk)-1)
+#define OT_DELSTK(stk)                  OT_DEL_T(stk)
+
+</pre>
+
+</body>
+</html>
