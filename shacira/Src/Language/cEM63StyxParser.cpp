@@ -387,7 +387,8 @@ BOOL_T cEM63StyxParser::ParsePresentationRequest (cEM63Session *session, cEM63Jo
             }
 
             if ((job != NULL) && job->HasFailed() &&
-                (job->get_ErrorCode() == JOB_WITH_THE_SAME_NAME)) {
+                ((job->get_ErrorCode() == JOB_WITH_THE_SAME_NAME) ||
+                 (job->get_ErrorCode() == TOO_MANY_ACTIVE_JOBS))) {
                 return false;
             }
             GLS_FORALL(cmd_list_it, cmd_list) {

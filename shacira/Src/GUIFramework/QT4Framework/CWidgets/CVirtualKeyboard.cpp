@@ -18,6 +18,7 @@ SH_PLUGIN_REGISTER(InputWidget, \
 #include "cQtKeyboardInput.h"
 #include "cQtPropertyWidget.h"
 #include "cinput.h"
+#include "CAppFrame.h"
 #endif
 
 
@@ -198,7 +199,8 @@ void CVirtualKeyboard::CCSNewValue(CONST_STRING_T value, ULONG_T id, ULONG_T tim
 #ifndef QT_PLUGIN
 WMETHOD_PROLOG
    QString set_value = value;
-   if (CWidgetBase::Flag(UTF8_ENCODED_INPUT)) {
+   CAppFrame * app_frame = CWidgetBase::_AppFrame;
+   if (app_frame->getWidgetInputUTF8Encoded()) {
       if (!_Input.IsNumeric()) {
          set_value = FromUtf8(value);
          //set_value = QString::fromUtf8(value);

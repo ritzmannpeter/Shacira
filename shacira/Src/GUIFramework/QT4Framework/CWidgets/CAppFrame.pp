@@ -272,6 +272,7 @@ public:
    virtual void AlphaNumericStateChanged(const QString & var_name, bool active) {};
    virtual void NumericStateChanged(const QString & var_name, bool active) {};
    virtual QString StyleSheet(QWidget * widget);
+   virtual BOOL_T getWidgetInputUTF8Encoded() const;
 
    // page stack
    void ShowLastPage();

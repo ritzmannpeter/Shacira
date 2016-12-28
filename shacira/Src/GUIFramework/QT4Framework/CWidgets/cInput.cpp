@@ -11,6 +11,8 @@
 #include "cQtKeyboardInput.h"
 #include "cQtNumberValidator.h"
 #include "cQtStringValidator.h"
+#include "CAppFrame.h"
+
 
 class cFinalValidator : public iFinalValidator
 {
@@ -130,7 +132,8 @@ WMETHOD_PROLOG
          if (rc == actionProceed) {
             /// PR 13.05.05 now exception propagation is selected 
             QString set_value = value;
-            if (CWidgetBase::Flag(UTF8_ENCODED_INPUT)) {
+            CAppFrame * app_frame = CWidgetBase::_AppFrame;
+            if (app_frame->getWidgetInputUTF8Encoded()) {
                if (!_IsNumericInput) {
 #ifdef QT4
                   set_value = value.toUtf8();
@@ -191,7 +194,8 @@ WMETHOD_PROLOG
          if (rc == actionProceed) {
             /// PR 13.05.05 now exception propagation is selected 
             QString set_value = value;
-            if (CWidgetBase::Flag(UTF8_ENCODED_INPUT)) {
+            CAppFrame * app_frame = CWidgetBase::_AppFrame;
+            if (app_frame->getWidgetInputUTF8Encoded()) {
                if (!_IsNumericInput) {
 #ifdef QT4
                   set_value = value.toUtf8();

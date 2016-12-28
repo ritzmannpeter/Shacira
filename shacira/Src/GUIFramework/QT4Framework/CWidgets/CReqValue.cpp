@@ -126,25 +126,24 @@ WMETHOD_PROLOG
             setValidator(validator);
          }
          if (TOUCH_SCREEN_ACTIVE()) {
-            CAppFrame * app_frame = CWidgetBase::_AppFrame;
             UCHAR_T data_type = _VarRef->DataType();
             if (data_type == SH_STRING ||
                 data_type == SH_WSTRING) {
-               if (app_frame != NULL) 
-                   app_frame->AlphaNumericStateChanged(_VarRef->_Name.c_str(), true);
+               if (_AppFrame != NULL) 
+                   _AppFrame->AlphaNumericStateChanged(_VarRef->_Name.c_str(), true);
 
                AlphaNumericInput(validator);
 
-               if (app_frame != NULL) 
-                   app_frame->AlphaNumericStateChanged(_VarRef->_Name.c_str(), false);
+               if (_AppFrame != NULL) 
+                   _AppFrame->AlphaNumericStateChanged(_VarRef->_Name.c_str(), false);
             } else {
-               if (app_frame != NULL) 
-                   app_frame->NumericStateChanged(_VarRef->_Name.c_str(), true);
+               if (_AppFrame != NULL) 
+                   _AppFrame->NumericStateChanged(_VarRef->_Name.c_str(), true);
 
                NumericInput(validator);
 
-               if (app_frame != NULL) 
-                   app_frame->NumericStateChanged(_VarRef->_Name.c_str(), false);
+               if (_AppFrame != NULL) 
+                   _AppFrame->NumericStateChanged(_VarRef->_Name.c_str(), false);
             }
          }
       } else {
@@ -209,15 +208,15 @@ void CReqValue::CCSNewValue(CONST_STRING_T value, ULONG_T id, ULONG_T time_offse
 {
    QString set_value = value;
    QString prev_value = value;
-
-   if (CWidgetBase::Flag(UTF8_ENCODED_INPUT)) {
+#ifndef QT_PLUGIN
+   if (_AppFrame->getWidgetInputUTF8Encoded()) {
       if (!_Input.IsNumeric()) {
          set_value = FromUtf8(set_value);
          //set_value = QString::fromUtf8(CONST_STRING(set_value));
          prev_value = set_value;
       }
    }
-
+#endif
    setText(set_value);
    _PrevValue = prev_value;
 }
@@ -292,11 +291,11 @@ WMETHOD_PROLOG
    iFinalValidator * final_validator = _Input.FinalValidator();
    _NumericKeypad->setFinalValidator(final_validator);
    _NumericKeypad->setCurrentValue(text());
-   CAppFrame * app_frame = CWidgetBase::_AppFrame;
-   if (app_frame != NULL)
+
+   if (_AppFrame != NULL)
    {
-      QPoint pt1App = app_frame->mapToGlobal(QPoint(0,0));
-      QPoint pt2App = QPoint(pt1App.x() + app_frame->getPageAreaSize().width(),pt1App.y() + app_frame->getPageAreaSize().height()); 
+      QPoint pt1App = _AppFrame->mapToGlobal(QPoint(0,0));
+      QPoint pt2App = QPoint(pt1App.x() + _AppFrame->getPageAreaSize().width(),pt1App.y() + _AppFrame->getPageAreaSize().height()); 
       QPoint p = mapToGlobal(QPoint(0,0));
       QRect r = geometry();
       SHORT_T heightPad = _NumericKeypad->height() + OFFSET_YPOS_INPDIALOG;
@@ -323,7 +322,7 @@ WMETHOD_PROLOG
       STRING_T new_value;
       _VarRef->GetValue(new_value);
       value = new_value.c_str();
-      if (CWidgetBase::Flag(UTF8_ENCODED_INPUT)) {
+      if (_AppFrame->getWidgetInputUTF8Encoded()) {
          if (!_Input.IsNumeric()) {
             value = FromUtf8(new_value.c_str());
             //value = QString::fromUtf8(new_value.c_str());
@@ -377,14 +376,13 @@ WMETHOD_PROLOG
    board->setFinalValidator(final_validator);
    board->setCurrentValue(text());
 
-   CAppFrame * app_frame = CWidgetBase::_AppFrame;
-   if (app_frame != NULL) {
-      QPoint pt1App = app_frame->mapToGlobal(QPoint(0,0));
-      QPoint pt2App = QPoint(pt1App.x() + app_frame->getPageAreaSize().width(),pt1App.y() + app_frame->height()); 
+   if (_AppFrame != NULL) {
+      QPoint pt1App = _AppFrame->mapToGlobal(QPoint(0,0));
+      QPoint pt2App = QPoint(pt1App.x() + _AppFrame->getPageAreaSize().width(),pt1App.y() + _AppFrame->height()); 
       QPoint pt1Req = mapToGlobal(QPoint(0,0));
       QRect rectReq = geometry();
       QPoint pt1Board = board->mapToGlobal(QPoint(0,0));
-      SHORT_T defaultPos = (app_frame->getPageAreaSize().width() - board->width()) / 2 + pt1App.x();
+      SHORT_T defaultPos = (_AppFrame->getPageAreaSize().width() - board->width()) / 2 + pt1App.x();
       SHORT_T heightBoard = board->height() + OFFSET_YPOS_INPDIALOG;
       QPoint ptBoard(defaultPos, pt1Req.y() + rectReq.height());
 
@@ -410,7 +408,7 @@ WMETHOD_PROLOG
       STRING_T new_value;
       _VarRef->GetValue(new_value);
       value = new_value.c_str();
-      if (CWidgetBase::Flag(UTF8_ENCODED_INPUT)) {
+      if (_AppFrame->getWidgetInputUTF8Encoded()) {
          if (!_Input.IsNumeric()) {
             value = FromUtf8(new_value.c_str());
             //value = QString::fromUtf8(new_value.c_str());

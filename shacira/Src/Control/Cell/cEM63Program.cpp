@@ -459,7 +459,7 @@ STRING_T cEM63Program::ContrVersion ()
 ULONG_T cEM63Program::MaxJobs ()
 {
   //## begin cEM63Program::MaxJobs%1136631594.body preserve=yes
-   return 5;
+   return 15;
   //## end cEM63Program::MaxJobs%1136631594.body
 }
 
@@ -501,7 +501,7 @@ ULONG_T cEM63Program::MaxArchives ()
 ULONG_T cEM63Program::MaxSessions ()
 {
   //## begin cEM63Program::MaxSessions%1136631600.body preserve=yes
-   return 45;
+   return 30;
   //## end cEM63Program::MaxSessions%1136631600.body
 }
 

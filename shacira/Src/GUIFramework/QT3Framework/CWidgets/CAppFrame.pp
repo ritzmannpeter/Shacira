@@ -248,6 +248,7 @@ public:
    virtual void DialogStateChanged(DIALOG_T * dialog, bool active) {};
    virtual void AlphaNumericStateChanged(const QString & var_name, bool active) {};
    virtual void NumericStateChanged(const QString & var_name, bool active) {};
+   virtual BOOL_T getWidgetInputUTF8Encoded() const;
 
    // page stack
    void ShowLastPage();

@@ -131,7 +131,7 @@ WMETHOD_PROLOG
       }
       setText(qValue);
    } else {
-      if (CWidgetBase::Flag(UTF8_ENCODED_INPUT)) {
+      if (_AppFrame->getWidgetInputUTF8Encoded()) {
          if (!_IsNumericInput) {
             qValue = FromUtf8(qValue);
             //qValue = QString::fromUtf8(CONST_STRING(qValue));

@@ -793,6 +793,7 @@ void ListView::adjustColumnWidths()
    for (row=0; row<rows; row++) {
       ListViewItem * item = this->item(row);
       if (item != NULL) {
+         int parentIndentation = item->isExpanded() ? indentation() : 0;
          QRect viewportRect = viewport()->rect();
          QRect itemRect = visualItemRect(item);
          itemRect.setWidth(10);
@@ -814,6 +815,37 @@ void ListView::adjustColumnWidths()
 #endif
                if (columnWidth > columnWidths[column]) {
                   columnWidths[column] = columnWidth;
+               }
+            }
+         }
+
+         int itemChildCount = item->childCount();
+         if (itemChildCount > 0) {
+            for(int i=0; i<itemChildCount; i++) {
+               QTreeWidgetItem * itemChild = item->child(i);
+               QRect itemRect = visualItemRect(itemChild);
+               itemRect.setWidth(10);
+               if (viewportRect.contains(itemRect)) {
+                  for (column=0; column<columns; column++) {
+                     QModelIndex	index = this->indexFromItem(itemChild, column);
+                     int columnWidth = 0;
+#define USE_STYLE_DELEGATE_
+#ifdef USE_STYLE_DELEGATE
+                     QSize cellSize = itemChild->cellSizeHint(index);
+                     columnWidth = cellSize.width();
+#else
+                     QString text = this->model()->data(index).toString();
+                     QPixmap pixmap = this->model()->data(index, Qt::DecorationRole).value<QPixmap>();
+                     int pixmapWidth = pixmap.width();
+                     QFontMetrics fontMetrics(this->font());
+                     int spacingWidth = pixmapWidth ? 10 : 0;
+                     int columnWidthOffset = (column == 0) ? 2 * parentIndentation : 0;
+                     columnWidth = fontMetrics.width(text) + 6 + pixmapWidth + spacingWidth + columnWidthOffset;
+#endif
+                     if (columnWidth > columnWidths[column]) {
+                        columnWidths[column] = columnWidth;
+                     }
+                  }
                }
             }
          }

@@ -224,7 +224,7 @@ void CTextEdit::CCSNewValue(CONST_STRING_T value, ULONG_T id, ULONG_T time_offse
    QString set_value = value;
    QString prev_value = value;
 
-   if (CWidgetBase::Flag(UTF8_ENCODED_INPUT)) {
+   if (_AppFrame->getWidgetInputUTF8Encoded()) {
       if (!_Input.IsNumeric()) {
          set_value = FromUtf8(set_value);
          //set_value = QString::fromUtf8(CONST_STRING(set_value));

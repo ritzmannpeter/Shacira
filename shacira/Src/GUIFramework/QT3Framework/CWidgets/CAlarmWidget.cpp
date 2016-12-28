@@ -651,7 +651,7 @@ WMETHOD_PROLOG
                break;
             }
             QString utf8_text = text;
-            if (CWidgetBase::Flag(UTF8_ENCODED_INPUT)) {
+            if (_AppFrame->getWidgetInputUTF8Encoded()) {
                utf8_text = FromUtf8(text);
                //utf8_text = QString::fromUtf8(CONST_STRING(text));
             }

@@ -1883,6 +1883,11 @@ WMETHOD_VOID_EPILOG
 #endif
 }
 
+BOOL_T CAppFrame::getWidgetInputUTF8Encoded() const
+{
+    return CWidgetBase::Flag(UTF8_ENCODED_INPUT);
+}
+
 void CAppFrame::setPageAreaSize(const QSize &value)
 { 
    _PageAreaSize = value;

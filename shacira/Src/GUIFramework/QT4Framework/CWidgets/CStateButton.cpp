@@ -239,18 +239,18 @@ WMETHOD_PROLOG
    case 1:
       _ActShowVarRefValue = atol(value);
       if (_ActShowVarRefValue > (_StateCountValue-1)) {
-         _ActShowVarRefValue = _StateCountValue - 1;
          ErrorPrintf("CStateButton ShowVarRef '%s' (Value %d) higher StateCount (%d)\n", 
-                     _ShowVarRef, _ActShowVarRefValue, _StateCountValue);
+                     _ShowVarRef->_Name.c_str(), _ActShowVarRefValue, _StateCountValue);
+         _ActShowVarRefValue = _StateCountValue - 1;
       }
       ShowState();
       break;
    case 2:
       _ActShow2VarRefValue = atol(value);
       if (_ActShow2VarRefValue > (_StateCountValue-1)) {
-         _ActShow2VarRefValue = _StateCountValue - 1;
          ErrorPrintf("CStateButton Show2VarRef '%s' (Value %d) higher StateCount (%d)\n", 
-                     _Show2VarRef, _ActShow2VarRefValue, _StateCountValue);
+                     _Show2VarRef->_Name.c_str(), _ActShow2VarRefValue, _StateCountValue);
+         _ActShow2VarRefValue = _StateCountValue - 1;
       }
       ShowState();
       break;

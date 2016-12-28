@@ -199,15 +199,15 @@ void CReqValue::CCSNewValue(CONST_STRING_T value, ULONG_T id, ULONG_T time_offse
 {
    QString set_value = value;
    QString prev_value = value;
-
-   if (CWidgetBase::Flag(UTF8_ENCODED_INPUT)) {
+#ifndef QT_PLUGIN
+   if (_AppFrame->getWidgetInputUTF8Encoded()) {
       if (!_Input.IsNumeric()) {
          set_value = FromUtf8(set_value);
          //set_value = QString::fromUtf8(CONST_STRING(set_value));
          prev_value = set_value;
       }
    }
-
+#endif
    setText(set_value);
    _PrevValue = prev_value;
 }
@@ -308,7 +308,7 @@ WMETHOD_PROLOG
       STRING_T new_value;
       _VarRef->GetValue(new_value);
       value = new_value.c_str();
-      if (CWidgetBase::Flag(UTF8_ENCODED_INPUT)) {
+      if (_AppFrame->getWidgetInputUTF8Encoded()) {
          if (!_Input.IsNumeric()) {
             value = FromUtf8(new_value.c_str());
             //value = QString::fromUtf8(new_value.c_str());
@@ -369,7 +369,7 @@ WMETHOD_PROLOG
       QPoint pt1Req = mapToGlobal(QPoint(0,0));
       QRect rectReq = geometry();
       QPoint pt1Board = board->mapToGlobal(QPoint(0,0));
-      SHORT_T defaultPos = (app_frame->width() - board->width()) / 2 + pt1App.x();
+      SHORT_T defaultPos = (_AppFrame->getPageAreaSize().width() - board->width()) / 2 + pt1App.x();
       SHORT_T heightBoard = board->height() + OFFSET_YPOS_INPDIALOG;
       QPoint ptBoard(defaultPos, pt1Req.y() + rectReq.height());
 
@@ -390,7 +390,7 @@ WMETHOD_PROLOG
       STRING_T new_value;
       _VarRef->GetValue(new_value);
       value = new_value.c_str();
-      if (CWidgetBase::Flag(UTF8_ENCODED_INPUT)) {
+      if (_AppFrame->getWidgetInputUTF8Encoded()) {
          if (!_Input.IsNumeric()) {
             value = FromUtf8(new_value.c_str());
             //value = QString::fromUtf8(new_value.c_str());
