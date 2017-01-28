@@ -778,6 +778,70 @@ void ListView::slotAdjustColumnWidths()
    adjustColumnWidths();
 }
 
+int ListView::maxColumnWidth(QTreeWidgetItem * item, int column, int itemIndentation, int &recursivLevel)
+{
+   int max = 0;
+   QModelIndex	index = this->indexFromItem(item, column);
+#define USE_STYLE_DELEGATE_
+#ifdef USE_STYLE_DELEGATE
+   QSize cellSize = itemChild->cellSizeHint(index);
+   columnWidth = cellSize.width();
+#else
+   QString text = this->model()->data(index).toString();
+   QPixmap pixmap = this->model()->data(index, Qt::DecorationRole).value<QPixmap>();
+   int pixmapWidth = pixmap.width();
+   QFontMetrics fontMetrics(this->font());
+   int spacingWidth = pixmapWidth ? 10 : 0;
+   int columnWidthOffset = (column == 0) ? recursivLevel * itemIndentation : 0;
+   max = fontMetrics.width(text) + 6 + pixmapWidth + spacingWidth + columnWidthOffset;
+#endif
+   // recurse to leaf
+   int itemChildCount = item->childCount();
+   if (itemChildCount > 0) {
+      int itemIndentationLocal = item->isExpanded() ? indentation() : 0;
+      recursivLevel++;
+      for(int i=0; i<itemChildCount; i++) {
+         QTreeWidgetItem * child = item->child(i);
+         int width = maxColumnWidth(child, column, itemIndentationLocal, recursivLevel);
+         if (width > max) {
+            max = width;
+         }
+      }
+   }
+   return max;
+}
+
+void ListView::adjustColumnWidths()
+{
+   QVector<int> columnWidths;
+   int columns = this->columns();
+   columnWidths.resize(columns);
+   int column = 0;
+   for (column=0; column<columns; column++) {
+      columnWidths[column] = this->columnWidth(column);
+   }
+   int rows = this->childCount();
+   int row = 0;
+   for (row=0; row<rows; row++) {
+      ListViewItem * item = this->item(row);
+      int itemIndentation = item->isExpanded() ? indentation() : 0;
+      for (column=0; column<columns;column++) {
+         int recursivLevel = 1;
+         int columnWidth = maxColumnWidth(item, column, itemIndentation, recursivLevel);
+         if (columnWidth > columnWidths[column]) {
+            columnWidths[column] = columnWidth;
+         }
+      }
+   }
+   for (column=0; column<columns;column++) {
+      if (columnWidths[column] > this->columnWidth(column)) {
+         this->adjustColumn(column, columnWidths[column]);
+      }
+   }
+}
+
+#ifdef old_version
+
 void ListView::adjustColumnWidths()
 {
    QVector<int> columnWidths;
@@ -788,15 +852,13 @@ void ListView::adjustColumnWidths()
       columnWidths[column] = this->columnWidth(column);
    }
 
+   QRect viewportRect = viewport()->rect();
    int rows = this->childCount();
    int row = 0;
    for (row=0; row<rows; row++) {
       ListViewItem * item = this->item(row);
       if (item != NULL) {
-         int parentIndentation = item->isExpanded() ? indentation() : 0;
-         QRect viewportRect = viewport()->rect();
          QRect itemRect = visualItemRect(item);
-         itemRect.setWidth(10);
          if (viewportRect.contains(itemRect)) {
             for (column=0; column<columns; column++) {
                QModelIndex	index = this->indexFromItem(item, column);
@@ -818,37 +880,6 @@ void ListView::adjustColumnWidths()
                }
             }
          }
-
-         int itemChildCount = item->childCount();
-         if (itemChildCount > 0) {
-            for(int i=0; i<itemChildCount; i++) {
-               QTreeWidgetItem * itemChild = item->child(i);
-               QRect itemRect = visualItemRect(itemChild);
-               itemRect.setWidth(10);
-               if (viewportRect.contains(itemRect)) {
-                  for (column=0; column<columns; column++) {
-                     QModelIndex	index = this->indexFromItem(itemChild, column);
-                     int columnWidth = 0;
-#define USE_STYLE_DELEGATE_
-#ifdef USE_STYLE_DELEGATE
-                     QSize cellSize = itemChild->cellSizeHint(index);
-                     columnWidth = cellSize.width();
-#else
-                     QString text = this->model()->data(index).toString();
-                     QPixmap pixmap = this->model()->data(index, Qt::DecorationRole).value<QPixmap>();
-                     int pixmapWidth = pixmap.width();
-                     QFontMetrics fontMetrics(this->font());
-                     int spacingWidth = pixmapWidth ? 10 : 0;
-                     int columnWidthOffset = (column == 0) ? 2 * parentIndentation : 0;
-                     columnWidth = fontMetrics.width(text) + 6 + pixmapWidth + spacingWidth + columnWidthOffset;
-#endif
-                     if (columnWidth > columnWidths[column]) {
-                        columnWidths[column] = columnWidth;
-                     }
-                  }
-               }
-            }
-         }
       }
    }
 
@@ -858,3 +889,5 @@ void ListView::adjustColumnWidths()
       }
    }
 }
+
+#endif

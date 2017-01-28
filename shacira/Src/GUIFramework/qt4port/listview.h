@@ -180,6 +180,7 @@ protected:
    virtual void dataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight);
    virtual int sizeHintForColumn(int column) const;
    virtual void adjustColumnWidths();
+   int maxColumnWidth(QTreeWidgetItem * item, int column, int itemIndentation, int &recursivLevel);
 // mapping of QTreeWidget signals to (Q)ListView signals
 // using specific private slots
 // this emulates Qt3 QListView signals

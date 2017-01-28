@@ -60,6 +60,7 @@ public:
    void setNextEnabled(QWidget * page, bool state);
    void setHelpEnabled(QWizardPage * page, bool state);
    void setHelpEnabled(QWidget * page, bool state);
+   void setHelpEnabledAll(bool state);
    void setFinishEnabled(QWizardPage * page, bool state);
    void setFinishEnabled(QWidget * page, bool state);
    QAbstractButton * backButton() const;

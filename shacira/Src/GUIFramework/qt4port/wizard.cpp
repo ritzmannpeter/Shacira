@@ -128,6 +128,15 @@ void WizardBase::setHelpEnabled(QWidget * page, bool state)
    setHelpEnabled(static_cast<QWizardPage*>(page), state);
 }
 
+void WizardBase::setHelpEnabledAll(bool state)
+{
+    short i;
+    for (i=0; i < pageCount(); i++)
+    {
+        setHelpEnabled(page(i), state);
+    }
+}
+
 void WizardBase::setFinishEnabled(QWizardPage * page, bool state)
 {
    int pageId = indexOf(page);

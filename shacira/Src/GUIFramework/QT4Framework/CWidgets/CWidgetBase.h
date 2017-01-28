@@ -231,6 +231,37 @@ typedef cError & ERROR_REF_T;
 #define WMETHOD_PROLOG \
    try {
 
+#ifndef QT_PLUGIN
+#define WMETHOD_VOID_EPILOG \
+   } catch (cError & e) { \
+      if (e.get_ErrCode() != VARIABLE_NULL_MAPPING && \
+          e.get_ErrCode() != -VARIABLE_NULL_MAPPING) { \
+         ErrorPrintf("unhandled GUI cError exception: %s\n", (CONST_STRING_T)e); \
+      } \
+      return; \
+   } catch (cErrBase & e) { \
+         ErrorPrintf("unhandled GUI cErrBase Exception (%d,%d,%d)\n", e.getClass(), e.getCode(), e.getPrefix()); \
+      return; \
+   } catch (...) { \
+      ErrorPrintf("unhandled GUI exception\n"); \
+      return; \
+   }
+
+#define WMETHOD_RC_EPILOG(rc) \
+   } catch (cError & e) { \
+      if (e.get_ErrCode() != VARIABLE_NULL_MAPPING && \
+          e.get_ErrCode() != -VARIABLE_NULL_MAPPING) { \
+         ErrorPrintf("unhandled GUI cError exception: %s\n", (CONST_STRING_T)e); \
+      } \
+      return rc; \
+   } catch (cErrBase & e) { \
+      ErrorPrintf("unhandled GUI cErrBase Exception (%d,%d,%d)\n", e.getClass(), e.getCode(), e.getPrefix()); \
+      return rc; \
+   } catch (...) { \
+      ErrorPrintf("unhandled GUI exception\n"); \
+      return rc; \
+   }
+#else
 #define WMETHOD_VOID_EPILOG \
    } catch (cError & e) { \
       ErrorPrintf("unhandled GUI cError exception: %s\n", (CONST_STRING_T)e); \
@@ -254,6 +285,7 @@ typedef cError & ERROR_REF_T;
       ErrorPrintf("unhandled GUI exception\n"); \
       return rc; \
    }
+#endif
 
 #ifdef QT_PLUGIN
 

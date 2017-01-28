@@ -21,6 +21,8 @@
 #include "System/Database/cSHVariant.h"
 //## begin module%3EF2E1D8008C.additionalDeclarations preserve=yes
 
+#define MAX_PRECISION      10
+
 #define DOUBLE2LONG(dval,lval) \
 {  char sval[0x40] = {0}; \
    SafePrintf(sval, sizeof(sval), "%0.0f", (DOUBLE_T)dval); \
@@ -1089,7 +1091,7 @@ void cSHVariant::Float2String (STRING_T &str, FLOAT_T value, UCHAR_T precision)
 {
   //## begin cSHVariant::Float2String%1056447738.body preserve=yes
    char buf[64] = {0};
-   if ((precision >= 0) && (precision <= 8)) {
+   if ((precision >= 0) && (precision <= MAX_PRECISION)) {
       SafePrintf(buf, sizeof(buf), "%.*f", precision, value);
    } else {
       SafePrintf(buf, sizeof(buf), "%lf", value);
@@ -1102,7 +1104,7 @@ void cSHVariant::Float2String (WSTRING_T &str, FLOAT_T value, UCHAR_T precision)
 {
   //## begin cSHVariant::Float2String%1056447739.body preserve=yes
    char buf[64] = {0};
-   if ((precision >= 0) && (precision <= 8)) {
+   if ((precision >= 0) && (precision <= MAX_PRECISION)) {
       SafePrintf(buf, sizeof(buf), "%.*f", precision, value);
    } else {
       SafePrintf(buf, sizeof(buf), "%lf", value);
@@ -1120,7 +1122,7 @@ void cSHVariant::Double2String (STRING_T &str, DOUBLE_T value, UCHAR_T precision
       SafePrintf(buf, sizeof(buf), "%.*e", precision, value);
    }
    else {
-      if ((precision >= 0) && (precision <= 8)) {
+      if ((precision >= 0) && (precision <= MAX_PRECISION)) {
          SafePrintf(buf, sizeof(buf), "%.*f", precision, value);
       } else {
          SafePrintf(buf, sizeof(buf), "%lf", value);
@@ -1139,7 +1141,7 @@ void cSHVariant::Double2String (WSTRING_T &str, DOUBLE_T value, UCHAR_T precisio
       SafePrintf(buf, sizeof(buf), "%.*e", precision, value);
    }
    else {
-      if ((precision >= 0) && (precision <= 8)) {
+      if ((precision >= 0) && (precision <= MAX_PRECISION)) {
          SafePrintf(buf, sizeof(buf), "%.*f", precision, value);
       } else {
          SafePrintf(buf, sizeof(buf), "%lf", value);
