@@ -1,0 +1,4 @@
+
+Project files for building oci sql driver under Qt5.9.5
+
+From c:\Qt\Qt5.9.5\5.9.5\Src\qtbase\src\plugins\sqldrivers\oci\
