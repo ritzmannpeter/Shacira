@@ -6,7 +6,7 @@
 
 #define SHACIRA_MAJOR       1
 #define SHACIRA_MINOR       5
-#define SHACIRA_BUG_FIX     8
+#define SHACIRA_BUG_FIX     9
 
 extern char ShaciraVersion[];
 

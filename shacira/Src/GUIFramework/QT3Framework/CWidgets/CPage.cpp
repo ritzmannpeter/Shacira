@@ -196,7 +196,9 @@ LONG_T CPage::GetRelPos()
 {
 #ifndef QT_PLUGIN
 WMETHOD_PROLOG
-   return _TabWidget->RelPos(this);
+   if (_TabWidget != NULL) {
+      return _TabWidget->RelPos(this);
+   }
 WMETHOD_RC_EPILOG(-1)
 #endif
    return -1;
@@ -215,7 +217,9 @@ void CPage::Activate()
 {
 #ifndef QT_PLUGIN
 WMETHOD_PROLOG
-   _TabWidget->ActivatePage(this);
+   if (_TabWidget != NULL) {
+      _TabWidget->ActivatePage(this);
+   }
 WMETHOD_VOID_EPILOG
 #endif
 }
@@ -239,4 +243,9 @@ void CPage::Leave()
 void CPage::Enter()
 {
     EmitGUISignal(SIG_ENTER_PAGE);
+}
+
+BOOL_T CPage::IsVisible()
+{
+   return (_AppearanceState != elementInvisible) ? true : false;
 }

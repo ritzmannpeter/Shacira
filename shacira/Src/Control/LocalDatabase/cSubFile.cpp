@@ -94,8 +94,8 @@ void cSubFile::PrintVariables(STRING_T &buf)
    db += "database ";
    db += _Name.c_str();
    db += " {\n";
-   std::map<STRING_T, cVariable*>::const_iterator i = _Variables.begin();
-   while (i != _Variables.end()) {
+   std::map<STRING_T, cVariable*>::const_iterator i = _Variables.cbegin();
+   while (i != _Variables.cend()) {
       STRING_T var_name = (*i).first;
       cVariable * variable = (*i).second;
       cVarDef * var_def = variable->_VarDef;
@@ -117,8 +117,8 @@ void cSubFile::PrintVariables(cStringBuffer &buf)
    buf += "database ";
    buf += _Name.c_str();
    buf += " {\n";
-   std::map<STRING_T, cVariable*>::const_iterator i = _Variables.begin();
-   while (i != _Variables.end()) {
+   std::map<STRING_T, cVariable*>::const_iterator i = _Variables.cbegin();
+   while (i != _Variables.cend()) {
       STRING_T var_name = (*i).first;
       cVariable * variable = (*i).second;
       cVarDef * var_def = variable->_VarDef;
@@ -128,6 +128,29 @@ void cSubFile::PrintVariables(cStringBuffer &buf)
       i++;
    }
    buf += "};\n";
+   //## end cSubFile::PrintVariables%1092126570.body
+}
+
+void cSubFile::ExportVariables(STRING_T &buf, CONST_STRING_T separator)
+{
+   //## begin cSubFile::PrintVariables%1092126570.body preserve=yes
+   STRING_T db;
+   //db += "database ";
+   //db += _Name.c_str();
+   //db += " {\n";
+   std::map<STRING_T, cVariable*>::const_iterator i = _Variables.begin();
+   while (i != _Variables.end()) {
+      STRING_T var_name = (*i).first;
+      cVariable * variable = (*i).second;
+      cVarDef * var_def = variable->_VarDef;
+      if (var_def != NULL) {
+         STRING_T var_spec;
+         var_def->Unparse(var_spec, IGN_DESCRIPTION | IGN_UNIT_TEXT | USE_DATASET_PRECISION | USE_EXPORT_FORMAT, separator);
+         db += var_spec.c_str();
+      }
+      i++;
+   }
+   buf = db;
    //## end cSubFile::PrintVariables%1092126570.body
 }
 

@@ -9,7 +9,7 @@
   <ItemDefinitionGroup>
     <ClCompile>
       <AdditionalIncludeDirectories>$(QTDIR)\include;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtDesigner;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtPrintSupport;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>QT_LARGEFILE_SUPPORT;QT_DLL;QT_PLUGIN;QT_CORE_LIB;QT_GUI_LIB;QT_DESIGNER_LIB;QT4;QT5;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>QT_DLL;QT_PLUGIN;QT_CORE_LIB;QT_GUI_LIB;QT_DESIGNER_LIB;QT4;QT5;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>qtmaind.lib;Qt5Cored.lib;Qt5Guid.lib;Qt5Designerd.lib;Qt5Widgetsd.lib;%(AdditionalDependencies)</AdditionalDependencies>

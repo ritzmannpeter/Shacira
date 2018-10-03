@@ -125,7 +125,12 @@ void cRemoteContext::Connect (ULONG_T if_type)
       return;
    }
 _ASSERT_COND(_CellProxy != NULL)
-   ULONG_T client_id = _CellProxy->Login("", "");
+   ULONG_T client_id = _CellProxy->LoginIfType("", "", if_type);
+   if (client_id > USER_CLIENTS_ID_MAX) {
+      // Get no correct client id (old handling) now client_id is interface type
+      client_id = if_type;
+   }
+
    _CellProxy->set_IFType(if_type);
    _ClientId = client_id;
    _CellProxy->set_ClientId(_ClientId);
@@ -148,8 +153,8 @@ void cRemoteContext::Create ()
       return;
    }
    _Created = true;
-   std::map<STRING_T, cVarDef*>::const_iterator i = _VarDefs.begin();
-   while (i != _VarDefs.end()) {
+   std::map<STRING_T, cVarDef*>::const_iterator i = _VarDefs.cbegin();
+   while (i != _VarDefs.cend()) {
       cVarDef * var_def = (*i).second;
       cVariable * variable = new cRemoteVar(var_def);
       var_def->_Variable = variable;
@@ -161,8 +166,8 @@ void cRemoteContext::Create ()
 void cRemoteContext::CreateDynamic ()
 {
   //## begin cRemoteContext::CreateDynamic%1090073691.body preserve=yes
-   std::map<STRING_T, cVarDef*>::const_iterator i = _VarDefs.begin();
-   while (i != _VarDefs.end()) {
+   std::map<STRING_T, cVarDef*>::const_iterator i = _VarDefs.cbegin();
+   while (i != _VarDefs.cend()) {
       cVarDef * var_def = (*i).second;
       if (var_def != NULL && var_def->IsDynamic()) {
          cVariable * variable = var_def->_Variable;
@@ -284,6 +289,13 @@ void cRemoteContext::ReadFile (CONST_STRING_T file_name, CONST_STRING_T sub_file
   //## end cRemoteContext::ReadFile%1091699607.body
 }
 
+void cRemoteContext::ExportVariables(STRING_T &buf, CONST_STRING_T sub_file, CONST_STRING_T separator)
+{
+   if (_CellProxy != NULL) {
+      _CellProxy->ExportVariables(buf, sub_file, separator);
+   }
+}
+
 void cRemoteContext::WriteFile (CONST_STRING_T file_name, CONST_STRING_T sub_files, CONST_STRING_T buf)
 {
   //## begin cRemoteContext::WriteFile%1091699608.body preserve=yes
@@ -307,8 +319,8 @@ void cRemoteContext::Update (ULONG_T process_id)
          GetVarDefs(var_defs);
          cStyxParser parser;
          parser.ParseDatabaseFromString(this, var_defs.c_str());
-         std::map<STRING_T, cVarDef*>::const_iterator i = _VarDefs.begin();
-         while (i != _VarDefs.end()) {
+         std::map<STRING_T, cVarDef*>::const_iterator i = _VarDefs.cbegin();
+         while (i != _VarDefs.cend()) {
             cVarDef * var_def = (*i).second;
             cVariable * variable = new cRemoteVar(var_def);
             var_def->_Variable = variable;
@@ -328,8 +340,8 @@ void cRemoteContext::RemoveVarDefs ()
       return;
    }
    _Created = false;
-   std::map<STRING_T, cVarDef*>::const_iterator i = _VarDefs.begin();
-   while (i != _VarDefs.end()) {
+   std::map<STRING_T, cVarDef*>::const_iterator i = _VarDefs.cbegin();
+   while (i != _VarDefs.cend()) {
       cVarDef * var_def = (*i).second;
       cVariable * variable = var_def->_Variable;
       DELETE_OBJECT(cVarDef, var_def)
@@ -414,6 +426,20 @@ BOOL_T cRemoteContext::Synchronize ()
       STRING_T proxy_name = _CellProxy->get_ProxyName();
       STRING_T var_defs;
       try {
+         if (_CellProxy->get_ClientId() == 0) {
+            ULONG_T if_type = _CellProxy->get_IFType();
+            ULONG_T client_id = _CellProxy->LoginIfType("", "", if_type);
+
+            if (client_id > USER_CLIENTS_ID_MAX) {
+               // Get no correct client id (old handling) now client_id is interface type
+               client_id = if_type;
+            }
+
+            _CellProxy->set_IFType(if_type);
+            _ClientId = client_id;
+            _CellProxy->set_ClientId(_ClientId);
+         }
+
          _CellProxy->GetVarDefs(var_defs);
          return true;
       } catch (cError & e) {
@@ -493,7 +519,17 @@ cCellProxy * cRemoteContext::GetCellProxy() const
 
 void cRemoteContext::SetCellProxy(cCellProxy * cell_proxy)
 {
+   if (_CellProxy) {
+      InfoPrintf("Set CellProxy (interfacetype %d) with new proxy\n", _CellProxy->get_IFType());
+   }
    _CellProxy = cell_proxy;
+}
+
+void cRemoteContext::GetParam (CONST_STRING_T param_name, STRING_T &value)
+{
+   if (_CellProxy != NULL) {
+      _CellProxy->GetParam(param_name, value);
+   }
 }
 
 // Additional Declarations

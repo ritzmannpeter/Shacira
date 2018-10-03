@@ -7,7 +7,7 @@
 class Image
 {
 public:
-   typedef enum Endian {IgnoreEndian, BigEndian};
+   typedef enum {IgnoreEndian, BigEndian} Endian;
 public:
    static QImage image(int w, int h, int depth, int numColors = 0, Endian bitOrder = IgnoreEndian);
    static QImage image(const QSize & size, int depth, int numColors = 0, Endian bitOrder = IgnoreEndian);

@@ -662,46 +662,84 @@ void cVarDef::Construct_Obsolete (CONST_STRING_T serialized_obj)
   //## end cVarDef::Construct_Obsolete%1049277233.body
 }
 
-void cVarDef::Unparse(STRING_T &buf, ULONG_T ctrl)
+void cVarDef::Unparse(STRING_T &buf, ULONG_T ctrl, CONST_STRING_T separator)
 {
    //## begin cVarDef::Unparse%1092077355.body preserve=yes
    buf += _VarName.c_str();
    PrintDims(buf);
-   PrintType(buf, ctrl);
-   PrintSystemFlags(buf);
-   if (!(ctrl & IGN_UNIT_TEXT)) {
-      PrintUnitText(buf);
+   if (ctrl & USE_EXPORT_FORMAT) {
+      buf += separator;
    }
+
+   if (!(ctrl & USE_EXPORT_FORMAT)) {
+      PrintType(buf, ctrl);
+      PrintSystemFlags(buf);
+   }
+
+   if (!(ctrl & IGN_UNIT_TEXT)) {
+      if ((PrintUnitText(buf) > 0) &&
+          (ctrl & USE_EXPORT_FORMAT)) {
+         buf += separator;
+      }
+   }
+
    if (!(ctrl & IGN_DESCRIPTION)) {
-      PrintDescription(buf);
+      if (!(ctrl & USE_EXPORT_FORMAT)) {
+         PrintDescription(buf);
+      }
    }
    else {
-      PrintUnitSensitiveValues(buf, (cLocalVariable*)_Variable);
+      if (!(ctrl & USE_EXPORT_FORMAT)) {
+         PrintUnitSensitiveValues(buf, (cLocalVariable*)_Variable);
+      }
    }
+
    if (!(ctrl & IGN_TEXT)) {
       PrintText(buf);
+      if (ctrl & USE_EXPORT_FORMAT) {
+         buf += separator;
+      }
    }
-   if (!(ctrl & IGN_DIM1_TEXT)) {
+
+   if (!(ctrl & IGN_DIM1_TEXT) &&
+       !(ctrl & USE_EXPORT_FORMAT)) {
       PrintDim1Text(buf);
    }
-   if (!(ctrl & IGN_DIM2_TEXT)) {
+
+   if (!(ctrl & IGN_DIM2_TEXT) &&
+       !(ctrl & USE_EXPORT_FORMAT)) {
       PrintDim2Text(buf);
    }
-   if (!(ctrl & IGN_DIM3_TEXT)) {
+
+   if (!(ctrl & IGN_DIM3_TEXT) &&
+       !(ctrl & USE_EXPORT_FORMAT)) {
       PrintDim3Text(buf);
    }
-   if (!(ctrl & IGN_DIM4_TEXT)) {
+
+   if (!(ctrl & IGN_DIM4_TEXT) &&
+       !(ctrl & USE_EXPORT_FORMAT)) {
       PrintDim4Text(buf);
    }
-   PrintFlags(buf);
+
+   if (!(ctrl & USE_EXPORT_FORMAT)) {
+      PrintFlags(buf);
+   }
+
    if (!(ctrl & IGN_VALUES)) {
       PrintValues(buf, (cLocalVariable*)_Variable);
+      if (ctrl & USE_EXPORT_FORMAT) {
+         buf += separator;
+      }
    }
-   buf += ";\n";
+
+   if (!(ctrl & USE_EXPORT_FORMAT)) {
+      buf += ";";
+   }
+   buf +="\n";
    //## end cVarDef::Unparse%1092077355.body
 }
 
-void cVarDef::Unparse(cStringBuffer &buf, ULONG_T ctrl)
+void cVarDef::Unparse(cStringBuffer &buf, ULONG_T ctrl, CONST_STRING_T separator)
 {
    //## begin cVarDef::Unparse%1092077355.body preserve=yes
    buf += _VarName.c_str();

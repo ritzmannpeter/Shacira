@@ -9,14 +9,25 @@
 #include "System/cTimeObject.h"
 #include <qapplication.h>
 #include <qdatetime.h>
+#include <qtimer.h>
 
 class CContextItem;
 typedef std::map<STRING_T, CContextItem*> ITEM_MAP_T;
+
+#ifdef QT4
+class CContextItem : public ListViewItem
+#else
 class CContextItem : public QListViewItem
+#endif
 {
 public:
+#ifdef QT4
+   CContextItem(ListView * parent, cContext * context)
+      : ListViewItem(parent)
+#else
    CContextItem(QListView * parent, cContext * context)
       : QListViewItem(parent)
+#endif
    {
       _VarCount = 0;
       _IsNew = true;
@@ -41,7 +52,7 @@ public:
    {
       STRING_T context_name = context->get_Name();
       ITEM_MAP_T::const_iterator i = _ContextItems.find(context_name.c_str());
-      if (i == _ContextItems.end()) {
+      if (i == _ContextItems.cend()) {
          return NULL;
       } else {
          return (*i).second;
@@ -81,8 +92,8 @@ MAINFUNC_LOOP_PROLOG(_Name.c_str())
       try {
 ULONG_T t0 = cSystemUtils::RealtimeOffset();
          STRING_T name = "no name";
-         ITEM_MAP_T::const_iterator i = _Items->begin();
-         while (i != _Items->end()) {
+         ITEM_MAP_T::const_iterator i = _Items->cbegin();
+         while (i != _Items->cend()) {
             try {
                name = (*i).first;
                InfoPrintf("test %s\n", name.c_str());
@@ -99,8 +110,8 @@ ULONG_T t0 = cSystemUtils::RealtimeOffset();
                         InfoPrintf("connected to %s\n", name.c_str());
                         STRING_LIST_T var_names;
                         context->VariableNames(var_names);
-                        STRING_LIST_T::const_iterator vn = var_names.begin();
-                        while (vn != var_names.end()) {
+                        STRING_LIST_T::const_iterator vn = var_names.cbegin();
+                        while (vn != var_names.cend()) {
                            cVarDef * var_def = context->VarDef((*vn).c_str());
                            if (var_def->_SystemFlags != 0) {
                               var_count++;
@@ -151,7 +162,11 @@ private:
 };
 
 CServerList::CServerList(QWidget * parent, cSHProcess * process)
+#ifdef QT4
+ : ListView(parent)
+#else
  : QListView(parent)
+#endif
 {
    _Process = process;
    addColumn("Zeit                                                  ");
@@ -178,8 +193,8 @@ void CServerList::Refresh()
    if (_Process != NULL) {
       STRING_LIST_T context_names;
       _Process->ContextNames(context_names, REMOTE_CONTEXTS);
-      STRING_LIST_T::const_iterator i = context_names.begin();
-      while (i != context_names.end()) {
+      STRING_LIST_T::const_iterator i = context_names.cbegin();
+      while (i != context_names.cend()) {
          STRING_T context_name = (*i);
          cContext * context = _Process->Context(context_name.c_str(), REMOTE_CONTEXTS);
          AddContext(context);

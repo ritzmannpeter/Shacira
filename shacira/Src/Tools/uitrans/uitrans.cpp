@@ -48,8 +48,8 @@ bool changed = false;
 //QString test4_ = r4.replace(test4, changed);
 //QString test5_ = r5.replace(test5, changed);
 //QString test6_ = test6;
-//REPLACEMENT_LIST_T::const_iterator i = _cppReplacementList.begin();
-//while (i != _cppReplacementList.end()) {
+//REPLACEMENT_LIST_T::const_iterator i = _cppReplacementList.constBegin();
+//while (i != _cppReplacementList.constEnd()) {
 //   Replacement * replacement = (*i);
 //   test6_ = replacement->replace(test6_, changed);
 //   i++;
@@ -80,8 +80,8 @@ return true;
             tempStream << newLine << "\r\n";
          }
          if (!commentList.isEmpty()) {
-            QStringList::const_iterator i = commentList.begin();
-            while (i != commentList.end()) {
+            QStringList::const_iterator i = commentList.constBegin();
+            while (i != commentList.constEnd()) {
                tempStream << (*i) << "\r\n";
                i++;
             }
@@ -196,8 +196,8 @@ QString UiTrans::replaceLine(bool & changed, const QString line, QStringList & c
 {
    QString newLine = line;
    if (_currentFile->isCppCode()) {
-      REPLACEMENT_LIST_T::const_iterator i = _replacementList.begin();
-      while (i != _replacementList.end()) {
+      REPLACEMENT_LIST_T::const_iterator i = _replacementList.cbegin();
+      while (i != _replacementList.cend()) {
          Replacement * replacement = (*i);
          if (replacement->applicable(CPP)) {
             newLine = replacement->replace(newLine, changed);
@@ -211,7 +211,7 @@ QString UiTrans::replaceLine(bool & changed, const QString line, QStringList & c
    }
    if (_currentFile->isWidgetImplementation()) {
       REPLACEMENT_LIST_T::const_iterator i = _replacementList.begin();
-      while (i != _replacementList.end()) {
+      while (i != _replacementList.cend()) {
          Replacement * replacement = (*i);
          if (replacement->applicable(WIDGET_IMPL)) {
             newLine = replacement->replace(newLine, changed);
@@ -222,7 +222,7 @@ QString UiTrans::replaceLine(bool & changed, const QString line, QStringList & c
    if (_currentFile->isProjectFile() ||
        _currentFile->isProjectFilter()) {
       REPLACEMENT_LIST_T::const_iterator i = _replacementList.begin();
-      while (i != _replacementList.end()) {
+      while (i != _replacementList.cend()) {
          Replacement * replacement = (*i);
          if (replacement->applicable(PROJECT|FILTER)) {
             newLine = replacement->replace(newLine, changed);
@@ -561,7 +561,7 @@ void UiTrans::addDerivedForm(const QString & baseName, const QString & baseClass
 DerivedForm * UiTrans::derivedForm(const QString & baseName) const
 {
    DERIVED_FORM_MAP_T::const_iterator i = _derivedFormMap.find(baseName);
-   if (i == _derivedFormMap.end()) {
+   if (i == _derivedFormMap.cend()) {
       return NULL;
    } else {
       return (*i).second;

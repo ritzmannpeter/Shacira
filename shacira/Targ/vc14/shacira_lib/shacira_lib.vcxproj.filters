@@ -1257,9 +1257,6 @@
     <ClCompile Include="..\..\..\Extern\ECL\src\base\sharedmem.cpp">
       <Filter>ecl</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Extern\ECL\src\base\driver\snprintf\snprintf.c">
-      <Filter>ecl</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Extern\ECL\src\base\string.cpp">
       <Filter>ecl</Filter>
     </ClCompile>
@@ -1289,6 +1286,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Src\Control\LocalDatabase\cSetupStorage.cpp">
       <Filter>Control\LocalDatabase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Sys\cStringBuffer.cpp">
+      <Filter>System\Sys</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -2186,9 +2186,6 @@
     <ClInclude Include="..\..\..\Extern\ECL\src\base\singleton.h">
       <Filter>ecl</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Extern\ECL\src\base\driver\snprintf\snprintf.h">
-      <Filter>ecl</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\Extern\ECL\src\base\string.h">
       <Filter>ecl</Filter>
     </ClInclude>
@@ -2212,6 +2209,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\Src\Control\LocalDatabase\cSetupStorage.h">
       <Filter>Control\LocalDatabase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Sys\cStringBuffer.h">
+      <Filter>System\Sys</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

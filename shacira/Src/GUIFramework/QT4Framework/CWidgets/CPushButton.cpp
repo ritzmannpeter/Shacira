@@ -141,14 +141,18 @@ WMETHOD_PROLOG
       QWidget * parent = NULL;
       if (_DisableParentValue && sync) {
          parent = parentWidget();
-         parent->setEnabled(false);
-         qApp->processEvents();
+         if (parent->inherits("CPage")) {
+            ErrorPrintf("Property DisableParent for parent CPage not possible (Widget %s)\n", CONST_STRING(this->objectName()));
+            parent = NULL;
+         }
+         else {
+            parent->setEnabled(false);
+            qApp->processEvents();
+         }
       }
       ULONG_T rc = ExecuteButtonFuncs(_PreExecFuncRef, _ButtonFuncRef, sync, _ActionDialogValue, 0);
-      if (_DisableParentValue && sync) {
+      if (_DisableParentValue && sync && parent) {
          qApp->processEvents();
-         if (parent == NULL)
-            parent = parentWidget();
          parent->setEnabled(true);
       }
 
@@ -180,14 +184,18 @@ WMETHOD_PROLOG
       QWidget * parent = NULL;
       if (_DisableParentValue && sync) {
          parent = parentWidget();
-         parent->setEnabled(false);
-         qApp->processEvents();
+         if (parent->inherits("CPage")) {
+            ErrorPrintf("Property DisableParent for parent CPage not possible (Widget %s)\n", CONST_STRING(this->objectName()));
+            parent = NULL;
+         }
+         else {
+            parent->setEnabled(false);
+            qApp->processEvents();
+         }
       }
       ULONG_T rc = ExecuteButtonFuncs(_PreExecFuncRef, _ButtonFuncRef, sync, _ActionDialogValue, 0);
-      if (_DisableParentValue && sync) {
+      if (_DisableParentValue && sync && parent) {
          qApp->processEvents();
-         if (parent == NULL)
-            parent = parentWidget();
          parent->setEnabled(true);
       }
       emit ButtonFunctionExecuted(rc);

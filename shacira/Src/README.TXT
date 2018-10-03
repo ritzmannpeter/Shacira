@@ -75,4 +75,3 @@ Beispiel:
    Objekte schon instantiiert sein (positionstechnisch).
 
 
-Integration into GIT

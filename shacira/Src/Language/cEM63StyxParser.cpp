@@ -378,7 +378,8 @@ BOOL_T cEM63StyxParser::ParsePresentationRequest (cEM63Session *session, cEM63Jo
          GLS_Tok e63_job_name;
          EM63FileSpec e63_file_spec;
          if (EM63JobSpec_job((void**)e63_job_spec, &e63_job_name, &e63_file_spec)) {
-            STRING_T job_name = StringValue((void**)e63_job_name);
+ // ios          STRING_T job_name = StringValue((void**)e63_job_name);
+            STRING_T job_name = Name((void**)e63_job_name);
             STRING_T file_spec = ParseFileSpec((void**)e63_file_spec);
             if (job != NULL) {
                job->Initialize(job_name.c_str(), file_spec.c_str());
@@ -471,7 +472,8 @@ void cEM63StyxParser::ParseReportSpec (cEM63Job *job, EM63ReportSpec e63_report_
                              &e63_samples_spec,
                              &e63_sessions_spec,
                              &parameter_list)) {
-      STRING_T report_name = StringValue((void**)e63_report_name);
+// ios      STRING_T report_name = StringValue((void**)e63_report_name);
+      STRING_T report_name = Name((void**)e63_report_name);
       cReportCmd * report_cmd = new cReportCmd(job, report_name.c_str());
       if (job != NULL) {
          job->AddCommand(report_cmd);
@@ -690,7 +692,8 @@ void cEM63StyxParser::ParseEventSpec (cEM63Job *job, EM63EventSpec e63_event_spe
                            &e63_file_spec,
                            &e63_start_spec,
                            &e63_stop_spec)) {
-      STRING_T event_name = StringValue((void**)e63_event_name);
+// ios      STRING_T event_name = StringValue((void**)e63_event_name);
+      STRING_T event_name = Name((void**)e63_event_name);
       cEventlogCmd * eventlog_cmd = new cEventlogCmd(job, event_name.c_str());
       if (job != NULL) {
          job->AddCommand(eventlog_cmd);
@@ -738,17 +741,20 @@ void cEM63StyxParser::ParseAbortSpec (cEM63Job *job, EM63AbortSpec e63_abort_spe
    } else if (EM63AbortSpec_job((void**)e63_abort_spec,
                                 &e63_name)) {
       abort_cmd->set_AbortType(ABORT_JOB);
-      STRING_T name = StringValue((void**)e63_name);
+// ios      STRING_T name = StringValue((void**)e63_name);
+      STRING_T name = Name((void**)e63_name);
       abort_cmd->set_JobName(name);
    } else if (EM63AbortSpec_report((void**)e63_abort_spec,
                                    &e63_name)) {
       abort_cmd->set_AbortType(ABORT_REPORT);
-      STRING_T name = StringValue((void**)e63_name);
+// ios      STRING_T name = StringValue((void**)e63_name);
+      STRING_T name = Name((void**)e63_name);
       abort_cmd->set_ReportName(name);
    } else if (EM63AbortSpec_event((void**)e63_abort_spec,
                                   &e63_name)) {
       abort_cmd->set_AbortType(ABORT_EVENT);
-      STRING_T name = StringValue((void**)e63_name);
+// ios      STRING_T name = StringValue((void**)e63_name);
+      STRING_T name = Name((void**)e63_name);
       abort_cmd->set_EventName(name);
    } else {
       if (job != NULL) {
@@ -1226,6 +1232,41 @@ STRING_T cEM63StyxParser::CommandIdentifier(EM63CmdIde * e63_cmd_identifier)
       } else {
          return "";
       }
+   } else {
+      return "";
+   }
+}
+
+STRING_T cEM63StyxParser::Name(EM63Name * e63_name)
+{
+   GLS_Tok ide;
+   GLS_Tok concatenation;
+   EM63Name e63_appended_name;
+   EM63IntegerConst e63_integer_const;
+   if (EM63Name_ide0((void**)e63_name, &ide)) {
+      return StringValue((void**)ide);
+   } else if (EM63Name_key0((void**)e63_name, &e63_integer_const)) {
+      GLS_Tok e63_uint_value;
+      GLS_Tok e63_int_value;
+      if (EM63Integer_uint((void**)e63_integer_const, &e63_uint_value)) {
+         return StringValue((void**)e63_uint_value);
+      } else if (EM63Integer_int((void**)e63_integer_const, &e63_int_value)) {
+         return StringValue((void**)e63_int_value);
+      } else {
+         return "";
+      }
+   } else if (EM63Name_key1((void**)e63_name, &e63_integer_const, &concatenation, &e63_appended_name)) {
+      STRING_T return_value;
+      GLS_Tok e63_uint_value;
+      GLS_Tok e63_int_value;
+      if (EM63Integer_uint((void**)e63_integer_const, &e63_uint_value)) {
+         return_value = StringValue((void**)e63_uint_value);
+      } else if (EM63Integer_int((void**)e63_integer_const, &e63_int_value)) {
+         return_value = StringValue((void**)e63_int_value);
+      }
+      return_value += StringValue((void**)concatenation);
+      return_value += Name((void**)e63_appended_name);
+      return return_value;
    } else {
       return "";
    }

@@ -131,7 +131,7 @@ QAction * PopupMenu::action(int id)
 {
    QAction * action = NULL;
    QMap<int,QAction*>::const_iterator i = _actionMap.find(id);
-   if (i == _actionMap.end()) {
+   if (i == _actionMap.constEnd()) {
       int dummy = 0;
    } else {
       action = i.value();

@@ -175,6 +175,18 @@ STRING_T cUnitDef::UnitText (CHAR_T state)
   //## end cUnitDef::UnitText%1109759953.body
 }
 
+void cUnitDef::SetPrecision (UCHAR_T precision, CHAR_T state)
+{
+   if (state == -1) {
+      state = GetCurrentState();
+   }
+
+   cUnitSpec * unit_spec = UnitSpec(state);
+   if (unit_spec != NULL) {
+      unit_spec->_Precision = precision;
+   }
+}
+
 UCHAR_T cUnitDef::Precision (CHAR_T state)
 {
   //## begin cUnitDef::Precision%1109759954.body preserve=yes

@@ -170,6 +170,7 @@ CAppFrame::CAppFrame(QWidget * parent, const char * name, Qt::WindowFlags flags)
    _AbsoluteTimeControl = false;
    _StartupForm = NULL;
    _PageAreaSize = QSize();
+   _WebServerRequestShowPage = false;
 #ifndef QT_PLUGIN
 WMETHOD_PROLOG
    _UserInfo = new cUserInfo;
@@ -344,8 +345,11 @@ WMETHOD_PROLOG
 
    SetPageHeader();
    Refresh(EVENT_REFRESH);
-// PR 09.03.05 help page must be refreshed when selecting a new page
-   _ActPage->SetHelpIds();
+   // PR 09.03.05 help page must be refreshed when selecting a new page
+   // Help ids aren't set when WebServer requested page
+   if (GetWebServerRequestShowPage() == false)
+      _ActPage->SetHelpIds();
+
    if ((_HelpInterface != NULL) && HelpActive()) {
       QString help_id1;
       QString help_id2;
@@ -500,7 +504,7 @@ CPage * CAppFrame::Page(const QString & page_name)
 #ifndef QT_PLUGIN
 WMETHOD_PROLOG
    PAGE_MAP_T::const_iterator i = _Pages.find(page_name);
-   if (i != _Pages.end()) {
+   if (i != _Pages.cend()) {
       return (*i).second;
    }
 WMETHOD_RC_EPILOG(NULL)
@@ -535,8 +539,8 @@ void CAppFrame::GetPages(PAGE_LIST_T & pages, ULONG_T flags)
 {
 #ifndef QT_PLUGIN
 WMETHOD_PROLOG
-   PAGE_MAP_T::const_iterator i = _Pages.begin();
-   while (i != _Pages.end()) {
+   PAGE_MAP_T::const_iterator i = _Pages.cbegin();
+   while (i != _Pages.cend()) {
       CPage * page = (*i).second;
       pages.push_back(page);
       i++;
@@ -550,7 +554,7 @@ void CAppFrame::AddTabWidget(const QString & group_name, CTabWidget * tab_widget
 #ifndef QT_PLUGIN
 WMETHOD_PROLOG
    TAB_WIDGET_MAP_T::const_iterator i = _TabWidgets.find(group_name);
-   if (i != _TabWidgets.end()) {
+   if (i != _TabWidgets.cend()) {
    }
    _TabWidgets[group_name] = tab_widget;
 WMETHOD_VOID_EPILOG
@@ -562,7 +566,7 @@ CTabWidget * CAppFrame::TabWidget(const QString & group_name)
 #ifndef QT_PLUGIN
 WMETHOD_PROLOG
    TAB_WIDGET_MAP_T::const_iterator i = _TabWidgets.find(group_name);
-   if (i != _TabWidgets.end()) {
+   if (i != _TabWidgets.cend()) {
       return (*i).second;
    }
 WMETHOD_RC_EPILOG(NULL)
@@ -616,8 +620,8 @@ WMETHOD_PROLOG
    _RefreshActive = true;
    try {
       emit(CheckAppearanceSignal(refresh_type, elementFree));
-      PAGE_MAP_T::const_iterator i = _Pages.begin();
-      while (i != _Pages.end()) {
+      PAGE_MAP_T::const_iterator i = _Pages.cbegin();
+      while (i != _Pages.cend()) {
          CPage * page = (*i).second;
          CTabWidget * tab_widget = page->TabWidget();
          if (tab_widget != NULL) {
@@ -665,8 +669,8 @@ WMETHOD_PROLOG
       return;
    }
 */
-   WIZARD_MAP_T::const_iterator i = _Wizards.begin();
-   while (i != _Wizards.end()) {
+   WIZARD_MAP_T::const_iterator i = _Wizards.cbegin();
+   while (i != _Wizards.cend()) {
       WIZARD_T * wizard_buf = (*i).second;
       if (IS_DATA_REFRESH(refresh_type)) {
          wizard_buf->data_refresh_pending = true;
@@ -677,8 +681,8 @@ WMETHOD_PROLOG
       }
       i++;
    }
-   DIALOG_MAP_T::const_iterator j = _Dialogs.begin();
-   while (j != _Dialogs.end()) {
+   DIALOG_MAP_T::const_iterator j = _Dialogs.cbegin();
+   while (j != _Dialogs.cend()) {
       DIALOG_T * dialog_buf = (*j).second;
       if (IS_DATA_REFRESH(refresh_type)) {
          dialog_buf->data_refresh_pending = true;
@@ -708,8 +712,8 @@ WMETHOD_PROLOG
    }
 #ifdef QT4
    const QObjectList children = widget->children();
-   QObjectList::const_iterator i = children.begin();
-   while (i != children.end()) {
+   QObjectList::const_iterator i = children.constBegin();
+   while (i != children.constEnd()) {
       QObject * object = (*i);
       if (object->isWidgetType()) {
          QWidget * widget = qobject_cast<QWidget*>(object);
@@ -1124,6 +1128,9 @@ WMETHOD_PROLOG
                }
             }
 
+            if (page_index >= wizard->pageIds().size()) {
+                ErrorPrintf("Invalid page index %d of dialog %s\n", page_index, CONST_STRING(dialog_name));
+            }
             wizard->setStartId(page_index);
             wizard->restart();
          }
@@ -1232,6 +1239,10 @@ WMETHOD_PROLOG
                   break;
                }
             }
+
+            if (page_index >= wizard->pageIds().size()) {
+                ErrorPrintf("Invalid page index %d of dialog %s\n", page_index, CONST_STRING(dialog_name));
+            }
             qWizard->setStartId(page_index);
             wizard->showPage(page);
          }
@@ -1317,7 +1328,7 @@ QWizard * CAppFrame::Wizard(const QString & name)
 #ifndef QT_PLUGIN
 WMETHOD_PROLOG
    WIZARD_MAP_T::const_iterator i = _Wizards.find(name);
-   if (i == _Wizards.end()) {
+   if (i == _Wizards.cend()) {
       return NULL;
    } else {
       WIZARD_T * wizard_buf = (*i).second;
@@ -1333,7 +1344,7 @@ QDialog * CAppFrame::Dialog(const QString & name)
 #ifndef QT_PLUGIN
 WMETHOD_PROLOG
    DIALOG_MAP_T::const_iterator i = _Dialogs.find(name);
-   if (i == _Dialogs.end()) {
+   if (i == _Dialogs.cend()) {
       return NULL;
    } else {
       DIALOG_T * dialog_buf = (*i).second;
@@ -1398,7 +1409,7 @@ void CAppFrame::SetActive(QWizard * wizard, BOOL_T state)
 WMETHOD_PROLOG
    if (state) {
       WIZARD_MAP_T::const_iterator i = _Wizards.find(CWidgetBase::Name((QWidget*)wizard));
-      if (i != _Wizards.end()) {
+      if (i != _Wizards.cend()) {
          _ActWizard = (*i).second;
          WizardStateChanged(_ActWizard, true);
 
@@ -1431,7 +1442,7 @@ void CAppFrame::SetActive(QDialog * dialog, BOOL_T state)
 WMETHOD_PROLOG
    if (state) {
       DIALOG_MAP_T::const_iterator i = _Dialogs.find(CWidgetBase::Name((QWidget*)dialog));
-      if (i != _Dialogs.end()) {
+      if (i != _Dialogs.cend()) {
          _ActDialog = (*i).second;
          DialogStateChanged(_ActDialog, true);
 
@@ -1629,7 +1640,7 @@ CGroupSelectButton * CAppFrame::GetSelectButton(const QString & group_name)
 #ifndef QT_PLUGIN
 WMETHOD_PROLOG
    SELECT_BUTTON_MAP_T::const_iterator i = _SelectButtons.find(group_name);
-   if (i != _SelectButtons.end()) {
+   if (i != _SelectButtons.cend()) {
       return (*i).second;
    }
 WMETHOD_RC_EPILOG(NULL)

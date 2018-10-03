@@ -168,7 +168,7 @@ void IORInfo(CONST_STRING_T str_ior, STRING_T & ip_addr, ULONG_T & port)
       } catch (CORBA::MARSHAL& ex) {
          const char* ms = ex.NP_minorString();
          if (ms) {
-            printf("invalid ior\nCORBA::MARSHAL: minor = %d\n", ms);
+            printf("invalid ior\nCORBA::MARSHAL: minor = %s\n", ms);
          } else {
             printf("invalid ior\nCORBA::MARSHAL: minor = ?\n");
          }

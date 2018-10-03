@@ -339,8 +339,8 @@ void CToolButton::ResetContainer()
    if (container == NULL) return;
 #ifdef QT4
    const QObjectList children = container->children();
-   QObjectList::const_iterator i = children.begin();
-   while (i != children.end()) {
+   QObjectList::const_iterator i = children.constBegin();
+   while (i != children.constEnd()) {
       QObject * object = (*i);
       if (object && object->isWidgetType()) {
          QWidget * child = static_cast<QWidget*>(object);
@@ -385,8 +385,8 @@ void CToolButton::ResetContainer(QWidget * widget)
    }
 #ifdef QT4
    const QObjectList children = widget->children();
-   QObjectList::const_iterator i = children.begin();
-   while (i != children.end()) {
+   QObjectList::const_iterator i = children.constBegin();
+   while (i != children.constEnd()) {
       QObject * object = (*i);
       if (object && object->isWidgetType()) {
          QWidget * child = static_cast<QWidget*>(object);

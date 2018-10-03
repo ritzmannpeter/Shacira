@@ -444,7 +444,7 @@ public:
    // language and help related helper methods
    static QString ActLanguage();
    BOOL_T HelpActive();
-   void SetHelpIds();
+   void SetHelpIds(BOOL_T show_immediately=true);
    void SetHelpIds(QWidget * widget);
    static void GetActHelpIds(QString & help_id1, QString & help_id2);
    static void GetHelpIds(QWidget * widget, QString & help_id1, QString & help_id2);

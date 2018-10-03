@@ -141,6 +141,7 @@ public:
    PROPERTY_2i(int,State4Value)
    Q_ENUMS(ButtonStyles)
    PROPERTY_2i(ButtonStyles,ButtonStyle)
+   PROPERTY_2i(bool,DisableParent)
    // end of widget specific properties
 public:
    enum Modes {
@@ -215,6 +216,7 @@ public:
    virtual void CCSNewValue(BUF_T buf, ULONG_T id, ULONG_T time_offset,
                             UCHAR_T data_type, ULONG_T size);
    virtual void CCSEvent(TRANSIENT_OBJECT_PTR object);
+   virtual ULONG_T GetActStateValue();
 
 protected:
    /// view-model properties
@@ -239,7 +241,7 @@ protected:
    virtual void ResetValue();
    virtual void SetValue(const QString & value);
    virtual QString NewValue();
-protected:
+
    void SetState(ULONG_T state);
    ULONG_T NextStateIndex(ULONG_T act_index);
    ULONG_T StateValue(ULONG_T index);

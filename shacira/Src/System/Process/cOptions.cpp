@@ -166,7 +166,7 @@ BOOL_T cOptions::Option (CONST_STRING_T option_name, STRING_T &value)
 {
   //## begin cOptions::Option%1074682892.body preserve=yes
    STRING_MAP_T::const_iterator i = _Options.find(option_name);
-   if (i == _Options.end()) {
+   if (i == _Options.cend()) {
       return false;
    } else {
       value = (*i).second.c_str();

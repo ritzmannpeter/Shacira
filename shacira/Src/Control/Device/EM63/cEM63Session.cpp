@@ -82,14 +82,14 @@ cEM63Session::cEM63Session (cEM63Interface *itf, CONST_STRING_T request_file)
    _Interface = itf;
    if (_Interface != NULL) {
       _RequestFile = _Interface->AbsPath(request_file);
-      char file_spec[0x200] = {0};
-      SafeStrCpy(file_spec, cFileSystemUtils::FileName(_RequestFile.c_str()).c_str(), sizeof(file_spec));
-      int nlen = strlen(file_spec);
-      for (int i=0; i<nlen; i++) {
-         file_spec[i] = toupper(file_spec[i]);
+
+      STRING_T file_spec = cFileSystemUtils::FileName(_RequestFile.c_str());
+      for (int i=0; i<file_spec.length(); i++) {
+         file_spec.at(i) = toupper(file_spec.at(i));
       }
-      int params = sscanf(file_spec, "SESS%d.REQ", &_SessionId);
-      char response_file_name[0x200] = {0};
+
+      int params = sscanf(file_spec.c_str(), "SESS%d.REQ", &_SessionId);
+      char response_file_name[20] = {0};
       SafePrintf(response_file_name, sizeof(response_file_name), "SESS%04.04d.RSP", _SessionId);
       STRING_T response_path = cFileSystemUtils::DirName(_RequestFile.c_str());
       _ResponseFile = cFileSystemUtils::AppendPath(response_path.c_str(), response_file_name);
@@ -177,10 +177,9 @@ BOOL_T cEM63Session::Process (cContext *context)
                   }
                }
             } else {
-               char msg[0x60] = {0};
-               SafePrintf(msg, sizeof(msg), "%s not found", request_file.c_str());
-               Failed(OPEN_JOB_REQUEST_FILE, msg);
-               ErrorPrintf("job file %s\n", msg);
+               STRING_T sMsg = request_file + " not found";
+               Failed(OPEN_JOB_REQUEST_FILE, sMsg.c_str());
+               ErrorPrintf("job file %s\n", sMsg.c_str());
             }
 #else
             cAbstractFileSystem * file_system = _Interface->FileSystem();
@@ -193,10 +192,9 @@ BOOL_T cEM63Session::Process (cContext *context)
                   job->Failed(JOBCMD_INVALID_SYNTAX, err_text.c_str());
                }
             } else {
-               char msg[0x60] = {0};
-               SafePrintf(msg, sizeof(msg), "job file %s not found", request_file.c_str());
-               job->Failed(CREATE_JOB_RESPONSE_FILE, msg);
-               ErrorPrintf("%s\n", msg);
+               STRING_T sMsg = "job file " + request_file + " not found";
+               job->Failed(CREATE_JOB_RESPONSE_FILE, sMsg.c_str());
+               ErrorPrintf("%s\n", sMsg.c_str());
             }
 #endif
          }

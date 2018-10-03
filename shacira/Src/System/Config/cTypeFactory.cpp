@@ -93,8 +93,8 @@ cTypeFactory::cTypeFactory (CONST_STRING_T def_file, STRING_VECTOR_T path)
 cTypeFactory::~cTypeFactory()
 {
   //## begin cTypeFactory::~cTypeFactory%.body preserve=yes
-   std::map<STRING_T, cTypeDef*>::const_iterator i = _TypeDefs.begin();
-   while (i != _TypeDefs.end()) {
+   std::map<STRING_T, cTypeDef*>::const_iterator i = _TypeDefs.cbegin();
+   while (i != _TypeDefs.cend()) {
       cTypeDef * type_def = (*i).second;
       if (type_def != NULL) delete type_def;
       i++;
@@ -122,7 +122,7 @@ cTypeDef * cTypeFactory::Definition (CONST_STRING_T name)
 {
   //## begin cTypeFactory::Definition%1011013292.body preserve=yes
    std::map<STRING_T, cTypeDef*>::const_iterator def = _TypeDefs.find(name);
-   if (def == _TypeDefs.end()) {
+   if (def == _TypeDefs.cend()) {
       return NULL;
    } else {
       return (*def).second;
@@ -230,8 +230,8 @@ BOOL_T cTypeFactory::LoadFile (CONST_STRING_T def_file)
    if (!ini_file.Exists()) return false;
    STRING_VECTOR_T chapters;
    ini_file.ReadChapters(chapters);
-   STRING_VECTOR_T::const_iterator _chapter = chapters.begin();
-   while (_chapter != chapters.end()) {
+   STRING_VECTOR_T::const_iterator _chapter = chapters.cbegin();
+   while (_chapter != chapters.cend()) {
       STRING_T obj_name = (*_chapter).c_str();
       STRING_T type_name = ini_file.ReadValue(obj_name.c_str(), "Type", "");
       cTypeDef * type_def = Definition(obj_name.c_str());
@@ -241,15 +241,14 @@ BOOL_T cTypeFactory::LoadFile (CONST_STRING_T def_file)
          _TypeDefs[obj_name.c_str()] = type_def;
       } else {
          reused = true;
-         int dummy = 0;
       }
       if (strcmp(type_name.c_str(), "Object") == 0 ||
           reused) {
          type_def->SetBaseType(ObjectDef);
          STRING_VECTOR_T properties;
          ini_file.ReadKeys(obj_name.c_str(), properties);
-         STRING_VECTOR_T::const_iterator property = properties.begin();
-         while (property != properties.end()) {
+         STRING_VECTOR_T::const_iterator property = properties.cbegin();
+         while (property != properties.cend()) {
             STRING_T property_name = (*property).c_str();
             if (strcmp(property_name.c_str(), "Type") != 0) {
                STRING_T property_type = ini_file.ReadValue(obj_name.c_str(), property_name.c_str(), "");;
@@ -272,8 +271,8 @@ BOOL_T cTypeFactory::LoadFile (CONST_STRING_T def_file)
       }
       _chapter++;
    }
-   std::map<STRING_T, cTypeDef*>::const_iterator def = _TypeDefs.begin();
-   while (def != _TypeDefs.end()) {
+   std::map<STRING_T, cTypeDef*>::const_iterator def = _TypeDefs.cbegin();
+   while (def != _TypeDefs.cend()) {
       cTypeDef * type_def = (*def).second;
       type_def->Resolve();
       def++;

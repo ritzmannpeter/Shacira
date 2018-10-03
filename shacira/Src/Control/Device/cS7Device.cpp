@@ -191,8 +191,8 @@ cS7Device::~cS7Device()
    if (_TimerCache != NULL) DELETE_OBJECT(cCache, _TimerCache)
    if (_MerkerCache != NULL) DELETE_OBJECT(cCache, _MerkerCache)
    if (_CounterCache != NULL) DELETE_OBJECT(cCache, _CounterCache)
-   MEMORY_INFO_MAP_T::const_iterator i = _InfoMap.begin();
-   while (i != _InfoMap.end()) {
+   MEMORY_INFO_MAP_T::const_iterator i = _InfoMap.cbegin();
+   while (i != _InfoMap.cend()) {
       MEMORY_INFO * info = (*i).second;
       cCache * cache = info->cache;
       if (cache != NULL) {
@@ -227,8 +227,8 @@ void cS7Device::Start ()
    _CacheControl->SetCache(_OutputCache);
    _CacheControl->SetCache(_MerkerCache);
    _CacheControl->SetCache(_CounterCache);
-   MEMORY_INFO_MAP_T::const_iterator i = _InfoMap.begin();
-   while (i != _InfoMap.end()) {
+   MEMORY_INFO_MAP_T::const_iterator i = _InfoMap.cbegin();
+   while (i != _InfoMap.cend()) {
       MEMORY_INFO * info = (*i).second;
       cCache * cache = info->cache;
       if (cache != NULL) {
@@ -341,7 +341,8 @@ void cS7Device::Read (CONST_STRING_T buf_spec, ULONG_T address, ULONG_T len, voi
             alarm->Release();
             return;
          }
-      } else if (err == -1) {
+      } else if (err == -1 || err == -7) {
+         // Bei Netzwerkverbindung Socketfehler auch als Verbindungsfehler anzeigen
          if (_Connected) {
             _Connected = false;
             cAlarm * alarm = new cAlarm(this, 0x00000001, true, NOT_CONNECTED);

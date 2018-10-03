@@ -502,7 +502,7 @@ void cPPCDevice::Stop ()
 {
   //## begin cPPCDevice::Stop%1070963655.body preserve=yes
    if (_CacheControl != NULL) {
-      _CacheControl->Stop();
+      _CacheControl->kill();
    }
    _Active = false;
   //## end cPPCDevice::Stop%1070963655.body
@@ -1182,7 +1182,7 @@ INT_T cPPCDevice::I60Load (UCHAR_T iscos_no, UCHAR_T order, void *outbuf, ULONG_
    }
    int retries = CMD_RETRIES;
    int err = -1;
-   while (retries >= 0 && err != 0) { 
+   while (retries-- && (err != 0)) { 
       unsigned char temp_buffer[TRANSFER_BUF_SIZE];
       char * outbuf_ptr = (char *)outbuf;
       FUNCBLOCK func = {0};
@@ -1209,7 +1209,6 @@ INT_T cPPCDevice::I60Load (UCHAR_T iscos_no, UCHAR_T order, void *outbuf, ULONG_
          err = SupplyData(iscos_no,
                           (void *)&func, _FuncBlockSize, (void *)temp_buffer, _noof_regs * 2,
                           timeout);
-         retries--;
          if (err == 0) {
             _noof_regs = _regs_to_write;
             if (_noof_regs > REG_BUF_SIZE) {
@@ -1354,7 +1353,7 @@ INT_T cPPCDevice::I60Bit (UCHAR_T iscos_no, USHORT_T bit_no, UCHAR_T function, U
    }
    int retries = CMD_RETRIES;
    int err = -1;
-   while (retries >= 0 && err != 0) { 
+   while (retries-- && (err != 0)) { 
       FUNCBLOCK func = {0};
 #ifndef UNSAFE_VERSION
       if (_SafeCommunication) {
@@ -1374,7 +1373,6 @@ INT_T cPPCDevice::I60Bit (UCHAR_T iscos_no, USHORT_T bit_no, UCHAR_T function, U
       memswap(&func, &func, _FuncBlockSize / 2);
       FlushInput();
       err = RequestData(iscos_no, (void *)&func, _FuncBlockSize, NULL, 0, timeout);
-      retries--;
    }
    if (_TimingProtocol) {
       t1 = cSystemUtils::RealtimeOffset();

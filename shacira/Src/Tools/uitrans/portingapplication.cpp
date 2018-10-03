@@ -22,8 +22,8 @@ void PortingApplication::collectFiles()
 
 void PortingApplication::portFiles()
 {
-   FILE_MAP_T::const_iterator i = _fileMap.begin();
-   while (i != _fileMap.end()) {
+   FILE_MAP_T::const_iterator i = _fileMap.cbegin();
+   while (i != _fileMap.cend()) {
       PortingFile * file = (*i).second;
       file->transformFile();;
       i++;
@@ -45,7 +45,7 @@ PortingFile * PortingApplication::file(PortingApplication * application, const Q
    PortingFile * file = NULL;
    QString name = fileInfo.baseName();
    FILE_MAP_T::const_iterator i = _fileMap.find(name);
-   if (i == _fileMap.end()) {
+   if (i == _fileMap.cend()) {
       file = new PortingFile(application, fileInfo);
       _fileMap[name] = file;
    } else {

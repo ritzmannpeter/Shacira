@@ -483,8 +483,8 @@ void cQtNavigationWidget::Setup()
 
    SELECT_BUTTON_MAP_T select_buttons;
    _AppFrame->GetSelectButtons(select_buttons);
-   SELECT_BUTTON_MAP_T::const_iterator b = select_buttons.begin();
-   while (b != select_buttons.end()) {
+   SELECT_BUTTON_MAP_T::const_iterator b = select_buttons.cbegin();
+   while (b != select_buttons.cend()) {
       CGroupSelectButton * select_button = (*b).second;
       QPoint pos = select_button->mapToGlobal(select_button->pos());
       int xpos = pos.x();
@@ -500,8 +500,8 @@ void cQtNavigationWidget::Setup()
       b++;
    }
    int index = 0;
-   GROUP_DESC_MAP_T::const_iterator lg =_LeftGroups.begin();
-   while (lg != _LeftGroups.end()) {
+   GROUP_DESC_MAP_T::const_iterator lg =_LeftGroups.cbegin();
+   while (lg != _LeftGroups.cend()) {
       cGroupDescription * group_desc = (*lg).second;
       if (group_desc->IsVisible()) {
          InsertGroup(index, group_desc);
@@ -509,8 +509,8 @@ void cQtNavigationWidget::Setup()
       }
       lg++;
    }
-   GROUP_DESC_MAP_T::const_iterator rg =_RightGroups.begin();
-   while (rg != _RightGroups.end()) {
+   GROUP_DESC_MAP_T::const_iterator rg =_RightGroups.cbegin();
+   while (rg != _RightGroups.cend()) {
       cGroupDescription * group_desc = (*rg).second;
       if (group_desc->IsVisible()) {
          InsertGroup(index, group_desc);
@@ -521,8 +521,8 @@ void cQtNavigationWidget::Setup()
    
    PAGE_LIST_T page_list;
    _AppFrame->GetPages(page_list, 0);
-   PAGE_LIST_T::const_iterator i = page_list.begin();
-   while (i != page_list.end()) {
+   PAGE_LIST_T::const_iterator i = page_list.cbegin();
+   while (i != page_list.cend()) {
       CPage * page = (*i);
       if (page != NULL) {
          cPageDescription * page_desc = new cPageDescription(this, _AppFrame, page);

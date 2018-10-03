@@ -129,7 +129,7 @@ cClients::~cClients()
 
 
 //## Other Operations (implementation)
-cClientData * cClients::GetClientData (ULONG_T id)
+cClientData * cClients::GetClientData (ULONG_T id, ULONG_T if_type)
 {
   //## begin cClients::GetClientData%1121785240.body preserve=yes
    cObjectLock __lock__(&_ClientAccessMutex);
@@ -141,43 +141,44 @@ cClientData * cClients::GetClientData (ULONG_T id)
                       cConvUtils::StringValue(_CurrentClients).c_str());
 
       }
-      client_data = AllocClient(id);
+      client_data = AllocClient(id, if_type);
    }
    return client_data;
   //## end cClients::GetClientData%1121785240.body
 }
 
-cClientData * cClients::AllocClient (ULONG_T client_id)
+cClientData * cClients::AllocClient (ULONG_T client_id, ULONG_T if_type)
 {
   //## begin cClients::AllocClient%1141202704.body preserve=yes
    cObjectLock __lock__(&_ClientAccessMutex);
    cClientData * client_data = new cClientData;
    client_data->set_Id(client_id);
-   client_data->set_IFType(client_id);
+   client_data->set_IFType(if_type);
    _ClientData[client_id] = client_data;
    client_data->Resync();
    _CurrentClients++;
-   InfoPrintf("new client %d at %d\n", client_data->get_Id(), client_id);
+   InfoPrintf("new client %d at %d with interface type %d\n", client_data->get_Id(), client_id, if_type);
    return client_data;
   //## end cClients::AllocClient%1141202704.body
 }
 
-cClientData * cClients::AllocClient (CONST_STRING_T user_name, CONST_STRING_T password)
+cClientData * cClients::AllocClient (CONST_STRING_T user_name, CONST_STRING_T password, ULONG_T if_type)
 {
   //## begin cClients::AllocClient%1121785244.body preserve=yes
    cObjectLock __lock__(&_ClientAccessMutex);
    for (ULONG_T i=USER_CLIENTS_ID_START; i<USER_CLIENTS_ID_MAX; i++) {
       if (_ClientData[i] == NULL) {
          cClientData * client_data = new cClientData;
-         _ClientData[i] = client_data;
          client_data->set_Id(i);
+         client_data->set_IFType(if_type);
+         _ClientData[i] = client_data;
          client_data->Resync();
          _CurrentClients++;
 #ifdef TIMEOUT_CONTROL
          // PR this concept must be verified before it can be used
          _TimeoutControl.Launch();
 #endif
-         InfoPrintf("new client %d(%s,%s) at %d\n", client_data->get_Id(), user_name, password, i);
+         InfoPrintf("new client %d(%s,%s) at %d with interface type %d\n", client_data->get_Id(), user_name, password, i, if_type);
          return client_data;
       }
    }
@@ -255,6 +256,18 @@ ULONG_T cClients::GetCurrentClients ()
   //## begin cClients::GetCurrentClients%1121933611.body preserve=yes
    return _CurrentClients;
   //## end cClients::GetCurrentClients%1121933611.body
+}
+
+CONST_STRING_T cClients::UserName(ULONG_T if_type)
+{
+   if (if_type == IF_OPC) {
+      return "OPC";
+   } else if (if_type == IF_EM63) {
+      return "EUROMAP63";
+   } else if (if_type == IF_OPCUA) {
+      return "OPCUA";
+   }
+   return "unknown";
 }
 
 // Additional Declarations

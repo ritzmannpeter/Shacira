@@ -85,13 +85,13 @@ friend class cTimeoutControl;
 
     //## Other Operations (specified)
       //## Operation: GetClientData%1121785240
-      static cClientData * GetClientData (ULONG_T id);
+      static cClientData * GetClientData (ULONG_T id, ULONG_T if_type=0);
 
       //## Operation: AllocClient%1141202704
-      static cClientData * AllocClient (ULONG_T client_id);
+      static cClientData * AllocClient (ULONG_T client_id, ULONG_T if_type=0);
 
       //## Operation: AllocClient%1121785244
-      static cClientData * AllocClient (CONST_STRING_T user_name, CONST_STRING_T password);
+      static cClientData * AllocClient (CONST_STRING_T user_name, CONST_STRING_T password, ULONG_T if_type);
 
       //## Operation: RemoveClient%1121785241
       static BOOL_T RemoveClient (ULONG_T id);
@@ -110,6 +110,8 @@ friend class cTimeoutControl;
 
       //## Operation: GetCurrentClients%1121933611
       static ULONG_T GetCurrentClients ();
+
+      static CONST_STRING_T UserName(ULONG_T if_type);
 
     // Data Members for Class Attributes
 

@@ -513,7 +513,7 @@ XercesDOMParser * XMLUtils::domParser()
 {
    int threadId = getCurrentThreadId();
    DOM_PARSER_MAP_T::const_iterator i = _domParserMap.find(threadId);
-   if (i == _domParserMap.end()) {
+   if (i == _domParserMap.cend()) {
       XercesDOMParser * domParser = new XercesDOMParser;
       _domParserMap[threadId] = domParser;
       _domParserCount++;

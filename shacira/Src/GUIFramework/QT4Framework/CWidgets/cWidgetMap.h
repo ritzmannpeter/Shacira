@@ -28,7 +28,7 @@ public:
    static inline CWidgetBase * BaseWidget(QWidget * widget)
    {
       WIDGET_MAP_T::const_iterator i = _WidgetMap.find(widget);
-      if (i == _WidgetMap.end()) {
+      if (i == _WidgetMap.cend()) {
          return NULL;
       } else {
          CUserData * user_data = (*i).second;

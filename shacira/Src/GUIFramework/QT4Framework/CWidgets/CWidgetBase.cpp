@@ -149,7 +149,7 @@ public:
    QPalette Palette(QWidget * widget) const
    {
       PALETTE_MAP_T::const_iterator i = _PMap.find(widget);
-      if (i != _PMap.end()) {
+      if (i != _PMap.cend()) {
          return (*i).second;
       }
       return QPalette();
@@ -161,7 +161,7 @@ public:
    void ClearBackgroundColor(QWidget * widget)
    {
       PALETTE_MAP_T::const_iterator i = _PMap.find(widget);
-      if (i != _PMap.end()) {
+      if (i != _PMap.cend()) {
          return;
       }
       _PMap[widget] = QPalette();
@@ -679,8 +679,8 @@ void CWidgetBase::PropagateConnections(QWidget * parent, QWidget * widget, ULONG
 WMETHOD_PROLOG
 #ifdef QT4
    const QObjectList children = widget->children();
-   QObjectList::const_iterator i = children.begin();
-   while (i != children.end()) {
+   QObjectList::const_iterator i = children.constBegin();
+   while (i != children.constEnd()) {
       QObject * object = (*i);
       if (object->isWidgetType()) {
          QWidget * child = (QWidget*)object;
@@ -769,8 +769,8 @@ WMETHOD_PROLOG
    }
 #ifdef QT4
    const QObjectList children = widget->children();
-   QObjectList::const_iterator i = children.begin();
-   while (i != children.end()) {
+   QObjectList::const_iterator i = children.constBegin();
+   while (i != children.constEnd()) {
       QObject * object = (*i);
       if (object->isWidgetType()) {
          QWidget * child = (QWidget*)object;
@@ -808,8 +808,8 @@ WMETHOD_PROLOG
       _PaletteMap.SetPalette(widget, widget->palette());
    }
    const QObjectList children = widget->children();
-   QObjectList::const_iterator i = children.begin();
-   while (i != children.end()) {
+   QObjectList::const_iterator i = children.constBegin();
+   while (i != children.constEnd()) {
       QObject * object = (*i);
       if (object->isWidgetType()) {
          QWidget * child = (QWidget*)object;
@@ -1302,6 +1302,11 @@ ULONG_T CWidgetBase::ExecuteButtonFuncs(FUNC_REF_PTR pre_exec_func_ref,
    ULONG_T rc = actionProceed;
 #ifndef QT_PLUGIN
 WMETHOD_PROLOG
+   UiUpdate * uiUpdate = NULL;
+   if (cContext::GetUiUpdateFuntion() == NULL) {
+      uiUpdate = new UiUpdate(CWidgetBase::Flag(SYNC_USER_FUNCTIONS));
+   }
+
    rc = ExecuteButtonFunc(pre_exec_func_ref, true);
    if (rc != actionReject) {
       if ((dialog_name.isEmpty() == false) &&
@@ -1310,11 +1315,6 @@ WMETHOD_PROLOG
          if (app_frame != NULL) {
             CActionDialog * action_dialog = app_frame->GetActionDialog(dialog_name);
             if (action_dialog != NULL) {
-               UiUpdate * uiUpdate = NULL;
-               if (cContext::GetUiUpdateFuntion() == NULL) {
-                  uiUpdate = new UiUpdate(CWidgetBase::Flag(SYNC_USER_FUNCTIONS));
-               }
-
                action_dialog->Reset();
                action_dialog->SetContext(_Node, _Context);
                action_dialog->SetFunction(this, button_func_ref);
@@ -1331,10 +1331,6 @@ WMETHOD_PROLOG
                rc = action_dialog->Result();
                action_dialog->SetActive(false);
                app_frame->ActionDialogTerminated(dialog_name, rc, action_dialog);
-
-               if (uiUpdate) {
-                   delete uiUpdate;
-               }
             }
          }
       } else {
@@ -1342,6 +1338,9 @@ WMETHOD_PROLOG
       }
    }
 
+   if (uiUpdate) {
+      delete uiUpdate;
+   }
 WMETHOD_RC_EPILOG(actionReject)
 #endif
    return rc;
@@ -1549,7 +1548,7 @@ WMETHOD_VOID_EPILOG
 #endif
 }
 
-void CWidgetBase::PostNewValue(const QString &  value, ULONG_T id, ULONG_T time_offset,
+void CWidgetBase::PostNewValue(const QString & value, ULONG_T id, ULONG_T time_offset,
                                UCHAR_T data_type, ULONG_T size, ULONG_T data_set)
 {
 #ifndef QT_PLUGIN
@@ -2072,8 +2071,8 @@ void CWidgetBase::CCSRemoveDataLinks()
 {
 #ifndef QT_PLUGIN
 WMETHOD_PROLOG
-   DATA_VIEW_MAP_T::const_iterator i = _DataViewMap.begin();
-   while (i != _DataViewMap.end()) {
+   DATA_VIEW_MAP_T::const_iterator i = _DataViewMap.cbegin();
+   while (i != _DataViewMap.cend()) {
       STRING_T ref_spec = (*i).first;
       DATA_VIEW_PTR view = (*i).second;
       cVarRef * var_ref = view->VarRef();
@@ -2167,7 +2166,7 @@ WMETHOD_PROLOG
    VAR_REF_PTR var_ref = data_view->VarRef();
    STRING_T key = var_ref->_Spec;
    DATA_VIEW_MAP_T::const_iterator i = _DataViewMap.find(key);
-   if (i == _DataViewMap.end()) {
+   if (i == _DataViewMap.cend()) {
       _DataViewMap[key] = data_view;
    } else {
       _DataViewMap[key] = data_view;
@@ -2333,31 +2332,28 @@ WMETHOD_PROLOG
          } else {
             qsvar_text = QApplication::translate("custom", CONST_STRING(qsvar_text));
          }
-         QString dim1_text = var_def->_Dim1Text.c_str();
-         QString dim2_text = var_def->_Dim2Text.c_str();
-         QString dim3_text = var_def->_Dim3Text.c_str();
-         QString dim4_text = var_def->_Dim4Text.c_str();
+
          if (i1 != -1) {
             qsvar_text += " ";
-            qsvar_text += QApplication::translate("custom", CONST_STRING(dim1_text));
+            qsvar_text += QApplication::translate("custom", var_def->_Dim1Text.c_str());
             qsvar_text += " ";
             qsvar_text += QString::number(i1 + ((system_flags & DIM1_OFFSET) != 0));
          }
          if (i2 != -1) {
             qsvar_text += " ";
-            qsvar_text += QApplication::translate("custom", CONST_STRING(dim2_text));
+            qsvar_text += QApplication::translate("custom", var_def->_Dim2Text.c_str());
             qsvar_text += " ";
             qsvar_text += QString::number(i2 + ((system_flags & DIM2_OFFSET) != 0));
          }
          if (i3 != -1) {
             qsvar_text += " ";
-            qsvar_text += QApplication::translate("custom", CONST_STRING(dim3_text));
+            qsvar_text += QApplication::translate("custom", var_def->_Dim3Text.c_str());
             qsvar_text += " ";
             qsvar_text += QString::number(i3 + ((system_flags & DIM3_OFFSET) != 0));
          }
          if (i4 != -1) {
             qsvar_text += " ";
-            qsvar_text += QApplication::translate("custom", CONST_STRING(dim4_text));
+            qsvar_text += QApplication::translate("custom", var_def->_Dim4Text.c_str());
             qsvar_text += " ";
             qsvar_text += QString::number(i4 + ((system_flags & DIM4_OFFSET) != 0));
          }
@@ -2440,7 +2436,7 @@ WMETHOD_RC_EPILOG(false)
    return false;
 }
 
-void CWidgetBase::SetHelpIds()
+void CWidgetBase::SetHelpIds(BOOL_T show_immediately)
 {
 #ifndef QT_PLUGIN
 WMETHOD_PROLOG
@@ -2451,12 +2447,14 @@ WMETHOD_PROLOG
    } else {
       SetHelpIds((QWidget*)_QWidget->parent());
    }
-   BOOL_T help_active = _AppFrame->HelpActive();
-   if (help_active) {
-      _AppFrame->ShowHelp(_ActHelpId1, _ActHelpId2);
-   }
-   if (_AppFrame != NULL) {
-      _AppFrame->ResyncLogoff();
+   if (show_immediately) {
+      BOOL_T help_active = _AppFrame->HelpActive();
+      if (help_active) {
+         _AppFrame->ShowHelp(_ActHelpId1, _ActHelpId2);
+      }
+      if (_AppFrame != NULL) {
+         _AppFrame->ResyncLogoff();
+      }
    }
 WMETHOD_VOID_EPILOG
 #endif
@@ -2888,8 +2886,8 @@ WMETHOD_PROLOG
    }
 #ifdef QT4
    const QObjectList children = widget->children();
-   QObjectList::const_iterator i = children.begin();
-   while (i != children.end()) {
+   QObjectList::const_iterator i = children.constBegin();
+   while (i != children.constEnd()) {
       QObject * object = (*i);
       if (object->isWidgetType()) {
          QWidget * child = (QWidget*)object;
@@ -2911,7 +2909,7 @@ WMETHOD_PROLOG
       ++i;
    }
 #endif
-   WMETHOD_VOID_EPILOG
+WMETHOD_VOID_EPILOG
 #endif
 }
 
@@ -3286,8 +3284,8 @@ void CWidgetBase::SetColors(QObject * object, ULONG_T dataset, const QColor & co
       }
    }
    const QObjectList children = object->children();
-   QObjectList::const_iterator i = children.begin();
-   while (i != children.end()) {
+   QObjectList::const_iterator i = children.constBegin();
+   while (i != children.constEnd()) {
       QObject * child = (*i);
       SetColors(child, dataset, color);
       ++i;
@@ -3736,7 +3734,6 @@ int CWidgetBase::getScaledPointSize(QString &fontName, int baseValue) const
     return iScaledValue;
 }
 
-
 static void printGuiStructure(QObject * object, int level)
 {
 #ifdef QT4
@@ -3768,8 +3765,8 @@ static void printGuiStructure(QObject * object, int level)
       fclose(stream);
    }
    const QObjectList children = object->children();
-   QObjectList::const_iterator i = children.begin();
-   while (i != children.end()) {
+   QObjectList::const_iterator i = children.constBegin();
+   while (i != children.constEnd()) {
       QObject * child = (*i);
       printGuiStructure(child, level + 1);
       ++i;

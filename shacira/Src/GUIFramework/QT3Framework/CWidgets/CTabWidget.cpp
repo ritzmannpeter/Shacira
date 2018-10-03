@@ -209,7 +209,7 @@ void CTabWidget::DelayedLanguageChange()
    ///             tab scroll arrows even when its is
    ///             not necessary
    if (_WidgetStack == NULL) return;
-   
+
    QWidget * visible_widget = _WidgetStack->visibleWidget();
    if (this == visible_widget) {
       ULONG_T pages = count();
@@ -281,7 +281,9 @@ int CTabWidget::RelPos(CPage * page)
 {
 #ifndef QT_PLUGIN
 WMETHOD_PROLOG
-   return _Tabs->RelPos(page);
+   if (_Tabs != NULL) {
+      return _Tabs->RelPos(page);
+   }
 WMETHOD_RC_EPILOG(-1)
 #endif
    return -1;

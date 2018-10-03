@@ -40,12 +40,12 @@ FUNC_T cFunctionFactory::GetFunctionAddress(UCHAR_T func_class, CONST_STRING_T f
    }
    if (IS_MODEL_FUNCTION(func_class)) {
       FUNC_PTR_MAP_T::const_iterator i = _ModelFunctions->find(func_name);
-      if (i != _ModelFunctions->end()) {
+      if (i != _ModelFunctions->cend()) {
          return (*i).second->func_ptr;
       }
    } else if (IS_GUI_FUNCTION(func_class)) {
       FUNC_PTR_MAP_T::const_iterator i = _GUIFunctions->find(func_name);
-      if (i != _GUIFunctions->end()) {
+      if (i != _GUIFunctions->cend()) {
          return (*i).second->func_ptr;
       }
    }

@@ -101,8 +101,8 @@ CONTROLFUNC_PROLOG(_Name.c_str())
       _IdleTime = MinIdleTime();
    }
    cObjectLock __lock__(&(_Device->_LockMutex));
-   std::map<STRING_T,cCache*>::const_iterator i = _Caches.begin();
-   while (i != _Caches.end()) {
+   std::map<STRING_T,cCache*>::const_iterator i = _Caches.cbegin();
+   while (i != _Caches.cend()) {
       cCache * cache = (*i).second;
       cache->Save(_IdleTime);
       i++;
@@ -116,8 +116,8 @@ ULONG_T cCacheControl::MinIdleTime ()
 {
   //## begin cCacheControl::MinIdleTime%1084967064.body preserve=yes
    ULONG_T min = 10000;
-   std::map<STRING_T,cCache*>::const_iterator i = _Caches.begin();
-   while (i != _Caches.end()) {
+   std::map<STRING_T,cCache*>::const_iterator i = _Caches.cbegin();
+   while (i != _Caches.cend()) {
       cCache * cache = (*i).second;
       ULONG_T min_idle_time = cache->MinIdleTime();
       if (min_idle_time < min) {

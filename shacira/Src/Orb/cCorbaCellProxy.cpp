@@ -264,6 +264,15 @@ CORBA_ITF_EPILOG
   //## end cCorbaCellProxy::ReadFile%1078912360.body
 }
 
+void cCorbaCellProxy::ExportVariables(STRING_T &buf, CONST_STRING_T sub_file, CONST_STRING_T separator)
+{
+CORBA_ITF_PROLOG("iCell::ExportVariables", _Itf)
+   char * _buf = (*_Itf)->ExportVariables(_ClientId, sub_file, separator);
+   buf = _buf;
+   FREE_CORBA_STRING(_buf);
+CORBA_ITF_EPILOG
+}
+
 void cCorbaCellProxy::WriteFile (CONST_STRING_T file_name, CONST_STRING_T sub_files, CONST_STRING_T buf)
 {
   //## begin cCorbaCellProxy::WriteFile%1078912361.body preserve=yes
@@ -615,6 +624,28 @@ CORBA_ITF_PROLOG("iCell::Login", _Itf)
    _Connected = true;
    return client_id;
 CORBA_ITF_EPILOG
+  //## end cCorbaCellProxy::Login%1121785251.body
+}
+
+ULONG_T cCorbaCellProxy::LoginIfType (CONST_STRING_T user_name, CONST_STRING_T password, ULONG_T if_type)
+{
+  //## begin cCorbaCellProxy::Login%1121785251.body preserve=yes
+   if (_Itf == NULL) SetItf();
+
+   ULONG_T client_id = (ULONG_T)-1;
+   const char * name = "iCell::Login";
+   try {
+      client_id = (*_Itf)->LoginIfType(user_name, password, if_type);
+      _Connected = true;
+      return client_id;
+   } catch(CORBA::SystemException & e) {
+      // LoginIfType not implemented in application now call Login without if_type
+      client_id = Login(user_name, password);
+      return client_id;
+   } catch (...) {
+      _Connected = false;
+      throw cError(PROXY_UNHANDLED_EXCEPTION, 0, name);
+   }
   //## end cCorbaCellProxy::Login%1121785251.body
 }
 

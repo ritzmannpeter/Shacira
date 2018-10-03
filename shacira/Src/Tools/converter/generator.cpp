@@ -127,8 +127,8 @@ void cGenerator::processObjectList(QDomDocument & document, QDomElement & parent
 {
    const QObjectList * children = object->children();
    if (children != NULL) {
-      QObjectList::const_iterator i = children->begin();
-      while (i != children->end()) {
+      QObjectList::const_iterator i = children->constBegin();
+      while (i != children->constEnd()) {
          QObject * child = (*i);
          bool success = generate(document, parent, child);
          if (!success) {

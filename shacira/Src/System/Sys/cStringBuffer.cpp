@@ -24,7 +24,6 @@ cStringBuffer::~cStringBuffer()
    int rc = remove(_Path.c_str());
    rc = rename(_TempFile, _Path.c_str());
    rc = remove(_TempFile);
-   int dummy = 0;
 #ifdef lassma
    if (_File) {
       _File->Close();

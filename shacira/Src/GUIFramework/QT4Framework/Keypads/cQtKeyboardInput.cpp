@@ -79,8 +79,8 @@ bool cQtKeyboardInput::setWidget(QWidget *parent)
 #ifdef QT4
    _keyboard_layout = NULL;
    QObjectList layouts = queryList(static_cast<QObject*>(_parent_widget), "cQtKeyboardLayout");
-   QObjectList::const_iterator i = layouts.begin();
-   while (i != layouts.end()) {
+   QObjectList::const_iterator i = layouts.constBegin();
+   while (i != layouts.constEnd()) {
       if ((*i)->inherits("cQtKeyboardLayout")) {
          _keyboard_layout = static_cast<cQtKeyboardLayout*>((*i));
          break;

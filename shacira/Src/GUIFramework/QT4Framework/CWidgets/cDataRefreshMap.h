@@ -31,7 +31,7 @@ public:
    {
 #ifndef QT_PLUGIN
       DATA_REFRESH_MAP_T::const_iterator i = _RefreshMap.find(var_ref);
-      if (i != _RefreshMap.end()) {
+      if (i != _RefreshMap.cend()) {
          return true;
       }
 #endif
@@ -41,7 +41,7 @@ public:
    {
 #ifndef QT_PLUGIN
       DATA_REFRESH_MAP_T::const_iterator i = _RefreshMap.begin();
-      while (i != _RefreshMap.end()) {
+      while (i != _RefreshMap.cend()) {
          VAR_REF_PTR var_ref = (*i).second;
          if (var_ref != NULL && !pending_refresh_map->IsRefreshed(var_ref)) {
             var_ref->NewValue(data_set);
@@ -55,7 +55,7 @@ public:
    {
 #ifndef QT_PLUGIN
       DATA_REFRESH_MAP_T::const_iterator i = _RefreshMap.begin();
-      while (i != _RefreshMap.end()) {
+      while (i != _RefreshMap.cend()) {
          VAR_REF_PTR var_ref = (*i).second;
          if (var_ref != NULL) {
             if (var_ref->IsBackgroundSensitive() && !pending_refresh_map->IsRefreshed(var_ref)) {

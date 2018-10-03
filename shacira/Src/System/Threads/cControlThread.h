@@ -64,6 +64,8 @@ public:
       //## Operation: Stop%987504144
       virtual void Stop ();
 
+      virtual bool kill(bool wait = false);
+
       //## Operation: onEnter%983778320
       virtual BOOL_T onEnter (void *extra);
 

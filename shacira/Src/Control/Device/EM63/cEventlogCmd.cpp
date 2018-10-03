@@ -260,9 +260,9 @@ void cEventlogCmd::PrintCurrentAlarms ()
   //## begin cEventlogCmd::PrintCurrentAlarms%1136567370.body preserve=yes
    cBufferedFile file;
    ALARM_MAP_T alarms;
-   ULONG_T alarm_count = _Context->Alarms(0, alarms);
-   ALARM_MAP_T::const_iterator i = alarms.begin();
-   while (i != alarms.end()) {
+   _Context->Alarms(0, alarms);
+   ALARM_MAP_T::const_iterator i = alarms.cbegin();
+   while (i != alarms.cend()) {
       cAlarm * alarm = (*i).second;
       PrintAlarm(&file, alarm, false);
       i++;

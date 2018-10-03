@@ -25,7 +25,7 @@
 
 #define DOUBLE2LONG(dval,lval) \
 {  char sval[0x40] = {0}; \
-   SafePrintf(sval, sizeof(sval), "%0.0f", (DOUBLE_T)dval); \
+   SafePrintf(sval, sizeof(sval), "%0.0lf", (DOUBLE_T)dval); \
    lval = strtol(sval, NULL, 10); \
 }
 
@@ -980,7 +980,7 @@ FLOAT_T cSHVariant::Real2Float (CONST_WSTRING_T str)
   //## begin cSHVariant::Real2Float%1056375593.body preserve=yes
    FLOAT_T value = 0;
    STRING_T temp_str = Wide2String(str);
-   sscanf(temp_str.c_str(), "%lf", &value);
+   sscanf(temp_str.c_str(), "%f", &value);
    return value;
   //## end cSHVariant::Real2Float%1056375593.body
 }
@@ -1090,11 +1090,11 @@ void cSHVariant::ULong2String (WSTRING_T &str, ULONG_T value, UCHAR_T radix)
 void cSHVariant::Float2String (STRING_T &str, FLOAT_T value, UCHAR_T precision)
 {
   //## begin cSHVariant::Float2String%1056447738.body preserve=yes
-   char buf[64] = {0};
+   char buf[0x200] = {0};
    if ((precision >= 0) && (precision <= MAX_PRECISION)) {
       SafePrintf(buf, sizeof(buf), "%.*f", precision, value);
    } else {
-      SafePrintf(buf, sizeof(buf), "%lf", value);
+      SafePrintf(buf, sizeof(buf), "%f", value);
    }
    str = buf;
   //## end cSHVariant::Float2String%1056447738.body
@@ -1103,11 +1103,11 @@ void cSHVariant::Float2String (STRING_T &str, FLOAT_T value, UCHAR_T precision)
 void cSHVariant::Float2String (WSTRING_T &str, FLOAT_T value, UCHAR_T precision)
 {
   //## begin cSHVariant::Float2String%1056447739.body preserve=yes
-   char buf[64] = {0};
+   char buf[0x200] = {0};
    if ((precision >= 0) && (precision <= MAX_PRECISION)) {
       SafePrintf(buf, sizeof(buf), "%.*f", precision, value);
    } else {
-      SafePrintf(buf, sizeof(buf), "%lf", value);
+      SafePrintf(buf, sizeof(buf), "%f", value);
    }
    str = String2Wide(buf);
   //## end cSHVariant::Float2String%1056447739.body
@@ -1116,17 +1116,11 @@ void cSHVariant::Float2String (WSTRING_T &str, FLOAT_T value, UCHAR_T precision)
 void cSHVariant::Double2String (STRING_T &str, DOUBLE_T value, UCHAR_T precision)
 {
   //## begin cSHVariant::Double2String%1056447740.body preserve=yes
-   char buf[64] = {0};
-
-   if ((value >= 1.0e+30) || (value <= -1.0e+30)) {
-      SafePrintf(buf, sizeof(buf), "%.*e", precision, value);
-   }
-   else {
-      if ((precision >= 0) && (precision <= MAX_PRECISION)) {
-         SafePrintf(buf, sizeof(buf), "%.*f", precision, value);
-      } else {
-         SafePrintf(buf, sizeof(buf), "%lf", value);
-      }
+   char buf[0x200] = {0};
+   if ((precision >= 0) && (precision <= MAX_PRECISION)) {
+      SafePrintf(buf, sizeof(buf), "%.*lf", precision, value);
+   } else {
+      SafePrintf(buf, sizeof(buf), "%lf", value);
    }
    str = buf;
   //## end cSHVariant::Double2String%1056447740.body
@@ -1135,17 +1129,11 @@ void cSHVariant::Double2String (STRING_T &str, DOUBLE_T value, UCHAR_T precision
 void cSHVariant::Double2String (WSTRING_T &str, DOUBLE_T value, UCHAR_T precision)
 {
   //## begin cSHVariant::Double2String%1056447741.body preserve=yes
-   char buf[64] = {0};
-
-   if ((value >= 1.0e+30) || (value <= -1.0e+30)) {
-      SafePrintf(buf, sizeof(buf), "%.*e", precision, value);
-   }
-   else {
-      if ((precision >= 0) && (precision <= MAX_PRECISION)) {
-         SafePrintf(buf, sizeof(buf), "%.*f", precision, value);
-      } else {
-         SafePrintf(buf, sizeof(buf), "%lf", value);
-      }
+   char buf[0x200] = {0};
+   if ((precision >= 0) && (precision <= MAX_PRECISION)) {
+      SafePrintf(buf, sizeof(buf), "%.*lf", precision, value);
+   } else {
+      SafePrintf(buf, sizeof(buf), "%lf", value);
    }
    str = String2Wide(buf);
   //## end cSHVariant::Double2String%1056447741.body

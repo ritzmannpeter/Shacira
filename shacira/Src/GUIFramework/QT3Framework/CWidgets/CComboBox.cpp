@@ -171,8 +171,14 @@ WMETHOD_PROLOG
    QWidget * parent = NULL;
    if (_DisableParentValue) {
       parent = parentWidget();
-      parent->setEnabled(false);
-      qApp->processEvents();
+      if (parent->inherits("CPage")) {
+         ErrorPrintf("Property DisableParent for parent CPage not possible (Widget %s)\n", CONST_STRING(this->name()));
+         parent = NULL;
+      }
+      else {
+         parent->setEnabled(false);
+         qApp->processEvents();
+      }
    }
    if (ExecuteButtonFunc(_ButtonFuncRef) == actionProceed) {
       QString new_value = NewValue();
@@ -190,10 +196,8 @@ WMETHOD_PROLOG
    } else {
       ResetValue();
    }
-   if (_DisableParentValue) {
+   if (_DisableParentValue && parent) {
       qApp->processEvents();
-      if (parent == NULL)
-         parent = parentWidget();
       parent->setEnabled(true);
    }
 WMETHOD_VOID_EPILOG

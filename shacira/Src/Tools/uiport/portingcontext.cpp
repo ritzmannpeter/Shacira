@@ -3,8 +3,8 @@
 
 void PortingContext::collectFiles()
 {
-   APPLICATION_MAP_T::const_iterator i = _applicationMap.begin();
-   while (i != _applicationMap.end()) {
+   APPLICATION_MAP_T::const_iterator i = _applicationMap.cbegin();
+   while (i != _applicationMap.cend()) {
       PortingApplication * application = (*i).second;
       application->collectFiles();;
       i++;
@@ -13,8 +13,8 @@ void PortingContext::collectFiles()
 
 void PortingContext::portFiles()
 {
-   APPLICATION_MAP_T::const_iterator i = _applicationMap.begin();
-   while (i != _applicationMap.end()) {
+   APPLICATION_MAP_T::const_iterator i = _applicationMap.cbegin();
+   while (i != _applicationMap.cend()) {
       PortingApplication * application = (*i).second;
       application->portFiles();;
       i++;
@@ -23,8 +23,8 @@ void PortingContext::portFiles()
 
 void PortingContext::generateResources()
 {
-   APPLICATION_MAP_T::const_iterator i = _applicationMap.begin();
-   while (i != _applicationMap.end()) {
+   APPLICATION_MAP_T::const_iterator i = _applicationMap.cbegin();
+   while (i != _applicationMap.cend()) {
       PortingApplication * application = (*i).second;
       application->generateResources();
       i++;
@@ -33,8 +33,8 @@ void PortingContext::generateResources()
 
 void PortingContext::printFormHeaderInformations()
 {
-   APPLICATION_MAP_T::const_iterator i = _applicationMap.begin();
-   while (i != _applicationMap.end()) {
+   APPLICATION_MAP_T::const_iterator i = _applicationMap.cbegin();
+   while (i != _applicationMap.cend()) {
       PortingApplication * application = (*i).second;
       application->printFormHeaderInformations();
       i++;

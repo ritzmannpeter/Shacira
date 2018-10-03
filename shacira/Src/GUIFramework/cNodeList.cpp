@@ -73,8 +73,8 @@ ULONG_T cNodeList::NodeNames (STRING_LIST_T &node_names)
 {
   //## begin cNodeList::NodeNames%1074084959.body preserve=yes
    node_names.clear();
-   std::map<STRING_T,cNode*>::const_iterator i = _Nodes.begin();
-   while (i != _Nodes.end()) {
+   std::map<STRING_T,cNode*>::const_iterator i = _Nodes.cbegin();
+   while (i != _Nodes.cend()) {
       node_names.push_back((*i).first.c_str());
       i++;
    }
@@ -86,7 +86,7 @@ cNode * cNodeList::Node (CONST_STRING_T name)
 {
   //## begin cNodeList::Node%1074084960.body preserve=yes
    std::map<STRING_T,cNode*>::const_iterator i = _Nodes.find(name);
-   if (i == _Nodes.end()) {
+   if (i == _Nodes.cend()) {
       return NULL;
    } else {
       return (*i).second;

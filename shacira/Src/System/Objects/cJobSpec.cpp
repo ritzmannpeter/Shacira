@@ -136,8 +136,8 @@ void cJobSpec::RemoveProperty(CONST_STRING_T property_name)
 void cJobSpec::SetNameList (STRING_LIST_T name_list)
 {
   //## begin cJobSpec::SetNameList%1138452345.body preserve=yes
-   STRING_LIST_T::const_iterator i = name_list.begin();
-   while (i != name_list.end()) {
+   STRING_LIST_T::const_iterator i = name_list.cbegin();
+   while (i != name_list.cend()) {
       AddProperty((*i).c_str());
       i++;
    }
@@ -238,7 +238,7 @@ ULONG_T cJobSpec::GetFlags (CONST_STRING_T property_name)
 {
   //## begin cJobSpec::GetFlags%1100678886.body preserve=yes
    ULONG_MAP_T::const_iterator i = _FlagMap.find(property_name);
-   if (i != _FlagMap.end()) {
+   if (i != _FlagMap.cend()) {
       return (*i).second;
    }
    return 0;

@@ -11,31 +11,26 @@
 
 #define CONTEXT_REF ((cLocalContext*)_Link)
 
-CONST_STRING_T UserName(ULONG_T client_id)
+static void _SetUserInfo(ULONG_T client_id, ULONG_T if_type)
 {
-   if (client_id == IF_OPC) {
-      return "OPC";
-   } else if (client_id == IF_EM63) {
-      return "EUROMAP63";
-   }
-   return "unknown";
-}
-
-static void _SetUserInfo(ULONG_T client_id)
-{
-   cClientData * client_data =  cClients::GetClientData(client_id);
+   cClientData * client_data =  cClients::GetClientData(client_id, if_type);
    if (client_data == NULL) {
-      client_data = cClients::AllocClient(client_id);
+      client_data = cClients::AllocClient(client_id, if_type);
    }
    cUserInfo * user_info = client_data->UserInfo();
    if (user_info == NULL) {
       user_info = new cUserInfo;
-      user_info->set_UserName(UserName(client_id));
+      user_info->set_UserName(cClients::UserName(if_type));
       user_info->set_ClientId(client_id);
-      user_info->set_IFType(client_id);
+      user_info->set_IFType(if_type);
       client_data->SetUserInfo(user_info);
    }
    cSystemUtils::SetThreadData(user_info);
+}
+
+static void _SetUserInfo(ULONG_T client_id)
+{
+   _SetUserInfo(client_id, 0);
 }
 
 #define SET_USER_INFO(client_id) \
@@ -93,8 +88,8 @@ CORBA_OBJECT_EPILOG
 char * iCellObject::GetVarDefs(long client_id, long if_type)
 {
 CORBA_OBJECT_PROLOG("iCellObject::GetVarDefs")
-SET_USER_INFO(client_id)
 	STRING_T var_defs;
+    _SetUserInfo(client_id, if_type);
 	CONTEXT_REF->GetVarDefs(var_defs, if_type);
 	return CORBA_STRING_DUP(var_defs.c_str());
 CORBA_OBJECT_EPILOG
@@ -115,7 +110,8 @@ char * iCellObject::GetValue(long client_id, const char * var_name, long i1, lon
 CORBA_OBJECT_PROLOG("iCellObject::GetValue")
 SET_USER_INFO(client_id)
    STRING_T _var_name = var_name;
-   CONTEXT_REF->RefFilter(client_id, _var_name, i1, i2, i3, i4);
+   cClientData * client_data =  cClients::GetClientData(client_id);
+   CONTEXT_REF->RefFilter(client_data->get_IFType(), _var_name, i1, i2, i3, i4);
    STRING_T value;
    CONTEXT_REF->GetValue(_var_name.c_str(), value, i1, i2, i3, i4, flags|VF_MEMORY_ACCESS);
    return CORBA_STRING_DUP(value.c_str());
@@ -152,7 +148,8 @@ void iCellObject::SetValue(long client_id, const char * var_name, const char * v
 CORBA_OBJECT_PROLOG("iCellObject::SetValue")
 SET_USER_INFO(client_id)
    STRING_T _var_name = var_name;
-   CONTEXT_REF->RefFilter(client_id, _var_name, i1, i2, i3, i4);
+   cClientData * client_data =  cClients::GetClientData(client_id);
+   CONTEXT_REF->RefFilter(client_data->get_IFType(), _var_name, i1, i2, i3, i4);
    CONTEXT_REF->SetValue(_var_name.c_str(), value, i1, i2, i3, i4, flags);
 CORBA_OBJECT_EPILOG
 }
@@ -171,7 +168,8 @@ CORBA_OBJECT_PROLOG("iCellObject::GetMinimum")
 SET_USER_INFO(client_id)
    STRING_T value;
    STRING_T _var_name = var_name;
-   CONTEXT_REF->RefFilter(client_id, _var_name, i1, i2, i3, i4);
+   cClientData * client_data =  cClients::GetClientData(client_id);
+   CONTEXT_REF->RefFilter(client_data->get_IFType(), _var_name, i1, i2, i3, i4);
    CONTEXT_REF->GetMinimum(_var_name.c_str(), value, i1, i2, i3, i4);
    return CORBA_STRING_DUP(value.c_str());
 CORBA_OBJECT_EPILOG
@@ -194,7 +192,8 @@ CORBA_OBJECT_PROLOG("iCellObject::GetMaximum")
 SET_USER_INFO(client_id)
    STRING_T value;
    STRING_T _var_name = var_name;
-   CONTEXT_REF->RefFilter(client_id, _var_name, i1, i2, i3, i4);
+   cClientData * client_data =  cClients::GetClientData(client_id);
+   CONTEXT_REF->RefFilter(client_data->get_IFType(), _var_name, i1, i2, i3, i4);
    CONTEXT_REF->GetMaximum(_var_name.c_str(), value, i1, i2, i3, i4);
    return CORBA_STRING_DUP(value.c_str());
 CORBA_OBJECT_EPILOG
@@ -217,6 +216,17 @@ CORBA_OBJECT_PROLOG("iCellObject::ReadFile")
 SET_USER_INFO(client_id)
    STRING_T buf;
    CONTEXT_REF->ReadFile(file_name, sub_files, buf);
+   return CORBA_STRING_DUP(buf.c_str());
+CORBA_OBJECT_EPILOG
+   return NULL;
+}
+
+char * iCellObject::ExportVariables(long client_id, const char * sub_file, const char * separator)
+{
+CORBA_OBJECT_PROLOG("iCellObject::ExportVariables")
+SET_USER_INFO(client_id)
+   STRING_T buf;
+   CONTEXT_REF->ExportVariables(buf, sub_file, separator);
    return CORBA_STRING_DUP(buf.c_str());
 CORBA_OBJECT_EPILOG
    return NULL;
@@ -323,7 +333,18 @@ CORBA_OBJECT_EPILOG
 long iCellObject::Login(client_info_t client_info, const char * password)
 {
 CORBA_OBJECT_PROLOG("iCellObject::Login")
-   cClientData * client_data = cClients::AllocClient(client_info, password);
+   cClientData * client_data = cClients::AllocClient(client_info, password, 0);
+   if (client_data != NULL) {
+      return client_data->get_Id();
+   }
+CORBA_OBJECT_EPILOG
+   return 0;
+}
+
+long iCellObject::LoginIfType(client_info_t client_info, const char * password, ULONG_T if_type)
+{
+CORBA_OBJECT_PROLOG("iCellObject::Login")
+   cClientData * client_data = cClients::AllocClient(client_info, password, if_type);
    if (client_data != NULL) {
       return client_data->get_Id();
    }
@@ -432,7 +453,8 @@ Control::Memory* iCellObject::GetObject(CORBA::Long client_id, const char* var_n
 CORBA_OBJECT_PROLOG("iCellObject::GetObject")
 SET_USER_INFO(client_id)
    STRING_T _var_name = var_name;
-   CONTEXT_REF->RefFilter(client_id, _var_name, i1, i2, i3, i4);
+   cClientData * client_data =  cClients::GetClientData(client_id);
+   CONTEXT_REF->RefFilter(client_data->get_IFType(), _var_name, i1, i2, i3, i4);
    cBinaryObject object;
    CONTEXT_REF->GetObject(_var_name.c_str(), object, i1, i2, i3, i4, flags|VF_MEMORY_ACCESS);
    ULONG_T size = object.Size();

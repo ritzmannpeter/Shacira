@@ -228,7 +228,12 @@ void cProgram::ExecuteRequest (STRING_T &reply, CONST_STRING_T request)
 void cProgram::Stop ()
 {
   //## begin cProgram::Stop%1090071073.body preserve=yes
-   cControlThread::Stop();
+   if (cResources::FlagSet(PF_KILL_PROGRAM_AT_STOP_PROC)) {
+      cControlThread::kill();
+   }
+   else {
+      cControlThread::Stop();
+   }
   //## end cProgram::Stop%1090071073.body
 }
 
@@ -877,8 +882,8 @@ void cProgram::ProcessEventQueue ()
       return;
    }
    try {
-      std::list<cTransientObject*>::const_iterator i = local_object_list.begin();
-      while (i != local_object_list.end()) {
+      std::list<cTransientObject*>::const_iterator i = local_object_list.cbegin();
+      while (i != local_object_list.cend()) {
          cTransientObject * object = (*i);
          ProcessEvent(object);
          object->Release();

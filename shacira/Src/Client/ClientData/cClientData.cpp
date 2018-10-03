@@ -91,7 +91,9 @@ cClientData::~cClientData()
 void cClientData::AddObject (cTransientObject *object)
 {
   //## begin cClientData::AddObject%1121845389.body preserve=yes
-   if (_IFType == IF_OPC || _IFType == IF_EM63) {
+   if (_IFType == IF_OPC ||
+       _IFType == IF_EM63 ||
+       _IFType == IF_OPCUA) {
       // ignore event recording
    } else {
       _Objects->Add(object);

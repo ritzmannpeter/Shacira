@@ -53,8 +53,8 @@ _ASSERT_UNCOND
 cBlockBuffer::~cBlockBuffer()
 {
   //## begin cBlockBuffer::~cBlockBuffer%.body preserve=yes
-	BUFFER_LIST_T::const_iterator i = _Buffers.begin();
-	while (i != _Buffers.end()) {
+	BUFFER_LIST_T::const_iterator i = _Buffers.cbegin();
+	while (i != _Buffers.cend()) {
 		void * buf = (*i);
 		cSystemUtils::Free(buf);
 		i++;

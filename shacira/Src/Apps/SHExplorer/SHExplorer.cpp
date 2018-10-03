@@ -16,6 +16,7 @@
 
 
 static ExplorerForm * _ExplorerForm = NULL;
+
 int main(int argc, char* argv[])
 {
    cResources::set_LogFileName("SHExplorer.log");
@@ -39,7 +40,11 @@ int main(int argc, char* argv[])
    QWidget * main_widget = new QWidget(NULL);
    QFont font("Arial", 11);
    main_widget->setFont(font);
+#ifdef QT4
+   main_widget->setWindowTitle(title);
+#else
    main_widget->setCaption(title);
+#endif
    main_widget->setMinimumSize(600, 300);
    _ExplorerForm = new ExplorerForm(main_widget);
    _ExplorerForm->setMinimumSize(500, 100);
@@ -48,7 +53,11 @@ int main(int argc, char* argv[])
 //   QObject::connect((const QObject*)_ExplorerForm->RefreshButton, SIGNAL(clicked()), server_list, SLOT(clear()));
    layout->addWidget(_ExplorerForm);
    layout->addWidget(server_list);
+#ifdef QT4
+   //app.setCentralWidget(main_widget);
+#else
    app.setMainWidget(main_widget);
+#endif
    main_widget->show();
    return app.exec();
 }

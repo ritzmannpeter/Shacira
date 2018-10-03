@@ -115,8 +115,8 @@ cConfiguration::cConfiguration (CONST_STRING_T config_file_name)
 cConfiguration::~cConfiguration()
 {
   //## begin cConfiguration::~cConfiguration%.body preserve=yes
-   std::map<STRING_T, cConfigurationObject*>::const_iterator i = _ConfigurationObjects.begin();
-   while (i != _ConfigurationObjects.end()) {
+   std::map<STRING_T, cConfigurationObject*>::const_iterator i = _ConfigurationObjects.cbegin();
+   while (i != _ConfigurationObjects.cend()) {
       cConfigurationObject * object = (*i).second;
       DELETE_OBJECT(cConfigurationObject, object)
       i++;
@@ -139,7 +139,7 @@ cConfigurationObject * cConfiguration::Object (CONST_STRING_T name) const
 {
   //## begin cConfiguration::Object%978594334.body preserve=yes
    std::map<STRING_T,cConfigurationObject*>::const_iterator i = _ConfigurationObjects.find(name);
-   if (i == _ConfigurationObjects.end()) {
+   if (i == _ConfigurationObjects.cend()) {
       return NULL;
    } else {
       return (*i).second;
@@ -150,8 +150,8 @@ cConfigurationObject * cConfiguration::Object (CONST_STRING_T name) const
 ULONG_T cConfiguration::ObjectList (STRING_LIST_T &object_list, CONST_STRING_T type_name)
 {
   //## begin cConfiguration::ObjectList%1011204313.body preserve=yes
-   std::map<STRING_T, cConfigurationObject*>::const_iterator i = _ConfigurationObjects.begin();
-   while (i != _ConfigurationObjects.end()) {
+   std::map<STRING_T, cConfigurationObject*>::const_iterator i = _ConfigurationObjects.cbegin();
+   while (i != _ConfigurationObjects.cend()) {
       cConfigurationObject * object = (*i).second;
       if (object != NULL) {
          if (type_name == NULL) {
@@ -172,8 +172,8 @@ ULONG_T cConfiguration::ObjectList (STRING_LIST_T &object_list, CONST_STRING_T t
 void cConfiguration::Resolve ()
 {
   //## begin cConfiguration::Resolve%1011095991.body preserve=yes
-   std::map<STRING_T, cConfigurationObject*>::const_iterator i = _ConfigurationObjects.begin();
-   while (i != _ConfigurationObjects.end()) {
+   std::map<STRING_T, cConfigurationObject*>::const_iterator i = _ConfigurationObjects.cbegin();
+   while (i != _ConfigurationObjects.cend()) {
       cConfigurationObject * object = (*i).second;
       object->Resolve();
       i++;
@@ -184,8 +184,8 @@ void cConfiguration::Resolve ()
 void cConfiguration::Save ()
 {
   //## begin cConfiguration::Save%978594328.body preserve=yes
-   std::map<STRING_T, cConfigurationObject*>::const_iterator i = _ConfigurationObjects.begin();
-   while (i != _ConfigurationObjects.end()) {
+   std::map<STRING_T, cConfigurationObject*>::const_iterator i = _ConfigurationObjects.cbegin();
+   while (i != _ConfigurationObjects.cend()) {
       cConfigurationObject * object = (*i).second;
       object->Save();
       i++;
@@ -232,16 +232,16 @@ BOOL_T cConfiguration::LoadFile (CONST_STRING_T config_file)
    }
    STRING_VECTOR_T chapters;
    ini_file.ReadChapters(chapters);
-   STRING_VECTOR_T::const_iterator _chapter = chapters.begin();
-   while (_chapter != chapters.end()) {
+   STRING_VECTOR_T::const_iterator _chapter = chapters.cbegin();
+   while (_chapter != chapters.cend()) {
       STRING_T obj_name = (*_chapter).c_str();
       STRING_T obj_type = ini_file.ReadValue(obj_name.c_str(), "Type", "no type");
       cConfigurationObject * object = new cConfigurationObject(this, obj_name.c_str(), obj_type.c_str(), config_file);
       if (Object(obj_name.c_str()) == NULL) {
          STRING_VECTOR_T keys;
          ini_file.ReadKeys(obj_name.c_str(), keys);
-         STRING_VECTOR_T::const_iterator _key = keys.begin();
-         while (_key != keys.end()) {
+         STRING_VECTOR_T::const_iterator _key = keys.cbegin();
+         while (_key != keys.cend()) {
             STRING_T property_name = (*_key).c_str();
             STRING_T value = ini_file.ReadValue(obj_name.c_str(), property_name.c_str(), "");
             if (!IDENTIFIER_EQUAL("Type", property_name.c_str())) {

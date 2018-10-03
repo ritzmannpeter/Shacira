@@ -136,8 +136,8 @@ public:
    };
    virtual ~cVarGroup()
    {
-      COMP_ENTRY_LIST_T::const_iterator i = _CompEntries.begin();
-      while (i != _CompEntries.end()) {
+      COMP_ENTRY_LIST_T::const_iterator i = _CompEntries.cbegin();
+      while (i != _CompEntries.cend()) {
          cCompEntry * entry = (*i);
          if (entry != NULL) {
             delete entry;
@@ -167,8 +167,8 @@ public:
    cVarGroups() {};
    virtual ~cVarGroups()
    {
-      VAR_GROUP_MAP_T::const_iterator i = _VarGroups.begin();
-      while (i != _VarGroups.end()) {
+      VAR_GROUP_MAP_T::const_iterator i = _VarGroups.cbegin();
+      while (i != _VarGroups.cend()) {
          cVarGroup * var_group = (*i).second;
          if (var_group != NULL) {
             delete var_group;
@@ -200,8 +200,8 @@ public:
    };
    void GetGroupNames(STRING_LIST_T & group_names)
    {
-      VAR_GROUP_MAP_T::const_iterator i = _VarGroups.begin();
-      while (i != _VarGroups.end()) {
+      VAR_GROUP_MAP_T::const_iterator i = _VarGroups.cbegin();
+      while (i != _VarGroups.cend()) {
          group_names.push_back((*i).first);
          i++;
       }
@@ -219,7 +219,7 @@ private:
    cVarGroup * VarGroup(CONST_STRING_T group_name)
    {
       VAR_GROUP_MAP_T::const_iterator i = _VarGroups.find(group_name);
-      if (i == _VarGroups.end()) {
+      if (i == _VarGroups.cend()) {
          return NULL;
       } else {
          return (*i).second;
@@ -457,13 +457,13 @@ WMETHOD_PROLOG
     clear();
     STRING_LIST_T group_names;
     _varGroups->GetGroupNames(group_names);
-    STRING_LIST_T::const_iterator g = group_names.begin();
-    while (g != group_names.end()) {
+    STRING_LIST_T::const_iterator g = group_names.cbegin();
+    while (g != group_names.cend()) {
        ListViewItem * node = new ListViewItem(this);
        node->setOpen(TRUE);
        COMP_ENTRY_LIST_T * entries = _varGroups->Entries((*g).c_str());
-       COMP_ENTRY_LIST_T::const_iterator e = entries->begin();
-       while (e != entries->end()) {
+       COMP_ENTRY_LIST_T::const_iterator e = entries->cbegin();
+       while (e != entries->cend()) {
           cCompEntry * entry = *e;
           if (entry != NULL) {
              ListViewItem * item = new ListViewItem(node);

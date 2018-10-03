@@ -193,6 +193,7 @@ public:
       BOOL_T MappingEnabled(LONG_T i1 = -1, LONG_T i2 = -1, LONG_T i3 = -1, LONG_T i4 = -1);
       BOOL_T EnableMapping(ULONG_T value, LONG_T i1 = -1, LONG_T i2 = -1, LONG_T i3 = -1, LONG_T i4 = -1);
       BOOL_T EnableCompleteMapping(ULONG_T value);
+      BOOL_T HasMapping();
 
       //## Operation: GetMinimum%1089103312
       //	Gets the minimum value of a variable.
@@ -636,7 +637,7 @@ public:
          cObjectLock __lock__(&_AccuMutex);
          int thread_id = cSystemUtils::ThreadId();
          ACCU_MAP_T::const_iterator i = _AccuMap.find(thread_id);
-         if (i != _AccuMap.end()) {
+         if (i != _AccuMap.cend()) {
             // accu for this thread and this variable already instantiated
             return (*i).second;
          } else {

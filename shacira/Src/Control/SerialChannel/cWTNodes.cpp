@@ -58,8 +58,8 @@ _ASSERT_UNCOND
 cWTNodes::~cWTNodes()
 {
   //## begin cWTNodes::~cWTNodes%.body preserve=yes
-   NODE_MAP_T::const_iterator i = _NodeMap.begin();
-   while (i != _NodeMap.end()) {
+   NODE_MAP_T::const_iterator i = _NodeMap.cbegin();
+   while (i != _NodeMap.cend()) {
       cWTNode * node = (*i).second;
       delete node;
       i++;
@@ -74,7 +74,7 @@ cWTNode * cWTNodes::Node (CONST_STRING_T ip_address)
 {
   //## begin cWTNodes::Node%1018942490.body preserve=yes
    NODE_MAP_T::const_iterator i = _NodeMap.find(ip_address);
-   if (i == _NodeMap.end()) {
+   if (i == _NodeMap.cend()) {
       cObjectLock _lock_(&_NodeListMutex);
       int size = _NodeMap.size();
       cWTNode * node = new cWTNode(ip_address);
@@ -92,8 +92,8 @@ INT_T cWTNodes::ControlFunc ()
   //## begin cWTNodes::ControlFunc%1018942495.body preserve=yes
    CONTROLFUNC_PROLOG(_Name.c_str())
    cObjectLock _lock_(&_NodeListMutex);
-   NODE_MAP_T::const_iterator i = _NodeMap.begin();
-   while (i != _NodeMap.end()) {
+   NODE_MAP_T::const_iterator i = _NodeMap.cbegin();
+   while (i != _NodeMap.cend()) {
       cWTNode * node = (*i).second;
       if (Terminated()) return 0;
       node->Refresh();

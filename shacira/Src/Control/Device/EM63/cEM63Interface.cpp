@@ -186,8 +186,8 @@ cEM63Interface::~cEM63Interface()
 void cEM63Interface::SetEvent (cTransientObject *object)
 {
   //## begin cEM63Interface::SetEvent%1136559695.body preserve=yes
-   CMD_MAP_T::const_iterator i = _EventLogs.begin();
-   while (i != _EventLogs.end()) {
+   CMD_MAP_T::const_iterator i = _EventLogs.cbegin();
+   while (i != _EventLogs.cend()) {
       cEventlogCmd * event_log = (cEventlogCmd*)(*i).second;
       if (event_log != NULL) {
          event_log->SetEvent(object);
@@ -233,8 +233,8 @@ ULONG_T cEM63Interface::SessionCount ()
 void cEM63Interface::Start ()
 {
   //## begin cEM63Interface::Start%1135272167.body preserve=yes
-   SESSION_MAP_T::const_iterator i = _Sessions.begin();
-   while (i != _Sessions.end()) {
+   SESSION_MAP_T::const_iterator i = _Sessions.cbegin();
+   while (i != _Sessions.cend()) {
       cEM63Session * session = (*i).second;
       session->Start();
       i++;
@@ -245,8 +245,8 @@ void cEM63Interface::Start ()
 void cEM63Interface::Control ()
 {
   //## begin cEM63Interface::Control%1135177952.body preserve=yes
-   SESSION_MAP_T::const_iterator i = _Sessions.begin();
-   while (i != _Sessions.end()) {
+   SESSION_MAP_T::const_iterator i = _Sessions.cbegin();
+   while (i != _Sessions.cend()) {
       cEM63Session * session = (*i).second;
       if (session->IsActive()) {
          session->Control();
@@ -259,8 +259,8 @@ void cEM63Interface::Control ()
 void cEM63Interface::Stop ()
 {
   //## begin cEM63Interface::Stop%1135773616.body preserve=yes
-   SESSION_MAP_T::const_iterator i = _Sessions.begin();
-   while (i != _Sessions.end()) {
+   SESSION_MAP_T::const_iterator i = _Sessions.cbegin();
+   while (i != _Sessions.cend()) {
       cEM63Session * session = (*i).second;
       if (session->IsActive()) {
          session->Stop();
@@ -273,8 +273,8 @@ void cEM63Interface::Stop ()
 void cEM63Interface::CleanUp ()
 {
   //## begin cEM63Interface::CleanUp%1136213365.body preserve=yes
-   SESSION_LIST_T::const_iterator r = _RemovedSessions.begin();
-   while (r != _RemovedSessions.end()) {
+   SESSION_LIST_T::const_iterator r = _RemovedSessions.cbegin();
+   while (r != _RemovedSessions.cend()) {
       cEM63Session * session = (*r);
 #ifdef EM63_LOGGING_INTERFACE
 #else
@@ -285,8 +285,8 @@ void cEM63Interface::CleanUp ()
    }
    _RemovedSessions.clear();
    LONG_LIST_T removed_ids;
-   SESSION_MAP_T::const_iterator i = _Sessions.begin();
-   while (i != _Sessions.end()) {
+   SESSION_MAP_T::const_iterator i = _Sessions.cbegin();
+   while (i != _Sessions.cend()) {
       cEM63Session * session = (*i).second;
       session->CleanUp();
       if (session->IsTerminated()) {
@@ -296,8 +296,8 @@ void cEM63Interface::CleanUp ()
       }
       i++;
    }
-   LONG_LIST_T::const_iterator j = removed_ids.begin();
-   while (j != removed_ids.end()) {
+   LONG_LIST_T::const_iterator j = removed_ids.cbegin();
+   while (j != removed_ids.cend()) {
       LONG_T id = (*j);
       _Sessions.erase(id);
       j++;
@@ -308,8 +308,8 @@ void cEM63Interface::CleanUp ()
 void cEM63Interface::Abort (int abort_type, CONST_STRING_T name)
 {
   //## begin cEM63Interface::Abort%1136213369.body preserve=yes
-   SESSION_MAP_T::const_iterator i = _Sessions.begin();
-   while (i != _Sessions.end()) {
+   SESSION_MAP_T::const_iterator i = _Sessions.cbegin();
+   while (i != _Sessions.cend()) {
       cEM63Session * session = (*i).second;
       if (session->IsActive()) {
          session->Abort(abort_type, name);
@@ -542,7 +542,7 @@ cEM63Job * cEM63Interface::Job (CONST_STRING_T name)
 {
   //## begin cEM63Interface::Job%1136548774.body preserve=yes
    JOB_MAP_T::const_iterator i = _Jobs.find(name);
-   if (i == _Jobs.end()) {
+   if (i == _Jobs.cend()) {
       return NULL;
    } else {
       return (*i).second;
@@ -553,8 +553,8 @@ cEM63Job * cEM63Interface::Job (CONST_STRING_T name)
 void cEM63Interface::Jobs (JOB_LIST_T &jobs)
 {
   //## begin cEM63Interface::Jobs%1135162871.body preserve=yes
-   JOB_MAP_T::const_iterator i = _Jobs.begin();
-   while (i != _Jobs.end()) {
+   JOB_MAP_T::const_iterator i = _Jobs.cbegin();
+   while (i != _Jobs.cend()) {
       cEM63Job * job = (*i).second;
       jobs.push_back(job);
       i++;
@@ -589,7 +589,7 @@ cPresentationCmd * cEM63Interface::Report (CONST_STRING_T name)
 {
   //## begin cEM63Interface::Report%1136548775.body preserve=yes
    CMD_MAP_T::const_iterator i = _Reports.find(name);
-   if (i == _Reports.end()) {
+   if (i == _Reports.cend()) {
       return NULL;
    } else {
       return (*i).second;
@@ -600,8 +600,8 @@ cPresentationCmd * cEM63Interface::Report (CONST_STRING_T name)
 void cEM63Interface::Reports (CMD_LIST_T &reports)
 {
   //## begin cEM63Interface::Reports%1136548776.body preserve=yes
-   CMD_MAP_T::const_iterator i = _Reports.begin();
-   while (i != _Reports.end()) {
+   CMD_MAP_T::const_iterator i = _Reports.cbegin();
+   while (i != _Reports.cend()) {
       cPresentationCmd * report = (*i).second;
       reports.push_back(report);
       i++;
@@ -636,7 +636,7 @@ cPresentationCmd * cEM63Interface::EventLog (CONST_STRING_T name)
 {
   //## begin cEM63Interface::EventLog%1136548777.body preserve=yes
    CMD_MAP_T::const_iterator i = _EventLogs.find(name);
-   if (i == _EventLogs.end()) {
+   if (i == _EventLogs.cend()) {
       return NULL;
    } else {
       return (*i).second;
@@ -647,8 +647,8 @@ cPresentationCmd * cEM63Interface::EventLog (CONST_STRING_T name)
 void cEM63Interface::EventLogs (CMD_LIST_T &event_logs)
 {
   //## begin cEM63Interface::EventLogs%1136548778.body preserve=yes
-   CMD_MAP_T::const_iterator i = _EventLogs.begin();
-   while (i != _EventLogs.end()) {
+   CMD_MAP_T::const_iterator i = _EventLogs.cbegin();
+   while (i != _EventLogs.cend()) {
       cPresentationCmd * event_log = (*i).second;
       event_logs.push_back(event_log);
       i++;
@@ -691,7 +691,7 @@ PARAM_SPEC_T * cEM63Interface::ParamSpec (CONST_STRING_T param_id)
 {
   //## begin cEM63Interface::ParamSpec%1135773615.body preserve=yes
    PARAM_SPEC_MAP_T::const_iterator i = _ParamSpecs.find(param_id);
-   if (i != _ParamSpecs.end()) {
+   if (i != _ParamSpecs.cend()) {
       return (*i).second;
    } else {
       return NULL;
@@ -1046,7 +1046,7 @@ STRING_T cEM63Interface::ParamId (CONST_STRING_T var_name, LONG_T i1, LONG_T i2,
       SafePrintf(var_spec, sizeof(var_spec), "%s", var_name);
    }
    VAR_SPEC_MAP_T::const_iterator i = _VarSpecs.find(var_spec);
-   if (i != _VarSpecs.end()) {
+   if (i != _VarSpecs.cend()) {
       return (*i).second;
    } else {
       if (i4 != -1) {
@@ -1260,8 +1260,8 @@ std::map<STRING_T,int> cEM63Interface::_EM63ObjectCount;
 
 void cEM63Interface::ControlObjectCount()
 {
-   std::map<STRING_T,int>::const_iterator i = _EM63ObjectCount.begin();
-   while (i != _EM63ObjectCount.end()) {
+   std::map<STRING_T,int>::const_iterator i = _EM63ObjectCount.cbegin();
+   while (i != _EM63ObjectCount.cend()) {
       STRING_T n = (*i).first;
       int v = (*i).second;
       if (v > 300) {
@@ -1275,7 +1275,7 @@ void cEM63Interface::IncrementObjectCount(const STRING_T & oname)
 {
    int v = 0;
    std::map<STRING_T,int>::const_iterator i = _EM63ObjectCount.find(oname);
-   if (i != _EM63ObjectCount.end()) {
+   if (i != _EM63ObjectCount.cend()) {
       v = (*i).second;
    }
    v++;
@@ -1286,7 +1286,7 @@ void cEM63Interface::DecrementObjectCount(const STRING_T & oname)
 {
    int v = 0;
    std::map<STRING_T,int>::const_iterator i = _EM63ObjectCount.find(oname);
-   if (i != _EM63ObjectCount.end()) {
+   if (i != _EM63ObjectCount.cend()) {
       v = (*i).second;
    }
    v--;

@@ -978,6 +978,7 @@
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Sys\cStringBuffer.cpp" />
     <ClCompile Include="..\..\..\Src\System\Sys\cSysProcess.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -2220,12 +2221,6 @@
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="..\..\..\Extern\ECL\src\base\driver\snprintf\snprintf.c">
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-    </ClCompile>
     <ClCompile Include="..\..\..\Extern\ECL\src\base\string.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -2399,6 +2394,7 @@
     <ClInclude Include="..\..\..\Src\System\Sys\cSHFile.h" />
     <ClInclude Include="..\..\..\Src\System\Sys\cSockets.h" />
     <ClInclude Include="..\..\..\Src\System\Sys\cStandardFileSystem.h" />
+    <ClInclude Include="..\..\..\Src\System\Sys\cStringBuffer.h" />
     <ClInclude Include="..\..\..\Src\System\Sys\cSysProcess.h" />
     <ClInclude Include="..\..\..\Src\System\Sys\cSystemUtils.h" />
     <ClInclude Include="..\..\..\Src\System\Text\cText.h" />
@@ -2549,7 +2545,6 @@
     <ClInclude Include="..\..\..\Extern\ECL\src\base\semaphore.h" />
     <ClInclude Include="..\..\..\Extern\ECL\src\base\sharedmem.h" />
     <ClInclude Include="..\..\..\Extern\ECL\src\base\singleton.h" />
-    <ClInclude Include="..\..\..\Extern\ECL\src\base\driver\snprintf\snprintf.h" />
     <ClInclude Include="..\..\..\Extern\ECL\src\base\string.h" />
     <ClInclude Include="..\..\..\Extern\ECL\src\base\string_ex.h" />
     <ClInclude Include="..\..\..\Extern\ECL\src\base\thread.h" />
@@ -2637,6 +2632,7 @@ del %(RootDir)%(Directory)%(Filename)SK.cc
 del %(RootDir)%(Directory)%(Filename)DynSK.cc
 </Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RootDir)%(Directory)%(Filename).hh;%(RootDir)%(Directory)%(Filename)SK.cpp;%(RootDir)%(Directory)%(Filename)DynSK.cpp;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Tools</Message>
     </CustomBuild>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

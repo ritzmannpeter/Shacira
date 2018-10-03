@@ -2,8 +2,10 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros">
-    <ORBVERSION>415</ORBVERSION>
-    <ORBTHREADVERSION>34</ORBTHREADVERSION>
+    <ORBVERSION>422</ORBVERSION>
+    <ORBTHREADVERSION>40</ORBTHREADVERSION>
+    <PYTHONHOME>C:\Python27</PYTHONHOME>
+    <PYTHONPATH>C:\Python27/lib</PYTHONPATH>
   </PropertyGroup>
   <PropertyGroup>
     <_PropertySheetDisplayName>OmniOrb_release</_PropertySheetDisplayName>
@@ -24,6 +26,14 @@
     </BuildMacro>
     <BuildMacro Include="ORBTHREADVERSION">
       <Value>$(ORBTHREADVERSION)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+    <BuildMacro Include="PYTHONHOME">
+      <Value>$(PYTHONHOME)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+    <BuildMacro Include="PYTHONPATH">
+      <Value>$(PYTHONPATH)</Value>
       <EnvironmentVariable>true</EnvironmentVariable>
     </BuildMacro>
   </ItemGroup>

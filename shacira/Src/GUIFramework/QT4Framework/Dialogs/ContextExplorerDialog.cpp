@@ -61,8 +61,8 @@ void ContextExplorerDialog::ListContexts()
       STRING_LIST_T context_names;
       _Process->ContextNames(context_names, REMOTE_CONTEXTS);
       if (context_names.size() > 0) {
-         STRING_LIST_T::const_iterator i = context_names.begin();
-         while (i != context_names.end()) {
+         STRING_LIST_T::const_iterator i = context_names.cbegin();
+         while (i != context_names.cend()) {
             STRING_T context_name = (*i);
             cProxy * proxy = _Process->Proxy(context_name.c_str());
             if (proxy != NULL) {

@@ -86,8 +86,8 @@ int cSockDriver::mainLoop()
    while (true) {
       FD_ZERO(&socks);
       FD_SET(listenSocket, &socks);
-      SESSION_MAP_T::const_iterator i = _sessionMap.begin();
-      while (i != _sessionMap.end()) {
+      SESSION_MAP_T::const_iterator i = _sessionMap.cbegin();
+      while (i != _sessionMap.cend()) {
          SOCKET socket = (*i).first;
          FD_SET(socket, &socks);
          i++;
@@ -128,7 +128,7 @@ void cSockDriver::removeSession(SOCKET socket)
 cSockSession * cSockDriver::session(SOCKET socket)
 {
    SESSION_MAP_T::const_iterator i = _sessionMap.find(socket);
-   if (i != _sessionMap.end()) {
+   if (i != _sessionMap.cend()) {
       return (*i).second;
    } else {
       return NULL;
@@ -142,8 +142,8 @@ void cSockDriver::readSockets(SOCKET socket, fd_set * socks)
 		handleConnect(socket, socks);
    } else {
       SOCKET_LIST_T socketList;
-      SESSION_MAP_T::const_iterator i = _sessionMap.begin();
-      while (i != _sessionMap.end()) {
+      SESSION_MAP_T::const_iterator i = _sessionMap.cbegin();
+      while (i != _sessionMap.cend()) {
          SOCKET s = (*i).first;
          if (FD_ISSET(s, socks)) {
             socketList.push_back(s);

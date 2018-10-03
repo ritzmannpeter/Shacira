@@ -29,9 +29,9 @@ QString ImageInformations::resourceFileReference(PortingFile * portingFile) cons
    QString resourceFileReference;
    QString path = portingFile->logicPath();
    QStringList components = path.split("/");
-   QStringList::const_iterator i = components.begin();
-   while (i != components.end()) {
-      if (i != components.begin()) {
+   QStringList::const_iterator i = components.constBegin();
+   while (i != components.constEnd()) {
+      if (i != components.constBegin()) {
          resourceFileReference += "../";
       }
       i++;
@@ -58,7 +58,7 @@ QString ImageInformations::resourceString(const QString & formId, const QString 
    QString resourceString = "?2";
    QString key = imageReferenceKey(formId, imageName);
    IMAGE_REFERENCE_MAP_T::const_iterator i = _imageReferenceMap.find(key);
-   if (i != _imageReferenceMap.end()) {
+   if (i != _imageReferenceMap.cend()) {
       resourceString = ":/";
       resourceString += application()->name();
       resourceString += "/images";
@@ -117,14 +117,14 @@ bool ImageInformations::addImageReference(const QString & formId, const QString 
    QString key = imageReferenceKey(formId, imageName);
    ImageReference * imageReference = NULL;
    IMAGE_REFERENCE_MAP_T::const_iterator i = _imageReferenceMap.find(key);
-   if (i == _imageReferenceMap.end()) {
+   if (i == _imageReferenceMap.cend()) {
       imageReference = new ImageReference(formId, imageName, imageData, imageFormat, imageLength);
       _imageReferenceMap[key] = imageReference;
    } else {
       imageReference = (*i).second;
    }
    STORED_IMAGE_MAP_T::const_iterator sit = _storedImageMap.begin();
-   while (sit != _storedImageMap.end()) {
+   while (sit != _storedImageMap.cend()) {
       StoredImage * storedImage = (*sit).second;
       if (_imageMatcher.match(imageReference->image(), storedImage->image())) {
          imageReference->setResourceName(storedImage->resourceName());
@@ -159,7 +159,7 @@ bool ImageInformations::addStoredImage(const QString & absolutePath, const QStri
    QString key = storedImageKey(relativePath, imageFile);
    StoredImage * storedImage = NULL;
    STORED_IMAGE_MAP_T::const_iterator i = _storedImageMap.find(key);
-   if (i == _storedImageMap.end()) {
+   if (i == _storedImageMap.cend()) {
       storedImage = new StoredImage(absolutePath, relativePath, imageFile);
       _storedImageMap[key] = storedImage;
    } else {
@@ -211,8 +211,8 @@ void ImageInformations::savePersistentUnmatchedImages(const QString & path)
    QFile qFile(file);
    if (qFile.open(QIODevice::WriteOnly)) {
       QTextStream stream(&qFile);
-      GENERATED_IMAGE_MAP_T::const_iterator i = _generatedImageMap.begin();
-      while (i != _generatedImageMap.end()) {
+      GENERATED_IMAGE_MAP_T::const_iterator i = _generatedImageMap.cbegin();
+      while (i != _generatedImageMap.cend()) {
          GeneratedImage * generatedImage = (*i).second;
          stream << generatedImage->globalImageName();
          stream << ";";
@@ -231,8 +231,8 @@ void ImageInformations::savePersistentUnmatchedImages(const QString & path)
 
 bool ImageInformations::match(const QString & path, const QImage & image, QString & resourceName, QImage & matchedImage) const
 {
-   GENERATED_IMAGE_MAP_T::const_iterator i = _generatedImageMap.begin();
-   while (i != _generatedImageMap.end()) {
+   GENERATED_IMAGE_MAP_T::const_iterator i = _generatedImageMap.cbegin();
+   while (i != _generatedImageMap.cend()) {
       GeneratedImage * generatedImage = (*i).second;
       if (_imageMatcher.match(image, (*i).second->image())) {
          resourceName = (*i).second->resourceName();
@@ -287,8 +287,8 @@ bool ImageInformations::isPersistentImage(const QString & imageName, int & numbe
 QString ImageInformations::newGlobalImageName(const QString & path) const
 {
    int globalImageIndex = 0;
-   GENERATED_IMAGE_MAP_T::const_iterator i = _generatedImageMap.begin();
-   while (i != _generatedImageMap.end()) {
+   GENERATED_IMAGE_MAP_T::const_iterator i = _generatedImageMap.cbegin();
+   while (i != _generatedImageMap.cend()) {
       GeneratedImage * generatedImage = (*i).second;
       const QString & globalImageName = generatedImage->globalImageName();
       globalImageIndex++;

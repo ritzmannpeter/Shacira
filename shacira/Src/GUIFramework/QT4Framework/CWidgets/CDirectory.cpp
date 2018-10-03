@@ -82,48 +82,40 @@ public:
    virtual int compare(ListViewItem *i, int col, bool ascending) const
    {
       int iRet = 0;  
-      if (_isQtCompare[col])
-         {
-             iRet = ListViewItem::compare(i, col, ascending);
-             //iRet = key(col, ascending).compare(i->key(col, ascending));          
-         }
-         else
-         { 
-             if (i != NULL)
-             {
-                 FileItem* pFileItem = reinterpret_cast<FileItem*>(i);
-                 QString qsTxt1 = text(col);
-                 QDate qD1(m_iYear, m_iMonth, m_iDay);
-                 QTime qT1(m_iHour, m_iMinute);
+      if (_isQtCompare[col]) {
+         iRet = ListViewItem::compare(i, col, ascending);
+         //iRet = key(col, ascending).compare(i->key(col, ascending));          
+      }
+      else { 
+          if (i != NULL) {
+             FileItem* pFileItem = reinterpret_cast<FileItem*>(i);
+             QString qsTxt1 = text(col);
+             QDate qD1(m_iYear, m_iMonth, m_iDay);
+             QTime qT1(m_iHour, m_iMinute);
 
-                 QString qsTxt2 = i->text(col);          
-                 QDate qD2(pFileItem->m_iYear, pFileItem->m_iMonth, pFileItem->m_iDay);
-                 QTime qT2(pFileItem->m_iHour, pFileItem->m_iMinute);
+             QString qsTxt2 = i->text(col);          
+             QDate qD2(pFileItem->m_iYear, pFileItem->m_iMonth, pFileItem->m_iDay);
+             QTime qT2(pFileItem->m_iHour, pFileItem->m_iMinute);
     
-                 int iDays = qD1.daysTo(qD2);
-                 int iSecs = qT1.secsTo(qT2);
-                 if (iDays > 0) 
-                 {
-                     iRet = -1; 
-                 }
-                 else if (iDays < 0)
-                 {
-                     iRet = +1;
-                 }
-                 else if (iSecs > 0)
-                 {
-                      iRet = -1;  
-                 }
-                 else if (iSecs < 0)
-                 {
-                     iRet = +1;
-                 }
-                 else if (iSecs == 0 && iDays == 0)
-                 {
-                     iRet = 0;
-                 }
+             int iDays = qD1.daysTo(qD2);
+             int iSecs = qT1.secsTo(qT2);
+             if (iDays > 0)  {
+                 iRet = -1; 
              }
-         }
+             else if (iDays < 0) {
+                 iRet = +1;
+             }
+             else if (iSecs > 0) {
+                  iRet = -1;  
+             }
+             else if (iSecs < 0) {
+                 iRet = +1;
+             }
+             else if (iSecs == 0 && iDays == 0) {
+                 iRet = 0;
+             }
+          }
+      }
       return iRet;
    };
 protected:

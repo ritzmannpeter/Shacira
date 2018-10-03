@@ -26,6 +26,7 @@
 /// PR 07.02.06 - added dataset marking (for foreground / background)
 /// PR 30.09.14 - introduced total removal of controls from control lists
 ///               to avoid dangling link problem see cViewInterfacs.cpp
+/// PR 23.03.18   destructor must not throw any exception
 
 //## end module%3C7E422F03C0.includes
 
@@ -130,7 +131,6 @@ cVarRef::~cVarRef()
   //## begin cVarRef::~cVarRef%.body preserve=yes
    if (_Cached) {
       ErrorPrintf("tried to delete cached variable reference %s\n", _Spec.c_str());
-      throw cError(VARREF_DELETE_CACHED, 0, _Spec.c_str());
    } else {
       if (_ControlList != NULL) {
          delete _ControlList;
@@ -670,8 +670,8 @@ void cVarRef::RemoveControl (cDataControl *control)
             }
          } while (i.Next());
       }
-      std::list<cDataControl*>::const_iterator c = remove_list.begin();
-      while (c != remove_list.end()) {
+      std::list<cDataControl*>::const_iterator c = remove_list.cbegin();
+      while (c != remove_list.cend()) {
          cDataControl * control3 = (*c);
          _ControlList->Remove((void*)control3);
          c++;

@@ -172,8 +172,8 @@ void cBlockCache::Done ()
       Optimize(_BufferedBlocks);
       MarkAsBuffered(_BufferedBlocks);
    }
-   BLOCK_BUFFER_MAP_T::const_iterator i = _BlockBuffers.begin();
-   while (i != _BlockBuffers.end()) {
+   BLOCK_BUFFER_MAP_T::const_iterator i = _BlockBuffers.cbegin();
+   while (i != _BlockBuffers.cend()) {
       cBlockBuffer * buffer = (*i).second;
       BLOCK_MAP_T & blocks = buffer->BlockMap();
       Optimize(blocks);
@@ -238,8 +238,8 @@ void cBlockCache::Write (CONST_STRING_T name, CONST_STRING_T value)
 void cBlockCache::Save (ULONG_T elapsed)
 {
    cObjectLock __lock__(&_CacheMutex);
-   BLOCK_BUFFER_MAP_T::const_iterator i = _BlockBuffers.begin();
-   while (i != _BlockBuffers.end()) {
+   BLOCK_BUFFER_MAP_T::const_iterator i = _BlockBuffers.cbegin();
+   while (i != _BlockBuffers.cend()) {
       cBlockBuffer * buffer = (*i).second;
       if (buffer->_RefreshType == SH_REFRESH_INTERVAL &&
           buffer->Expired(elapsed)) {
@@ -259,8 +259,8 @@ void cBlockCache::Save (UCHAR_T refresh_type, ULONG_T refresh_value)
 
 void cBlockCache::Save (BLOCK_MAP_T &block_map, BOOL_T change_events)
 {
-   BLOCK_MAP_T::const_iterator i = block_map.begin();
-   while (i != block_map.end()) {
+   BLOCK_MAP_T::const_iterator i = block_map.cbegin();
+   while (i != block_map.cend()) {
       TRANSFER_CONTROL_BLOCK * block = (*i).second;
       ULONG_T size = block->size;
       ULONG_T elements = block->elements;
@@ -398,8 +398,8 @@ void cBlockCache::Load (BLOCK_MAP_T &block_map)
 
    int size = block_map.size();
    int block_no = 0;
-   BLOCK_MAP_T::const_iterator i = block_map.begin();
-   while (i != block_map.end()) {
+   BLOCK_MAP_T::const_iterator i = block_map.cbegin();
+   while (i != block_map.cend()) {
       block_no++;
       _Device->SetProgress(DEVICE_DOWNLOAD_PROGRESS, (100 * block_no) / size);
       TRANSFER_CONTROL_BLOCK * block = (*i).second;
@@ -508,8 +508,8 @@ void cBlockCache::Optimize (BLOCK_MAP_T &blocks)
 
 BOOL_T cBlockCache::Optimize (BLOCK_MAP_T &blocks, TRANSFER_CONTROL_BLOCK *block)
 {
-   BLOCK_MAP_T::const_iterator i = blocks.begin();
-   while (i != blocks.end()) {
+   BLOCK_MAP_T::const_iterator i = blocks.cbegin();
+   while (i != blocks.cend()) {
       TRANSFER_CONTROL_BLOCK * old_block = (*i).second;
       if (block != old_block) {
          ULONG_T address1 = block->address;
@@ -561,8 +561,8 @@ BLOCK_MAP_T cBlockCache::OptimizedBlocks(const BLOCK_MAP_T & blocks)
    int buf_size = DEFAULT_ELEMENT_COUNT;
    char * buffer = (char*)calloc(1, buf_size);
    BLOCK_MAP_T optimized_blocks;
-   BLOCK_MAP_T::const_iterator i = blocks.begin();
-   while (i != blocks.end()) {
+   BLOCK_MAP_T::const_iterator i = blocks.cbegin();
+   while (i != blocks.cend()) {
       TRANSFER_CONTROL_BLOCK * block = (*i).second;
       if (block->map_item == NULL || block->map_item->enabled) {
          int address = block->address;
@@ -574,11 +574,11 @@ BLOCK_MAP_T cBlockCache::OptimizedBlocks(const BLOCK_MAP_T & blocks)
                buffer[address+i] = 1;
             }
          }
-         if (block->elements == 2) {
-            int dummy = 0;
-         } else if (block->elements > 2) {
-            int dummy = 0;
-         }
+         //if (block->elements == 2) {
+         //   int dummy = 0;
+         //} else if (block->elements > 2) {
+         //   int dummy = 0;
+         //}
       } else {
          int dummy = 0;
       }
@@ -616,8 +616,8 @@ BLOCK_MAP_T cBlockCache::OptimizedBlocks(const BLOCK_MAP_T & blocks)
 BLOCK_MAP_T cBlockCache::BlockMapCopy(const BLOCK_MAP_T & source)
 {
    BLOCK_MAP_T copy;
-   BLOCK_MAP_T::const_iterator i = source.begin();
-   while (i != source.end()) {
+   BLOCK_MAP_T::const_iterator i = source.cbegin();
+   while (i != source.cend()) {
       TRANSFER_CONTROL_BLOCK * block = (*i).second;
       TRANSFER_CONTROL_BLOCK * block_copy = AllocTransferBlock((cDevice*)block->device, block->memory, block->address, block->elements);
       block_copy->map_item = block->map_item; 
@@ -629,8 +629,8 @@ BLOCK_MAP_T cBlockCache::BlockMapCopy(const BLOCK_MAP_T & source)
 
 void cBlockCache::ClearBlockMap(BLOCK_MAP_T & block_map)
 {
-   BLOCK_MAP_T::const_iterator i = block_map.begin();
-   while (i != block_map.end()) {
+   BLOCK_MAP_T::const_iterator i = block_map.cbegin();
+   while (i != block_map.cend()) {
       TRANSFER_CONTROL_BLOCK * block = (*i).second;
       cSystemUtils::Free(block);
       i++;
@@ -640,11 +640,11 @@ void cBlockCache::ClearBlockMap(BLOCK_MAP_T & block_map)
 
 BOOL_T cBlockCache::BlockMapsAreEqual(const BLOCK_MAP_T & left, const BLOCK_MAP_T & right) const
 {
-   BLOCK_MAP_T::const_iterator li = left.begin();
-   while (li != left.end()) {
+   BLOCK_MAP_T::const_iterator li = left.cbegin();
+   while (li != left.cend()) {
       TRANSFER_CONTROL_BLOCK * left_block = (*li).second;
       BLOCK_MAP_T::const_iterator ri = right.find(left_block->address);
-      if (ri == right.end()) {
+      if (ri == right.cend()) {
          return false;
       }
       TRANSFER_CONTROL_BLOCK * right_block = (*ri).second;
@@ -679,8 +679,8 @@ BOOL_T cBlockCache::BlockMapsAreEqual(const BLOCK_MAP_T & left, const BLOCK_MAP_
 
 void cBlockCache::MarkAsCached (BLOCK_MAP_T &blocks)
 {
-   BLOCK_MAP_T::const_iterator i = blocks.begin();
-   while (i != blocks.end()) {
+   BLOCK_MAP_T::const_iterator i = blocks.cbegin();
+   while (i != blocks.cend()) {
       TRANSFER_CONTROL_BLOCK * block = (*i).second;
       ULONG_T elements = block->elements;
       block->size = elements * _ElementSize;
@@ -697,8 +697,8 @@ void cBlockCache::MarkAsCached (BLOCK_MAP_T &blocks)
 
 void cBlockCache::MarkAsBuffered (BLOCK_MAP_T &blocks)
 {
-   BLOCK_MAP_T::const_iterator i = blocks.begin();
-   while (i != blocks.end()) {
+   BLOCK_MAP_T::const_iterator i = blocks.cbegin();
+   while (i != blocks.cend()) {
       TRANSFER_CONTROL_BLOCK * block = (*i).second;
       ULONG_T elements = block->elements;
       block->size = elements * _ElementSize;
@@ -723,7 +723,7 @@ cBlockBuffer * cBlockCache::GetBlockBuffer (UCHAR_T refresh_type, ULONG_T refres
 {
    ULONG_T block_id = BLOCK_ID(refresh_type,refresh_value);
    BLOCK_BUFFER_MAP_T::const_iterator i = _BlockBuffers.find(block_id);
-   if (i == _BlockBuffers.end()) {
+   if (i == _BlockBuffers.cend()) {
       cBlockBuffer * buffer = new cBlockBuffer(refresh_type, refresh_value);
       _BlockBuffers[block_id] = buffer;
       return buffer;

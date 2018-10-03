@@ -141,8 +141,8 @@ void cDigIODevice::Start ()
    _CacheControl = new cCacheControl(this);
    _CacheControl->SetCache(_InputCache);
    _CacheControl->SetCache(_OutputCache);
-   MEMORY_INFO_MAP_T::const_iterator i = _InfoMap.begin();
-   while (i != _InfoMap.end()) {
+   MEMORY_INFO_MAP_T::const_iterator i = _InfoMap.cbegin();
+   while (i != _InfoMap.cend()) {
       MEMORY_INFO * info = (*i).second;
       cCache * cache = info->cache;
       if (cache != NULL) {

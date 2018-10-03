@@ -117,8 +117,8 @@ private:
       int expPos = -1;
       int expLength = 0;
       int textLength = text.length();
-      QStringList::const_iterator i = parseList.begin();
-      while (i != parseList.end()) {
+      QStringList::const_iterator i = parseList.constBegin();
+      while (i != parseList.constEnd()) {
          QString parseText = (*i);
          if (parseText[0] == '%') {
             char c1 = (*(i+1))[0].toLatin1();
@@ -172,8 +172,8 @@ private:
       if (success) {
          QString substText = substitution;
          int paramPos = 0;
-         QStringList::const_iterator i = resultList.begin();
-         while (i != resultList.end()) {
+         QStringList::const_iterator i = resultList.constBegin();
+         while (i != resultList.constEnd()) {
             substText = substText.replace("%" + QString::number(paramPos), (*i));
             i++;
             paramPos++;

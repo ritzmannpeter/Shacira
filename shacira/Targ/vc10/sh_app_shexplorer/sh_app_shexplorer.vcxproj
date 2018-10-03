@@ -195,7 +195,6 @@
 </Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RootDir)%(Directory)generated\%(Filename).h;%(RootDir)%(Directory)generated\%(Filename).cpp;%(RootDir)%(Directory)generated\moc_%(Filename).cpp;%(Outputs)</Outputs>
     </CustomBuild>
-    <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\shacira_lib\shacira_lib.vcxproj">

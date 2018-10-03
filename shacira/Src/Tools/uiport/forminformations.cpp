@@ -23,8 +23,8 @@ void FormInformations::printHeaderInformations(const QString & destinationPath)
 
 void FormInformations::printSingleHeaders(const QString & destinationPath)
 {
-   FORM_INFORMATION_MAP_T::const_iterator i = _formInformationMap.begin();
-   while (i != _formInformationMap.end()) {
+   FORM_INFORMATION_MAP_T::const_iterator i = _formInformationMap.cbegin();
+   while (i != _formInformationMap.cend()) {
       FormInformation formInfo = (*i).second;
       QString outputFile = formInfo._path.replace("ui", "h");
       QString code;

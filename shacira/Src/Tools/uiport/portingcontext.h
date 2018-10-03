@@ -12,8 +12,8 @@ public:
    };
    virtual ~PortingContext()
    {
-      APPLICATION_MAP_T::const_iterator i = _applicationMap.begin();
-      while (i != _applicationMap.end()) {
+      APPLICATION_MAP_T::const_iterator i = _applicationMap.cbegin();
+      while (i != _applicationMap.cend()) {
          PortingApplication * application = (*i).second;
          delete application;
          i++;
@@ -26,7 +26,7 @@ public:
    void addApplication(const QString name)
    {
       APPLICATION_MAP_T::const_iterator i = _applicationMap.find(name);
-      if (i == _applicationMap.end()) {
+      if (i == _applicationMap.cend()) {
          PortingApplication * application = new PortingApplication(this, name);
          _applicationMap[name] = application;
       }
@@ -35,7 +35,7 @@ public:
    {
       PortingApplication * application = NULL;
       APPLICATION_MAP_T::const_iterator i = _applicationMap.find(name);
-      if (i != _applicationMap.end()) {
+      if (i != _applicationMap.cend()) {
          application = (*i).second;
       }
       return application;

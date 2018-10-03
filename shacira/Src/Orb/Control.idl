@@ -39,6 +39,7 @@ module Control {
       string GetMaximumById(in long client_id, in long var_id, in long i1, in long i2, in long i3, in long i4) raises (AppException);
 
       string ReadFile(in long client_id, in string file_name, in string sub_files) raises (AppException);
+      string ExportVariables(in long client_id, in string sub_files, in string separator) raises (AppException);      
       void WriteFile(in long client_id, in string file_name, in string sub_files, in string buf) raises (AppException);
 
       string GetParam(in long client_id, in string name) raises (AppException);
@@ -54,13 +55,14 @@ module Control {
       void SetJobX(in long client_id, in string job) raises (AppException);
       string GetJobSpec(in long client_id, in string job_name) raises (AppException);
 
-	  long Login(in ClientInfo client_info, in string password) raises (AppException);
-	  void Logout(in long client_id) raises (AppException);
-	  void SetUserInfo(in long client_id, in UserInfo user_info) raises (AppException);
+      long Login(in ClientInfo client_info, in string password) raises (AppException);
+      long LoginIfType(in ClientInfo client_info, in string password, in unsigned long if_type) raises (AppException);	  
+      void Logout(in long client_id) raises (AppException);
+      void SetUserInfo(in long client_id, in UserInfo user_info) raises (AppException);
 
-	  string GetEvent(in long client_id) raises (AppException);
+      string GetEvent(in long client_id) raises (AppException);
       Memory GetMemory(in long client_id, in unsigned long address, in unsigned long size) raises (AppException);
-	  void SendObject(in long client_id, in string serialized_object) raises (AppException);
+      void SendObject(in long client_id, in string serialized_object) raises (AppException);
       string Request(in long client_id, in string request) raises (AppException);
       string GetRing(in long client_id, in string var_name, in long i1, in long i2, in long i3, in long i4, in long flags) raises (AppException);
       Memory GetObject(in long client_id, in string var_name, in long i1, in long i2, in long i3, in long i4, in long flags) raises (AppException);

@@ -108,7 +108,6 @@ public:
    METHODS_2i   
    friend class CWidgetBase;
    virtual void PropertyChanged() {}
-   // end of further widget specific getter and setter methods
 
    void setPageAreaSize(const QSize &value);
    QSize getPageAreaSize() const;
@@ -208,6 +207,8 @@ public:
    void PrintActPage(ULONG_T flags = 0);
    QImage GetImage(const QString & page_name = NULL, ULONG_T flags = 0);
    CPage * GetPage(const QString & page_name);
+   BOOL_T GetWebServerRequestShowPage() { return _WebServerRequestShowPage; };
+   void SetWebServerRequestShowPage(BOOL_T request) { _WebServerRequestShowPage = request; };
 
    // Dialog Handling
    void RegisterDialog(QDialog * dialog);
@@ -328,6 +329,8 @@ private:
    WIZARD_T * _ActWizard;
    DIALOG_T * _ActDialog;
    QSize _PageAreaSize;
+   BOOL_T _WebServerRequestShowPage;
+
 protected:
    QString _AppName;
    QFont _AppDefaultFont;

@@ -36,7 +36,7 @@
     <ClCompile Include="..\..\..\Src\Tools\uiport\uiport.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{1B1209CA-162B-4FE9-899B-B53940916378}</ProjectGuid>
+    <ProjectGuid>{1B1409CA-162B-4FE9-899B-B53940916378}</ProjectGuid>
     <Keyword>Qt4VSv1.0</Keyword>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

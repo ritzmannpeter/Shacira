@@ -78,7 +78,7 @@ _ASSERT_COND(config_obj != NULL)
    STRING_T channel_name = config_obj->get_Name();
    if (is_bus) {
       std::map<STRING_T,cSerialChannel*>::const_iterator i = _Channels.find(channel_name.c_str());
-      if (i != _Channels.end()) {
+      if (i != _Channels.cend()) {
          channel = (*i).second;
          return channel;
       }

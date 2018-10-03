@@ -27,7 +27,7 @@ ListView::ListView(QWidget * parent, const char * name, Qt::WindowFlags flags)
      _resizeMode(AllColumns),
      _appearanceStyle(RESIZE_COLUMNS_TO_CONTENTS),
      _shown(false),
-     _autoAdjustColumnSizeValue(true)
+     _autoAdjustColumnSizeValue(true), _optimizeAppearanceAfterEventShowValue(true)
 {
    if (name != NULL) {
       setObjectName(name);
@@ -38,13 +38,10 @@ ListView::ListView(QWidget * parent, const char * name, Qt::WindowFlags flags)
    this->header()->setDefaultAlignment(Qt::AlignLeft|Qt::AlignVCenter);
    connect(this, SIGNAL(currentItemChanged(QTreeWidgetItem*, QTreeWidgetItem*)), SLOT(slotCurrentItemChanged(QTreeWidgetItem*, QTreeWidgetItem*)));
    connect(this, SIGNAL(itemActivated(QTreeWidgetItem*, int)), SLOT(slotItemActivated(QTreeWidgetItem*, int)));
-   connect(this, SIGNAL(itemChanged(QTreeWidgetItem*, int)), SLOT(slotItemChanged(QTreeWidgetItem*, int)));
    connect(this, SIGNAL(itemClicked(QTreeWidgetItem*, int)), SLOT(slotItemClicked(QTreeWidgetItem*, int)));
    connect(this, SIGNAL(itemCollapsed(QTreeWidgetItem*)), SLOT(slotItemCollapsed(QTreeWidgetItem*)));
    connect(this, SIGNAL(itemExpanded(QTreeWidgetItem*)), SLOT(slotItemExpanded(QTreeWidgetItem*)));
    connect(this, SIGNAL(itemDoubleClicked(QTreeWidgetItem*, int)), SLOT(slotItemDoubleClicked(QTreeWidgetItem*, int)));
-   connect(this, SIGNAL(itemEntered(QTreeWidgetItem*, int)), SLOT(slotItemEntered(QTreeWidgetItem*, int)));
-   connect(this, SIGNAL(itemPressed(QTreeWidgetItem*, int)), SLOT(slotItemPressed(QTreeWidgetItem*, int)));
    connect(this, SIGNAL(itemSelectionChanged(void)), SLOT(slotItemSelectionChanged(void)));
    connect(this->header(), SIGNAL(sectionCountChanged(int,int)), SLOT(slotSectionCountChanged(int,int)));
 #ifdef USE_DELEGATES
@@ -440,7 +437,7 @@ int ListView::columnAlignment(int column) const
 {
    // returns the alignment set for aspecific column
    QMap<int,Qt::Alignment>::const_iterator i = _columnAlignment.find(column);
-   if (i == _columnAlignment.end()) {
+   if (i == _columnAlignment.constEnd()) {
       return Qt::AlignLeft | Qt::AlignVCenter;
    } else {
       return i.value();
@@ -523,7 +520,7 @@ void ListView::optimizeAppearance(unsigned int style)
                if (style & RESIZE_COLUMNS_TO_CONTENTS) {
                   adjustColumn(column);
                   QMap<int,int>::const_iterator i = _columnWidth.find(column);
-                  if (i != _columnWidth.end()) {
+                  if (i != _columnWidth.constEnd()) {
                      QTreeWidget::setColumnWidth(column, i.value());
                   }
                }
@@ -531,7 +528,7 @@ void ListView::optimizeAppearance(unsigned int style)
          } else {
             adjustColumn(column);
             QMap<int,int>::const_iterator i = _columnWidth.find(column);
-            if (i != _columnWidth.end()) {
+            if (i != _columnWidth.constEnd()) {
                QTreeWidget::setColumnWidth(column, i.value());
             }
          }
@@ -560,7 +557,9 @@ bool ListView::event(QEvent * event)
 {
    switch (event->type()) {
    case QEvent::Show:
-      optimizeAppearance(_appearanceStyle);
+      if (_optimizeAppearanceAfterEventShowValue) {
+         optimizeAppearance(_appearanceStyle);
+      }
       _shown = true;
       break;
    case QEvent::Hide:
@@ -573,8 +572,8 @@ bool ListView::event(QEvent * event)
 
 void ListView::mousePressEvent(QMouseEvent * mouseEvent)
 {
-   ListViewItem * item = reinterpret_cast<ListViewItem*>(currentItem());
    if (mouseEvent->button() == Qt::RightButton) {
+      ListViewItem * item = reinterpret_cast<ListViewItem*>(currentItem());
       emit(contextMenuRequested(item, QCursor::pos()));
    }
    contentsMousePressEvent(mouseEvent);
@@ -701,10 +700,6 @@ void ListView::slotItemActivated(QTreeWidgetItem * item, int column)
    emit(selectionChanged(reinterpret_cast<ListViewItem*>(item)));
 }
 
-void ListView::slotItemChanged(QTreeWidgetItem * item, int column)
-{
-}
-
 void ListView::slotItemClicked(QTreeWidgetItem * item, int column)
 {
    emit(clicked(reinterpret_cast<ListViewItem*>(item)));
@@ -722,18 +717,10 @@ void ListView::slotItemCollapsed(QTreeWidgetItem * item)
    emit(collapsed(reinterpret_cast<ListViewItem*>(item)));
 }
 
-void ListView::slotItemEntered(QTreeWidgetItem * item, int column)
-{
-}
-
 void ListView::slotItemExpanded(QTreeWidgetItem * item)
 {
    optimizeAppearance(_appearanceStyle);
    emit(expanded(reinterpret_cast<ListViewItem*>(item)));
-}
-
-void ListView::slotItemPressed(QTreeWidgetItem * item, int column)
-{
 }
 
 void ListView::slotItemSelectionChanged()
@@ -762,7 +749,7 @@ ListView::ColumnWidthMode ListView::columnWidthMode(int column) const
 {
    // returns the set column width mode (Qt3) of a column
    QMap<int,ColumnWidthMode>::const_iterator i = _columnWidthMode.find(column);
-   if (i == _columnWidthMode.end()) {
+   if (i == _columnWidthMode.constEnd()) {
       return Manual;
    } else {
       return i.value();

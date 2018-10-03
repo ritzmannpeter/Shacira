@@ -35,6 +35,7 @@ public:
    char * GetMaximumById(long client_id, long var_id, long i1, long i2, long i3, long i4);
 
    char * ReadFile(long client_id, const char* file_name, const char * sub_files);
+   char * ExportVariables(long client_id, const char * sub_files, const char * separator);
    void WriteFile(long client_id, const char* file_name, const char * sub_files, const char* buf);
 
    char * GetParam(long client_id, const char * param_name);
@@ -50,6 +51,7 @@ public:
    char * GetJobSpec(long client_id, const char * job_name);
 
    long Login(client_info_t client_info, const char * password);
+   long LoginIfType(client_info_t client_info, const char * password, ULONG_T if_type);   
    void Logout(long client_id);
    void SetUserInfo(long client_id, user_info_t user_info);
 

@@ -168,8 +168,8 @@ cContext::cContext (cSHProcess *process)
 cContext::~cContext()
 {
   //## begin cContext::~cContext%.body preserve=yes
-   std::map<STRING_T, cVarDef*>::const_iterator i = _VarDefs.begin();
-   while (i != _VarDefs.end()) {
+   std::map<STRING_T, cVarDef*>::const_iterator i = _VarDefs.cbegin();
+   while (i != _VarDefs.cend()) {
       cVarDef * var_def = (*i).second;
       delete var_def;
       i++;
@@ -270,7 +270,7 @@ LONG_T cContext::SymbolValue (CONST_STRING_T symbol)
 {
   //## begin cContext::SymbolValue%1041261887.body preserve=yes
 	LONG_MAP_T::const_iterator i = _Symbols.find(symbol);
-	if (i == _Symbols.end()) {
+	if (i == _Symbols.cend()) {
 		return UNDEFINED_SYMBOL_VALUE;
 	} else {
 		return (*i).second;
@@ -333,8 +333,8 @@ void cContext::RemoveVarDef (CONST_STRING_T var_name)
 void cContext::VariableNames (STRING_LIST_T &var_names)
 {
   //## begin cContext::VariableNames%1042459998.body preserve=yes
-   std::map<STRING_T, cVarDef*>::const_iterator i = _VarDefs.begin();
-   while (i != _VarDefs.end()) {
+   std::map<STRING_T, cVarDef*>::const_iterator i = _VarDefs.cbegin();
+   while (i != _VarDefs.cend()) {
       cVarDef * var_def = (*i).second;
       var_names.push_back(var_def->_VarName.c_str());
       i++;
@@ -346,9 +346,9 @@ cVarDef * cContext::VarDef (CONST_STRING_T var_name)
 {
   //## begin cContext::VarDef%1040992360.body preserve=yes
    std::map<STRING_T, cVarDef*>::const_iterator i = _VarDefs.find(var_name);
-   if (i == _VarDefs.end()) {
-	   std::map<STRING_T, cContext*>::const_iterator j = _SearchContexts.begin();
-		while (j != _SearchContexts.end()) {
+   if (i == _VarDefs.cend()) {
+	   std::map<STRING_T, cContext*>::const_iterator j = _SearchContexts.cbegin();
+		while (j != _SearchContexts.cend()) {
 			cVarDef * var_def = (*j).second->VarDef(var_name);
          if (var_def != NULL) {
             return var_def;
@@ -407,8 +407,8 @@ cVariable * cContext::Variable (LONG_T var_id)
 void cContext::FunctionNames (STRING_LIST_T &func_names)
 {
   //## begin cContext::FunctionNames%1042459997.body preserve=yes
-   std::map<STRING_T, cFuncDecl*>::const_iterator i = _FuncDecls.begin();
-   while (i != _FuncDecls.end()) {
+   std::map<STRING_T, cFuncDecl*>::const_iterator i = _FuncDecls.cbegin();
+   while (i != _FuncDecls.cend()) {
       cFuncDecl * func_decl = (*i).second;
       func_names.push_back(func_decl->_FuncName.c_str());
       i++;
@@ -420,9 +420,9 @@ cFuncDecl * cContext::FuncDecl (CONST_STRING_T func_name)
 {
   //## begin cContext::FuncDecl%1040992359.body preserve=yes
    std::map<STRING_T, cFuncDecl*>::const_iterator i = _FuncDecls.find(func_name);
-   if (i == _FuncDecls.end()) {
-	   std::map<STRING_T, cContext*>::const_iterator j = _SearchContexts.begin();
-		while (j != _SearchContexts.end()) {
+   if (i == _FuncDecls.cend()) {
+	   std::map<STRING_T, cContext*>::const_iterator j = _SearchContexts.cbegin();
+		while (j != _SearchContexts.cend()) {
 			cFuncDecl * func_decl = (*j).second->FuncDecl(func_name);
 			if (func_decl != NULL) return func_decl;
 			j++;
@@ -515,8 +515,8 @@ void cContext::AddControlStartCondition (CONST_STRING_T condition_name, cControl
 void cContext::StateNames (STRING_LIST_T &state_names)
 {
   //## begin cContext::StateNames%1060691311.body preserve=yes
-   std::map<STRING_T, cControlState*>::const_iterator i = _States.begin();
-   while (i != _States.end()) {
+   std::map<STRING_T, cControlState*>::const_iterator i = _States.cbegin();
+   while (i != _States.cend()) {
       cControlState * state = (*i).second;
       state_names.push_back(state->_StateName.c_str());
       i++;
@@ -528,7 +528,7 @@ cControlState * cContext::State (CONST_STRING_T state_name)
 {
   //## begin cContext::State%1060691312.body preserve=yes
    std::map<STRING_T, cControlState*>::const_iterator i = _States.find(state_name);
-   if (i == _States.end()) {
+   if (i == _States.cend()) {
 		return NULL;
    } else {
       return (*i).second;
@@ -539,8 +539,8 @@ cControlState * cContext::State (CONST_STRING_T state_name)
 void cContext::ControlProgramNames (STRING_LIST_T &program_names)
 {
   //## begin cContext::ControlProgramNames%1060691313.body preserve=yes
-   std::map<STRING_T, cControlProgram*>::const_iterator i = _Programs.begin();
-   while (i != _Programs.end()) {
+   std::map<STRING_T, cControlProgram*>::const_iterator i = _Programs.cbegin();
+   while (i != _Programs.cend()) {
       cControlProgram * program = (*i).second;
       program_names.push_back(program->Name().c_str());
       i++;
@@ -552,7 +552,7 @@ cControlProgram * cContext::ControlProgram (CONST_STRING_T prog_name)
 {
   //## begin cContext::ControlProgram%1060691314.body preserve=yes
    std::map<STRING_T, cControlProgram*>::const_iterator i = _Programs.find(prog_name);
-   if (i == _Programs.end()) {
+   if (i == _Programs.cend()) {
 		return NULL;
    } else {
       return (*i).second;
@@ -563,8 +563,8 @@ cControlProgram * cContext::ControlProgram (CONST_STRING_T prog_name)
 void cContext::ProcedureNames (STRING_LIST_T &proc_names)
 {
   //## begin cContext::ProcedureNames%1060691315.body preserve=yes
-   std::map<STRING_T, cControlProcedure*>::const_iterator i = _Procedures.begin();
-   while (i != _Procedures.end()) {
+   std::map<STRING_T, cControlProcedure*>::const_iterator i = _Procedures.cbegin();
+   while (i != _Procedures.cend()) {
       cControlProcedure * proc = (*i).second;
       proc_names.push_back(proc->Name().c_str());
       i++;
@@ -576,7 +576,7 @@ cControlProcedure * cContext::Procedure (CONST_STRING_T proc_name)
 {
   //## begin cContext::Procedure%1060691316.body preserve=yes
    std::map<STRING_T, cControlProcedure*>::const_iterator i = _Procedures.find(proc_name);
-   if (i == _Procedures.end()) {
+   if (i == _Procedures.cend()) {
 		return NULL;
    } else {
       return (*i).second;
@@ -587,8 +587,8 @@ cControlProcedure * cContext::Procedure (CONST_STRING_T proc_name)
 void cContext::StartConditionNames (STRING_LIST_T &cond_names)
 {
   //## begin cContext::StartConditionNames%1060691317.body preserve=yes
-   std::map<STRING_T, cControlStartCondition*>::const_iterator i = _StartConditions.begin();
-   while (i != _StartConditions.end()) {
+   std::map<STRING_T, cControlStartCondition*>::const_iterator i = _StartConditions.cbegin();
+   while (i != _StartConditions.cend()) {
       cControlStartCondition * start_cond = (*i).second;
       cond_names.push_back(start_cond->_ConditionName.c_str());
       i++;
@@ -600,7 +600,7 @@ cControlStartCondition * cContext::StartCondition (CONST_STRING_T cond_name)
 {
   //## begin cContext::StartCondition%1060691318.body preserve=yes
    std::map<STRING_T, cControlStartCondition*>::const_iterator i = _StartConditions.find(cond_name);
-   if (i == _StartConditions.end()) {
+   if (i == _StartConditions.cend()) {
 		return NULL;
    } else {
       return (*i).second;
@@ -955,6 +955,10 @@ void cContext::ReadFile(CONST_STRING_T file_name, CONST_STRING_T sub_files, cStr
 {
 }
 
+void cContext::ExportVariables(STRING_T &buf, CONST_STRING_T sub_file, CONST_STRING_T separator)
+{
+}
+
 void cContext::WriteFile(CONST_STRING_T file_name, CONST_STRING_T sub_files, CONST_STRING_T buf)
 {
   //## begin cContext::WriteFile%1091699604.body preserve=yes
@@ -1095,8 +1099,8 @@ BOOL_T cContext::RegisterVarRefs(cDataChangeAdapter *adapter)
 cUnitDef * cContext::UnitDef (CONST_STRING_T unit_name)
 {
   //## begin cContext::UnitDef%1109752576.body preserve=yes
-   std::map<STRING_T, cUnitDef*>::const_iterator i = _UnitDefs.find(unit_name);
-   if (i == _UnitDefs.end()) {
+   UNITDEF_MAP_T::const_iterator i = _UnitDefs.find(unit_name);
+   if (i == _UnitDefs.cend()) {
 		return NULL;
    } else {
       return (*i).second;
@@ -1118,8 +1122,8 @@ void cContext::SetUnit (CONST_STRING_T unit_name, UCHAR_T selection)
    if (unit_def != NULL) {
       unit_def->SetState(selection);
    } else {
-	   std::map<STRING_T, cContext*>::const_iterator j = _SearchContexts.begin();
-		while (j != _SearchContexts.end()) {
+	   std::map<STRING_T, cContext*>::const_iterator j = _SearchContexts.cbegin();
+		while (j != _SearchContexts.cend()) {
          cContext * context = (*j).second;
          if (context != NULL) {
             unit_def = context->UnitDef(unit_name);
@@ -1131,6 +1135,31 @@ void cContext::SetUnit (CONST_STRING_T unit_name, UCHAR_T selection)
 		}
    }
   //## end cContext::SetUnit%1109785975.body
+}
+
+ULONG_T cContext::UnitDefs (UNITDEF_MAP_T &unitDefs, CONST_STRING_T selection)
+{
+  //## begin cContext::UnitDefs%1081425828.body preserve=yes
+   UNITDEF_MAP_T::const_iterator i = _UnitDefs.cbegin();
+   while (i != _UnitDefs.cend()) {
+      BOOL_T add_unitdef_to_map = false;
+      cUnitDef * unitDef = (*i).second;
+      STRING_T unitName = unitDef->_UnitName;
+
+      if (strcmp(selection, "*") == 0) {
+         add_unitdef_to_map = true;
+      }
+      else if (strncmp(selection, unitName.c_str(), strlen(selection)) == 0) {
+         add_unitdef_to_map = true;
+      }
+
+      if (add_unitdef_to_map)
+         unitDefs[unitName] = unitDef;
+      
+      i++;
+   }
+   return unitDefs.size();
+  //## end cContext::UnitDefs%1081425828.body
 }
 
 cSHProcess * cContext::Process ()
@@ -1207,7 +1236,7 @@ cPersistenceChannel * cContext::PersistenceChannel ()
   //## end cContext::PersistenceChannel%1122375233.body
 }
 
-void cContext::Send (cTransientObject *object)
+void cContext::Send (cTransientObject *object, ULONG_T flags)
 {
   //## begin cContext::Send%1122638220.body preserve=yes
    throw cError(METHOD_NOT_OVERLOADED, 0, __FILE__, cConvUtils::StringValue(__LINE__).c_str());
@@ -1301,7 +1330,7 @@ cInterfaceFilter * cContext::Filter (ULONG_T if_type)
 {
   //## begin cContext::Filter%1141664738.body preserve=yes
    FILTER_MAP_T::const_iterator i = _Filters.find(if_type);
-   if (i != _Filters.end()) {
+   if (i != _Filters.cend()) {
       return (*i).second;
    } else {
       return NULL;
@@ -1338,8 +1367,8 @@ void cContext::ResetShadowBuffers ()
 {
   //## begin cContext::ResetShadowBuffers%1191857054.body preserve=yes
    if (cResources::FlagSet(PF_ENABLE_SHADOW_DATASET)) {
-      std::map<STRING_T, cVarDef*>::const_iterator i = _VarDefs.begin();
-      while (i != _VarDefs.end()) {
+      std::map<STRING_T, cVarDef*>::const_iterator i = _VarDefs.cbegin();
+      while (i != _VarDefs.cend()) {
          cVarDef * var_def = (*i).second;
          cVariable * variable = var_def->_Variable;
          if (variable != NULL)

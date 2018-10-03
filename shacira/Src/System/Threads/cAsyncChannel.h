@@ -88,6 +88,11 @@ public:
       //## end cAsyncChannel%3AA34DAE0338.private
 
   private: //## implementation
+
+      //## Attribute: SendMutex%43099E1A035B
+      //## begin cAsyncChannel::SendMutex%43099E1A035B.attr preserve=no  implementation: cMutexSem {U} 
+      cMutexSem _SendMutex;
+      //## end cAsyncChannel::SendMutex%43099E1A035B.attr
     // Additional Implementation Declarations
       //## begin cAsyncChannel%3AA34DAE0338.implementation preserve=yes
       //## end cAsyncChannel%3AA34DAE0338.implementation

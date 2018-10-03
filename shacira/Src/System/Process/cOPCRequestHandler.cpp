@@ -148,8 +148,8 @@ BOOL_T cOPCRequestHandler::RefreshItems ()
       cOPCClientProcess * opc_client_process = (cOPCClientProcess*)_Process;
       STRING_LIST_T context_names;
       opc_client_process->NewContextNames(context_names);
-      STRING_LIST_T::const_iterator i = context_names.begin();
-      while (i != context_names.end()) {
+      STRING_LIST_T::const_iterator i = context_names.cbegin();
+      while (i != context_names.cend()) {
          STRING_T context_name = (*i);
          cContext * context = opc_client_process->NewContext(context_name.c_str());
          if (AddContext(context_name.c_str(), context)) {
@@ -159,9 +159,9 @@ BOOL_T cOPCRequestHandler::RefreshItems ()
             VARTYPE opc_datatype = 0;
             STRING_LIST_T var_names;
             context->VariableNames(var_names);
-            STRING_LIST_T::const_iterator j = var_names.begin();
+            STRING_LIST_T::const_iterator j = var_names.cbegin();
             STRING_T var_name;
-            while (j != var_names.end()) {
+            while (j != var_names.cend()) {
                var_name = (*j);
                cVarDef * var_def = context->VarDef(var_name.c_str());
                if (var_def != NULL) {
@@ -230,7 +230,7 @@ BOOL_T cOPCRequestHandler::AddContext (CONST_STRING_T context_name, cContext *co
    try {
       if (IsSupported(context_name, context)) {
          CONTEXT_MAP_T::const_iterator i = _ContextMap.find(context_name);
-         if (i == _ContextMap.end()) {
+         if (i == _ContextMap.cend()) {
 //            context->Connect();
 //            context->Create();
             _ContextMap[context_name] = context;
@@ -270,7 +270,7 @@ cContext * cOPCRequestHandler::Context (CONST_STRING_T context_name)
 {
   //## begin cOPCRequestHandler::Context%1125393500.body preserve=yes
    CONTEXT_MAP_T::const_iterator i = _ContextMap.find(context_name);
-   if (i == _ContextMap.end()) {
+   if (i == _ContextMap.cend()) {
       return NULL;
    } else {
       return (*i).second;
@@ -368,8 +368,8 @@ void cOPCRequestHandler::UpdateContextInfo ()
       if (_ConnectionInfoFile.size() > 0) {
          cSHFile file(_ConnectionInfoFile.c_str());
          if (file.Open(FILE_MODE_CREATE)) {
-            CONTEXT_MAP_T::const_iterator i = _ContextMap.begin();
-            while (i != _ContextMap.end()) {
+            CONTEXT_MAP_T::const_iterator i = _ContextMap.cbegin();
+            while (i != _ContextMap.cend()) {
                cContext * context = (*i).second;
                STRING_T context_name = context->get_Name();
                STRING_T ip_addr = "?";
@@ -451,7 +451,7 @@ BOOL_T cOPCRequestHandler::IsSupported (CONST_STRING_T server_name, cContext *co
          }
       } else {
          SERVER_MAP_T::const_iterator i = _ServerMap.find(server_name);
-         if (i == _ServerMap.end()) {
+         if (i == _ServerMap.cend()) {
             InfoPrintf("skipped context %s: filtered\n", server_name);
             return false;
          } else {

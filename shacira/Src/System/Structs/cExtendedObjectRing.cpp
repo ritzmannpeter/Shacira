@@ -542,7 +542,7 @@ cMutexSem * cExtendedObjectRing::RingMutex ()
    }
    cObjectLock __lock__(_GlobalMutex);
    RING_MUTEX_MAP_T::const_iterator i = _RingMutexes.find(GetObjectName());
-   if (i == _RingMutexes.end()) {
+   if (i == _RingMutexes.cend()) {
       cMutexSem * mutex = new cMutexSem;
       const char * object_name = GetObjectName();
       try {

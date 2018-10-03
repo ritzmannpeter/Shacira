@@ -5,9 +5,9 @@
 
 static void ProcessEventQueue()
 {
-   QApplication * application = qApp;
-   if (application != NULL) {
-      if (CWidgetBase::CheckThread()) {
+   if (CWidgetBase::CheckThread()) {
+      QApplication * application = qApp;
+      if (application != NULL) {
          application->processEvents();
       }
    }

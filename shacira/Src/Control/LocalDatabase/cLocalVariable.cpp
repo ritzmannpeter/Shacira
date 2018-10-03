@@ -149,6 +149,8 @@
 ///               and ::GetMaximum(ULONG_T &, ...)
 ///               fixed_decimal_representation = false supplies a "real" long value for the minimum,
 ///               no value in fixed decimal representation
+/// HA 20.03.17 - Changed reading from device for set variables, when flag VF_DEVICE is supplied.
+///               Changed from define ALLOW_SET_FROM_DEVICE to cResource::Flag PF_ALLOW_SET_FROM_DEVICE
 
 //## end module%3E0038B30046.includes
 
@@ -258,10 +260,10 @@ static void CopyBuf(BUF_T dst_buf, ULONG_T dst_size, BUF_T src_buf, ULONG_T src_
       } \
    }
 
-#define FLOAT_MIN    -99999.9
-#define FLOAT_MAX     99999.9
-#define DOUBLE_MIN   -9999999999.9
-#define DOUBLE_MAX    9999999999.9
+#define FLOAT_MIN    -99999999.9 //-FLT_MAX 
+#define FLOAT_MAX     99999999.9 // FLT_MAX 
+#define DOUBLE_MIN   -99999999999.9 //-FLT_MAX 
+#define DOUBLE_MAX    99999999999.9 // FLT_MAX 
 
 static void Min(LONG_T & value, UCHAR_T data_type)
 {
@@ -912,17 +914,19 @@ void cLocalVariable::Get (LONG_T &value, LONG_T i1, LONG_T i2, LONG_T i3, LONG_T
    ULONG_T pos = _VarDef->GetPos(i1, i2, i3, i4);
    if (!ReadFilter(pos, flags)) {
       UCHAR_T var_type = _VarDef->_VarType;
-#ifdef ALLOW_SET_FROM_DEVICE
-      if ((var_type == SH_VAR_SET || flags & VF_BUFFERED) && !(flags & VF_DEVICE)) {
-#else
-      if (var_type == SH_VAR_SET || flags & VF_BUFFERED) {
-#endif
+      if ((var_type == SH_VAR_SET || flags & VF_BUFFERED) && 
+          !(cResources::FlagSet(PF_ALLOW_SET_FROM_DEVICE) && (flags & VF_DEVICE))) {
          GetBuffer(pos);
       } else {
          cMapping * mapping = _VarDef->_Mapping;
          if (mapping != NULL) {
             GetDevice(pos, flags);
             ReadConversion(pos, flags);
+            //proposed change for volatile variable problem  6-13-2018 fjc
+            if ((var_type == SH_VAR_VOLATILE) && (_VarDef->get_UnitDef() != NULL)) {
+                SetInput(pos, flags | VF_DEVICE_REPRESENTATION);
+            }
+            //end proposed change for volatile variable problem  6-13-2018
             if (SetBuffer(pos)) {
                DataChanged(i1, i2, i3, i4, flags);
             }
@@ -956,17 +960,19 @@ void cLocalVariable::Get (FLOAT_T &value, LONG_T i1, LONG_T i2, LONG_T i3, LONG_
    ULONG_T pos = _VarDef->GetPos(i1, i2, i3, i4);
    if (!ReadFilter(pos, flags)) {
       UCHAR_T var_type = _VarDef->_VarType;
-#ifdef ALLOW_SET_FROM_DEVICE
-      if ((var_type == SH_VAR_SET || flags & VF_BUFFERED) && !(flags & VF_DEVICE)) {
-#else
-      if (var_type == SH_VAR_SET || flags & VF_BUFFERED) {
-#endif
+      if ((var_type == SH_VAR_SET || flags & VF_BUFFERED) && 
+          !(cResources::FlagSet(PF_ALLOW_SET_FROM_DEVICE) && (flags & VF_DEVICE))) {
          GetBuffer(pos);
       } else {
          cMapping * mapping = _VarDef->_Mapping;
          if (mapping != NULL) {
             GetDevice(pos, flags);
             ReadConversion(pos, flags);
+            //proposed change for volatile variable problem  6-13-2018 fjc
+            if ((var_type == SH_VAR_VOLATILE) && (_VarDef->get_UnitDef() != NULL)) {
+                SetInput(pos, flags | VF_DEVICE_REPRESENTATION);
+            }
+            //end proposed change for volatile variable problem  6-13-2018
             if (SetBuffer(pos)) {
                DataChanged(i1, i2, i3, i4, flags);
             }
@@ -995,17 +1001,19 @@ void cLocalVariable::Get (DOUBLE_T &value, LONG_T i1, LONG_T i2, LONG_T i3, LONG
    ULONG_T pos = _VarDef->GetPos(i1, i2, i3, i4);
    if (!ReadFilter(pos, flags)) {
       UCHAR_T var_type = _VarDef->_VarType;
-#ifdef ALLOW_SET_FROM_DEVICE
-      if ((var_type == SH_VAR_SET || flags & VF_BUFFERED) && !(flags & VF_DEVICE)) {
-#else
-      if (var_type == SH_VAR_SET || flags & VF_BUFFERED) {
-#endif
+      if ((var_type == SH_VAR_SET || flags & VF_BUFFERED) && 
+          !(cResources::FlagSet(PF_ALLOW_SET_FROM_DEVICE) && (flags & VF_DEVICE))) {
          GetBuffer(pos);
       } else {
          cMapping * mapping = _VarDef->_Mapping;
          if (mapping != NULL) {
             GetDevice(pos, flags);
             ReadConversion(pos, flags);
+            //proposed change for volatile variable problem  6-13-2018 fjc
+            if ((var_type == SH_VAR_VOLATILE) && (_VarDef->get_UnitDef() != NULL)) {
+                SetInput(pos, flags | VF_DEVICE_REPRESENTATION);
+            }
+            //end proposed change for volatile variable problem  6-13-2018
             if (SetBuffer(pos)) {
                DataChanged(i1, i2, i3, i4, flags);
             }
@@ -1032,17 +1040,19 @@ void cLocalVariable::Get (STRING_T &value, LONG_T i1, LONG_T i2, LONG_T i3, LONG
    ULONG_T pos = _VarDef->GetPos(i1, i2, i3, i4);
    if (!ReadFilter(pos, flags)) {
       UCHAR_T var_type = _VarDef->_VarType;
-#ifdef ALLOW_SET_FROM_DEVICE
-      if ((var_type == SH_VAR_SET || flags & VF_BUFFERED) && !(flags & VF_DEVICE)) {
-#else
-      if (var_type == SH_VAR_SET || flags & VF_BUFFERED) {
-#endif
+      if ((var_type == SH_VAR_SET || flags & VF_BUFFERED) && 
+          !(cResources::FlagSet(PF_ALLOW_SET_FROM_DEVICE) && (flags & VF_DEVICE))) {
          GetBuffer(pos);
       } else {
          cMapping * mapping = _VarDef->_Mapping;
          if (mapping != NULL) {
             GetDevice(pos, flags);
             ReadConversion(pos, flags);
+            //proposed change for volatile variable problem  6-13-2018 fjc
+            if ((var_type == SH_VAR_VOLATILE) && (_VarDef->get_UnitDef() != NULL)) {
+                SetInput(pos, flags | VF_DEVICE_REPRESENTATION);
+            }
+            //end proposed change for volatile variable problem  6-13-2018
             if (SetBuffer(pos)) {
                DataChanged(i1, i2, i3, i4, flags);
             }
@@ -1089,17 +1099,19 @@ void cLocalVariable::Get (WSTRING_T &value, LONG_T i1, LONG_T i2, LONG_T i3, LON
    ULONG_T pos = _VarDef->GetPos(i1, i2, i3, i4);
    if (!ReadFilter(pos, flags)) {
       UCHAR_T var_type = _VarDef->_VarType;
-#ifdef ALLOW_SET_FROM_DEVICE
-      if ((var_type == SH_VAR_SET || flags & VF_BUFFERED) && !(flags & VF_DEVICE)) {
-#else
-      if (var_type == SH_VAR_SET || flags & VF_BUFFERED) {
-#endif
+      if ((var_type == SH_VAR_SET || flags & VF_BUFFERED) && 
+          !(cResources::FlagSet(PF_ALLOW_SET_FROM_DEVICE) && (flags & VF_DEVICE))) {
          GetBuffer(pos);
       } else {
          cMapping * mapping = _VarDef->_Mapping;
          if (mapping != NULL) {
             GetDevice(pos, flags);
             ReadConversion(pos, flags);
+            //proposed change for volatile variable problem  6-13-2018 fjc
+            if ((var_type == SH_VAR_VOLATILE) && (_VarDef->get_UnitDef() != NULL)) {
+                SetInput(pos, flags | VF_DEVICE_REPRESENTATION);
+            }
+            //end proposed change for volatile variable problem  6-13-2018
             if (SetBuffer(pos)) {
                DataChanged(i1, i2, i3, i4, flags);
             }
@@ -1170,11 +1182,8 @@ void cLocalVariable::Get (BUF_T buf, ULONG_T len, ULONG_T buf_size, LONG_T i1, L
    SELECT_DATASET(flags)
    ULONG_T pos = _VarDef->GetPos(i1, i2, i3, i4);
    UCHAR_T var_type = _VarDef->_VarType;
-#ifdef ALLOW_SET_FROM_DEVICE
-   if ((var_type == SH_VAR_SET || flags & VF_BUFFERED) && !(flags & VF_DEVICE)) {
-#else
-   if (var_type == SH_VAR_SET || flags & VF_BUFFERED) {
-#endif
+   if ((var_type == SH_VAR_SET || flags & VF_BUFFERED) && 
+      !(cResources::FlagSet(PF_ALLOW_SET_FROM_DEVICE) && (flags & VF_DEVICE))) {
       cMapping * mapping = _VarDef->_Mapping;
       if (mapping != NULL) {
          GetDevice(pos, flags);
@@ -1651,6 +1660,27 @@ BOOL_T cLocalVariable::EnableCompleteMapping(ULONG_T value)
    return _VarDef->EnableCompleteMapping(value);
 }
 
+BOOL_T cLocalVariable::HasMapping()
+{
+   BOOL_T bRetVal = false;
+   cMapping * mapping = _VarDef->_Mapping;
+   if (mapping != NULL) {
+      int elements = _VarDef->Elements();
+      int pos;
+      for (pos=0; pos < elements; pos++) {
+         MAP_ITEM_T * map_item = mapping->MapItem(pos);
+         if (map_item != NULL) {
+            if (map_item->address != (ULONG_T)UNDEFINED_SYMBOL_VALUE) {
+               bRetVal = true;
+               break;
+            }
+         }
+      }
+   }
+
+   return bRetVal;
+}
+
 void cLocalVariable::GetMinimum (ULONG_T &minimum, LONG_T i1, LONG_T i2, LONG_T i3, LONG_T i4, BOOL_T fixed_decimal_representation)
 {
   //## begin cLocalVariable::GetMinimum%1089103312.body preserve=yes
@@ -1761,7 +1791,6 @@ void cLocalVariable::GetMinimum (STRING_T &minimum, LONG_T i1, LONG_T i2, LONG_T
 {
   //## begin cLocalVariable::GetMinimum%1089203186.body preserve=yes
    ULONG_T pos = _VarDef->GetPos(i1, i2, i3, i4);
-   char value_buf[128] = {0};
    LONG_T lval = 0;
    ULONG_T ulval = 0;
    FLOAT_T fval = 0;
@@ -1772,7 +1801,7 @@ void cLocalVariable::GetMinimum (STRING_T &minimum, LONG_T i1, LONG_T i2, LONG_T
    case SH_SHORT:
    case SH_LONG:
       GetMinimum(lval, i1, i2, i3, i4);
-      SafePrintf(value_buf, sizeof(value_buf), "%d", lval);
+      cSHVariant::Long2String(minimum, lval, MAX_PRECISION);
       break;
    case SH_UCHAR:
    case SH_BIT_8:
@@ -1781,18 +1810,17 @@ void cLocalVariable::GetMinimum (STRING_T &minimum, LONG_T i1, LONG_T i2, LONG_T
    case SH_ULONG:
    case SH_BIT_32:
       GetMinimum(ulval, i1, i2, i3, i4);
-      SafePrintf(value_buf, sizeof(value_buf), "%d", ulval);
+      cSHVariant::ULong2String(minimum, ulval, MAX_PRECISION);
       break;
    case SH_FLOAT:
       GetMinimum(fval, i1, i2, i3, i4);
-      SafePrintf(value_buf, sizeof(value_buf), "%f", fval);
+      cSHVariant::Float2String(minimum, fval, MAX_PRECISION);
       break;
    case SH_DOUBLE:
       GetMinimum(dval, i1, i2, i3, i4);
-      SafePrintf(value_buf, sizeof(value_buf), "%f", dval);
+      cSHVariant::Double2String(minimum, dval, MAX_PRECISION);
       break;
    }
-   minimum = value_buf;
    FormatOut(minimum, pos);
   //## end cLocalVariable::GetMinimum%1089203186.body
 }
@@ -1864,7 +1892,6 @@ void cLocalVariable::GetMaximum (ULONG_T &maximum, LONG_T i1, LONG_T i2, LONG_T 
       }
    }
    maximum = max;
-//   FormatOut(maximum, pos);
   //## end cLocalVariable::GetMaximum%1089103316.body
 }
 
@@ -1910,7 +1937,6 @@ void cLocalVariable::GetMaximum (STRING_T &maximum, LONG_T i1, LONG_T i2, LONG_T
 {
   //## begin cLocalVariable::GetMaximum%1089203187.body preserve=yes
    ULONG_T pos = _VarDef->GetPos(i1, i2, i3, i4);
-   char value_buf[128] = {0};
    LONG_T lval = 0;
    ULONG_T ulval = 0;
    FLOAT_T fval = 0;
@@ -1921,7 +1947,7 @@ void cLocalVariable::GetMaximum (STRING_T &maximum, LONG_T i1, LONG_T i2, LONG_T
    case SH_SHORT:
    case SH_LONG:
       GetMaximum(lval, i1, i2, i3, i4);
-      SafePrintf(value_buf, sizeof(value_buf), "%d", lval);
+      cSHVariant::Long2String(maximum, lval, MAX_PRECISION);
       break;
    case SH_UCHAR:
    case SH_BIT_8:
@@ -1930,18 +1956,17 @@ void cLocalVariable::GetMaximum (STRING_T &maximum, LONG_T i1, LONG_T i2, LONG_T
    case SH_ULONG:
    case SH_BIT_32:
       GetMaximum(ulval, i1, i2, i3, i4);
-      SafePrintf(value_buf, sizeof(value_buf), "%u", ulval);
+      cSHVariant::ULong2String(maximum, ulval, MAX_PRECISION);
       break;
    case SH_FLOAT:
       GetMaximum(fval, i1, i2, i3, i4);
-      SafePrintf(value_buf, sizeof(value_buf), "%f", fval);
+      cSHVariant::Float2String(maximum, fval, MAX_PRECISION);
       break;
    case SH_DOUBLE:
       GetMaximum(dval, i1, i2, i3, i4);
-      SafePrintf(value_buf, sizeof(value_buf), "%f", dval);
+      cSHVariant::Double2String(maximum, dval, MAX_PRECISION);
       break;
    }
-   maximum = value_buf;
    FormatOut(maximum, pos);
   //## end cLocalVariable::GetMaximum%1089203187.body
 }
@@ -2031,7 +2056,7 @@ void cLocalVariable::DataChanged (LONG_T i1, LONG_T i2, LONG_T i3, LONG_T i4, UL
    if (flags & VF_FILE_INPUT) {
       data_change->set_ChangeFlags(CH_FLAG_FILE_INPUT);
    }
-   _Context->Send(data_change);
+   _Context->Send(data_change, flags);
    RELEASE_OBJECT(data_change)
    if (IS_PERSISTENT(PersistenceType())) {
       if (dataset == 0) {
@@ -2120,7 +2145,10 @@ void cLocalVariable::DataChanged (CONST_STRING_T old_value, CONST_STRING_T new_v
    data_change->set_Pos(pos);
    data_change->set_Precision(Precision());
    data_change->set_VarType(var_type);
-   _Context->Send(data_change);
+   if (flags & VF_FILE_INPUT) {
+      data_change->set_ChangeFlags(CH_FLAG_FILE_INPUT);
+   }
+   _Context->Send(data_change, flags);
    RELEASE_OBJECT(data_change)
    if (IS_PERSISTENT(PersistenceType())) {
       if (dataset == 0) {
@@ -2212,7 +2240,7 @@ void cLocalVariable::BufChanged (LONG_T i1, LONG_T i2, LONG_T i3, LONG_T i4, ULO
    if (flags & VF_FILE_INPUT) {
       data_change->set_ChangeFlags(CH_FLAG_FILE_INPUT);
    }
-   _Context->Send(data_change);
+   _Context->Send(data_change, flags);
    if (IS_PERSISTENT(PersistenceType())) {
       /// PR 23.01.06 retrieving the persistence channel reference only when its really used
       if (_PersistenceChannel == NULL) {
@@ -2555,8 +2583,13 @@ void cLocalVariable::FormatOut (STRING_T &value, ULONG_T pos, ULONG_T flags)
    case SH_FLOAT:
    case SH_DOUBLE:
    {
-      DOUBLE_T fval = atof(value.c_str());
-      cSHVariant::Double2String(value, fval, precision);
+      DOUBLE_T dval = atof(value.c_str());
+      char value_buf[256] = { 0 };
+      if ((dval >= 1.0e+30) || (dval <= -1.0e+30))
+         sprintf(value_buf, "%.*e", precision, dval);
+      else
+         sprintf(value_buf, "%.*f", precision, dval);
+      value = value_buf;
       break;
    }
    case SH_BYTE:
@@ -2595,7 +2628,7 @@ void cLocalVariable::FormatIn (STRING_T &value, ULONG_T pos, ULONG_T flags)
    case SH_BIT_16:
    case SH_BIT_32:
       {
-         char value_buf[64] = {0};
+         char value_buf[256] = {0};
    		 double lval = atof(value.c_str());
 	   	 for (unsigned long i=0; i<precision; i++) {
 		    lval *= 10;
@@ -2794,7 +2827,7 @@ void cLocalVariable::WriteConversion (ULONG_T pos, ULONG_T flags)
             Accu()->Get(value);
             LONG_T i1 = -1, i2 = -1, i3 = -1, i4 = -1;
             _VarDef->GetIndices(pos, i1, i2, i3, i4);
-            _ConvFuncRef->CallMDLFunc(value, value, i1, i2, i3, i4, VF_WRITE);
+            _ConvFuncRef->CallMDLFunc(value, value, i1, i2, i3, i4, flags|VF_WRITE);
             Accu()->Set(value);
          }
 		   break;
@@ -2809,7 +2842,7 @@ void cLocalVariable::WriteConversion (ULONG_T pos, ULONG_T flags)
             Accu()->Get(value);
             LONG_T i1 = -1, i2 = -1, i3 = -1, i4 = -1;
             _VarDef->GetIndices(pos, i1, i2, i3, i4);
-            _ConvFuncRef->CallMDLFunc(value, value, i1, i2, i3, i4, VF_WRITE);
+            _ConvFuncRef->CallMDLFunc(value, value, i1, i2, i3, i4, flags|VF_WRITE);
             Accu()->Set(value);
          }
 		   break;
@@ -2819,7 +2852,7 @@ void cLocalVariable::WriteConversion (ULONG_T pos, ULONG_T flags)
             Accu()->Get(value);
             LONG_T i1 = -1, i2 = -1, i3 = -1, i4 = -1;
             _VarDef->GetIndices(pos, i1, i2, i3, i4);
-            _ConvFuncRef->CallMDLFunc(value, value, i1, i2, i3, i4, VF_WRITE);
+            _ConvFuncRef->CallMDLFunc(value, value, i1, i2, i3, i4, flags|VF_WRITE);
             Accu()->Set(value);
          }
 		   break;
@@ -2829,7 +2862,7 @@ void cLocalVariable::WriteConversion (ULONG_T pos, ULONG_T flags)
             Accu()->Get(value);
             LONG_T i1 = -1, i2 = -1, i3 = -1, i4 = -1;
             _VarDef->GetIndices(pos, i1, i2, i3, i4);
-            _ConvFuncRef->CallMDLFunc(value, value, i1, i2, i3, i4, VF_WRITE);
+            _ConvFuncRef->CallMDLFunc(value, value, i1, i2, i3, i4, flags|VF_WRITE);
             Accu()->Set(value);
          }
 		   break;
@@ -2996,7 +3029,7 @@ BOOL_T cLocalVariable::WriteFilter (ULONG_T pos, ULONG_T flags, ULONG_T * size)
             Accu()->Get(value);
             LONG_T i1 = -1, i2 = -1, i3 = -1, i4 = -1;
             _VarDef->GetIndices(pos, i1, i2, i3, i4);
-            _FilterFuncRef->CallMDLFunc(value, value, i1, i2, i3, i4, VF_WRITE);
+            _FilterFuncRef->CallMDLFunc(value, value, i1, i2, i3, i4, flags|VF_WRITE);
             Accu()->Set(value);
 /* PR 07.07.05 not necessary and prevents subordinate handling of units
             if (SetBuffer(pos)) {
@@ -3017,7 +3050,7 @@ BOOL_T cLocalVariable::WriteFilter (ULONG_T pos, ULONG_T flags, ULONG_T * size)
             Accu()->Get(value);
             LONG_T i1 = -1, i2 = -1, i3 = -1, i4 = -1;
             _VarDef->GetIndices(pos, i1, i2, i3, i4);
-            _FilterFuncRef->CallMDLFunc(value, value, i1, i2, i3, i4, VF_WRITE);
+            _FilterFuncRef->CallMDLFunc(value, value, i1, i2, i3, i4, flags|VF_WRITE);
             Accu()->Set(value);
 /* PR 07.07.05 not necessary and prevents subordinate handling of units
             if (SetBuffer(pos)) {
@@ -3033,7 +3066,7 @@ BOOL_T cLocalVariable::WriteFilter (ULONG_T pos, ULONG_T flags, ULONG_T * size)
             Accu()->Get(value);
             LONG_T i1 = -1, i2 = -1, i3 = -1, i4 = -1;
             _VarDef->GetIndices(pos, i1, i2, i3, i4);
-            _FilterFuncRef->CallMDLFunc(value, value, i1, i2, i3, i4, VF_WRITE);
+            _FilterFuncRef->CallMDLFunc(value, value, i1, i2, i3, i4, flags|VF_WRITE);
             Accu()->Set(value);
 /* PR 07.07.05 not necessary and prevents subordinate handling of units
             if (SetBuffer(pos)) {
@@ -3049,7 +3082,7 @@ BOOL_T cLocalVariable::WriteFilter (ULONG_T pos, ULONG_T flags, ULONG_T * size)
             Accu()->Get(value);
             LONG_T i1 = -1, i2 = -1, i3 = -1, i4 = -1;
             _VarDef->GetIndices(pos, i1, i2, i3, i4);
-            _FilterFuncRef->CallMDLFunc(value, value, i1, i2, i3, i4, VF_WRITE);
+            _FilterFuncRef->CallMDLFunc(value, value, i1, i2, i3, i4, flags|VF_WRITE);
             Accu()->Set(value);
 /* PR 07.07.05 not necessary and prevents subordinate handling of units
             if (SetBuffer(pos)) {
@@ -3066,14 +3099,14 @@ BOOL_T cLocalVariable::WriteFilter (ULONG_T pos, ULONG_T flags, ULONG_T * size)
             Accu()->Get(value, MAX_PRECISION);
             LONG_T i1 = -1, i2 = -1, i3 = -1, i4 = -1;
             _VarDef->GetIndices(pos, i1, i2, i3, i4);
-            _FilterFuncRef->CallMDLFunc(value, value.c_str(), i1, i2, i3, i4, VF_WRITE);
+            _FilterFuncRef->CallMDLFunc(value, value.c_str(), i1, i2, i3, i4, flags|VF_WRITE);
             Accu()->Set(value.c_str());
 #else
             STRING_T value;
             Accu()->Get(value, MAX_PRECISION);
             LONG_T i1 = -1, i2 = -1, i3 = -1, i4 = -1;
             _VarDef->GetIndices(pos, i1, i2, i3, i4);
-            _FilterFuncRef->CallMDLFunc(value, value.c_str(), i1, i2, i3, i4, VF_WRITE);
+            _FilterFuncRef->CallMDLFunc(value, value.c_str(), i1, i2, i3, i4, flags|VF_WRITE);
             Accu()->Set(value.c_str());
 #endif
             return true;
@@ -3088,7 +3121,7 @@ BOOL_T cLocalVariable::WriteFilter (ULONG_T pos, ULONG_T flags, ULONG_T * size)
             Accu()->Get((BUF_T&)value);
             LONG_T i1 = -1, i2 = -1, i3 = -1, i4 = -1;
             _VarDef->GetIndices(pos, i1, i2, i3, i4);
-            _FilterFuncRef->CallMDLFunc(value, value, size, i1, i2, i3, i4, VF_WRITE);
+            _FilterFuncRef->CallMDLFunc(value, value, size, i1, i2, i3, i4, flags|VF_WRITE);
             return true;
          }
          break;
@@ -5199,7 +5232,7 @@ BOOL_T cLocalVariable::WriteAccessFilter (ULONG_T pos, ULONG_T flags)
             Accu()->Get(value);
             LONG_T i1 = -1, i2 = -1, i3 = -1, i4 = -1;
             _VarDef->GetIndices(pos, i1, i2, i3, i4);
-            _AccessFuncRef->CallMDLFunc(value, value, i1, i2, i3, i4, VF_WRITE);
+            _AccessFuncRef->CallMDLFunc(value, value, i1, i2, i3, i4, flags|VF_WRITE);
             Accu()->Set(value);
 /* PR 07.07.05 not necessary and prevents subordinate handling of units
             if (SetBuffer(pos)) {
@@ -5220,7 +5253,7 @@ BOOL_T cLocalVariable::WriteAccessFilter (ULONG_T pos, ULONG_T flags)
             Accu()->Get(value);
             LONG_T i1 = -1, i2 = -1, i3 = -1, i4 = -1;
             _VarDef->GetIndices(pos, i1, i2, i3, i4);
-            _AccessFuncRef->CallMDLFunc(value, value, i1, i2, i3, i4, VF_WRITE);
+            _AccessFuncRef->CallMDLFunc(value, value, i1, i2, i3, i4, flags|VF_WRITE);
             Accu()->Set(value);
 /* PR 07.07.05 not necessary and prevents subordinate handling of units
             if (SetBuffer(pos)) {
@@ -5236,7 +5269,7 @@ BOOL_T cLocalVariable::WriteAccessFilter (ULONG_T pos, ULONG_T flags)
             Accu()->Get(value);
             LONG_T i1 = -1, i2 = -1, i3 = -1, i4 = -1;
             _VarDef->GetIndices(pos, i1, i2, i3, i4);
-            _AccessFuncRef->CallMDLFunc(value, value, i1, i2, i3, i4, VF_WRITE);
+            _AccessFuncRef->CallMDLFunc(value, value, i1, i2, i3, i4, flags|VF_WRITE);
             Accu()->Set(value);
 /* PR 07.07.05 not necessary and prevents subordinate handling of units
             if (SetBuffer(pos)) {
@@ -5252,7 +5285,7 @@ BOOL_T cLocalVariable::WriteAccessFilter (ULONG_T pos, ULONG_T flags)
             Accu()->Get(value);
             LONG_T i1 = -1, i2 = -1, i3 = -1, i4 = -1;
             _VarDef->GetIndices(pos, i1, i2, i3, i4);
-            _AccessFuncRef->CallMDLFunc(value, value, i1, i2, i3, i4, VF_WRITE);
+            _AccessFuncRef->CallMDLFunc(value, value, i1, i2, i3, i4, flags|VF_WRITE);
             Accu()->Set(value);
 /* PR 07.07.05 not necessary and prevents subordinate handling of units
             if (SetBuffer(pos)) {
@@ -5269,14 +5302,14 @@ BOOL_T cLocalVariable::WriteAccessFilter (ULONG_T pos, ULONG_T flags)
             Accu()->Get(value, MAX_PRECISION);
             LONG_T i1 = -1, i2 = -1, i3 = -1, i4 = -1;
             _VarDef->GetIndices(pos, i1, i2, i3, i4);
-            _AccessFuncRef->CallMDLFunc(value, value.c_str(), i1, i2, i3, i4, VF_WRITE);
+            _AccessFuncRef->CallMDLFunc(value, value.c_str(), i1, i2, i3, i4, flags|VF_WRITE);
             Accu()->Set(value.c_str());
 #else
             STRING_T value;
             Accu()->Get(value, MAX_PRECISION);
             LONG_T i1 = -1, i2 = -1, i3 = -1, i4 = -1;
             _VarDef->GetIndices(pos, i1, i2, i3, i4);
-            _AccessFuncRef->CallMDLFunc(value, value.c_str(), i1, i2, i3, i4, VF_WRITE);
+            _AccessFuncRef->CallMDLFunc(value, value.c_str(), i1, i2, i3, i4, flags|VF_WRITE);
             Accu()->Set(value.c_str());
 #endif
             return true;
@@ -5441,35 +5474,35 @@ void cLocalVariable::FormatOut (STRING_T &value, UCHAR_T precision)
       {
          DOUBLE_T lval = atof(value.c_str());
          for (ULONG_T i=0; i<precision; i++) {
-				lval /= 10;
-			}
-			char value_buf[64] = {0};
+            lval /= 10;
+         }
+         char value_buf[256] = {0};
 
-            if ((precision >= 0) && (precision <= 6)) {
-               SafePrintf(value_buf, sizeof(value_buf), "%.*f", precision, lval);
-            }
-            else {
-               SafePrintf(value_buf, sizeof(value_buf), "%.lf", lval);
-            }
-			value = value_buf;
-		}
-		break;
+         if ((precision >= 0) && (precision <= 6)) {
+            SafePrintf(value_buf, sizeof(value_buf), "%.*f", precision, lval);
+         }
+         else {
+            SafePrintf(value_buf, sizeof(value_buf), "%.lf", lval);
+         }
+         value = value_buf;
+      }
+      break;
    case SH_FLOAT:
    case SH_DOUBLE:
-		if (precision > 0) {
-	      char value_buf[64] = {0};
-			ULONG_T len = value.size();
-			memcpy(value_buf, value.c_str(), _MIN_(len, sizeof(value_buf)));
-			ULONG_T i;
+      if (precision > 0) {
+         char value_buf[256] = {0};
+         ULONG_T len = value.size();
+         memcpy(value_buf, value.c_str(), _MIN_(len, sizeof(value_buf)));
+         ULONG_T i;
          for (i=0; i<len; i++) {
-				if (value_buf[i] == '.') break;
-			}
-			i += precision + 1;
-			value_buf[i] = '\0';
-			value = value_buf;
+            if (value_buf[i] == '.') break;
+         }
+         i += precision + 1;
+         value_buf[i] = '\0';
+         value = value_buf;
       } else if (precision == 0) {
          DOUBLE_T dval = atof(value.c_str());
-	      char value_buf[64] = {0};
+         char value_buf[256] = {0};
          /// PR 15.11.05 no cast to long but restriction to 0 precision (RM rounding fix)
          ///SafePrintf(value_buf, sizeof(value_buf), "%d", (long)dval);
          SafePrintf(value_buf, sizeof(value_buf), "%.0f", dval);
@@ -5848,7 +5881,7 @@ BOOL_T cLocalVariable::WriteFilter (LONG_T i1, LONG_T i2, LONG_T i3, LONG_T i4, 
          {
             LONG_T value = 0;
             Accu()->Get(value);
-            func_ref->CallMDLFunc(value, value, i1, i2, i3, i4, VF_WRITE);
+            func_ref->CallMDLFunc(value, value, i1, i2, i3, i4, flags|VF_WRITE);
             return true;
          }
 		   break;
@@ -5861,7 +5894,7 @@ BOOL_T cLocalVariable::WriteFilter (LONG_T i1, LONG_T i2, LONG_T i3, LONG_T i4, 
          {
             ULONG_T value = 0;
             Accu()->Get(value);
-            func_ref->CallMDLFunc(value, value, i1, i2, i3, i4, VF_WRITE);
+            func_ref->CallMDLFunc(value, value, i1, i2, i3, i4, flags|VF_WRITE);
             return true;
          }
 		   break;
@@ -5869,7 +5902,7 @@ BOOL_T cLocalVariable::WriteFilter (LONG_T i1, LONG_T i2, LONG_T i3, LONG_T i4, 
          {
             FLOAT_T value = 0;
             Accu()->Get(value);
-            func_ref->CallMDLFunc(value, value, i1, i2, i3, i4, VF_WRITE);
+            func_ref->CallMDLFunc(value, value, i1, i2, i3, i4, flags|VF_WRITE);
             return true;
          }
 		   break;
@@ -5877,7 +5910,7 @@ BOOL_T cLocalVariable::WriteFilter (LONG_T i1, LONG_T i2, LONG_T i3, LONG_T i4, 
          {
             DOUBLE_T value = 0;
             Accu()->Get(value);
-            func_ref->CallMDLFunc(value, value, i1, i2, i3, i4, VF_WRITE);
+            func_ref->CallMDLFunc(value, value, i1, i2, i3, i4, flags|VF_WRITE);
             return true;
          }
 		   break;
@@ -5885,7 +5918,7 @@ BOOL_T cLocalVariable::WriteFilter (LONG_T i1, LONG_T i2, LONG_T i3, LONG_T i4, 
          {
             STRING_T value;
             Accu()->Get(value, MAX_PRECISION);
-            func_ref->CallMDLFunc(value, value.c_str(), i1, i2, i3, i4, VF_WRITE);
+            func_ref->CallMDLFunc(value, value.c_str(), i1, i2, i3, i4, flags|VF_WRITE);
             return true;
          }
 		   break;
@@ -5896,7 +5929,7 @@ BOOL_T cLocalVariable::WriteFilter (LONG_T i1, LONG_T i2, LONG_T i3, LONG_T i4, 
          {
             PTR_T value = 0;
             Accu()->Get((BUF_T&)value);
-            func_ref->CallMDLFunc((PTR_T)value, value, size, i1, i2, i3, i4, VF_WRITE);
+            func_ref->CallMDLFunc((PTR_T)value, value, size, i1, i2, i3, i4, flags|VF_WRITE);
             return true;
          }
          break;
@@ -5927,7 +5960,7 @@ void cLocalVariable::BufChanged (BUF_T old_buf, BUF_T new_buf, LONG_T i1, LONG_T
    if (flags & VF_FILE_INPUT) {
       data_change->set_ChangeFlags(CH_FLAG_FILE_INPUT);
    }
-   _Context->Send(data_change);
+   _Context->Send(data_change, flags);
    if (IS_PERSISTENT(PersistenceType())) {
       if (_PersistenceChannel == NULL) {
          _PersistenceChannel = _Context->PersistenceChannel();

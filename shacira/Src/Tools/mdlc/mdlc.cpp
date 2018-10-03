@@ -18,7 +18,7 @@
 #include "System/Database/cUnitDef.h"
 #include "System/cError.h"
 
-static CONST_STRING_T _Version = "1.4.1";
+static CONST_STRING_T _Version = "1.4.2";
 static STRING_T _BaseName;
 static STRING_T _InputDir;
 static STRING_T _OutputDir;
@@ -291,8 +291,8 @@ static void GenerateFunctionCode(cContext * context, FILE * header_file, FILE * 
    context->FunctionNames(funcs);
    PrintPrototypeProlog(header_file, base_name);
    PrintFunctionTableProlog(tab_file);
-   STRING_LIST_T::const_iterator i = funcs.begin();
-   while (i != funcs.end()) {
+   STRING_LIST_T::const_iterator i = funcs.cbegin();
+   while (i != funcs.cend()) {
       cFuncDecl * func_decl = context->FuncDecl((*i).c_str());
       if (func_decl != NULL) {
          PrintFuncPrototype(header_file, func_decl);
@@ -315,8 +315,8 @@ static void GenerateStringList(cContext * context)
 {
    STRING_LIST_T var_names;
    context->VariableNames(var_names);
-   STRING_LIST_T::const_iterator i = var_names.begin();
-   while (i != var_names.end()) {
+   STRING_LIST_T::const_iterator i = var_names.cbegin();
+   while (i != var_names.cend()) {
       cVarDef * var_def = context->VarDef((*i).c_str());
       if (var_def != NULL) {
 //         AddString(var_def->_Description.c_str());
@@ -587,8 +587,13 @@ int main(int argc, char* argv[])
          fclose(header_file);
          return -1;
       }
+
       cContext * context = new cContext;
       {
+         // Delete model error file
+         STRING_T modelFileErrName = _ModelFile + ".err";
+         remove(modelFileErrName.c_str()); 
+
          cStyxParser parser;
          if (_Verbose) {
             fprintf(stderr, "begin model parsing on %s\n", _InputFile.c_str());
@@ -603,7 +608,7 @@ int main(int argc, char* argv[])
             fclose(tab_file);
 
             if (model_file_generated) {
-                remove(_ModelFile.c_str());
+                rename(_ModelFile.c_str(), modelFileErrName.c_str());
             }
             return -1;
          };

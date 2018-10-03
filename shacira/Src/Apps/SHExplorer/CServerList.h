@@ -2,14 +2,22 @@
 #ifndef _CServerList_h_
 #define _CServerList_h_
 
+#ifdef QT4
+#include "listview.h"
+#include "qt4port.h"
+#define CSERVERLIST_BASE_CLASS      ListView
+#else
 #include <qlistview.h>
-#include <qtimer.h>
+#define CSERVERLIST_BASE_CLASS      QListView
+#endif
+
 
 class cSHProcess;
 class cContext;
 class cContextController;
+class qtimer;
 
-class CServerList : public QListView
+class CServerList : public CSERVERLIST_BASE_CLASS
 {
    Q_OBJECT
 public:

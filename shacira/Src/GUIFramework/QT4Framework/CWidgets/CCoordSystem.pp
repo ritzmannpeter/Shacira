@@ -189,6 +189,7 @@ protected:
    QString _YMinString;
    QString _YMaxString;
 
+   QRect _DrawRectangle;
    QRect _CurveRectangle;
    QRect _XAxisRectangle;
    QRect _YAxisRectangle;

@@ -276,8 +276,8 @@ void cCycleBuf::Invert ()
    if (rows <= 1) {
       return;
    } else {
-      std::map<STRING_T, STRING_VECTOR_T>::const_iterator column = _Values.begin();
-      while (column != _Values.end()) {
+      std::map<STRING_T, STRING_VECTOR_T>::const_iterator column = _Values.cbegin();
+      while (column != _Values.cend()) {
          STRING_VECTOR_T & values = (STRING_VECTOR_T&)(*column).second;
          unsigned long len = values.size();
          if (len > rows) {
@@ -1939,7 +1939,7 @@ cVarInfo * cFM2Device::VarInfo (CONST_STRING_T var_name)
 {
   //## begin cFM2Device::VarInfo%1104923762.body preserve=yes
    VAR_INFO_MAP_T::const_iterator i = _VarInfos.find(var_name);
-   if (i == _VarInfos.end()) {
+   if (i == _VarInfos.cend()) {
       return NULL;
    } else {
       return (*i).second;

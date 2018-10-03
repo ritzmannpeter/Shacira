@@ -59,8 +59,8 @@ QStringList Replacement::parseListFromExpression(const QString & expression) con
    addDelimiter(expression, ",", positionMap);
    int start = 0;
    int end = 0;
-   QMap<int,int>::const_iterator i = positionMap.begin();;
-   while (i != positionMap.end()) {
+   QMap<int,int>::const_iterator i = positionMap.constBegin();;
+   while (i != positionMap.constEnd()) {
       int end = *(i);
       int length = end - start;
       QString component = expression.mid(start, length);

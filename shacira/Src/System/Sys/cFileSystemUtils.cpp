@@ -183,8 +183,8 @@ NO_PLATFORM
 BOOL_T cFileSystemUtils::FileExistence (STRING_VECTOR_T &paths, CONST_STRING_T file_name, STRING_T &file)
 {
   //## begin cFileSystemUtils::FileExistence%1044520499.body preserve=yes
-   STRING_VECTOR_T::const_iterator i = paths.begin();
-   while (i != paths.end()) {
+   STRING_VECTOR_T::const_iterator i = paths.cbegin();
+   while (i != paths.cend()) {
       STRING_T path = (*i);
       STRING_T test_file = AppendPath(path.c_str(), file_name);
       if (FileExists(test_file.c_str())) {
@@ -787,15 +787,45 @@ BOOL_T cFileSystemUtils::GetDiskInfo (CONST_STRING_T path, ULONG_T &free_space, 
 void cFileSystemUtils::FlushFile(const char * filename)
 {
 #ifdef _WIN32
-   HANDLE hnd = CreateFile(filename, GENERIC_READ | GENERIC_WRITE, 0, 0, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, 0);
-   if (hnd != INVALID_HANDLE_VALUE) {
+   #define MAXRETRIES 2
+   #define RETRY_DELAY 100
+
+   int retries = 0;
+   int error = 0;
+   HANDLE hnd = INVALID_HANDLE_VALUE;
+   BOOL_T success = false;
+
+   do {
+      hnd = CreateFile(filename, GENERIC_READ | GENERIC_WRITE, NULL, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+      if (hnd == INVALID_HANDLE_VALUE) {
+         error = (int)GetLastError();
+
+         if (error == ERROR_SHARING_VIOLATION) {
+            retries++;
+            Sleep(RETRY_DELAY);
+            continue;
+         }
+         else {
+            // An error occurred.
+            break;
+         }
+      }
+
+      success = true;
+      break;
+   } while (retries < MAXRETRIES);
+
+   if (success) {
       if (FlushFileBuffers(hnd)) {
       } else {
-         ErrorPrintf("failed to flush file buffers of %s: %d\n", filename, (int)GetLastError());
+         error = (int)GetLastError();
+         ErrorPrintf("failed to flush file buffers of %s: %d\n", filename, error);
       }
       CloseHandle(hnd);
-   } else {
-      ErrorPrintf("failed to open handle for flush file buffers of %s: %d\n", filename, (int)GetLastError());
+   }
+   else {
+      error = (int)GetLastError();
+      ErrorPrintf("failed to open handle for flush file buffers of %s: %d\n", filename, error);
    }
 #endif
 }

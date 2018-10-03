@@ -33,19 +33,22 @@ class __DLL_EXPORT__ cFileSystemUtils;
 
 typedef std::map<STRING_T, cConsole *> CONSOLE_MAP_T;
 
-#define MAX_FLAGS                   32
-#define PF_ITF_UNITS                 1
-#define PF_REFERENCE_CACHE           2
-#define PF_FAST_STARTUP              3
-#define PF_DELAYED_ORB_INIT          4
-#define PF_CACHE_EXCEPTION           5
-#define PF_LOAD_PERSISTENT_DATA      6
-#define PF_CHECK_DEVICE_MAPPING      7
-#define PF_EMIT_CHANGES              8
-#define PF_ENABLE_SHADOW_DATASET     9
-#define PF_CLEANUP_ON_STARTUP_ERROR 10
-#define PF_REFERENCE_SET_VARIABLES  11
-#define PF_NONSTANDARD_CONTEXT      12
+#define MAX_FLAGS                    32
+#define PF_ITF_UNITS                  1
+#define PF_REFERENCE_CACHE            2
+#define PF_FAST_STARTUP               3
+#define PF_DELAYED_ORB_INIT           4
+#define PF_CACHE_EXCEPTION            5
+#define PF_LOAD_PERSISTENT_DATA       6
+#define PF_CHECK_DEVICE_MAPPING       7
+#define PF_EMIT_CHANGES               8
+#define PF_ENABLE_SHADOW_DATASET      9
+#define PF_CLEANUP_ON_STARTUP_ERROR  10
+#define PF_REFERENCE_SET_VARIABLES   11
+#define PF_NONSTANDARD_CONTEXT       12
+#define PF_ALLOW_SET_FROM_DEVICE     13
+#define PF_ALARM_INFO_FOR_REAL_ALARM 14
+#define PF_KILL_PROGRAM_AT_STOP_PROC 15
 //## end module%3DD3BCC70122.additionalDeclarations
 
 

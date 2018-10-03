@@ -42,8 +42,8 @@ void cStaticObject::RaiseEvent (cTransientObject *object)
 {
 _ASSERT_COND(object != NULL)
 #ifndef BASE_LIBRARY
-   LISTENER_LIST_T::const_iterator i = _Listeners.begin();
-   while (i != _Listeners.end()) {
+   LISTENER_LIST_T::const_iterator i = _Listeners.cbegin();
+   while (i != _Listeners.cend()) {
       cStaticObject * target = *i;
       target->Event(object);
       i++;
@@ -115,7 +115,7 @@ void cStaticObject::Protocol2(ULONG_T level, CONST_STRING_T fmt_str, ...)
 cValue & cStaticObject::Parameter(CONST_STRING_T name)
 {
    PARAMETER_MAP_T::const_iterator i = _Parameters.find(name);
-   if (i == _Parameters.end()) {
+   if (i == _Parameters.cend()) {
       cValue * value = new cValue;
       _Parameters[name] = value;
       return *value;
@@ -137,7 +137,7 @@ BOOL_T cStaticObject::ObjectSetParam (CONST_STRING_T name, CONST_STRING_T value)
 BOOL_T cStaticObject::SetParam (CONST_STRING_T name, CONST_STRING_T value)
 {
    PARAMETER_MAP_T::const_iterator i = _Parameters.find(name);
-   if (i == _Parameters.end()) {
+   if (i == _Parameters.cend()) {
       return false;
    } else {
       cValue * v = (*i).second;
@@ -149,7 +149,7 @@ BOOL_T cStaticObject::SetParam (CONST_STRING_T name, CONST_STRING_T value)
 BOOL_T cStaticObject::SetParam (CONST_STRING_T name, LONG_T value)
 {
    PARAMETER_MAP_T::const_iterator i = _Parameters.find(name);
-   if (i == _Parameters.end()) {
+   if (i == _Parameters.cend()) {
       return false;
    } else {
       cValue * v = (*i).second;
@@ -161,7 +161,7 @@ BOOL_T cStaticObject::SetParam (CONST_STRING_T name, LONG_T value)
 BOOL_T cStaticObject::SetParam (CONST_STRING_T name, ULONG_T value)
 {
    PARAMETER_MAP_T::const_iterator i = _Parameters.find(name);
-   if (i == _Parameters.end()) {
+   if (i == _Parameters.cend()) {
       return false;
    } else {
       cValue * v = (*i).second;
@@ -173,7 +173,7 @@ BOOL_T cStaticObject::SetParam (CONST_STRING_T name, ULONG_T value)
 BOOL_T cStaticObject::SetParam (CONST_STRING_T name, DOUBLE_T value)
 {
    PARAMETER_MAP_T::const_iterator i = _Parameters.find(name);
-   if (i == _Parameters.end()) {
+   if (i == _Parameters.cend()) {
       return false;
    } else {
       cValue * v = (*i).second;
@@ -185,7 +185,7 @@ BOOL_T cStaticObject::SetParam (CONST_STRING_T name, DOUBLE_T value)
 BOOL_T cStaticObject::GetParam (CONST_STRING_T name, STRING_T &value)
 {
    PARAMETER_MAP_T::const_iterator i = _Parameters.find(name);
-   if (i == _Parameters.end()) {
+   if (i == _Parameters.cend()) {
       return false;
    } else {
       cValue * v = (*i).second;
@@ -197,7 +197,7 @@ BOOL_T cStaticObject::GetParam (CONST_STRING_T name, STRING_T &value)
 BOOL_T cStaticObject::GetParam (CONST_STRING_T name, LONG_T &value)
 {
    PARAMETER_MAP_T::const_iterator i = _Parameters.find(name);
-   if (i == _Parameters.end()) {
+   if (i == _Parameters.cend()) {
       return false;
    } else {
       cValue * v = (*i).second;
@@ -209,7 +209,7 @@ BOOL_T cStaticObject::GetParam (CONST_STRING_T name, LONG_T &value)
 BOOL_T cStaticObject::GetParam (CONST_STRING_T name, ULONG_T &value)
 {
    PARAMETER_MAP_T::const_iterator i = _Parameters.find(name);
-   if (i == _Parameters.end()) {
+   if (i == _Parameters.cend()) {
       return false;
    } else {
       cValue * v = (*i).second;
@@ -221,7 +221,7 @@ BOOL_T cStaticObject::GetParam (CONST_STRING_T name, ULONG_T &value)
 BOOL_T cStaticObject::GetParam (CONST_STRING_T name, DOUBLE_T &value)
 {
    PARAMETER_MAP_T::const_iterator i = _Parameters.find(name);
-   if (i == _Parameters.end()) {
+   if (i == _Parameters.cend()) {
       return false;
    } else {
       cValue * v = (*i).second;

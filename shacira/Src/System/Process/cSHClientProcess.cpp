@@ -97,8 +97,8 @@ void cSHClientProcess::OnCycle ()
       char path[0x1000] = {0};
       STRING_LIST_T context_names;
       ContextNames(context_names, REMOTE_CONTEXTS);
-      STRING_LIST_T::const_iterator i = context_names.begin();
-      while (i != context_names.end()) {
+      STRING_LIST_T::const_iterator i = context_names.cbegin();
+      while (i != context_names.cend()) {
          STRING_T context_name = (*i);
          cContext * context = Context(context_name.c_str(), REMOTE_CONTEXTS);
          if (!context->IsActive()) {
@@ -107,8 +107,8 @@ void cSHClientProcess::OnCycle ()
             _NameSpace->Remove(context_name.c_str());
             STRING_LIST_T var_names;
             context->VariableNames(var_names);
-            STRING_LIST_T::const_iterator j = var_names.begin();
-            while (j != var_names.end()) {
+            STRING_LIST_T::const_iterator j = var_names.cbegin();
+            while (j != var_names.cend()) {
                STRING_T var_name = (*j);
                cVarDef * var_def = context->VarDef(var_name.c_str());
                if (var_def != NULL) {

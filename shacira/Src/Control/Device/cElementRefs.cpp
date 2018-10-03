@@ -103,7 +103,7 @@ cPtrList * cElementRefs::GetRefs (ULONG_T address)
 {
   //## begin cElementRefs::GetRefs%1071741899.body preserve=yes
    ADDRESS_MAP_T::const_iterator i = _AddressMap.find(address);
-   if (i == _AddressMap.end()) {
+   if (i == _AddressMap.cend()) {
       return NULL;
    } else {
       return (*i).second;
@@ -115,7 +115,7 @@ cPtrList * cElementRefs::GetRefs (CONST_STRING_T name)
 {
   //## begin cElementRefs::GetRefs%1071741900.body preserve=yes
    NAME_MAP_T::const_iterator i = _NameMap.find(name);
-   if (i == _NameMap.end()) {
+   if (i == _NameMap.cend()) {
       return NULL;
    } else {
       return (*i).second;

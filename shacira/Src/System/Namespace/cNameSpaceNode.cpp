@@ -79,8 +79,8 @@ cNameSpaceNode::cNameSpaceNode (CONST_STRING_T name, cNameSpaceNode *parent, cNa
 cNameSpaceNode::~cNameSpaceNode()
 {
   //## begin cNameSpaceNode::~cNameSpaceNode%.body preserve=yes
-   std::map<STRING_T, cNameSpaceNode*>::const_iterator node = _Children.begin();
-   while (node != _Children.end()) {
+   std::map<STRING_T, cNameSpaceNode*>::const_iterator node = _Children.cbegin();
+   while (node != _Children.cend()) {
       cNameSpaceNode * child = (*node).second;
       delete child;
       node++;
@@ -121,7 +121,7 @@ cNameSpaceNode * cNameSpaceNode::Child (CONST_STRING_T name)
 {
   //## begin cNameSpaceNode::Child%1001511105.body preserve=yes
    std::map<STRING_T, cNameSpaceNode*>::const_iterator node = _Children.find(name);
-   if (node == _Children.end()) {
+   if (node == _Children.cend()) {
       return NULL;
    } else {
       return (*node).second;
@@ -156,8 +156,8 @@ INT_T cNameSpaceNode::Children (STRING_LIST_T &names)
    names.push_back(".");
    names.push_back("..");
 #endif
-   std::map<STRING_T, cNameSpaceNode*>::const_iterator node = _Children.begin();
-   while (node != _Children.end()) {
+   std::map<STRING_T, cNameSpaceNode*>::const_iterator node = _Children.cbegin();
+   while (node != _Children.cend()) {
       names.push_back((*node).second->get_Name().c_str());
       node++;
    }
@@ -168,8 +168,8 @@ INT_T cNameSpaceNode::Children (STRING_LIST_T &names)
 INT_T cNameSpaceNode::Leafs (STRING_LIST_T &names)
 {
   //## begin cNameSpaceNode::Leafs%1001584927.body preserve=yes
-   std::map<STRING_T, cNameSpaceNode*>::const_iterator node = _Children.begin();
-   while (node != _Children.end()) {
+   std::map<STRING_T, cNameSpaceNode*>::const_iterator node = _Children.cbegin();
+   while (node != _Children.cend()) {
       if ((*node).second->get_Type() == Leaf) {
          names.push_back((*node).second->get_Name().c_str());
       }
@@ -182,8 +182,8 @@ INT_T cNameSpaceNode::Leafs (STRING_LIST_T &names)
 INT_T cNameSpaceNode::Branches (STRING_LIST_T &names)
 {
   //## begin cNameSpaceNode::Branches%1001584928.body preserve=yes
-   std::map<STRING_T, cNameSpaceNode*>::const_iterator node = _Children.begin();
-   while (node != _Children.end()) {
+   std::map<STRING_T, cNameSpaceNode*>::const_iterator node = _Children.cbegin();
+   while (node != _Children.cend()) {
       if ((*node).second->get_Type() == Branch) {
          names.push_back((*node).second->get_Name().c_str());
       }
@@ -199,8 +199,8 @@ INT_T cNameSpaceNode::FullNames (STRING_LIST_T &names)
    if (_Type == Leaf) {
       names.push_back(FullName().c_str());
    } else {
-      std::map<STRING_T, cNameSpaceNode*>::const_iterator node = _Children.begin();
-      while (node != _Children.end()) {
+      std::map<STRING_T, cNameSpaceNode*>::const_iterator node = _Children.cbegin();
+      while (node != _Children.cend()) {
          (*node).second->FullNames(names);
          node++;
       }

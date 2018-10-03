@@ -47,8 +47,8 @@ void WidgetPluginFactory::getPlugins(PLUGIN_LIST_T & plugin_list)
 {
    PluginPrintf("GetPlugins ... %d", plugin_list.size());
    plugin_list = _pluginList;
-   PLUGIN_LIST_T::const_iterator i = plugin_list.begin();
-   while (i != plugin_list.end()) {
+   PLUGIN_LIST_T::const_iterator i = plugin_list.constBegin();
+   while (i != plugin_list.constEnd()) {
       QDesignerCustomWidgetInterface * plugin = (*i);
       PluginPrintf("GetPlugins(%s,%s,%p)", plugin->name().toStdString().c_str(), plugin->group().toStdString().c_str(), plugin);
       i++;

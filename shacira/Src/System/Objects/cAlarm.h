@@ -23,13 +23,7 @@ class __DLL_EXPORT__ cTransferObject;
 
 //## begin module%3DDBC52A0206.additionalDeclarations preserve=yes
 
-typedef enum SeverityTypes
-{
-   SevInfo = 0,
-   SevWarning = 1,
-   SevError = 2,
-   SevSeriousError = 3
-};
+typedef enum {SevInfo=0, SevWarning, SevError, SevSeriousError} SeverityTypes;
 
 #include "Pack_1"
 
