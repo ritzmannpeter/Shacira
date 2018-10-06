@@ -88,8 +88,8 @@ private:
                                                   new Address(dataRequest->sender()->ident(), dataRequest->sender()->ipAddress()),
                                                   new Response(Response::Success, 0, "no error"));
             VariableSpecificationList & specs = dataRequest->variableSpecificationList();
-            VariableSpecificationList::const_iterator i = specs.begin();
-            while (i != specs.end()) {
+            VariableSpecificationList::const_iterator i = specs.cbegin();
+            while (i != specs.cend()) {
                VariableSpecification * spec = (*i);
                VariableSpecification::SpecificationType spec_type = spec->type();
                try {
@@ -109,10 +109,8 @@ private:
                            } catch (...) {
                               ErrorPrintf("xml service get varref %s: unhandled exception\n", reference.c_str());
                            }
-                           int dummy = 0;
                         }
                      }
-                     int dummy = 0;
                   } else if (spec_type == VariableSpecification::QualifiedSpecification) {
                      QualifiedVariableSpecification * qualifiedVariableSpecification = static_cast<QualifiedVariableSpecification*>(spec);
                      STRING_T variable_name = qualifiedVariableSpecification->variableName();
@@ -132,9 +130,7 @@ private:
                         } catch (...) {
                            ErrorPrintf("xml service get variable %s[%d][%d][%d][%d]: unhandled exception\n", variable_name.c_str(), i1, i2, i3, i4);
                         }
-                        int dummy = 0;
                      }
-                     int dummy = 0;
                   }
                } catch (cError & e) {
                   ErrorPrintf("xml service error: %s\n", (const char *)e);
@@ -150,8 +146,8 @@ private:
          } else if (xmlRequest->setDataRequest() != NULL) {
             SetDataRequest * setDataRequest = xmlRequest->setDataRequest();
             DataList & dataList = setDataRequest->dataList();
-            DataList::const_iterator i = dataList.begin();
-            while (i != dataList.end()) {
+            DataList::const_iterator i = dataList.cbegin();
+            while (i != dataList.cend()) {
                Data * data = (*i);
                string specification = data->specification();
                string valueText = data->valueText();
@@ -188,7 +184,6 @@ private:
                      } catch (...) {
                         ErrorPrintf("xml service get variable %s[%d][%d][%d][%d]: unhandled exception\n", variable_name.c_str(), i1, i2, i3, i4);
                      }
-                     int dummy = 0;
                   }
                }
                i++;

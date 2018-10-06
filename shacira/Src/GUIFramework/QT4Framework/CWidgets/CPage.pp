@@ -154,6 +154,7 @@ public:
    void ActivateButton();
    void Leave();
    void Enter();
+   BOOL_T IsVisible();
    BOOL_T similarSizeAsFramePage();
 
 private:

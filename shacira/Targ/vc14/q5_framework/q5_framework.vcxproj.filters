@@ -653,6 +653,9 @@
     <ClCompile Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\CGraphicsView.cpp">
       <Filter>Widgets</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_dialog.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\CWidgets\cGuiThread.h">
@@ -698,6 +701,9 @@
       <Filter>qt4port</Filter>
     </CustomBuild>
     <CustomBuild Include="..\..\..\Src\GUIFramework\qt4port\wizard.h">
+      <Filter>qt4port</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\qt4port\dialog.h">
       <Filter>qt4port</Filter>
     </CustomBuild>
   </ItemGroup>

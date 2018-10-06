@@ -285,6 +285,11 @@ void CPage::Enter()
     EmitGUISignal(SIG_ENTER_PAGE);
 }
 
+BOOL_T CPage::IsVisible()
+{
+   return (_AppearanceState != elementInvisible) ? true : false;
+}
+
 BOOL_T CPage::similarSizeAsFramePage()
 {
     BOOL_T similar = false;

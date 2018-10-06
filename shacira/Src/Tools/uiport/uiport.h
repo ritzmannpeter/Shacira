@@ -195,7 +195,7 @@ private:
    inline bool widgetNameExists(const QString & widgetName) const
    {
       map<QString,QString>::const_iterator i = _widgetNameMap.find(widgetName);
-      if (i == _widgetNameMap.end()) {
+      if (i == _widgetNameMap.cend()) {
          return false;
       } else {
          return true;
@@ -204,7 +204,7 @@ private:
    inline QString widgetClass(const QString & widgetName) const
    {
       map<QString,QString>::const_iterator i = _widgetNameMap.find(widgetName);
-      if (i == _widgetNameMap.end()) {
+      if (i == _widgetNameMap.cend()) {
          return "unknown";
       } else {
          return (*i).second;
@@ -220,8 +220,8 @@ private:
    };
    inline bool inherits(QWidget * widget, const QStringList & classList) const
    {
-      QStringList::const_iterator i = classList.begin();
-      while (i != classList.end()) {
+      QStringList::const_iterator i = classList.constBegin();
+      while (i != classList.constEnd()) {
          if (inherits(widget, (*i)) ) {
             return true;
          }

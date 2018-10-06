@@ -58,7 +58,7 @@ _ASSERT_UNCOND
   //## end cRemoteVar::cRemoteVar%copy.body
 }
 
-cRemoteVar::cRemoteVar (cVarDef *var_def)
+cRemoteVar::cRemoteVar (cVarDef *var_def, cCellProxy *cellProxy)
   //## begin cRemoteVar::cRemoteVar%1040202765.hasinit preserve=no
       : _CellProxy(NULL)
   //## end cRemoteVar::cRemoteVar%1040202765.hasinit
@@ -67,12 +67,18 @@ cRemoteVar::cRemoteVar (cVarDef *var_def)
   //## end cRemoteVar::cRemoteVar%1040202765.initialization
 {
   //## begin cRemoteVar::cRemoteVar%1040202765.body preserve=yes
-   cRemoteContext * context = dynamic_cast<cRemoteContext*>(_VarDef->_Context);
-   if (context != NULL) {
-      _CellProxy = context->GetCellProxy();
+   if (cellProxy == NULL) {
+      cRemoteContext * context = dynamic_cast<cRemoteContext*>(_VarDef->_Context);
+      if (context != NULL) {
+         _CellProxy = context->GetCellProxy();
+      }
    }
+   else {
+      _CellProxy = cellProxy;
+   }
+
    if (_CellProxy == NULL) {
-      ErrorPrintf("cell proxy is null in %s %d\n", __FILE__, __LINE__);
+      ErrorPrintf("cell proxy is null in %s line %d\n", __FILE__, __LINE__);
    }
   //## end cRemoteVar::cRemoteVar%1040202765.body
 }

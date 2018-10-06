@@ -96,8 +96,8 @@ void cStringCache::Write (CONST_STRING_T name, CONST_STRING_T value)
 
 void cStringCache::Save (ULONG_T elapsed)
 {
-   STRING_BUFFER_MAP_T::const_iterator i = _StringBuffers.begin();
-   while (i != _StringBuffers.end()) {
+   STRING_BUFFER_MAP_T::const_iterator i = _StringBuffers.cbegin();
+   while (i != _StringBuffers.cend()) {
       STRING_T name = (*i).first;
       cStringBuffer * buffer = (*i).second;
       if (buffer != NULL && buffer->Expired(elapsed)) {
@@ -119,8 +119,8 @@ void cStringCache::Save (ULONG_T elapsed)
 
 void cStringCache::Save (UCHAR_T refresh_type, ULONG_T refresh_value)
 {
-   STRING_BUFFER_MAP_T::const_iterator i = _StringBuffers.begin();
-   while (i != _StringBuffers.end()) {
+   STRING_BUFFER_MAP_T::const_iterator i = _StringBuffers.cbegin();
+   while (i != _StringBuffers.cend()) {
       STRING_T name = (*i).first;
       cStringBuffer * buffer = (*i).second;
       UCHAR_T buffer_refresh_type = buffer->_RefreshType;
@@ -151,8 +151,8 @@ void cStringCache::Save (UCHAR_T refresh_type, ULONG_T refresh_value)
 
 void cStringCache::Load ()
 {
-   STRING_BUFFER_MAP_T::const_iterator i = _StringBuffers.begin();
-   while (i != _StringBuffers.end()) {
+   STRING_BUFFER_MAP_T::const_iterator i = _StringBuffers.cbegin();
+   while (i != _StringBuffers.cend()) {
       STRING_T name = (*i).first;
       cStringBuffer * buffer = (*i).second;
       if (buffer != NULL && buffer->IsBuffered()) {
@@ -183,7 +183,7 @@ ULONG_T cStringCache::MinIdleTime ()
 cStringBuffer * cStringCache::StringBuffer (CONST_STRING_T name)
 {
    STRING_BUFFER_MAP_T::const_iterator i = _StringBuffers.find(name);
-   if (i == _StringBuffers.end()) {
+   if (i == _StringBuffers.cend()) {
       return NULL;
    } else {
       return (*i).second;

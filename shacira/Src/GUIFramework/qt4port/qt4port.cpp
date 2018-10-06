@@ -9,8 +9,8 @@ QObject * child(QObject * object, const char * objName, const char * inheritsCla
       return NULL;
    }
    QObjectList objects = object->children();
-   QObjectList::const_iterator i = objects.begin();
-   while (i != objects.end()) {
+   QObjectList::const_iterator i = objects.constBegin();
+   while (i != objects.constEnd()) {
       QObject * child = (*i);
       QString objectName = child->objectName();
       if (objectName == objName) {
@@ -25,8 +25,8 @@ QObject * child(QObject * object, const char * objName, const char * inheritsCla
       i++;
    }
    if (recursiveSearch) {
-      i = objects.begin();
-      while (i != objects.end()) {
+      i = objects.constBegin();
+      while (i != objects.constEnd()) {
          QObject * object_Iter = (*i);
          QObject * foundChild = child(object_Iter, objName, inheritsClass, recursiveSearch);
          if (foundChild != NULL) {
@@ -121,9 +121,9 @@ void queryListHelper(QObjectList & objectList, QObject * object, const char * in
    }
    if (recursiveSearch) {
       QObjectList objects = object->children();
-      QObjectList::const_iterator i = objects.begin();
-      i = objects.begin();
-      while (i != objects.end()) {
+      QObjectList::const_iterator i = objects.constBegin();
+      i = objects.constBegin();
+      while (i != objects.constEnd()) {
          QObject * child = (*i);
          queryListHelper(objectList, child, inheritsClass, objName, regexpMatch, recursiveSearch);
          i++;
@@ -149,8 +149,8 @@ void setEncoding(EncodingTypes encoding)
 int indexOf(QWizard * wizard, QWidget * page)
 {
    QList<int> pageList = wizard->pageIds();
-   QList<int>::const_iterator i = pageList.begin();
-   while (i != pageList.end()) {
+   QList<int>::const_iterator i = pageList.constBegin();
+   while (i != pageList.constEnd()) {
       int id = (*i);
       if (page == wizard->page(id)) {
          return id;

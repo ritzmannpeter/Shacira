@@ -1,5 +1,6 @@
 
 #include "CFixText.h"
+#include <qpainter.h>
 
 #ifdef _CWIDGET_PLUGIN_
 /*
@@ -17,7 +18,7 @@ SH_PLUGIN_REGISTER(DisplayWidget, \
 
 CFixText::CFixText(QWidget * parent, const char * name, WFlags f)
    : QLabel(parent, name, f) ,
-     CWidgetBase(this)
+     CWidgetBase(this), _DegreeOfRotationValue(0)
 {
    CONSTRUCT_WIDGET
    _IndexValue = -1;
@@ -96,3 +97,20 @@ void CFixText::CCSEvent(TRANSIENT_OBJECT_PTR object)
 #endif
 }
 
+void CFixText::paintEvent(QPaintEvent * e)
+{
+   if (this->getDegreeOfRotation() == 0) {
+      QLabel::paintEvent(e);
+   }
+   else {
+      QPainter painter(this);
+
+      QRect rect;
+      QFontMetrics fm(this->font());
+      rect = fm.boundingRect(text());
+
+      painter.translate(width()/2, height()/2);
+      painter.rotate(this->getDegreeOfRotation());
+      painter.drawText(-rect.width()/2, rect.height()/2, text());
+   }
+}

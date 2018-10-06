@@ -68,8 +68,8 @@ cProxyTable::~cProxyTable()
 // Bis dieses Problem geloest ist werden beim Zerstoeren der Proxy-Tabelle
 // keine Proxy-Objekte mehr zerstoert.
 
-//   std::map<STRING_T,cProxyObject*>::const_iterator i = _Proxies.begin();
-//   while (i != _Proxies.end()) {
+//   std::map<STRING_T,cProxyObject*>::const_iterator i = _Proxies.cbegin();
+//   while (i != _Proxies.cend()) {
 //      cProxyObject * proxy_object = (*i).second;
 //	     DELETE_OBJECT(cProxyObject, proxy_object)
 //	     i++;
@@ -87,7 +87,7 @@ cProxy * cProxyTable::Proxy (CONST_STRING_T name)
    cObjectLock __lock__(&_TableMutex);
    if (_Proxies.size() > 0) {
       std::map<STRING_T,cProxy*>::const_iterator i = _Proxies.find(name);
-      if (i != _Proxies.end()) {
+      if (i != _Proxies.cend()) {
          cProxy * proxy = (*i).second;
          return proxy;
       } else {

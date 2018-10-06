@@ -30,8 +30,8 @@ void PortingApplication::collectFiles()
 
 void PortingApplication::portFiles()
 {
-   FILE_MAP_T::const_iterator i = _fileMap.begin();
-   while (i != _fileMap.end()) {
+   FILE_MAP_T::const_iterator i = _fileMap.cbegin();
+   while (i != _fileMap.cend()) {
       PortingFile * file = (*i).second;
       file->portFile();
       i++;
@@ -53,8 +53,8 @@ void PortingApplication::generateResources()
       textStream << "   <qresource prefix=" << "\"/" << name() << "\">" << endl;
       if (_imageInformations->hasImages()) {
          const IMAGE_REFERENCE_MAP_T & imageReferenceMap = _imageInformations->imageRefrenceMap();
-         IMAGE_REFERENCE_MAP_T::const_iterator i = imageReferenceMap.begin();
-         while (i != imageReferenceMap.end()) {
+         IMAGE_REFERENCE_MAP_T::const_iterator i = imageReferenceMap.cbegin();
+         while (i != imageReferenceMap.cend()) {
             const ImageReference * imageReference = (*i).second;
             QString resourceName = imageReference->resourceName();
             if (resourceName.isEmpty()) {
@@ -62,7 +62,7 @@ void PortingApplication::generateResources()
             } else {
                QString path = "images/" + resourceName;
                std::map<QString,QString>::const_iterator p = pathMap.find(path);
-               if (p == pathMap.end()) {
+               if (p == pathMap.cend()) {
                   textStream << "      <file>";
                   textStream << path;
                   textStream << "</file>" << endl;
@@ -73,8 +73,8 @@ void PortingApplication::generateResources()
          }
       } else {
          const GENERATED_IMAGE_MAP_T & generatedImageMap = _imageInformations->generatedImageMap();
-         GENERATED_IMAGE_MAP_T::const_iterator i = generatedImageMap.begin();
-         while (i != generatedImageMap.end()) {
+         GENERATED_IMAGE_MAP_T::const_iterator i = generatedImageMap.cbegin();
+         while (i != generatedImageMap.cend()) {
             const GeneratedImage * generatedImage = (*i).second;
             QString resourceName = generatedImage->globalImageName();
             QString path = "images/" + resourceName;
@@ -97,7 +97,7 @@ void PortingApplication::generateResources()
    }
    int imageNumber = 0;
    i =  imageMap.begin();
-   while (i != imageMap.end()) {
+   while (i != imageMap.cend()) {
       Image * image = (*i).second;
       QImage qImage = image->qImage();
       QString path = append(resourcesPath, image->imageFilePath());
@@ -201,7 +201,7 @@ PortingFile * PortingApplication::file(PortingApplication * application, const Q
    PortingFile * file = NULL;
    QString name = fileInfo.baseName();
    FILE_MAP_T::const_iterator i = _fileMap.find(name);
-   if (i == _fileMap.end()) {
+   if (i == _fileMap.cend()) {
       file = new PortingFile(application, fileInfo);
       _fileMap[name] = file;
    } else {
@@ -298,8 +298,8 @@ void PortingApplication::loadImageMapFromFilesystem(const QString & relativePath
    filePatterns << "*.png";
    filePatterns << "*.bmp";
    QFileInfoList fileInfoList = directory.entryInfoList(filePatterns);
-   QFileInfoList::const_iterator i = fileInfoList.begin();
-   while (i != fileInfoList.end()) {
+   QFileInfoList::const_iterator i = fileInfoList.constBegin();
+   while (i != fileInfoList.constEnd()) {
       QString imageFileName = (*i).fileName();
       QString imageFile = (*i).absoluteFilePath();
       QString extension = (*i).suffix();
@@ -311,7 +311,7 @@ void PortingApplication::loadImageMapFromFilesystem(const QString & relativePath
       i++;
    }
    QFileInfoList subDirectoryList = directory.entryInfoList(QDir::Dirs);
-   i = subDirectoryList.begin();
+   i = subDirectoryList.constBegin();
    while (i != subDirectoryList.end()) {
       bool ignore = false;
       QString directoryName = (*i).fileName();
@@ -340,8 +340,8 @@ void PortingApplication::printInvalidProperties()
    QFile invalidPropertyFile(invalidPropertiesPath);
    invalidPropertyFile.open(QIODevice::WriteOnly | QIODevice::Text);
    if (invalidPropertyFile.isOpen()) {
-      INVALID_PROPERTY_MAP_T::const_iterator i = _invalidPropertyMap.begin();
-      while (i != _invalidPropertyMap.end()) {
+      INVALID_PROPERTY_MAP_T::const_iterator i = _invalidPropertyMap.cbegin();
+      while (i != _invalidPropertyMap.cend()) {
          QTextStream stream(&invalidPropertyFile);
          stream << (*i).second.propertyName() << " in " <<  (*i).second.widgetName() << " in " << (*i).second.path() << endl;
          i++;

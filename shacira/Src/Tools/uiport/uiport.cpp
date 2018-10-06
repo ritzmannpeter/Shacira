@@ -758,8 +758,8 @@ bool UiPort::collectImages(QDomDocument document, const QDomNode parentNode, con
                      QStringList components = newImageName.split("/");
                      int size = components.size();
                      int i = 0;
-                     QStringList::const_iterator c = components.begin();
-                     while (c != components.end()) {
+                     QStringList::const_iterator c = components.constBegin();
+                     while (c != components.constEnd()) {
                         if (i < (size - 1)) {
                            path = append(path, (*c));
                         } else {
@@ -886,8 +886,8 @@ void UiPort::addIncludes(QDomDocument document, QDomNode node, const QString & n
    QString includeStatement = "qt4port.h";
    setNodeValue(document, includeElement, includeStatement);
    _updateList.add(includesElement, includeElement);
-   map<QString,QString>::const_iterator i = _widgetClassMap.begin();
-   while (i != _widgetClassMap.end()) {
+   map<QString,QString>::const_iterator i = _widgetClassMap.cbegin();
+   while (i != _widgetClassMap.cend()) {
       QString widgetClass = (*i).second;
       if (widgetClass[0] != 'Q') {
          QDomElement includeElement = document.createElement("include");
@@ -905,8 +905,8 @@ void UiPort::addCustomWidgetRefs(QDomDocument document, QDomNode node, const QSt
    QDomElement uiElement = node.toElement();
    QDomElement customWidgetsElement = document.createElement("customwidgets");
    _updateList.add(uiElement, customWidgetsElement);
-   map<QString,QString>::const_iterator i = _widgetClassMap.begin();
-   while (i != _widgetClassMap.end()) {
+   map<QString,QString>::const_iterator i = _widgetClassMap.cbegin();
+   while (i != _widgetClassMap.cend()) {
       QString widgetClass = (*i).second;
       if (widgetClass[0] != 'Q') {
          bool isContainer = _formBuilder.isContainer(widgetClass);
@@ -1021,8 +1021,8 @@ void UiPort::addPaletteElement(QDomDocument document, QDomNode node, QPalette pa
 
 void UiPort::addColorGroups(QDomDocument document, QDomNode node, QPalette palette, QList<QPalette::ColorGroup> colorGroupList, QList<QPalette::ColorRole> colorRoleList)
 {
-   QList<QPalette::ColorGroup>::const_iterator i = colorGroupList.begin();
-   while (i != colorGroupList.end()) {
+   QList<QPalette::ColorGroup>::const_iterator i = colorGroupList.constBegin();
+   while (i != colorGroupList.constEnd()) {
       QString groupName;
       if ((*i) == QPalette::Active) {
          groupName = "active";
@@ -1040,8 +1040,8 @@ void UiPort::addColorGroups(QDomDocument document, QDomNode node, QPalette palet
 
 void UiPort::addColorRoles(QDomDocument document, QDomNode node, QPalette palette, QPalette::ColorGroup colorGroup, QList<QPalette::ColorRole> colorRoleList)
 {
-   QList<QPalette::ColorRole>::const_iterator i = colorRoleList.begin();
-   while (i != colorRoleList.end()) {
+   QList<QPalette::ColorRole>::const_iterator i = colorRoleList.constBegin();
+   while (i != colorRoleList.constEnd()) {
       QString roleName;
       if ((*i) == QPalette::Window) {
          roleName = "Window";
@@ -1395,12 +1395,12 @@ void UiPort::adjustSlot(QDomDocument document, QDomElement element, const QStrin
 void UiPort::splitEnumValue(const QString & enumValue, QString & nameSpace, QString & value)
 {
    QStringList componentList = enumValue.split("::");
-   QStringList::const_iterator c = componentList.begin();
+   QStringList::const_iterator c = componentList.constBegin();
    if (componentList.size() == 1) {
-      value = (*componentList.begin());
+      value = (*componentList.constBegin());
    } else if (componentList.size() == 2) {
-      nameSpace = (*componentList.begin());
-      value = (*(componentList.begin() + 1));
+      nameSpace = (*componentList.constBegin());
+      value = (*(componentList.constBegin() + 1));
    } else {
       int dummy = 0;
    }
@@ -1440,8 +1440,8 @@ QString UiPort::filterSetValue(const QString & setValue, QWidget * widget, const
 {
    QString newValueList;
    QStringList valueList = setValue.split("|");
-   QStringList::const_iterator v = valueList.begin();
-   while (v != valueList.end()) {
+   QStringList::const_iterator v = valueList.constBegin();
+   while (v != valueList.constEnd()) {
       QString newValue = filterEnumValue(*v, widget, newNameSpace);
       if (!newValue.isEmpty()) {
          if (!newValueList.isEmpty()) {

@@ -96,8 +96,8 @@ static void AddUnresolvedSymbol(cContext * context, cVarDef * var_def, CONST_STR
 static BOOL_T CheckUnresolvedSymbols()
 {
    BOOL_T unresolved_symbols = false;
-   UNRESOLVED_SYMBOL_LIST_T::const_iterator i = _UnresolvedSymbols.begin();
-   while (i != _UnresolvedSymbols.end()) {
+   UNRESOLVED_SYMBOL_LIST_T::const_iterator i = _UnresolvedSymbols.cbegin();
+   while (i != _UnresolvedSymbols.cend()) {
       UNRESOLVED_SYMBOL_T * ures = (*i);
       if (ures != NULL) {
          cContext * context = ures->context;
@@ -2789,7 +2789,7 @@ BOOL_T cStyxParser::IsDynamic (CONST_STRING_T var_name)
 {
   //## begin cStyxParser::IsDynamic%1129142496.body preserve=yes
    STRING_MAP_T::const_iterator i = _DynamicVars.find(var_name);
-   if (i == _DynamicVars.end()) {
+   if (i == _DynamicVars.cend()) {
       return false;
    } else {
       return true;

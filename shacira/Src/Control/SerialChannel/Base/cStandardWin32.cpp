@@ -91,16 +91,38 @@ void cStandardBase::Open()
    }
    Close();
 
+   #define MAXRETRIES 3
+   #define RETRY_DELAY 800
+
+   BOOL_T success = false;
+   int retries = 0;
+   int error = 0;
    HANDLE handle;
    DCB dcb = {0};
    char port_name[32] = {0};
    SafePrintf(port_name, sizeof(port_name), "\\\\.\\%s", _PortName);
-   if ((handle = CreateFile(port_name,
-                            GENERIC_WRITE | GENERIC_READ,
-                            0, NULL,
-                            OPEN_EXISTING,
-                            FILE_ATTRIBUTE_NORMAL,
-                            NULL)) != INVALID_HANDLE_VALUE) {
+
+   do {
+      handle = CreateFile(port_name, GENERIC_WRITE | GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+      if (handle == INVALID_HANDLE_VALUE) {
+         error = (int)GetLastError();
+
+         if (error == ERROR_ACCESS_DENIED) {
+            retries++;
+            Sleep(RETRY_DELAY);
+            continue;
+         }
+         else {
+            // An error occurred.
+            break;
+         }
+      }
+
+      success = true;
+      break;
+   } while (retries < MAXRETRIES);
+
+   if (success) {
       int rc;
       if ((rc = InitDevice(handle)) == 0) {
          _PortHandle = handle;
@@ -109,7 +131,7 @@ void cStandardBase::Open()
          throw cError(STDSER_SET_COMM_STATE, rc, port_name);
       }
    } else {
-     throw cError(STDSER_CREATE_FILE, GetLastError(), _PortName);
+     throw cError(STDSER_CREATE_FILE, error, _PortName);
    }
 }
 

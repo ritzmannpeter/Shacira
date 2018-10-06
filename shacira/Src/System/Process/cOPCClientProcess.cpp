@@ -90,8 +90,8 @@ static STRING_MAP_T _SkippedContexts;
    cObjectLock __lock__(&_NameSpaceMutex);
    STRING_LIST_T context_names;
    ContextNames(context_names, REMOTE_CONTEXTS);
-   STRING_LIST_T::const_iterator i = context_names.begin();
-   while (i != context_names.end()) {
+   STRING_LIST_T::const_iterator i = context_names.cbegin();
+   while (i != context_names.cend()) {
       STRING_T context_name = (*i);
       cContext * context = Context(context_name.c_str(), REMOTE_CONTEXTS);
       cProxy * proxy = Proxy(context_name.c_str());
@@ -101,7 +101,7 @@ static STRING_MAP_T _SkippedContexts;
          STRING_T ip_addr = proxy->get_IPAddress();
          if (_stricmp(ip_addr.c_str(), "127.0.0.1") == 0) {
             STRING_MAP_T::const_iterator sc = _SkippedContexts.find(context_name.c_str());
-            if (sc == _SkippedContexts.end()) {
+            if (sc == _SkippedContexts.cend()) {
                InfoPrintf("skipped context %s: unsupported ip address %s\n", context_name.c_str(), ip_addr.c_str());
                _SkippedContexts[context_name.c_str()] = context_name.c_str();
             }
@@ -131,8 +131,8 @@ void cOPCClientProcess::NewContextNames (STRING_LIST_T &context_names)
 {
   //## begin cOPCClientProcess::NewContextNames%1125664304.body preserve=yes
    cObjectLock __lock__(&_NameSpaceMutex);
-   CONTEXT_MAP_T::const_iterator i = _NewContexts.begin();
-   while (i != _NewContexts.end()) {
+   CONTEXT_MAP_T::const_iterator i = _NewContexts.cbegin();
+   while (i != _NewContexts.cend()) {
       cContext * context = (*i).second;
       if (context != NULL) {
          context_names.push_back(context->get_Name().c_str());
@@ -146,7 +146,7 @@ cContext * cOPCClientProcess::NewContext (CONST_STRING_T name)
 {
   //## begin cOPCClientProcess::NewContext%1125664305.body preserve=yes
    CONTEXT_MAP_T::const_iterator i = _NewContexts.find(name);
-   if (i != _NewContexts.end()) {
+   if (i != _NewContexts.cend()) {
       cContext * context = (*i).second;
       _NewContexts.erase(name);
       return context;

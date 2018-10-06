@@ -22,6 +22,8 @@
 #include "System/Objects/cAlarm.h"
 // cStaticObject
 #include "System/Objects/cStaticObject.h"
+// cUnitDef
+#include "System/Database/cUnitDef.h"
 
 class __DLL_EXPORT__ cSHProcess;
 class __DLL_EXPORT__ cProgress;
@@ -491,6 +493,7 @@ public:
       //## Operation: ReadFile%1091699603
       virtual void ReadFile(CONST_STRING_T file_name, CONST_STRING_T sub_files, STRING_T &buf);
       virtual void ReadFile(CONST_STRING_T file_name, CONST_STRING_T sub_files, cStringBuffer &buf);
+      virtual void ExportVariables(STRING_T &buf, CONST_STRING_T sub_file, CONST_STRING_T separator);
 
       //## Operation: WriteFile%1091699604
       virtual void WriteFile (CONST_STRING_T file_name, CONST_STRING_T sub_files, CONST_STRING_T buf);
@@ -535,6 +538,9 @@ public:
       //## Operation: SetUnit%1109785975
       void SetUnit (CONST_STRING_T unit_name, UCHAR_T selection);
 
+      //## Operation: UnitDefs
+      ULONG_T UnitDefs (UNITDEF_MAP_T &UnitDefs, CONST_STRING_T selection="*");
+
       //## Operation: Process%1117632421
       cSHProcess * Process ();
 
@@ -547,7 +553,7 @@ public:
       virtual cPersistenceChannel * PersistenceChannel ();
 
       //## Operation: Send%1122638220
-      virtual void Send (cTransientObject *object);
+      virtual void Send (cTransientObject *object, ULONG_T flags=0);
 
       //## Operation: IsActive%1125662157
       BOOL_T IsActive ();
@@ -676,7 +682,7 @@ public:
       //## Role: cContext::UnitDefs%42257C0D005D
       //## Qualifier: name%42257C5F0399; STRING_T
       //## begin cContext::UnitDefs%42257C0D005D.role preserve=no  public: cUnitDef {1 -> 0..nRFHN}
-      std::map<STRING_T, cUnitDef*> _UnitDefs;
+      UNITDEF_MAP_T _UnitDefs;
       //## end cContext::UnitDefs%42257C0D005D.role
 
       //## Association: <unnamed>%42120B2C001F

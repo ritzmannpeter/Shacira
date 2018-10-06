@@ -201,7 +201,7 @@ cBlockQueue * cUDPClient::BlockQueue (ULONG_T channel)
 {
   //## begin cUDPClient::BlockQueue%1090910857.body preserve=yes
    std::map<ULONG_T,cBlockQueue*>::const_iterator i = _BlockQueues.find(channel);
-   if (i == _BlockQueues.end()) {
+   if (i == _BlockQueues.cend()) {
       cBlockQueue * queue = new cBlockQueue(channel);
       _BlockQueues[channel] = queue;
       return queue;

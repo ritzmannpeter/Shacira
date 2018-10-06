@@ -121,6 +121,8 @@ public:
       //## Operation: ReadFile%1078912360
       virtual void ReadFile (CONST_STRING_T file_name, CONST_STRING_T sub_files, STRING_T &buf);
 
+      virtual void ExportVariables(STRING_T &buf, CONST_STRING_T sub_file, CONST_STRING_T separator);
+
       //## Operation: WriteFile%1078912361
       virtual void WriteFile (CONST_STRING_T file_name, CONST_STRING_T sub_files, CONST_STRING_T buf);
 
@@ -240,6 +242,8 @@ public:
 
       //## Operation: Login%1121785251
       virtual ULONG_T Login (CONST_STRING_T user_name, CONST_STRING_T password);
+
+      virtual ULONG_T LoginIfType (CONST_STRING_T user_name, CONST_STRING_T password, ULONG_T if_type);	  
 
       //## Operation: Logout%1121785252
       virtual void Logout ();

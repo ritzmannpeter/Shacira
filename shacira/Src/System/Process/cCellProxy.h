@@ -142,6 +142,8 @@ public:
       //	Reads a file specified by file name.
       virtual void ReadFile (CONST_STRING_T file_name, CONST_STRING_T sub_files, STRING_T &buf) = 0;
 
+      virtual void ExportVariables(STRING_T &buf, CONST_STRING_T sub_file, CONST_STRING_T separator) = 0;
+
       //## Operation: WriteFile%1078912352
       //	Writes a file specified by file name.
       virtual void WriteFile (CONST_STRING_T file_name, CONST_STRING_T sub_files, CONST_STRING_T buf) = 0;
@@ -275,6 +277,8 @@ public:
 
       //## Operation: Login%1121785247
       virtual ULONG_T Login (CONST_STRING_T user_name, CONST_STRING_T password) = 0;
+
+      virtual ULONG_T LoginIfType (CONST_STRING_T user_name, CONST_STRING_T password, ULONG_T if_type=0) = 0;	  
 
       //## Operation: Logout%1121785248
       virtual void Logout () = 0;

@@ -103,7 +103,7 @@ BOOL_T cCache::Cached (LONG_T address, ULONG_T elements)
 BOOL_T cCache::Cached (CONST_STRING_T name, ULONG_T elements)
 {
    STRING_MAP_T::const_iterator i = _CachedByName.find(name);
-   if (i == _CachedByName.end()) {
+   if (i == _CachedByName.cend()) {
       return false;
    } else {
       return true;
@@ -118,7 +118,7 @@ BOOL_T cCache::Buffered (LONG_T address, ULONG_T elements)
 BOOL_T cCache::Buffered (CONST_STRING_T name, ULONG_T elements)
 {
    STRING_MAP_T::const_iterator i = _BufferedByName.find(name);
-   if (i == _BufferedByName.end()) {
+   if (i == _BufferedByName.cend()) {
       return false;
    } else {
       return true;

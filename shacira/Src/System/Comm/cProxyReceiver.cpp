@@ -376,8 +376,8 @@ MAINFUNC_LOOP_PROLOG(_Name.c_str())
       if (_ProxyInfoTable != NULL) {
          STRING_LIST_T new_proxy_infos;
          _ProxyInfoTable->GetNewProxyInfos(new_proxy_infos);
-         STRING_LIST_T::const_iterator i = new_proxy_infos.begin();
-         while (i != new_proxy_infos.end()) {
+         STRING_LIST_T::const_iterator i = new_proxy_infos.cbegin();
+         while (i != new_proxy_infos.cend()) {
             STRING_T new_proxy_info = (*i);
             i++;
             int object_type = cTransferObject::ObjectType(new_proxy_info.c_str());
@@ -492,7 +492,7 @@ BOOL_T cProxyReceiver::Exists (CONST_STRING_T ior)
 {
   //## begin cProxyReceiver::Exists%1133788614.body preserve=yes
    IOR_MAP_T::const_iterator i = _IORMap.find(ior);
-   if (i == _IORMap.end()) {
+   if (i == _IORMap.cend()) {
       _IORMap[ior] = ior;
       return false;
    } else {

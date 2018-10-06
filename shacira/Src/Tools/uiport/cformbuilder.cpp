@@ -15,7 +15,7 @@ bool cFormBuilder::isCustomWidget(const QString & className)
 {
    initialize();
    WIDGET_INFO_MAP_T::const_iterator i = _widgetInfoMap.find(className);
-   if (i != _widgetInfoMap.end()) {
+   if (i != _widgetInfoMap.cend()) {
       return true;
    } else {
       return false;
@@ -26,7 +26,7 @@ bool cFormBuilder::isContainer(const QString & className)
 {
    initialize();
    WIDGET_INFO_MAP_T::const_iterator i = _widgetInfoMap.find(className);
-   if (i != _widgetInfoMap.end()) {
+   if (i != _widgetInfoMap.cend()) {
       return (*i).second.isContainer;
    } else {
       return false;
@@ -37,7 +37,7 @@ QString cFormBuilder::baseClass(const QString & className)
 {
    initialize();
    WIDGET_INFO_MAP_T::const_iterator i = _widgetInfoMap.find(className);
-   if (i != _widgetInfoMap.end()) {
+   if (i != _widgetInfoMap.cend()) {
       return (*i).second.superClassName;
    } else {
       return QString();
@@ -52,7 +52,7 @@ QWidget * cFormBuilder::createWidget(const QString & className)
    // does not return instances o Qt widgets
    initialize();
    WIDGET_INFO_MAP_T::const_iterator i = _widgetInfoMap.find(className);
-   if (i != _widgetInfoMap.end()) {
+   if (i != _widgetInfoMap.cend()) {
       return (*i).second.widget;
    } else {
       return NULL;
@@ -64,8 +64,8 @@ void cFormBuilder::initialize()
 {
    if (_widgetInfoMap.empty()) {
       QList<QDesignerCustomWidgetInterface*> customWidgetList = customWidgets();
-      QList<QDesignerCustomWidgetInterface*>::const_iterator cw = customWidgetList.begin();
-      while (cw != customWidgetList.end()) {
+      QList<QDesignerCustomWidgetInterface*>::const_iterator cw = customWidgetList.constBegin();
+      while (cw != customWidgetList.constEnd()) {
          QDesignerCustomWidgetInterface* widgetInterface = (*cw);
          WidgetInfo widgetInfo;
          QString className = widgetInterface->name();

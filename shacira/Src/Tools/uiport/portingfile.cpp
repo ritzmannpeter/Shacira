@@ -21,8 +21,8 @@ PortingFile::PortingFile(PortingApplication * application, const QFileInfo & fil
    _structPath = append(_destinationFileInfo.absolutePath(), fileName);
    bool start = false;
    QStringList components = _destinationPath.split("/");
-   QStringList::const_iterator i = components.begin();
-   while (i != components.end()) {
+   QStringList::const_iterator i = components.constBegin();
+   while (i != components.constEnd()) {
       if (start) {
          if (!_logicPath.isEmpty()) {
             _logicPath += "/";

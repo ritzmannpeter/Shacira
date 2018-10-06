@@ -166,8 +166,8 @@ void cGetInfoCmd::AddActiveJobs (cEM63Interface *itf, STRING_T &info, CONST_STRI
    info += delimiter;
    JOB_LIST_T job_list;
    itf->Jobs(job_list);
-   JOB_LIST_T::const_iterator i = job_list.begin();
-   while (i != job_list.end()) {
+   JOB_LIST_T::const_iterator i = job_list.cbegin();
+   while (i != job_list.cend()) {
       cEM63Job * job = (*i);
       if (job->IsActive()) {
          info += "\n";
@@ -197,8 +197,8 @@ void cGetInfoCmd::AddActiveReports (cEM63Interface *itf, STRING_T &info, CONST_S
    info += delimiter;
    CMD_LIST_T report_list;
    itf->Reports(report_list);
-   CMD_LIST_T::const_iterator i = report_list.begin();
-   while (i != report_list.end()) {
+   CMD_LIST_T::const_iterator i = report_list.cbegin();
+   while (i != report_list.cend()) {
       cPresentationCmd * command = (*i);
       if (command->IsReport() && command->IsActive()) {
          info += "\n";
@@ -228,8 +228,8 @@ void cGetInfoCmd::AddActiveEvents (cEM63Interface *itf, STRING_T &info, CONST_ST
    info += delimiter;
    CMD_LIST_T event_log_list;
    itf->EventLogs(event_log_list);
-   CMD_LIST_T::const_iterator i = event_log_list.begin();
-   while (i != event_log_list.end()) {
+   CMD_LIST_T::const_iterator i = event_log_list.cbegin();
+   while (i != event_log_list.cend()) {
       cPresentationCmd * command = (*i);
       if (command->IsEvent() && command->IsActive()) {
          info += "\n";

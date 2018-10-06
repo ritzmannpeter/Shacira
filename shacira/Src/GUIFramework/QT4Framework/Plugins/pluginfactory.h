@@ -195,8 +195,8 @@ public:
    {
       QString xml;
       xml += "<widget class=\"" + _className + "\" name=\"" + _className.toLower() + "\">\n";
-      map<QString,Property>::const_iterator i = _propertyMap.begin();
-      while (i != _propertyMap.end()) {
+      map<QString,Property>::const_iterator i = _propertyMap.cbegin();
+      while (i != _propertyMap.cend()) {
          Property p = (*i).second;
          xml += "   <property name=\"" + p._name + "\">\n";
          if (p._disableTranslation) {

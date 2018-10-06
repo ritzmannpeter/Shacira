@@ -342,7 +342,7 @@ BUF_T cSystemUtils::CachedAlloc (CONST_STRING_T name, LONG_T i1, LONG_T i2, LONG
    SafePrintf(key, sizeof(key), "%s[%d][%d][%d][%d]", name, i2, i2, i3, i4);
    BLOCK_DEF_T * block_def = NULL;
    CACHE_BLOCK_MAP_T::const_iterator i = _CachedBlocks.find(key);
-   if (i == _CachedBlocks.end()) {
+   if (i == _CachedBlocks.cend()) {
       block_def = (BLOCK_DEF_T*)Alloc(sizeof(BLOCK_DEF_T));
       block_def->buffer = (BUF_T)Alloc(size);
       block_def->size = size;
@@ -365,7 +365,7 @@ void cSystemUtils::SetThreadData (PTR_T data)
    ULONG_T id = ThreadId();
    PTR_T old_data = NULL;
    THREAD_DATA_MAP_T::const_iterator i = _ThreadData.find(id);
-   if (i != _ThreadData.end()) {
+   if (i != _ThreadData.cend()) {
       old_data = (*i).second;
    }
    _ThreadData[id] = data;
@@ -377,7 +377,7 @@ PTR_T cSystemUtils::GetThreadData ()
   //## begin cSystemUtils::GetThreadData%1100592012.body preserve=yes
    ULONG_T id = ThreadId();
    THREAD_DATA_MAP_T::const_iterator i = _ThreadData.find(id);
-   if (i != _ThreadData.end()) {
+   if (i != _ThreadData.cend()) {
       return (*i).second;
    } else {
       return NULL;
@@ -452,7 +452,7 @@ MEMORY_BLOCK_T * cSystemUtils::MemoryBlock (void *memory)
 {
   //## begin cSystemUtils::MemoryBlock%1106400838.body preserve=yes
    MEMORY_BLOCK_MAP_T::const_iterator i = _MemoryBlocks.find(memory);
-   if (i == _MemoryBlocks.end()) {
+   if (i == _MemoryBlocks.cend()) {
       return NULL;
    } else {
       return (*i).second;

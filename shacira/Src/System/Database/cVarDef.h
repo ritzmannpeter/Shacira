@@ -42,6 +42,7 @@ class __DLL_EXPORT__ cStringBuffer;
 #define IGN_DIM4_TEXT          0x00000040
 #define IGN_UNIT_TEXT          0x00000080
 #define USE_DATASET_PRECISION  0x00000100
+#define USE_EXPORT_FORMAT      0x00000200
 
 //## end module%3E0032230357.additionalDeclarations
 
@@ -175,10 +176,10 @@ public:
       //	This method creates an ascii representation of the
       //	variable definition (comparable to the Serialize method
       //	of transient objects)
-      void Unparse(STRING_T &buf, ULONG_T ctrl);
+      void Unparse(STRING_T &buf, ULONG_T ctrl, CONST_STRING_T separator="");
       //	This method writes an ascii representation of the
       //	variable definition into a cStringBuffer
-      void Unparse(cStringBuffer &buf, ULONG_T ctrl);
+      void Unparse(cStringBuffer &buf, ULONG_T ctrl, CONST_STRING_T separator="");
 
       //## Operation: IsDynamic%1090073692
       //	 Returns true if this is a dyynamic constructed variable

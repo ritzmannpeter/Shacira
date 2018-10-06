@@ -412,8 +412,8 @@ void cQTUserInterface::CreateFreeGroupDefs (QWidget *widget)
 {
 #ifdef QT4
    const QObjectList children = widget->children();
-   QObjectList::const_iterator i = children.begin();
-   while (i != children.end()) {
+   QObjectList::const_iterator i = children.constBegin();
+   while (i != children.constEnd()) {
       QObject * object = (*i);
       if (object->isWidgetType()) {
          QWidget * child = (QWidget*)object;
@@ -497,8 +497,8 @@ void cQTUserInterface::CreatePages ()
    STRING_LIST_T node_names;
    ULONG_T nodes = _NodeList->NodeNames(node_names);
    if (nodes > 0) {
-      STRING_LIST_T::const_iterator i = node_names.begin();
-      while (i != node_names.end()) {
+      STRING_LIST_T::const_iterator i = node_names.cbegin();
+      while (i != node_names.cend()) {
          cNode * node = _NodeList->Node((*i).c_str());
          CreatePages(node);
          ProcessEvents();
@@ -516,8 +516,8 @@ void cQTUserInterface::CreatePages (cNode *node)
    _PageList = _AppFrame->CreatePageList(_WidgetStack);
    Info(true, "create page list done");
 #ifdef QT4
-   PageList::const_iterator i = _PageList->begin();
-   while (i != _PageList->end()) {
+   PageList::const_iterator i = _PageList->constBegin();
+   while (i != _PageList->constEnd()) {
       CPage * page = (*i);
       QString group_name = page->getPageGroup();
       QString page_name = page->Name();
@@ -603,9 +603,9 @@ void cQTUserInterface::PropagateContexts ()
    if (nodes == 0) {
       return;
    }
-   STRING_LIST_T::const_iterator i = node_names.begin();
+   STRING_LIST_T::const_iterator i = node_names.cbegin();
    ProcessEvents();
-   while (i != node_names.end()) {
+   while (i != node_names.cend()) {
       cNode * node = _NodeList->Node((*i).c_str());
       if (_StartupForm != NULL) {
          _StartupForm->CreateEventSink(node->EventAdapter());

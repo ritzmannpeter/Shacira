@@ -455,7 +455,8 @@ CAlarmWidget::CAlarmWidget(QWidget * parent, const char * name, WIDGET_FLAGS_TYP
      _InfoImage(info_icon_data),
      _WarningImage(warning_icon_data),
      _ErrorImage(error_icon_data),
-     _SeriousErrorImage(serious_error_icon_data)
+     _SeriousErrorImage(serious_error_icon_data),
+     _ColSortValue(-1), _SortOrderValue(Qt::AscendingOrder)
 {
    CONSTRUCT_WIDGET
 
@@ -672,23 +673,18 @@ void CAlarmWidget::ShowAlarms()
 #ifndef QT_PLUGIN
 WMETHOD_PROLOG
    clear();
-#ifdef QT4
+
    setColumnText(0, _IconColTextValue);
    setColumnText(1, _TimeColTextValue);
    setColumnText(2, _MessageColTextValue);
    setColumnWidth(0, _IconColWidthValue + _ColSpacingValue);
    setColumnWidth(1, _TimeColWidthValue + _ColSpacingValue);
    setColumnWidth(2, _MessageColWidthValue + _ColSpacingValue);
-   setSorting(-1, false);
-#else
-   setColumnText(0, _IconColTextValue);
-   setColumnText(1, _TimeColTextValue);
-   setColumnText(2, _MessageColTextValue);
-   setColumnWidth(0, _IconColWidthValue + _ColSpacingValue);
-   setColumnWidth(1, _TimeColWidthValue + _ColSpacingValue);
-   setColumnWidth(2, _MessageColWidthValue + _ColSpacingValue);
-   setSorting(-1, false);
-#endif
+
+   if ((_ColSortValue == -1) && (_SortOrderValue == Qt::AscendingOrder)) {
+      setSorting(-1, false);
+   }
+
    ULONG_T alarms = _AlarmTable->Alarms();
    if (alarms > 0) {
       for (ULONG_T i=0; i<MAX_ALARMS; i++) {
@@ -736,6 +732,10 @@ WMETHOD_PROLOG
             item->setText(2, utf8_text);
          }
       }
+   }
+ 
+   if (!((_ColSortValue == -1) && (_SortOrderValue == Qt::AscendingOrder))) {   
+      sortByColumn(_ColSortValue, _SortOrderValue);
    }
 WMETHOD_VOID_EPILOG
 #endif

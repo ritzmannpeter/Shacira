@@ -299,7 +299,7 @@ static bool ValidAddress(STRING_VECTOR_T ignore_list, STRING_T & valid_address)
             if (laddr != IpAddr2Long("127.0.0.1")) {
                /// local host address will be generally filtered out
                IP_ADDR_MAP_T::const_iterator a = ign_addresses.find(laddr);
-               if (a == ign_addresses.end()) {
+               if (a == ign_addresses.cend()) {
                   valid_address = Long2IpAddr(laddr);
                   return true;
                }
@@ -698,8 +698,8 @@ void cLocalContext::Create ()
   //## begin cLocalContext::Create%1054715292.body preserve=yes
    BOOL_T check_mapping = cResources::FlagSet(PF_CHECK_DEVICE_MAPPING);
    STRING_MAP_T id_map;
-   std::map<STRING_T, cContext*>::const_iterator j = _SearchContexts.begin();
-   while (j != _SearchContexts.end()) {
+   std::map<STRING_T, cContext*>::const_iterator j = _SearchContexts.cbegin();
+   while (j != _SearchContexts.cend()) {
       cContext * search_context = (*j).second;
       if (search_context != NULL) {
          search_context->Create();
@@ -709,8 +709,8 @@ void cLocalContext::Create ()
    if (_Created) return;
    InfoPrintf("creating local context %p %s\n", this, _Name.c_str());
    _Created = true;
-   std::map<STRING_T, cVarDef*>::const_iterator i = _VarDefs.begin();
-   while (i != _VarDefs.end()) {
+   std::map<STRING_T, cVarDef*>::const_iterator i = _VarDefs.cbegin();
+   while (i != _VarDefs.cend()) {
       cVarDef * var_def = (*i).second;
 #undef MODULAR_CREATION
 #ifdef MODULAR_CREATION
@@ -795,7 +795,6 @@ void cLocalContext::Create ()
                                           map_item->name,
                                           map_item->size);
                         }
-                        int dummy = 0;
                      }
                   }
                }
@@ -851,8 +850,8 @@ void cLocalContext::Create ()
 void cLocalContext::CreateDynamic ()
 {
   //## begin cLocalContext::CreateDynamic%1090073690.body preserve=yes
-   std::map<STRING_T, cVarDef*>::const_iterator i = _VarDefs.begin();
-   while (i != _VarDefs.end()) {
+   std::map<STRING_T, cVarDef*>::const_iterator i = _VarDefs.cbegin();
+   while (i != _VarDefs.cend()) {
       cVarDef * var_def = (*i).second;
       if (var_def != NULL && var_def->IsDynamic()) {
          cVariable * variable = var_def->_Variable;
@@ -872,13 +871,13 @@ ULONG_T cLocalContext::GetVarDefs (STRING_T &var_defs, ULONG_T if_type)
 {
   //## begin cLocalContext::GetVarDefs%1054726258.body preserve=yes
    HOSTITF_CACHE_T::const_iterator c = _HostItfCache.find(if_type);
-   if (c != _HostItfCache.end()) {
+   if (c != _HostItfCache.cend()) {
       var_defs = (*c).second.c_str();
       return 0;
    }
    STRING_MAP_T var_names;
-   std::map<STRING_T, cVarDef*>::const_iterator i = _VarDefs.begin();
-   while (i != _VarDefs.end()) {
+   std::map<STRING_T, cVarDef*>::const_iterator i = _VarDefs.cbegin();
+   while (i != _VarDefs.cend()) {
       cVarDef * var_def = (*i).second;
       if (if_type != IF_PROPRIETARY) {
          if (var_def->_SystemFlags & HOST_READ ||
@@ -892,7 +891,7 @@ ULONG_T cLocalContext::GetVarDefs (STRING_T &var_defs, ULONG_T if_type)
             }
             STRING_T var_name = new_var_def->_VarName;
             STRING_MAP_T::const_iterator vn = var_names.find(var_name.c_str());
-            if (vn == var_names.end()) {
+            if (vn == var_names.cend()) {
                var_names[var_name.c_str()] = var_name.c_str();
             } else {
                ErrorPrintf("variable name %s already defined for host interface %d\n", var_name.c_str(), if_type);
@@ -908,8 +907,8 @@ ULONG_T cLocalContext::GetVarDefs (STRING_T &var_defs, ULONG_T if_type)
    }
 #ifdef LOCAL_VARIABLES_ARE_GLOBAL
    ULONG_T size = _VarDefs.size();
-   std::map<STRING_T, cContext*>::const_iterator j = _SearchContexts.begin();
-   while (j != _SearchContexts.end()) {
+   std::map<STRING_T, cContext*>::const_iterator j = _SearchContexts.cbegin();
+   while (j != _SearchContexts.cend()) {
       cContext * search_context = (*j).second;
       if (search_context != NULL) {
          size += search_context->GetVarDefs(obj_list);
@@ -919,7 +918,27 @@ ULONG_T cLocalContext::GetVarDefs (STRING_T &var_defs, ULONG_T if_type)
    return size;
 #endif
    _HostItfCache[if_type] = var_defs.c_str();
-   return 0;
+   return var_names.size();
+  //## end cLocalContext::GetVarDefs%1054726258.body
+}
+
+ULONG_T cLocalContext::GetVarDefs (STRING_T &var_defs, CONST_STRING_T database_name)
+{
+   var_defs = "";
+
+   STRING_MAP_T var_names;
+   std::map<STRING_T, cVarDef*>::const_iterator i = _VarDefs.cbegin();
+   while (i != _VarDefs.cend()) {
+      cVarDef * var_def = (*i).second;
+      if (var_def->_DatabaseName.compare(database_name) == 0) {
+         STRING_T var_spec = "def ";
+         var_def->Unparse(var_spec, IGN_VALUES);
+         var_defs += var_spec.c_str();
+      }
+      i++;
+   }
+
+   return _VarDefs.size();
   //## end cLocalContext::GetVarDefs%1054726258.body
 }
 
@@ -940,21 +959,71 @@ cChannel * cLocalContext::EventChannel ()
 ULONG_T cLocalContext::Alarms (ULONG_T selection)
 {
   //## begin cLocalContext::Alarms%1089103362.body preserve=yes
-   return _AlarmMap.size();
+   switch(selection) {
+   case 0: // All alarms -> size of alarm map
+        return _AlarmMap.size();
+   case 1: // Only alarms with severity SevInfo or SevWarning
+      {
+         ULONG_T size = 0;
+         ALARM_MAP_T::const_iterator i = _AlarmMap.cbegin();
+         while (i != _AlarmMap.cend()) {
+            cAlarm * alarm = (*i).second;
+            SeverityTypes severity = alarm->get_Severity();
+            if ((severity == SevInfo) || (severity == SevWarning))
+                size++;
+
+            i++;
+         }
+         return size;
+      }
+   case 2: // Only alarms with severity SevError or SevSeriousError
+      {
+         ULONG_T size = 0;
+         ALARM_MAP_T::const_iterator i = _AlarmMap.cbegin();
+         while (i != _AlarmMap.cend()) {
+            cAlarm * alarm = (*i).second;
+            SeverityTypes severity = alarm->get_Severity();
+            if ((severity == SevError) || (severity == SevSeriousError))
+                size++;
+
+            i++;
+         }
+         return size;
+      }
+   default:
+       return 0;
+   }
   //## end cLocalContext::Alarms%1089103362.body
 }
 
 ULONG_T cLocalContext::Alarms (ULONG_T selection, ALARM_MAP_T &alarms)
 {
   //## begin cLocalContext::Alarms%1081425828.body preserve=yes
-   ALARM_MAP_T::const_iterator i = _AlarmMap.begin();
-   while (i != _AlarmMap.end()) {
+   ALARM_MAP_T::const_iterator i = _AlarmMap.cbegin();
+   while (i != _AlarmMap.cend()) {
+      BOOL_T add_alarm_to_map = false;
       cAlarm * alarm = (*i).second;
       ULONG_T ident = alarm->get_Ident();
-      alarms[ident] = alarm; 
+      if (selection == 0) {
+         add_alarm_to_map = true;
+      }
+      else if (selection == 1) {
+         SeverityTypes severity = alarm->get_Severity();
+         if ((severity == SevInfo) || (severity == SevWarning))
+            add_alarm_to_map = true;
+      }
+      else if (selection == 2) {
+         SeverityTypes severity = alarm->get_Severity();
+         if ((severity == SevError) || (severity == SevSeriousError))
+            add_alarm_to_map = true;
+      }
+
+      if (add_alarm_to_map)
+         alarms[ident] = alarm;
+
       i++;
    }
-   return _AlarmMap.size();
+   return alarms.size();
   //## end cLocalContext::Alarms%1081425828.body
 }
 
@@ -963,6 +1032,7 @@ void cLocalContext::ClearAlarm (ULONG_T ident, BOOL_T propagate)
   //## begin cLocalContext::ClearAlarm%1081425829.body preserve=yes
    cAlarm * alarm = Alarm(ident);
    if (alarm != NULL) {
+      ULONG_T alarm_selection = cResources::FlagSet(PF_ALARM_INFO_FOR_REAL_ALARM) ? 2 : 0;
       if (propagate) {
          cTimeObject now;
          if (_Dispatcher != NULL) {
@@ -974,21 +1044,23 @@ void cLocalContext::ClearAlarm (ULONG_T ident, BOOL_T propagate)
          }
       }
       _AlarmMap.erase(ident);
-      if (Alarms(0) == 0) {
+      if (Alarms(alarm_selection) == 0) {
          if (_Dispatcher != NULL) {
             cInfo * info = new cInfo(this, IT_ALARM_INFO, 0, "");
+            info->set_InfoCustomType((ULONG_T)alarm->get_Severity());
             info->set_InfoId(alarm->get_Ident());
             _Dispatcher->Send(info);
             info->Release();
          }
       } else {
          ALARM_MAP_T alarm_map;
-         Alarms(0, alarm_map);
+         Alarms(alarm_selection, alarm_map);
          cAlarm * active_alarm = ActiveAlarm(alarm_map);
          if (active_alarm != NULL) {
             if (_Dispatcher != NULL) {
                cInfo * info = new cInfo(this, IT_ALARM_INFO,
                                         active_alarm->get_TextId1(), active_alarm->get_Text1().c_str());
+               info->set_InfoCustomType((ULONG_T)active_alarm->get_Severity());
                info->set_InfoId(active_alarm->get_Ident());
                if (active_alarm->get_Param1().size() > 0) {
                   info->set_Param1(active_alarm->get_Param1().c_str());
@@ -1018,8 +1090,8 @@ void cLocalContext::ClearAlarms (BOOL_T propagate)
 {
   //## begin cLocalContext::ClearAlarms%1081425830.body preserve=yes
    while (true) {
-      ALARM_MAP_T::const_iterator i = _AlarmMap.begin();
-      if (i == _AlarmMap.end()) return;
+      ALARM_MAP_T::const_iterator i = _AlarmMap.cbegin();
+      if (i == _AlarmMap.cend()) return;
       cAlarm * alarm = (*i).second;
       ULONG_T ident = alarm->get_Ident();
       ClearAlarm(ident, propagate);
@@ -1076,6 +1148,8 @@ void cLocalContext::ExecuteRequest (CONST_STRING_T program_name, STRING_T &reply
    cProgram * program = Program(program_name);
    if (program != NULL) {
       program->ExecuteRequest(reply, request);
+   } else {
+      throw cError(CELL_UNKNOWN_PROGRAM, 0, program_name);
    }
   //## end cLocalContext::ExecuteRequest%1133771768.body
 }
@@ -1113,6 +1187,164 @@ CHECK_CELL
 void cLocalContext::ReadFile(CONST_STRING_T file_name, CONST_STRING_T sub_file, STRING_T &buf)
 {
    //## begin cLocalContext::ReadFile%1091699605.body preserve=yes
+   cObjectLock __lock__(&_DataFileMutex);
+   std::map<STRING_T, cSubFile*> sub_file_map;
+   std::map<STRING_T, cVarDef*>::const_iterator i = _VarDefs.cbegin();
+   while (i != _VarDefs.cend()) {
+      cVarDef * var_def = (*i).second;
+      cLocalVariable * variable = (cLocalVariable*)var_def->_Variable;
+      if (variable != NULL) {
+         STRING_T var_name = var_def->_VarName;
+         UCHAR_T var_type = var_def->_VarType;
+         BOOL_T header_flag = variable->GetFlag(Header);
+         if (header_flag) {
+            STRING_T sub_file_name = "Header";
+            cSubFile * _sub_file = NULL;
+            std::map<STRING_T, cSubFile*>::const_iterator j = sub_file_map.find(sub_file_name.c_str());
+            if (j == sub_file_map.cend()) {
+               _sub_file = new cSubFile(sub_file_name.c_str());
+               sub_file_map[sub_file_name.c_str()] = _sub_file;
+            }
+            else {
+               _sub_file = (*j).second;
+            }
+            _sub_file->AddVariable(var_name.c_str(), variable);
+         }
+         else if (var_type == SH_VAR_SET) {
+            STRING_T sub_file_name = var_def->_FileName;
+            if (strlen(sub_file) > 0) {
+               if (sub_file[0] == '-') {
+                  if ((strcmp(sub_file, "-") == 0) && sub_file_name.size() == 0) {
+                     i++;
+                     continue;
+                  }
+                  else {
+                     if (_stricmp(&sub_file[1], sub_file_name.c_str()) == 0) {
+                        i++;
+                        continue;
+                     }
+                  }
+               }
+               else {
+                  if (_stricmp(sub_file, sub_file_name.c_str()) != 0) {
+                     i++;
+                     continue;
+                  }
+               }
+            }
+            if (sub_file_name.size() == 0) {
+               sub_file_name = "free";
+            }
+            cSubFile * _sub_file = NULL;
+            std::map<STRING_T, cSubFile*>::const_iterator j = sub_file_map.find(sub_file_name.c_str());
+            if (j == sub_file_map.cend()) {
+               _sub_file = new cSubFile(sub_file_name.c_str());
+               sub_file_map[sub_file_name.c_str()] = _sub_file;
+            }
+            else {
+               _sub_file = (*j).second;
+            }
+            _sub_file->AddVariable(var_name.c_str(), (cLocalVariable*)var_def->_Variable);
+         }
+      }
+      i++;
+   }
+   STRING_T dm;
+   std::map<STRING_T, cSubFile*>::const_iterator j = sub_file_map.cbegin();
+   while (j != sub_file_map.cend()) {
+      cSubFile * _sub_file = (*j).second;
+      if (_sub_file != NULL) {
+         STRING_T db;
+         _sub_file->PrintVariables(db);
+         dm += db;
+         delete _sub_file;
+      }
+      j++;
+   }
+   buf = dm;
+   //## end cLocalContext::ReadFile%1091699605.body
+}
+
+void cLocalContext::ReadFile(CONST_STRING_T file_name, CONST_STRING_T sub_file, cStringBuffer &buf)
+{
+   //## begin cLocalContext::ReadFile%1091699605.body preserve=yes
+   cObjectLock __lock__(&_DataFileMutex);
+   std::map<STRING_T, cSubFile*> sub_file_map;
+   std::map<STRING_T, cVarDef*>::const_iterator i = _VarDefs.cbegin();
+   while (i != _VarDefs.cend()) {
+      cVarDef * var_def = (*i).second;
+      cLocalVariable * variable = (cLocalVariable*)var_def->_Variable;
+      if (variable != NULL) {
+         STRING_T var_name = var_def->_VarName;
+         UCHAR_T var_type = var_def->_VarType;
+         BOOL_T header_flag = variable->GetFlag(Header);
+         if (header_flag) {
+            STRING_T sub_file_name = "Header";
+            cSubFile * _sub_file = NULL;
+            std::map<STRING_T, cSubFile*>::const_iterator j = sub_file_map.find(sub_file_name.c_str());
+            if (j == sub_file_map.cend()) {
+               _sub_file = new cSubFile(sub_file_name.c_str());
+               sub_file_map[sub_file_name.c_str()] = _sub_file;
+            }
+            else {
+               _sub_file = (*j).second;
+            }
+            _sub_file->AddVariable(var_name.c_str(), variable);
+         }
+         else if (var_type == SH_VAR_SET) {
+            STRING_T sub_file_name = var_def->_FileName;
+            if (strlen(sub_file) > 0) {
+               if (sub_file[0] == '-') {
+                  if ((strcmp(sub_file, "-") == 0) && sub_file_name.size() == 0) {
+                     i++;
+                     continue;
+                  }
+                  else {
+                     if (_stricmp(&sub_file[1], sub_file_name.c_str()) == 0) {
+                        i++;
+                        continue;
+                     }
+                  }
+               }
+               else {
+                  if (_stricmp(sub_file, sub_file_name.c_str()) != 0) {
+                     i++;
+                     continue;
+                  }
+               }
+            }
+            if (sub_file_name.size() == 0) {
+               sub_file_name = "free";
+            }
+            cSubFile * _sub_file = NULL;
+            std::map<STRING_T, cSubFile*>::const_iterator j = sub_file_map.find(sub_file_name.c_str());
+            if (j == sub_file_map.cend()) {
+               _sub_file = new cSubFile(sub_file_name.c_str());
+               sub_file_map[sub_file_name.c_str()] = _sub_file;
+            }
+            else {
+               _sub_file = (*j).second;
+            }
+            _sub_file->AddVariable(var_name.c_str(), (cLocalVariable*)var_def->_Variable);
+         }
+      }
+      i++;
+   }
+   STRING_T dm;
+   std::map<STRING_T, cSubFile*>::const_iterator j = sub_file_map.cbegin();
+   while (j != sub_file_map.cend()) {
+      cSubFile * _sub_file = (*j).second;
+      if (_sub_file != NULL) {
+         _sub_file->PrintVariables(buf);
+         delete _sub_file;
+      }
+      j++;
+   }
+   //## end cLocalContext::ReadFile%1091699605.body
+}
+
+void cLocalContext::ExportVariables(STRING_T &buf, CONST_STRING_T sub_file, CONST_STRING_T separator)
+{
    cObjectLock __lock__(&_DataFileMutex);
    std::map<STRING_T, cSubFile*> sub_file_map;
    std::map<STRING_T, cVarDef*>::const_iterator i = _VarDefs.begin();
@@ -1181,92 +1413,13 @@ void cLocalContext::ReadFile(CONST_STRING_T file_name, CONST_STRING_T sub_file, 
       cSubFile * _sub_file = (*j).second;
       if (_sub_file != NULL) {
          STRING_T db;
-         _sub_file->PrintVariables(db);
+         _sub_file->ExportVariables(db, separator);
          dm += db;
          delete _sub_file;
       }
       j++;
    }
    buf = dm;
-   //## end cLocalContext::ReadFile%1091699605.body
-}
-
-void cLocalContext::ReadFile(CONST_STRING_T file_name, CONST_STRING_T sub_file, cStringBuffer &buf)
-{
-   //## begin cLocalContext::ReadFile%1091699605.body preserve=yes
-   cObjectLock __lock__(&_DataFileMutex);
-   std::map<STRING_T, cSubFile*> sub_file_map;
-   std::map<STRING_T, cVarDef*>::const_iterator i = _VarDefs.begin();
-   while (i != _VarDefs.end()) {
-      cVarDef * var_def = (*i).second;
-      cLocalVariable * variable = (cLocalVariable*)var_def->_Variable;
-      if (variable != NULL) {
-         STRING_T var_name = var_def->_VarName;
-         UCHAR_T var_type = var_def->_VarType;
-         BOOL_T header_flag = variable->GetFlag(Header);
-         if (header_flag) {
-            STRING_T sub_file_name = "Header";
-            cSubFile * _sub_file = NULL;
-            std::map<STRING_T, cSubFile*>::const_iterator j = sub_file_map.find(sub_file_name.c_str());
-            if (j == sub_file_map.end()) {
-               _sub_file = new cSubFile(sub_file_name.c_str());
-               sub_file_map[sub_file_name.c_str()] = _sub_file;
-            }
-            else {
-               _sub_file = (*j).second;
-            }
-            _sub_file->AddVariable(var_name.c_str(), variable);
-         }
-         else if (var_type == SH_VAR_SET) {
-            STRING_T sub_file_name = var_def->_FileName;
-            if (strlen(sub_file) > 0) {
-               if (sub_file[0] == '-') {
-                  if ((strcmp(sub_file, "-") == 0) && sub_file_name.size() == 0) {
-                     i++;
-                     continue;
-                  }
-                  else {
-                     if (_stricmp(&sub_file[1], sub_file_name.c_str()) == 0) {
-                        i++;
-                        continue;
-                     }
-                  }
-               }
-               else {
-                  if (_stricmp(sub_file, sub_file_name.c_str()) != 0) {
-                     i++;
-                     continue;
-                  }
-               }
-            }
-            if (sub_file_name.size() == 0) {
-               sub_file_name = "free";
-            }
-            cSubFile * _sub_file = NULL;
-            std::map<STRING_T, cSubFile*>::const_iterator j = sub_file_map.find(sub_file_name.c_str());
-            if (j == sub_file_map.end()) {
-               _sub_file = new cSubFile(sub_file_name.c_str());
-               sub_file_map[sub_file_name.c_str()] = _sub_file;
-            }
-            else {
-               _sub_file = (*j).second;
-            }
-            _sub_file->AddVariable(var_name.c_str(), (cLocalVariable*)var_def->_Variable);
-         }
-      }
-      i++;
-   }
-   STRING_T dm;
-   std::map<STRING_T, cSubFile*>::const_iterator j = sub_file_map.begin();
-   while (j != sub_file_map.end()) {
-      cSubFile * _sub_file = (*j).second;
-      if (_sub_file != NULL) {
-         _sub_file->PrintVariables(buf);
-         delete _sub_file;
-      }
-      j++;
-   }
-   //## end cLocalContext::ReadFile%1091699605.body
 }
 
 void cLocalContext::WriteFile(CONST_STRING_T file_name, CONST_STRING_T sub_file, CONST_STRING_T buf)
@@ -1303,8 +1456,8 @@ CHECK_CELL
    if (persistence_manager != NULL) {
       persistence_manager->SetBuffered(true);
    }
-   std::map<STRING_T, cVarDef*>::const_iterator i = _VarDefs.begin();
-   while (i != _VarDefs.end()) {
+   std::map<STRING_T, cVarDef*>::const_iterator i = _VarDefs.cbegin();
+   while (i != _VarDefs.cend()) {
       cVarDef * var_def = (*i).second;
       STRING_T var_name = var_def->_VarName;
       cVariable * dst = var_def->_Variable;
@@ -1339,8 +1492,8 @@ CHECK_CELL
    if (buffered_state != true) {
       _Cell->SetDevicesBuffered(true);
    }
-   std::map<STRING_T, cVarDef*>::const_iterator i = _VarDefs.begin();
-   while (i != _VarDefs.end()) {
+   std::map<STRING_T, cVarDef*>::const_iterator i = _VarDefs.cbegin();
+   while (i != _VarDefs.cend()) {
       cVarDef * var_def = (*i).second;
 //      if (var_def->_VarType != SH_VAR_ACT) {
       if (var_def->_VarType == SH_VAR_SET) {
@@ -1361,6 +1514,12 @@ CHECK_CELL
          }
       }
       else if (var_def->_VarType == SH_VAR_VOLATILE) {
+         // BEGIN TEST
+         //if ((var_def->_VarType == SH_VAR_VOLATILE) &&
+         //    (var_def->get_UnitDef() != NULL) && var_def->_Mapping) {
+         //    ErrorPrintf("Volatile/unitDef/Mapping Variablenname %s\n", var_def->_VarName.c_str());
+         //}
+         // END TEST
          cLocalVariable * local_var = (cLocalVariable*)var_def->_Variable;
          if (local_var != NULL) {
              UCHAR_T ptype = var_def->_PersistenceType;
@@ -1384,8 +1543,8 @@ void cLocalContext::SaveVariables ()
    if (cached_state != true) {
       _Cell->SetDevicesCached(true);
    }
-   std::map<STRING_T, cVarDef*>::const_iterator i = _VarDefs.begin();
-   while (i != _VarDefs.end()) {
+   std::map<STRING_T, cVarDef*>::const_iterator i = _VarDefs.cbegin();
+   while (i != _VarDefs.cend()) {
       cVarDef * var_def = (*i).second;
       if (var_def->_VarType != SH_VAR_ACT) {
          cLocalVariable * local_var = (cLocalVariable*)var_def->_Variable;
@@ -1445,8 +1604,8 @@ void cLocalContext::CopyCommand (ULONG_T src, ULONG_T dst, BOOL_T exchange, ULON
    }
    int size = _VarDefs.size(); // HA 230805
    int vardef_no = 0; // HA 230805
-   std::map<STRING_T, cVarDef*>::const_iterator i = _VarDefs.begin();
-   while (i != _VarDefs.end()) {
+   std::map<STRING_T, cVarDef*>::const_iterator i = _VarDefs.cbegin();
+   while (i != _VarDefs.cend()) {
       vardef_no++; // HA 230805
       if (copy_flags & CP_FLAG_SUPPRESS_PROGRESS) {
          // suppress raising of progress events
@@ -1498,8 +1657,8 @@ STRING_T cLocalContext::Compare (ULONG_T flags)
 {
   //## begin cLocalContext::Compare%1108566002.body preserve=yes
    STRING_T result;
-   std::map<STRING_T, cVarDef*>::const_iterator i = _VarDefs.begin();
-   while (i != _VarDefs.end()) {
+   std::map<STRING_T, cVarDef*>::const_iterator i = _VarDefs.cbegin();
+   while (i != _VarDefs.cend()) {
       cVarDef * var_def = (*i).second;
       if (var_def != NULL) {
          STRING_T var_name = var_def->_VarName;
@@ -1536,6 +1695,7 @@ BOOL_T cLocalContext::SetAlarm (cAlarm *alarm)
 //         _Dispatcher->Send(alarm);
             cInfo * info = new cInfo(this, IT_ALARM_INFO,
                                      alarm->get_TextId1(), alarm->get_Text1().c_str());
+            info->set_InfoCustomType((ULONG_T)alarm->get_Severity());
             info->set_InfoId(alarm->get_Ident());
             if (alarm->get_Param1().size() > 0) {
                info->set_Param1(alarm->get_Param1().c_str());
@@ -1570,7 +1730,7 @@ cAlarm * cLocalContext::Alarm (ULONG_T ident)
 {
   //## begin cLocalContext::Alarm%1122475153.body preserve=yes
    ALARM_MAP_T::const_iterator i = _AlarmMap.find(ident);
-   if (i == _AlarmMap.end()) {
+   if (i == _AlarmMap.cend()) {
       return NULL;
    } else {
       return (*i).second;
@@ -1578,7 +1738,7 @@ cAlarm * cLocalContext::Alarm (ULONG_T ident)
   //## end cLocalContext::Alarm%1122475153.body
 }
 
-void cLocalContext::Send (cTransientObject *object)
+void cLocalContext::Send (cTransientObject *object, ULONG_T flags)
 {
   //## begin cLocalContext::Send%1122475164.body preserve=yes
    UCHAR_T object_type = (UCHAR_T)object->get_Type();
@@ -1593,7 +1753,10 @@ void cLocalContext::Send (cTransientObject *object)
 ///      throw cError(CELL_NO_DISPATCHER, 0);
    } else {
       _Dispatcher->Send(object);
-      UpdateUi();
+
+      if (!(flags & VF_NO_UPDATE_UI)) {
+         UpdateUi();
+      }
    }
   //## end cLocalContext::Send%1122475164.body
 }
@@ -1602,7 +1765,7 @@ cProgram * cLocalContext::Program (CONST_STRING_T name)
 {
   //## begin cLocalContext::Program%1122475166.body preserve=yes
    std::map<STRING_T,cProgram*>::const_iterator i = _Programs.find(name);
-   if (i == _Programs.end()) {
+   if (i == _Programs.cend()) {
       return NULL;
    } else {
       cProgram * program = (*i).second;
@@ -1679,8 +1842,8 @@ void cLocalContext::StopServices ()
 void cLocalContext::StartPrograms ()
 {
   //## begin cLocalContext::StartPrograms%1122475150.body preserve=yes
-   std::map<STRING_T,cProgram*>::const_iterator i = _Programs.begin();
-   while (i != _Programs.end()) {
+   std::map<STRING_T,cProgram*>::const_iterator i = _Programs.cbegin();
+   while (i != _Programs.cend()) {
       cProgram * program = (*i).second;
       program->Start();
       i++;
@@ -1691,8 +1854,8 @@ void cLocalContext::StartPrograms ()
 void cLocalContext::StopPrograms ()
 {
   //## begin cLocalContext::StopPrograms%1122475151.body preserve=yes
-   std::map<STRING_T,cProgram*>::const_iterator i = _Programs.begin();
-   while (i != _Programs.end()) {
+   std::map<STRING_T,cProgram*>::const_iterator i = _Programs.cbegin();
+   while (i != _Programs.cend()) {
       cProgram * program = (*i).second;
       program->Stop();
       i++;
@@ -1860,8 +2023,8 @@ cAlarm * cLocalContext::ActiveAlarm (ALARM_MAP_T &alarms)
    cAlarm * active_alarm = NULL;
    if (alarms.size() > 0) {
       ULONG_T max = 0;
-      ALARM_MAP_T::const_iterator i = alarms.begin();
-      while (i != alarms.end()) {
+      ALARM_MAP_T::const_iterator i = alarms.cbegin();
+      while (i != alarms.cend()) {
          cAlarm * alarm = (*i).second;
          ULONG_T time_stamp = alarm->get_TimeStamp();
          if (time_stamp > max) {
@@ -1901,7 +2064,13 @@ void cLocalContext::CheckMapping (STRING_MAP_T &id_map, cDevice *device, cVarDef
    }
    int dims = var_def->Dims();
    char key[0x100] = {0};
-   SafePrintf(key, sizeof(key), "%s.%s:%08x", device->get_Name().c_str(), map_item->buf_spec, address);
+
+   if (map_item->bit_pos_b == UNUSED_BITPOS) {
+      SafePrintf(key, sizeof(key), "%s.%s:%08x", device->get_Name().c_str(), map_item->buf_spec, address);
+   }
+   else {
+      SafePrintf(key, sizeof(key), "%s.%s:%08x:%02d", device->get_Name().c_str(), map_item->buf_spec, address, map_item->bit_pos_b);
+   }
    char var_ref[0x100] = {0};
    if (dims == 0) {
       SafePrintf(var_ref, sizeof(var_ref), "%s", var_name.c_str());
@@ -1915,7 +2084,7 @@ void cLocalContext::CheckMapping (STRING_MAP_T &id_map, cDevice *device, cVarDef
       SafePrintf(var_ref, sizeof(var_ref), "%s[%d][%d][%d][%d]", var_name.c_str(), i1, i2, i3, i4);
    }
    STRING_MAP_T::const_iterator i = id_map.find(key);
-   if (i == id_map.end()) {
+   if (i == id_map.cend()) {
       id_map[key] = STRING_T(var_ref);
    } else {
       STRING_T mk = (*i).first;
@@ -2078,8 +2247,8 @@ cPersistenceManager * cLocalContext::PersistenceManager() const
 void cLocalContext::EmitChanges()
 {
    if (cResources::FlagSet(PF_EMIT_CHANGES)) {
-      std::map<STRING_T, cVarDef*>::const_iterator i = _VarDefs.begin();
-      while (i != _VarDefs.end()) {
+      std::map<STRING_T, cVarDef*>::const_iterator i = _VarDefs.cbegin();
+      while (i != _VarDefs.cend()) {
          cVarDef * var_def = (*i).second;
          cLocalVariable * local_var = (cLocalVariable*)var_def->_Variable;
          if (local_var != NULL) {
@@ -2111,8 +2280,8 @@ void cLocalContext::PersistShadowDataset ()
 
 void cLocalContext::CheckShadowDataset ()
 {
-   std::map<STRING_T, cVarDef*>::const_iterator i = _VarDefs.begin();
-   while (i != _VarDefs.end()) {
+   std::map<STRING_T, cVarDef*>::const_iterator i = _VarDefs.cbegin();
+   while (i != _VarDefs.cend()) {
       cVarDef * var_def = (*i).second;
       if (var_def != NULL) {
          STRING_T var_name = var_def->_VarName;

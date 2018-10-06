@@ -3,7 +3,8 @@
 #include <qevent.h>
 
 HeaderView::HeaderView(Qt::Orientation orientation, QWidget * parent)
-   : QHeaderView(orientation, parent), _initialized(false)
+   : QHeaderView(orientation, parent), _initialized(false), _mouseIsPressed(false), 
+     _columnWidthManuelChanged(false)
 {
     QSize headerViewSize = QHeaderView::sizeHint();
     _height = headerViewSize.isValid() ? headerViewSize.height() : 0;
@@ -168,6 +169,24 @@ bool HeaderView::event(QEvent * e)
       }
    }
    return QHeaderView::event(e);
+}
+
+void HeaderView::mousePressEvent(QMouseEvent * e)
+{
+   _mouseIsPressed = true;
+   QHeaderView::mousePressEvent(e);
+}
+
+void HeaderView::mouseReleaseEvent(QMouseEvent *e)
+{
+    _mouseIsPressed = false;
+    QHeaderView::mouseReleaseEvent(e);
+}
+
+void HeaderView::setSectionResized(int logicalIndex, int oldSize, int newSize)
+{
+   if (_mouseIsPressed)
+      _columnWidthManuelChanged = true;
 }
 
 void HeaderView::adjustPixmaps()

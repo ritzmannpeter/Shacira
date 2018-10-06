@@ -135,6 +135,7 @@ public:
       //	Gets all variable definitions as a list of serialized
       //	objects.
       ULONG_T GetVarDefs (STRING_T &var_defs, ULONG_T if_type = 0);
+      ULONG_T GetVarDefs (STRING_T &var_defs, CONST_STRING_T database_name);
 
       //## Operation: Cell%1081425823
       virtual cCell * Cell ();
@@ -194,6 +195,8 @@ public:
       // cStringBuffer type of the ReadFile method 
       virtual void ReadFile(CONST_STRING_T file_name, CONST_STRING_T sub_file, cStringBuffer &buf);
 
+      virtual void ExportVariables(STRING_T &buf, CONST_STRING_T sub_file, CONST_STRING_T separator);
+
       //## Operation: WriteFile%1091699606
       virtual void WriteFile (CONST_STRING_T file_name, CONST_STRING_T sub_file, CONST_STRING_T buf);
 
@@ -225,7 +228,7 @@ public:
       cAlarm * Alarm (ULONG_T ident);
 
       //## Operation: Send%1122475164
-      virtual void Send (cTransientObject *object);
+      virtual void Send (cTransientObject *object, ULONG_T flags=0);
 
       //## Operation: Program%1122475166
       cProgram * Program (CONST_STRING_T name);

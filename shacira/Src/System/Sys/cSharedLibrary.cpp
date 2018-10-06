@@ -148,7 +148,7 @@ cSharedLibrary * cSharedLibrary::Library (CONST_STRING_T name)
 {
   //## begin cSharedLibrary::Library%1093328416.body preserve=yes
    SHARED_LIBRARY_MAP_T::const_iterator i = _Libraries.find(name);
-   if (i == _Libraries.end()) {
+   if (i == _Libraries.cend()) {
       cSharedLibrary * library = new cSharedLibrary(name);
       return library;
    } else {

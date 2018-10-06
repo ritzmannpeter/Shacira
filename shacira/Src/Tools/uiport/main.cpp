@@ -82,15 +82,15 @@ int exec(const QString & fileName, const QString & command, QString & result)
 static void removeGeneratedFiles(QDir & directory, const QStringList & filePatterns)
 {
    QFileInfoList fileInfoList = directory.entryInfoList(filePatterns);
-   QFileInfoList::const_iterator i = fileInfoList.begin();
-   while (i != fileInfoList.end()) {
+   QFileInfoList::const_iterator i = fileInfoList.constBegin();
+   while (i != fileInfoList.constEnd()) {
       QString fileName = (*i).fileName();
       directory.remove(fileName);
       i++;
    }
    QFileInfoList subDirectoryList = directory.entryInfoList(QDir::Dirs);
-   i = subDirectoryList.begin();
-   while (i != subDirectoryList.end()) {
+   i = subDirectoryList.constBegin();
+   while (i != subDirectoryList.constEnd()) {
       bool ignore = false;
       QString directoryName = (*i).fileName();
       if (!directoryName.isEmpty() &&

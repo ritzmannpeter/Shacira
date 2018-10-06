@@ -13,8 +13,8 @@ PATH_T _Path;
 static std::string Path()
 {
    std::string path;
-   PATH_T::const_iterator i = _Path.begin();
-   while (i != _Path.end()) {
+   PATH_T::const_iterator i = _Path.cbegin();
+   while (i != _Path.cend()) {
       path += "/";
       path += (*i);
       i++;

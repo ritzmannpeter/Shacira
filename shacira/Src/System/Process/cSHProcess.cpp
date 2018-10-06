@@ -228,14 +228,14 @@ cSHProcess::~cSHProcess()
 {
   //## begin cSHProcess::~cSHProcess%.body preserve=yes
    Stop();
-   PROXY_SENDER_MAP_T::const_iterator i = _ProxySenderMap.begin();
-   while (i != _ProxySenderMap.end()) {
+   PROXY_SENDER_MAP_T::const_iterator i = _ProxySenderMap.cbegin();
+   while (i != _ProxySenderMap.cend()) {
       cProxySender * sender = (*i).second;
       DELETE_OBJECT(cProxySender, sender)
       i++;
    }
-   PROXY_RECEIVER_MAP_T::const_iterator k = _ProxyReceiverMap.begin();
-   while (k != _ProxyReceiverMap.end()) {
+   PROXY_RECEIVER_MAP_T::const_iterator k = _ProxyReceiverMap.cbegin();
+   while (k != _ProxyReceiverMap.cend()) {
       cProxyReceiver * proxy_receiver = (*k).second;
       DELETE_OBJECT(cProxyReceiver, proxy_receiver)
       k++;
@@ -254,8 +254,8 @@ void cSHProcess::Start ()
        !_IsClient) {
       _ProxyRequester->Start();
    }
-   CONTEXT_MAP_T::const_iterator i = _LocalContexts.begin();
-   while (i != _LocalContexts.end()) {
+   CONTEXT_MAP_T::const_iterator i = _LocalContexts.cbegin();
+   while (i != _LocalContexts.cend()) {
       cLocalContext * server_context = (cLocalContext*)(*i).second;
       if (server_context->get_IsClientContext()) {
          server_context->Start();
@@ -279,8 +279,8 @@ void cSHProcess::Stop ()
    if (_EventChannel != NULL) {
       _EventChannel->Stop();
    }
-   CONTEXT_MAP_T::const_iterator i = _LocalContexts.begin();
-   while (i != _LocalContexts.end()) {
+   CONTEXT_MAP_T::const_iterator i = _LocalContexts.cbegin();
+   while (i != _LocalContexts.cend()) {
       cLocalContext * server_context = (cLocalContext*)(*i).second;
       if (server_context->get_IsClientContext()) {
          server_context->Stop();
@@ -334,9 +334,9 @@ cChannel * cSHProcess::Channel (CONST_STRING_T name)
   //## begin cSHProcess::Channel%1065778446.body preserve=yes
    CHANNEL_MAP_T::const_iterator i;
    i = _LocalChannels.find(name);
-   if (i != _LocalChannels.end()) return (*i).second;
+   if (i != _LocalChannels.cend()) return (*i).second;
    i = _RemoteChannels.find(name);
-   if (i != _RemoteChannels.end()) return (*i).second;
+   if (i != _RemoteChannels.cend()) return (*i).second;
    return NULL;
   //## end cSHProcess::Channel%1065778446.body
 }
@@ -360,13 +360,13 @@ cContext * cSHProcess::Context (CONST_STRING_T name, ULONG_T filter)
    CONTEXT_MAP_T::const_iterator i;
    if (filter & LOCAL_CONTEXTS) {
       i = _LocalContexts.find(name);
-      if (i != _LocalContexts.end()) {
+      if (i != _LocalContexts.cend()) {
          return (*i).second;
       }
    }
    if (filter & REMOTE_CONTEXTS) {
       i = _RemoteContexts.find(name);
-      if (i != _RemoteContexts.end()) {
+      if (i != _RemoteContexts.cend()) {
          return (*i).second;
       }
    }
@@ -433,8 +433,8 @@ void cSHProcess::ContextNames (STRING_LIST_T &context_names, ULONG_T filter)
   //## begin cSHProcess::ContextNames%1075059041.body preserve=yes
    CONTEXT_MAP_T::const_iterator i;
    if (filter & LOCAL_CONTEXTS) {
-      i = _LocalContexts.begin();
-      while (i != _LocalContexts.end()) {
+      i = _LocalContexts.cbegin();
+      while (i != _LocalContexts.cend()) {
          cContext * context = (*i).second;
          if (context != NULL) {
 ///            context_names.push_back(context->get_Name().c_str());
@@ -444,8 +444,8 @@ void cSHProcess::ContextNames (STRING_LIST_T &context_names, ULONG_T filter)
       }
    }
    if (filter & REMOTE_CONTEXTS) {
-      i = _RemoteContexts.begin();
-      while (i != _RemoteContexts.end()) {
+      i = _RemoteContexts.cbegin();
+      while (i != _RemoteContexts.cend()) {
          context_names.push_back((*i).first.c_str());
          i++;
       }
@@ -457,8 +457,8 @@ cProxy * cSHProcess::Proxy (CONST_STRING_T name)
 {
   //## begin cSHProcess::Proxy%1097408539.body preserve=yes
    cObjectLock __lock__(&_ReceiverMutex);
-   PROXY_RECEIVER_MAP_T::const_iterator i = _ProxyReceiverMap.begin();
-   while (i != _ProxyReceiverMap.end()) {
+   PROXY_RECEIVER_MAP_T::const_iterator i = _ProxyReceiverMap.cbegin();
+   while (i != _ProxyReceiverMap.cend()) {
       cProxyReceiver * receiver = (*i).second;
       if (receiver != NULL) {
          cProxy * proxy = receiver->Proxy(name);
@@ -493,12 +493,12 @@ void cSHProcess::Pulse ()
   //## begin cSHProcess::Pulse%1011276239.body preserve=yes
    cObjectLock __lock__(&_ServiceMutex);
    int size = _Services.size();
-   SERVICE_LIST_T::const_iterator s = _Services.begin();
-   while (s != _Services.end()) {
+   SERVICE_LIST_T::const_iterator s = _Services.cbegin();
+   while (s != _Services.cend()) {
       STRING_T serialized_proxy = (*s);
       cObjectLock __lock__(&_SenderMutex);
       PROXY_SENDER_MAP_T::const_iterator i = _ProxySenderMap.begin();
-      while (i != _ProxySenderMap.end()) {
+      while (i != _ProxySenderMap.cend()) {
          cProxySender * sender = (*i).second;
          long nsend = sender->Send(serialized_proxy.c_str());
          cSystemUtils::Suspend(10);
@@ -513,8 +513,8 @@ void cSHProcess::StartReceiving ()
 {
   //## begin cSHProcess::StartReceiving%1065795129.body preserve=yes
 #ifdef lassma
-   PROXY_RECEIVER_MAP_T::const_iterator i = _ProxyReceiverMap.begin();
-   while (i != _ProxyReceiverMap.end()) {
+   PROXY_RECEIVER_MAP_T::const_iterator i = _ProxyReceiverMap.cbegin();
+   while (i != _ProxyReceiverMap.cend()) {
       cProxyReceiver * proxy_receiver = (*i).second;
       proxy_receiver->Start();
       i++;
@@ -533,8 +533,8 @@ void cSHProcess::StopReceiving ()
       _EventChannel->Stop();
    }
    cClients::Exit();
-   PROXY_RECEIVER_MAP_T::const_iterator i = _ProxyReceiverMap.begin();
-   while (i != _ProxyReceiverMap.end()) {
+   PROXY_RECEIVER_MAP_T::const_iterator i = _ProxyReceiverMap.cbegin();
+   while (i != _ProxyReceiverMap.cend()) {
       cProxyReceiver * proxy_receiver = (*i).second;
       proxy_receiver->Stop();
       i++;
@@ -626,7 +626,7 @@ BOOL_T cSHProcess::ReceiverExists (CONST_STRING_T name)
 {
   //## begin cSHProcess::ReceiverExists%1134385872.body preserve=yes
    PROXY_RECEIVER_MAP_T::const_iterator i = _ProxyReceiverMap.find(name);
-   if (i == _ProxyReceiverMap.end()) {
+   if (i == _ProxyReceiverMap.cend()) {
       return false;
    } else {
       return true;
@@ -638,7 +638,7 @@ BOOL_T cSHProcess::SenderExists (CONST_STRING_T name)
 {
   //## begin cSHProcess::SenderExists%1134385873.body preserve=yes
    PROXY_SENDER_MAP_T::const_iterator i = _ProxySenderMap.find(name);
-   if (i == _ProxySenderMap.end()) {
+   if (i == _ProxySenderMap.cend()) {
       return false;
    } else {
       return true;
@@ -677,14 +677,14 @@ void cSHProcess::ReadIORFile ()
    }
    STRING_VECTOR_T chapters;
    ini_file.ReadChapters(chapters);
-   STRING_VECTOR_T::const_iterator _chapter = chapters.begin();
-   while (_chapter != chapters.end()) {
+   STRING_VECTOR_T::const_iterator _chapter = chapters.cbegin();
+   while (_chapter != chapters.cend()) {
       STRING_T obj_name = (*_chapter).c_str();
       if (IDENTIFIER_EQUAL("Servers", obj_name.c_str())) {
          STRING_VECTOR_T keys;
          ini_file.ReadKeys(obj_name.c_str(), keys);
-         STRING_VECTOR_T::const_iterator _key = keys.begin();
-         while (_key != keys.end()) {
+         STRING_VECTOR_T::const_iterator _key = keys.cbegin();
+         while (_key != keys.cend()) {
             try {
                STRING_T server_name = (*_key).c_str();
                STRING_T ior = ini_file.ReadValue(obj_name.c_str(), server_name.c_str(), "");
@@ -711,8 +711,8 @@ void cSHProcess::RequestProxies ()
    if (_IsClient &&
        _ProxyRequester != NULL) {
       cObjectLock __lock__(&_SenderMutex);
-      PROXY_RECEIVER_MAP_T::const_iterator i = _ProxyReceiverMap.begin();
-      while (i != _ProxyReceiverMap.end()) {
+      PROXY_RECEIVER_MAP_T::const_iterator i = _ProxyReceiverMap.cbegin();
+      while (i != _ProxyReceiverMap.cend()) {
          cProxyReceiver * receiver = (*i).second;
          if (receiver != NULL) {
             USHORT_T requested_port = (USHORT_T)receiver->get_Port();
@@ -779,8 +779,8 @@ bool cSHProcess::TranslateAdresses(CONST_STRING_T new_address, STRING_T & servic
       if (strcmp(_TranslatedIpAddress.c_str(), new_address) != 0) {
          _TranslatedIpAddress = new_address;
          SERVICE_LIST_T new_services;
-         SERVICE_LIST_T::const_iterator s = _Services.begin();
-         while (s != _Services.end()) {
+         SERVICE_LIST_T::const_iterator s = _Services.cbegin();
+         while (s != _Services.cend()) {
             STRING_T serialized_proxy = (*s);
             STRING_T new_serialized_proxy;
             cCorbaCellProxy * cell_proxy = new cCorbaCellProxy;

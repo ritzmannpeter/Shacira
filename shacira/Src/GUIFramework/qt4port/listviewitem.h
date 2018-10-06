@@ -90,7 +90,7 @@ public:
    inline bool isColored(int column) const
    {
       std::map<int,QColor>::const_iterator i = _colorMap.find(column);
-      if (i == _colorMap.end()) {
+      if (i == _colorMap.cend()) {
          return false;
       } else {
          return true;
@@ -103,7 +103,7 @@ public:
    inline QColor getColor(int column) const
    {
       std::map<int,QColor>::const_iterator i = _colorMap.find(column);
-      if (i == _colorMap.end()) {
+      if (i == _colorMap.cend()) {
          return QColor();
       } else {
          return (*i).second;;

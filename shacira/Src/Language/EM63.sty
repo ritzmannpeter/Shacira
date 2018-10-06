@@ -22,7 +22,9 @@ Regular Grammar
 
 ; Definitions and simple tokens
 
-  let Letter      = 'A'..'Z' | 'a'..'z' | '_'
+; ios workaround 03-03-2017: removed leading '_' for a name (hope nobody used this construction)
+;  let Letter      = 'A'..'Z' | 'a'..'z' | '_'
+  let Letter      = 'A'..'Z' | 'a'..'z'
   let LetterOrDigit = 'A'..'Z' | 'a'..'z' | '_' | '0'..'9' 
 ;  let emCharacters = '@' | 'A'..'Z' | 'a'..'z' | '_' | '0'..'9' 
   let HexDigit    = '0'..'9' | 'a'..'f' | 'A' .. 'F'
@@ -46,8 +48,7 @@ Regular Grammar
                | "//" ({Byte}-({Byte} Line {Byte})) Line
 
 ; Complex tokens
-
-;  tok e63 = {emCharacters}  ; Euromap 63 general purpose Identifier (old version)
+; tok e63 = {emCharacters}  ; Euromap 63 general purpose Identifier (old version)
   tok Ide = Letter {LetterOrDigit}; Identifier
   tok IdeE63 = ('@')  {LetterOrDigit}  ; Euromap 63 Identifier
   tok Real = {'-'} Digit+ ('.') Digit+ ; real number
@@ -55,6 +56,7 @@ Regular Grammar
   tok Unsigned = Digit+ ; unsigned integral number
   tok Hex = '0' 'x' HexDigit+       ; Natural in hexadecimal presentation
   tok Opr = '=<>-+:*&|!'            ; Operators
+  tok Concatenation = '_'           ; Concatenation symbols
 ;  tok Set = '\'' {LitChar} '\''    ; CharacterSet
   tok Seq = '\"' {LitChar} '\"'     ; CharacterSequence (String)
   tok HexSeq = '\'' {HexDigit} '\'' ; BCD character sequence
@@ -80,6 +82,10 @@ let SessionCmdList
 :nil:
 :cons: SessionCmd SessionCmdList
 
+let Name
+:ide0:    Ide
+:key0:    Integer
+:key1:    Integer Concatenation Name
 
 let CmdIde
 :ide0:    Ide
@@ -148,10 +154,10 @@ let StopSpec
 :cond: "STOP" CondSpec
 
 let JobSpec
-:job:  "JOB" Ide "RESPONSE" FileSpec ";"
+:job:  "JOB" Name "RESPONSE" FileSpec ";"
 
 let ReportSpec
-:report:   "REPORT" Ide PresSpec FileSpec StartSpec StopSpec ReportCondSpec CycleSpec SamplesSpec SessionsSpec "PARAMETERS" ParameterList ";"
+:report:   "REPORT" Name PresSpec FileSpec StartSpec StopSpec ReportCondSpec CycleSpec SamplesSpec SessionsSpec "PARAMETERS" ParameterList ";"
 
 let PresSpec
 :nul:
@@ -193,8 +199,8 @@ let Parameter
 :param: ParamId
 
 let EventSpec
-:event:    "EVENT" Ide Ide PresSpec FileSpec StartSpec StopSpec ";"
-; first Ide is name
+:event:    "EVENT" Name Ide PresSpec FileSpec StartSpec StopSpec ";"
+; first Ide is name: changed to language construct with ios workaround 03-03-2017
 ; second Ide is type
 
 let AbortSpec
@@ -202,9 +208,9 @@ let AbortSpec
 :alljobs: "ABORT" "ALL" "JOBS" ";"
 :allreports: "ABORT" "ALL" "REPORTS" ";"
 :allevents: "ABORT" "ALL" "EVENTS" ";"
-:job:   "ABORT" "JOB" Ide ";"
-:report:  "ABORT" "REPORT" Ide ";"
-:event:   "ABORT" "EVENT" Ide ";"
+:job:   "ABORT" "JOB" Name ";"
+:report:  "ABORT" "REPORT" Name ";"
+:event:   "ABORT" "EVENT" Name ";"
 
 let UploadSpec
 :upload:   "UPLOAD" FileSpec SourceSpec StartSpec ";"

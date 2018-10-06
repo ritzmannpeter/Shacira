@@ -22,8 +22,7 @@ WMETHOD_PROLOG
       if (widget != NULL) {
          if (event_code == NEW_VALUE) {
             cNewValueEvent * event = (cNewValueEvent*)e;
-            QString qValue = event->Value(); // Test for not explainable access violation
-            widget->CCSNewValue(CONST_STRING(qValue)/*CONST_STRING(event->Value()*/,
+            widget->CCSNewValue(CONST_STRING(event->Value()),
                                 event->Id(),
                                 event->TimeOffset(),
                                 event->DataType(),

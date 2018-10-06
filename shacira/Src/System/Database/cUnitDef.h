@@ -101,6 +101,9 @@ public:
       //## Operation: UnitText%1109759953
       STRING_T UnitText (CHAR_T state = (CHAR_T)-1);
 
+      //## Operation: SetPrecision
+      void SetPrecision (UCHAR_T precision, CHAR_T state = (CHAR_T)-1);
+
       //## Operation: Precision%1109759954
       UCHAR_T Precision (CHAR_T state = (CHAR_T)-1);
 
@@ -312,6 +315,9 @@ protected:
 };
 
 //## begin cUnitDef%4224A214030D.postscript preserve=yes
+
+typedef std::map<STRING_T, cUnitDef*> UNITDEF_MAP_T;
+
 //## end cUnitDef%4224A214030D.postscript
 
 // Class cUnitDef 

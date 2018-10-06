@@ -400,6 +400,9 @@
     <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_CGraphicsView.cpp">
       <Filter>GeneratedFiles</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Src\GUIFramework\Qt4Framework\Generated\moc_dialog.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Src\GUIFramework\QT4Framework\Plugins\plugin_log.h">
@@ -427,9 +430,6 @@
       <Filter>qt4port</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Src\GUIFramework\qt4port\appframe.h">
-      <Filter>qt4port</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Src\GUIFramework\qt4port\dialog.h">
       <Filter>qt4port</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Src\GUIFramework\qt4port\startupform.h">
@@ -772,6 +772,9 @@
     </CustomBuild>
     <CustomBuild Include="..\..\..\Src\GUIFramework\QT4Framework\Generated\CGraphicsView.h">
       <Filter>Generated</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\GUIFramework\qt4port\dialog.h">
+      <Filter>qt4port</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

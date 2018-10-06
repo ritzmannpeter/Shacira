@@ -207,7 +207,7 @@ void CCoordSystem::PaintIt()
 #ifdef VISU_TEST
    QPainter painter;
    painter.begin(&_DoubleBuffer, this);
-   cPaintUtils::SetShape(painter, &ret(), red);
+   cPaintUtils::SetShape(painter, &_DrawRectangle, red);
    cPaintUtils::SetShape(painter, &_XAxisRectangle, green);
    cPaintUtils::SetShape(painter, &_YAxisRectangle, blue);
    cPaintUtils::SetShape(painter, &_CurveRectangle, yellow);
@@ -236,9 +236,9 @@ void CCoordSystem::PaintBackground(QPainter & painter)
    return;
 #endif
 #ifdef QT4
-   cPaintUtils::SetShape(painter, &rect(), CWidgetBase::paletteBackgroundColor());
+   cPaintUtils::SetShape(painter, &_DrawRectangle, CWidgetBase::paletteBackgroundColor());
 #else
-   cPaintUtils::SetShape(painter, &rect(), paletteBackgroundColor());
+   cPaintUtils::SetShape(painter, &_DrawRectangle, paletteBackgroundColor());
 #endif
 }
 
@@ -575,27 +575,31 @@ void CCoordSystem::CalculateAreas()
       widget_size.setHeight(widget_size.height() - (2 * _YDistanceValue));
    }
    _DoubleBuffer = QPixmap(widget_size);
+   _DrawRectangle.setLeft(0);
+   _DrawRectangle.setTop(0);
+   _DrawRectangle.setWidth(widget_size.width());
+   _DrawRectangle.setHeight(widget_size.height());
    setMinimumSize((_XDistanceValue * 2) + _YAxisWidthValue + 20,
                   (_YDistanceValue * 2) + _XAxisHeightValue + 20);
 
    if (_SystemTypeValue == LeftBottom) {
-      _CurveRectangle.setLeft(rect().left() + _YAxisWidthValue);
-      _CurveRectangle.setTop(rect().top());
-      _CurveRectangle.setWidth(rect().width() - _YAxisWidthValue);
-      _CurveRectangle.setHeight(rect().height() - _XAxisHeightValue);
+      _CurveRectangle.setLeft(_DrawRectangle.left() + _YAxisWidthValue);
+      _CurveRectangle.setTop(_DrawRectangle.top());
+      _CurveRectangle.setWidth(_DrawRectangle.width() - _YAxisWidthValue);
+      _CurveRectangle.setHeight(_DrawRectangle.height() - _XAxisHeightValue);
       _XAxisRectangle = QRect(_CurveRectangle.left(),
                               _CurveRectangle.bottom(),// + 1,
                               _CurveRectangle.width(),
                               _XAxisHeightValue);
-      _YAxisRectangle = QRect(rect().left(),
+      _YAxisRectangle = QRect(_DrawRectangle.left(),
                               _CurveRectangle.top(),
                               _YAxisWidthValue + 1,
                               _CurveRectangle.height());
    } else if (_SystemTypeValue == RightBottom) {
-      _CurveRectangle.setLeft(rect().left());
-      _CurveRectangle.setTop(rect().top());
-      _CurveRectangle.setWidth(rect().width() - _YAxisWidthValue);
-      _CurveRectangle.setHeight(rect().height() - _XAxisHeightValue);
+      _CurveRectangle.setLeft(_DrawRectangle.left());
+      _CurveRectangle.setTop(_DrawRectangle.top());
+      _CurveRectangle.setWidth(_DrawRectangle.width() - _YAxisWidthValue);
+      _CurveRectangle.setHeight(_DrawRectangle.height() - _XAxisHeightValue);
       _XAxisRectangle = QRect(_CurveRectangle.left(),
                               _CurveRectangle.bottom(),// + 1,
                               _CurveRectangle.width(),

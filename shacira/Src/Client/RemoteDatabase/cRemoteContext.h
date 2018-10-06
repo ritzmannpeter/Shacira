@@ -125,6 +125,8 @@ public:
       //## Operation: ReadFile%1091699607
       virtual void ReadFile (CONST_STRING_T file_name, CONST_STRING_T sub_files, STRING_T &buf);
 
+      virtual void ExportVariables(STRING_T &buf, CONST_STRING_T sub_file, CONST_STRING_T separator);
+
       //## Operation: WriteFile%1091699608
       virtual void WriteFile (CONST_STRING_T file_name, CONST_STRING_T sub_files, CONST_STRING_T buf);
 
@@ -175,6 +177,8 @@ public:
       //## Attribute: Password%42DF90E00213
       STRING_T get_Password () const;
       void set_Password (STRING_T value);
+
+      void GetParam (CONST_STRING_T param_name, STRING_T &value);
 
     // Data Members for Associations
 

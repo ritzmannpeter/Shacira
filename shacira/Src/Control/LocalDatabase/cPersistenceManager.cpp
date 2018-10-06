@@ -156,8 +156,8 @@ _ASSERT_COND(context != NULL)
 cPersistenceManager::~cPersistenceManager()
 {
   //## begin cPersistenceManager::~cPersistenceManager%.body preserve=yes
-   STORAGE_MAP_T::const_iterator i = _Storages.begin();
-   while (i != _Storages.end()) {
+   STORAGE_MAP_T::const_iterator i = _Storages.cbegin();
+   while (i != _Storages.cend()) {
       cStorage * storage = (*i).second;
       delete storage;
       i++;
@@ -320,8 +320,8 @@ void cPersistenceManager::SetUp ()
    _Context->VariableNames(variables);
    ULONG_T var_count = variables.size();
    STRING_T var_name;
-   STRING_LIST_T::const_iterator i = variables.begin();
-   while (i != variables.end()) {
+   STRING_LIST_T::const_iterator i = variables.cbegin();
+   while (i != variables.cend()) {
       CONST_STRING_T var_name = (*i).c_str();
       cLocalVariable * variable = (cLocalVariable*)_Context->Variable(var_name);
       if (variable != NULL) {
@@ -348,8 +348,8 @@ void cPersistenceManager::SetUp ()
       }
       i++;
    }
-   STORAGE_MAP_T::const_iterator j = _Storages.begin();
-   while (j != _Storages.end()) {
+   STORAGE_MAP_T::const_iterator j = _Storages.cbegin();
+   while (j != _Storages.cend()) {
       cStorage * storage = (*j).second;
       storage->Initialize();
       storage->SetUp();
@@ -372,7 +372,7 @@ cStorage * cPersistenceManager::Storage (UCHAR_T ptype, UCHAR_T dset_type)
       ULONG_T key = STORAGE_KEY(ptype,dset_type);      
       cStorage * storage = NULL;
       STORAGE_MAP_T::const_iterator i = _Storages.find(ptype);
-      if (i == _Storages.end()) {
+      if (i == _Storages.cend()) {
          switch (ptype) {
          case SH_FILE:
             storage = new cFileStorage(_Context->get_Name().c_str(), false, dset_type);
@@ -396,7 +396,7 @@ cStorage * cPersistenceManager::Storage (UCHAR_T ptype, UCHAR_T dset_type)
    } else {
       cStorage * storage = NULL;
       STORAGE_MAP_T::const_iterator i = _Storages.find(ptype);
-      if (i == _Storages.end()) {
+      if (i == _Storages.cend()) {
          switch (ptype) {
          case SH_FILE:
             storage = new cFileStorage(_Context->get_Name().c_str());
@@ -433,8 +433,8 @@ void cPersistenceManager::LoadPersistentData ()
          if (backup_context != NULL) {
             STRING_LIST_T var_names;
             backup_context->VariableNames(var_names);
-            STRING_LIST_T::const_iterator i = var_names.begin();
-            while (i != var_names.end()) {
+            STRING_LIST_T::const_iterator i = var_names.cbegin();
+            while (i != var_names.cend()) {
                STRING_T var_name = (*i);
                cVariable * backup_variable = backup_context->Variable(var_name.c_str());
                cVariable * variable = _Context->Variable(var_name.c_str());
@@ -503,8 +503,8 @@ void cPersistenceManager::LoadPersistentData ()
 void cPersistenceManager::Save ()
 {
   //## begin cPersistenceManager::Save%1191857028.body preserve=yes
-   STORAGE_MAP_T::const_iterator j = _Storages.begin();
-   while (j != _Storages.end()) {
+   STORAGE_MAP_T::const_iterator j = _Storages.cbegin();
+   while (j != _Storages.cend()) {
       cStorage * storage = (*j).second;
       storage->Save();
       storage->Flush();
@@ -521,8 +521,8 @@ void cPersistenceManager::SetUpShadow ()
    _Context->VariableNames(variables);
    ULONG_T var_count = variables.size();
    STRING_T var_name;
-   STRING_LIST_T::const_iterator i = variables.begin();
-   while (i != variables.end()) {
+   STRING_LIST_T::const_iterator i = variables.cbegin();
+   while (i != variables.cend()) {
       CONST_STRING_T var_name = (*i).c_str();
       cLocalVariable * variable = (cLocalVariable*)_Context->Variable(var_name);
       if (variable != NULL) {
@@ -549,8 +549,8 @@ void cPersistenceManager::SetUpShadow ()
       }
       i++;
    }
-   STORAGE_MAP_T::const_iterator j = _Storages.begin();
-   while (j != _Storages.end()) {
+   STORAGE_MAP_T::const_iterator j = _Storages.cbegin();
+   while (j != _Storages.cend()) {
       cStorage * storage = (*j).second;
       storage->Initialize();
       storage->SetUp();
@@ -567,8 +567,8 @@ void cPersistenceManager::SetUpShadow ()
 
 void cPersistenceManager::Clear()
 {
-   STORAGE_MAP_T::const_iterator j = _Storages.begin();
-   while (j != _Storages.end()) {
+   STORAGE_MAP_T::const_iterator j = _Storages.cbegin();
+   while (j != _Storages.cend()) {
       cStorage * storage = (*j).second;
       storage->Clear();
       j++;
@@ -577,8 +577,8 @@ void cPersistenceManager::Clear()
 
 void cPersistenceManager::SetBuffered(BOOL_T state)
 {
-   STORAGE_MAP_T::const_iterator j = _Storages.begin();
-   while (j != _Storages.end()) {
+   STORAGE_MAP_T::const_iterator j = _Storages.cbegin();
+   while (j != _Storages.cend()) {
       cStorage * storage = (*j).second;
       storage->SetBuffered(state);
       j++;

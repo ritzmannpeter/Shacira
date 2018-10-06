@@ -87,8 +87,8 @@ ostream & operator<<(ostream &stream,const cNameSpaceIterator &right)
    stream << "Directory " << ((cNameSpaceIterator&)right).Name().c_str() << " "
           << name_count << " entries" << endl;
    stream << "Path: " << ((cNameSpaceIterator&)right).Path().c_str() << endl;
-   STRING_LIST_T::const_iterator n = names.begin();
-   while (n != names.end()) {
+   STRING_LIST_T::const_iterator n = names.cbegin();
+   while (n != names.cend()) {
       cout << "     " << (*n).c_str() << endl;
       n++;
    }

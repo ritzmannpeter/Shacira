@@ -78,6 +78,13 @@ void cDevice::Stop ()
    }
 }
 
+void cDevice::Kill(bool wait)
+{
+    if (_DeviceControl != NULL) {
+        _DeviceControl->kill(wait);
+    }
+}
+
 void cDevice::Cache (CONST_STRING_T buf_spec, ULONG_T address, ULONG_T size, UCHAR_T refresh_type, ULONG_T refresh_value)
 {
 }
@@ -300,7 +307,7 @@ void cDevice::SetMemoryInfo (CONST_STRING_T buf_spec, UCHAR_T granularity, ULONG
 MEMORY_INFO * cDevice::MemoryInfo (CONST_STRING_T buf_spec)
 {
    MEMORY_INFO_MAP_T::const_iterator i = _InfoMap.find(buf_spec);
-   if (i == _InfoMap.end()) {
+   if (i == _InfoMap.cend()) {
       return NULL;
    } else {
       return (*i).second;
@@ -410,7 +417,7 @@ cPtrList * cDevice::GetVariables (CONST_STRING_T buf_spec, CONST_STRING_T name)
 cElementRefs * cDevice::GetRefs (CONST_STRING_T buf_spec)
 {
    std::map<STRING_T,cElementRefs*>::const_iterator i = _ElementRefs.find(buf_spec);
-   if (i == _ElementRefs.end()) {
+   if (i == _ElementRefs.cend()) {
       return NULL;
    } else {
       return (*i).second;
@@ -587,8 +594,8 @@ END_LOCK
 
 void cDevice::Save (UCHAR_T refresh_type, ULONG_T refresh_value)
 {
-   MEMORY_INFO_MAP_T::const_iterator i = _InfoMap.begin();
-   while (i != _InfoMap.end()) {
+   MEMORY_INFO_MAP_T::const_iterator i = _InfoMap.cbegin();
+   while (i != _InfoMap.cend()) {
       MEMORY_INFO * info = (*i).second;
       cCache * cache = info->cache;
       if (cache != NULL) {
@@ -600,8 +607,8 @@ void cDevice::Save (UCHAR_T refresh_type, ULONG_T refresh_value)
 
 void cDevice::Download ()
 {
-   MEMORY_INFO_MAP_T::const_iterator i = _InfoMap.begin();
-   while (i != _InfoMap.end()) {
+   MEMORY_INFO_MAP_T::const_iterator i = _InfoMap.cbegin();
+   while (i != _InfoMap.cend()) {
       MEMORY_INFO * info = (*i).second;
       cCache * cache = info->cache;
       if (cache != NULL) {
@@ -613,8 +620,8 @@ void cDevice::Download ()
 
 void cDevice::Upload ()
 {
-   MEMORY_INFO_MAP_T::const_iterator i = _InfoMap.begin();
-   while (i != _InfoMap.end()) {
+   MEMORY_INFO_MAP_T::const_iterator i = _InfoMap.cbegin();
+   while (i != _InfoMap.cend()) {
       MEMORY_INFO * info = (*i).second;
       cCache * cache = info->cache;
       if (cache != NULL) {
@@ -658,8 +665,8 @@ void * cDevice::GetObject(CONST_STRING_T buf_spec, CONST_STRING_T name, ULONG_T 
 
 void cDevice::OptimizeBuffers()
 {
-   MEMORY_INFO_MAP_T::const_iterator i = _InfoMap.begin();
-   while (i != _InfoMap.end()) {
+   MEMORY_INFO_MAP_T::const_iterator i = _InfoMap.cbegin();
+   while (i != _InfoMap.cend()) {
       MEMORY_INFO * info = (*i).second;
       cCache * cache = info->cache;
       if (cache != NULL) {
@@ -671,8 +678,8 @@ void cDevice::OptimizeBuffers()
 
 void cDevice::OptimizeCaches()
 {
-   MEMORY_INFO_MAP_T::const_iterator i = _InfoMap.begin();
-   while (i != _InfoMap.end()) {
+   MEMORY_INFO_MAP_T::const_iterator i = _InfoMap.cbegin();
+   while (i != _InfoMap.cend()) {
       MEMORY_INFO * info = (*i).second;
       cCache * cache = info->cache;
       if (cache != NULL) {

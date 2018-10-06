@@ -92,7 +92,7 @@ cVarRef * cRefCache::VarRef (CONST_STRING_T spec)
 {
   //## begin cRefCache::VarRef%1108478924.body preserve=yes
    VAR_REF_CACHE_T::const_iterator i = _VarRefs.find(spec);
-   if (i == _VarRefs.end()) {
+   if (i == _VarRefs.cend()) {
       return NULL;
    } else {
       return (*i).second;
@@ -104,7 +104,7 @@ cFuncRef * cRefCache::FuncRef (CONST_STRING_T spec)
 {
   //## begin cRefCache::FuncRef%1108478925.body preserve=yes
    FUNC_REF_CACHE_T::const_iterator i = _FuncRefs.find(spec);
-   if (i == _FuncRefs.end()) {
+   if (i == _FuncRefs.cend()) {
       return NULL;
    } else {
       return (*i).second;
@@ -132,8 +132,8 @@ BOOL_T cRefCache::RegisterVarRefs (cDataChangeAdapter *adapter)
 {
   //## begin cRefCache::RegisterVarRefs%1108559440.body preserve=yes
    cObjectLock __lock__(&_CacheMutex);
-   VAR_REF_CACHE_T::const_iterator i = _VarRefs.begin();
-   while (i != _VarRefs.end()) {
+   VAR_REF_CACHE_T::const_iterator i = _VarRefs.cbegin();
+   while (i != _VarRefs.cend()) {
       cVarRef * var_ref = (*i).second;
       RegisterVarRef(var_ref, adapter);
       i++;

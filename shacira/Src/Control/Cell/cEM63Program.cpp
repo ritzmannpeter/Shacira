@@ -38,6 +38,8 @@
 #include "Control/Device/EM63/cEM63Job.h"
 // cStyxParser
 #include "Language/cStyxParser.h"
+
+#include "Client/ClientData/cClients.h"
 //## begin module%43B103A502AB.additionalDeclarations preserve=yes
 //## end module%43B103A502AB.additionalDeclarations
 
@@ -81,13 +83,14 @@ cEM63Program::cEM63Program (cConfigurationObject *config_obj, cContext *context)
   //## end cEM63Program::cEM63Program%1135674623.initialization
 {
   //## begin cEM63Program::cEM63Program%1135674623.body preserve=yes
+   _IFType = IF_EM63;
+
    _UserInfo = new cUserInfo;
-   _UserInfo->set_UserName("EUROMAP63");
-   _UserInfo->set_IFType(IF_EM63);
-   _UserInfo->set_ClientId(IF_EM63);
+   _UserInfo->set_UserName(cClients::UserName(_IFType));
+   _UserInfo->set_IFType(_IFType);
+   _UserInfo->set_ClientId(_IFType);
    _Interface = new cEM63Interface(this);
    _Requester = new cEM63Requester(this);
-   _IFType = IF_EM63;
   //## end cEM63Program::cEM63Program%1135674623.body
 }
 
@@ -175,17 +178,19 @@ void cEM63Program::CreateInterfaceContext ()
    }
    BOOL_T parsed = false;
    STRING_T var_defs;
-   ULONG_T var_count = _Context->GetVarDefs(var_defs, _IFType);
-   cContext * context = new cContext;
-   {
+   cContext * context = NULL;
+
+   if (_Context->GetVarDefs(var_defs, _IFType) > 0) {
+      context = new cContext;
+
       cStyxParser parser;
       parsed = parser.ParseDatabaseFromString(context, var_defs.c_str());
    }
    if (parsed) {
       STRING_LIST_T var_names;
       context->VariableNames(var_names);
-      STRING_LIST_T::const_iterator i = var_names.begin();
-      while (i != var_names.end()) {
+      STRING_LIST_T::const_iterator i = var_names.cbegin();
+      while (i != var_names.cend()) {
          STRING_T var_name = (*i);
          cVarDef * var_def = context->VarDef(var_name.c_str());
          if (var_def != NULL) {
@@ -209,7 +214,7 @@ void cEM63Program::CreateInterfaceContext ()
                   var_def->GetIndices(pos, i1, i2, i3, i4);
                   cVarRef * var_ref = NULL;
                   try {
-                     var_ref = _Context->FilteredVarRef(IF_EM63, var_name.c_str(), i1, i2, i3, i4);
+                     var_ref = _Context->FilteredVarRef(_IFType, var_name.c_str(), i1, i2, i3, i4);
                   } catch (...) {
                   }
                   if (var_ref != NULL) {
@@ -217,10 +222,10 @@ void cEM63Program::CreateInterfaceContext ()
                      if (!(system_flags & EM63_VARIABLE)) {
                         at[0] = '@';
                      }
-                     int inc1 = (var_def->_Flags & 0x80000000) ? 0 : 1;
-                     int inc2 = (var_def->_Flags & 0x40000000) ? 0 : 1;
-                     int inc3 = (var_def->_Flags & 0x20000000) ? 0 : 1;
-                     int inc4 = (var_def->_Flags & 0x10000000) ? 0 : 1;
+                     int inc1 = (var_def->_Flags & DIM0_DECREMENT) ? 0 : 1;
+                     int inc2 = (var_def->_Flags & DIM1_DECREMENT) ? 0 : 1;
+                     int inc3 = (var_def->_Flags & DIM2_DECREMENT) ? 0 : 1;
+                     int inc4 = (var_def->_Flags & DIM3_DECREMENT) ? 0 : 1;
                      char param_id[0x100] = {0};
                      if (i4 != -1) {
                         SafePrintf(param_id, sizeof(param_id), "%s%s[%d,%d,%d,%d]",
@@ -459,7 +464,7 @@ STRING_T cEM63Program::ContrVersion ()
 ULONG_T cEM63Program::MaxJobs ()
 {
   //## begin cEM63Program::MaxJobs%1136631594.body preserve=yes
-   return 15;
+   return 20;
   //## end cEM63Program::MaxJobs%1136631594.body
 }
 
@@ -501,7 +506,7 @@ ULONG_T cEM63Program::MaxArchives ()
 ULONG_T cEM63Program::MaxSessions ()
 {
   //## begin cEM63Program::MaxSessions%1136631600.body preserve=yes
-   return 30;
+   return 60;
   //## end cEM63Program::MaxSessions%1136631600.body
 }
 
@@ -566,8 +571,7 @@ void cEM63Program::Log (cEM63LogInfo *log_info)
          fprintf(stream, "%s %s %s\n",
                  param1.c_str(),
                  param2.c_str(),
-                 param3.c_str(),
-                 error_code);
+                 param3.c_str());
       }
       fclose(stream);
    }

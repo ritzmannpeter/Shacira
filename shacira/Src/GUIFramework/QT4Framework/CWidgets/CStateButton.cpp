@@ -52,6 +52,8 @@ CStateButton::CStateButton(QWidget * parent, const char * name)
    _ActShowVarRefValue = 0;
    _ActShow2VarRefValue = 0;
    _MouseKeyEnableValue = true;
+   _DisableParentValue = false;
+
 #ifdef QT4
 #pragma message(__LOC__ "not ported yet")
 NOT_PORTED("not ported yet")
@@ -93,8 +95,22 @@ void CStateButton::mouseReleaseEvent(QMouseEvent * e)
       }
 #ifndef QT_PLUGIN
 WMETHOD_PROLOG
-      QString new_value = NewValue();
+      EmitGUISignal(SIG_BUTTON_CLICKED);
       BOOL_T sync = (_ExecModeValue == Sync) ? true : false;
+      QWidget * parent = NULL;
+      if (_DisableParentValue && sync) {
+         parent = parentWidget();
+         if (parent->inherits("CPage")) {
+            ErrorPrintf("Property DisableParent for parent CPage not possible (Widget %s)\n", CONST_STRING(this->objectName()));
+            parent = NULL;
+         }
+         else {
+            parent->setEnabled(false);
+            qApp->processEvents();
+         }
+      }
+
+      QString new_value = NewValue();
       ULONG_T rc = ExecuteButtonFuncs(_PreExecFuncRef, _ButtonFuncRef, sync, _ActionDialogValue, 0);
       if ( rc == actionProceed) {
          if (_VarRef == NULL) {
@@ -114,6 +130,11 @@ WMETHOD_PROLOG
          ResetValue();
       }
       emit ButtonFunctionExecuted(rc); // HA210605
+
+      if (_DisableParentValue && sync && parent) {
+         qApp->processEvents();
+         parent->setEnabled(true);
+      }
 WMETHOD_VOID_EPILOG
 #endif
    }
@@ -130,8 +151,22 @@ void CStateButton::keyReleaseEvent(QKeyEvent * e)
 #ifndef QT_PLUGIN
 WMETHOD_PROLOG
    if (key == Qt::Key_Return || key == Qt::Key_Enter) {
-      QString new_value = NewValue();
+      EmitGUISignal(SIG_BUTTON_CLICKED);
       BOOL_T sync = (_ExecModeValue == Sync) ? true : false;
+      QWidget * parent = NULL;
+      if (_DisableParentValue && sync) {
+         parent = parentWidget();
+         if (parent->inherits("CPage")) {
+            ErrorPrintf("Property DisableParent for parent CPage not possible (Widget %s)\n", CONST_STRING(this->objectName()));
+            parent = NULL;
+         }
+         else {
+            parent->setEnabled(false);
+            qApp->processEvents();
+         }
+      }
+
+      QString new_value = NewValue();
       ULONG_T rc = ExecuteButtonFuncs(_PreExecFuncRef, _ButtonFuncRef, sync, _ActionDialogValue, 0);
       if (rc == actionProceed) {
          if (_VarRef == NULL) {
@@ -149,6 +184,11 @@ WMETHOD_PROLOG
          }
       } else {
          ResetValue();
+      }
+
+      if (_DisableParentValue && sync && parent) {
+         qApp->processEvents();
+         parent->setEnabled(true);
       }
    }
 WMETHOD_VOID_EPILOG
@@ -437,3 +477,7 @@ WMETHOD_VOID_EPILOG
 #endif
 }
 
+ULONG_T CStateButton::GetActStateValue()
+{
+    return StateValue(_ActIndex);
+}

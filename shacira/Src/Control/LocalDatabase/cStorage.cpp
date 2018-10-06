@@ -107,10 +107,10 @@ void cStorage::Initialize ()
    header->data_start = header->dir_start + (sizeof(VAR_ENTRY_T) * var_count);
    header->state_start = header->dir_start + ((sizeof(VAR_ENTRY_T) * var_count) + _DataSize);
    VAR_ENTRY_T * dir = (VAR_ENTRY_T*)(_Buffer + header->dir_start);
-   std::map<STRING_T, cLocalVariable*>::const_iterator i = _Variables.begin();
+   std::map<STRING_T, cLocalVariable*>::const_iterator i = _Variables.cbegin();
    ULONG_T data_offset = header->data_start;
    ULONG_T state_offset = header->state_start;
-   while (i != _Variables.end()) {
+   while (i != _Variables.cend()) {
       cLocalVariable * variable = (*i).second;
       STRING_T var_name = variable->VarName().c_str();
       memcpy(dir->var_name, var_name.c_str(), var_name.size());
@@ -242,7 +242,7 @@ VAR_ENTRY_T * cStorage::DirEntry (CONST_STRING_T var_name)
 {
   //## begin cStorage::DirEntry%1191857045.body preserve=yes
    std::map<STRING_T,VAR_ENTRY_T*>::const_iterator i = _VarEntries.find(var_name);
-   if (i == _VarEntries.end()) {
+   if (i == _VarEntries.cend()) {
       return NULL;
    } else {
       return (*i).second;
@@ -268,7 +268,7 @@ cLocalVariable * cStorage::Variable (CONST_STRING_T var_name)
 {
   //## begin cStorage::Variable%1191857048.body preserve=yes
    std::map<STRING_T,cLocalVariable*>::const_iterator i = _Variables.find(var_name);
-   if (i == _Variables.end()) {
+   if (i == _Variables.cend()) {
       return NULL;
    } else {
       return (*i).second;

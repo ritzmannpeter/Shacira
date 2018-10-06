@@ -152,8 +152,8 @@ QWidgetStack * CComposedStack::SearchStack(QWidget * widget)
 {
 #ifdef QT4
    const QObjectList children = widget->children();
-   QList<QObject*>::const_iterator i = children.begin();
-   while (i != children.end()) {
+   QList<QObject*>::const_iterator i = children.constBegin();
+   while (i != children.constEnd()) {
       QObject * object = (*i);
       if (object->isWidgetType()) {
          QWidget * child = (QWidget*)object;
@@ -194,8 +194,8 @@ CProcGraphic * CComposedStack::SearchGraphic(QWidget * widget)
 {
 #ifdef QT4
    const QObjectList children = widget->children();
-   QList<QObject*>::const_iterator i = children.begin();
-   while (i != children.end()) {
+   QList<QObject*>::const_iterator i = children.constBegin();
+   while (i != children.constEnd()) {
       QObject * object = (*i);
       if (object->isWidgetType()) {
          QWidget * child = (QWidget*)object;
@@ -236,8 +236,8 @@ void CComposedStack::ConnectGraphicWidgets(QWidget * widget)
 {
 #ifdef QT4
    const QObjectList children = widget->children();
-   QList<QObject*>::const_iterator i = children.begin();
-   while (i != children.end()) {
+   QList<QObject*>::const_iterator i = children.constBegin();
+   while (i != children.constEnd()) {
       QObject * object = (*i);
       if (object->isWidgetType()) {
          QWidget * child = (QWidget*)object;

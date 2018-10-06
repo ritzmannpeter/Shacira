@@ -80,7 +80,7 @@ bool cOptions::addOption(const string & name, const string & code, const string 
 const cOption * cOptions::getOption(const string & name) const
 {
    OPTION_MAP_T::const_iterator i = _optionMap.find(name);
-   if (i == _optionMap.end()) {
+   if (i == _optionMap.cend()) {
       return NULL;
    } else {
       return (*i).second;
@@ -90,8 +90,8 @@ const cOption * cOptions::getOption(const string & name) const
 string cOptions::usage() const
 {
    string usage;
-   OPTION_MAP_T::const_iterator i = _optionMap.begin();
-   while (i != _optionMap.end()) {
+   OPTION_MAP_T::const_iterator i = _optionMap.cbegin();
+   while (i != _optionMap.cend()) {
       const cOption * option = (*i).second;
       usage += option->code();
       if (option->hasParameter()) {
@@ -109,8 +109,8 @@ string cOptions::usage() const
 
 void cOptions::setOption(const string & code, const string & parameter)
 {
-   OPTION_MAP_T::const_iterator i = _optionMap.begin();
-   while (i != _optionMap.end()) {
+   OPTION_MAP_T::const_iterator i = _optionMap.cbegin();
+   while (i != _optionMap.cend()) {
       cOption * option = (*i).second;
       if (code == option->code()) {
          option->set(true);

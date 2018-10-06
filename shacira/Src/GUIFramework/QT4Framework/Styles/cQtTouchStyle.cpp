@@ -42,6 +42,25 @@ QRect cQtTouchStyle::subControlRect(ComplexControl cc, const QStyleOptionComplex
    return QProxyStyle::subControlRect(cc, opt, sc, widget);
 }
 
+#if QT_VERSION >= QT_VERSION_CHECK(5,7,0)
+QRect cQtTouchStyle::subElementRect(SubElement sr, const QStyleOption *opt, const QWidget *widget) const
+{
+   if (sr == SE_TabBarScrollLeftButton) {
+      QRect r;
+      const bool vertical = opt->rect.width() < opt->rect.height();
+      const Qt::LayoutDirection ld = widget->layoutDirection();
+      const int buttonWidth = qMax(pixelMetric(QStyle::PM_TabBarScrollButtonWidth, 0, widget), QApplication::globalStrut().width());
+      const int buttonOverlap = pixelMetric(QStyle::PM_TabBar_ScrollButtonOverlap, 0, widget); 
+
+      r = vertical ? QRect(0, opt->rect.height() - (buttonWidth * 2) + buttonOverlap, opt->rect.width(), buttonWidth)
+          : QStyle::visualRect(ld, opt->rect, QRect(opt->rect.width() - (buttonWidth * 2) + buttonOverlap, 0, buttonWidth, opt->rect.height()));
+      return r;
+   }
+
+   return QProxyStyle::subElementRect(sr, opt, widget);
+}
+#endif
+
 int cQtTouchStyle::pixelMetric (PixelMetric metric, const QStyleOption * option, const QWidget * widget) const
 {
    int base_return = QProxyStyle::pixelMetric(metric, option, widget);
@@ -60,8 +79,12 @@ int cQtTouchStyle::pixelMetric (PixelMetric metric, const QStyleOption * option,
    case PM_ExclusiveIndicatorHeight:
       base_return *= SCALE_CHECKBOX;
 	  break;
+#if QT_VERSION >= QT_VERSION_CHECK(5,7,0)
+   case PM_TabBarScrollButtonWidth:
+       base_return *= _multiplier;
+	   break;
+#endif
    }
-
    return base_return;	  
 }
 

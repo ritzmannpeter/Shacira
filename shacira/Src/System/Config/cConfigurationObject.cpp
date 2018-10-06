@@ -91,8 +91,8 @@ _ASSERT_COND(configuration != NULL)
 cConfigurationObject::~cConfigurationObject()
 {
   //## begin cConfigurationObject::~cConfigurationObject%.body preserve=yes
-   std::map<STRING_T, cProperty*>::const_iterator i = _Properties.begin();
-   while (i != _Properties.end()) {
+   std::map<STRING_T, cProperty*>::const_iterator i = _Properties.cbegin();
+   while (i != _Properties.cend()) {
       cProperty * property = (*i).second;
       if (property != NULL) {
          delete property;
@@ -146,8 +146,8 @@ void cConfigurationObject::SetProperty (cProperty *property)
 void cConfigurationObject::Resolve ()
 {
   //## begin cConfigurationObject::Resolve%1011095993.body preserve=yes
-   std::map<STRING_T, cProperty*>::const_iterator i = _Properties.begin();
-   while (i != _Properties.end()) {
+   std::map<STRING_T, cProperty*>::const_iterator i = _Properties.cbegin();
+   while (i != _Properties.cend()) {
       cProperty * property = (*i).second;
       property->Resolve();
       i++;
@@ -158,8 +158,8 @@ void cConfigurationObject::Resolve ()
 void cConfigurationObject::Save ()
 {
   //## begin cConfigurationObject::Save%1011186742.body preserve=yes
-   std::map<STRING_T, cProperty*>::const_iterator i = _Properties.begin();
-   while (i != _Properties.end()) {
+   std::map<STRING_T, cProperty*>::const_iterator i = _Properties.cbegin();
+   while (i != _Properties.cend()) {
       cProperty * property = (*i).second;
       property->Save();
       i++;
@@ -171,7 +171,7 @@ cProperty * cConfigurationObject::Property (CONST_STRING_T name) const
 {
   //## begin cConfigurationObject::Property%978594336.body preserve=yes
    std::map<STRING_T,cProperty*>::const_iterator i = _Properties.find(name);
-   if (i == _Properties.end()) {
+   if (i == _Properties.cend()) {
       return NULL;
    } else {
       return (*i).second;
@@ -191,8 +191,8 @@ cProperty * cConfigurationObject::Property (CONST_STRING_T name, BOOL_T mandator
 ULONG_T cConfigurationObject::PropertyList (STRING_LIST_T &property_list)
 {
   //## begin cConfigurationObject::PropertyList%980778564.body preserve=yes
-   std::map<STRING_T, cProperty*>::const_iterator i = _Properties.begin();
-   while (i != _Properties.end()) {
+   std::map<STRING_T, cProperty*>::const_iterator i = _Properties.cbegin();
+   while (i != _Properties.cend()) {
       property_list.push_back((*i).first);
       i++;
    }

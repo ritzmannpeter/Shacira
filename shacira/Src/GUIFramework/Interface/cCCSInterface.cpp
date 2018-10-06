@@ -153,7 +153,7 @@ BOOL_T cCCSInterface::Load ()
 {
   //## begin cCCSInterface::Load%1074080279.body preserve=yes
    if (_Loaded) {
-      ErrorPrintf("\ntried to load CCS Interface twice\n");
+      ErrorPrintf("tried to load CCS Interface twice\n");
       return false;
    } else {
       _Loaded = true;
@@ -178,15 +178,15 @@ BOOL_T cCCSInterface::Load ()
       cConfiguration * config = new cConfiguration(_ConfigFile.c_str());
       _ProcessObject = config->Object(_RootName.c_str());
       if (_ProcessObject == NULL) {
-         ErrorPrintf("\nno process object %s\n", _RootName.c_str());
+         ErrorPrintf("no process object %s\n", _RootName.c_str());
          return false;
       }
       _Process = new cCellProcess(_ProcessObject);
       STRING_LIST_T context_names;
       _Process->ContextNames(context_names, LOCAL_CONTEXTS);
       // search for root context
-      STRING_LIST_T::const_iterator i = context_names.begin();
-      while (i != context_names.end()) {
+      STRING_LIST_T::const_iterator i = context_names.cbegin();
+      while (i != context_names.cend()) {
          STRING_T context_name = (*i);
          if (context_name.size() > 0) {
             cContext * context = _Process->Context(context_name.c_str(), LOCAL_CONTEXTS);
@@ -200,8 +200,8 @@ BOOL_T cCCSInterface::Load ()
          i++;
       }
       if (_RootContext != NULL) {
-         i = context_names.begin();
-         while (i != context_names.end()) {
+         i = context_names.cbegin();
+         while (i != context_names.cend()) {
             STRING_T context_name = (*i);
             if (context_name.size() > 0) {
                cContext * context = _Process->Context(context_name.c_str(), LOCAL_CONTEXTS);
@@ -226,14 +226,14 @@ BOOL_T cCCSInterface::Load ()
          _NodeList->AddNode(node);
          return true;
       } else {
-         ErrorPrintf("\nno local root context found\n");
+         ErrorPrintf("no local root context found\n");
          return false;
       }
    } catch(cError & e) {
-      ErrorPrintf("\n%s loading CCS\n", e.ErrMsg().c_str());
+      ErrorPrintf("%s loading CCS\n", e.ErrMsg().c_str());
       return false;
    } catch(...) {
-      ErrorPrintf("\nunknown exception loading CCS\n");
+      ErrorPrintf("unknown exception loading CCS\n");
       return false;
    }
   //## end cCCSInterface::Load%1074080279.body
@@ -249,10 +249,10 @@ BOOL_T cCCSInterface::Start ()
          cResources::RegisterProcess(_Process);
       }
    } catch(cError & e) {
-      ErrorPrintf("\n%s starting CCS\n", e.ErrMsg().c_str());
+      ErrorPrintf("%s starting CCS\n", e.ErrMsg().c_str());
       return false;
    } catch(...) {
-      ErrorPrintf("\nunknown exception starting CCS\n");
+      ErrorPrintf("unknown exception starting CCS\n");
       return false;
    }
    return true;
@@ -280,14 +280,14 @@ cNodeList * cCCSInterface::NodeList ()
 void cCCSInterface::Lock ()
 {
   //## begin cCCSInterface::Lock%1088517107.body preserve=yes
-   std::map<STRING_T,cEventAdapter*>::const_iterator i = _EventAdapters.begin();
-   while (i != _EventAdapters.end()) {
+   std::map<STRING_T,cEventAdapter*>::const_iterator i = _EventAdapters.cbegin();
+   while (i != _EventAdapters.cend()) {
       cEventAdapter * adapter = (*i).second;
       adapter->Lock();
       i++;
    }
-   std::map<STRING_T,cDataChangeAdapter*>::const_iterator j = _DataChangeAdapters.begin();
-   while (j != _DataChangeAdapters.end()) {
+   std::map<STRING_T,cDataChangeAdapter*>::const_iterator j = _DataChangeAdapters.cbegin();
+   while (j != _DataChangeAdapters.cend()) {
       cDataChangeAdapter * adapter = (*j).second;
       adapter->Lock();
       j++;
@@ -298,14 +298,14 @@ void cCCSInterface::Lock ()
 void cCCSInterface::Unlock ()
 {
   //## begin cCCSInterface::Unlock%1088517108.body preserve=yes
-   std::map<STRING_T,cEventAdapter*>::const_iterator i = _EventAdapters.begin();
-   while (i != _EventAdapters.end()) {
+   std::map<STRING_T,cEventAdapter*>::const_iterator i = _EventAdapters.cbegin();
+   while (i != _EventAdapters.cend()) {
       cEventAdapter * adapter = (*i).second;
       adapter->Unlock();
       i++;
    }
-   std::map<STRING_T,cDataChangeAdapter*>::const_iterator j = _DataChangeAdapters.begin();
-   while (j != _DataChangeAdapters.end()) {
+   std::map<STRING_T,cDataChangeAdapter*>::const_iterator j = _DataChangeAdapters.cbegin();
+   while (j != _DataChangeAdapters.cend()) {
       cDataChangeAdapter * adapter = (*j).second;
       adapter->Unlock();
       j++;
@@ -327,17 +327,17 @@ BOOL_T cCCSInterface::PrepareProcess ()
       cConfiguration * config = new cConfiguration(_ConfigFile.c_str());
       _ProcessObject = config->Object(_RootName.c_str());
       if (_ProcessObject == NULL) {
-         ErrorPrintf("\nno process object %s\n", _RootName.c_str());
+         ErrorPrintf("no process object %s\n", _RootName.c_str());
          return false;
       }
       _Process = new cSHProcess(_ProcessObject);
       _Process->Start();
       return true;
    } catch(cError & e) {
-      ErrorPrintf("\n%s\n", e.ErrMsg().c_str());
+      ErrorPrintf("%s\n", e.ErrMsg().c_str());
       return false;
    } catch(...) {
-      ErrorPrintf("\nunknown exception preparing process\n");
+      ErrorPrintf("unknown exception preparing process\n");
       return false;
    }
   //## end cCCSInterface::PrepareProcess%1097343822.body
@@ -347,7 +347,7 @@ BOOL_T cCCSInterface::LoadRemote (cContext *context)
 {
   //## begin cCCSInterface::LoadRemote%1097333007.body preserve=yes
    if (_Loaded) {
-      ErrorPrintf("\ntried to load CCS Interface twice\n");
+      ErrorPrintf("tried to load CCS Interface twice\n");
       return false;
    } else {
       _Loaded = true;
@@ -378,9 +378,9 @@ BOOL_T cCCSInterface::LoadRemote (cContext *context)
          STRING_LIST_T context_names;
          _Process->ContextNames(context_names, LOCAL_CONTEXTS);
          if (_RootContext != NULL) {
-            STRING_LIST_T::const_iterator i = context_names.begin();
-            i = context_names.begin();
-            while (i != context_names.end()) {
+            STRING_LIST_T::const_iterator i = context_names.cbegin();
+            i = context_names.cbegin();
+            while (i != context_names.cend()) {
                STRING_T context_name = (*i);
                if (context_name.size() > 0) {
                   cContext * context = _Process->Context(context_name.c_str(), LOCAL_CONTEXTS);
@@ -407,14 +407,14 @@ BOOL_T cCCSInterface::LoadRemote (cContext *context)
             return false;
          }
       } else {
-         ErrorPrintf("\nno remote root context found\n");
+         ErrorPrintf("no remote root context found\n");
          return false;
       }
    } catch(cError & e) {
-      ErrorPrintf("\n%s loading CCS\n", e.ErrMsg().c_str());
+      ErrorPrintf("%s loading CCS\n", e.ErrMsg().c_str());
       return false;
    } catch(...) {
-      ErrorPrintf("\nunknown exception loading CCS\n");
+      ErrorPrintf("unknown exception loading CCS\n");
       return false;
    }
   //## end cCCSInterface::LoadRemote%1097333007.body

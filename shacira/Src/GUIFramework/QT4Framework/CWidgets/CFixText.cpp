@@ -1,5 +1,6 @@
 
 #include "CFixText.h"
+#include <qstylepainter.h>
 
 #ifdef _CWIDGET_PLUGIN_
 /*
@@ -20,7 +21,7 @@ CFixText::CFixText(QWidget * parent, const char * name, WIDGET_FLAGS_TYPE f)
 #else
    : QLabel(parent, name, f),
 #endif
-     CWidgetBase(this)
+     CWidgetBase(this), _DegreeOfRotationValue(0)
 {
 #ifdef QT4
    setObjectName(name);
@@ -111,3 +112,20 @@ void CFixText::CCSEvent(TRANSIENT_OBJECT_PTR object)
 #endif
 }
 
+void CFixText::paintEvent(QPaintEvent * e)
+{
+   if (this->getDegreeOfRotation() == 0) {
+      QLabel::paintEvent(e);
+   }
+   else {
+      QStylePainter painter(this);
+
+      QRect rect;
+      QFontMetrics fm(this->font());
+      rect = fm.boundingRect(text());
+
+      painter.translate(width()/2, height()/2);
+      painter.rotate(this->getDegreeOfRotation());
+      painter.drawText(-rect.width()/2, rect.height()/2, text());
+   }
+}

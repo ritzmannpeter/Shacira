@@ -237,6 +237,7 @@ public:
       //## Operation: StringValue%1134980232
       STRING_T StringValue (GLS_Tok *token);
       STRING_T CommandIdentifier(EM63CmdIde * e63_cmd_identifier);
+      STRING_T Name(EM63Name * e63_name);
 
     // Data Members for Class Attributes
 

@@ -115,7 +115,7 @@ cJob * cJobs::GetJob (CONST_STRING_T job_name)
 {
   //## begin cJobs::GetJob%1047993026.body preserve=yes
    std::map<STRING_T, cJob*>::const_iterator i = _Jobs.find(job_name);
-	if (i == _Jobs.end()) {
+	if (i == _Jobs.cend()) {
 		return NULL;
 	} else {
 		return (*i).second;

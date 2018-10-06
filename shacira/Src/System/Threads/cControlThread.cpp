@@ -145,6 +145,35 @@ void cControlThread::Stop ()
   //## end cControlThread::Stop%987504144.body
 }
 
+bool cControlThread::kill (bool wait)
+{
+   cObjectLock __Lock__ (&_ThreadMutex);
+   bool bRetVal = false;
+
+   if (!_Started || _Terminated) {
+      return bRetVal;
+   }
+
+   if (cThread::kill(wait)) {
+      bRetVal = true;
+
+      _Started = false;
+      _Terminated = true;
+      _Terminating = false;
+
+      STRING_T stopper_name = "unknown";
+      cControlThread * stopper = GetCurrentThread();
+      if (stopper != NULL) {
+         stopper_name = stopper->get_Name().c_str();
+      }
+
+      InfoPrintf("%s: Thread id %d killed by %s\n", _Name.c_str(), _ThreadId, stopper_name.c_str());
+      _Threads.erase(_ThreadId);
+   }
+
+   return bRetVal;
+}
+
 BOOL_T cControlThread::onEnter (void *extra)
 {
   //## begin cControlThread::onEnter%983778320.body preserve=yes
@@ -272,7 +301,7 @@ cControlThread * cControlThread::GetThreadById (ULONG_T thread_id)
   //## begin cControlThread::GetThreadById%997883622.body preserve=yes
    cControlThread * control_thread = NULL;
    THREAD_MAP_T::const_iterator thread = _Threads.find(thread_id);
-   if (thread != _Threads.end()) {
+   if (thread != _Threads.cend()) {
       control_thread = (*thread).second;
       return control_thread;
    }
@@ -285,7 +314,7 @@ cControlThread * cControlThread::GetThreadByName (CONST_STRING_T thread_name)
   //## begin cControlThread::GetThreadByName%1036575935.body preserve=yes
    cControlThread * control_thread = NULL;
    THREAD_MAP_T::const_iterator thread = _Threads.begin();
-   while (thread != _Threads.end()) {
+   while (thread != _Threads.cend()) {
       if (strcmp((*thread).second->get_Name().c_str(), thread_name) == 0) {
          control_thread = (*thread).second;
          break;

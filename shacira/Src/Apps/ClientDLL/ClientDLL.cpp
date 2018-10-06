@@ -233,9 +233,9 @@ static CLIENT_HANDLE Connect(const char * name)
             STRING_LIST_T context_names;
             _Process->ContextNames(context_names, REMOTE_CONTEXTS);
             if (context_names.size() > 0) {
-               STRING_LIST_T::const_iterator i = context_names.begin();
-               while (i != context_names.end()) {
-                  if (i != context_names.begin()) printf(", ");
+               STRING_LIST_T::const_iterator i = context_names.cbegin();
+               while (i != context_names.cend()) {
+                  if (i != context_names.cbegin()) printf(", ");
                   printf("%s", (*i).c_str());
                   i++;
                }
@@ -465,9 +465,9 @@ static void ListContexts()
    STRING_LIST_T context_names;
    _Process->ContextNames(context_names);
    if (context_names.size() > 0) {
-      STRING_LIST_T::const_iterator i = context_names.begin();
-      while (i != context_names.end()) {
-         if (i != context_names.begin()) printf(", ");
+      STRING_LIST_T::const_iterator i = context_names.cbegin();
+      while (i != context_names.cend()) {
+         if (i != context_names.cbegin()) printf(", ");
          printf("%s", (*i).c_str());
          i++;
       }
@@ -483,8 +483,8 @@ static void ListVariables()
    STRING_LIST_T var_defs;
    _ClientContext->VariableNames(var_defs);
    if (var_defs.size() > 0) {
-      STRING_LIST_T::const_iterator i = var_defs.begin();
-      while (i != var_defs.end()) {
+      STRING_LIST_T::const_iterator i = var_defs.cbegin();
+      while (i != var_defs.cend()) {
          STRING_T var_name = (*i);
          cVarDef * var_def = _ClientContext->VarDef(var_name.c_str());
          STRING_T description;
@@ -706,7 +706,7 @@ MAINFUNC_PROLOG("SysCons")
             char var_spec[128] = {0};
             char value[128] = {0};
             int tests = 0;
-            const char * line = gets(temp_buf);
+            const char * line = gets_s(temp_buf);
             if (_stricmp("?", line) == 0) {
                printf("available commands:\n");
                printf("   q: exit console\n");

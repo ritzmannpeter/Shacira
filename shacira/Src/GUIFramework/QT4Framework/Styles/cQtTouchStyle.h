@@ -13,6 +13,9 @@ public:
    ~cQtTouchStyle();
 
    QRect subControlRect(ComplexControl cc, const QStyleOptionComplex *opt, SubControl sc, const QWidget *widget) const;
+#if QT_VERSION >= QT_VERSION_CHECK(5,7,0)
+   QRect subElementRect(SubElement sr, const QStyleOption *opt, const QWidget *widget) const;
+#endif
    int pixelMetric (PixelMetric metric, const QStyleOption * option = 0, const QWidget * widget = 0) const;
    void drawControl(ControlElement element, const QStyleOption *option, QPainter *painter, const QWidget *widget) const;
    QSize sizeFromContents(ContentsType type, const QStyleOption *option, const QSize &size, const QWidget *widget) const;

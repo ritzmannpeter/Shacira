@@ -18,6 +18,18 @@
 #define EM63_OPT_LOG_UNKNOWN        0x00000001
 #define EM63_OPT_LOG_FILE_CHANGES   0x00000002
 
+
+#define DIM0_DECREMENT        0x80000000
+#define DIM1_DECREMENT        0x40000000
+#define DIM2_DECREMENT        0x20000000
+#define DIM3_DECREMENT        0x10000000
+
+#define DIM_UNUSED            0x00010000
+#define DIM_REMOVED           0x00020000
+#define DIM_DECREMENTED       0x00040000
+#define GET_DIM_POS(dimspec)  (dimspec & DIM_UNUSED ? -1 : (dimspec & 0x00000007))
+
+
 class cEM63LogInfo;
 
 //## end module%43B103A502AB.includes

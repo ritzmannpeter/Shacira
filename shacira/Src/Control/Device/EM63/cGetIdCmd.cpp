@@ -94,8 +94,8 @@ BOOL_T cGetIdCmd::Start ()
       STRING_T ids;
       PARAM_SPEC_MAP_T param_specs;
       _Interface->GetParamSpecs(param_specs);
-      PARAM_SPEC_MAP_T::const_iterator i = param_specs.begin();
-      while (i != param_specs.end()) {
+      PARAM_SPEC_MAP_T::const_iterator i = param_specs.cbegin();
+      while (i != param_specs.cend()) {
          PARAM_SPEC_T * param_spec = (*i).second;
          ids += param_spec->param_id;
          ids += ld.c_str();

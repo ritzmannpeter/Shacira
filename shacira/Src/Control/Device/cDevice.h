@@ -78,6 +78,7 @@ public:
     * \brief Stops a devices additional services if so
     */
    virtual void Stop();
+   virtual void Kill(bool wait=false);
    /*!
     * \brief Informs a device about an address that must be cached
     * This method will be called for every address the device must cache.

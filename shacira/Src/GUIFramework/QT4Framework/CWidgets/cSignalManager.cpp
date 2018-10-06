@@ -44,7 +44,7 @@ cPtrList * cSignalManager::Listeners(const QString & name)
 {
    cPtrList * listeners = NULL;
    MANAGER_MAP_T::const_iterator i = _Listeners.find(name);
-   if (i == _Listeners.end()) {
+   if (i == _Listeners.cend()) {
       listeners = new cPtrList;
       _Listeners[name] = listeners;
    } else {

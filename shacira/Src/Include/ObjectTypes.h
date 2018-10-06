@@ -260,6 +260,7 @@
 #define VF_FORCE_EVENT              0x00000800
 #define VF_FILE_INPUT               0x00001000
 #define VF_NO_DATACHANGE            0x00002000
+#define VF_NO_UPDATE_UI             0x00004000
 
 #define VF_GET_IF_TYPE(flags)           (flags >> 24)
 #define VF_SET_IF_TYPE(flags,if_type)   flags = (flags & 0x00ffffff) | (((ULONG_T)if_type) << 24);
@@ -304,9 +305,10 @@
 // host interface types
 #define IF_PROPRIETARY	0
 
-#define IF_OPC		10
-#define IF_EM63		11
-#define IF_MAX		(IF_EM63+1)
+#define IF_OPC      10
+#define IF_EM63     11
+#define IF_OPCUA    12
+#define IF_MAX      (IF_OPCUA+1)
 
 #endif
 

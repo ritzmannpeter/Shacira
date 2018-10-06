@@ -191,7 +191,7 @@ BOOL_T cTree::TreeIterator::Touched (cTree *node)
 {
   //## begin cTree::TreeIterator::Touched%1049114546.body preserve=yes
    TREE_MAP_T::const_iterator i = _TouchedNodes.find(node);
-   if (i == _TouchedNodes.end()) {
+   if (i == _TouchedNodes.cend()) {
       return false;
    } else {
       return true;

@@ -216,8 +216,8 @@ DOMElement * qualifiedVariableSpecificationElement(DOMDocument * document, Quali
 DOMElement * dataRequestElement(DOMDocument * document, DataRequest * dataRequest)
 {
    DOMElement * dataRequestElement = document->createElement(X("DataRequest"));
-   VariableSpecificationList::const_iterator i = dataRequest->variableSpecificationList().begin();
-   while (i != dataRequest->variableSpecificationList().end()) {
+   VariableSpecificationList::const_iterator i = dataRequest->variableSpecificationList().cbegin();
+   while (i != dataRequest->variableSpecificationList().cend()) {
       VariableSpecification * spec = (*i);
       VariableSpecification::SpecificationType specificationType = spec->type();
       if (specificationType == VariableReference::Reference) {
@@ -265,8 +265,8 @@ DOMElement * dataElement(DOMDocument * document, Data * data)
 DOMElement * setDataRequestElement(DOMDocument * document, SetDataRequest * setDataRequest)
 {
    DOMElement * setDataRequestElement = document->createElement(X("SetDataRequest"));
-   DataList::const_iterator i = setDataRequest->dataList().begin();
-   while (i != setDataRequest->dataList().end()) {
+   DataList::const_iterator i = setDataRequest->dataList().cbegin();
+   while (i != setDataRequest->dataList().cend()) {
       Data * data = (*i);
       DOMElement * element = dataElement(document, data);
       setDataRequestElement->appendChild(element);
@@ -293,8 +293,8 @@ DOMElement * responseElement(DOMDocument * document, Response * response)
 DOMElement * dataReplyElement(DOMDocument * document, DataReply * dataReply)
 {
    DOMElement * dataReplyElement = document->createElement(X("DataReply"));
-   DataList::const_iterator i = dataReply->dataList().begin();
-   while (i != dataReply->dataList().end()) {
+   DataList::const_iterator i = dataReply->dataList().cbegin();
+   while (i != dataReply->dataList().cend()) {
       Data * data = (*i);
       DOMElement * element = dataElement(document, data);
       dataReplyElement->appendChild(element);
@@ -642,12 +642,10 @@ cXMLStruct * evaluateDocument(DOMDocument * document)
                      Address * sender = senderComponent(document, element);
                      Address * destination = destinationComponent(document, element);
                      Response * response = responseComponent(document, element);
-                     int dummy = 0;
                   } else if (tagName == "EventReply") {
                      Address * sender = senderComponent(document, element);
                      Address * destination = destinationComponent(document, element);
                      Response * response = responseComponent(document, element);
-                     int dummy = 0;
                   }
                }
             }

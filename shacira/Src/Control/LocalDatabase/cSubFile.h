@@ -63,6 +63,8 @@ public:
       // cStringBuffer based method PrintVariables
       void PrintVariables(cStringBuffer &buf);
 
+      void ExportVariables(STRING_T &buf, CONST_STRING_T separator);
+
     //## Get and Set Operations for Class Attributes (generated)
 
       //## Attribute: Name%411219CC006D

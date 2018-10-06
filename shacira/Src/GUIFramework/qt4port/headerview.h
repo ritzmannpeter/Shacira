@@ -36,14 +36,22 @@ public:
    virtual void setStretchEnabled(bool b, int section = -1);
    void setPixmap(int logicalIndex, const QPixmap & pixmap);
    virtual QSize sizeHint() const;
+   void setSectionResized(int logicalIndex, int oldSize, int newSize);
+   bool getColumnWidthManuelChanged() { return _columnWidthManuelChanged; };
+
 protected:
    void paintSection(QPainter * painter, const QRect & rect, int logicalIndex) const;
    bool event(QEvent * event);
+   void mousePressEvent(QMouseEvent * e);
+   void mouseReleaseEvent(QMouseEvent *e);
    void adjustPixmaps();
+
 private:
    QVector<QPixmap> _headerPixmaps;
    int _height;
    bool _initialized;
+   bool _mouseIsPressed;
+   bool _columnWidthManuelChanged;
 };
 
 #endif // _headerview_h_

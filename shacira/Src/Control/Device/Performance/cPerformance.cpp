@@ -1,4 +1,5 @@
 
+#include "shacira.h"
 #include "cPerformance.h"
 
 #if defined(_WIN32)
@@ -117,9 +118,11 @@ void cPerformance::Refresh()
 {
 #if defined(_WIN32)
    _PerfData = RefreshPerfData(_PerfKey, _ThreadObjIndices, _PerfData, &_PerfDataSize);
-   PPERF_OBJECT process_object = FindObject(_PerfData, PX_PROCESS);
-   if (process_object != NULL) {
-      RefreshData(process_object);
+   if (_PerfData != NULL) {
+      PPERF_OBJECT process_object = FindObject(_PerfData, PX_PROCESS);
+      if (process_object != NULL) {
+         RefreshData(process_object);
+      }
    }
 #endif
 }
@@ -284,6 +287,11 @@ ULONG_T cPerformance::Threads(ULONG_T process_id)
 BOOL_T cPerformance::IsRunning(CONST_STRING_T process_name, BOOL_T exclude_me)
 {
 #if defined(_WIN32)
+   if (_ProcessData[0].id == -1) {
+      InfoPrintf("No performance process data available (Process name: %s).\n", process_name);
+      return false;
+   }
+
    for (int i=0; i<MAX_PROCESSES; i++) {
       if (_ProcessData[i].id != -1) {
          if (_strnicmp(process_name, _ProcessData[i].name, strlen(process_name)) == 0) {
@@ -337,9 +345,14 @@ BOOL_T cPerformance::SetPerfIndices()
 
    rc = GetPerfTitleSz(_MachineKey, _PerfKey, &title_buf, &title, &last);
    if (rc != ERROR_SUCCESS) {
+      InfoPrintf("Unable to retrieve counter indexes, ERROR (%#x)\n", rc);
       return false;
    }
    
+   if (GetPerfIndex(title, last, PN_PROCESS) == -1) {
+      InfoPrintf("No perf-Index of PN_PROCESS found.  Please start in a command box: lodctr /R\n");
+   }
+
    PX_PROCESS = GetPerfIndex(title, last, PN_PROCESS);
    PX_PROCESS_CPU = GetPerfIndex(title, last, PN_PROCESS_CPU);
    PX_PROCESS_PRIV = GetPerfIndex(title, last, PN_PROCESS_PRIV);
@@ -426,7 +439,7 @@ DWORD cPerformance::GetPerfIndex(LPTSTR title[], DWORD last_index,LPTSTR name)
       }
    }
 #endif
-   return 0;
+   return -1;
 }
 
 PPERF_DATA cPerformance::RefreshPerfData(HKEY key, LPTSTR object_index, PPERF_DATA data, DWORD * data_size)

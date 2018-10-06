@@ -383,35 +383,35 @@ STRING_T cTransferObject::Serialize ()
 {
   //## begin cTransferObject::Serialize%1046095005.body preserve=yes
    STRING_T serialized_obj = "H(";
-   STRING_VECTOR_T::const_iterator i = _Header.begin();
-   while (i != _Header.end()) {
-      if (i != _Header.begin()) serialized_obj += ",";
+   STRING_VECTOR_T::const_iterator i = _Header.cbegin();
+   while (i != _Header.cend()) {
+      if (i != _Header.cbegin()) serialized_obj += ",";
       serialized_obj += SerializeString((*i).c_str());
       i++;
    }
    serialized_obj += ")";
    serialized_obj += "B(";
    i = _Body.begin();
-   while (i != _Body.end()) {
-      if (i != _Body.begin()) serialized_obj += ",";
+   while (i != _Body.cend()) {
+      if (i != _Body.cbegin()) serialized_obj += ",";
       serialized_obj += SerializeString((*i).c_str());
       i++;
    }
    serialized_obj += ")";
    if (_Parameters.size() > 0) {
 		serialized_obj += "P(";
-		i = _Parameters.begin();
-		while (i != _Parameters.end()) {
-			if (i != _Parameters.begin()) serialized_obj += ",";
+		i = _Parameters.cbegin();
+		while (i != _Parameters.cend()) {
+			if (i != _Parameters.cbegin()) serialized_obj += ",";
 			serialized_obj += SerializeString((*i).c_str());
 			i++;
 		}
 		serialized_obj += ")";
 	   if (_ParameterValues.size() > 0) {
 			serialized_obj += "PV(";
-			i = _ParameterValues.begin();
-			while (i != _ParameterValues.end()) {
-				if (i != _ParameterValues.begin()) serialized_obj += ",";
+			i = _ParameterValues.cbegin();
+			while (i != _ParameterValues.cend()) {
+				if (i != _ParameterValues.cbegin()) serialized_obj += ",";
 				serialized_obj += SerializeString((*i).c_str());
 				i++;
 			}
@@ -420,8 +420,8 @@ STRING_T cTransferObject::Serialize ()
 	   if (_Flags.size() > 0) {
 			serialized_obj += "PF(";
 			i = _Flags.begin();
-			while (i != _Flags.end()) {
-				if (i != _Flags.begin()) serialized_obj += ",";
+			while (i != _Flags.cend()) {
+				if (i != _Flags.cbegin()) serialized_obj += ",";
 				serialized_obj += SerializeString((*i).c_str());
 				i++;
 			}

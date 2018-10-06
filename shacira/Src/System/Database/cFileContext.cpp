@@ -72,8 +72,8 @@ BOOL_T cFileContext::IsRemote ()
 void cFileContext::Create ()
 {
   //## begin cFileContext::Create%1091815619.body preserve=yes
-   std::map<STRING_T, cVarDef*>::const_iterator i = _VarDefs.begin();
-   while (i != _VarDefs.end()) {
+   std::map<STRING_T, cVarDef*>::const_iterator i = _VarDefs.cbegin();
+   while (i != _VarDefs.cend()) {
       cVarDef * var_def = (*i).second;
       STRING_T var_name = var_def->_VarName;
       cVariable * variable = new cFileVariable(var_def);
@@ -92,8 +92,8 @@ void cFileContext::CreateDynamic ()
 ULONG_T cFileContext::GetVarDefs (STRING_T &var_defs, ULONG_T if_type)
 {
   //## begin cFileContext::GetVarDefs%1091815621.body preserve=yes
-   std::map<STRING_T, cVarDef*>::const_iterator i = _VarDefs.begin();
-   while (i != _VarDefs.end()) {
+   std::map<STRING_T, cVarDef*>::const_iterator i = _VarDefs.cbegin();
+   while (i != _VarDefs.cend()) {
       cVarDef * var_def = (*i).second;
       STRING_T var_spec;
       var_def->Unparse(var_spec, IGN_VALUES|IGN_UNIT_TEXT);

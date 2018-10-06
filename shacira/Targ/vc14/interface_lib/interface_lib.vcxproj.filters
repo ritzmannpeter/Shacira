@@ -540,12 +540,6 @@
     <ClCompile Include="..\..\..\Src\Orb\cCosEventChannelProxy.cpp">
       <Filter>Orb</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Src\Orb\ControlDynSK.cpp">
-      <Filter>Orb</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Src\Orb\ControlSK.cpp">
-      <Filter>Orb</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Src\Orb\CorbaDefinitions.cpp">
       <Filter>Orb</Filter>
     </ClCompile>
@@ -842,6 +836,21 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Src\System\Objects\cProtocol.cpp">
       <Filter>System\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Orb\ControlDynSK.cc">
+      <Filter>Orb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Orb\ControlSK.cc">
+      <Filter>Orb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Memory\cGarbageCollector.cpp">
+      <Filter>System\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Sys\cStringBuffer.cpp">
+      <Filter>System\Sys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\System\Memory\cMemPool.cpp">
+      <Filter>System\Memory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1348,6 +1357,15 @@
     </ClInclude>
     <ClInclude Include="..\..\..\Src\System\Objects\cProtocol.h">
       <Filter>System\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Memory\cGarbageCollector.h">
+      <Filter>System\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Sys\cStringBuffer.h">
+      <Filter>System\Sys</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\System\Memory\cMemPool.h">
+      <Filter>System\Memory</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -224,8 +224,8 @@ NO_PLATFORM
 
 bool FileExistence(STRING_VECTOR_T &paths, const char * file_name, STRING_T &file)
 {
-   STRING_VECTOR_T::const_iterator i = paths.begin();
-   while(i != paths.end()) {
+   STRING_VECTOR_T::const_iterator i = paths.cbegin();
+   while(i != paths.cend()) {
       STRING_T path =(*i);
       STRING_T test_file = AppendPath(path.c_str(), file_name);
       if(FileExists(test_file.c_str())) {
@@ -954,8 +954,8 @@ static int EM63Tester(int argc, char* argv[])
    const char * pattern = "*.job";
    if (FileList(file_names, "", WALK_RECURSIVE, pattern)) {
       int size = file_names.size();
-      STRING_LIST_T::const_iterator i = file_names.begin();
-      while (i != file_names.end()) {
+      STRING_LIST_T::const_iterator i = file_names.cbegin();
+      while (i != file_names.cend()) {
          STRING_T file_name = *i;
          STRING_T file = AppendPath(current_dir.c_str(), file_name.c_str());
          printf("%s ...\n", file.c_str());
@@ -971,8 +971,8 @@ static int EM63Tester(int argc, char* argv[])
    file_names.clear();
    if (FileList(file_names, "", WALK_RECURSIVE, pattern)) {
       int size = file_names.size();
-      STRING_LIST_T::const_iterator i = file_names.begin();
-      while (i != file_names.end()) {
+      STRING_LIST_T::const_iterator i = file_names.cbegin();
+      while (i != file_names.cend()) {
          STRING_T file_name = *i;
          STRING_T file = AppendPath(current_dir.c_str(), file_name.c_str());
          printf("%s ...\n", file.c_str());

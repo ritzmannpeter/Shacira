@@ -112,8 +112,8 @@ _ASSERT_COND(factory != NULL)
 cTypeDef::~cTypeDef()
 {
   //## begin cTypeDef::~cTypeDef%.body preserve=yes
-   std::map<STRING_T, cPropertyDef*>::const_iterator i = _PropertyDefs.begin();
-   while (i != _PropertyDefs.end()) {
+   std::map<STRING_T, cPropertyDef*>::const_iterator i = _PropertyDefs.cbegin();
+   while (i != _PropertyDefs.cend()) {
       cPropertyDef * property_def = (*i).second;
       if (property_def != NULL) {
          delete property_def;
@@ -197,8 +197,8 @@ BOOL_T cTypeDef::IsValid (CONST_STRING_T value)
             return true;
          }
       } else if (_RangeType == Enumeration) {
-         DOUBLE_LIST_T::const_iterator e = _NumericEnumeration.begin();
-         while (e != _NumericEnumeration.end()) {
+         DOUBLE_LIST_T::const_iterator e = _NumericEnumeration.cbegin();
+         while (e != _NumericEnumeration.cend()) {
             double compval = (*e);
             if (fval == compval) return true;
             e++;
@@ -207,8 +207,8 @@ BOOL_T cTypeDef::IsValid (CONST_STRING_T value)
       }
    } else if (_BaseType == String) {
       if (_RangeType == Enumeration) {
-         STRING_LIST_T::const_iterator e = _StringEnumeration.begin();
-         while (e != _StringEnumeration.end()) {
+         STRING_LIST_T::const_iterator e = _StringEnumeration.cbegin();
+         while (e != _StringEnumeration.cend()) {
             STRING_T compval = (*e);
             if (strcmp(value, compval.c_str()) == 0) return true;
             e++;
@@ -242,8 +242,8 @@ void cTypeDef::Resolve ()
       break;
    case ObjectDef:
       {
-         std::map<STRING_T, cPropertyDef*>::const_iterator def = _PropertyDefs.begin();
-         while (def != _PropertyDefs.end()) {
+         std::map<STRING_T, cPropertyDef*>::const_iterator def = _PropertyDefs.cbegin();
+         while (def != _PropertyDefs.cend()) {
             cPropertyDef * property_def = (*def).second;
             property_def->Resolve();
             def++;
@@ -263,7 +263,7 @@ cPropertyDef * cTypeDef::PropertyDef (CONST_STRING_T name)
 {
   //## begin cTypeDef::PropertyDef%1011021292.body preserve=yes
    std::map<STRING_T, cPropertyDef*>::const_iterator def = _PropertyDefs.find(name);
-   if (def == _PropertyDefs.end()) {
+   if (def == _PropertyDefs.cend()) {
       return NULL;
    } else {
       return (*def).second;
@@ -284,8 +284,8 @@ void cTypeDef::SetRange (DOUBLE_LIST_T &enumeration)
 {
   //## begin cTypeDef::SetRange%1011018899.body preserve=yes
    _RangeType = Enumeration;
-   DOUBLE_LIST_T::const_iterator i = enumeration.begin();
-   while (i != enumeration.end()) {
+   DOUBLE_LIST_T::const_iterator i = enumeration.cbegin();
+   while (i != enumeration.cend()) {
       _NumericEnumeration.push_back((*i));
       i++;
    }
@@ -296,8 +296,8 @@ void cTypeDef::SetRange (STRING_LIST_T &enumeration)
 {
   //## begin cTypeDef::SetRange%1011018901.body preserve=yes
    _RangeType = Enumeration;
-   STRING_LIST_T::const_iterator i = enumeration.begin();
-   while (i != enumeration.end()) {
+   STRING_LIST_T::const_iterator i = enumeration.cbegin();
+   while (i != enumeration.cend()) {
       _StringEnumeration.push_back((*i));
       i++;
    }

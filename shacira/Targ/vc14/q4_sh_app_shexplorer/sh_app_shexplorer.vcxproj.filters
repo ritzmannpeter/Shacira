@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Quellcodedateien">
+      <UniqueIdentifier>{34cc486b-b8b6-4b20-ab15-238efc3ce0a9}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Quellcodedateien\Forms">
+      <UniqueIdentifier>{0920fcc1-cf4f-4f61-bb40-ebc923be4c37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header-Dateien">
+      <UniqueIdentifier>{c6dcd0de-ccb8-48ba-9ab3-33fa69227060}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="Ressourcendateien">
+      <UniqueIdentifier>{42498998-c1b7-4d68-97c0-8c8bb102294b}</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+    <Filter Include="GeneratedFiles">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>moc;h;cpp</Extensions>
+      <ParseFiles>true</ParseFiles>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\Src\Apps\SHExplorer_Qt4\CServerList.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Apps\SHExplorer_Qt4\SHExplorer.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Apps\SHExplorer_Qt4\Generated\moc_CServerList.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\..\Src\Apps\SHExplorer_Qt4\CServerList.h">
+      <Filter>Quellcodedateien</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Apps\SHExplorer_Qt4\ExplorerForm.ui">
+      <Filter>Quellcodedateien\Forms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Apps\SHExplorer_Qt4\shexplorer_version.h">
+      <Filter>Header-Dateien</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\Src\Apps\SHExplorer_Qt4\Generated\ui_ExplorerForm.h">
+      <Filter>GeneratedFiles</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="sh_app_shexplorer.rc">
+      <Filter>Ressourcendateien</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

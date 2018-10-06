@@ -122,8 +122,8 @@ CONTROLFUNC_EPILOG
 void cBackupThread::Backup ()
 {
   //## begin cBackupThread::Backup%988306476.body preserve=yes
-   STRING_LIST_T::const_iterator destination = _DestinationList.begin();
-   while (destination != _DestinationList.end()) {
+   STRING_LIST_T::const_iterator destination = _DestinationList.cbegin();
+   while (destination != _DestinationList.cend()) {
       Copy(_Source.c_str(), (*destination).c_str());
       destination++;
    }

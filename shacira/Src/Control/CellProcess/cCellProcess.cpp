@@ -148,8 +148,8 @@ cCellProcess::~cCellProcess()
 void cCellProcess::Start ()
 {
   //## begin cCellProcess::Start%1072710117.body preserve=yes
-   CONTEXT_MAP_T::const_iterator i = _LocalContexts.begin();
-   while (i != _LocalContexts.end()) {
+   CONTEXT_MAP_T::const_iterator i = _LocalContexts.cbegin();
+   while (i != _LocalContexts.cend()) {
       cLocalContext * server_context = (cLocalContext*)(*i).second;
       if (!server_context->get_IsClientContext()) {
          server_context->Start();
@@ -171,8 +171,8 @@ void cCellProcess::Stop ()
    if (_Backup != NULL) {
       _Backup->Stop();
    }
-   CONTEXT_MAP_T::const_iterator i = _LocalContexts.begin();
-   while (i != _LocalContexts.end()) {
+   CONTEXT_MAP_T::const_iterator i = _LocalContexts.cbegin();
+   while (i != _LocalContexts.cend()) {
       cLocalContext * server_context = (cLocalContext*)(*i).second;
       if (!server_context->get_IsClientContext()) {
          server_context->Stop();

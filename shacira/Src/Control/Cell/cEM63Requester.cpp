@@ -102,10 +102,8 @@ INT_T cEM63Requester::ControlFunc ()
       }
       else {
          if (!_sessionDirectoryPresent) {
-            char log_message[0x200] = {0};
-            SafePrintf(log_message, sizeof(log_message), "path now empty");
-            _Interface->Log(CAT_ASYNC, OP_SCAN, 0, log_message);
-            ErrorPrintf("Euromap 63: %s\n", log_message);
+            _Interface->Log(CAT_ASYNC, OP_SCAN, 0, "path now empty");
+            ErrorPrintf("Euromap 63: path now empty\n");
 
             // Delete fault message EM63_DIR_NOT_EXIST
             cAlarm * pAlarm = new cAlarm(this, 0x00000002, false);
@@ -169,10 +167,11 @@ void cEM63Requester::CheckRequest (CONST_STRING_T directory)
 #ifdef EM63_LOGGING_INTERFACE
    if (cFileSystemUtils::DirExists(directory)) {
       if (!_sessionDirectoryPresent) {
-         char log_message[0x200] = {0};
-         SafePrintf(log_message, sizeof(log_message), "path %s reachable again", directory);
-         _Interface->Log(CAT_ASYNC, OP_SCAN, 0, log_message);
-         ErrorPrintf("Euromap 63: %s\n", log_message);
+         STRING_T log_message = "path ";
+         log_message += directory;
+         log_message += " reachable again";
+         _Interface->Log(CAT_ASYNC, OP_SCAN, 0, log_message.c_str());
+         ErrorPrintf("Euromap 63: %s\n", log_message.c_str());
 
          // Delete fault message EM63_DIR_NOT_EXIST
          cAlarm * pAlarm = new cAlarm(this, 0x00000002, false);
@@ -184,8 +183,8 @@ void cEM63Requester::CheckRequest (CONST_STRING_T directory)
          _Program->SessionDirectoryPresentChanged(_sessionDirectoryPresent);
       }
       if (_Interface->Scan(file_names, "SESS*.REQ", directory) > 0) {
-         STRING_LIST_T::const_iterator i = file_names.begin();
-         while (i != file_names.end()) {
+         STRING_LIST_T::const_iterator i = file_names.cbegin();
+         while (i != file_names.cend()) {
             STRING_T file = cFileSystemUtils::AppendPath(directory, (*i).c_str());
             HandleSession(file.c_str());
             i++;
@@ -193,10 +192,11 @@ void cEM63Requester::CheckRequest (CONST_STRING_T directory)
       }
    } else {
       if (_sessionDirectoryPresent) {
-         char log_message[0x200] = {0};
-         SafePrintf(log_message, sizeof(log_message), "path %s not existent or not reachable", directory);
-         _Interface->Log(CAT_ASYNC, OP_SCAN, -1, log_message);
-         ErrorPrintf("Euromap 63: %s\n", log_message);
+         STRING_T log_message = "path ";
+         log_message += directory;
+         log_message += " not existent or not reachable";
+         _Interface->Log(CAT_ASYNC, OP_SCAN, -1, log_message.c_str());
+         ErrorPrintf("Euromap 63: %s\n", log_message.c_str());
 
          // Create fault message
          cAlarm * pAlarm = new cAlarm(this, 0x00000002, true, EM63_DIR_NOT_EXIST);
@@ -216,8 +216,8 @@ void cEM63Requester::CheckRequest (CONST_STRING_T directory)
    if (file_system != NULL) {
       file_system->set_BasePath(directory);
       if (file_system->Scan(file_names, "SESS*.REQ") > 0) {
-         STRING_LIST_T::const_iterator i = file_names.begin();
-         while (i != file_names.end()) {
+         STRING_LIST_T::const_iterator i = file_names.cbegin();
+         while (i != file_names.cend()) {
             STRING_T file = cFileSystemUtils::AppendPath(directory, (*i).c_str());
             HandleSession(file.c_str());
             i++;

@@ -75,8 +75,8 @@ cIniFile::cIniFile (CONST_STRING_T file_name)
 cIniFile::~cIniFile()
 {
   //## begin cIniFile::~cIniFile%.body preserve=yes
-   CHAPTER_VECTOR_T::const_iterator i = _Chapters.begin();
-   while (i != _Chapters.end()) {
+   CHAPTER_VECTOR_T::const_iterator i = _Chapters.cbegin();
+   while (i != _Chapters.cend()) {
       cChapter * chapter = (*i);
       delete chapter;
       i++;

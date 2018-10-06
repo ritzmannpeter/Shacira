@@ -45,6 +45,13 @@ public:
    virtual void PropertyChanged() {}
    // end of further widget specific getter and setter methods
 
+public:
+   QCString getPageName() const                 {return QCString(name());};     // PageName = QObject name
+   void setPageName(QCString text)              {setName(text);};
+
+   QString getPageHeadline() const              {return QString(caption());};   // PageName = QObject caption
+   void setPageHeadline(QString text)           {setCaption(text);};
+
 protected:
    // overloaded qt widget methods
    virtual void mousePressEvent(QMouseEvent * e);
@@ -90,14 +97,6 @@ protected:
 public slots:
    void CheckAppearanceSlot(ULONG_T refresh_type, ULONG_T parent_state);
 
-public:
-
-   QCString getPageName() const                 {return QCString(name());};     // PageName = QObject name
-   void setPageName(QCString text)              {setName(text);};
-
-   QString getPageHeadline() const              {return QString(caption());};   // PageName = QObject caption
-   void setPageHeadline(QString text)           {setCaption(text);};
-
 signals:
    void PageShown(CPage * page);
 
@@ -118,6 +117,7 @@ public:
    void ActivateButton();
    void Leave();
    void Enter();
+   BOOL_T IsVisible();
 
 private:
    int _PositionInGroup;                          // Position der Seite innerhalb der Seitengruppe,

@@ -55,8 +55,8 @@ void WizardBase::initializeWizard()
    button(QWizard::HelpButton)->setMinimumHeight(minimumHeight);
 
    QList<int> pageList = pageIds();
-   QList<int>::const_iterator i = pageList.begin();
-   while (i != pageList.end()) {
+   QList<int>::const_iterator i = pageList.constBegin();
+   while (i != pageList.constEnd()) {
       int id = (*i);
       QWizardPage * page = this->page(id);
       WizardPageInfo * pageInfo = new WizardPageInfo;
@@ -182,7 +182,7 @@ bool WizardBase::appropriate(QWidget * page) const
 {
    int id = indexOf(page);
    PAGEINFO_MAP_T::const_iterator i = _pageInfoMap.find(id);
-   if (i != _pageInfoMap.end()) {
+   if (i != _pageInfoMap.cend()) {
       return (*i).second->_appropriate;
    } else {
       return true;
@@ -193,7 +193,7 @@ void WizardBase::setAppropriate(QWidget * page, bool state)
 {
    int id = indexOf(page);
    PAGEINFO_MAP_T::const_iterator i = _pageInfoMap.find(id);
-   if (i != _pageInfoMap.end()) {
+   if (i != _pageInfoMap.cend()) {
       (*i).second->_appropriate = state;
    } else {
       int dummy = 0;
@@ -208,8 +208,8 @@ void WizardBase::setTitle(QWizardPage * page, const QString & text)
 int WizardBase::indexOf(QWidget * page) const
 {
    QList<int> pageList = pageIds();
-   QList<int>::const_iterator i = pageList.begin();
-   while (i != pageList.end()) {
+   QList<int>::const_iterator i = pageList.constBegin();
+   while (i != pageList.constEnd()) {
       int id = (*i);
       if (page == this->page(id)) {
          return id;
@@ -226,7 +226,7 @@ unsigned int WizardBase::buttonStates(int id) const
 {
    unsigned int buttonStates = 0;
    PAGEINFO_MAP_T::const_iterator i = _pageInfoMap.find(id);
-   if (i != _pageInfoMap.end()) {
+   if (i != _pageInfoMap.cend()) {
       WizardPageInfo * pageInfo = (*i).second;
       unsigned int pattern = 0;
       if (pageInfo->_backEnabled) {
@@ -255,7 +255,7 @@ bool WizardBase::enabled(int id, WizardButton which) const
 {
    unsigned int buttonStates = 0;
    PAGEINFO_MAP_T::const_iterator i = _pageInfoMap.find(id);
-   if (i != _pageInfoMap.end()) {
+   if (i != _pageInfoMap.cend()) {
       WizardPageInfo * pageInfo = (*i).second;
       if (which == QWizard::BackButton) {
          return pageInfo->_backEnabled;
@@ -281,7 +281,7 @@ bool WizardBase::enabled(int id, WizardButton which) const
 void WizardBase::setButtonState(int id, WizardButton which, bool state)
 {
    PAGEINFO_MAP_T::const_iterator i = _pageInfoMap.find(id);
-   if (i != _pageInfoMap.end()) {
+   if (i != _pageInfoMap.cend()) {
       WizardPageInfo * pageInfo = (*i).second;
       if (which == QWizard::BackButton) {
          pageInfo->_backEnabled = state;
@@ -297,7 +297,6 @@ void WizardBase::setButtonState(int id, WizardButton which, bool state)
          return;
       }
    }
-   int dummy = 0;
 }
 
 void WizardBase::updateButtons(int pageId)

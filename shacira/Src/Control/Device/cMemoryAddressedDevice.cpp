@@ -163,7 +163,7 @@ cSharedMem * cMemoryAddressedDevice::Segment (ULONG_T address, CONST_STRING_T na
   //## begin cMemoryAddressedDevice::Segment%1076580851.body preserve=yes
    STRING_T segment_name = SegmentName(address, name);
    SEGMENT_MAP_T::const_iterator i = _Segments.find(segment_name.c_str());
-   if (i == _Segments.end()) {
+   if (i == _Segments.cend()) {
       cSharedMem * segment = CreateSegment(segment_name.c_str());
       return segment;
    } else {

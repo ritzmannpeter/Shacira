@@ -81,9 +81,9 @@ inline QString relativePath(const QString & basePath, const QString & path)
    if (baseComponents.length() > pathComponents.length()) {
       return QString();
    }
-   QStringList::const_iterator baseIterator = baseComponents.begin();
-   QStringList::const_iterator pathIterator = pathComponents.begin();
-   while (baseIterator != baseComponents.end()) {
+   QStringList::const_iterator baseIterator = baseComponents.constBegin();
+   QStringList::const_iterator pathIterator = pathComponents.constBegin();
+   while (baseIterator != baseComponents.constEnd()) {
       QString baseComponent = (*baseIterator);
       QString pathComponent = (*pathIterator);
       if (pathComponent.compare(baseComponent, Qt::CaseInsensitive) != 0) {
@@ -92,7 +92,7 @@ inline QString relativePath(const QString & basePath, const QString & path)
       baseIterator++;
       pathIterator++;
    }
-   while (pathIterator != pathComponents.end()) {
+   while (pathIterator != pathComponents.constEnd()) {
       QString pathComponent = (*pathIterator);
       if (relativePath.isEmpty()) {
          relativePath = pathComponent;

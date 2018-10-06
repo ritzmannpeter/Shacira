@@ -61,8 +61,8 @@ static void ListVariables()
    STRING_LIST_T var_defs;
    _ActiveContext->VariableNames(var_defs);
    if (var_defs.size() > 0) {
-      STRING_LIST_T::const_iterator i = var_defs.begin();
-      while (i != var_defs.end()) {
+      STRING_LIST_T::const_iterator i = var_defs.cbegin();
+      while (i != var_defs.cend()) {
          STRING_T var_name = (*i);
          cVarDef * var_def = _ActiveContext->VarDef(var_name.c_str());
          if (var_def != NULL) {
@@ -268,7 +268,7 @@ MAINFUNC_PROLOG("SysCons")
          char var_spec[128] = {0};
          char value[128] = {0};
          int tests = 0;
-         const char * line = gets(temp_buf);
+         const char * line = gets_s(temp_buf);
          if (_stricmp("?", line) == 0) {
             printf("available commands:\n");
             printf("   q: exit console\n");

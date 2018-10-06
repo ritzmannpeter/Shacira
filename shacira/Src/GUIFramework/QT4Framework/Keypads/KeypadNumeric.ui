@@ -6,19 +6,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>274</width>
+    <width>296</width>
     <height>415</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>274</width>
+    <width>296</width>
     <height>330</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>274</width>
+    <width>296</width>
     <height>415</height>
    </size>
   </property>
@@ -164,13 +164,13 @@
           <widget class="QStackedWidget" name="wStackLabelActual">
            <property name="minimumSize">
             <size>
-             <width>119</width>
+             <width>134</width>
              <height>28</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
-             <width>119</width>
+             <width>134</width>
              <height>28</height>
             </size>
            </property>
@@ -184,9 +184,9 @@
             <widget class="QLabel" name="label_current">
              <property name="geometry">
               <rect>
-               <x>3</x>
+               <x>2</x>
                <y>2</y>
-               <width>114</width>
+               <width>130</width>
                <height>23</height>
               </rect>
              </property>
@@ -211,9 +211,9 @@
             <widget class="QLabel" name="label_current_2">
              <property name="geometry">
               <rect>
-               <x>3</x>
+               <x>2</x>
                <y>2</y>
-               <width>114</width>
+               <width>130</width>
                <height>23</height>
               </rect>
              </property>
@@ -237,13 +237,13 @@
           <widget class="QStackedWidget" name="wStackLabelNew">
            <property name="minimumSize">
             <size>
-             <width>119</width>
+             <width>134</width>
              <height>28</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
-             <width>119</width>
+             <width>134</width>
              <height>28</height>
             </size>
            </property>
@@ -260,9 +260,9 @@
             <widget class="QLabel" name="label_new">
              <property name="geometry">
               <rect>
-               <x>3</x>
+               <x>2</x>
                <y>2</y>
-               <width>114</width>
+               <width>130</width>
                <height>23</height>
               </rect>
              </property>
@@ -287,9 +287,9 @@
             <widget class="QLabel" name="label_new_2">
              <property name="geometry">
               <rect>
-               <x>3</x>
+               <x>2</x>
                <y>2</y>
-               <width>114</width>
+               <width>130</width>
                <height>23</height>
               </rect>
              </property>
@@ -347,7 +347,7 @@
         <widget class="QStackedWidget" name="wStackMinLabel">
          <property name="geometry">
           <rect>
-           <x>3</x>
+           <x>2</x>
            <y>8</y>
            <width>45</width>
            <height>20</height>
@@ -429,9 +429,9 @@
         <widget class="QLabel" name="_lower_limit">
          <property name="geometry">
           <rect>
-           <x>52</x>
+           <x>50</x>
            <y>8</y>
-           <width>73</width>
+           <width>87</width>
            <height>20</height>
           </rect>
          </property>
@@ -454,7 +454,7 @@
         <widget class="QStackedWidget" name="wStackMaxLabel">
          <property name="geometry">
           <rect>
-           <x>138</x>
+           <x>145</x>
            <y>8</y>
            <width>45</width>
            <height>20</height>
@@ -533,9 +533,9 @@
         <widget class="QLabel" name="_upper_limit">
          <property name="geometry">
           <rect>
-           <x>184</x>
+           <x>190</x>
            <y>8</y>
-           <width>73</width>
+           <width>87</width>
            <height>20</height>
           </rect>
          </property>
@@ -558,13 +558,13 @@
        <widget class="QFrame" name="frame_3">
         <property name="minimumSize">
          <size>
-          <width>260</width>
+          <width>281</width>
           <height>180</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>260</width>
+          <width>281</width>
           <height>180</height>
          </size>
         </property>
@@ -575,16 +575,7 @@
          <property name="spacing">
           <number>2</number>
          </property>
-         <property name="leftMargin">
-          <number>2</number>
-         </property>
-         <property name="topMargin">
-          <number>2</number>
-         </property>
-         <property name="rightMargin">
-          <number>2</number>
-         </property>
-         <property name="bottomMargin">
+         <property name="margin">
           <number>2</number>
          </property>
          <item>
@@ -596,16 +587,7 @@
             <property name="spacing">
              <number>0</number>
             </property>
-            <property name="leftMargin">
-             <number>0</number>
-            </property>
-            <property name="topMargin">
-             <number>0</number>
-            </property>
-            <property name="rightMargin">
-             <number>0</number>
-            </property>
-            <property name="bottomMargin">
+            <property name="margin">
              <number>0</number>
             </property>
             <item>

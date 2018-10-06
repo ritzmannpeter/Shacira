@@ -178,7 +178,7 @@ STRING_T cError::ErrMsg ()
    STRING_T msg_text = SubstParams(msg.c_str());
    if (_NativeCode != 0) {
       char native_code[0x50] = {0};
-      SafePrintf(native_code, sizeof(native_code), " : %d", _NativeCode);
+      SafePrintf(native_code, sizeof(native_code), " : (NativeCode = %d) ", _NativeCode);
       msg_text += native_code;
    }
    return msg_text;

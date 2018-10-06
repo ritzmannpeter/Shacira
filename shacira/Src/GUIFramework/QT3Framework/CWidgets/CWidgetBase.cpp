@@ -1153,7 +1153,7 @@ WMETHOD_PROLOG
                   action_dialog->SetActive(false);
                   app_frame->ActionDialogTerminated(dialog_name, rc, dialog, action_dialog);
                } else {
-                  char err_text[0x60] = {0};
+                  char err_text[512] = {0};
                   SafePrintf(err_text, sizeof(err_text), "dialog for action dialog %s is null\n", dialog_name);
                   DisplayError(err_text);
                   ErrorPrintf(err_text);
@@ -1868,8 +1868,8 @@ void CWidgetBase::CCSRemoveDataLinks()
 {
 #ifndef QT_PLUGIN
 WMETHOD_PROLOG
-   DATA_VIEW_MAP_T::const_iterator i = _DataViewMap.begin();
-   while (i != _DataViewMap.end()) {
+   DATA_VIEW_MAP_T::const_iterator i = _DataViewMap.cbegin();
+   while (i != _DataViewMap.cend()) {
       STRING_T ref_spec = (*i).first;
       DATA_VIEW_PTR view = (*i).second;
       cVarRef * var_ref = view->VarRef();
@@ -1963,7 +1963,7 @@ WMETHOD_PROLOG
    VAR_REF_PTR var_ref = data_view->VarRef();
    STRING_T key = var_ref->_Spec;
    DATA_VIEW_MAP_T::const_iterator i = _DataViewMap.find(key);
-   if (i == _DataViewMap.end()) {
+   if (i == _DataViewMap.cend()) {
       _DataViewMap[key] = data_view;
    } else {
       _DataViewMap[key] = data_view;
@@ -2129,31 +2129,28 @@ WMETHOD_PROLOG
          } else {
             qsvar_text = qApp->translate("custom", CONST_STRING(qsvar_text));
          }
-         QString dim1_text = var_def->_Dim1Text.c_str();
-         QString dim2_text = var_def->_Dim2Text.c_str();
-         QString dim3_text = var_def->_Dim3Text.c_str();
-         QString dim4_text = var_def->_Dim4Text.c_str();
+
          if (i1 != -1) {
             qsvar_text += " ";
-            qsvar_text += qApp->translate("custom", CONST_STRING(dim1_text));
+            qsvar_text += qApp->translate("custom", var_def->_Dim1Text.c_str());
             qsvar_text += " ";
             qsvar_text += QString::number(i1 + ((system_flags & DIM1_OFFSET) != 0));
          }
          if (i2 != -1) {
             qsvar_text += " ";
-            qsvar_text += qApp->translate("custom", CONST_STRING(dim2_text));
+            qsvar_text += qApp->translate("custom", var_def->_Dim2Text.c_str());
             qsvar_text += " ";
             qsvar_text += QString::number(i2 + ((system_flags & DIM2_OFFSET) != 0));
          }
          if (i3 != -1) {
             qsvar_text += " ";
-            qsvar_text += qApp->translate("custom", CONST_STRING(dim3_text));
+            qsvar_text += qApp->translate("custom", var_def->_Dim3Text.c_str());
             qsvar_text += " ";
             qsvar_text += QString::number(i3 + ((system_flags & DIM3_OFFSET) != 0));
          }
          if (i4 != -1) {
             qsvar_text += " ";
-            qsvar_text += qApp->translate("custom", CONST_STRING(dim4_text));
+            qsvar_text += qApp->translate("custom", var_def->_Dim4Text.c_str());
             qsvar_text += " ";
             qsvar_text += QString::number(i4 + ((system_flags & DIM4_OFFSET) != 0));
          }
@@ -2236,7 +2233,7 @@ WMETHOD_RC_EPILOG(false)
    return false;
 }
 
-void CWidgetBase::SetHelpIds()
+void CWidgetBase::SetHelpIds(BOOL_T show_immediately)
 {
 #ifndef QT_PLUGIN
 WMETHOD_PROLOG
@@ -2247,12 +2244,15 @@ WMETHOD_PROLOG
    } else {
       SetHelpIds((QWidget*)_QWidget->parent());
    }
-   BOOL_T help_active = _AppFrame->HelpActive();
-   if (help_active) {
-      _AppFrame->ShowHelp(_ActHelpId1, _ActHelpId2);
-   }
-   if (_AppFrame != NULL) {
-      _AppFrame->ResyncLogoff();
+
+   if (show_immediately) {
+      BOOL_T help_active = _AppFrame->HelpActive();
+      if (help_active) {
+         _AppFrame->ShowHelp(_ActHelpId1, _ActHelpId2);
+      }
+      if (_AppFrame != NULL) {
+         _AppFrame->ResyncLogoff();
+      }
    }
 WMETHOD_VOID_EPILOG
 #endif

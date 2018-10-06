@@ -53,7 +53,7 @@ public:
 
     //## Constructors (specified)
       //## Operation: cRemoteVar%1040202765
-      cRemoteVar (cVarDef *var_def);
+      cRemoteVar (cVarDef *var_def, cCellProxy *cellProxy=NULL);
 
     //## Destructor (generated)
       virtual ~cRemoteVar();

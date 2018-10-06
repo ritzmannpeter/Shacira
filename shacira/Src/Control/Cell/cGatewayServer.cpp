@@ -147,8 +147,8 @@ void cGatewayServer::Request (cStreamMsg &in_msg, cStreamMsg &out_msg)
          _Process->ContextNames(context_names, REMOTE_CONTEXTS);
          int contexts = context_names.size();
          if (context_names.size() > 0) {
-            STRING_LIST_T::const_iterator i = context_names.begin();
-            while (i != context_names.end()) {
+            STRING_LIST_T::const_iterator i = context_names.cbegin();
+            while (i != context_names.cend()) {
                STRING_T context_name = (*i);
                msg += context_name.c_str();
                msg += ",";

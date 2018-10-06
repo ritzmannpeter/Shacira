@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -13,17 +13,20 @@
   <PropertyGroup Label="Globals">
     <SccProjectName />
     <SccLocalPath />
+    <ProjectGuid>{1398C09F-9C46-45F7-8A49-B960CA3120B3}</ProjectGuid>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -54,15 +57,16 @@
       <Optimization>Disabled</Optimization>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <WarningLevel>Level3</WarningLevel>
-      <MinimalRebuild>true</MinimalRebuild>
+      <MinimalRebuild>false</MinimalRebuild>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <AdditionalIncludeDirectories>..\..\..\src;..\..\..\src\Include;..\..\..\Extern\ECL\Src;..\..\..\src\Orb;..\..\..\Extern\STYX\Src\INC;..\..\..\Extern\STYX\Src\LIBBASE;..\..\..\Extern\STYX\Src\MODSTD;..\..\..\Extern\FALCON\include;..\..\..\Extern\SIEMENS\C;..\..\..\Extern\ADDIDATA\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;_LIB;__x86__;__WIN32__;_COS_LIBRARY;_NO_QT_;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_LIB;__x86__;__WIN32__;_COS_LIBRARY;_NO_QT_;_CRT_SECURE_NO_WARNINGS;HAVE_SNPRINTF;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>.\Debug\</AssemblerListingLocation>
       <PrecompiledHeaderOutputFile>.\Debug\interface_lib.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\Debug\</ObjectFileName>
       <ProgramDataBaseFileName>.\Debug\</ProgramDataBaseFileName>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <AdditionalOptions>/MP2 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0407</Culture>
@@ -87,11 +91,12 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <WarningLevel>Level3</WarningLevel>
       <AdditionalIncludeDirectories>..\..\..\src;..\..\..\src\Include;..\..\..\Extern\ECL\Src;..\..\..\src\Orb;..\..\..\Extern\STYX\Src\INC;..\..\..\Extern\STYX\Src\LIBBASE;..\..\..\Extern\STYX\Src\MODSTD;..\..\..\Extern\FALCON\include;..\..\..\Extern\SIEMENS\C;..\..\..\Extern\ADDIDATA\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NDEBUG;_LIB;__x86__;__WIN32__;_COS_LIBRARY;_NO_QT_;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_LIB;__x86__;__WIN32__;_COS_LIBRARY;_NO_QT_;_CRT_SECURE_NO_WARNINGS;HAVE_SNPRINTF;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>.\Release\</AssemblerListingLocation>
       <PrecompiledHeaderOutputFile>.\Release\interface_lib.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\Release\</ObjectFileName>
       <ProgramDataBaseFileName>.\Release\</ProgramDataBaseFileName>
+      <AdditionalOptions>/MP2 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0407</Culture>
@@ -107,6 +112,8 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\Src\Orb\ControlDynSK.cc" />
+    <ClCompile Include="..\..\..\Src\Orb\ControlSK.cc" />
     <ClCompile Include="..\..\..\Src\System\Channel\cAdapter.cpp" />
     <ClCompile Include="..\..\..\Src\System\Channel\cAdapterFactory.cpp" />
     <ClCompile Include="..\..\..\Src\System\Channel\cChannel.cpp" />
@@ -132,6 +139,8 @@
     <ClCompile Include="..\..\..\Src\System\cLiteString.cpp" />
     <ClCompile Include="..\..\..\Src\System\cLiteWString.cpp" />
     <ClCompile Include="..\..\..\Src\System\cValue.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Memory\cGarbageCollector.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Memory\cMemPool.cpp" />
     <ClCompile Include="..\..\..\Src\System\Objects\cProtocol.cpp" />
     <ClCompile Include="..\..\..\Src\System\PLC\cActLine.cpp" />
     <ClCompile Include="..\..\..\Src\System\PLC\cActProcedure.cpp" />
@@ -227,6 +236,7 @@
     <ClCompile Include="..\..\..\Src\System\Sys\cSharedLibrary.cpp" />
     <ClCompile Include="..\..\..\Src\System\Sys\cSHFile.cpp" />
     <ClCompile Include="..\..\..\Src\System\Sys\cSockets.cpp" />
+    <ClCompile Include="..\..\..\Src\System\Sys\cStringBuffer.cpp" />
     <ClCompile Include="..\..\..\Src\System\Sys\cSysProcess.cpp" />
     <ClCompile Include="..\..\..\Src\System\Sys\cSystemUtils.cpp" />
     <ClCompile Include="..\..\..\Src\System\Text\cText.cpp" />
@@ -258,8 +268,6 @@
     <ClCompile Include="..\..\..\Src\Orb\cBroker.cpp" />
     <ClCompile Include="..\..\..\Src\Orb\cCorbaCellProxy.cpp" />
     <ClCompile Include="..\..\..\Src\Orb\cCosEventChannelProxy.cpp" />
-    <ClCompile Include="..\..\..\Src\Orb\ControlDynSK.cpp" />
-    <ClCompile Include="..\..\..\Src\Orb\ControlSK.cpp" />
     <ClCompile Include="..\..\..\Src\Orb\CorbaDefinitions.cpp" />
     <ClCompile Include="..\..\..\Src\Orb\CosEventChannelAdminDynSK.cpp" />
     <ClCompile Include="..\..\..\Src\Orb\CosEventChannelAdminSK.cpp" />
@@ -383,6 +391,8 @@
     <ClInclude Include="..\..\..\Src\System\cLiteString.h" />
     <ClInclude Include="..\..\..\Src\System\cLiteWString.h" />
     <ClInclude Include="..\..\..\Src\System\cValue.h" />
+    <ClInclude Include="..\..\..\Src\System\Memory\cGarbageCollector.h" />
+    <ClInclude Include="..\..\..\Src\System\Memory\cMemPool.h" />
     <ClInclude Include="..\..\..\Src\System\Objects\cProtocol.h" />
     <ClInclude Include="..\..\..\Src\System\PLC\cActLine.h" />
     <ClInclude Include="..\..\..\Src\System\PLC\cActProcedure.h" />
@@ -478,6 +488,7 @@
     <ClInclude Include="..\..\..\Src\System\Sys\cFileSystemUtils.h" />
     <ClInclude Include="..\..\..\Src\System\Sys\cSHFile.h" />
     <ClInclude Include="..\..\..\Src\System\Sys\cSockets.h" />
+    <ClInclude Include="..\..\..\Src\System\Sys\cStringBuffer.h" />
     <ClInclude Include="..\..\..\Src\System\Sys\cSysProcess.h" />
     <ClInclude Include="..\..\..\Src\System\Sys\cSystemUtils.h" />
     <ClInclude Include="..\..\..\Src\System\Text\cTextTable.h" />

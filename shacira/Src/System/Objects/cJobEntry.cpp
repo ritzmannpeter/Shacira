@@ -116,7 +116,7 @@ BOOL_T cJobEntry::PropertyExists (CONST_STRING_T property_name)
 {
   //## begin cJobEntry::PropertyExists%1047655618.body preserve=yes
 	ULONG_MAP_T::const_iterator i = _PropertyMap.find(property_name);
-	if (i != _PropertyMap.end()) {
+	if (i != _PropertyMap.cend()) {
 		return true;
 	} else {
 		return false;
@@ -152,7 +152,7 @@ STRING_T cJobEntry::PropertyValue (CONST_STRING_T property_name)
 {
   //## begin cJobEntry::PropertyValue%1047655615.body preserve=yes
 	ULONG_MAP_T::const_iterator i = _PropertyMap.find(property_name);
-	if (i != _PropertyMap.end()) {
+	if (i != _PropertyMap.cend()) {
 		return PropertyValue((*i).second);
 	} else {
 		throw cError(JOB_ENTRY_INVALID_PROPERTY, 0, _JobName.c_str(), property_name);
@@ -165,7 +165,7 @@ void cJobEntry::AddProperty (CONST_STRING_T property_name)
   //## begin cJobEntry::AddProperty%1047655616.body preserve=yes
 	ULONG_T index = _Properties.size();
 	ULONG_MAP_T::const_iterator i = _PropertyMap.find(property_name);
-	if (i != _PropertyMap.end()) {
+	if (i != _PropertyMap.cend()) {
 		index = (*i).second;
 		Resize(index);
 	} else {
@@ -182,7 +182,7 @@ void cJobEntry::AddPropertyValue (CONST_STRING_T property_name, CONST_STRING_T v
   //## begin cJobEntry::AddPropertyValue%1047655617.body preserve=yes
 	ULONG_T index = _Properties.size();
 	ULONG_MAP_T::const_iterator i = _PropertyMap.find(property_name);
-	if (i != _PropertyMap.end()) {
+	if (i != _PropertyMap.cend()) {
 		index = (*i).second;
 		Resize(index);
 	} else {
@@ -296,7 +296,7 @@ ULONG_T cJobEntry::GetFlags (CONST_STRING_T property)
 {
   //## begin cJobEntry::GetFlags%1100678882.body preserve=yes
    ULONG_MAP_T::const_iterator i = _FlagMap.find(property);
-   if (i != _FlagMap.end()) {
+   if (i != _FlagMap.cend()) {
       return (*i).second;
    }
    return 0;

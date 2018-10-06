@@ -211,8 +211,8 @@ bool cQtPropertyLabel::setProperty(const QString & prop_name, const QString &val
 QObject * cQtPropertyWidget::child(QObject * object, const char * objName, const char * inheritsClass, bool recursiveSearch) const
 {
    QObjectList objectList = object->children();
-   QObjectList::const_iterator i = objectList.begin();
-   while (i != objectList.end()) {
+   QObjectList::const_iterator i = objectList.constBegin();
+   while (i != objectList.constEnd()) {
       QObject * child = (*i);
       QObject * foundChild = NULL;
       if (inheritsClass != NULL) {

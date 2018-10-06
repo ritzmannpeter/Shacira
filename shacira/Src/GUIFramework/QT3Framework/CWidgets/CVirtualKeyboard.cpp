@@ -19,6 +19,7 @@ SH_PLUGIN_REGISTER(InputWidget, \
 #ifndef QT_PLUGIN
 #include "cQtPropertyWidget.h"
 #include "cinput.h"
+#include "CAppFrame.h"
 #endif
 
 

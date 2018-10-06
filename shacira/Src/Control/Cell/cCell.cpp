@@ -169,8 +169,8 @@ cCell::~cCell()
       }
       j++;
    }
-   std::list<STRING_T>::const_iterator i = free_devices.begin();
-   while (i != free_devices.end()) {
+   std::list<STRING_T>::const_iterator i = free_devices.cbegin();
+   while (i != free_devices.cend()) {
       _Devices.erase((*i));
       i++;
    }
@@ -215,7 +215,7 @@ cDevice * cCell::Device (CONST_STRING_T device_name)
 {
   //## begin cCell::Device%1047978426.body preserve=yes
    std::map<STRING_T, cDevice*>::const_iterator i = _Devices.find(device_name);
-	if (i == _Devices.end()) {
+	if (i == _Devices.cend()) {
 		return NULL;
 	} else {
       cDevice * device = (*i).second;
@@ -262,8 +262,8 @@ void cCell::SetDevicesBuffered (BOOL_T state)
 {
   //## begin cCell::SetDevicesBuffered%1091556105.body preserve=yes
    _DevicesBuffered = state;
-   std::map<STRING_T,cDevice*>::const_iterator i = _Devices.begin();
-   while (i != _Devices.end()) {
+   std::map<STRING_T,cDevice*>::const_iterator i = _Devices.cbegin();
+   while (i != _Devices.cend()) {
       cDevice * device = (*i).second;
       device->set_Buffered(state);
       i++;
@@ -282,8 +282,8 @@ void cCell::SetDevicesCached (BOOL_T state)
 {
   //## begin cCell::SetDevicesCached%1091556106.body preserve=yes
    _DevicesCached = state;
-   std::map<STRING_T,cDevice*>::const_iterator i = _Devices.begin();
-   while (i != _Devices.end()) {
+   std::map<STRING_T,cDevice*>::const_iterator i = _Devices.cbegin();
+   while (i != _Devices.cend()) {
       cDevice * device = (*i).second;
       device->set_Cached(state);
       i++;
@@ -301,8 +301,8 @@ BOOL_T cCell::GetDevicesCached ()
 void cCell::Save (UCHAR_T refresh_type, ULONG_T refresh_value)
 {
   //## begin cCell::Save%1122475167.body preserve=yes
-   std::map<STRING_T,cDevice*>::const_iterator i = _Devices.begin();
-   while (i != _Devices.end()) {
+   std::map<STRING_T,cDevice*>::const_iterator i = _Devices.cbegin();
+   while (i != _Devices.cend()) {
       cDevice * device = (*i).second;
       try {
          device->Save(refresh_type, refresh_value);
@@ -334,8 +334,8 @@ void cCell::Download (ULONG_T ctrl)
       info->Release();
    }
    _LocalContext->Initialize(SH_PRE_DOWNLOAD);
-   std::map<STRING_T,cDevice*>::const_iterator i = _Devices.begin();
-   while (i != _Devices.end()) {
+   std::map<STRING_T,cDevice*>::const_iterator i = _Devices.cbegin();
+   while (i != _Devices.cend()) {
       cDevice * device = (*i).second;
       try {
          SetDevicesCached(true);
@@ -389,8 +389,8 @@ void cCell::Upload (ULONG_T ctrl)
       _LocalContext->Send(info);
       info->Release();
       _LocalContext->Initialize(SH_PRE_UPLOAD);
-      std::map<STRING_T,cDevice*>::const_iterator i = _Devices.begin();
-      while (i != _Devices.end()) {
+      std::map<STRING_T,cDevice*>::const_iterator i = _Devices.cbegin();
+      while (i != _Devices.cend()) {
          cDevice * device = (*i).second;
          try {
             device->Upload();
@@ -445,8 +445,8 @@ void cCell::SetProgress (ULONG_T indicator, ULONG_T value)
 void cCell::StartDevices ()
 {
   //## begin cCell::StartDevices%1072801792.body preserve=yes
-   std::map<STRING_T,cDevice*>::const_iterator i = _Devices.begin();
-   while (i != _Devices.end()) {
+   std::map<STRING_T,cDevice*>::const_iterator i = _Devices.cbegin();
+   while (i != _Devices.cend()) {
       cDevice * device = (*i).second;
       device->Start();
       i++;
@@ -457,8 +457,8 @@ void cCell::StartDevices ()
 void cCell::StopDevices ()
 {
   //## begin cCell::StopDevices%1072801793.body preserve=yes
-   std::map<STRING_T,cDevice*>::const_iterator i = _Devices.begin();
-   while (i != _Devices.end()) {
+   std::map<STRING_T,cDevice*>::const_iterator i = _Devices.cbegin();
+   while (i != _Devices.cend()) {
       cDevice * device = (*i).second;
       device->Stop();
       i++;

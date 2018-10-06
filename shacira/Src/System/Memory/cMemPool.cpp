@@ -84,8 +84,8 @@ void * cMemPool::NextFreeBlock(unsigned char * data)
 void * cMemPool::NextFreeBlock()
 {
    void * ptr = NULL;
-   std::list<void*>::const_iterator i = _FreeList.begin();
-   if (i != _FreeList.end()) {
+   std::list<void*>::const_iterator i = _FreeList.cbegin();
+   if (i != _FreeList.cend()) {
       ptr = (*i);
       _FreeList.pop_front();
    }

@@ -34,6 +34,7 @@ class _CWIDGET_EXPORT_ ListView : public QTreeWidget
 
 public:
    Q_PROPERTY(bool autoAdjustColumnSize READ getAutoAdjustColumnSize WRITE setAutoAdjustColumnSize)
+   Q_PROPERTY(bool optimizeAppearanceAfterEventShow READ getOptimizeAppearanceAfterEventShow WRITE setOptimizeAppearanceAfterEventShow)
 
    friend class ListViewItem;
    enum ColorRole {
@@ -87,6 +88,7 @@ QListView::LastColumn - The last column is resized to fit the width of the list 
 public:
    ListView(QWidget * parent = NULL, const char * name = NULL, Qt::WindowFlags flags = 0);
    virtual ~ListView();
+
    bool hasCustomDelegate() const;
    HeaderView * header() const;
    ListViewItem * item(int row) const;
@@ -126,7 +128,6 @@ public:
    bool isSelected(ListViewItem * item) const;
    virtual void setResizeMode(ResizeMode mode);
    ResizeMode resizeMode() const;
-   void setItemHeight(int height);
    void setAutoAdjustColumnSize(bool state)
    {
       _autoAdjustColumnSizeValue = state;
@@ -134,6 +135,14 @@ public:
    bool getAutoAdjustColumnSize() const 
    { 
       return _autoAdjustColumnSizeValue; 
+   };
+   void setOptimizeAppearanceAfterEventShow(bool state)
+   {
+      _optimizeAppearanceAfterEventShowValue = state;
+   };
+   bool getOptimizeAppearanceAfterEventShow() const 
+   { 
+      return _optimizeAppearanceAfterEventShowValue; 
    };
 // QT3 compatibility methods
    virtual void setColumnText(int column, const QString & label);
@@ -184,18 +193,19 @@ protected:
 // mapping of QTreeWidget signals to (Q)ListView signals
 // using specific private slots
 // this emulates Qt3 QListView signals
+
+   QTimer * _columnWidthTimer;
+
 protected slots:
    void slotCurrentItemChanged(QTreeWidgetItem * current, QTreeWidgetItem * previous);
    void slotItemActivated(QTreeWidgetItem * item, int column);
-   void slotItemChanged(QTreeWidgetItem * item, int column);
    virtual void slotItemClicked(QTreeWidgetItem * item, int column);
    void slotItemCollapsed(QTreeWidgetItem * item);
    void slotItemDoubleClicked(QTreeWidgetItem * item, int column);
-   void slotItemEntered(QTreeWidgetItem * item, int column);
    void slotItemExpanded(QTreeWidgetItem * item);
-   void slotItemPressed(QTreeWidgetItem * item, int column);
    void slotItemSelectionChanged();
    void slotSectionCountChanged(int oldCount, int newCount);
+   void slotSectionResized(int logicalIndex, int oldSize, int newSize);
 
 signals:
    void clicked(ListViewItem * item);
@@ -216,9 +226,9 @@ private:
    QMap<int,Qt::Alignment> _columnAlignment;
    QMap<int,int> _columnWidth;
    int _appearanceStyle;
-   QTimer * _columnWidthTimer;
    bool _shown;
    bool _autoAdjustColumnSizeValue;
+   bool _optimizeAppearanceAfterEventShowValue;
 
 private:
    int addColumn();

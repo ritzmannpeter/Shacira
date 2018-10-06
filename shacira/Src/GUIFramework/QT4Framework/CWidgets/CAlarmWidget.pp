@@ -114,6 +114,8 @@ public:
    PROPERTY_2i(int,IconColWidth)
    PROPERTY_2i(int,MessageColWidth)
    PROPERTY_2i(int,ColSpacing)
+   PROPERTY_2i(int,ColSort)
+   PROPERTY_2i(Qt::SortOrder,SortOrder)
    // end of widget specific properties
 
 public:

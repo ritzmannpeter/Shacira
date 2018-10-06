@@ -168,7 +168,7 @@ void cFileVariable::Get (STRING_T &value, LONG_T i1, LONG_T i2, LONG_T i3, LONG_
       UCHAR_T data_type = DataType();
       if (data_type == SH_STRING) {
          ULONG_T size = ValueSize() * 2;
-         CONST_STRING_T buf = (CONST_STRING_T)cSystemUtils::Alloc(size+1);
+         STRING_BUF_T buf = (STRING_BUF_T)cSystemUtils::Alloc(size+1);
          int params = sscanf(value.c_str(), "bcd('%[^']')", buf);
          if (params == 1) {
             // this is a pre store conversion of strings containing non ascii

@@ -122,8 +122,8 @@ void cProxyRequester::RequestProxy (CONST_STRING_T server_addr, USHORT_T request
    if (cClients::GetConnected()) {
       return;
    }
-   PORT_MAP_T::const_iterator i = _RequesterPortMap.begin();
-   while (i != _RequesterPortMap.end()) {
+   PORT_MAP_T::const_iterator i = _RequesterPortMap.cbegin();
+   while (i != _RequesterPortMap.cend()) {
       USHORT_T server_port = (*i).second;
       RequestProxy(server_addr, server_port, requested_port); 
       i++;
@@ -186,8 +186,8 @@ MAINFUNC_EPILOG
 void cProxyRequester::HandleRequests ()
 {
   //## begin cProxyRequester::HandleRequests%1132170921.body preserve=yes
-   PORT_MAP_T::const_iterator i = _RequesterPortMap.begin();
-   while (i != _RequesterPortMap.end()) {
+   PORT_MAP_T::const_iterator i = _RequesterPortMap.cbegin();
+   while (i != _RequesterPortMap.cend()) {
       USHORT_T port = (*i).second;
       HandlePort(port, RECEIVER_TIMEOUT); 
       i++;
@@ -211,7 +211,7 @@ SOCKET cProxyRequester::Socket (USHORT_T port)
 {
   //## begin cProxyRequester::Socket%1132170924.body preserve=yes
    SOCKET_MAP_T::const_iterator i = _SocketMap.find(port);
-   if (i == _SocketMap.end()) {
+   if (i == _SocketMap.cend()) {
       return INVALID_SOCKET;
    } else {
       return (*i).second;
@@ -262,8 +262,8 @@ void cProxyRequester::SetSocket (USHORT_T port)
 void cProxyRequester::CloseSockets ()
 {
   //## begin cProxyRequester::CloseSockets%1132170923.body preserve=yes
-   SOCKET_MAP_T::const_iterator i = _SocketMap.begin();
-   while (i != _SocketMap.end()) {
+   SOCKET_MAP_T::const_iterator i = _SocketMap.cbegin();
+   while (i != _SocketMap.cend()) {
       SOCKET socket = (*i).second;
       if (socket != INVALID_SOCKET) {
          closesocket(socket);
@@ -312,14 +312,14 @@ void cProxyRequester::RequestProxies ()
 {
   //## begin cProxyRequester::RequestProxies%1132208639.body preserve=yes
    if (_IsClient) {
-      ADDRESS_MAP_T::const_iterator ai = _AddressMap.begin();
-      while (ai != _AddressMap.end()) {
+      ADDRESS_MAP_T::const_iterator ai = _AddressMap.cbegin();
+      while (ai != _AddressMap.cend()) {
          STRING_T address = (*ai).second;
-         PORT_MAP_T::const_iterator rpi = _RequestedPortMap.begin();
-         while (rpi != _RequestedPortMap.end()) {
+         PORT_MAP_T::const_iterator rpi = _RequestedPortMap.cbegin();
+         while (rpi != _RequestedPortMap.cend()) {
             USHORT_T requested_port = (*rpi).second;
-            PORT_MAP_T::const_iterator pi = _RequesterPortMap.begin();
-            while (pi != _RequesterPortMap.end()) {
+            PORT_MAP_T::const_iterator pi = _RequesterPortMap.cbegin();
+            while (pi != _RequesterPortMap.cend()) {
                USHORT_T server_port = (*pi).second;
                RequestProxy(address.c_str(), server_port, requested_port); 
                pi++;

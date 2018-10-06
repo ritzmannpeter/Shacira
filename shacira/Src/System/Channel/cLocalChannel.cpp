@@ -165,7 +165,7 @@ void cLocalChannel::StopListen ()
 void cLocalChannel::Send (cTransientObject *object)
 {
   //## begin cLocalChannel::Send%1065547487.body preserve=yes
-	object->AddRef();
+   object->AddRef();
    AsyncMessage msg_data = {0};
    msg_data.msg_id = MSG_ID_OBJECT;
    msg_data.object = object;

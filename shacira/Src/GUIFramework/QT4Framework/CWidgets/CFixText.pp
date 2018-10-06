@@ -73,6 +73,7 @@ public:
 
    // further widget specific properties
    PROPERTY_2i(int,Index)
+   PROPERTY_2i(int, DegreeOfRotation)
    // setter and getter methods of common widget properties
 
 public:
@@ -113,10 +114,7 @@ protected:
    // overloaded qt widget methods
    virtual void mousePressEvent(QMouseEvent * e);
    virtual void mouseReleaseEvent(QMouseEvent * e);
-   virtual void paintEvent(QPaintEvent * e)
-   {
-      QLabel::paintEvent(e);
-   };
+   virtual void paintEvent(QPaintEvent * e);
    virtual void focusInEvent(QFocusEvent * e)
    {
       QLabel::focusInEvent(e);

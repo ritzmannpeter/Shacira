@@ -44,8 +44,8 @@ void cQtKeyboardLayout::initialize()
 {
 #ifdef QT4
    QObjectList buttons = children();
-   QObjectList::const_iterator i = buttons.begin();
-   while (i != buttons.end()) {
+   QObjectList::const_iterator i = buttons.constBegin();
+   while (i != buttons.constEnd()) {
       if ((*i)->inherits("cQtKeyboardButton")) {
          cQtKeyboardButton *button = static_cast<cQtKeyboardButton*>((*i));
          // autoDefault must be set to false otherwise
@@ -94,8 +94,8 @@ void cQtKeyboardLayout::setBigFont(const QFont &bf)
    _big_font = bf;
 #ifdef QT4
    QObjectList buttons = children();
-   QObjectList::const_iterator i = buttons.begin();
-   while (i != buttons.end()) {
+   QObjectList::const_iterator i = buttons.constBegin();
+   while (i != buttons.constEnd()) {
       if ((*i)->inherits("cQtKeyboardButton")) {
          cQtKeyboardButton *button = static_cast<cQtKeyboardButton*>((*i));
          if (button->getKeyFont() == cQtKeyboardButton::fontBigFont) {
@@ -121,8 +121,8 @@ void cQtKeyboardLayout::setSmallFont(const QFont &sf)
    _small_font = sf; 
 #ifdef QT4
    QObjectList buttons = children();
-   QObjectList::const_iterator i = buttons.begin();
-   while (i != buttons.end()) {
+   QObjectList::const_iterator i = buttons.constBegin();
+   while (i != buttons.constEnd()) {
       if ((*i)->inherits("cQtKeyboardButton")) {
          cQtKeyboardButton *button = static_cast<cQtKeyboardButton*>((*i));
          if (button->getKeyFont() == cQtKeyboardButton::fontSmallFont) {

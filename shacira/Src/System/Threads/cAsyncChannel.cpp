@@ -124,10 +124,11 @@ MAINFUNC_EPILOG
 BOOL_T cAsyncChannel::Send (cTransientObject *object)
 {
   //## begin cAsyncChannel::Send%983778336.body preserve=yes
-	object->AddRef();
+   object->AddRef();
    AsyncMessage msg_data = {0};
    msg_data.msg_id = MSG_ID_OBJECT;
    msg_data.object = object;
+   cObjectLock __lock__(&_SendMutex);
    _ReceiveBox->send(cMsg(MSG_ID_OBJECT, sizeof(msg_data), &msg_data));
    return true;
   //## end cAsyncChannel::Send%983778336.body

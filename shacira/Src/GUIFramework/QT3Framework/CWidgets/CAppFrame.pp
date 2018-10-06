@@ -94,11 +94,16 @@ class SH_QT_WIDGET_PLUGIN_EXPORT CAppFrame : public CWidget
    PROPERTY_2i(QColor,TabBarBackgroundColor)
    PROPERTY_2i(QColor,TabBarForegroundColor)
 
+   Q_PROPERTY(QSize PageAreaSize READ getPageAreaSize WRITE setPageAreaSize)
+
 public:
    // further widget specific getter and setter methods
    METHODS_2i   
    friend class CWidgetBase;
    virtual void PropertyChanged() {}
+
+   void setPageAreaSize(const QSize &value);
+   QSize getPageAreaSize() const;
    // end of further widget specific getter and setter methods
 
 protected:
@@ -185,6 +190,8 @@ public:
    void PrintActPage(ULONG_T flags = 0);
    QImage GetImage(const QString & page_name = NULL, ULONG_T flags = 0);
    CPage * GetPage(const QString & page_name);
+   BOOL_T GetWebServerRequestShowPage() { return _WebServerRequestShowPage; };
+   void SetWebServerRequestShowPage(BOOL_T request) { _WebServerRequestShowPage = request; };
 
    // Dialog Handling
    void RegisterDialog(QDialog * dialog);
@@ -280,6 +287,7 @@ private:
    DIALOG_T * ActDialog();
    void SetActive(QWizard * wizard, BOOL_T state);
    void SetActive(QDialog * dialog, BOOL_T state);
+
 private:
    BOOL_T _RefreshActive;
    QTimer * _RefreshTimer;
@@ -300,6 +308,9 @@ private:
    CStartupForm * _StartupForm;
    WIZARD_T * _ActWizard;
    DIALOG_T * _ActDialog;
+   QSize _PageAreaSize;
+   BOOL_T _WebServerRequestShowPage;
+
 protected:
    QString _AppName;
    QFont _AppDefaultFont;

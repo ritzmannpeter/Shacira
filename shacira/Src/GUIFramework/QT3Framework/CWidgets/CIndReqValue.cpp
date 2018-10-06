@@ -225,7 +225,7 @@ REF_T * cIndexBase::Ref(const QString & ref_spec)
 #ifndef QT_PLUGIN
 WMETHOD_PROLOG
    REF_MAP_T::const_iterator i = _Refs.find(ref_spec);
-   if (i == _Refs.end()) {
+   if (i == _Refs.cend()) {
       return NULL;
    } else {
       return (*i).second;
@@ -255,7 +255,7 @@ WMETHOD_PROLOG
    if (view == NULL) return NULL;
 
    ACTREF_MAP_T::const_iterator i = _ActRefs.find(view);
-   if (i == _ActRefs.end()) {
+   if (i == _ActRefs.cend()) {
       return NULL;
    } else {
       return (*i).second;

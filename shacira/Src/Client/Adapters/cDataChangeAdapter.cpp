@@ -161,7 +161,7 @@ cPtrList * cDataChangeAdapter::VarRefs (CONST_STRING_T name)
 {
   //## begin cDataChangeAdapter::VarRefs%1024051746.body preserve=yes
    VAR_REF_MAP_T::const_iterator i = _VarRefs.find(name);
-   if (i != _VarRefs.end()) {
+   if (i != _VarRefs.cend()) {
       return (*i).second;
    } else {
       return NULL;
@@ -213,7 +213,7 @@ void cDataChangeAdapter::RegisterVar (cVarRef *var_ref)
    CONST_STRING_T var_name = var_ref->_Name.c_str();
    VAR_REF_MAP_T::const_iterator i = _VarRefs.find(var_name);
    cPtrList * var_ref_list = NULL;
-   if (i == _VarRefs.end()) {
+   if (i == _VarRefs.cend()) {
       var_ref_list = new cPtrList;
       var_ref_list->Add((void*)var_ref);
       _VarRefs[var_name] = var_ref_list;
@@ -240,7 +240,7 @@ void cDataChangeAdapter::UnRegisterVar (cVarRef *var_ref)
    }
    // try to find using var_name
    VAR_REF_MAP_T::const_iterator i = _VarRefs.find(var_ref->_Name.c_str());
-   if (i != _VarRefs.end()) {
+   if (i != _VarRefs.cend()) {
       cPtrList * var_ref_list = (*i).second;
       var_ref_list->Remove(var_ref);
    }
